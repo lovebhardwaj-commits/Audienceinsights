@@ -1,1 +1,47 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlU3RhdGUgfSBmcm9tICJyZWFjdCI7CgpleHBvcnQgaW50ZXJmYWNlIEhvd1RvUmVhZEl0ZW0gewogIGxhYmVsOiBzdHJpbmc7CiAgdGV4dDogc3RyaW5nOwp9CgovLyBbUE0gRU5IQU5DRU1FTlRdIOKAlCBTaGFyZWQgcGxhaW4tbGFuZ3VhZ2UgZXhwbGFpbmVyIGZvciBldmVyeSByZXBvcnQuIENvbGxhcHNlZCBieQovLyBkZWZhdWx0IHNvIGV4cGVydHMgYXJlbid0IHNsb3dlZCBkb3duLCBvbmUgY2xpY2sgYXdheSBzbyBuZXcgdXNlcnMgYXJlIG5ldmVyIGxvc3QuCmV4cG9ydCBmdW5jdGlvbiBIb3dUb1JlYWQoeyB0aXRsZSA9ICJXaGF0IGFtIEkgbG9va2luZyBhdD8iLCBpdGVtcyB9OiB7IHRpdGxlPzogc3RyaW5nOyBpdGVtczogSG93VG9SZWFkSXRlbVtdIH0pIHsKICBjb25zdCBbb3Blbiwgc2V0T3Blbl0gPSB1c2VTdGF0ZShmYWxzZSk7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMyI+CiAgICAgIDxidXR0b24KICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRPcGVuKChvKSA9PiAhbyl9CiAgICAgICAgYXJpYS1leHBhbmRlZD17b3Blbn0KICAgICAgICBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGdhcC0xLjUgdGV4dC14cyBmb250LW1lZGl1bSB0ZXh0LXNsYXRlLTQwMCB0cmFuc2l0aW9uLWNvbG9ycyBob3Zlcjp0ZXh0LWJyYW5kLTYwMCIKICAgICAgPgogICAgICAgIDxzdmcgd2lkdGg9IjEzIiBoZWlnaHQ9IjEzIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2VXaWR0aD0iMiIgc3Ryb2tlTGluZWNhcD0icm91bmQiIHN0cm9rZUxpbmVqb2luPSJyb3VuZCI+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgLz4KICAgICAgICAgIDxwYXRoIGQ9Ik05LjA5IDlhMyAzIDAgMCAxIDUuODMgMWMwIDItMyAzLTMgMyIgLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0xMiAxN2guMDEiIC8+CiAgICAgICAgPC9zdmc+CiAgICAgICAge3RpdGxlfQogICAgICAgIDxzdmcgd2lkdGg9IjExIiBoZWlnaHQ9IjExIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2VXaWR0aD0iMi41IiBzdHJva2VMaW5lY2FwPSJyb3VuZCIgc3Ryb2tlTGluZWpvaW49InJvdW5kIiBjbGFzc05hbWU9e2B0cmFuc2l0aW9uLXRyYW5zZm9ybSBkdXJhdGlvbi0yMDAgJHtvcGVuID8gInJvdGF0ZS0xODAiIDogIiJ9YH0+CiAgICAgICAgICA8cGF0aCBkPSJtNiA5IDYgNiA2LTYiIC8+CiAgICAgICAgPC9zdmc+CiAgICAgIDwvYnV0dG9uPgogICAgICB7b3BlbiAmJiAoCiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImFuaW1hdGUtZmFkZS1pbiBtdC0yIHJvdW5kZWQtbGcgYm9yZGVyIGJvcmRlci1zbGF0ZS0xMDAgYmctc2xhdGUtNTAgcHgtNCBweS0zIj4KICAgICAgICAgIDx1bCBjbGFzc05hbWU9InNwYWNlLXktMS41Ij4KICAgICAgICAgICAge2l0ZW1zLm1hcCgoaXRlbSkgPT4gKAogICAgICAgICAgICAgIDxsaSBrZXk9e2l0ZW0ubGFiZWx9IGNsYXNzTmFtZT0idGV4dC14cyBsZWFkaW5nLXJlbGF4ZWQgdGV4dC1zbGF0ZS02MDAiPgogICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJmb250LXNlbWlib2xkIHRleHQtc2xhdGUtNzAwIj57aXRlbS5sYWJlbH08L3NwYW4+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InRleHQtc2xhdGUtNDAwIj4g4oCUIDwvc3Bhbj4KICAgICAgICAgICAgICAgIHtpdGVtLnRleHR9CiAgICAgICAgICAgICAgPC9saT4KICAgICAgICAgICAgKSl9CiAgICAgICAgICA8L3VsPgogICAgICAgIDwvZGl2PgogICAgICApfQogICAgPC9kaXY+CiAgKTsKfQo="}
+"use client";
+
+import { useState } from "react";
+
+export interface HowToReadItem {
+  label: string;
+  text: string;
+}
+
+// [PM ENHANCEMENT] — Shared plain-language explainer for every report. Collapsed by
+// default so experts aren't slowed down, one click away so new users are never lost.
+export function HowToRead({ title = "What am I looking at?", items }: { title?: string; items: HowToReadItem[] }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="mt-3">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="flex items-center gap-1.5 text-xs font-medium text-slate-400 transition-colors hover:text-brand-600"
+      >
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+          <path d="M12 17h.01" />
+        </svg>
+        {title}
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+      {open && (
+        <div className="animate-fade-in mt-2 rounded-lg border border-slate-100 bg-slate-50 px-4 py-3">
+          <ul className="space-y-1.5">
+            {items.map((item) => (
+              <li key={item.label} className="text-xs leading-relaxed text-slate-600">
+                <span className="font-semibold text-slate-700">{item.label}</span>
+                <span className="text-slate-400"> — </span>
+                {item.text}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}

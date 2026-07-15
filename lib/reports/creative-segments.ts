@@ -1,1 +1,120 @@
-{"data":"aW1wb3J0IHsgbWV0YUluc2lnaHRzIH0gZnJvbSAiQC9saWIvbWV0YS1hcGkiOwppbXBvcnQgeyBudW0sIGNwbXIsIGNwcCwgcGVyY2VudCwgZXh0cmFjdFB1cmNoYXNlcyB9IGZyb20gIkAvbGliL2NhbGN1bGF0aW9ucyI7CmltcG9ydCB7IFNFR01FTlRfT1JERVIsIG5vcm1hbGl6ZVNlZ21lbnRLZXkgfSBmcm9tICJAL2xpYi9jb25zdGFudHMiOwppbXBvcnQgdHlwZSB7IERhdGVSYW5nZSwgU2VnbWVudEtleSB9IGZyb20gIkAvbGliL3R5cGVzIjsKCmV4cG9ydCB0eXBlIEVudGl0eUxldmVsID0gImNhbXBhaWduIiB8ICJhZHNldCIgfCAiYWQiOwoKaW50ZXJmYWNlIFNlZ21lbnRCdWNrZXQgewogIHJlYWNoOiBudW1iZXI7CiAgc3BlbmQ6IG51bWJlcjsKICBwdXJjaGFzZXM6IG51bWJlcjsKfQoKLyoqIFVuaWZpZWQgcm93IHNoYXBlIGZvciBjYW1wYWlnbiAvIGFkc2V0IC8gYWQgc2VnbWVudCBicmVha2Rvd24gKi8KZXhwb3J0IGludGVyZmFjZSBFbnRpdHlTZWdtZW50Um93IHsKICBpZDogc3RyaW5nOwogIG5hbWU6IHN0cmluZzsKICB0b3RhbFJlYWNoOiBudW1iZXI7CiAgdG90YWxTcGVuZDogbnVtYmVyOwogIHRvdGFsUHVyY2hhc2VzOiBudW1iZXI7CiAgcHJvc3BlY3RpbmdSZWFjaDogbnVtYmVyOwogIHByb3NwZWN0aW5nUmVhY2hQY3Q6IG51bWJlcjsKICBwcm9zcGVjdGluZ1NwZW5kUGN0OiBudW1iZXI7CiAgcHJvc3BlY3RpbmdDcG1yOiBudW1iZXI7CiAgcHJvc3BlY3RpbmdQdXJjaGFzZXM6IG51bWJlcjsKICBwcm9zcGVjdGluZ1B1cmNoYXNlUGN0OiBudW1iZXI7CiAgcHJvc3BlY3RpbmdDcGE6IG51bWJlcjsKICBlbmdhZ2VkUmVhY2g6IG51bWJlcjsKICBlbmdhZ2VkUmVhY2hQY3Q6IG51bWJlcjsKICBlbmdhZ2VkU3BlbmQ6IG51bWJlcjsKICBlbmdhZ2VkQ3BtcjogbnVtYmVyOwogIGVuZ2FnZWRQdXJjaGFzZXM6IG51bWJlcjsKICBleGlzdGluZ1JlYWNoOiBudW1iZXI7CiAgZXhpc3RpbmdSZWFjaFBjdDogbnVtYmVyOwogIGV4aXN0aW5nU3BlbmQ6IG51bWJlcjsKICBleGlzdGluZ1B1cmNoYXNlczogbnVtYmVyOwp9CgovKiogQGRlcHJlY2F0ZWQgVXNlIEVudGl0eVNlZ21lbnRSb3cgKi8KZXhwb3J0IHR5cGUgQWRTZWdtZW50Um93ID0gRW50aXR5U2VnbWVudFJvdyAmIHsgYWRJZDogc3RyaW5nOyBhZE5hbWU6IHN0cmluZyB9OwoKZXhwb3J0IGludGVyZmFjZSBDcmVhdGl2ZVNlZ21lbnRzUmVwb3J0IHsKICBsZXZlbDogRW50aXR5TGV2ZWw7CiAgZW50aXRpZXM6IEVudGl0eVNlZ21lbnRSb3dbXTsKICAvKiogQGRlcHJlY2F0ZWQgVXNlIGVudGl0aWVzICovCiAgYWRzOiBBZFNlZ21lbnRSb3dbXTsKfQoKZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGdldENyZWF0aXZlU2VnbWVudHNSZXBvcnQoCiAgdG9rZW46IHN0cmluZywKICBhY2NvdW50SWQ6IHN0cmluZywKICByYW5nZTogRGF0ZVJhbmdlLAogIGxldmVsOiBFbnRpdHlMZXZlbCA9ICJhZCIKKTogUHJvbWlzZTxDcmVhdGl2ZVNlZ21lbnRzUmVwb3J0PiB7CiAgY29uc3QgaWRGaWVsZCA9IGxldmVsID09PSAiY2FtcGFpZ24iID8gImNhbXBhaWduX2lkIiA6IGxldmVsID09PSAiYWRzZXQiID8gImFkc2V0X2lkIiA6ICJhZF9pZCI7CiAgY29uc3QgbmFtZUZpZWxkID0gbGV2ZWwgPT09ICJjYW1wYWlnbiIgPyAiY2FtcGFpZ25fbmFtZSIgOiBsZXZlbCA9PT0gImFkc2V0IiA/ICJhZHNldF9uYW1lIiA6ICJhZF9uYW1lIjsKCiAgY29uc3Qgcm93cyA9IGF3YWl0IG1ldGFJbnNpZ2h0cyh7CiAgICB0b2tlbiwKICAgIG9iamVjdElkOiBhY2NvdW50SWQsCiAgICBmaWVsZHM6IFtuYW1lRmllbGQsIGlkRmllbGQsICJyZWFjaCIsICJzcGVuZCIsICJpbXByZXNzaW9ucyIsICJhY3Rpb25zIl0sCiAgICB0aW1lUmFuZ2U6IHJhbmdlLAogICAgYnJlYWtkb3duczogInVzZXJfc2VnbWVudF9rZXkiLAogICAgbGV2ZWwsCiAgICBsaW1pdDogNTAwLAogIH0pOwoKICBjb25zdCBidWNrZXRzID0gbmV3IE1hcDxzdHJpbmcsIHsgbmFtZTogc3RyaW5nOyBzZWdtZW50czogUmVjb3JkPFNlZ21lbnRLZXksIFNlZ21lbnRCdWNrZXQ+IH0+KCk7CgogIGZvciAoY29uc3Qgcm93IG9mIHJvd3MpIHsKICAgIGNvbnN0IGVudGl0eUlkID0gcm93W2lkRmllbGRdIGFzIHN0cmluZzsKICAgIGlmICghYnVja2V0cy5oYXMoZW50aXR5SWQpKSB7CiAgICAgIGNvbnN0IHNlZ21lbnRzID0ge30gYXMgUmVjb3JkPFNlZ21lbnRLZXksIFNlZ21lbnRCdWNrZXQ+OwogICAgICBmb3IgKGNvbnN0IGtleSBvZiBTRUdNRU5UX09SREVSKSBzZWdtZW50c1trZXldID0geyByZWFjaDogMCwgc3BlbmQ6IDAsIHB1cmNoYXNlczogMCB9OwogICAgICBidWNrZXRzLnNldChlbnRpdHlJZCwgeyBuYW1lOiAocm93W25hbWVGaWVsZF0gYXMgc3RyaW5nKSA/PyBlbnRpdHlJZCwgc2VnbWVudHMgfSk7CiAgICB9CiAgICBjb25zdCBidWNrZXQgPSBidWNrZXRzLmdldChlbnRpdHlJZCkhOwogICAgY29uc3Qgc2VnbWVudEtleSA9IG5vcm1hbGl6ZVNlZ21lbnRLZXkocm93LnVzZXJfc2VnbWVudF9rZXkpOwogICAgYnVja2V0LnNlZ21lbnRzW3NlZ21lbnRLZXldLnJlYWNoICs9IG51bShyb3cucmVhY2gpOwogICAgYnVja2V0LnNlZ21lbnRzW3NlZ21lbnRLZXldLnNwZW5kICs9IG51bShyb3cuc3BlbmQpOwogICAgYnVja2V0LnNlZ21lbnRzW3NlZ21lbnRLZXldLnB1cmNoYXNlcyArPSBleHRyYWN0UHVyY2hhc2VzKHJvdy5hY3Rpb25zIGFzIEFycmF5PFJlY29yZDxzdHJpbmcsIHN0cmluZz4+IHwgdW5kZWZpbmVkKTsKICB9CgogIGNvbnN0IGVudGl0aWVzOiBFbnRpdHlTZWdtZW50Um93W10gPSBBcnJheS5mcm9tKGJ1Y2tldHMuZW50cmllcygpKS5tYXAoKFtpZCwgYnVja2V0XSkgPT4gewogICAgY29uc3QgdG90YWxSZWFjaCA9IFNFR01FTlRfT1JERVIucmVkdWNlKChzdW0sIGspID0+IHN1bSArIGJ1Y2tldC5zZWdtZW50c1trXS5yZWFjaCwgMCk7CiAgICBjb25zdCB0b3RhbFNwZW5kID0gU0VHTUVOVF9PUkRFUi5yZWR1Y2UoKHN1bSwgaykgPT4gc3VtICsgYnVja2V0LnNlZ21lbnRzW2tdLnNwZW5kLCAwKTsKICAgIGNvbnN0IHRvdGFsUHVyY2hhc2VzID0gU0VHTUVOVF9PUkRFUi5yZWR1Y2UoKHN1bSwgaykgPT4gc3VtICsgYnVja2V0LnNlZ21lbnRzW2tdLnB1cmNoYXNlcywgMCk7CiAgICBjb25zdCBwcm9zcGVjdGluZyA9IGJ1Y2tldC5zZWdtZW50cy5wcm9zcGVjdGluZzsKICAgIGNvbnN0IGVuZ2FnZWQgPSBidWNrZXQuc2VnbWVudHMuZW5nYWdlZDsKICAgIGNvbnN0IGV4aXN0aW5nID0gYnVja2V0LnNlZ21lbnRzLmV4aXN0aW5nOwogICAgcmV0dXJuIHsKICAgICAgaWQsCiAgICAgIG5hbWU6IGJ1Y2tldC5uYW1lLAogICAgICB0b3RhbFJlYWNoLAogICAgICB0b3RhbFNwZW5kLAogICAgICB0b3RhbFB1cmNoYXNlcywKICAgICAgcHJvc3BlY3RpbmdSZWFjaDogcHJvc3BlY3RpbmcucmVhY2gsCiAgICAgIHByb3NwZWN0aW5nUmVhY2hQY3Q6IHBlcmNlbnQocHJvc3BlY3RpbmcucmVhY2gsIHRvdGFsUmVhY2gpLAogICAgICBwcm9zcGVjdGluZ1NwZW5kUGN0OiBwZXJjZW50KHByb3NwZWN0aW5nLnNwZW5kLCB0b3RhbFNwZW5kKSwKICAgICAgcHJvc3BlY3RpbmdDcG1yOiBjcG1yKHByb3NwZWN0aW5nLnNwZW5kLCBwcm9zcGVjdGluZy5yZWFjaCksCiAgICAgIHByb3NwZWN0aW5nUHVyY2hhc2VzOiBwcm9zcGVjdGluZy5wdXJjaGFzZXMsCiAgICAgIHByb3NwZWN0aW5nUHVyY2hhc2VQY3Q6IHBlcmNlbnQocHJvc3BlY3RpbmcucHVyY2hhc2VzLCB0b3RhbFB1cmNoYXNlcyksCiAgICAgIHByb3NwZWN0aW5nQ3BhOiBjcHAocHJvc3BlY3Rpbmcuc3BlbmQsIHByb3NwZWN0aW5nLnB1cmNoYXNlcyksCiAgICAgIGVuZ2FnZWRSZWFjaDogZW5nYWdlZC5yZWFjaCwKICAgICAgZW5nYWdlZFJlYWNoUGN0OiBwZXJjZW50KGVuZ2FnZWQucmVhY2gsIHRvdGFsUmVhY2gpLAogICAgICBlbmdhZ2VkU3BlbmQ6IGVuZ2FnZWQuc3BlbmQsCiAgICAgIGVuZ2FnZWRDcG1yOiBjcG1yKGVuZ2FnZWQuc3BlbmQsIGVuZ2FnZWQucmVhY2gpLAogICAgICBlbmdhZ2VkUHVyY2hhc2VzOiBlbmdhZ2VkLnB1cmNoYXNlcywKICAgICAgZXhpc3RpbmdSZWFjaDogZXhpc3RpbmcucmVhY2gsCiAgICAgIGV4aXN0aW5nUmVhY2hQY3Q6IHBlcmNlbnQoZXhpc3RpbmcucmVhY2gsIHRvdGFsUmVhY2gpLAogICAgICBleGlzdGluZ1NwZW5kOiBleGlzdGluZy5zcGVuZCwKICAgICAgZXhpc3RpbmdQdXJjaGFzZXM6IGV4aXN0aW5nLnB1cmNoYXNlcywKICAgIH07CiAgfSk7CgogIC8vIGJhY2t3YXJkLWNvbXBhdCBhbGlhc2VzCiAgY29uc3QgYWRzID0gZW50aXRpZXMubWFwKChlKSA9PiAoeyAuLi5lLCBhZElkOiBlLmlkLCBhZE5hbWU6IGUubmFtZSB9KSkgYXMgQWRTZWdtZW50Um93W107CgogIHJldHVybiB7IGxldmVsLCBlbnRpdGllcywgYWRzIH07Cn0K"}
+import { metaInsights } from "@/lib/meta-api";
+import { num, cpmr, cpp, percent, extractPurchases } from "@/lib/calculations";
+import { SEGMENT_ORDER, normalizeSegmentKey } from "@/lib/constants";
+import type { DateRange, SegmentKey } from "@/lib/types";
+
+export type EntityLevel = "campaign" | "adset" | "ad";
+
+interface SegmentBucket {
+  reach: number;
+  spend: number;
+  purchases: number;
+}
+
+/** Unified row shape for campaign / adset / ad segment breakdown */
+export interface EntitySegmentRow {
+  id: string;
+  name: string;
+  totalReach: number;
+  totalSpend: number;
+  totalPurchases: number;
+  prospectingReach: number;
+  prospectingReachPct: number;
+  prospectingSpendPct: number;
+  prospectingCpmr: number;
+  prospectingPurchases: number;
+  prospectingPurchasePct: number;
+  prospectingCpa: number;
+  engagedReach: number;
+  engagedReachPct: number;
+  engagedSpend: number;
+  engagedCpmr: number;
+  engagedPurchases: number;
+  existingReach: number;
+  existingReachPct: number;
+  existingSpend: number;
+  existingPurchases: number;
+}
+
+/** @deprecated Use EntitySegmentRow */
+export type AdSegmentRow = EntitySegmentRow & { adId: string; adName: string };
+
+export interface CreativeSegmentsReport {
+  level: EntityLevel;
+  entities: EntitySegmentRow[];
+  /** @deprecated Use entities */
+  ads: AdSegmentRow[];
+}
+
+export async function getCreativeSegmentsReport(
+  token: string,
+  accountId: string,
+  range: DateRange,
+  level: EntityLevel = "ad"
+): Promise<CreativeSegmentsReport> {
+  const idField = level === "campaign" ? "campaign_id" : level === "adset" ? "adset_id" : "ad_id";
+  const nameField = level === "campaign" ? "campaign_name" : level === "adset" ? "adset_name" : "ad_name";
+
+  const rows = await metaInsights({
+    token,
+    objectId: accountId,
+    fields: [nameField, idField, "reach", "spend", "impressions", "actions"],
+    timeRange: range,
+    breakdowns: "user_segment_key",
+    level,
+    limit: 500,
+  });
+
+  const buckets = new Map<string, { name: string; segments: Record<SegmentKey, SegmentBucket> }>();
+
+  for (const row of rows) {
+    const entityId = row[idField] as string;
+    if (!buckets.has(entityId)) {
+      const segments = {} as Record<SegmentKey, SegmentBucket>;
+      for (const key of SEGMENT_ORDER) segments[key] = { reach: 0, spend: 0, purchases: 0 };
+      buckets.set(entityId, { name: (row[nameField] as string) ?? entityId, segments });
+    }
+    const bucket = buckets.get(entityId)!;
+    const segmentKey = normalizeSegmentKey(row.user_segment_key);
+    bucket.segments[segmentKey].reach += num(row.reach);
+    bucket.segments[segmentKey].spend += num(row.spend);
+    bucket.segments[segmentKey].purchases += extractPurchases(row.actions as Array<Record<string, string>> | undefined);
+  }
+
+  const entities: EntitySegmentRow[] = Array.from(buckets.entries()).map(([id, bucket]) => {
+    const totalReach = SEGMENT_ORDER.reduce((sum, k) => sum + bucket.segments[k].reach, 0);
+    const totalSpend = SEGMENT_ORDER.reduce((sum, k) => sum + bucket.segments[k].spend, 0);
+    const totalPurchases = SEGMENT_ORDER.reduce((sum, k) => sum + bucket.segments[k].purchases, 0);
+    const prospecting = bucket.segments.prospecting;
+    const engaged = bucket.segments.engaged;
+    const existing = bucket.segments.existing;
+    return {
+      id,
+      name: bucket.name,
+      totalReach,
+      totalSpend,
+      totalPurchases,
+      prospectingReach: prospecting.reach,
+      prospectingReachPct: percent(prospecting.reach, totalReach),
+      prospectingSpendPct: percent(prospecting.spend, totalSpend),
+      prospectingCpmr: cpmr(prospecting.spend, prospecting.reach),
+      prospectingPurchases: prospecting.purchases,
+      prospectingPurchasePct: percent(prospecting.purchases, totalPurchases),
+      prospectingCpa: cpp(prospecting.spend, prospecting.purchases),
+      engagedReach: engaged.reach,
+      engagedReachPct: percent(engaged.reach, totalReach),
+      engagedSpend: engaged.spend,
+      engagedCpmr: cpmr(engaged.spend, engaged.reach),
+      engagedPurchases: engaged.purchases,
+      existingReach: existing.reach,
+      existingReachPct: percent(existing.reach, totalReach),
+      existingSpend: existing.spend,
+      existingPurchases: existing.purchases,
+    };
+  });
+
+  // backward-compat aliases
+  const ads = entities.map((e) => ({ ...e, adId: e.id, adName: e.name })) as AdSegmentRow[];
+
+  return { level, entities, ads };
+}

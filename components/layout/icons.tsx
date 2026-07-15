@@ -1,1 +1,105 @@
-{"data":"aW50ZXJmYWNlIEljb25Qcm9wcyB7CiAgY2xhc3NOYW1lPzogc3RyaW5nOwp9Cgpjb25zdCBiYXNlID0gewogIHdpZHRoOiAxOCwKICBoZWlnaHQ6IDE4LAogIHZpZXdCb3g6ICIwIDAgMjQgMjQiLAogIGZpbGw6ICJub25lIiwKICBzdHJva2U6ICJjdXJyZW50Q29sb3IiLAogIHN0cm9rZVdpZHRoOiAxLjc1LAogIHN0cm9rZUxpbmVjYXA6ICJyb3VuZCIgYXMgY29uc3QsCiAgc3Ryb2tlTGluZWpvaW46ICJyb3VuZCIgYXMgY29uc3QsCn07CgpleHBvcnQgZnVuY3Rpb24gSG9tZUljb24oeyBjbGFzc05hbWUgfTogSWNvblByb3BzKSB7CiAgcmV0dXJuICgKICAgIDxzdmcgey4uLmJhc2V9IGNsYXNzTmFtZT17Y2xhc3NOYW1lfT4KICAgICAgPHBhdGggZD0iTTMgMTEuNSAxMiA0bDkgNy41IiAvPgogICAgICA8cGF0aCBkPSJNNS41IDkuNVYyMGgxM1Y5LjUiIC8+CiAgICAgIDxwYXRoIGQ9Ik05LjUgMjB2LTZoNXY2IiAvPgogICAgPC9zdmc+CiAgKTsKfQoKZXhwb3J0IGZ1bmN0aW9uIFRyZW5kaW5nVXBJY29uKHsgY2xhc3NOYW1lIH06IEljb25Qcm9wcykgewogIHJldHVybiAoCiAgICA8c3ZnIHsuLi5iYXNlfSBjbGFzc05hbWU9e2NsYXNzTmFtZX0+CiAgICAgIDxwYXRoIGQ9Ik0zIDE3bDYtNiA0IDQgOC05IiAvPgogICAgICA8cGF0aCBkPSJNMTUgNmg2djYiIC8+CiAgICA8L3N2Zz4KICApOwp9CgpleHBvcnQgZnVuY3Rpb24gVXNlcnNJY29uKHsgY2xhc3NOYW1lIH06IEljb25Qcm9wcykgewogIHJldHVybiAoCiAgICA8c3ZnIHsuLi5iYXNlfSBjbGFzc05hbWU9e2NsYXNzTmFtZX0+CiAgICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI4IiByPSIzLjI1IiAvPgogICAgICA8cGF0aCBkPSJNMi43NSAxOWMuNS0zLjIgMy01IDYuMjUtNXM1Ljc1IDEuOCA2LjI1IDUiIC8+CiAgICAgIDxjaXJjbGUgY3g9IjE3IiBjeT0iOC41IiByPSIyLjUiIC8+CiAgICAgIDxwYXRoIGQ9Ik0xNS41IDExYzIuNC4yIDQuMSAxLjcgNC41IDQiIC8+CiAgICA8L3N2Zz4KICApOwp9CgpleHBvcnQgZnVuY3Rpb24gUmVmcmVzaEljb24oeyBjbGFzc05hbWUgfTogSWNvblByb3BzKSB7CiAgcmV0dXJuICgKICAgIDxzdmcgey4uLmJhc2V9IGNsYXNzTmFtZT17Y2xhc3NOYW1lfT4KICAgICAgPHBhdGggZD0iTTMuNSAxMmE4LjUgOC41IDAgMCAxIDE0LjUtNiIgLz4KICAgICAgPHBhdGggZD0iTTIwLjUgMTJhOC41IDguNSAwIDAgMS0xNC41IDYiIC8+CiAgICAgIDxwYXRoIGQ9Ik0xOCAzdjMuNWgtMy41IiAvPgogICAgICA8cGF0aCBkPSJNNiAyMXYtMy41aDMuNSIgLz4KICAgIDwvc3ZnPgogICk7Cn0KCmV4cG9ydCBmdW5jdGlvbiBMYXllcnNJY29uKHsgY2xhc3NOYW1lIH06IEljb25Qcm9wcykgewogIHJldHVybiAoCiAgICA8c3ZnIHsuLi5iYXNlfSBjbGFzc05hbWU9e2NsYXNzTmFtZX0+CiAgICAgIDxwYXRoIGQ9Ik0xMiAzLjUgMy41IDggMTIgMTIuNSAyMC41IDggMTIgMy41WiIgLz4KICAgICAgPHBhdGggZD0iTTMuNSAxMiAxMiAxNi41IDIwLjUgMTIiIC8+CiAgICAgIDxwYXRoIGQ9Ik0zLjUgMTYgMTIgMjAuNSAyMC41IDE2IiAvPgogICAgPC9zdmc+CiAgKTsKfQoKZXhwb3J0IGZ1bmN0aW9uIFZlbm5JY29uKHsgY2xhc3NOYW1lIH06IEljb25Qcm9wcykgewogIHJldHVybiAoCiAgICA8c3ZnIHsuLi5iYXNlfSBjbGFzc05hbWU9e2NsYXNzTmFtZX0+CiAgICAgIDxjaXJjbGUgY3g9IjkuNSIgY3k9IjEyIiByPSI2IiAvPgogICAgICA8Y2lyY2xlIGN4PSIxNC41IiBjeT0iMTIiIHI9IjYiIC8+CiAgICA8L3N2Zz4KICApOwp9CgpleHBvcnQgZnVuY3Rpb24gQ2xvY2tJY29uKHsgY2xhc3NOYW1lIH06IEljb25Qcm9wcykgewogIHJldHVybiAoCiAgICA8c3ZnIHsuLi5iYXNlfSBjbGFzc05hbWU9e2NsYXNzTmFtZX0+CiAgICAgIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjguNSIgLz4KICAgICAgPHBhdGggZD0iTTEyIDcuNVYxMmwzLjIgMiIgLz4KICAgIDwvc3ZnPgogICk7Cn0KCmV4cG9ydCBmdW5jdGlvbiBIYW5kc2hha2VJY29uKHsgY2xhc3NOYW1lIH06IEljb25Qcm9wcykgewogIHJldHVybiAoCiAgICA8c3ZnIHsuLi5iYXNlfSBjbGFzc05hbWU9e2NsYXNzTmFtZX0+CiAgICAgIDxwYXRoIGQ9Im0xMSAxNyAyIDJhMSAxIDAgMSAwIDMtMyIgLz4KICAgICAgPHBhdGggZD0ibTE0IDE0IDIuNSAyLjVhMSAxIDAgMSAwIDMtM2wtMy44OC0zLjg4YTMgMyAwIDAgMC00LjI0IDBsLS44OC44OGExIDEgMCAxIDEtMy0zbDIuODEtMi44MWE1Ljc5IDUuNzkgMCAwIDEgNy4wNi0uODdsLjQ3LjI4YTIgMiAwIDAgMCAxLjQyLjI1TDIxIDQiIC8+CiAgICAgIDxwYXRoIGQ9Im0yMSAzIDEgMTFoLTIiIC8+CiAgICAgIDxwYXRoIGQ9Ik0zIDMgMiAxNGw2LjUgNi41YTEgMSAwIDEgMCAzLTMiIC8+CiAgICAgIDxwYXRoIGQ9Ik0zIDRoOCIgLz4KICAgIDwvc3ZnPgogICk7Cn0KCmV4cG9ydCBjb25zdCBSRVBPUlRfSUNPTlM6IFJlY29yZDxzdHJpbmcsIChwcm9wczogSWNvblByb3BzKSA9PiBSZWFjdC5SZWFjdEVsZW1lbnQ+ID0gewogICJuZXQtbmV3LXJlYWNoIjogVHJlbmRpbmdVcEljb24sCiAgImF1ZGllbmNlLXNlZ21lbnRzIjogVXNlcnNJY29uLAogICJjcmVhdGl2ZS1jaHVybiI6IFJlZnJlc2hJY29uLAogICJjcmVhdGl2ZS1zZWdtZW50cyI6IExheWVyc0ljb24sCiAgImNhbXBhaWduLW92ZXJsYXAiOiBWZW5uSWNvbiwKICAiY29udmVyc2lvbi13aW5kb3dzIjogQ2xvY2tJY29uLAogICJwYXJ0bmVyc2hpcC1hZHMiOiBIYW5kc2hha2VJY29uLAp9Owo="}
+interface IconProps {
+  className?: string;
+}
+
+const base = {
+  width: 18,
+  height: 18,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.75,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
+
+export function HomeIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M3 11.5 12 4l9 7.5" />
+      <path d="M5.5 9.5V20h13V9.5" />
+      <path d="M9.5 20v-6h5v6" />
+    </svg>
+  );
+}
+
+export function TrendingUpIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M3 17l6-6 4 4 8-9" />
+      <path d="M15 6h6v6" />
+    </svg>
+  );
+}
+
+export function UsersIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <circle cx="9" cy="8" r="3.25" />
+      <path d="M2.75 19c.5-3.2 3-5 6.25-5s5.75 1.8 6.25 5" />
+      <circle cx="17" cy="8.5" r="2.5" />
+      <path d="M15.5 11c2.4.2 4.1 1.7 4.5 4" />
+    </svg>
+  );
+}
+
+export function RefreshIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M3.5 12a8.5 8.5 0 0 1 14.5-6" />
+      <path d="M20.5 12a8.5 8.5 0 0 1-14.5 6" />
+      <path d="M18 3v3.5h-3.5" />
+      <path d="M6 21v-3.5h3.5" />
+    </svg>
+  );
+}
+
+export function LayersIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M12 3.5 3.5 8 12 12.5 20.5 8 12 3.5Z" />
+      <path d="M3.5 12 12 16.5 20.5 12" />
+      <path d="M3.5 16 12 20.5 20.5 16" />
+    </svg>
+  );
+}
+
+export function VennIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <circle cx="9.5" cy="12" r="6" />
+      <circle cx="14.5" cy="12" r="6" />
+    </svg>
+  );
+}
+
+export function ClockIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3.2 2" />
+    </svg>
+  );
+}
+
+export function HandshakeIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+      <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+      <path d="m21 3 1 11h-2" />
+      <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+      <path d="M3 4h8" />
+    </svg>
+  );
+}
+
+export const REPORT_ICONS: Record<string, (props: IconProps) => React.ReactElement> = {
+  "net-new-reach": TrendingUpIcon,
+  "audience-segments": UsersIcon,
+  "creative-churn": RefreshIcon,
+  "creative-segments": LayersIcon,
+  "campaign-overlap": VennIcon,
+  "conversion-windows": ClockIcon,
+  "partnership-ads": HandshakeIcon,
+};

@@ -1,1 +1,86 @@
-{"data":"aW1wb3J0IHsgbWV0YUdldEFsbFBhZ2VzLCBtZXRhSW5zaWdodHMgfSBmcm9tICJAL2xpYi9tZXRhLWFwaSI7CmltcG9ydCB7IG51bSwgY3BtciwgcGVyY2VudCB9IGZyb20gIkAvbGliL2NhbGN1bGF0aW9ucyI7CmltcG9ydCB0eXBlIHsgQXBpRmlsdGVyaW5nLCBEYXRlUmFuZ2UgfSBmcm9tICJAL2xpYi90eXBlcyI7CgpleHBvcnQgaW50ZXJmYWNlIENhbXBhaWduTGlzdEl0ZW0gewogIGlkOiBzdHJpbmc7CiAgbmFtZTogc3RyaW5nOwp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gZmV0Y2hDYW1wYWlnbkxpc3QodG9rZW46IHN0cmluZywgYWNjb3VudElkOiBzdHJpbmcpOiBQcm9taXNlPENhbXBhaWduTGlzdEl0ZW1bXT4gewogIGNvbnN0IHJvd3MgPSBhd2FpdCBtZXRhR2V0QWxsUGFnZXMoYC8ke2FjY291bnRJZH0vY2FtcGFpZ25zYCwgdG9rZW4sIHsgZmllbGRzOiAiaWQsbmFtZSIsIGxpbWl0OiAiMjAwIiB9KTsKICByZXR1cm4gcm93cyBhcyBDYW1wYWlnbkxpc3RJdGVtW107Cn0KCmV4cG9ydCBpbnRlcmZhY2UgQWNjb3VudFRvdGFscyB7CiAgcmVhY2g6IG51bWJlcjsKICBzcGVuZDogbnVtYmVyOwogIGltcHJlc3Npb25zOiBudW1iZXI7CiAgZnJlcXVlbmN5OiBudW1iZXI7Cn0KCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBmZXRjaEFjY291bnRUb3RhbHMoCiAgdG9rZW46IHN0cmluZywKICBvYmplY3RJZDogc3RyaW5nLAogIHJhbmdlOiBEYXRlUmFuZ2UsCiAgZmlsdGVyaW5nPzogQXBpRmlsdGVyaW5nW10KKTogUHJvbWlzZTxBY2NvdW50VG90YWxzPiB7CiAgY29uc3Qgcm93cyA9IGF3YWl0IG1ldGFJbnNpZ2h0cyh7CiAgICB0b2tlbiwKICAgIG9iamVjdElkLAogICAgZmllbGRzOiBbInJlYWNoIiwgInNwZW5kIiwgImltcHJlc3Npb25zIiwgImZyZXF1ZW5jeSJdLAogICAgdGltZVJhbmdlOiByYW5nZSwKICAgIGZpbHRlcmluZywKICB9KTsKICBjb25zdCByb3cgPSByb3dzWzBdID8/IHt9OwogIHJldHVybiB7IHJlYWNoOiBudW0ocm93LnJlYWNoKSwgc3BlbmQ6IG51bShyb3cuc3BlbmQpLCBpbXByZXNzaW9uczogbnVtKHJvdy5pbXByZXNzaW9ucyksIGZyZXF1ZW5jeTogbnVtKHJvdy5mcmVxdWVuY3kpIH07Cn0KCmV4cG9ydCBpbnRlcmZhY2UgQnJlYWtkb3duUm93IHsKICBrZXk6IHN0cmluZzsKICByZWFjaDogbnVtYmVyOwogIHNwZW5kOiBudW1iZXI7CiAgY3BtcjogbnVtYmVyOwogIHJlYWNoUGN0OiBudW1iZXI7Cn0KCi8qKgogKiBNZXRhIHJlamVjdHMgYGJyZWFrZG93bnM9dXNlcl9zZWdtZW50X2tleSw8b3RoZXI+YCBhcyBhbiBpbnZhbGlkIGNvbWJpbmF0aW9uIChzdG9yYWdlLXRpZXIKICogbGltaXRhdGlvbiwgbm90IGRvY3VtZW50ZWQgYWhlYWQgb2YgdGltZSkg4oCUIHNvIHNlZ21lbnQtdnMtZGltZW5zaW9uIHJlcG9ydHMgcnVuIHRoaXMgb25jZSBwZXIKICogZGltZW5zaW9uIGluc3RlYWQgb2YgYSBzaW5nbGUgY29tYmluZWQgcXVlcnksIGFuZCB0aGUgY2FsbGVyIHJlY29uY2lsZXMgdGhlIHR3byBpbmRlcGVuZGVudCB2aWV3cy4KICovCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBmZXRjaFNpbmdsZUJyZWFrZG93bigKICB0b2tlbjogc3RyaW5nLAogIGFjY291bnRJZDogc3RyaW5nLAogIHJhbmdlOiBEYXRlUmFuZ2UsCiAgYnJlYWtkb3duOiBzdHJpbmcKKTogUHJvbWlzZTxCcmVha2Rvd25Sb3dbXT4gewogIGNvbnN0IHJvd3MgPSBhd2FpdCBtZXRhSW5zaWdodHMoewogICAgdG9rZW4sCiAgICBvYmplY3RJZDogYWNjb3VudElkLAogICAgZmllbGRzOiBbInJlYWNoIiwgInNwZW5kIiwgImltcHJlc3Npb25zIl0sCiAgICB0aW1lUmFuZ2U6IHJhbmdlLAogICAgYnJlYWtkb3duczogYnJlYWtkb3duLAogIH0pOwoKICBjb25zdCBidWNrZXRzID0gbmV3IE1hcDxzdHJpbmcsIHsgcmVhY2g6IG51bWJlcjsgc3BlbmQ6IG51bWJlciB9PigpOwogIGZvciAoY29uc3Qgcm93IG9mIHJvd3MpIHsKICAgIGNvbnN0IGtleSA9IChyb3dbYnJlYWtkb3duXSBhcyBzdHJpbmcpID8/ICJ1bmtub3duIjsKICAgIGlmICghYnVja2V0cy5oYXMoa2V5KSkgYnVja2V0cy5zZXQoa2V5LCB7IHJlYWNoOiAwLCBzcGVuZDogMCB9KTsKICAgIGNvbnN0IGJ1Y2tldCA9IGJ1Y2tldHMuZ2V0KGtleSkhOwogICAgYnVja2V0LnJlYWNoICs9IG51bShyb3cucmVhY2gpOwogICAgYnVja2V0LnNwZW5kICs9IG51bShyb3cuc3BlbmQpOwogIH0KCiAgY29uc3QgdG90YWxSZWFjaCA9IEFycmF5LmZyb20oYnVja2V0cy52YWx1ZXMoKSkucmVkdWNlKChzdW0sIGIpID0+IHN1bSArIGIucmVhY2gsIDApOwoKICByZXR1cm4gQXJyYXkuZnJvbShidWNrZXRzLmVudHJpZXMoKSkKICAgIC5tYXAoKFtrZXksIGJdKSA9PiAoewogICAgICBrZXksCiAgICAgIHJlYWNoOiBiLnJlYWNoLAogICAgICBzcGVuZDogYi5zcGVuZCwKICAgICAgY3BtcjogY3BtcihiLnNwZW5kLCBiLnJlYWNoKSwKICAgICAgcmVhY2hQY3Q6IHBlcmNlbnQoYi5yZWFjaCwgdG90YWxSZWFjaCksCiAgICB9KSkKICAgIC5zb3J0KChhLCBiKSA9PiBiLnJlYWNoIC0gYS5yZWFjaCk7Cn0K"}
+import { metaGetAllPages, metaInsights } from "@/lib/meta-api";
+import { num, cpmr, percent } from "@/lib/calculations";
+import type { ApiFiltering, DateRange } from "@/lib/types";
+
+export interface CampaignListItem {
+  id: string;
+  name: string;
+}
+
+export async function fetchCampaignList(token: string, accountId: string): Promise<CampaignListItem[]> {
+  const rows = await metaGetAllPages(`/${accountId}/campaigns`, token, { fields: "id,name", limit: "200" });
+  return rows as CampaignListItem[];
+}
+
+export interface AccountTotals {
+  reach: number;
+  spend: number;
+  impressions: number;
+  frequency: number;
+}
+
+export async function fetchAccountTotals(
+  token: string,
+  objectId: string,
+  range: DateRange,
+  filtering?: ApiFiltering[]
+): Promise<AccountTotals> {
+  const rows = await metaInsights({
+    token,
+    objectId,
+    fields: ["reach", "spend", "impressions", "frequency"],
+    timeRange: range,
+    filtering,
+  });
+  const row = rows[0] ?? {};
+  return { reach: num(row.reach), spend: num(row.spend), impressions: num(row.impressions), frequency: num(row.frequency) };
+}
+
+export interface BreakdownRow {
+  key: string;
+  reach: number;
+  spend: number;
+  cpmr: number;
+  reachPct: number;
+}
+
+/**
+ * Meta rejects `breakdowns=user_segment_key,<other>` as an invalid combination (storage-tier
+ * limitation, not documented ahead of time) — so segment-vs-dimension reports run this once per
+ * dimension instead of a single combined query, and the caller reconciles the two independent views.
+ */
+export async function fetchSingleBreakdown(
+  token: string,
+  accountId: string,
+  range: DateRange,
+  breakdown: string
+): Promise<BreakdownRow[]> {
+  const rows = await metaInsights({
+    token,
+    objectId: accountId,
+    fields: ["reach", "spend", "impressions"],
+    timeRange: range,
+    breakdowns: breakdown,
+  });
+
+  const buckets = new Map<string, { reach: number; spend: number }>();
+  for (const row of rows) {
+    const key = (row[breakdown] as string) ?? "unknown";
+    if (!buckets.has(key)) buckets.set(key, { reach: 0, spend: 0 });
+    const bucket = buckets.get(key)!;
+    bucket.reach += num(row.reach);
+    bucket.spend += num(row.spend);
+  }
+
+  const totalReach = Array.from(buckets.values()).reduce((sum, b) => sum + b.reach, 0);
+
+  return Array.from(buckets.entries())
+    .map(([key, b]) => ({
+      key,
+      reach: b.reach,
+      spend: b.spend,
+      cpmr: cpmr(b.spend, b.reach),
+      reachPct: percent(b.reach, totalReach),
+    }))
+    .sort((a, b) => b.reach - a.reach);
+}

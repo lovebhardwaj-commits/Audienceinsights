@@ -1,1 +1,38 @@
-{"data":"aW1wb3J0IHsgZ2V0SXJvblNlc3Npb24sIHR5cGUgSXJvblNlc3Npb24sIHR5cGUgU2Vzc2lvbk9wdGlvbnMgfSBmcm9tICJpcm9uLXNlc3Npb24iOwppbXBvcnQgeyBjb29raWVzIH0gZnJvbSAibmV4dC9oZWFkZXJzIjsKaW1wb3J0IHsgVE9LRU5fRVhQSVJZX1dBUk5JTkdfREFZUyB9IGZyb20gIi4vY29uc3RhbnRzIjsKCmV4cG9ydCBpbnRlcmZhY2UgU2Vzc2lvbkRhdGEgewogIGFjY2Vzc1Rva2VuPzogc3RyaW5nOwogIHRva2VuRXhwaXJlc0F0PzogbnVtYmVyOyAvLyB1bml4IG1zCiAgdXNlck5hbWU/OiBzdHJpbmc7Cn0KCmV4cG9ydCBjb25zdCBzZXNzaW9uT3B0aW9uczogU2Vzc2lvbk9wdGlvbnMgPSB7CiAgcGFzc3dvcmQ6IHByb2Nlc3MuZW52LlNFU1NJT05fU0VDUkVUISwKICBjb29raWVOYW1lOiAiYWRzX3JlYWNoX3Nlc3Npb24iLAogIGNvb2tpZU9wdGlvbnM6IHsKICAgIHNlY3VyZTogcHJvY2Vzcy5lbnYuTk9ERV9FTlYgPT09ICJwcm9kdWN0aW9uIiwKICAgIGh0dHBPbmx5OiB0cnVlLAogICAgc2FtZVNpdGU6ICJsYXgiLAogICAgbWF4QWdlOiA2MCAqIDYwICogMjQgKiA2MCwgLy8gNjAgZGF5cwogIH0sCn07CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gZ2V0U2Vzc2lvbigpOiBQcm9taXNlPElyb25TZXNzaW9uPFNlc3Npb25EYXRhPj4gewogIHJldHVybiBnZXRJcm9uU2Vzc2lvbjxTZXNzaW9uRGF0YT4oYXdhaXQgY29va2llcygpLCBzZXNzaW9uT3B0aW9ucyk7Cn0KCmV4cG9ydCBmdW5jdGlvbiBpc1Rva2VuRXhwaXJpbmdTb29uKHRva2VuRXhwaXJlc0F0OiBudW1iZXIgfCB1bmRlZmluZWQpOiBib29sZWFuIHsKICBpZiAoIXRva2VuRXhwaXJlc0F0KSByZXR1cm4gZmFsc2U7CiAgY29uc3Qgd2FybmluZ1RocmVzaG9sZCA9IERhdGUubm93KCkgKyBUT0tFTl9FWFBJUllfV0FSTklOR19EQVlTICogMjQgKiA2MCAqIDYwICogMTAwMDsKICByZXR1cm4gdG9rZW5FeHBpcmVzQXQgPCB3YXJuaW5nVGhyZXNob2xkOwp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gcmVxdWlyZVNlc3Npb24oKTogUHJvbWlzZTxJcm9uU2Vzc2lvbjxTZXNzaW9uRGF0YT4gJiB7IGFjY2Vzc1Rva2VuOiBzdHJpbmcgfT4gewogIGNvbnN0IHNlc3Npb24gPSBhd2FpdCBnZXRTZXNzaW9uKCk7CiAgaWYgKCFzZXNzaW9uLmFjY2Vzc1Rva2VuKSB7CiAgICB0aHJvdyBuZXcgRXJyb3IoIlVOQVVUSEVOVElDQVRFRCIpOwogIH0KICByZXR1cm4gc2Vzc2lvbiBhcyBJcm9uU2Vzc2lvbjxTZXNzaW9uRGF0YT4gJiB7IGFjY2Vzc1Rva2VuOiBzdHJpbmcgfTsKfQo="}
+import { getIronSession, type IronSession, type SessionOptions } from "iron-session";
+import { cookies } from "next/headers";
+import { TOKEN_EXPIRY_WARNING_DAYS } from "./constants";
+
+export interface SessionData {
+  accessToken?: string;
+  tokenExpiresAt?: number; // unix ms
+  userName?: string;
+}
+
+export const sessionOptions: SessionOptions = {
+  password: process.env.SESSION_SECRET!,
+  cookieName: "ads_reach_session",
+  cookieOptions: {
+    secure: process.env.NODE_ENV === "production",
+    httpOnly: true,
+    sameSite: "lax",
+    maxAge: 60 * 60 * 24 * 60, // 60 days
+  },
+};
+
+export async function getSession(): Promise<IronSession<SessionData>> {
+  return getIronSession<SessionData>(await cookies(), sessionOptions);
+}
+
+export function isTokenExpiringSoon(tokenExpiresAt: number | undefined): boolean {
+  if (!tokenExpiresAt) return false;
+  const warningThreshold = Date.now() + TOKEN_EXPIRY_WARNING_DAYS * 24 * 60 * 60 * 1000;
+  return tokenExpiresAt < warningThreshold;
+}
+
+export async function requireSession(): Promise<IronSession<SessionData> & { accessToken: string }> {
+  const session = await getSession();
+  if (!session.accessToken) {
+    throw new Error("UNAUTHENTICATED");
+  }
+  return session as IronSession<SessionData> & { accessToken: string };
+}

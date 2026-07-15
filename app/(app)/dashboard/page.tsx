@@ -1,1 +1,80 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IExpbmsgZnJvbSAibmV4dC9saW5rIjsKaW1wb3J0IHsgdXNlQWNjb3VudCB9IGZyb20gIkAvY29tcG9uZW50cy9wcm92aWRlcnMvQWNjb3VudFByb3ZpZGVyIjsKaW1wb3J0IHsgUkVQT1JUUyB9IGZyb20gIkAvbGliL2NvbnN0YW50cyI7CmltcG9ydCB7IFJFUE9SVF9JQ09OUyB9IGZyb20gIkAvY29tcG9uZW50cy9sYXlvdXQvaWNvbnMiOwppbXBvcnQgeyBTa2VsZXRvbiB9IGZyb20gIkAvY29tcG9uZW50cy91aS9Ta2VsZXRvbiI7CgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBEYXNoYm9hcmRQYWdlKCkgewogIGNvbnN0IHsgYWNjb3VudHMsIHNlbGVjdGVkQWNjb3VudElkLCBsb2FkaW5nLCBlcnJvciB9ID0gdXNlQWNjb3VudCgpOwogIGNvbnN0IHNlbGVjdGVkQWNjb3VudCA9IGFjY291bnRzLmZpbmQoKGEpID0+IGEuaWQgPT09IHNlbGVjdGVkQWNjb3VudElkKTsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJteC1hdXRvIG1heC13LTZ4bCI+CiAgICAgIHtsb2FkaW5nICYmICgKICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icm91bmRlZC14bCBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMC84MCBiZy13aGl0ZSBwLTYgc2hhZG93LXNtIj4KICAgICAgICAgIDxTa2VsZXRvbiBjbGFzc05hbWU9ImgtNCB3LTMyIiAvPgogICAgICAgICAgPFNrZWxldG9uIGNsYXNzTmFtZT0ibXQtMyBoLTYgdy00OCIgLz4KICAgICAgICA8L2Rpdj4KICAgICAgKX0KICAgICAge2Vycm9yICYmICgKICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icm91bmRlZC14bCBib3JkZXIgYm9yZGVyLXJlZC0xMDAgYmctcmVkLTUwIHB4LTUgcHktNCI+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0idGV4dC1zbSBmb250LW1lZGl1bSB0ZXh0LXJlZC03MDAiPntlcnJvcn08L2Rpdj4KICAgICAgICA8L2Rpdj4KICAgICAgKX0KCiAgICAgIHshbG9hZGluZyAmJiAhZXJyb3IgJiYgYWNjb3VudHMubGVuZ3RoID09PSAwICYmICgKICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBmbGV4LWNvbCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgcm91bmRlZC14bCBib3JkZXIgYm9yZGVyLWRhc2hlZCBib3JkZXItc2xhdGUtMjAwIGJnLXdoaXRlIHB5LTIwIj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJ0ZXh0LTR4bCI+8J+TijwvZGl2PgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTMgdGV4dC1zbSBmb250LW1lZGl1bSB0ZXh0LXNsYXRlLTYwMCI+Tm8gYWQgYWNjb3VudHMgZm91bmQ8L2Rpdj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC0xIHRleHQteHMgdGV4dC1zbGF0ZS00MDAiPk1ha2Ugc3VyZSB5b3UgYXBwcm92ZWQgYWRzX3JlYWQgYWNjZXNzIGZvciBhdCBsZWFzdCBvbmUgYWNjb3VudC48L2Rpdj4KICAgICAgICA8L2Rpdj4KICAgICAgKX0KCiAgICAgIHtzZWxlY3RlZEFjY291bnQgJiYgKAogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJhbmltYXRlLWZhZGUtaW4gcm91bmRlZC14bCBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMC84MCBiZy13aGl0ZSBwLTYgc2hhZG93LXNtIj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4iPgogICAgICAgICAgICA8ZGl2PgogICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJ0ZXh0LVsxMXB4XSBmb250LXNlbWlib2xkIHVwcGVyY2FzZSB0cmFja2luZy13aWRlciB0ZXh0LXNsYXRlLTQwMCI+QWN0aXZlIEFjY291bnQ8L2Rpdj4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMSB0ZXh0LXhsIGZvbnQtYm9sZCB0ZXh0LXNsYXRlLTkwMCI+e3NlbGVjdGVkQWNjb3VudC5uYW1lfTwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGdhcC00IHRleHQteHMgdGV4dC1zbGF0ZS00MDAiPgogICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMS41Ij4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoLTIgdy0yIHJvdW5kZWQtZnVsbCBiZy1lbWVyYWxkLTQwMCIgLz4KICAgICAgICAgICAgICAgIENvbm5lY3RlZAogICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgIDxkaXY+e3NlbGVjdGVkQWNjb3VudC5jdXJyZW5jeX08L2Rpdj4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZm9udC1tb25vIHRleHQtWzExcHhdIj57c2VsZWN0ZWRBY2NvdW50LmlkfTwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvZGl2PgogICAgICApfQoKICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTgiPgogICAgICAgIHsvKiBbUE0gRU5IQU5DRU1FTlRdIOKAlCBvdXRjb21lLWZvY3VzZWQgaGVhZGluZyBpbnN0ZWFkIG9mIGEgZmVhdHVyZSBsYWJlbCAqL30KICAgICAgICA8aDIgY2xhc3NOYW1lPSJ0ZXh0LXNtIGZvbnQtYm9sZCB0ZXh0LXNsYXRlLTkwMCI+WW91ciByZXBvcnRzPC9oMj4KCiAgICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTQgZ3JpZCBncmlkLWNvbHMtMSBnYXAtMyBzbTpncmlkLWNvbHMtMiBsZzpncmlkLWNvbHMtMyI+CiAgICAgICAgICB7UkVQT1JUUy5tYXAoKHJlcG9ydCwgaSkgPT4gewogICAgICAgICAgICBjb25zdCBJY29uID0gUkVQT1JUX0lDT05TW3JlcG9ydC5zbHVnXTsKICAgICAgICAgICAgcmV0dXJuICgKICAgICAgICAgICAgICA8TGluawogICAgICAgICAgICAgICAga2V5PXtyZXBvcnQuc2x1Z30KICAgICAgICAgICAgICAgIGhyZWY9e2AvcmVwb3J0cy8ke3JlcG9ydC5zbHVnfWB9CiAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2BhbmltYXRlLXNsaWRlLXVwIHN0YWdnZXItJHtNYXRoLm1pbihpICUgNCwgNCl9IGdyb3VwIHJlbGF0aXZlIG92ZXJmbG93LWhpZGRlbiByb3VuZGVkLXhsIGJvcmRlciBib3JkZXItc2xhdGUtMjAwLzgwIGJnLXdoaXRlIHAtNSBzaGFkb3ctc20gdHJhbnNpdGlvbi1hbGwgaG92ZXI6LXRyYW5zbGF0ZS15LTAuNSBob3Zlcjpib3JkZXItc2xhdGUtMzAwIGhvdmVyOnNoYWRvdy1tZGB9CiAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImFic29sdXRlIGluc2V0LXgtMCB0b3AtMCBoLTAuNSBiZy1ncmFkaWVudC10by1yIGZyb20tYnJhbmQtNTAwIHRvLWJyYW5kLTYwMCBvcGFjaXR5LTAgdHJhbnNpdGlvbi1vcGFjaXR5IGdyb3VwLWhvdmVyOm9wYWNpdHktMTAwIiAvPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaC0xMCB3LTEwIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciByb3VuZGVkLXhsIGJnLXNsYXRlLTUwIHRleHQtc2xhdGUtNDAwIHRyYW5zaXRpb24tYWxsIGdyb3VwLWhvdmVyOmJnLWJyYW5kLTUwIGdyb3VwLWhvdmVyOnRleHQtYnJhbmQtNjAwIj4KICAgICAgICAgICAgICAgICAge0ljb24gJiYgPEljb24gLz59CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC0zIHRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LXNsYXRlLTkwMCI+e3JlcG9ydC50aXRsZX08L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC0xIHRleHQteHMgbGVhZGluZy1yZWxheGVkIHRleHQtc2xhdGUtNDAwIj57cmVwb3J0LmRlc2NyaXB0aW9ufTwvZGl2PgogICAgICAgICAgICAgIDwvTGluaz4KICAgICAgICAgICAgKTsKICAgICAgICAgIH0pfQogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICk7Cn0K"}
+"use client";
+
+import Link from "next/link";
+import { useAccount } from "@/components/providers/AccountProvider";
+import { REPORTS } from "@/lib/constants";
+import { REPORT_ICONS } from "@/components/layout/icons";
+import { Skeleton } from "@/components/ui/Skeleton";
+
+export default function DashboardPage() {
+  const { accounts, selectedAccountId, loading, error } = useAccount();
+  const selectedAccount = accounts.find((a) => a.id === selectedAccountId);
+
+  return (
+    <div className="mx-auto max-w-6xl">
+      {loading && (
+        <div className="rounded-xl border border-slate-200/80 bg-white p-6 shadow-sm">
+          <Skeleton className="h-4 w-32" />
+          <Skeleton className="mt-3 h-6 w-48" />
+        </div>
+      )}
+      {error && (
+        <div className="rounded-xl border border-red-100 bg-red-50 px-5 py-4">
+          <div className="text-sm font-medium text-red-700">{error}</div>
+        </div>
+      )}
+
+      {!loading && !error && accounts.length === 0 && (
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-200 bg-white py-20">
+          <div className="text-4xl">📊</div>
+          <div className="mt-3 text-sm font-medium text-slate-600">No ad accounts found</div>
+          <div className="mt-1 text-xs text-slate-400">Make sure you approved ads_read access for at least one account.</div>
+        </div>
+      )}
+
+      {selectedAccount && (
+        <div className="animate-fade-in rounded-xl border border-slate-200/80 bg-white p-6 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Active Account</div>
+              <div className="mt-1 text-xl font-bold text-slate-900">{selectedAccount.name}</div>
+            </div>
+            <div className="flex items-center gap-4 text-xs text-slate-400">
+              <div className="flex items-center gap-1.5">
+                <div className="h-2 w-2 rounded-full bg-emerald-400" />
+                Connected
+              </div>
+              <div>{selectedAccount.currency}</div>
+              <div className="font-mono text-[11px]">{selectedAccount.id}</div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="mt-8">
+        {/* [PM ENHANCEMENT] — outcome-focused heading instead of a feature label */}
+        <h2 className="text-sm font-bold text-slate-900">Your reports</h2>
+
+        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {REPORTS.map((report, i) => {
+            const Icon = REPORT_ICONS[report.slug];
+            return (
+              <Link
+                key={report.slug}
+                href={`/reports/${report.slug}`}
+                className={`animate-slide-up stagger-${Math.min(i % 4, 4)} group relative overflow-hidden rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md`}
+              >
+                <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-brand-500 to-brand-600 opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-400 transition-all group-hover:bg-brand-50 group-hover:text-brand-600">
+                  {Icon && <Icon />}
+                </div>
+                <div className="mt-3 text-sm font-semibold text-slate-900">{report.title}</div>
+                <div className="mt-1 text-xs leading-relaxed text-slate-400">{report.description}</div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}

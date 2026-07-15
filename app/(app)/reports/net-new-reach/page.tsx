@@ -1,1 +1,298 @@
-{"data": "InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VNZW1vLCB1c2VTdGF0ZSB9IGZyb20gInJlYWN0IjsKaW1wb3J0IHsgdXNlQWNjb3VudCB9IGZyb20gIkAvY29tcG9uZW50cy9wcm92aWRlcnMvQWNjb3VudFByb3ZpZGVyIjsKaW1wb3J0IHsgdXNlU3RyZWFtaW5nUmVwb3J0IH0gZnJvbSAiQC9saWIvaG9va3MvdXNlU3RyZWFtaW5nUmVwb3J0IjsKaW1wb3J0IHsgRGF0ZVJhbmdlUGlja2VyIH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL0RhdGVSYW5nZVBpY2tlciI7CmltcG9ydCB7IFN1bW1hcnlDYXJkIH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL1N1bW1hcnlDYXJkIjsKaW1wb3J0IHsgUHJvZ3Jlc3NJbmRpY2F0b3IgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvUHJvZ3Jlc3NJbmRpY2F0b3IiOwppbXBvcnQgeyBEYXRhVGFibGUsIHR5cGUgRGF0YVRhYmxlQ29sdW1uIH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL0RhdGFUYWJsZSI7CmltcG9ydCB7IENoYXJ0U2tlbGV0b24gfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvU2tlbGV0b24iOwppbXBvcnQgeyBEdWFsQXhpc0NoYXJ0IH0gZnJvbSAiQC9jb21wb25lbnRzL2NoYXJ0cy9EdWFsQXhpc0NoYXJ0IjsKaW1wb3J0IHsgUmVwb3J0U3VtbWFyeSB9IGZyb20gIkAvY29tcG9uZW50cy91aS9SZXBvcnRTdW1tYXJ5IjsKaW1wb3J0IHsgRW1wdHlTdGF0ZSB9IGZyb20gIkAvY29tcG9uZW50cy91aS9FbXB0eVN0YXRlIjsKaW1wb3J0IHsgRmV0Y2hpbmdTdGF0ZSB9IGZyb20gIkAvY29tcG9uZW50cy91aS9GZXRjaGluZ1N0YXRlIjsKaW1wb3J0IHsgRXJyb3JCYW5uZXIgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvRXJyb3JCYW5uZXIiOwppbXBvcnQgeyBIb3dUb1JlYWQgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvSG93VG9SZWFkIjsKaW1wb3J0IHsgU3BlbmRJY29uLCBQZXJjZW50SWNvbiwgUmVhY2hJY29uLCBDb3VudEljb24gfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvS3BpSWNvbnMiOwppbXBvcnQgeyBmb3JtYXRDb21wYWN0TnVtYmVyLCBmb3JtYXRDdXJyZW5jeSwgZm9ybWF0Q3VycmVuY3lDb21wYWN0LCBmb3JtYXRQZXJjZW50IH0gZnJvbSAiQC9saWIvZm9ybWF0IjsKaW1wb3J0IHsgcm9sbGluZ1JlYWNoSW5zaWdodHMgfSBmcm9tICJAL2xpYi9pbnNpZ2h0cyI7CmltcG9ydCB7IEdMT1NTQVJZIH0gZnJvbSAiQC9saWIvZ2xvc3NhcnkiOwppbXBvcnQgeyBsYXN0Tk1vbnRocyB9IGZyb20gIkAvbGliL2RhdGVzIjsKaW1wb3J0IHR5cGUgeyBEYXRlUmFuZ2UgfSBmcm9tICJAL2xpYi90eXBlcyI7CmltcG9ydCB0eXBlIHsgUm9sbGluZ1JlYWNoUmVwb3J0IH0gZnJvbSAiQC9saWIvcmVwb3J0cy9yb2xsaW5nLXJlYWNoIjsKaW1wb3J0IHR5cGUgeyBOZXROZXdSZWFjaFJlcG9ydCB9IGZyb20gIkAvbGliL3JlcG9ydHMvbmV0LW5ldy1yZWFjaCI7Cgp0eXBlIFdpbmRvd01vZGUgPSAiZXhwYW5kaW5nIiB8ICJzbGlkaW5nIjsKCmludGVyZmFjZSBEaXNwbGF5Um93IHsKICBsYWJlbDogc3RyaW5nOwogIG1vbnRoU3RhcnQ6IHN0cmluZzsKICBpc29sYXRlZFJlYWNoOiBudW1iZXI7CiAgZnJlcXVlbmN5OiBudW1iZXI7CiAgd2luZG93UmVhY2g6IG51bWJlcjsKICB3aW5kb3dSZWFjaExhYmVsOiBzdHJpbmc7CiAgbmV0TmV3UmVhY2g6IG51bWJlcjsKICBuZXROZXdQY3Q6IG51bWJlcjsKICBzcGVuZDogbnVtYmVyOwogIGNwbXI6IG51bWJlcjsKICBjb3N0UGVyMWtOZXROZXc6IG51bWJlcjsKfQoKY29uc3QgTE9PS0JBQ0tfT1BUSU9OUyA9IFs5MCwgMTgwLCAzNjVdOwoKZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gTmV0TmV3UmVhY2hQYWdlKCkgewogIGNvbnN0IHsgc2VsZWN0ZWRBY2NvdW50SWQgfSA9IHVzZUFjY291bnQoKTsKICBjb25zdCBbcmFuZ2UsIHNldFJhbmdlXSA9IHVzZVN0YXRlPERhdGVSYW5nZSB8IG51bGw+KG51bGwpOwogIGNvbnN0IFttb2RlLCBzZXRNb2RlXSA9IHVzZVN0YXRlPFdpbmRvd01vZGU+KCJzbGlkaW5nIik7CiAgY29uc3QgW2xvb2tiYWNrRGF5cywgc2V0TG9va2JhY2tEYXlzXSA9IHVzZVN0YXRlKDE4MCk7CiAgLy8gW1BNIEVOSEFOQ0VNRU5UXSDigJQgYnVtcCB0byByZS1ydW4gdGhlIGZldGNoIGZyb20gdGhlIGVycm9yIGJhbm5lcidzICJUcnkgYWdhaW4iCiAgY29uc3QgW3JldHJ5S2V5LCBzZXRSZXRyeUtleV0gPSB1c2VTdGF0ZSgwKTsKCiAgY29uc3QgZXhwYW5kaW5nID0gdXNlU3RyZWFtaW5nUmVwb3J0PFJvbGxpbmdSZWFjaFJlcG9ydD4oKTsKICBjb25zdCBzbGlkaW5nID0gdXNlU3RyZWFtaW5nUmVwb3J0PE5ldE5ld1JlYWNoUmVwb3J0PigpOwogIGNvbnN0IGFjdGl2ZSA9IG1vZGUgPT09ICJleHBhbmRpbmciID8gZXhwYW5kaW5nIDogc2xpZGluZzsKCiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIGlmICghc2VsZWN0ZWRBY2NvdW50SWQgfHwgIXJhbmdlKSByZXR1cm47CiAgICBjb25zdCBwYXJhbXMgPSBuZXcgVVJMU2VhcmNoUGFyYW1zKHsgYWNjb3VudElkOiBzZWxlY3RlZEFjY291bnRJZCwgc2luY2U6IHJhbmdlLnNpbmNlLCB1bnRpbDogcmFuZ2UudW50aWwgfSk7CiAgICBpZiAobW9kZSA9PT0gImV4cGFuZGluZyIpIHsKICAgICAgZXhwYW5kaW5nLnJ1bihgL2FwaS9yZXBvcnRzL3JvbGxpbmctcmVhY2g/JHtwYXJhbXN9YCk7CiAgICB9IGVsc2UgewogICAgICBwYXJhbXMuc2V0KCJsb29rYmFja0RheXMiLCBTdHJpbmcobG9va2JhY2tEYXlzKSk7CiAgICAgIHNsaWRpbmcucnVuKGAvYXBpL3JlcG9ydHMvbmV0LW5ldy1yZWFjaD8ke3BhcmFtc31gKTsKICAgIH0KICAgIC8vIGVzbGludC1kaXNhYmxlLW5leHQtbGluZSByZWFjdC1ob29rcy9leGhhdXN0aXZlLWRlcHMKICB9LCBbc2VsZWN0ZWRBY2NvdW50SWQsIHJhbmdlLCBtb2RlLCBsb29rYmFja0RheXMsIHJldHJ5S2V5XSk7CgogIGNvbnN0IHJvd3M6IERpc3BsYXlSb3dbXSA9IHVzZU1lbW8oKCkgPT4gewogICAgaWYgKG1vZGUgPT09ICJleHBhbmRpbmciKSB7CiAgICAgIHJldHVybiAoZXhwYW5kaW5nLmRhdGE/Lm1vbnRocyA/PyBbXSkubWFwKChtKSA9PiAoewogICAgICAgIGxhYmVsOiBtLmxhYmVsLAogICAgICAgIG1vbnRoU3RhcnQ6IG0ubW9udGhTdGFydCwKICAgICAgICBpc29sYXRlZFJlYWNoOiBtLmlzb2xhdGVkUmVhY2gsCiAgICAgICAgZnJlcXVlbmN5OiBtLmZyZXF1ZW5jeSwKICAgICAgICB3aW5kb3dSZWFjaDogbS5jdW11bGF0aXZlUmVhY2gsCiAgICAgICAgd2luZG93UmVhY2hMYWJlbDogIkN1bXVsYXRpdmUgUmVhY2giLAogICAgICAgIG5ldE5ld1JlYWNoOiBtLm5ldE5ld1JlYWNoLAogICAgICAgIG5ldE5ld1BjdDogbS5uZXROZXdQY3QsCiAgICAgICAgc3BlbmQ6IG0uc3BlbmQsCiAgICAgICAgY3BtcjogbS5jcG1yLAogICAgICAgIGNvc3RQZXIxa05ldE5ldzogbS5jb3N0UGVyMWtOZXROZXcsCiAgICAgIH0pKTsKICAgIH0KICAgIHJldHVybiAoc2xpZGluZy5kYXRhPy5tb250aHMgPz8gW10pLm1hcCgobSkgPT4gKHsKICAgICAgbGFiZWw6IG0ubGFiZWwsCiAgICAgIG1vbnRoU3RhcnQ6IG0ubW9udGhTdGFydCwKICAgICAgaXNvbGF0ZWRSZWFjaDogbS5pc29sYXRlZFJlYWNoLAogICAgICBmcmVxdWVuY3k6IG0uZnJlcXVlbmN5LAogICAgICB3aW5kb3dSZWFjaDogbS53aW5kb3dSZWFjaCwKICAgICAgd2luZG93UmVhY2hMYWJlbDogYCR7bG9va2JhY2tEYXlzfS1EYXkgV2luZG93IFJlYWNoYCwKICAgICAgbmV0TmV3UmVhY2g6IG0ubmV0TmV3UmVhY2gsCiAgICAgIG5ldE5ld1BjdDogbS5uZXROZXdQY3QsCiAgICAgIHNwZW5kOiBtLnNwZW5kLAogICAgICBjcG1yOiBtLmNwbXIsCiAgICAgIGNvc3RQZXIxa05ldE5ldzogbS5jb3N0UGVyMWtOZXROZXcsCiAgICB9KSk7CiAgfSwgW21vZGUsIGV4cGFuZGluZy5kYXRhLCBzbGlkaW5nLmRhdGEsIGxvb2tiYWNrRGF5c10pOwoKICBjb25zdCBjb2x1bW5zOiBEYXRhVGFibGVDb2x1bW48RGlzcGxheVJvdz5bXSA9IFsKICAgIHsga2V5OiAibGFiZWwiLCBoZWFkZXI6ICJNb250aCIsIGFjY2Vzc29yOiAocikgPT4gci5tb250aFN0YXJ0LCByZW5kZXI6IChyKSA9PiByLmxhYmVsIH0sCiAgICB7IGtleTogImlzb2xhdGVkUmVhY2giLCBoZWFkZXI6ICJNb250aGx5IFJlYWNoIiwgaGVscDogR0xPU1NBUlkucmVhY2gsIGFjY2Vzc29yOiAocikgPT4gci5pc29sYXRlZFJlYWNoLCBhbGlnbjogInJpZ2h0IiwgcmVuZGVyOiAocikgPT4gZm9ybWF0Q29tcGFjdE51bWJlcihyLmlzb2xhdGVkUmVhY2gpIH0sCiAgICB7CiAgICAgIGtleTogIndpbmRvd1JlYWNoIiwKICAgICAgaGVhZGVyOiByb3dzWzBdPy53aW5kb3dSZWFjaExhYmVsID8/ICJXaW5kb3cgUmVhY2giLAogICAgICBoZWxwOiBHTE9TU0FSWS5jdW11bGF0aXZlUmVhY2gsCiAgICAgIGFjY2Vzc29yOiAocikgPT4gci53aW5kb3dSZWFjaCwKICAgICAgYWxpZ246ICJyaWdodCIsCiAgICAgIHJlbmRlcjogKHIpID0+IGZvcm1hdENvbXBhY3ROdW1iZXIoci53aW5kb3dSZWFjaCksCiAgICB9LAogICAgeyBrZXk6ICJuZXROZXdSZWFjaCIsIGhlYWRlcjogIk5ldCBOZXcgUmVhY2giLCBoZWxwOiBHTE9TU0FSWS5uZXROZXcsIGFjY2Vzc29yOiAocikgPT4gci5uZXROZXdSZWFjaCwgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IGZvcm1hdENvbXBhY3ROdW1iZXIoci5uZXROZXdSZWFjaCkgfSwKICAgIHsga2V5OiAibmV0TmV3UGN0IiwgaGVhZGVyOiAiTmV0IE5ldyAlIiwgaGVscDogR0xPU1NBUlkubmV0TmV3UGN0LCBhY2Nlc3NvcjogKHIpID0+IHIubmV0TmV3UGN0LCBhbGlnbjogInJpZ2h0IiwgcmVuZGVyOiAocikgPT4gZm9ybWF0UGVyY2VudChyLm5ldE5ld1BjdCkgfSwKICAgIHsga2V5OiAiZnJlcXVlbmN5IiwgaGVhZGVyOiAiRnJlcXVlbmN5IiwgaGVscDogR0xPU1NBUlkuZnJlcXVlbmN5LCBhY2Nlc3NvcjogKHIpID0+IHIuZnJlcXVlbmN5LCBhbGlnbjogInJpZ2h0IiwgcmVuZGVyOiAocikgPT4gci5mcmVxdWVuY3kudG9GaXhlZCgyKSB9LAogICAgeyBrZXk6ICJzcGVuZCIsIGhlYWRlcjogIlNwZW5kIiwgaGVscDogR0xPU1NBUlkuc3BlbmQsIGFjY2Vzc29yOiAocikgPT4gci5zcGVuZCwgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IGZvcm1hdEN1cnJlbmN5KHIuc3BlbmQpIH0sCiAgICB7IGtleTogImNwbXIiLCBoZWFkZXI6ICJDUE1SIiwgaGVscDogR0xPU1NBUlkuY3BtciwgYWNjZXNzb3I6IChyKSA9PiByLmNwbXIsIGFsaWduOiAicmlnaHQiLCByZW5kZXI6IChyKSA9PiBmb3JtYXRDdXJyZW5jeShyLmNwbXIpIH0sCiAgICB7IGtleTogImNvc3RQZXIxa05ldE5ldyIsIGhlYWRlcjogIkNvc3QgLyAxSyBOZXQgTmV3IiwgaGVscDogR0xPU1NBUlkuY29zdFBlcjFrTmV0TmV3LCBhY2Nlc3NvcjogKHIpID0+IHIuY29zdFBlcjFrTmV0TmV3LCBhbGlnbjogInJpZ2h0IiwgcmVuZGVyOiAocikgPT4gZm9ybWF0Q3VycmVuY3koci5jb3N0UGVyMWtOZXROZXcpIH0sCiAgXTsKCiAgY29uc3QgY29tcG9zaXRpb25EYXRhID0gcm93cy5tYXAoKHIpID0+ICh7CiAgICBtb250aDogci5sYWJlbCwKICAgIG5ldE5ld1JlYWNoOiByLm5ldE5ld1JlYWNoLAogICAgcmVwZWF0UmVhY2g6IE1hdGgubWF4KDAsIHIuaXNvbGF0ZWRSZWFjaCAtIHIubmV0TmV3UmVhY2gpLAogICAgbmV0TmV3UGN0OiByLm5ldE5ld1BjdCwKICB9KSk7CiAgY29uc3QgY29zdERhdGEgPSByb3dzLm1hcCgocikgPT4gKHsgbW9udGg6IHIubGFiZWwsIHNwZW5kOiByLnNwZW5kLCBjb3N0UGVyMWtOZXROZXc6IHIuY29zdFBlcjFrTmV0TmV3IH0pKTsKICBjb25zdCBsYXRlc3ROZXROZXdQY3QgPSBtb2RlID09PSAiZXhwYW5kaW5nIiA/IGV4cGFuZGluZy5kYXRhPy5sYXRlc3ROZXROZXdQY3QgOiBzbGlkaW5nLmRhdGE/LmxhdGVzdE5ldE5ld1BjdDsKICBjb25zdCB0b3RhbFNwZW5kID0gbW9kZSA9PT0gImV4cGFuZGluZyIgPyBleHBhbmRpbmcuZGF0YT8udG90YWxTcGVuZCA6IHNsaWRpbmcuZGF0YT8udG90YWxTcGVuZDsKICBjb25zdCB0b3RhbFJlYWNoID0gbW9kZSA9PT0gImV4cGFuZGluZyIKICAgID8gZXhwYW5kaW5nLmRhdGE/LnRvdGFsUm9sbGluZ1JlYWNoCiAgICA6IHNsaWRpbmcuZGF0YT8ubW9udGhzW3NsaWRpbmcuZGF0YS5tb250aHMubGVuZ3RoIC0gMV0/LndpbmRvd1JlYWNoOwogIGNvbnN0IGF2Z0Nvc3RQZXIxa05ldE5ldyA9IHJvd3MubGVuZ3RoCiAgICA/IHJvd3MuZmlsdGVyKChyKSA9PiByLmNvc3RQZXIxa05ldE5ldyA+IDApLnJlZHVjZSgocywgcikgPT4gcyArIHIuY29zdFBlcjFrTmV0TmV3LCAwKSAvCiAgICAgIE1hdGgubWF4KDEsIHJvd3MuZmlsdGVyKChyKSA9PiByLmNvc3RQZXIxa05ldE5ldyA+IDApLmxlbmd0aCkKICAgIDogdW5kZWZpbmVkOwoKICBjb25zdCBpbnNpZ2h0cyA9IHVzZU1lbW8oKCkgPT4gewogICAgaWYgKG1vZGUgPT09ICJleHBhbmRpbmciICYmIGV4cGFuZGluZy5kYXRhKSByZXR1cm4gcm9sbGluZ1JlYWNoSW5zaWdodHMoZXhwYW5kaW5nLmRhdGEubW9udGhzLCBleHBhbmRpbmcuZGF0YS50b3RhbFJvbGxpbmdSZWFjaCk7CiAgICBpZiAobW9kZSA9PT0gInNsaWRpbmciICYmIHNsaWRpbmcuZGF0YSkgcmV0dXJuIHJvbGxpbmdSZWFjaEluc2lnaHRzKHNsaWRpbmcuZGF0YS5tb250aHMsIHNsaWRpbmcuZGF0YS5tb250aHNbc2xpZGluZy5kYXRhLm1vbnRocy5sZW5ndGggLSAxXT8ud2luZG93UmVhY2ggPz8gMCk7CiAgICByZXR1cm4gW107CiAgfSwgW21vZGUsIGV4cGFuZGluZy5kYXRhLCBzbGlkaW5nLmRhdGFdKTsKCiAgcmV0dXJuICgKICAgIDxkaXY+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGZsZXgtd3JhcCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIGdhcC0zIj4KICAgICAgICA8ZGl2PgogICAgICAgICAgPGgxIGNsYXNzTmFtZT0idGV4dC1sZyBmb250LWJvbGQgdGV4dC1zbGF0ZS05MDAiPk5ldCBOZXcgUmVhY2g8L2gxPgogICAgICAgICAgPHAgY2xhc3NOYW1lPSJtdC0xIHRleHQtc20gdGV4dC1zbGF0ZS01MDAiPkhvdyBtdWNoIG9mIHlvdXIgbW9udGhseSByZWFjaCBpcyBnZW51aW5lbHkgbmV3IHBlb3BsZSB2cy4gcmVwZWF0IGV4cG9zdXJlLjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA8RGF0ZVJhbmdlUGlja2VyIHZhbHVlPXtyYW5nZX0gb25DaGFuZ2U9e3NldFJhbmdlfSAvPgogICAgICA8L2Rpdj4KCiAgICAgIHsvKiBbUE0gRU5IQU5DRU1FTlRdIOKAlCBwbGFpbi1sYW5ndWFnZSBleHBsYWluZXIgc28gZXZlcnkgbWV0cmljIGlzIHVuZGVyc3RhbmRhYmxlICovfQogICAgICA8SG93VG9SZWFkCiAgICAgICAgaXRlbXM9e1sKICAgICAgICAgIHsgbGFiZWw6ICJOZXQgTmV3IFJlYWNoIiwgdGV4dDogInBlb3BsZSB3aG8gc2F3IHlvdXIgYWRzIHRoaXMgbW9udGggYnV0IGhhZG4ndCBzZWVuIHRoZW0gYmVmb3JlLiIgfSwKICAgICAgICAgIHsgbGFiZWw6ICJFeHBhbmRpbmcgV2luZG93IiwgdGV4dDogImNvbXBhcmVzIGVhY2ggbW9udGggYWdhaW5zdCBldmVyeW9uZSByZWFjaGVkIHNpbmNlIHRoZSBzdGFydCBvZiB5b3VyIHNlbGVjdGVkIHBlcmlvZCDigJQgYW5zd2VycyBcImhvdyBtdWNoIGZyZXNoIGF1ZGllbmNlIGlzIGxlZnQgb3ZlcmFsbD9cIiIgfSwKICAgICAgICAgIHsgbGFiZWw6ICJTbGlkaW5nIFdpbmRvdyIsIHRleHQ6ICJjb21wYXJlcyBlYWNoIG1vbnRoIGFnYWluc3Qgb25seSB0aGUgbGFzdCA5MC8xODAvMzY1IGRheXMg4oCUIGFuc3dlcnMgXCJhbSBJIHN0aWxsIGZpbmRpbmcgZnJlc2ggcGVvcGxlIGxhdGVseT9cIiIgfSwKICAgICAgICAgIHsgbGFiZWw6ICJNb250aGx5IFJlYWNoIiwgdGV4dDogInVuaXF1ZSBwZW9wbGUgcmVhY2hlZCB3aXRoaW4gdGhhdCBtb250aCBhbG9uZS4iIH0sCiAgICAgICAgICB7IGxhYmVsOiAiRnJlcXVlbmN5IiwgdGV4dDogImF2ZXJhZ2UgbnVtYmVyIG9mIHRpbWVzIGVhY2ggcGVyc29uIHNhdyB5b3VyIGFkcyB0aGF0IG1vbnRoLiBBYm92ZSB+M+KAkzQsIHlvdSdyZSBwYXlpbmcgdG8gcmVwZWF0IHlvdXJzZWxmLiIgfSwKICAgICAgICAgIHsgbGFiZWw6ICJDb3N0IC8gMUsgTmV0IE5ldyIsIHRleHQ6ICJ3aGF0IHlvdSBwYXkgdG8gcHV0IGFkcyBpbiBmcm9udCBvZiAxLDAwMCBicmFuZC1uZXcgcGVvcGxlLiBBIHJpc2luZyBsaW5lIG1lYW5zIGF1ZGllbmNlIGZhdGlndWUuIiB9LAogICAgICAgIF19CiAgICAgIC8+CgogICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMyBmbGV4IGZsZXgtd3JhcCBpdGVtcy1jZW50ZXIgZ2FwLTMiPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IHJvdW5kZWQtbWQgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgYmctd2hpdGUgcC0wLjUiPgogICAgICAgICAgeyhbImV4cGFuZGluZyIsICJzbGlkaW5nIl0gYXMgV2luZG93TW9kZVtdKS5tYXAoKG0pID0+ICgKICAgICAgICAgICAgPGJ1dHRvbgogICAgICAgICAgICAgIGtleT17bX0KICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRNb2RlKG0pfQogICAgICAgICAgICAgIGNsYXNzTmFtZT17YHJvdW5kZWQgcHgtMyBweS0xIHRleHQtc20gZm9udC1tZWRpdW0gY2FwaXRhbGl6ZSB0cmFuc2l0aW9uLWNvbG9ycyAkewogICAgICAgICAgICAgICAgbW9kZSA9PT0gbSA/ICJiZy1zbGF0ZS05MDAgdGV4dC13aGl0ZSIgOiAidGV4dC1zbGF0ZS02MDAgaG92ZXI6Ymctc2xhdGUtMTAwIgogICAgICAgICAgICAgIH1gfQogICAgICAgICAgICA+CiAgICAgICAgICAgICAge20gPT09ICJleHBhbmRpbmciID8gIkV4cGFuZGluZyBXaW5kb3ciIDogIlNsaWRpbmcgV2luZG93In0KICAgICAgICAgICAgPC9idXR0b24+CiAgICAgICAgICApKX0KICAgICAgICA8L2Rpdj4KICAgICAgICB7bW9kZSA9PT0gInNsaWRpbmciICYmICgKICAgICAgICAgIDxzZWxlY3QKICAgICAgICAgICAgdmFsdWU9e2xvb2tiYWNrRGF5c30KICAgICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXRMb29rYmFja0RheXMoTnVtYmVyKGUudGFyZ2V0LnZhbHVlKSl9CiAgICAgICAgICAgIGNsYXNzTmFtZT0icm91bmRlZC1tZCBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMCBiZy13aGl0ZSBweC0zIHB5LTEuNSB0ZXh0LXNtIHRleHQtc2xhdGUtNzAwIgogICAgICAgICAgPgogICAgICAgICAgICB7TE9PS0JBQ0tfT1BUSU9OUy5tYXAoKGRheXMpID0+ICgKICAgICAgICAgICAgICA8b3B0aW9uIGtleT17ZGF5c30gdmFsdWU9e2RheXN9PgogICAgICAgICAgICAgICAge2RheXN9LWRheSBsb29rYmFjawogICAgICAgICAgICAgIDwvb3B0aW9uPgogICAgICAgICAgICApKX0KICAgICAgICAgIDwvc2VsZWN0PgogICAgICAgICl9CiAgICAgIDwvZGl2PgoKICAgICAge2FjdGl2ZS5lcnJvciAmJiA8RXJyb3JCYW5uZXIgbWVzc2FnZT17YWN0aXZlLmVycm9yfSBvblJldHJ5PXsoKSA9PiBzZXRSZXRyeUtleSgoaykgPT4gayArIDEpfSAvPn0KICAgICAge2FjdGl2ZS5sb2FkaW5nICYmICFhY3RpdmUucHJvZ3Jlc3MgJiYgPEZldGNoaW5nU3RhdGUgLz59CiAgICAgIHthY3RpdmUubG9hZGluZyAmJiBhY3RpdmUucHJvZ3Jlc3MgJiYgKAogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC00Ij4KICAgICAgICAgIDxQcm9ncmVzc0luZGljYXRvciBjdXJyZW50PXthY3RpdmUucHJvZ3Jlc3MuY3VycmVudH0gdG90YWw9e2FjdGl2ZS5wcm9ncmVzcy50b3RhbH0gbGFiZWw9e2FjdGl2ZS5wcm9ncmVzcy5sYWJlbH0gLz4KICAgICAgICA8L2Rpdj4KICAgICAgKX0KCiAgICAgIHshcmFuZ2UgJiYgPEVtcHR5U3RhdGUgdGl0bGU9IlNlbGVjdCBhIGRhdGUgcmFuZ2UiIGRlc2NyaXB0aW9uPSJDaG9vc2UgYSBwZXJpb2QgYWJvdmUgdG8gbG9hZCB0aGlzIHJlcG9ydC4iIC8+fQoKICAgICAge3JhbmdlICYmICgKICAgICAgPGRpdiBjbGFzc05hbWU9ImFuaW1hdGUtZmFkZS1pbiI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPXtgbXQtNCBncmlkIGdyaWQtY29scy0xIGdhcC0zIHRyYW5zaXRpb24tb3BhY2l0eSBkdXJhdGlvbi0yMDAgc206Z3JpZC1jb2xzLTIgbGc6Z3JpZC1jb2xzLTQgJHthY3RpdmUubG9hZGluZyAmJiAhYWN0aXZlLmlzSW5pdGlhbExvYWQgPyAib3BhY2l0eS01MCBwb2ludGVyLWV2ZW50cy1ub25lIiA6ICIifWB9PgogICAgICAgIDxTdW1tYXJ5Q2FyZAogICAgICAgICAgbGFiZWw9e21vZGUgPT09ICJleHBhbmRpbmciID8gIlRvdGFsIFJvbGxpbmcgUmVhY2giIDogIkxhdGVzdCBXaW5kb3cgUmVhY2gifQogICAgICAgICAgdmFsdWU9e3RvdGFsUmVhY2ggIT09IHVuZGVmaW5lZCA/IGZvcm1hdENvbXBhY3ROdW1iZXIodG90YWxSZWFjaCkgOiAi4oCUIn0KICAgICAgICAgIHRpdGxlPXt0b3RhbFJlYWNoICE9PSB1bmRlZmluZWQgPyBTdHJpbmcodG90YWxSZWFjaC50b0xvY2FsZVN0cmluZygpKSA6IHVuZGVmaW5lZH0KICAgICAgICAgIGhlbHA9e21vZGUgPT09ICJleHBhbmRpbmciID8gR0xPU1NBUlkuY3VtdWxhdGl2ZVJlYWNoIDogR0xPU1NBUlkucmVhY2h9CiAgICAgICAgICBsb2FkaW5nPXthY3RpdmUuaXNJbml0aWFsTG9hZH0KICAgICAgICAgIGljb249ezxSZWFjaEljb24gLz59CiAgICAgICAgICBpY29uQ29sb3I9ImJnLWJsdWUtNTAgdGV4dC1ibHVlLTYwMCIKICAgICAgICAgIGFjY2VudENvbG9yPSJib3JkZXItbC1ibHVlLTUwMCIKICAgICAgICAvPgogICAgICAgIDxTdW1tYXJ5Q2FyZAogICAgICAgICAgbGFiZWw9IlRvdGFsIFNwZW5kIgogICAgICAgICAgdmFsdWU9e3RvdGFsU3BlbmQgIT09IHVuZGVmaW5lZCA/IGZvcm1hdEN1cnJlbmN5Q29tcGFjdCh0b3RhbFNwZW5kKSA6ICLigJQifQogICAgICAgICAgdGl0bGU9e3RvdGFsU3BlbmQgIT09IHVuZGVmaW5lZCA/IGZvcm1hdEN1cnJlbmN5KHRvdGFsU3BlbmQpIDogdW5kZWZpbmVkfQogICAgICAgICAgaGVscD17R0xPU1NBUlkuc3BlbmR9CiAgICAgICAgICBsb2FkaW5nPXthY3RpdmUuaXNJbml0aWFsTG9hZH0KICAgICAgICAgIGljb249ezxTcGVuZEljb24gLz59CiAgICAgICAgICBpY29uQ29sb3I9ImJnLWVtZXJhbGQtNTAgdGV4dC1lbWVyYWxkLTYwMCIKICAgICAgICAgIGFjY2VudENvbG9yPSJib3JkZXItbC1lbWVyYWxkLTUwMCIKICAgICAgICAvPgogICAgICAgIDxTdW1tYXJ5Q2FyZAogICAgICAgICAgbGFiZWw9IkxhdGVzdCBOZXQgTmV3ICUiCiAgICAgICAgICB2YWx1ZT17bGF0ZXN0TmV0TmV3UGN0ICE9PSB1bmRlZmluZWQgPyBmb3JtYXRQZXJjZW50KGxhdGVzdE5ldE5ld1BjdCkgOiAi4oCUIn0KICAgICAgICAgIGhlbHA9e0dMT1NTQVJZLm5ldE5ld1BjdH0KICAgICAgICAgIGxvYWRpbmc9e2FjdGl2ZS5pc0luaXRpYWxMb2FkfQogICAgICAgICAgaWNvbj17PFBlcmNlbnRJY29uIC8+fQogICAgICAgICAgaWNvbkNvbG9yPSJiZy12aW9sZXQtNTAgdGV4dC12aW9sZXQtNjAwIgogICAgICAgICAgYWNjZW50Q29sb3I9ImJvcmRlci1sLXZpb2xldC01MDAiCiAgICAgICAgLz4KICAgICAgICA8U3VtbWFyeUNhcmQKICAgICAgICAgIGxhYmVsPSJBdmcgQ29zdCAvIDFLIE5ldCBOZXciCiAgICAgICAgICB2YWx1ZT17YXZnQ29zdFBlcjFrTmV0TmV3ICE9PSB1bmRlZmluZWQgPyBmb3JtYXRDdXJyZW5jeUNvbXBhY3QoYXZnQ29zdFBlcjFrTmV0TmV3KSA6ICLigJQifQogICAgICAgICAgdGl0bGU9e2F2Z0Nvc3RQZXIxa05ldE5ldyAhPT0gdW5kZWZpbmVkID8gZm9ybWF0Q3VycmVuY3koYXZnQ29zdFBlcjFrTmV0TmV3KSA6IHVuZGVmaW5lZH0KICAgICAgICAgIGhlbHA9e0dMT1NTQVJZLmNvc3RQZXIxa05ldE5ld30KICAgICAgICAgIGxvYWRpbmc9e2FjdGl2ZS5pc0luaXRpYWxMb2FkfQogICAgICAgICAgaWNvbj17PENvdW50SWNvbiAvPn0KICAgICAgICAgIGljb25Db2xvcj0iYmctYW1iZXItNTAgdGV4dC1hbWJlci02MDAiCiAgICAgICAgICBhY2NlbnRDb2xvcj0iYm9yZGVyLWwtYW1iZXItNTAwIgogICAgICAgIC8+CiAgICAgIDwvZGl2PgoKICAgICAgPGRpdiBjbGFzc05hbWU9e2BtdC00IHRyYW5zaXRpb24tb3BhY2l0eSBkdXJhdGlvbi0yMDAgJHthY3RpdmUubG9hZGluZyAmJiAhYWN0aXZlLmlzSW5pdGlhbExvYWQgPyAib3BhY2l0eS01MCBwb2ludGVyLWV2ZW50cy1ub25lIiA6ICIifWB9PgogICAgICAgIDxSZXBvcnRTdW1tYXJ5IGluc2lnaHRzPXtpbnNpZ2h0c30gbG9hZGluZz17YWN0aXZlLmlzSW5pdGlhbExvYWR9IC8+CiAgICAgIDwvZGl2PgoKICAgICAgPGRpdiBjbGFzc05hbWU9e2BtdC02IHJvdW5kZWQteGwgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAvODAgYmctd2hpdGUgcC01IHNoYWRvdy1zbSB0cmFuc2l0aW9uLW9wYWNpdHkgZHVyYXRpb24tMjAwICR7YWN0aXZlLmxvYWRpbmcgJiYgIWFjdGl2ZS5pc0luaXRpYWxMb2FkID8gIm9wYWNpdHktNTAgcG9pbnRlci1ldmVudHMtbm9uZSIgOiAiIn1gfT4KICAgICAgICA8aDIgY2xhc3NOYW1lPSJ0ZXh0LXNtIGZvbnQtc2VtaWJvbGQgdGV4dC1zbGF0ZS04MDAiPlJlYWNoIGNvbXBvc2l0aW9uIGFuYWx5c2lzPC9oMj4KICAgICAgICA8cCBjbGFzc05hbWU9Im1iLTQgbXQtMC41IHRleHQteHMgdGV4dC1zbGF0ZS00MDAiPgogICAgICAgICAge21vZGUgPT09ICJleHBhbmRpbmciCiAgICAgICAgICAgID8gIkVhY2ggbW9udGgncyByZWFjaCBzcGxpdCBpbnRvIG5ldCBuZXcgcGVvcGxlIHZzLiBwZW9wbGUgYWxyZWFkeSByZWFjaGVkIGJlZm9yZSDigJQgdGhlIGxpbmUgdHJhY2tzICUgbmV0IG5ldy4iCiAgICAgICAgICAgIDogYEVhY2ggbW9udGgncyByZWFjaCBzcGxpdCBpbnRvIHBlb3BsZSBuZXcgdnMuIGFueW9uZSByZWFjaGVkIGluIHRoZSBwcmlvciAke2xvb2tiYWNrRGF5c30gZGF5cyDigJQgdGhlIGxpbmUgdHJhY2tzICUgbmV0IG5ldy5gfQogICAgICAgIDwvcD4KICAgICAgICB7YWN0aXZlLmlzSW5pdGlhbExvYWQgPyAoCiAgICAgICAgICA8Q2hhcnRTa2VsZXRvbiAvPgogICAgICAgICkgOiAoCiAgICAgICAgICA8RHVhbEF4aXNDaGFydAogICAgICAgICAgICBkYXRhPXtjb21wb3NpdGlvbkRhdGF9CiAgICAgICAgICAgIHhLZXk9Im1vbnRoIgogICAgICAgICAgICBiYXJzPXtbCiAgICAgICAgICAgICAgeyBrZXk6ICJyZXBlYXRSZWFjaCIsIGxhYmVsOiAiUmVhY2hlZCBQcmV2aW91c2x5IiwgY29sb3I6ICIjZDk3NzA2IiB9LAogICAgICAgICAgICAgIHsga2V5OiAibmV0TmV3UmVhY2giLCBsYWJlbDogIk5ldCBOZXcgUmVhY2giLCBjb2xvcjogIiMyYTc4ZDYiIH0sCiAgICAgICAgICAgIF19CiAgICAgICAgICAgIGxpbmVzPXtbeyBrZXk6ICJuZXROZXdQY3QiLCBsYWJlbDogIiUgTmV0IE5ldyIsIGNvbG9yOiAiI2VkYTEwMCIgfV19CiAgICAgICAgICAgIGJhckZvcm1hdD0iY29tcGFjdCIKICAgICAgICAgICAgbGluZUZvcm1hdD0icGVyY2VudCIKICAgICAgICAgIC8+CiAgICAgICAgKX0KICAgICAgPC9kaXY+CgogICAgICA8ZGl2IGNsYXNzTmFtZT17YG10LTYgcm91bmRlZC14bCBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMC84MCBiZy13aGl0ZSBwLTUgc2hhZG93LXNtIHRyYW5zaXRpb24tb3BhY2l0eSBkdXJhdGlvbi0yMDAgJHthY3RpdmUubG9hZGluZyAmJiAhYWN0aXZlLmlzSW5pdGlhbExvYWQgPyAib3BhY2l0eS01MCBwb2ludGVyLWV2ZW50cy1ub25lIiA6ICIifWB9PgogICAgICAgIDxoMiBjbGFzc05hbWU9InRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LXNsYXRlLTgwMCI+Q29zdCBwZXIgMUsgbmV0IG5ldyByZWFjaDwvaDI+CiAgICAgICAgPHAgY2xhc3NOYW1lPSJtYi00IG10LTAuNSB0ZXh0LXhzIHRleHQtc2xhdGUtNDAwIj5Nb250aGx5IHNwZW5kIHZzLiBjb3N0IHBlciB0aG91c2FuZCBuZXcgcGVvcGxlIHJlYWNoZWQg4oCUIGEgcmlzaW5nIGxpbmUgbWVhbnMgeW91JmFwb3M7cmUgcGF5aW5nIG1vcmUgZm9yIGZyZXNoIGF1ZGllbmNlLjwvcD4KICAgICAgICB7YWN0aXZlLmlzSW5pdGlhbExvYWQgPyAoCiAgICAgICAgICA8Q2hhcnRTa2VsZXRvbiAvPgogICAgICAgICkgOiAoCiAgICAgICAgICA8RHVhbEF4aXNDaGFydAogICAgICAgICAgICBkYXRhPXtjb3N0RGF0YX0KICAgICAgICAgICAgeEtleT0ibW9udGgiCiAgICAgICAgICAgIGJhcnM9e1t7IGtleTogInNwZW5kIiwgbGFiZWw6ICJTcGVuZCIsIGNvbG9yOiAiIzk0YTNiOCIgfV19CiAgICAgICAgICAgIGxpbmVzPXtbeyBrZXk6ICJjb3N0UGVyMWtOZXROZXciLCBsYWJlbDogIkNvc3QgLyAxSyBOZXQgTmV3IiwgY29sb3I6ICIjNGEzYWE3IiB9XX0KICAgICAgICAgICAgYmFyRm9ybWF0PSJjdXJyZW5jeUNvbXBhY3QiCiAgICAgICAgICAgIGxpbmVGb3JtYXQ9ImN1cnJlbmN5IgogICAgICAgICAgLz4KICAgICAgICApfQogICAgICA8L2Rpdj4KCiAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC02Ij4KICAgICAgICA8RGF0YVRhYmxlIGNvbHVtbnM9e2NvbHVtbnN9IHJvd3M9e3Jvd3N9IGxvYWRpbmc9e2FjdGl2ZS5pc0luaXRpYWxMb2FkfSBmaWxlbmFtZT0ibmV0LW5ldy1yZWFjaCIgZGVmYXVsdFNvcnRLZXk9ImxhYmVsIiBkZWZhdWx0U29ydERpcj0iYXNjIiAvPgogICAgICA8L2Rpdj4KICAgICAgPC9kaXY+CiAgICAgICl9CiAgICA8L2Rpdj4KICApOwp9Cg=="}
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { useAccount } from "@/components/providers/AccountProvider";
+import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
+import { DateRangePicker } from "@/components/ui/DateRangePicker";
+import { SummaryCard } from "@/components/ui/SummaryCard";
+import { ProgressIndicator } from "@/components/ui/ProgressIndicator";
+import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
+import { ChartSkeleton } from "@/components/ui/Skeleton";
+import { DualAxisChart } from "@/components/charts/DualAxisChart";
+import { ReportSummary } from "@/components/ui/ReportSummary";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { FetchingState } from "@/components/ui/FetchingState";
+import { ErrorBanner } from "@/components/ui/ErrorBanner";
+import { HowToRead } from "@/components/ui/HowToRead";
+import { SpendIcon, PercentIcon, ReachIcon, CountIcon } from "@/components/ui/KpiIcons";
+import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatPercent } from "@/lib/format";
+import { rollingReachInsights } from "@/lib/insights";
+import { GLOSSARY } from "@/lib/glossary";
+import { lastNMonths } from "@/lib/dates";
+import type { DateRange } from "@/lib/types";
+import type { RollingReachReport } from "@/lib/reports/rolling-reach";
+import type { NetNewReachReport } from "@/lib/reports/net-new-reach";
+
+type WindowMode = "expanding" | "sliding";
+
+interface DisplayRow {
+  label: string;
+  monthStart: string;
+  isolatedReach: number;
+  frequency: number;
+  windowReach: number;
+  windowReachLabel: string;
+  netNewReach: number;
+  netNewPct: number;
+  spend: number;
+  cpmr: number;
+  costPer1kNetNew: number;
+}
+
+const LOOKBACK_OPTIONS = [90, 180, 365];
+
+export default function NetNewReachPage() {
+  const { selectedAccountId } = useAccount();
+  const [range, setRange] = useState<DateRange | null>(null);
+  const [mode, setMode] = useState<WindowMode>("sliding");
+  const [lookbackDays, setLookbackDays] = useState(180);
+  // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
+  const [retryKey, setRetryKey] = useState(0);
+
+  const expanding = useStreamingReport<RollingReachReport>();
+  const sliding = useStreamingReport<NetNewReachReport>();
+  const active = mode === "expanding" ? expanding : sliding;
+
+  useEffect(() => {
+    if (!selectedAccountId || !range) return;
+    const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
+    if (mode === "expanding") {
+      expanding.run(`/api/reports/rolling-reach?${params}`);
+    } else {
+      params.set("lookbackDays", String(lookbackDays));
+      sliding.run(`/api/reports/net-new-reach?${params}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedAccountId, range, mode, lookbackDays, retryKey]);
+
+  const rows: DisplayRow[] = useMemo(() => {
+    if (mode === "expanding") {
+      return (expanding.data?.months ?? []).map((m) => ({
+        label: m.label,
+        monthStart: m.monthStart,
+        isolatedReach: m.isolatedReach,
+        frequency: m.frequency,
+        windowReach: m.cumulativeReach,
+        windowReachLabel: "Cumulative Reach",
+        netNewReach: m.netNewReach,
+        netNewPct: m.netNewPct,
+        spend: m.spend,
+        cpmr: m.cpmr,
+        costPer1kNetNew: m.costPer1kNetNew,
+      }));
+    }
+    return (sliding.data?.months ?? []).map((m) => ({
+      label: m.label,
+      monthStart: m.monthStart,
+      isolatedReach: m.isolatedReach,
+      frequency: m.frequency,
+      windowReach: m.windowReach,
+      windowReachLabel: `${lookbackDays}-Day Window Reach`,
+      netNewReach: m.netNewReach,
+      netNewPct: m.netNewPct,
+      spend: m.spend,
+      cpmr: m.cpmr,
+      costPer1kNetNew: m.costPer1kNetNew,
+    }));
+  }, [mode, expanding.data, sliding.data, lookbackDays]);
+
+  const columns: DataTableColumn<DisplayRow>[] = [
+    { key: "label", header: "Month", accessor: (r) => r.monthStart, render: (r) => r.label },
+    { key: "isolatedReach", header: "Monthly Reach", help: GLOSSARY.reach, accessor: (r) => r.isolatedReach, align: "right", render: (r) => formatCompactNumber(r.isolatedReach) },
+    {
+      key: "windowReach",
+      header: rows[0]?.windowReachLabel ?? "Window Reach",
+      help: GLOSSARY.cumulativeReach,
+      accessor: (r) => r.windowReach,
+      align: "right",
+      render: (r) => formatCompactNumber(r.windowReach),
+    },
+    { key: "netNewReach", header: "Net New Reach", help: GLOSSARY.netNew, accessor: (r) => r.netNewReach, align: "right", render: (r) => formatCompactNumber(r.netNewReach) },
+    { key: "netNewPct", header: "Net New %", help: GLOSSARY.netNewPct, accessor: (r) => r.netNewPct, align: "right", render: (r) => formatPercent(r.netNewPct) },
+    { key: "frequency", header: "Frequency", help: GLOSSARY.frequency, accessor: (r) => r.frequency, align: "right", render: (r) => r.frequency.toFixed(2) },
+    { key: "spend", header: "Spend", help: GLOSSARY.spend, accessor: (r) => r.spend, align: "right", render: (r) => formatCurrency(r.spend) },
+    { key: "cpmr", header: "CPMR", help: GLOSSARY.cpmr, accessor: (r) => r.cpmr, align: "right", render: (r) => formatCurrency(r.cpmr) },
+    { key: "costPer1kNetNew", header: "Cost / 1K Net New", help: GLOSSARY.costPer1kNetNew, accessor: (r) => r.costPer1kNetNew, align: "right", render: (r) => formatCurrency(r.costPer1kNetNew) },
+  ];
+
+  const compositionData = rows.map((r) => ({
+    month: r.label,
+    netNewReach: r.netNewReach,
+    repeatReach: Math.max(0, r.isolatedReach - r.netNewReach),
+    netNewPct: r.netNewPct,
+  }));
+  const costData = rows.map((r) => ({ month: r.label, spend: r.spend, costPer1kNetNew: r.costPer1kNetNew }));
+  const latestNetNewPct = mode === "expanding" ? expanding.data?.latestNetNewPct : sliding.data?.latestNetNewPct;
+  const totalSpend = mode === "expanding" ? expanding.data?.totalSpend : sliding.data?.totalSpend;
+  const totalReach = mode === "expanding"
+    ? expanding.data?.totalRollingReach
+    : sliding.data?.months[sliding.data.months.length - 1]?.windowReach;
+  const avgCostPer1kNetNew = rows.length
+    ? rows.filter((r) => r.costPer1kNetNew > 0).reduce((s, r) => s + r.costPer1kNetNew, 0) /
+      Math.max(1, rows.filter((r) => r.costPer1kNetNew > 0).length)
+    : undefined;
+
+  const insights = useMemo(() => {
+    if (mode === "expanding" && expanding.data) return rollingReachInsights(expanding.data.months, expanding.data.totalRollingReach);
+    if (mode === "sliding" && sliding.data) return rollingReachInsights(sliding.data.months, sliding.data.months[sliding.data.months.length - 1]?.windowReach ?? 0);
+    return [];
+  }, [mode, expanding.data, sliding.data]);
+
+  return (
+    <div>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 className="text-lg font-bold text-slate-900">Net New Reach</h1>
+          <p className="mt-1 text-sm text-slate-500">How much of your monthly reach is genuinely new people vs. repeat exposure.</p>
+        </div>
+        <DateRangePicker value={range} onChange={setRange} />
+      </div>
+
+      {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
+      <HowToRead
+        items={[
+          { label: "Net New Reach", text: "people who saw your ads this month but hadn't seen them before." },
+          { label: "Expanding Window", text: "compares each month against everyone reached since the start of your selected period — answers \"how much fresh audience is left overall?\"" },
+          { label: "Sliding Window", text: "compares each month against only the last 90/180/365 days — answers \"am I still finding fresh people lately?\"" },
+          { label: "Monthly Reach", text: "unique people reached within that month alone." },
+          { label: "Frequency", text: "average number of times each person saw your ads that month. Above ~3–4, you're paying to repeat yourself." },
+          { label: "Cost / 1K Net New", text: "what you pay to put ads in front of 1,000 brand-new people. A rising line means audience fatigue." },
+        ]}
+      />
+
+      <div className="mt-3 flex flex-wrap items-center gap-3">
+        <div className="flex rounded-md border border-slate-200 bg-white p-0.5">
+          {(["expanding", "sliding"] as WindowMode[]).map((m) => (
+            <button
+              key={m}
+              onClick={() => setMode(m)}
+              className={`rounded px-3 py-1 text-sm font-medium capitalize transition-colors ${
+                mode === m ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+              }`}
+            >
+              {m === "expanding" ? "Expanding Window" : "Sliding Window"}
+            </button>
+          ))}
+        </div>
+        {mode === "sliding" && (
+          <select
+            value={lookbackDays}
+            onChange={(e) => setLookbackDays(Number(e.target.value))}
+            className="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700"
+          >
+            {LOOKBACK_OPTIONS.map((days) => (
+              <option key={days} value={days}>
+                {days}-day lookback
+              </option>
+            ))}
+          </select>
+        )}
+      </div>
+
+      {active.error && <ErrorBanner message={active.error} onRetry={() => setRetryKey((k) => k + 1)} />}
+      {active.loading && !active.progress && <FetchingState />}
+      {active.loading && active.progress && (
+        <div className="mt-4">
+          <ProgressIndicator current={active.progress.current} total={active.progress.total} label={active.progress.label} />
+        </div>
+      )}
+
+      {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
+
+      {range && (
+      <div className="animate-fade-in">
+      <div className={`mt-4 grid grid-cols-1 gap-3 transition-opacity duration-200 sm:grid-cols-2 lg:grid-cols-4 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+        <SummaryCard
+          label={mode === "expanding" ? "Total Rolling Reach" : "Latest Window Reach"}
+          value={totalReach !== undefined ? formatCompactNumber(totalReach) : "—"}
+          title={totalReach !== undefined ? String(totalReach.toLocaleString()) : undefined}
+          help={mode === "expanding" ? GLOSSARY.cumulativeReach : GLOSSARY.reach}
+          loading={active.isInitialLoad}
+          icon={<ReachIcon />}
+          iconColor="bg-blue-50 text-blue-600"
+          accentColor="border-l-blue-500"
+        />
+        <SummaryCard
+          label="Total Spend"
+          value={totalSpend !== undefined ? formatCurrencyCompact(totalSpend) : "—"}
+          title={totalSpend !== undefined ? formatCurrency(totalSpend) : undefined}
+          help={GLOSSARY.spend}
+          loading={active.isInitialLoad}
+          icon={<SpendIcon />}
+          iconColor="bg-emerald-50 text-emerald-600"
+          accentColor="border-l-emerald-500"
+        />
+        <SummaryCard
+          label="Latest Net New %"
+          value={latestNetNewPct !== undefined ? formatPercent(latestNetNewPct) : "—"}
+          help={GLOSSARY.netNewPct}
+          loading={active.isInitialLoad}
+          icon={<PercentIcon />}
+          iconColor="bg-violet-50 text-violet-600"
+          accentColor="border-l-violet-500"
+        />
+        <SummaryCard
+          label="Avg Cost / 1K Net New"
+          value={avgCostPer1kNetNew !== undefined ? formatCurrencyCompact(avgCostPer1kNetNew) : "—"}
+          title={avgCostPer1kNetNew !== undefined ? formatCurrency(avgCostPer1kNetNew) : undefined}
+          help={GLOSSARY.costPer1kNetNew}
+          loading={active.isInitialLoad}
+          icon={<CountIcon />}
+          iconColor="bg-amber-50 text-amber-600"
+          accentColor="border-l-amber-500"
+        />
+      </div>
+
+      <div className={`mt-4 transition-opacity duration-200 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+        <ReportSummary insights={insights} loading={active.isInitialLoad} />
+      </div>
+
+      <div className={`mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm transition-opacity duration-200 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+        <h2 className="text-sm font-semibold text-slate-800">Reach composition analysis</h2>
+        <p className="mb-4 mt-0.5 text-xs text-slate-400">
+          {mode === "expanding"
+            ? "Each month's reach split into net new people vs. people already reached before — the line tracks % net new."
+            : `Each month's reach split into people new vs. anyone reached in the prior ${lookbackDays} days — the line tracks % net new.`}
+        </p>
+        {active.isInitialLoad ? (
+          <ChartSkeleton />
+        ) : (
+          <DualAxisChart
+            data={compositionData}
+            xKey="month"
+            bars={[
+              { key: "repeatReach", label: "Reached Previously", color: "#d97706" },
+              { key: "netNewReach", label: "Net New Reach", color: "#2a78d6" },
+            ]}
+            lines={[{ key: "netNewPct", label: "% Net New", color: "#eda100" }]}
+            barFormat="compact"
+            lineFormat="percent"
+          />
+        )}
+      </div>
+
+      <div className={`mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm transition-opacity duration-200 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+        <h2 className="text-sm font-semibold text-slate-800">Cost per 1K net new reach</h2>
+        <p className="mb-4 mt-0.5 text-xs text-slate-400">Monthly spend vs. cost per thousand new people reached — a rising line means you&apos;re paying more for fresh audience.</p>
+        {active.isInitialLoad ? (
+          <ChartSkeleton />
+        ) : (
+          <DualAxisChart
+            data={costData}
+            xKey="month"
+            bars={[{ key: "spend", label: "Spend", color: "#94a3b8" }]}
+            lines={[{ key: "costPer1kNetNew", label: "Cost / 1K Net New", color: "#4a3aa7" }]}
+            barFormat="currencyCompact"
+            lineFormat="currency"
+          />
+        )}
+      </div>
+
+      <div className="mt-6">
+        <DataTable columns={columns} rows={rows} loading={active.isInitialLoad} filename="net-new-reach" defaultSortKey="label" defaultSortDir="asc" />
+      </div>
+      </div>
+      )}
+    </div>
+  );
+}

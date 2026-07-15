@@ -1,1 +1,31 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlU3RhdGUsIHVzZUVmZmVjdCB9IGZyb20gInJlYWN0IjsKaW1wb3J0IHsgU2lkZWJhciB9IGZyb20gIi4vU2lkZWJhciI7CmltcG9ydCB7IFRvcEJhciB9IGZyb20gIi4vVG9wQmFyIjsKCmV4cG9ydCBmdW5jdGlvbiBBcHBTaGVsbCh7IGNoaWxkcmVuIH06IHsgY2hpbGRyZW46IFJlYWN0LlJlYWN0Tm9kZSB9KSB7CiAgY29uc3QgW2NvbGxhcHNlZCwgc2V0Q29sbGFwc2VkXSA9IHVzZVN0YXRlKCgpID0+IHsKICAgIGlmICh0eXBlb2Ygd2luZG93ICE9PSAidW5kZWZpbmVkIikgewogICAgICByZXR1cm4gbG9jYWxTdG9yYWdlLmdldEl0ZW0oInNpZGViYXItY29sbGFwc2VkIikgPT09ICJ0cnVlIjsKICAgIH0KICAgIHJldHVybiBmYWxzZTsKICB9KTsKCiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIGxvY2FsU3RvcmFnZS5zZXRJdGVtKCJzaWRlYmFyLWNvbGxhcHNlZCIsIFN0cmluZyhjb2xsYXBzZWQpKTsKICB9LCBbY29sbGFwc2VkXSk7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBtaW4taC1zY3JlZW4gYmctWyNmOGZhZmNdIj4KICAgICAgPFNpZGViYXIgY29sbGFwc2VkPXtjb2xsYXBzZWR9IG9uVG9nZ2xlPXsoKSA9PiBzZXRDb2xsYXBzZWQoKGMpID0+ICFjKX0gLz4KICAgICAgPGRpdgogICAgICAgIGNsYXNzTmFtZT0iZmxleCBtaW4tdy0wIGZsZXgtMSBmbGV4LWNvbCB0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0yMDAiCiAgICAgICAgc3R5bGU9e3sgbWFyZ2luTGVmdDogMCB9fQogICAgICA+CiAgICAgICAgPFRvcEJhciBvblRvZ2dsZVNpZGViYXI9eygpID0+IHNldENvbGxhcHNlZCgoYykgPT4gIWMpfSBzaWRlYmFyQ29sbGFwc2VkPXtjb2xsYXBzZWR9IC8+CiAgICAgICAgPG1haW4gY2xhc3NOYW1lPSJtaW4tdy0wIGZsZXgtMSBweC02IHB5LTUgbGc6cHgtOCI+e2NoaWxkcmVufTwvbWFpbj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApOwp9Cg=="}
+"use client";
+
+import { useState, useEffect } from "react";
+import { Sidebar } from "./Sidebar";
+import { TopBar } from "./TopBar";
+
+export function AppShell({ children }: { children: React.ReactNode }) {
+  const [collapsed, setCollapsed] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("sidebar-collapsed") === "true";
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("sidebar-collapsed", String(collapsed));
+  }, [collapsed]);
+
+  return (
+    <div className="flex min-h-screen bg-[#f8fafc]">
+      <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} />
+      <div
+        className="flex min-w-0 flex-1 flex-col transition-all duration-200"
+        style={{ marginLeft: 0 }}
+      >
+        <TopBar onToggleSidebar={() => setCollapsed((c) => !c)} sidebarCollapsed={collapsed} />
+        <main className="min-w-0 flex-1 px-6 py-5 lg:px-8">{children}</main>
+      </div>
+    </div>
+  );
+}

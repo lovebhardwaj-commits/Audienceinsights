@@ -1,1 +1,33 @@
-{"data":"Y29uc3QgYmFzZSA9IHsgd2lkdGg6IDIwLCBoZWlnaHQ6IDIwLCB2aWV3Qm94OiAiMCAwIDI0IDI0IiwgZmlsbDogIm5vbmUiLCBzdHJva2U6ICJjdXJyZW50Q29sb3IiLCBzdHJva2VXaWR0aDogMS43NSwgc3Ryb2tlTGluZWNhcDogInJvdW5kIiBhcyBjb25zdCwgc3Ryb2tlTGluZWpvaW46ICJyb3VuZCIgYXMgY29uc3QgfTsKCmV4cG9ydCBmdW5jdGlvbiBSZWFjaEljb24oKSB7CiAgcmV0dXJuIDxzdmcgey4uLmJhc2V9PjxjaXJjbGUgY3g9IjkiIGN5PSI4IiByPSIzIiAvPjxwYXRoIGQ9Ik0yLjUgMTljLjUtMyAyLjgtNSA2LjUtNXM2IDIgNi41IDUiIC8+PHBhdGggZD0iTTE2IDExYzIuMiAwIDMuOCAxLjUgNC4yIDMuNSIgLz48Y2lyY2xlIGN4PSIxNyIgY3k9IjcuNSIgcj0iMi41IiAvPjwvc3ZnPjsKfQoKZXhwb3J0IGZ1bmN0aW9uIFNwZW5kSWNvbigpIHsKICByZXR1cm4gPHN2ZyB7Li4uYmFzZX0+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iOSIgLz48cGF0aCBkPSJNMTIgN3YxMCIgLz48cGF0aCBkPSJNOS41IDkuNWMwLTEuMSAxLjEtMiAyLjUtMnMyLjUuOSAyLjUgMi0xLjEgMi0yLjUgMi0yLjUuOS0yLjUgMiAxLjEgMiAyLjUgMiAyLjUtLjkgMi41LTIiIC8+PC9zdmc+Owp9CgpleHBvcnQgZnVuY3Rpb24gUGVyY2VudEljb24oKSB7CiAgcmV0dXJuIDxzdmcgey4uLmJhc2V9PjxsaW5lIHgxPSIxOSIgeTE9IjUiIHgyPSI1IiB5Mj0iMTkiIC8+PGNpcmNsZSBjeD0iNi41IiBjeT0iNi41IiByPSIyLjUiIC8+PGNpcmNsZSBjeD0iMTcuNSIgY3k9IjE3LjUiIHI9IjIuNSIgLz48L3N2Zz47Cn0KCmV4cG9ydCBmdW5jdGlvbiBUcmVuZFVwSWNvbigpIHsKICByZXR1cm4gPHN2ZyB7Li4uYmFzZX0+PHBvbHlsaW5lIHBvaW50cz0iMjIgNyAxMy41IDE1LjUgOC41IDEwLjUgMiAxNyIgLz48cG9seWxpbmUgcG9pbnRzPSIxNiA3IDIyIDcgMjIgMTMiIC8+PC9zdmc+Owp9CgpleHBvcnQgZnVuY3Rpb24gT3ZlcmxhcEljb24oKSB7CiAgcmV0dXJuIDxzdmcgey4uLmJhc2V9PjxjaXJjbGUgY3g9IjkuNSIgY3k9IjEyIiByPSI2IiBvcGFjaXR5PSIwLjUiIC8+PGNpcmNsZSBjeD0iMTQuNSIgY3k9IjEyIiByPSI2IiBvcGFjaXR5PSIwLjUiIC8+PC9zdmc+Owp9CgpleHBvcnQgZnVuY3Rpb24gQ291bnRJY29uKCkgewogIHJldHVybiA8c3ZnIHsuLi5iYXNlfT48cGF0aCBkPSJNNCA0aDZ2Nkg0eiIgLz48cGF0aCBkPSJNMTQgNGg2djZoLTZ6IiAvPjxwYXRoIGQ9Ik00IDE0aDZ2Nkg0eiIgLz48cGF0aCBkPSJNMTQgMTRoNnY2aC02eiIgLz48L3N2Zz47Cn0KCmV4cG9ydCBmdW5jdGlvbiBDbG9ja1NtYWxsSWNvbigpIHsKICByZXR1cm4gPHN2ZyB7Li4uYmFzZX0+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iOSIgLz48cGF0aCBkPSJNMTIgN3Y1bDMgMiIgLz48L3N2Zz47Cn0KCmV4cG9ydCBmdW5jdGlvbiBDaGFydEJhckljb24oKSB7CiAgcmV0dXJuIDxzdmcgey4uLmJhc2V9PjxyZWN0IHg9IjMiIHk9IjEyIiB3aWR0aD0iNCIgaGVpZ2h0PSI4IiByeD0iMSIgLz48cmVjdCB4PSIxMCIgeT0iOCIgd2lkdGg9IjQiIGhlaWdodD0iMTIiIHJ4PSIxIiAvPjxyZWN0IHg9IjE3IiB5PSI0IiB3aWR0aD0iNCIgaGVpZ2h0PSIxNiIgcng9IjEiIC8+PC9zdmc+Owp9Cg=="}
+const base = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.75, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+
+export function ReachIcon() {
+  return <svg {...base}><circle cx="9" cy="8" r="3" /><path d="M2.5 19c.5-3 2.8-5 6.5-5s6 2 6.5 5" /><path d="M16 11c2.2 0 3.8 1.5 4.2 3.5" /><circle cx="17" cy="7.5" r="2.5" /></svg>;
+}
+
+export function SpendIcon() {
+  return <svg {...base}><circle cx="12" cy="12" r="9" /><path d="M12 7v10" /><path d="M9.5 9.5c0-1.1 1.1-2 2.5-2s2.5.9 2.5 2-1.1 2-2.5 2-2.5.9-2.5 2 1.1 2 2.5 2 2.5-.9 2.5-2" /></svg>;
+}
+
+export function PercentIcon() {
+  return <svg {...base}><line x1="19" y1="5" x2="5" y2="19" /><circle cx="6.5" cy="6.5" r="2.5" /><circle cx="17.5" cy="17.5" r="2.5" /></svg>;
+}
+
+export function TrendUpIcon() {
+  return <svg {...base}><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" /></svg>;
+}
+
+export function OverlapIcon() {
+  return <svg {...base}><circle cx="9.5" cy="12" r="6" opacity="0.5" /><circle cx="14.5" cy="12" r="6" opacity="0.5" /></svg>;
+}
+
+export function CountIcon() {
+  return <svg {...base}><path d="M4 4h6v6H4z" /><path d="M14 4h6v6h-6z" /><path d="M4 14h6v6H4z" /><path d="M14 14h6v6h-6z" /></svg>;
+}
+
+export function ClockSmallIcon() {
+  return <svg {...base}><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>;
+}
+
+export function ChartBarIcon() {
+  return <svg {...base}><rect x="3" y="12" width="4" height="8" rx="1" /><rect x="10" y="8" width="4" height="12" rx="1" /><rect x="17" y="4" width="4" height="16" rx="1" /></svg>;
+}

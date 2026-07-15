@@ -1,1 +1,103 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgQXJlYSwgQXJlYUNoYXJ0LCBCYXIsIEJhckNoYXJ0LCBCcnVzaCwgQ2FydGVzaWFuR3JpZCwgTGVnZW5kLCBSZXNwb25zaXZlQ29udGFpbmVyLCBUb29sdGlwLCBYQXhpcywgWUF4aXMgfSBmcm9tICJyZWNoYXJ0cyI7CmltcG9ydCB7IENIQVJUX0NIUk9NRSwgQ0hBUlRfSU5LIH0gZnJvbSAiQC9saWIvY2hhcnQtdGhlbWUiOwppbXBvcnQgeyB1c2VSZWR1Y2VkTW90aW9uIH0gZnJvbSAiQC9saWIvaG9va3MvdXNlUmVkdWNlZE1vdGlvbiI7CmltcG9ydCB7IENoYXJ0VG9vbHRpcENvbnRlbnQsIGNvbXBhY3RUaWNrRm9ybWF0dGVyLCBwZXJjZW50VGlja0Zvcm1hdHRlciwgdHlwZSBWYWx1ZUZvcm1hdCB9IGZyb20gIi4vQ2hhcnRUb29sdGlwIjsKaW1wb3J0IHR5cGUgeyBTZXJpZXNDb25maWcgfSBmcm9tICIuL0xpbmVDaGFydCI7CgppbnRlcmZhY2UgU3RhY2tlZEJhclByb3BzIHsKICBkYXRhOiBBcnJheTxSZWNvcmQ8c3RyaW5nLCBzdHJpbmcgfCBudW1iZXI+PjsKICB4S2V5OiBzdHJpbmc7CiAgc2VyaWVzOiBTZXJpZXNDb25maWdbXTsKICB2YXJpYW50PzogImJhciIgfCAiYXJlYSI7CiAgaGVpZ2h0PzogbnVtYmVyOwogIHVuaXQ/OiBzdHJpbmc7CiAgdmFsdWVGb3JtYXQ/OiBWYWx1ZUZvcm1hdDsKICAvKiogQWRkcyBhIGRyYWdnYWJsZSB6b29tL2JydXNoIHNsaWRlciBiZWxvdyB0aGUgY2hhcnQg4oCUIHVzZWZ1bCBmb3IgbG9uZyB0aW1lIHNlcmllcy4gKi8KICBicnVzaD86IGJvb2xlYW47Cn0KCmNvbnN0IHRpY2tTdHlsZSA9IHsgZm9udFNpemU6IDEyLCBmaWxsOiBDSEFSVF9JTksubXV0ZWQgfTsKCmV4cG9ydCBmdW5jdGlvbiBTdGFja2VkQmFyKHsgZGF0YSwgeEtleSwgc2VyaWVzLCB2YXJpYW50ID0gImJhciIsIGhlaWdodCA9IDM2MCwgdW5pdCA9ICIiLCB2YWx1ZUZvcm1hdCwgYnJ1c2ggPSBmYWxzZSB9OiBTdGFja2VkQmFyUHJvcHMpIHsKICAvLyBbUE0gRU5IQU5DRU1FTlRdIOKAlCBjaGFydCBhbmltYXRpb25zIHJlc3BlY3QgdGhlIE9TIHJlZHVjZWQtbW90aW9uIHNldHRpbmcKICBjb25zdCBhbmltYXRlID0gIXVzZVJlZHVjZWRNb3Rpb24oKTsKICBjb25zdCBpc1BlcmNlbnQgPSB1bml0ID09PSAiJSI7CiAgY29uc3QgZm10OiBWYWx1ZUZvcm1hdCA9IHZhbHVlRm9ybWF0ID8/IChpc1BlcmNlbnQgPyAicGVyY2VudCIgOiAiY29tcGFjdCIpOwogIGNvbnN0IHlUaWNrRm9ybWF0dGVyID0gaXNQZXJjZW50ID8gcGVyY2VudFRpY2tGb3JtYXR0ZXIgOiBjb21wYWN0VGlja0Zvcm1hdHRlcjsKCiAgcmV0dXJuICgKICAgIDxkaXYgc3R5bGU9e3sgd2lkdGg6ICIxMDAlIiwgaGVpZ2h0OiBicnVzaCA/IGhlaWdodCArIDQ0IDogaGVpZ2h0IH19PgogICAgICA8UmVzcG9uc2l2ZUNvbnRhaW5lcj4KICAgICAgICB7dmFyaWFudCA9PT0gImFyZWEiID8gKAogICAgICAgICAgPEFyZWFDaGFydCBkYXRhPXtkYXRhfSBtYXJnaW49e3sgdG9wOiA4LCByaWdodDogMTYsIGxlZnQ6IDAsIGJvdHRvbTogMCB9fT4KICAgICAgICAgICAgPENhcnRlc2lhbkdyaWQgdmVydGljYWw9e2ZhbHNlfSBzdHJva2U9e0NIQVJUX0NIUk9NRS5ncmlkbGluZX0gLz4KICAgICAgICAgICAgPFhBeGlzIGRhdGFLZXk9e3hLZXl9IHRpY2s9e3RpY2tTdHlsZX0gYXhpc0xpbmU9e3sgc3Ryb2tlOiBDSEFSVF9DSFJPTUUuYXhpcyB9fSB0aWNrTGluZT17ZmFsc2V9IC8+CiAgICAgICAgICAgIDxZQXhpcwogICAgICAgICAgICAgIHRpY2s9e3RpY2tTdHlsZX0KICAgICAgICAgICAgICBheGlzTGluZT17ZmFsc2V9CiAgICAgICAgICAgICAgdGlja0xpbmU9e2ZhbHNlfQogICAgICAgICAgICAgIHdpZHRoPXs0OH0KICAgICAgICAgICAgICB0aWNrRm9ybWF0dGVyPXt5VGlja0Zvcm1hdHRlcn0KICAgICAgICAgICAgICBkb21haW49e2lzUGVyY2VudCA/IFswLCAxMDBdIDogdW5kZWZpbmVkfQogICAgICAgICAgICAvPgogICAgICAgICAgICA8VG9vbHRpcCBjb250ZW50PXs8Q2hhcnRUb29sdGlwQ29udGVudCBkZWZhdWx0Rm9ybWF0PXtmbXR9IC8+fSAvPgogICAgICAgICAgICB7c2VyaWVzLmxlbmd0aCA+IDEgJiYgPExlZ2VuZCB3cmFwcGVyU3R5bGU9e3sgZm9udFNpemU6IDEyLCBwYWRkaW5nVG9wOiA4IH19IGljb25UeXBlPSJjaXJjbGUiIGljb25TaXplPXs4fSAvPn0KICAgICAgICAgICAge3Nlcmllcy5tYXAoKHMpID0+ICgKICAgICAgICAgICAgICA8QXJlYQogICAgICAgICAgICAgICAga2V5PXtzLmtleX0KICAgICAgICAgICAgICAgIHR5cGU9Im1vbm90b25lIgogICAgICAgICAgICAgICAgZGF0YUtleT17cy5rZXl9CiAgICAgICAgICAgICAgICBuYW1lPXtzLmxhYmVsfQogICAgICAgICAgICAgICAgc3RhY2tJZD0iMSIKICAgICAgICAgICAgICAgIHN0cm9rZT17cy5jb2xvcn0KICAgICAgICAgICAgICAgIGZpbGw9e3MuY29sb3J9CiAgICAgICAgICAgICAgICBmaWxsT3BhY2l0eT17MC43NX0KICAgICAgICAgICAgICAgIGlzQW5pbWF0aW9uQWN0aXZlPXthbmltYXRlfQogICAgICAgICAgICAgICAgYW5pbWF0aW9uRHVyYXRpb249ezYwMH0KICAgICAgICAgICAgICAgIGFuaW1hdGlvbkVhc2luZz0iZWFzZS1vdXQiCiAgICAgICAgICAgICAgLz4KICAgICAgICAgICAgKSl9CiAgICAgICAgICAgIHticnVzaCAmJiAoCiAgICAgICAgICAgICAgPEJydXNoIGRhdGFLZXk9e3hLZXl9IGhlaWdodD17MzB9IHN0cm9rZT0iIzI1NjNFQiIgZmlsbD0iI0Y4RkFGQyIgdHJhdmVsbGVyV2lkdGg9ezEwfSAvPgogICAgICAgICAgICApfQogICAgICAgICAgPC9BcmVhQ2hhcnQ+CiAgICAgICAgKSA6ICgKICAgICAgICAgIDxCYXJDaGFydCBkYXRhPXtkYXRhfSBtYXJnaW49e3sgdG9wOiA4LCByaWdodDogMTYsIGxlZnQ6IDAsIGJvdHRvbTogMCB9fT4KICAgICAgICAgICAgPENhcnRlc2lhbkdyaWQgdmVydGljYWw9e2ZhbHNlfSBzdHJva2U9e0NIQVJUX0NIUk9NRS5ncmlkbGluZX0gLz4KICAgICAgICAgICAgPFhBeGlzIGRhdGFLZXk9e3hLZXl9IHRpY2s9e3RpY2tTdHlsZX0gYXhpc0xpbmU9e3sgc3Ryb2tlOiBDSEFSVF9DSFJPTUUuYXhpcyB9fSB0aWNrTGluZT17ZmFsc2V9IC8+CiAgICAgICAgICAgIDxZQXhpcwogICAgICAgICAgICAgIHRpY2s9e3RpY2tTdHlsZX0KICAgICAgICAgICAgICBheGlzTGluZT17ZmFsc2V9CiAgICAgICAgICAgICAgdGlja0xpbmU9e2ZhbHNlfQogICAgICAgICAgICAgIHdpZHRoPXs0OH0KICAgICAgICAgICAgICB0aWNrRm9ybWF0dGVyPXt5VGlja0Zvcm1hdHRlcn0KICAgICAgICAgICAgICBkb21haW49e2lzUGVyY2VudCA/IFswLCAxMDBdIDogdW5kZWZpbmVkfQogICAgICAgICAgICAvPgogICAgICAgICAgICA8VG9vbHRpcCBjb250ZW50PXs8Q2hhcnRUb29sdGlwQ29udGVudCBkZWZhdWx0Rm9ybWF0PXtmbXR9IC8+fSAvPgogICAgICAgICAgICB7c2VyaWVzLmxlbmd0aCA+IDEgJiYgPExlZ2VuZCB3cmFwcGVyU3R5bGU9e3sgZm9udFNpemU6IDEyLCBwYWRkaW5nVG9wOiA4IH19IGljb25UeXBlPSJjaXJjbGUiIGljb25TaXplPXs4fSAvPn0KICAgICAgICAgICAge3Nlcmllcy5tYXAoKHMpID0+ICgKICAgICAgICAgICAgICA8QmFyCiAgICAgICAgICAgICAgICBrZXk9e3Mua2V5fQogICAgICAgICAgICAgICAgZGF0YUtleT17cy5rZXl9CiAgICAgICAgICAgICAgICBuYW1lPXtzLmxhYmVsfQogICAgICAgICAgICAgICAgc3RhY2tJZD0iMSIKICAgICAgICAgICAgICAgIGZpbGw9e3MuY29sb3J9CiAgICAgICAgICAgICAgICBzdHJva2U9e0NIQVJUX0NIUk9NRS5zdXJmYWNlfQogICAgICAgICAgICAgICAgc3Ryb2tlV2lkdGg9ezJ9CiAgICAgICAgICAgICAgICBtYXhCYXJTaXplPXs0OH0KICAgICAgICAgICAgICAgIGlzQW5pbWF0aW9uQWN0aXZlPXthbmltYXRlfQogICAgICAgICAgICAgICAgYW5pbWF0aW9uRHVyYXRpb249ezQwMH0KICAgICAgICAgICAgICAgIGFuaW1hdGlvbkVhc2luZz0iZWFzZS1vdXQiCiAgICAgICAgICAgICAgLz4KICAgICAgICAgICAgKSl9CiAgICAgICAgICAgIHticnVzaCAmJiAoCiAgICAgICAgICAgICAgPEJydXNoIGRhdGFLZXk9e3hLZXl9IGhlaWdodD17MzB9IHN0cm9rZT0iIzI1NjNFQiIgZmlsbD0iI0Y4RkFGQyIgdHJhdmVsbGVyV2lkdGg9ezEwfSAvPgogICAgICAgICAgICApfQogICAgICAgICAgPC9CYXJDaGFydD4KICAgICAgICApfQogICAgICA8L1Jlc3BvbnNpdmVDb250YWluZXI+CiAgICA8L2Rpdj4KICApOwp9Cg=="}
+"use client";
+
+import { Area, AreaChart, Bar, BarChart, Brush, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
+import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+import { ChartTooltipContent, compactTickFormatter, percentTickFormatter, type ValueFormat } from "./ChartTooltip";
+import type { SeriesConfig } from "./LineChart";
+
+interface StackedBarProps {
+  data: Array<Record<string, string | number>>;
+  xKey: string;
+  series: SeriesConfig[];
+  variant?: "bar" | "area";
+  height?: number;
+  unit?: string;
+  valueFormat?: ValueFormat;
+  /** Adds a draggable zoom/brush slider below the chart — useful for long time series. */
+  brush?: boolean;
+}
+
+const tickStyle = { fontSize: 12, fill: CHART_INK.muted };
+
+export function StackedBar({ data, xKey, series, variant = "bar", height = 360, unit = "", valueFormat, brush = false }: StackedBarProps) {
+  // [PM ENHANCEMENT] — chart animations respect the OS reduced-motion setting
+  const animate = !useReducedMotion();
+  const isPercent = unit === "%";
+  const fmt: ValueFormat = valueFormat ?? (isPercent ? "percent" : "compact");
+  const yTickFormatter = isPercent ? percentTickFormatter : compactTickFormatter;
+
+  return (
+    <div style={{ width: "100%", height: brush ? height + 44 : height }}>
+      <ResponsiveContainer>
+        {variant === "area" ? (
+          <AreaChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+            <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
+            <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
+            <YAxis
+              tick={tickStyle}
+              axisLine={false}
+              tickLine={false}
+              width={48}
+              tickFormatter={yTickFormatter}
+              domain={isPercent ? [0, 100] : undefined}
+            />
+            <Tooltip content={<ChartTooltipContent defaultFormat={fmt} />} />
+            {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
+            {series.map((s) => (
+              <Area
+                key={s.key}
+                type="monotone"
+                dataKey={s.key}
+                name={s.label}
+                stackId="1"
+                stroke={s.color}
+                fill={s.color}
+                fillOpacity={0.75}
+                isAnimationActive={animate}
+                animationDuration={600}
+                animationEasing="ease-out"
+              />
+            ))}
+            {brush && (
+              <Brush dataKey={xKey} height={30} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />
+            )}
+          </AreaChart>
+        ) : (
+          <BarChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+            <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
+            <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
+            <YAxis
+              tick={tickStyle}
+              axisLine={false}
+              tickLine={false}
+              width={48}
+              tickFormatter={yTickFormatter}
+              domain={isPercent ? [0, 100] : undefined}
+            />
+            <Tooltip content={<ChartTooltipContent defaultFormat={fmt} />} />
+            {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
+            {series.map((s) => (
+              <Bar
+                key={s.key}
+                dataKey={s.key}
+                name={s.label}
+                stackId="1"
+                fill={s.color}
+                stroke={CHART_CHROME.surface}
+                strokeWidth={2}
+                maxBarSize={48}
+                isAnimationActive={animate}
+                animationDuration={400}
+                animationEasing="ease-out"
+              />
+            ))}
+            {brush && (
+              <Brush dataKey={xKey} height={30} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />
+            )}
+          </BarChart>
+        )}
+      </ResponsiveContainer>
+    </div>
+  );
+}

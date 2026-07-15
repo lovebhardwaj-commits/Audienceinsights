@@ -1,1 +1,252 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlTWVtbywgdXNlU3RhdGUgfSBmcm9tICJyZWFjdCI7CmltcG9ydCB7IEluZm9Ub29sdGlwIH0gZnJvbSAiLi9JbmZvVG9vbHRpcCI7CgpleHBvcnQgaW50ZXJmYWNlIERhdGFUYWJsZUNvbHVtbjxUPiB7CiAga2V5OiBzdHJpbmc7CiAgaGVhZGVyOiBzdHJpbmc7CiAgYWNjZXNzb3I6IChyb3c6IFQpID0+IHN0cmluZyB8IG51bWJlcjsKICByZW5kZXI/OiAocm93OiBUKSA9PiBSZWFjdC5SZWFjdE5vZGU7CiAgYWxpZ24/OiAibGVmdCIgfCAicmlnaHQiOwogIGhlbHA/OiBzdHJpbmc7CiAgLyoqIE9wdGlvbmFsIHBlci1jZWxsIGNsYXNzTmFtZSBiYXNlZCBvbiByb3cgZGF0YSwgZS5nLiBmb3IgY29sb3ItY29kZWQgdGhyZXNob2xkcyAqLwogIGNlbGxDbGFzcz86IChyb3c6IFQpID0+IHN0cmluZzsKfQoKaW50ZXJmYWNlIERhdGFUYWJsZVByb3BzPFQ+IHsKICBjb2x1bW5zOiBEYXRhVGFibGVDb2x1bW48VD5bXTsKICByb3dzOiBUW107CiAgbG9hZGluZz86IGJvb2xlYW47CiAgZW1wdHlNZXNzYWdlPzogc3RyaW5nOwogIGZpbGVuYW1lPzogc3RyaW5nOwogIGRlZmF1bHRTb3J0S2V5Pzogc3RyaW5nOwogIGRlZmF1bHRTb3J0RGlyPzogImFzYyIgfCAiZGVzYyI7CiAgc2VhcmNoYWJsZT86IGJvb2xlYW47Cn0KCmZ1bmN0aW9uIHRvQ3N2VmFsdWUodmFsdWU6IHN0cmluZyB8IG51bWJlcik6IHN0cmluZyB7CiAgY29uc3Qgc3RyID0gU3RyaW5nKHZhbHVlKTsKICByZXR1cm4gL1siLFxuXS8udGVzdChzdHIpID8gYCIke3N0ci5yZXBsYWNlKC8iL2csICciIicpfSJgIDogc3RyOwp9Cgpjb25zdCBQQUdFX1NJWkUgPSA1MDsKCmV4cG9ydCBmdW5jdGlvbiBEYXRhVGFibGU8VD4oewogIGNvbHVtbnMsCiAgcm93cywKICBsb2FkaW5nID0gZmFsc2UsCiAgZW1wdHlNZXNzYWdlID0gIk5vIGRhdGEgZm9yIHRoaXMgcGVyaW9kIiwKICBmaWxlbmFtZSA9ICJyZXBvcnQiLAogIGRlZmF1bHRTb3J0S2V5LAogIGRlZmF1bHRTb3J0RGlyID0gImRlc2MiLAogIHNlYXJjaGFibGUgPSB0cnVlLAp9OiBEYXRhVGFibGVQcm9wczxUPikgewogIGNvbnN0IFtzb3J0S2V5LCBzZXRTb3J0S2V5XSA9IHVzZVN0YXRlPHN0cmluZyB8IHVuZGVmaW5lZD4oZGVmYXVsdFNvcnRLZXkpOwogIGNvbnN0IFtzb3J0RGlyLCBzZXRTb3J0RGlyXSA9IHVzZVN0YXRlPCJhc2MiIHwgImRlc2MiPihkZWZhdWx0U29ydERpcik7CiAgY29uc3QgW3F1ZXJ5LCBzZXRRdWVyeV0gPSB1c2VTdGF0ZSgiIik7CiAgY29uc3QgW3Zpc2libGVDb3VudCwgc2V0VmlzaWJsZUNvdW50XSA9IHVzZVN0YXRlKFBBR0VfU0laRSk7CiAgLy8gW1BNIEVOSEFOQ0VNRU5UXSDigJQgbW9tZW50YXJ5ICJFeHBvcnRlZCDinJMiIGNvbmZpcm1hdGlvbjsgc2lsZW50IHN1Y2Nlc3MgZmVlbHMgYnJva2VuCiAgY29uc3QgW2p1c3RFeHBvcnRlZCwgc2V0SnVzdEV4cG9ydGVkXSA9IHVzZVN0YXRlKGZhbHNlKTsKCiAgY29uc3Qgc29ydGVkUm93cyA9IHVzZU1lbW8oKCkgPT4gewogICAgaWYgKCFzb3J0S2V5KSByZXR1cm4gcm93czsKICAgIGNvbnN0IGNvbHVtbiA9IGNvbHVtbnMuZmluZCgoYykgPT4gYy5rZXkgPT09IHNvcnRLZXkpOwogICAgaWYgKCFjb2x1bW4pIHJldHVybiByb3dzOwogICAgcmV0dXJuIFsuLi5yb3dzXS5zb3J0KChhLCBiKSA9PiB7CiAgICAgIGNvbnN0IGF2ID0gY29sdW1uLmFjY2Vzc29yKGEpOwogICAgICBjb25zdCBidiA9IGNvbHVtbi5hY2Nlc3NvcihiKTsKICAgICAgY29uc3QgY21wID0gdHlwZW9mIGF2ID09PSAibnVtYmVyIiAmJiB0eXBlb2YgYnYgPT09ICJudW1iZXIiID8gYXYgLSBidiA6IFN0cmluZyhhdikubG9jYWxlQ29tcGFyZShTdHJpbmcoYnYpKTsKICAgICAgcmV0dXJuIHNvcnREaXIgPT09ICJhc2MiID8gY21wIDogLWNtcDsKICAgIH0pOwogIH0sIFtyb3dzLCBjb2x1bW5zLCBzb3J0S2V5LCBzb3J0RGlyXSk7CgogIGNvbnN0IGZpbHRlcmVkUm93cyA9IHVzZU1lbW8oKCkgPT4gewogICAgaWYgKCFxdWVyeS50cmltKCkpIHJldHVybiBzb3J0ZWRSb3dzOwogICAgY29uc3QgcSA9IHF1ZXJ5LnRvTG93ZXJDYXNlKCk7CiAgICByZXR1cm4gc29ydGVkUm93cy5maWx0ZXIoKHJvdykgPT4KICAgICAgY29sdW1ucy5zb21lKChjb2wpID0+IFN0cmluZyhjb2wuYWNjZXNzb3Iocm93KSkudG9Mb3dlckNhc2UoKS5pbmNsdWRlcyhxKSkKICAgICk7CiAgfSwgW3NvcnRlZFJvd3MsIHF1ZXJ5LCBjb2x1bW5zXSk7CgogIGNvbnN0IHZpc2libGVSb3dzID0gdXNlTWVtbygoKSA9PiBmaWx0ZXJlZFJvd3Muc2xpY2UoMCwgdmlzaWJsZUNvdW50KSwgW2ZpbHRlcmVkUm93cywgdmlzaWJsZUNvdW50XSk7CiAgY29uc3QgaGlkZGVuQ291bnQgPSBmaWx0ZXJlZFJvd3MubGVuZ3RoIC0gdmlzaWJsZVJvd3MubGVuZ3RoOwoKICBmdW5jdGlvbiBoYW5kbGVRdWVyeUNoYW5nZShxOiBzdHJpbmcpIHsKICAgIHNldFF1ZXJ5KHEpOwogICAgc2V0VmlzaWJsZUNvdW50KFBBR0VfU0laRSk7IC8vIGEgbmV3IHNlYXJjaCBzdGFydHMgYmFjayBhdCB0aGUgZmlyc3QgcGFnZQogIH0KCiAgZnVuY3Rpb24gaGFuZGxlU29ydChrZXk6IHN0cmluZykgewogICAgaWYgKHNvcnRLZXkgPT09IGtleSkgewogICAgICBzZXRTb3J0RGlyKChkaXIpID0+IChkaXIgPT09ICJhc2MiID8gImRlc2MiIDogImFzYyIpKTsKICAgIH0gZWxzZSB7CiAgICAgIHNldFNvcnRLZXkoa2V5KTsKICAgICAgc2V0U29ydERpcigiZGVzYyIpOwogICAgfQogIH0KCiAgZnVuY3Rpb24gZXhwb3J0Q3N2KCkgewogICAgY29uc3QgaGVhZGVyID0gY29sdW1ucy5tYXAoKGMpID0+IHRvQ3N2VmFsdWUoYy5oZWFkZXIpKS5qb2luKCIsIik7CiAgICBjb25zdCBsaW5lcyA9IGZpbHRlcmVkUm93cy5tYXAoKHJvdykgPT4gY29sdW1ucy5tYXAoKGMpID0+IHRvQ3N2VmFsdWUoYy5hY2Nlc3Nvcihyb3cpKSkuam9pbigiLCIpKTsKICAgIGNvbnN0IGNzdiA9IFtoZWFkZXIsIC4uLmxpbmVzXS5qb2luKCJcbiIpOwogICAgY29uc3QgYmxvYiA9IG5ldyBCbG9iKFtjc3ZdLCB7IHR5cGU6ICJ0ZXh0L2NzdjtjaGFyc2V0PXV0Zi04OyIgfSk7CiAgICBjb25zdCB1cmwgPSBVUkwuY3JlYXRlT2JqZWN0VVJMKGJsb2IpOwogICAgY29uc3QgbGluayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImEiKTsKICAgIGxpbmsuaHJlZiA9IHVybDsKICAgIGxpbmsuZG93bmxvYWQgPSBgJHtmaWxlbmFtZX0uY3N2YDsKICAgIGxpbmsuY2xpY2soKTsKICAgIFVSTC5yZXZva2VPYmplY3RVUkwodXJsKTsKICAgIHNldEp1c3RFeHBvcnRlZCh0cnVlKTsKICAgIHNldFRpbWVvdXQoKCkgPT4gc2V0SnVzdEV4cG9ydGVkKGZhbHNlKSwgMjAwMCk7CiAgfQoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InJvdW5kZWQteGwgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAvODAgYmctd2hpdGUgc2hhZG93LXNtIj4KICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiBnYXAtMyBib3JkZXItYiBib3JkZXItc2xhdGUtMTAwIHB4LTUgcHktMi41Ij4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTMiPgogICAgICAgICAge3NlYXJjaGFibGUgJiYgKAogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUiPgogICAgICAgICAgICAgIDxzdmcKICAgICAgICAgICAgICAgIGNsYXNzTmFtZT0icG9pbnRlci1ldmVudHMtbm9uZSBhYnNvbHV0ZSBsZWZ0LTIuNSB0b3AtMS8yIC10cmFuc2xhdGUteS0xLzIgdGV4dC1zbGF0ZS00MDAiCiAgICAgICAgICAgICAgICB3aWR0aD0iMTMiIGhlaWdodD0iMTMiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZVdpZHRoPSIyLjUiCiAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIgLz48cGF0aCBkPSJtMjEgMjEtNC4zNS00LjM1IiAvPgogICAgICAgICAgICAgIDwvc3ZnPgogICAgICAgICAgICAgIDxpbnB1dAogICAgICAgICAgICAgICAgdHlwZT0idGV4dCIKICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPSJTZWFyY2jigKYiCiAgICAgICAgICAgICAgICB2YWx1ZT17cXVlcnl9CiAgICAgICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IGhhbmRsZVF1ZXJ5Q2hhbmdlKGUudGFyZ2V0LnZhbHVlKX0KICAgICAgICAgICAgICAgIGNsYXNzTmFtZT0iaC03IHctNDQgcm91bmRlZC1tZCBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMCBiZy1zbGF0ZS01MCBwbC04IHByLTMgdGV4dC14cyB0ZXh0LXNsYXRlLTcwMCBwbGFjZWhvbGRlci1zbGF0ZS00MDAgZm9jdXM6Ym9yZGVyLWJyYW5kLTMwMCBmb2N1czpiZy13aGl0ZSBmb2N1czpvdXRsaW5lLW5vbmUiCiAgICAgICAgICAgICAgLz4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICApfQogICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJ0ZXh0LXhzIHRleHQtc2xhdGUtNDAwIj4KICAgICAgICAgICAge3Zpc2libGVSb3dzLmxlbmd0aCA8IGZpbHRlcmVkUm93cy5sZW5ndGgKICAgICAgICAgICAgICA/IGBTaG93aW5nICR7dmlzaWJsZVJvd3MubGVuZ3RofSBvZiAke2ZpbHRlcmVkUm93cy5sZW5ndGh9IHJvd3NgCiAgICAgICAgICAgICAgOiBgJHtmaWx0ZXJlZFJvd3MubGVuZ3RofSR7ZmlsdGVyZWRSb3dzLmxlbmd0aCAhPT0gcm93cy5sZW5ndGggPyBgIG9mICR7cm93cy5sZW5ndGh9YCA6ICIifSByb3dzYH0KICAgICAgICAgIDwvc3Bhbj4KICAgICAgICA8L2Rpdj4KICAgICAgICA8YnV0dG9uCiAgICAgICAgICBvbkNsaWNrPXtleHBvcnRDc3Z9CiAgICAgICAgICBkaXNhYmxlZD17ZmlsdGVyZWRSb3dzLmxlbmd0aCA9PT0gMCB8fCBqdXN0RXhwb3J0ZWR9CiAgICAgICAgICBjbGFzc05hbWU9e2BmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMS41IHJvdW5kZWQtbWQgYm9yZGVyIHB4LTMgcHktMSB0ZXh0LXhzIGZvbnQtbWVkaXVtIHRyYW5zaXRpb24tY29sb3JzIGRpc2FibGVkOm9wYWNpdHktNzAgJHsKICAgICAgICAgICAganVzdEV4cG9ydGVkCiAgICAgICAgICAgICAgPyAiYm9yZGVyLWVtZXJhbGQtMjAwIGJnLWVtZXJhbGQtNTAgdGV4dC1lbWVyYWxkLTcwMCIKICAgICAgICAgICAgICA6ICJib3JkZXItc2xhdGUtMjAwIHRleHQtc2xhdGUtNTAwIGhvdmVyOmJnLXNsYXRlLTUwIGhvdmVyOnRleHQtc2xhdGUtNzAwIGRpc2FibGVkOm9wYWNpdHktNDAiCiAgICAgICAgICB9YH0KICAgICAgICA+CiAgICAgICAgICB7anVzdEV4cG9ydGVkID8gKAogICAgICAgICAgICA8PgogICAgICAgICAgICAgIDxzdmcgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2VXaWR0aD0iMi41IiBzdHJva2VMaW5lY2FwPSJyb3VuZCIgc3Ryb2tlTGluZWpvaW49InJvdW5kIj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMCA2IDkgMTdsLTUtNSIgLz4KICAgICAgICAgICAgICA8L3N2Zz4KICAgICAgICAgICAgICBFeHBvcnRlZAogICAgICAgICAgICA8Lz4KICAgICAgICAgICkgOiAoCiAgICAgICAgICAgIDw+CiAgICAgICAgICAgICAgPHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZVdpZHRoPSIyIiBzdHJva2VMaW5lY2FwPSJyb3VuZCIgc3Ryb2tlTGluZWpvaW49InJvdW5kIj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMSAxNXY0YTIgMiAwIDAgMS0yIDJINWEyIDIgMCAwIDEtMi0ydi00IiAvPjxwb2x5bGluZSBwb2ludHM9IjcgMTAgMTIgMTUgMTcgMTAiIC8+PGxpbmUgeDE9IjEyIiB5MT0iMTUiIHgyPSIxMiIgeTI9IjMiIC8+CiAgICAgICAgICAgICAgPC9zdmc+CiAgICAgICAgICAgICAgRXhwb3J0IENTVgogICAgICAgICAgICA8Lz4KICAgICAgICAgICl9CiAgICAgICAgPC9idXR0b24+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzTmFtZT0ib3ZlcmZsb3cteC1hdXRvIj4KICAgICAgICA8dGFibGUgY2xhc3NOYW1lPSJ3LWZ1bGwgdGV4dC1zbSI+CiAgICAgICAgICA8dGhlYWQ+CiAgICAgICAgICAgIDx0ciBjbGFzc05hbWU9ImJvcmRlci1iIGJvcmRlci1zbGF0ZS0xMDAiPgogICAgICAgICAgICAgIHtjb2x1bW5zLm1hcCgoY29sLCBjb2xJZHgpID0+ICgKICAgICAgICAgICAgICAgIDx0aAogICAgICAgICAgICAgICAgICBrZXk9e2NvbC5rZXl9CiAgICAgICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IGhhbmRsZVNvcnQoY29sLmtleSl9CiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YGN1cnNvci1wb2ludGVyIHNlbGVjdC1ub25lIHdoaXRlc3BhY2Utbm93cmFwIHB4LTUgcHktMyB0ZXh0LVsxMXB4XSBmb250LXNlbWlib2xkIHVwcGVyY2FzZSB0cmFja2luZy13aWRlciB0ZXh0LXNsYXRlLTQwMCB0cmFuc2l0aW9uLWNvbG9ycyBob3Zlcjp0ZXh0LXNsYXRlLTYwMCAkewogICAgICAgICAgICAgICAgICAgIGNvbC5hbGlnbiA9PT0gInJpZ2h0IiA/ICJ0ZXh0LXJpZ2h0IiA6ICJ0ZXh0LWxlZnQiCiAgICAgICAgICAgICAgICAgIH0gJHtjb2xJZHggPT09IDAgPyAic3RpY2t5IGxlZnQtMCB6LTEwIGJnLXdoaXRlIHNoYWRvdy1bNHB4XzBfNnB4Xy00cHhfcmdiYSgxNSwyMyw0MiwwLjE1KV0iIDogIiJ9YH0KICAgICAgICAgICAgICAgICAgc3R5bGU9e2NvbElkeCA9PT0gMCA/IHsgbWF4V2lkdGg6ICIyMjBweCIsIGJhY2tncm91bmRDb2xvcjogIiNmZmZmZmYiLCB3aWxsQ2hhbmdlOiAidHJhbnNmb3JtIiB9IDogdW5kZWZpbmVkfQogICAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImlubGluZS1mbGV4IGl0ZW1zLWNlbnRlciBnYXAtMC41Ij4KICAgICAgICAgICAgICAgICAgICB7Y29sLmhlYWRlcn0KICAgICAgICAgICAgICAgICAgICB7Y29sLmhlbHAgJiYgPEluZm9Ub29sdGlwIHRleHQ9e2NvbC5oZWxwfSAvPn0KICAgICAgICAgICAgICAgICAgICB7c29ydEtleSA9PT0gY29sLmtleSAmJiAoCiAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9Im1sLTAuNSB0ZXh0LWJyYW5kLTUwMCI+e3NvcnREaXIgPT09ICJhc2MiID8gIuKGkSIgOiAi4oaTIn08L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgKX0KICAgICAgICAgICAgICAgICAgPC9zcGFuPgogICAgICAgICAgICAgICAgPC90aD4KICAgICAgICAgICAgICApKX0KICAgICAgICAgICAgPC90cj4KICAgICAgICAgIDwvdGhlYWQ+CiAgICAgICAgICA8dGJvZHk+CiAgICAgICAgICAgIHtsb2FkaW5nICYmCiAgICAgICAgICAgICAgQXJyYXkuZnJvbSh7IGxlbmd0aDogNSB9KS5tYXAoKF8sIGkpID0+ICgKICAgICAgICAgICAgICAgIDx0ciBrZXk9e2l9IGNsYXNzTmFtZT17YGJvcmRlci1iIGJvcmRlci1zbGF0ZS01MCAke2kgJSAyID09PSAxID8gImJnLXNsYXRlLTUwLzQwIiA6ICJiZy13aGl0ZSJ9YH0+CiAgICAgICAgICAgICAgICAgIHtjb2x1bW5zLm1hcCgoY29sKSA9PiAoCiAgICAgICAgICAgICAgICAgICAgPHRkIGtleT17Y29sLmtleX0gY2xhc3NOYW1lPSJweC01IHB5LTMuNSI+CiAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC00IHctZnVsbCBhbmltYXRlLXB1bHNlIHJvdW5kZWQgYmctc2xhdGUtMTAwIiAvPgogICAgICAgICAgICAgICAgICAgIDwvdGQ+CiAgICAgICAgICAgICAgICAgICkpfQogICAgICAgICAgICAgICAgPC90cj4KICAgICAgICAgICAgICApKX0KICAgICAgICAgICAgeyFsb2FkaW5nICYmIGZpbHRlcmVkUm93cy5sZW5ndGggPT09IDAgJiYgKAogICAgICAgICAgICAgIDx0cj4KICAgICAgICAgICAgICAgIDx0ZCBjb2xTcGFuPXtjb2x1bW5zLmxlbmd0aH0gY2xhc3NOYW1lPSJweC01IHB5LTEyIHRleHQtY2VudGVyIHRleHQtc20gdGV4dC1zbGF0ZS00MDAiPgogICAgICAgICAgICAgICAgICB7cXVlcnkgPyBgTm8gcm93cyBtYXRjaCAiJHtxdWVyeX0iYCA6IGVtcHR5TWVzc2FnZX0KICAgICAgICAgICAgICAgIDwvdGQ+CiAgICAgICAgICAgICAgPC90cj4KICAgICAgICAgICAgKX0KICAgICAgICAgICAgeyFsb2FkaW5nICYmCiAgICAgICAgICAgICAgdmlzaWJsZVJvd3MubWFwKChyb3csIGkpID0+IHsKICAgICAgICAgICAgICAgIC8vIFRoZSByb3cncyBvd24gemVicmEgdGludCAoYmctc2xhdGUtNTAvNDApIGlzIG9ubHkgNDAlIG9wYXF1ZSBieSBkZXNpZ24g4oCUCiAgICAgICAgICAgICAgICAvLyBmaW5lIGZvciBhIHBsYWluIGNlbGwsIGJ1dCB0aGUgc3RpY2t5IGNvbHVtbiBuZWVkcyBhIGZ1bGx5IHNvbGlkIGNvbG9yIG9mCiAgICAgICAgICAgICAgICAvLyBpdHMgb3duIG9yIGNvbnRlbnQgc2xpZGluZyB1bmRlcm5lYXRoIGl0IGR1cmluZyBob3Jpem9udGFsIHNjcm9sbCBibGVlZHMKICAgICAgICAgICAgICAgIC8vIHRocm91Z2gsIHByb2R1Y2luZyBnaG9zdGVkL292ZXJsYXBwaW5nIHRleHQuICJiYWNrZ3JvdW5kOiBpbmhlcml0IiBkb2Vzbid0CiAgICAgICAgICAgICAgICAvLyByZWxpYWJseSByZXNvbHZlIHRvIGFuIG9wYXF1ZSBjb2xvciBoZXJlIGVpdGhlciwgc28gY29tcHV0ZSBpdCBleHBsaWNpdGx5LgogICAgICAgICAgICAgICAgY29uc3Qgc3RpY2t5QmcgPSBpICUgMiA9PT0gMSA/ICIjZjhmYWZjIiA6ICIjZmZmZmZmIjsKICAgICAgICAgICAgICAgIHJldHVybiAoCiAgICAgICAgICAgICAgICAgIDx0cgogICAgICAgICAgICAgICAgICAgIGtleT17aX0KICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bib3JkZXItYiBib3JkZXItc2xhdGUtNTAgbGFzdDpib3JkZXItMCB0cmFuc2l0aW9uLWNvbG9ycyBob3ZlcjpiZy1ibHVlLTUwLzMwICR7CiAgICAgICAgICAgICAgICAgICAgICBpICUgMiA9PT0gMSA/ICJiZy1zbGF0ZS01MC80MCIgOiAiYmctd2hpdGUiCiAgICAgICAgICAgICAgICAgICAgfWB9CiAgICAgICAgICAgICAgICAgID4KICAgICAgICAgICAgICAgICAgICB7Y29sdW1ucy5tYXAoKGNvbCwgY29sSWR4KSA9PiAoCiAgICAgICAgICAgICAgICAgICAgICA8dGQKICAgICAgICAgICAgICAgICAgICAgICAga2V5PXtjb2wua2V5fQogICAgICAgICAgICAgICAgICAgICAgICB0aXRsZT17Y29sSWR4ID09PSAwID8gU3RyaW5nKGNvbC5hY2Nlc3Nvcihyb3cpKSA6IHVuZGVmaW5lZH0KICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgcHgtNSBweS0zICR7CiAgICAgICAgICAgICAgICAgICAgICAgICAgY29sLmNlbGxDbGFzcyA/IGNvbC5jZWxsQ2xhc3Mocm93KSA6ICJ0ZXh0LXNsYXRlLTcwMCIKICAgICAgICAgICAgICAgICAgICAgICAgfSAkewogICAgICAgICAgICAgICAgICAgICAgICAgIGNvbC5hbGlnbiA9PT0gInJpZ2h0IiA/ICJ0ZXh0LXJpZ2h0IHRhYnVsYXItbnVtcyB3aGl0ZXNwYWNlLW5vd3JhcCIgOiAidGV4dC1sZWZ0IgogICAgICAgICAgICAgICAgICAgICAgICB9ICR7Y29sSWR4ID09PSAwID8gInN0aWNreSBsZWZ0LTAgei0xMCBmb250LW1lZGl1bSB0ZXh0LXNsYXRlLTcwMCBzaGFkb3ctWzRweF8wXzZweF8tNHB4X3JnYmEoMTUsMjMsNDIsMC4xNSldIiA6ICJ3aGl0ZXNwYWNlLW5vd3JhcCJ9YH0KICAgICAgICAgICAgICAgICAgICAgICAgc3R5bGU9e2NvbElkeCA9PT0gMCA/IHsgYmFja2dyb3VuZENvbG9yOiBzdGlja3lCZywgbWF4V2lkdGg6ICIyMjBweCIsIG92ZXJmbG93OiAiaGlkZGVuIiwgdGV4dE92ZXJmbG93OiAiZWxsaXBzaXMiLCB3aGl0ZVNwYWNlOiAibm93cmFwIiwgd2lsbENoYW5nZTogInRyYW5zZm9ybSIgfSA6IHVuZGVmaW5lZH0KICAgICAgICAgICAgICAgICAgICAgID4KICAgICAgICAgICAgICAgICAgICAgICAge2NvbC5yZW5kZXIgPyBjb2wucmVuZGVyKHJvdykgOiBjb2wuYWNjZXNzb3Iocm93KX0KICAgICAgICAgICAgICAgICAgICAgIDwvdGQ+CiAgICAgICAgICAgICAgICAgICAgKSl9CiAgICAgICAgICAgICAgICAgIDwvdHI+CiAgICAgICAgICAgICAgICApOwogICAgICAgICAgICAgIH0pfQogICAgICAgICAgPC90Ym9keT4KICAgICAgICA8L3RhYmxlPgogICAgICA8L2Rpdj4KICAgICAgeyFsb2FkaW5nICYmIGhpZGRlbkNvdW50ID4gMCAmJiAoCiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIGdhcC0zIGJvcmRlci10IGJvcmRlci1zbGF0ZS0xMDAgcHgtNSBweS0zIj4KICAgICAgICAgIDxidXR0b24KICAgICAgICAgICAgb25DbGljaz17KCkgPT4gc2V0VmlzaWJsZUNvdW50KChjKSA9PiBjICsgUEFHRV9TSVpFKX0KICAgICAgICAgICAgY2xhc3NOYW1lPSJyb3VuZGVkLWxnIGJvcmRlciBib3JkZXItc2xhdGUtMjAwIHB4LTQgcHktMS41IHRleHQteHMgZm9udC1zZW1pYm9sZCB0ZXh0LXNsYXRlLTYwMCB0cmFuc2l0aW9uLWNvbG9ycyBob3Zlcjpib3JkZXItYnJhbmQtMzAwIGhvdmVyOmJnLWJyYW5kLTUwIGhvdmVyOnRleHQtYnJhbmQtNjAwIgogICAgICAgICAgPgogICAgICAgICAgICBMb2FkIHtNYXRoLm1pbihQQUdFX1NJWkUsIGhpZGRlbkNvdW50KX0gbW9yZQogICAgICAgICAgPC9idXR0b24+CiAgICAgICAgICA8YnV0dG9uCiAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHNldFZpc2libGVDb3VudChmaWx0ZXJlZFJvd3MubGVuZ3RoKX0KICAgICAgICAgICAgY2xhc3NOYW1lPSJ0ZXh0LXhzIGZvbnQtbWVkaXVtIHRleHQtc2xhdGUtNDAwIHRyYW5zaXRpb24tY29sb3JzIGhvdmVyOnRleHQtYnJhbmQtNjAwIgogICAgICAgICAgPgogICAgICAgICAgICBTaG93IGFsbCB7ZmlsdGVyZWRSb3dzLmxlbmd0aH0KICAgICAgICAgIDwvYnV0dG9uPgogICAgICAgIDwvZGl2PgogICAgICApfQogICAgPC9kaXY+CiAgKTsKfQo="}
+"use client";
+
+import { useMemo, useState } from "react";
+import { InfoTooltip } from "./InfoTooltip";
+
+export interface DataTableColumn<T> {
+  key: string;
+  header: string;
+  accessor: (row: T) => string | number;
+  render?: (row: T) => React.ReactNode;
+  align?: "left" | "right";
+  help?: string;
+  /** Optional per-cell className based on row data, e.g. for color-coded thresholds */
+  cellClass?: (row: T) => string;
+}
+
+interface DataTableProps<T> {
+  columns: DataTableColumn<T>[];
+  rows: T[];
+  loading?: boolean;
+  emptyMessage?: string;
+  filename?: string;
+  defaultSortKey?: string;
+  defaultSortDir?: "asc" | "desc";
+  searchable?: boolean;
+}
+
+function toCsvValue(value: string | number): string {
+  const str = String(value);
+  return /[",\n]/.test(str) ? `"${str.replace(/"/g, '""')}"` : str;
+}
+
+const PAGE_SIZE = 50;
+
+export function DataTable<T>({
+  columns,
+  rows,
+  loading = false,
+  emptyMessage = "No data for this period",
+  filename = "report",
+  defaultSortKey,
+  defaultSortDir = "desc",
+  searchable = true,
+}: DataTableProps<T>) {
+  const [sortKey, setSortKey] = useState<string | undefined>(defaultSortKey);
+  const [sortDir, setSortDir] = useState<"asc" | "desc">(defaultSortDir);
+  const [query, setQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  // [PM ENHANCEMENT] — momentary "Exported ✓" confirmation; silent success feels broken
+  const [justExported, setJustExported] = useState(false);
+
+  const sortedRows = useMemo(() => {
+    if (!sortKey) return rows;
+    const column = columns.find((c) => c.key === sortKey);
+    if (!column) return rows;
+    return [...rows].sort((a, b) => {
+      const av = column.accessor(a);
+      const bv = column.accessor(b);
+      const cmp = typeof av === "number" && typeof bv === "number" ? av - bv : String(av).localeCompare(String(bv));
+      return sortDir === "asc" ? cmp : -cmp;
+    });
+  }, [rows, columns, sortKey, sortDir]);
+
+  const filteredRows = useMemo(() => {
+    if (!query.trim()) return sortedRows;
+    const q = query.toLowerCase();
+    return sortedRows.filter((row) =>
+      columns.some((col) => String(col.accessor(row)).toLowerCase().includes(q))
+    );
+  }, [sortedRows, query, columns]);
+
+  const visibleRows = useMemo(() => filteredRows.slice(0, visibleCount), [filteredRows, visibleCount]);
+  const hiddenCount = filteredRows.length - visibleRows.length;
+
+  function handleQueryChange(q: string) {
+    setQuery(q);
+    setVisibleCount(PAGE_SIZE); // a new search starts back at the first page
+  }
+
+  function handleSort(key: string) {
+    if (sortKey === key) {
+      setSortDir((dir) => (dir === "asc" ? "desc" : "asc"));
+    } else {
+      setSortKey(key);
+      setSortDir("desc");
+    }
+  }
+
+  function exportCsv() {
+    const header = columns.map((c) => toCsvValue(c.header)).join(",");
+    const lines = filteredRows.map((row) => columns.map((c) => toCsvValue(c.accessor(row))).join(","));
+    const csv = [header, ...lines].join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${filename}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+    setJustExported(true);
+    setTimeout(() => setJustExported(false), 2000);
+  }
+
+  return (
+    <div className="rounded-xl border border-slate-200/80 bg-white shadow-sm">
+      <div className="flex items-center justify-between gap-3 border-b border-slate-100 px-5 py-2.5">
+        <div className="flex items-center gap-3">
+          {searchable && (
+            <div className="relative">
+              <svg
+                className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400"
+                width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+              >
+                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search…"
+                value={query}
+                onChange={(e) => handleQueryChange(e.target.value)}
+                className="h-7 w-44 rounded-md border border-slate-200 bg-slate-50 pl-8 pr-3 text-xs text-slate-700 placeholder-slate-400 focus:border-brand-300 focus:bg-white focus:outline-none"
+              />
+            </div>
+          )}
+          <span className="text-xs text-slate-400">
+            {visibleRows.length < filteredRows.length
+              ? `Showing ${visibleRows.length} of ${filteredRows.length} rows`
+              : `${filteredRows.length}${filteredRows.length !== rows.length ? ` of ${rows.length}` : ""} rows`}
+          </span>
+        </div>
+        <button
+          onClick={exportCsv}
+          disabled={filteredRows.length === 0 || justExported}
+          className={`flex items-center gap-1.5 rounded-md border px-3 py-1 text-xs font-medium transition-colors disabled:opacity-70 ${
+            justExported
+              ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+              : "border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-700 disabled:opacity-40"
+          }`}
+        >
+          {justExported ? (
+            <>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              Exported
+            </>
+          ) : (
+            <>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Export CSV
+            </>
+          )}
+        </button>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-slate-100">
+              {columns.map((col, colIdx) => (
+                <th
+                  key={col.key}
+                  onClick={() => handleSort(col.key)}
+                  className={`cursor-pointer select-none whitespace-nowrap px-5 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 transition-colors hover:text-slate-600 ${
+                    col.align === "right" ? "text-right" : "text-left"
+                  } ${colIdx === 0 ? "sticky left-0 z-10 bg-white shadow-[4px_0_6px_-4px_rgba(15,23,42,0.15)]" : ""}`}
+                  style={colIdx === 0 ? { maxWidth: "220px", backgroundColor: "#ffffff", willChange: "transform" } : undefined}
+                >
+                  <span className="inline-flex items-center gap-0.5">
+                    {col.header}
+                    {col.help && <InfoTooltip text={col.help} />}
+                    {sortKey === col.key && (
+                      <span className="ml-0.5 text-brand-500">{sortDir === "asc" ? "↑" : "↓"}</span>
+                    )}
+                  </span>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {loading &&
+              Array.from({ length: 5 }).map((_, i) => (
+                <tr key={i} className={`border-b border-slate-50 ${i % 2 === 1 ? "bg-slate-50/40" : "bg-white"}`}>
+                  {columns.map((col) => (
+                    <td key={col.key} className="px-5 py-3.5">
+                      <div className="h-4 w-full animate-pulse rounded bg-slate-100" />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            {!loading && filteredRows.length === 0 && (
+              <tr>
+                <td colSpan={columns.length} className="px-5 py-12 text-center text-sm text-slate-400">
+                  {query ? `No rows match "${query}"` : emptyMessage}
+                </td>
+              </tr>
+            )}
+            {!loading &&
+              visibleRows.map((row, i) => {
+                // The row's own zebra tint (bg-slate-50/40) is only 40% opaque by design —
+                // fine for a plain cell, but the sticky column needs a fully solid color of
+                // its own or content sliding underneath it during horizontal scroll bleeds
+                // through, producing ghosted/overlapping text. "background: inherit" doesn't
+                // reliably resolve to an opaque color here either, so compute it explicitly.
+                const stickyBg = i % 2 === 1 ? "#f8fafc" : "#ffffff";
+                return (
+                  <tr
+                    key={i}
+                    className={`border-b border-slate-50 last:border-0 transition-colors hover:bg-blue-50/30 ${
+                      i % 2 === 1 ? "bg-slate-50/40" : "bg-white"
+                    }`}
+                  >
+                    {columns.map((col, colIdx) => (
+                      <td
+                        key={col.key}
+                        title={colIdx === 0 ? String(col.accessor(row)) : undefined}
+                        className={`px-5 py-3 ${
+                          col.cellClass ? col.cellClass(row) : "text-slate-700"
+                        } ${
+                          col.align === "right" ? "text-right tabular-nums whitespace-nowrap" : "text-left"
+                        } ${colIdx === 0 ? "sticky left-0 z-10 font-medium text-slate-700 shadow-[4px_0_6px_-4px_rgba(15,23,42,0.15)]" : "whitespace-nowrap"}`}
+                        style={colIdx === 0 ? { backgroundColor: stickyBg, maxWidth: "220px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", willChange: "transform" } : undefined}
+                      >
+                        {col.render ? col.render(row) : col.accessor(row)}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
+      {!loading && hiddenCount > 0 && (
+        <div className="flex items-center justify-center gap-3 border-t border-slate-100 px-5 py-3">
+          <button
+            onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+            className="rounded-lg border border-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600"
+          >
+            Load {Math.min(PAGE_SIZE, hiddenCount)} more
+          </button>
+          <button
+            onClick={() => setVisibleCount(filteredRows.length)}
+            className="text-xs font-medium text-slate-400 transition-colors hover:text-brand-600"
+          >
+            Show all {filteredRows.length}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}

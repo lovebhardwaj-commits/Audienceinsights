@@ -1,1 +1,71 @@
-{"data":"aW1wb3J0IHsgY3BtciwgY29zdFBlcjFrLCBuZXROZXcsIHBlcmNlbnQgfSBmcm9tICJAL2xpYi9jYWxjdWxhdGlvbnMiOwppbXBvcnQgeyBtb250aFdpbmRvd3MgfSBmcm9tICJAL2xpYi9kYXRlcyI7CmltcG9ydCB7IGZldGNoQWNjb3VudFRvdGFscyB9IGZyb20gIi4vc2hhcmVkIjsKaW1wb3J0IHR5cGUgeyBEYXRlUmFuZ2UgfSBmcm9tICJAL2xpYi90eXBlcyI7CmltcG9ydCB0eXBlIHsgUHJvZ3Jlc3NFbWl0IH0gZnJvbSAiQC9saWIvc3RyZWFtIjsKCmV4cG9ydCBpbnRlcmZhY2UgUm9sbGluZ1JlYWNoTW9udGhSb3cgewogIGxhYmVsOiBzdHJpbmc7CiAgbW9udGhTdGFydDogc3RyaW5nOwogIG1vbnRoRW5kOiBzdHJpbmc7CiAgaXNvbGF0ZWRSZWFjaDogbnVtYmVyOwogIGZyZXF1ZW5jeTogbnVtYmVyOwogIGN1bXVsYXRpdmVSZWFjaDogbnVtYmVyOwogIG5ldE5ld1JlYWNoOiBudW1iZXI7CiAgbmV0TmV3UGN0OiBudW1iZXI7CiAgc3BlbmQ6IG51bWJlcjsKICBjcG1yOiBudW1iZXI7CiAgY29zdFBlcjFrTmV0TmV3OiBudW1iZXI7Cn0KCmV4cG9ydCBpbnRlcmZhY2UgUm9sbGluZ1JlYWNoUmVwb3J0IHsKICBtb250aHM6IFJvbGxpbmdSZWFjaE1vbnRoUm93W107CiAgdG90YWxSb2xsaW5nUmVhY2g6IG51bWJlcjsKICB0b3RhbFNwZW5kOiBudW1iZXI7CiAgbGF0ZXN0TmV0TmV3UGN0OiBudW1iZXI7Cn0KCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBnZXRSb2xsaW5nUmVhY2hSZXBvcnQoCiAgdG9rZW46IHN0cmluZywKICBhY2NvdW50SWQ6IHN0cmluZywKICByYW5nZTogRGF0ZVJhbmdlLAogIGVtaXQ6IFByb2dyZXNzRW1pdAopOiBQcm9taXNlPFJvbGxpbmdSZWFjaFJlcG9ydD4gewogIGNvbnN0IHdpbmRvd3MgPSBtb250aFdpbmRvd3MocmFuZ2Uuc2luY2UsIHJhbmdlLnVudGlsKTsKICBjb25zdCBtb250aHM6IFJvbGxpbmdSZWFjaE1vbnRoUm93W10gPSBbXTsKICBsZXQgcHJldmlvdXNDdW11bGF0aXZlUmVhY2ggPSAwOwoKICBmb3IgKGxldCBpID0gMDsgaSA8IHdpbmRvd3MubGVuZ3RoOyBpKyspIHsKICAgIGNvbnN0IHcgPSB3aW5kb3dzW2ldOwogICAgZW1pdCh7IGN1cnJlbnQ6IGkgKyAxLCB0b3RhbDogd2luZG93cy5sZW5ndGgsIGxhYmVsOiBgRmV0Y2hpbmcgbW9udGggJHtpICsgMX0gb2YgJHt3aW5kb3dzLmxlbmd0aH3igKZgIH0pOwoKICAgIGNvbnN0IFtpc29sYXRlZCwgY3VtdWxhdGl2ZV0gPSBhd2FpdCBQcm9taXNlLmFsbChbCiAgICAgIGZldGNoQWNjb3VudFRvdGFscyh0b2tlbiwgYWNjb3VudElkLCB7IHNpbmNlOiB3Lm1vbnRoU3RhcnQsIHVudGlsOiB3Lm1vbnRoRW5kIH0pLAogICAgICBmZXRjaEFjY291bnRUb3RhbHModG9rZW4sIGFjY291bnRJZCwgeyBzaW5jZTogcmFuZ2Uuc2luY2UsIHVudGlsOiB3Lm1vbnRoRW5kIH0pLAogICAgXSk7CgogICAgY29uc3QgbW9udGhOZXROZXcgPSBuZXROZXcoY3VtdWxhdGl2ZS5yZWFjaCwgcHJldmlvdXNDdW11bGF0aXZlUmVhY2gpOwogICAgbW9udGhzLnB1c2goewogICAgICBsYWJlbDogdy5sYWJlbCwKICAgICAgbW9udGhTdGFydDogdy5tb250aFN0YXJ0LAogICAgICBtb250aEVuZDogdy5tb250aEVuZCwKICAgICAgaXNvbGF0ZWRSZWFjaDogaXNvbGF0ZWQucmVhY2gsCiAgICAgIGZyZXF1ZW5jeTogaXNvbGF0ZWQuZnJlcXVlbmN5LAogICAgICBjdW11bGF0aXZlUmVhY2g6IGN1bXVsYXRpdmUucmVhY2gsCiAgICAgIG5ldE5ld1JlYWNoOiBtb250aE5ldE5ldywKICAgICAgbmV0TmV3UGN0OiBwZXJjZW50KG1vbnRoTmV0TmV3LCBpc29sYXRlZC5yZWFjaCksCiAgICAgIHNwZW5kOiBpc29sYXRlZC5zcGVuZCwKICAgICAgY3BtcjogY3Btcihpc29sYXRlZC5zcGVuZCwgaXNvbGF0ZWQucmVhY2gpLAogICAgICBjb3N0UGVyMWtOZXROZXc6IGNvc3RQZXIxayhpc29sYXRlZC5zcGVuZCwgbW9udGhOZXROZXcpLAogICAgfSk7CiAgICBwcmV2aW91c0N1bXVsYXRpdmVSZWFjaCA9IGN1bXVsYXRpdmUucmVhY2g7CiAgfQoKICBjb25zdCBsYXN0ID0gbW9udGhzW21vbnRocy5sZW5ndGggLSAxXTsKICByZXR1cm4gewogICAgbW9udGhzLAogICAgdG90YWxSb2xsaW5nUmVhY2g6IGxhc3Q/LmN1bXVsYXRpdmVSZWFjaCA/PyAwLAogICAgdG90YWxTcGVuZDogbW9udGhzLnJlZHVjZSgoc3VtLCBtKSA9PiBzdW0gKyBtLnNwZW5kLCAwKSwKICAgIGxhdGVzdE5ldE5ld1BjdDogbGFzdD8ubmV0TmV3UGN0ID8/IDAsCiAgfTsKfQo="}
+import { cpmr, costPer1k, netNew, percent } from "@/lib/calculations";
+import { monthWindows } from "@/lib/dates";
+import { fetchAccountTotals } from "./shared";
+import type { DateRange } from "@/lib/types";
+import type { ProgressEmit } from "@/lib/stream";
+
+export interface RollingReachMonthRow {
+  label: string;
+  monthStart: string;
+  monthEnd: string;
+  isolatedReach: number;
+  frequency: number;
+  cumulativeReach: number;
+  netNewReach: number;
+  netNewPct: number;
+  spend: number;
+  cpmr: number;
+  costPer1kNetNew: number;
+}
+
+export interface RollingReachReport {
+  months: RollingReachMonthRow[];
+  totalRollingReach: number;
+  totalSpend: number;
+  latestNetNewPct: number;
+}
+
+export async function getRollingReachReport(
+  token: string,
+  accountId: string,
+  range: DateRange,
+  emit: ProgressEmit
+): Promise<RollingReachReport> {
+  const windows = monthWindows(range.since, range.until);
+  const months: RollingReachMonthRow[] = [];
+  let previousCumulativeReach = 0;
+
+  for (let i = 0; i < windows.length; i++) {
+    const w = windows[i];
+    emit({ current: i + 1, total: windows.length, label: `Fetching month ${i + 1} of ${windows.length}…` });
+
+    const [isolated, cumulative] = await Promise.all([
+      fetchAccountTotals(token, accountId, { since: w.monthStart, until: w.monthEnd }),
+      fetchAccountTotals(token, accountId, { since: range.since, until: w.monthEnd }),
+    ]);
+
+    const monthNetNew = netNew(cumulative.reach, previousCumulativeReach);
+    months.push({
+      label: w.label,
+      monthStart: w.monthStart,
+      monthEnd: w.monthEnd,
+      isolatedReach: isolated.reach,
+      frequency: isolated.frequency,
+      cumulativeReach: cumulative.reach,
+      netNewReach: monthNetNew,
+      netNewPct: percent(monthNetNew, isolated.reach),
+      spend: isolated.spend,
+      cpmr: cpmr(isolated.spend, isolated.reach),
+      costPer1kNetNew: costPer1k(isolated.spend, monthNetNew),
+    });
+    previousCumulativeReach = cumulative.reach;
+  }
+
+  const last = months[months.length - 1];
+  return {
+    months,
+    totalRollingReach: last?.cumulativeReach ?? 0,
+    totalSpend: months.reduce((sum, m) => sum + m.spend, 0),
+    latestNetNewPct: last?.netNewPct ?? 0,
+  };
+}

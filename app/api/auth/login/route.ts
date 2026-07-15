@@ -1,1 +1,25 @@
-{"data":"aW1wb3J0IHsgTmV4dFJlc3BvbnNlIH0gZnJvbSAibmV4dC9zZXJ2ZXIiOwppbXBvcnQgeyBjb29raWVzIH0gZnJvbSAibmV4dC9oZWFkZXJzIjsKaW1wb3J0IHsgTUVUQV9PQVVUSF9ESUFMT0dfQkFTRSwgT0FVVEhfU0NPUEVTIH0gZnJvbSAiQC9saWIvY29uc3RhbnRzIjsKCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBHRVQoKSB7CiAgY29uc3Qgc3RhdGUgPSBjcnlwdG8ucmFuZG9tVVVJRCgpOwogIGNvbnN0IGNvb2tpZVN0b3JlID0gYXdhaXQgY29va2llcygpOwogIGNvb2tpZVN0b3JlLnNldCgib2F1dGhfc3RhdGUiLCBzdGF0ZSwgewogICAgaHR0cE9ubHk6IHRydWUsCiAgICBzZWN1cmU6IHByb2Nlc3MuZW52Lk5PREVfRU5WID09PSAicHJvZHVjdGlvbiIsCiAgICBzYW1lU2l0ZTogImxheCIsCiAgICBtYXhBZ2U6IDYwMCwKICAgIHBhdGg6ICIvIiwKICB9KTsKCiAgY29uc3QgcmVkaXJlY3RVcmkgPSBgJHtwcm9jZXNzLmVudi5ORVhUQVVUSF9VUkx9L2FwaS9hdXRoL2NhbGxiYWNrYDsKICBjb25zdCB1cmwgPSBuZXcgVVJMKE1FVEFfT0FVVEhfRElBTE9HX0JBU0UpOwogIHVybC5zZWFyY2hQYXJhbXMuc2V0KCJjbGllbnRfaWQiLCBwcm9jZXNzLmVudi5NRVRBX0FQUF9JRCEpOwogIHVybC5zZWFyY2hQYXJhbXMuc2V0KCJyZWRpcmVjdF91cmkiLCByZWRpcmVjdFVyaSk7CiAgdXJsLnNlYXJjaFBhcmFtcy5zZXQoInNjb3BlIiwgT0FVVEhfU0NPUEVTKTsKICB1cmwuc2VhcmNoUGFyYW1zLnNldCgicmVzcG9uc2VfdHlwZSIsICJjb2RlIik7CiAgdXJsLnNlYXJjaFBhcmFtcy5zZXQoInN0YXRlIiwgc3RhdGUpOwoKICByZXR1cm4gTmV4dFJlc3BvbnNlLnJlZGlyZWN0KHVybC50b1N0cmluZygpKTsKfQo="}
+import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { META_OAUTH_DIALOG_BASE, OAUTH_SCOPES } from "@/lib/constants";
+
+export async function GET() {
+  const state = crypto.randomUUID();
+  const cookieStore = await cookies();
+  cookieStore.set("oauth_state", state, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 600,
+    path: "/",
+  });
+
+  const redirectUri = `${process.env.NEXTAUTH_URL}/api/auth/callback`;
+  const url = new URL(META_OAUTH_DIALOG_BASE);
+  url.searchParams.set("client_id", process.env.META_APP_ID!);
+  url.searchParams.set("redirect_uri", redirectUri);
+  url.searchParams.set("scope", OAUTH_SCOPES);
+  url.searchParams.set("response_type", "code");
+  url.searchParams.set("state", state);
+
+  return NextResponse.redirect(url.toString());
+}

@@ -1,1 +1,58 @@
-{"data":"aW50ZXJmYWNlIEVtcHR5U3RhdGVQcm9wcyB7CiAgaWNvbj86IFJlYWN0LlJlYWN0Tm9kZTsKICB0aXRsZTogc3RyaW5nOwogIGRlc2NyaXB0aW9uPzogc3RyaW5nOwp9CgpleHBvcnQgZnVuY3Rpb24gRW1wdHlTdGF0ZSh7IHRpdGxlLCBkZXNjcmlwdGlvbiB9OiBFbXB0eVN0YXRlUHJvcHMpIHsKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9Im10LTYgb3ZlcmZsb3ctaGlkZGVuIHJvdW5kZWQteGwgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAvNjAgYmctZ3JhZGllbnQtdG8tYiBmcm9tLXdoaXRlIHRvLXNsYXRlLTUwLzgwIj4KICAgICAgPGRpdiBjbGFzc05hbWU9InB4LTYgcHktOCI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZmxleC1jb2wgaXRlbXMtY2VudGVyIj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGgtMTQgdy0xNCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgcm91bmRlZC0yeGwgYmctYnJhbmQtNTAiPgogICAgICAgICAgICA8c3ZnIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMzYjgyZjYiIHN0cm9rZVdpZHRoPSIxLjUiIHN0cm9rZUxpbmVjYXA9InJvdW5kIiBzdHJva2VMaW5lam9pbj0icm91bmQiPgogICAgICAgICAgICAgIDxyZWN0IHg9IjMiIHk9IjQiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjIiIHJ5PSIyIiAvPgogICAgICAgICAgICAgIDxsaW5lIHgxPSIxNiIgeTE9IjIiIHgyPSIxNiIgeTI9IjYiIC8+CiAgICAgICAgICAgICAgPGxpbmUgeDE9IjgiIHkxPSIyIiB4Mj0iOCIgeTI9IjYiIC8+CiAgICAgICAgICAgICAgPGxpbmUgeDE9IjMiIHkxPSIxMCIgeDI9IjIxIiB5Mj0iMTAiIC8+CiAgICAgICAgICAgIDwvc3ZnPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8aDMgY2xhc3NOYW1lPSJtdC00IHRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LXNsYXRlLTcwMCI+e3RpdGxlfTwvaDM+CiAgICAgICAgICB7ZGVzY3JpcHRpb24gJiYgPHAgY2xhc3NOYW1lPSJtdC0xIHRleHQteHMgdGV4dC1zbGF0ZS00MDAiPntkZXNjcmlwdGlvbn08L3A+fQogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KCiAgICAgIHsvKiBHaG9zdCBwcmV2aWV3IOKAlCBoaW50cyBhdCByZXBvcnQgc3RydWN0dXJlICovfQogICAgICA8ZGl2IGNsYXNzTmFtZT0iYm9yZGVyLXQgYm9yZGVyLXNsYXRlLTEwMCBweC02IHB5LTUgb3BhY2l0eS00MCI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImdyaWQgZ3JpZC1jb2xzLTMgZ2FwLTMiPgogICAgICAgICAge1sxLCAyLCAzXS5tYXAoKGkpID0+ICgKICAgICAgICAgICAgPGRpdiBrZXk9e2l9IGNsYXNzTmFtZT0icm91bmRlZC1sZyBiZy1zbGF0ZS01MCBwLTQiPgogICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoLTIgdy0xMiByb3VuZGVkIGJnLXNsYXRlLTIwMCIgLz4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMiBoLTUgdy0xNiByb3VuZGVkIGJnLXNsYXRlLTEwMCIgLz4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICApKX0KICAgICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtNCByb3VuZGVkLWxnIGJnLXNsYXRlLTUwIHAtNCI+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC0yIHctMjQgcm91bmRlZCBiZy1zbGF0ZS0yMDAiIC8+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMyBmbGV4IGl0ZW1zLWVuZCBnYXAtMiI+CiAgICAgICAgICAgIHtbMzAsIDUwLCAzNSwgNjUsIDQ1LCA3MCwgNDAsIDYwLCA1NSwgNzVdLm1hcCgoaCwgaSkgPT4gKAogICAgICAgICAgICAgIDxkaXYga2V5PXtpfSBjbGFzc05hbWU9ImZsZXgtMSByb3VuZGVkLXQgYmctc2xhdGUtMTAwIiBzdHlsZT17eyBoZWlnaHQ6IGAke2h9cHhgIH19IC8+CiAgICAgICAgICAgICkpfQogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTQgcm91bmRlZC1sZyBiZy1zbGF0ZS01MCBwLTQiPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9InNwYWNlLXktMyI+CiAgICAgICAgICAgIHtbMSwgMiwgM10ubWFwKChpKSA9PiAoCiAgICAgICAgICAgICAgPGRpdiBrZXk9e2l9IGNsYXNzTmFtZT0iZmxleCBnYXAtNCI+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC0zIHctMjAgcm91bmRlZCBiZy1zbGF0ZS0xMDAiIC8+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC0zIHctMTQgcm91bmRlZCBiZy1zbGF0ZS0xMDAiIC8+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC0zIHctMTQgcm91bmRlZCBiZy1zbGF0ZS0xMDAiIC8+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaC0zIHctMTQgcm91bmRlZCBiZy1zbGF0ZS0xMDAiIC8+CiAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICkpfQogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKTsKfQo="}
+interface EmptyStateProps {
+  icon?: React.ReactNode;
+  title: string;
+  description?: string;
+}
+
+export function EmptyState({ title, description }: EmptyStateProps) {
+  return (
+    <div className="mt-6 overflow-hidden rounded-xl border border-slate-200/60 bg-gradient-to-b from-white to-slate-50/80">
+      <div className="px-6 py-8">
+        <div className="flex flex-col items-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+          </div>
+          <h3 className="mt-4 text-sm font-semibold text-slate-700">{title}</h3>
+          {description && <p className="mt-1 text-xs text-slate-400">{description}</p>}
+        </div>
+      </div>
+
+      {/* Ghost preview — hints at report structure */}
+      <div className="border-t border-slate-100 px-6 py-5 opacity-40">
+        <div className="grid grid-cols-3 gap-3">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="rounded-lg bg-slate-50 p-4">
+              <div className="h-2 w-12 rounded bg-slate-200" />
+              <div className="mt-2 h-5 w-16 rounded bg-slate-100" />
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 rounded-lg bg-slate-50 p-4">
+          <div className="h-2 w-24 rounded bg-slate-200" />
+          <div className="mt-3 flex items-end gap-2">
+            {[30, 50, 35, 65, 45, 70, 40, 60, 55, 75].map((h, i) => (
+              <div key={i} className="flex-1 rounded-t bg-slate-100" style={{ height: `${h}px` }} />
+            ))}
+          </div>
+        </div>
+        <div className="mt-4 rounded-lg bg-slate-50 p-4">
+          <div className="space-y-3">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="flex gap-4">
+                <div className="h-3 w-20 rounded bg-slate-100" />
+                <div className="h-3 w-14 rounded bg-slate-100" />
+                <div className="h-3 w-14 rounded bg-slate-100" />
+                <div className="h-3 w-14 rounded bg-slate-100" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

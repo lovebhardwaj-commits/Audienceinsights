@@ -1,1 +1,83 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgY3JlYXRlQ29udGV4dCwgdXNlQ2FsbGJhY2ssIHVzZUNvbnRleHQsIHVzZUVmZmVjdCwgdXNlU3RhdGUgfSBmcm9tICJyZWFjdCI7CmltcG9ydCB0eXBlIHsgTWV0YUFkQWNjb3VudCB9IGZyb20gIkAvbGliL3R5cGVzIjsKaW1wb3J0IHsgc2V0Q3VycmVuY3kgfSBmcm9tICJAL2xpYi9mb3JtYXQiOwoKaW50ZXJmYWNlIEFjY291bnRDb250ZXh0VmFsdWUgewogIGFjY291bnRzOiBNZXRhQWRBY2NvdW50W107CiAgc2VsZWN0ZWRBY2NvdW50SWQ6IHN0cmluZyB8IG51bGw7CiAgc2V0U2VsZWN0ZWRBY2NvdW50SWQ6IChpZDogc3RyaW5nKSA9PiB2b2lkOwogIGxvYWRpbmc6IGJvb2xlYW47CiAgZXJyb3I6IHN0cmluZyB8IG51bGw7CiAgdG9rZW5FeHBpcmluZ1Nvb246IGJvb2xlYW47CiAgcmVmcmVzaDogKCkgPT4gdm9pZDsKfQoKY29uc3QgQWNjb3VudENvbnRleHQgPSBjcmVhdGVDb250ZXh0PEFjY291bnRDb250ZXh0VmFsdWUgfCBudWxsPihudWxsKTsKCmNvbnN0IFNUT1JBR0VfS0VZID0gImFkcy1yZWFjaDpzZWxlY3RlZC1hY2NvdW50IjsKCmV4cG9ydCBmdW5jdGlvbiBBY2NvdW50UHJvdmlkZXIoeyBjaGlsZHJlbiB9OiB7IGNoaWxkcmVuOiBSZWFjdC5SZWFjdE5vZGUgfSkgewogIGNvbnN0IFthY2NvdW50cywgc2V0QWNjb3VudHNdID0gdXNlU3RhdGU8TWV0YUFkQWNjb3VudFtdPihbXSk7CiAgY29uc3QgW3NlbGVjdGVkQWNjb3VudElkLCBzZXRTZWxlY3RlZEFjY291bnRJZFN0YXRlXSA9IHVzZVN0YXRlPHN0cmluZyB8IG51bGw+KG51bGwpOwogIGNvbnN0IFtsb2FkaW5nLCBzZXRMb2FkaW5nXSA9IHVzZVN0YXRlKHRydWUpOwogIGNvbnN0IFtlcnJvciwgc2V0RXJyb3JdID0gdXNlU3RhdGU8c3RyaW5nIHwgbnVsbD4obnVsbCk7CiAgY29uc3QgW3Rva2VuRXhwaXJpbmdTb29uLCBzZXRUb2tlbkV4cGlyaW5nU29vbl0gPSB1c2VTdGF0ZShmYWxzZSk7CgogIGNvbnN0IGZldGNoQWNjb3VudHMgPSB1c2VDYWxsYmFjayhhc3luYyAoKSA9PiB7CiAgICBzZXRMb2FkaW5nKHRydWUpOwogICAgc2V0RXJyb3IobnVsbCk7CiAgICB0cnkgewogICAgICBjb25zdCByZXMgPSBhd2FpdCBmZXRjaCgiL2FwaS9hY2NvdW50cyIpOwogICAgICBjb25zdCBib2R5ID0gYXdhaXQgcmVzLmpzb24oKTsKICAgICAgaWYgKCFyZXMub2spIHRocm93IG5ldyBFcnJvcihib2R5LmVycm9yIHx8ICJGYWlsZWQgdG8gbG9hZCBhZCBhY2NvdW50cyIpOwogICAgICBzZXRBY2NvdW50cyhib2R5LmFjY291bnRzIHx8IFtdKTsKICAgICAgc2V0VG9rZW5FeHBpcmluZ1Nvb24oQm9vbGVhbihib2R5LnRva2VuRXhwaXJpbmdTb29uKSk7CgogICAgICBjb25zdCBzdG9yZWQgPSB0eXBlb2Ygd2luZG93ICE9PSAidW5kZWZpbmVkIiA/IHdpbmRvdy5sb2NhbFN0b3JhZ2UuZ2V0SXRlbShTVE9SQUdFX0tFWSkgOiBudWxsOwogICAgICBjb25zdCBzdGlsbFZhbGlkID0gc3RvcmVkICYmIGJvZHkuYWNjb3VudHM/LnNvbWUoKGE6IE1ldGFBZEFjY291bnQpID0+IGEuaWQgPT09IHN0b3JlZCk7CiAgICAgIGNvbnN0IHNlbGVjdGVkSWQgPSBzdGlsbFZhbGlkID8gc3RvcmVkIDogYm9keS5hY2NvdW50cz8uWzBdPy5pZCA/PyBudWxsOwogICAgICBzZXRTZWxlY3RlZEFjY291bnRJZFN0YXRlKHNlbGVjdGVkSWQpOwogICAgICBjb25zdCBzZWxlY3RlZEFjY3QgPSBib2R5LmFjY291bnRzPy5maW5kKChhOiBNZXRhQWRBY2NvdW50KSA9PiBhLmlkID09PSBzZWxlY3RlZElkKTsKICAgICAgaWYgKHNlbGVjdGVkQWNjdCkgc2V0Q3VycmVuY3koc2VsZWN0ZWRBY2N0LmN1cnJlbmN5KTsKICAgIH0gY2F0Y2ggKGVycikgewogICAgICBzZXRFcnJvcihlcnIgaW5zdGFuY2VvZiBFcnJvciA/IGVyci5tZXNzYWdlIDogIkZhaWxlZCB0byBsb2FkIGFkIGFjY291bnRzIik7CiAgICB9IGZpbmFsbHkgewogICAgICBzZXRMb2FkaW5nKGZhbHNlKTsKICAgIH0KICB9LCBbXSk7CgogIHVzZUVmZmVjdCgoKSA9PiB7CiAgICBmZXRjaEFjY291bnRzKCk7CiAgfSwgW2ZldGNoQWNjb3VudHNdKTsKCiAgY29uc3Qgc2V0U2VsZWN0ZWRBY2NvdW50SWQgPSB1c2VDYWxsYmFjaygoaWQ6IHN0cmluZykgPT4gewogICAgc2V0U2VsZWN0ZWRBY2NvdW50SWRTdGF0ZShpZCk7CiAgICBpZiAodHlwZW9mIHdpbmRvdyAhPT0gInVuZGVmaW5lZCIpIHdpbmRvdy5sb2NhbFN0b3JhZ2Uuc2V0SXRlbShTVE9SQUdFX0tFWSwgaWQpOwogICAgY29uc3QgYWNjdCA9IGFjY291bnRzLmZpbmQoKGEpID0+IGEuaWQgPT09IGlkKTsKICAgIGlmIChhY2N0KSBzZXRDdXJyZW5jeShhY2N0LmN1cnJlbmN5KTsKICB9LCBbYWNjb3VudHNdKTsKCiAgcmV0dXJuICgKICAgIDxBY2NvdW50Q29udGV4dC5Qcm92aWRlcgogICAgICB2YWx1ZT17ewogICAgICAgIGFjY291bnRzLAogICAgICAgIHNlbGVjdGVkQWNjb3VudElkLAogICAgICAgIHNldFNlbGVjdGVkQWNjb3VudElkLAogICAgICAgIGxvYWRpbmcsCiAgICAgICAgZXJyb3IsCiAgICAgICAgdG9rZW5FeHBpcmluZ1Nvb24sCiAgICAgICAgcmVmcmVzaDogZmV0Y2hBY2NvdW50cywKICAgICAgfX0KICAgID4KICAgICAge2NoaWxkcmVufQogICAgPC9BY2NvdW50Q29udGV4dC5Qcm92aWRlcj4KICApOwp9CgpleHBvcnQgZnVuY3Rpb24gdXNlQWNjb3VudCgpOiBBY2NvdW50Q29udGV4dFZhbHVlIHsKICBjb25zdCBjdHggPSB1c2VDb250ZXh0KEFjY291bnRDb250ZXh0KTsKICBpZiAoIWN0eCkgdGhyb3cgbmV3IEVycm9yKCJ1c2VBY2NvdW50IG11c3QgYmUgdXNlZCB3aXRoaW4gQWNjb3VudFByb3ZpZGVyIik7CiAgcmV0dXJuIGN0eDsKfQo="}
+"use client";
+
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import type { MetaAdAccount } from "@/lib/types";
+import { setCurrency } from "@/lib/format";
+
+interface AccountContextValue {
+  accounts: MetaAdAccount[];
+  selectedAccountId: string | null;
+  setSelectedAccountId: (id: string) => void;
+  loading: boolean;
+  error: string | null;
+  tokenExpiringSoon: boolean;
+  refresh: () => void;
+}
+
+const AccountContext = createContext<AccountContextValue | null>(null);
+
+const STORAGE_KEY = "ads-reach:selected-account";
+
+export function AccountProvider({ children }: { children: React.ReactNode }) {
+  const [accounts, setAccounts] = useState<MetaAdAccount[]>([]);
+  const [selectedAccountId, setSelectedAccountIdState] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [tokenExpiringSoon, setTokenExpiringSoon] = useState(false);
+
+  const fetchAccounts = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/accounts");
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || "Failed to load ad accounts");
+      setAccounts(body.accounts || []);
+      setTokenExpiringSoon(Boolean(body.tokenExpiringSoon));
+
+      const stored = typeof window !== "undefined" ? window.localStorage.getItem(STORAGE_KEY) : null;
+      const stillValid = stored && body.accounts?.some((a: MetaAdAccount) => a.id === stored);
+      const selectedId = stillValid ? stored : body.accounts?.[0]?.id ?? null;
+      setSelectedAccountIdState(selectedId);
+      const selectedAcct = body.accounts?.find((a: MetaAdAccount) => a.id === selectedId);
+      if (selectedAcct) setCurrency(selectedAcct.currency);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to load ad accounts");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchAccounts();
+  }, [fetchAccounts]);
+
+  const setSelectedAccountId = useCallback((id: string) => {
+    setSelectedAccountIdState(id);
+    if (typeof window !== "undefined") window.localStorage.setItem(STORAGE_KEY, id);
+    const acct = accounts.find((a) => a.id === id);
+    if (acct) setCurrency(acct.currency);
+  }, [accounts]);
+
+  return (
+    <AccountContext.Provider
+      value={{
+        accounts,
+        selectedAccountId,
+        setSelectedAccountId,
+        loading,
+        error,
+        tokenExpiringSoon,
+        refresh: fetchAccounts,
+      }}
+    >
+      {children}
+    </AccountContext.Provider>
+  );
+}
+
+export function useAccount(): AccountContextValue {
+  const ctx = useContext(AccountContext);
+  if (!ctx) throw new Error("useAccount must be used within AccountProvider");
+  return ctx;
+}

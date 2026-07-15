@@ -1,1 +1,65 @@
-{"data":"aW1wb3J0IHsgcmVkaXJlY3QgfSBmcm9tICJuZXh0L25hdmlnYXRpb24iOwppbXBvcnQgeyBnZXRTZXNzaW9uIH0gZnJvbSAiQC9saWIvc2Vzc2lvbiI7CgpleHBvcnQgZGVmYXVsdCBhc3luYyBmdW5jdGlvbiBIb21lKHsKICBzZWFyY2hQYXJhbXMsCn06IHsKICBzZWFyY2hQYXJhbXM6IFByb21pc2U8eyBlcnJvcj86IHN0cmluZyB9PjsKfSkgewogIGNvbnN0IHNlc3Npb24gPSBhd2FpdCBnZXRTZXNzaW9uKCk7CiAgaWYgKHNlc3Npb24uYWNjZXNzVG9rZW4pIHsKICAgIHJlZGlyZWN0KCIvZGFzaGJvYXJkIik7CiAgfQoKICBjb25zdCB7IGVycm9yIH0gPSBhd2FpdCBzZWFyY2hQYXJhbXM7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBmbGV4LTEgaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIGJnLWdyYWRpZW50LXRvLWJyIGZyb20tc2xhdGUtNTAgdmlhLWJsdWUtNTAvMzAgdG8tc2xhdGUtMTAwIj4KICAgICAgPGRpdiBjbGFzc05hbWU9Im14LTQgdy1mdWxsIG1heC13LW1kIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYW5pbWF0ZS1mYWRlLWluIHJvdW5kZWQtMnhsIGJvcmRlciBib3JkZXItc2xhdGUtMjAwLzYwIGJnLXdoaXRlIHAtMTAgc2hhZG93LXhsIHNoYWRvdy1zbGF0ZS0yMDAvNTAiPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIGdhcC0zIj4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaC0xMSB3LTExIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciByb3VuZGVkLXhsIGJnLWdyYWRpZW50LXRvLWJyIGZyb20tYnJhbmQtNjAwIHRvLWJyYW5kLTcwMCB0ZXh0LWxnIGZvbnQtYm9sZCB0ZXh0LXdoaXRlIHNoYWRvdy1tZCBzaGFkb3ctYnJhbmQtNTAwLzI1Ij4KICAgICAgICAgICAgICBBCiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8aDEgY2xhc3NOYW1lPSJ0ZXh0LTJ4bCBmb250LWJvbGQgdHJhY2tpbmctdGlnaHQgdGV4dC1zbGF0ZS05MDAiPkFkcyBSZWFjaDwvaDE+CiAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICA8cCBjbGFzc05hbWU9Im10LTQgdGV4dC1jZW50ZXIgdGV4dC1zbSBsZWFkaW5nLXJlbGF4ZWQgdGV4dC1zbGF0ZS01MDAiPgogICAgICAgICAgICBSZWFjaCBpbnRlbGxpZ2VuY2UgZm9yIE1ldGEgQWRzIOKAlCB1bmRlcnN0YW5kIHdobyB5b3UncmUgcmVhY2hpbmcsIGhvdyBlZmZpY2llbnRseSwgYW5kIHdoZXJlIHRvIG9wdGltaXNlLgogICAgICAgICAgPC9wPgoKICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC02IHNwYWNlLXktMyI+CiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLXN0YXJ0IGdhcC0zIHJvdW5kZWQtbGcgYmctc2xhdGUtNTAgcHgtNCBweS0zIj4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMC41IGZsZXggaC01IHctNSBzaHJpbmstMCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgcm91bmRlZC1mdWxsIGJnLWJyYW5kLTEwMCB0ZXh0LVsxMHB4XSBmb250LWJvbGQgdGV4dC1icmFuZC02MDAiPjE8L2Rpdj4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0idGV4dC1zbSB0ZXh0LXNsYXRlLTYwMCI+Q29ubmVjdCB5b3VyIE1ldGEgYWQgYWNjb3VudCBzZWN1cmVseSB2aWEgRmFjZWJvb2sgbG9naW48L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLXN0YXJ0IGdhcC0zIHJvdW5kZWQtbGcgYmctc2xhdGUtNTAgcHgtNCBweS0zIj4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMC41IGZsZXggaC01IHctNSBzaHJpbmstMCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgcm91bmRlZC1mdWxsIGJnLWJyYW5kLTEwMCB0ZXh0LVsxMHB4XSBmb250LWJvbGQgdGV4dC1icmFuZC02MDAiPjI8L2Rpdj4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0idGV4dC1zbSB0ZXh0LXNsYXRlLTYwMCI+R2V0IDYgcmVhY2ggYW5kIGF1ZGllbmNlIGludGVsbGlnZW5jZSByZXBvcnRzIGluc3RhbnRseTwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtc3RhcnQgZ2FwLTMgcm91bmRlZC1sZyBiZy1zbGF0ZS01MCBweC00IHB5LTMiPgogICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC0wLjUgZmxleCBoLTUgdy01IHNocmluay0wIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciByb3VuZGVkLWZ1bGwgYmctYnJhbmQtMTAwIHRleHQtWzEwcHhdIGZvbnQtYm9sZCB0ZXh0LWJyYW5kLTYwMCI+MzwvZGl2PgogICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJ0ZXh0LXNtIHRleHQtc2xhdGUtNjAwIj5TcG90IG92ZXJsYXAsIGNyZWF0aXZlIGZhdGlndWUsIGFuZCB3YXN0ZWQgc3BlbmQgYmVmb3JlIHRoZXkgaHVydDwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgIHtlcnJvciAmJiAoCiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC01IHJvdW5kZWQtbGcgYm9yZGVyIGJvcmRlci1yZWQtMTAwIGJnLXJlZC01MCBweC00IHB5LTMgdGV4dC1zbSB0ZXh0LXJlZC02MDAiPntkZWNvZGVVUklDb21wb25lbnQoZXJyb3IpfTwvZGl2PgogICAgICAgICAgKX0KCiAgICAgICAgICA8YQogICAgICAgICAgICBocmVmPSIvYXBpL2F1dGgvbG9naW4iCiAgICAgICAgICAgIGNsYXNzTmFtZT0ibXQtNiBmbGV4IHctZnVsbCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgZ2FwLTIuNSByb3VuZGVkLXhsIGJnLVsjMTg3N0YyXSBweC00IHB5LTMgdGV4dC1zbSBmb250LXNlbWlib2xkIHRleHQtd2hpdGUgc2hhZG93LW1kIHNoYWRvdy1ibHVlLTUwMC8yMCB0cmFuc2l0aW9uLWFsbCBob3ZlcjotdHJhbnNsYXRlLXktMC41IGhvdmVyOmJnLVsjMTU2N2QzXSBob3ZlcjpzaGFkb3ctbGcgaG92ZXI6c2hhZG93LWJsdWUtNTAwLzI1IGFjdGl2ZTp0cmFuc2xhdGUteS0wIgogICAgICAgICAgPgogICAgICAgICAgICA8c3ZnIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJjdXJyZW50Q29sb3IiPjxwYXRoIGQ9Ik0yNCAxMi4wNzNjMC02LjYyNy01LjM3My0xMi0xMi0xMnMtMTIgNS4zNzMtMTIgMTJjMCA1Ljk5IDQuMzg4IDEwLjk1NCAxMC4xMjUgMTEuODU0di04LjM4NUg3LjA3OHYtMy40N2gzLjA0N1Y5LjQzYzAtMy4wMDcgMS43OTItNC42NjkgNC41MzMtNC42NjkgMS4zMTIgMCAyLjY4Ni4yMzUgMi42ODYuMjM1djIuOTUzSDE1LjgzYy0xLjQ5MSAwLTEuOTU2LjkyNS0xLjk1NiAxLjg3NHYyLjI1aDMuMzI4bC0uNTMyIDMuNDdoLTIuNzk2djguMzg1QzE5LjYxMiAyMy4wMjcgMjQgMTguMDYyIDI0IDEyLjA3M3oiLz48L3N2Zz4KICAgICAgICAgICAgQ29udGludWUgd2l0aCBGYWNlYm9vawogICAgICAgICAgPC9hPgoKICAgICAgICAgIDxwIGNsYXNzTmFtZT0ibXQtNCB0ZXh0LWNlbnRlciB0ZXh0LVsxMXB4XSB0ZXh0LXNsYXRlLTQwMCI+CiAgICAgICAgICAgIFdlIG9ubHkgcmVxdWVzdCByZWFkLW9ubHkgYWNjZXNzIHRvIHlvdXIgYWQgZGF0YS4gTm90aGluZyBpcyBzdG9yZWQgcGVybWFuZW50bHkuCiAgICAgICAgICA8L3A+CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKTsKfQo="}
+import { redirect } from "next/navigation";
+import { getSession } from "@/lib/session";
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>;
+}) {
+  const session = await getSession();
+  if (session.accessToken) {
+    redirect("/dashboard");
+  }
+
+  const { error } = await searchParams;
+
+  return (
+    <div className="flex flex-1 items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+      <div className="mx-4 w-full max-w-md">
+        <div className="animate-fade-in rounded-2xl border border-slate-200/60 bg-white p-10 shadow-xl shadow-slate-200/50">
+          <div className="flex items-center justify-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 text-lg font-bold text-white shadow-md shadow-brand-500/25">
+              A
+            </div>
+            <h1 className="text-2xl font-bold tracking-tight text-slate-900">Ads Reach</h1>
+          </div>
+
+          <p className="mt-4 text-center text-sm leading-relaxed text-slate-500">
+            Reach intelligence for Meta Ads — understand who you're reaching, how efficiently, and where to optimise.
+          </p>
+
+          <div className="mt-6 space-y-3">
+            <div className="flex items-start gap-3 rounded-lg bg-slate-50 px-4 py-3">
+              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold text-brand-600">1</div>
+              <div className="text-sm text-slate-600">Connect your Meta ad account securely via Facebook login</div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg bg-slate-50 px-4 py-3">
+              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold text-brand-600">2</div>
+              <div className="text-sm text-slate-600">Get 6 reach and audience intelligence reports instantly</div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg bg-slate-50 px-4 py-3">
+              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold text-brand-600">3</div>
+              <div className="text-sm text-slate-600">Spot overlap, creative fatigue, and wasted spend before they hurt</div>
+            </div>
+          </div>
+
+          {error && (
+            <div className="mt-5 rounded-lg border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600">{decodeURIComponent(error)}</div>
+          )}
+
+          <a
+            href="/api/auth/login"
+            className="mt-6 flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#1877F2] px-4 py-3 text-sm font-semibold text-white shadow-md shadow-blue-500/20 transition-all hover:-translate-y-0.5 hover:bg-[#1567d3] hover:shadow-lg hover:shadow-blue-500/25 active:translate-y-0"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Continue with Facebook
+          </a>
+
+          <p className="mt-4 text-center text-[11px] text-slate-400">
+            We only request read-only access to your ad data. Nothing is stored permanently.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}

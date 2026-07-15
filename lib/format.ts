@@ -1,1 +1,56 @@
-{"data":"bGV0IF9jdXJyZW5jeSA9ICJJTlIiOwpsZXQgX2N1cnJlbmN5U3ltYm9sID0gIuKCuSI7CmxldCBfbW9uZXlMb2NhbGUgPSAiZW4tSU4iOwoKY29uc3QgQ1VSUkVOQ1lfU1lNQk9MUzogUmVjb3JkPHN0cmluZywgc3RyaW5nPiA9IHsKICBVU0Q6ICIkIiwgRVVSOiAi4oKsIiwgR0JQOiAiwqMiLCBJTlI6ICLigrkiLCBKUFk6ICLCpSIsIENBRDogIkMkIiwgQVVEOiAiQSQiLAogIEJSTDogIlIkIiwgTVhOOiAiTVgkIiwgU0dEOiAiUyQiLCBIS0Q6ICJISyQiLCBLUlc6ICLigqkiLCBUSEI6ICLguL8iLAogIElEUjogIlJwIiwgUEhQOiAi4oKxIiwgVk5EOiAi4oKrIiwgTVlSOiAiUk0iLCBBRUQ6ICJBRUQiLCBTQVI6ICJTQVIiLAogIFpBUjogIlIiLCBOR046ICLigqYiLCBFR1A6ICJFwqMiLCBUUlk6ICLigroiLCBQTE46ICJ6xYIiLCBTRUs6ICJrciIsCiAgTk9LOiAia3IiLCBES0s6ICJrciIsIENaSzogIkvEjSIsIEhVRjogIkZ0IiwgUk9OOiAibGVpIiwgQkdOOiAi0LvQsiIsCiAgUEtSOiAi4oKoIiwgQkRUOiAi4KezIiwgTEtSOiAiUnMiLCBOUFI6ICJScyIsCn07CgpleHBvcnQgZnVuY3Rpb24gc2V0Q3VycmVuY3koY29kZTogc3RyaW5nKSB7CiAgX2N1cnJlbmN5ID0gY29kZTsKICBfY3VycmVuY3lTeW1ib2wgPSBDVVJSRU5DWV9TWU1CT0xTW2NvZGVdID8/IGNvZGU7CiAgLy8gSW5kaWFuIGFjY291bnRzIHJlYWQgbW9uZXkgaW4gbGFraC9jcm9yZSBncm91cGluZyAo4oK5Myw0OCw0NCw1NDgpIGFuZAogIC8vIGNvbXBhY3QgdW5pdHMgKOKCuTUuOENyKSwgbm90IHRob3VzYW5kcy9taWxsaW9ucy4KICBfbW9uZXlMb2NhbGUgPSBjb2RlID09PSAiSU5SIiA/ICJlbi1JTiIgOiAiZW4tVVMiOwp9CgpleHBvcnQgZnVuY3Rpb24gZ2V0Q3VycmVuY3lTeW1ib2woKTogc3RyaW5nIHsKICByZXR1cm4gX2N1cnJlbmN5U3ltYm9sOwp9CgovKiogRnVsbCBncm91cGVkIG51bWJlciBpbiB0aGUgYWN0aXZlIGxvY2FsZSDigJQgMTYsNjI2LDM0NyAoZW4tVVMpIG9yIDEsNjYsMjYsMzQ3IChlbi1JTikuICovCmV4cG9ydCBmdW5jdGlvbiBmb3JtYXROdW1iZXIobjogbnVtYmVyKTogc3RyaW5nIHsKICByZXR1cm4gbmV3IEludGwuTnVtYmVyRm9ybWF0KF9tb25leUxvY2FsZSwgeyBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAgfSkuZm9ybWF0KG4pOwp9CgovKiogQ29tcGFjdCByZWFjaC9jb3VudCBudW1iZXIg4oCUIDE2LjYwTSAoZW4tVVMpIG9yIDE2LjYwTCAvIDQuODBDciAoZW4tSU4pLiBBbHdheXMKICogIDIgZGVjaW1hbCBwbGFjZXMg4oCUIG5ldmVyIGNvbGxhcHNlZCB0byBhIHJvdW5kZXIsIGxlc3MgcHJlY2lzZSB3aG9sZSBudW1iZXIuICovCmV4cG9ydCBmdW5jdGlvbiBmb3JtYXRDb21wYWN0TnVtYmVyKG46IG51bWJlcik6IHN0cmluZyB7CiAgcmV0dXJuIG5ldyBJbnRsLk51bWJlckZvcm1hdChfbW9uZXlMb2NhbGUsIHsgbm90YXRpb246ICJjb21wYWN0IiwgbWluaW11bUZyYWN0aW9uRGlnaXRzOiAyLCBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDIgfSkuZm9ybWF0KG4pOwp9CgovKiogQWx3YXlzIDIgZGVjaW1hbCBwbGFjZXMsIHJlZ2FyZGxlc3Mgb2YgbWFnbml0dWRlIOKAlCDigrkxLDAxLDMyLDcwNC40Mywgbm90CiAqICByb3VuZGVkIHRvIOKCuTEsMDEsMzIsNzA0IGp1c3QgYmVjYXVzZSB0aGUgYW1vdW50IGlzIGxhcmdlLiAqLwpleHBvcnQgZnVuY3Rpb24gZm9ybWF0Q3VycmVuY3kobjogbnVtYmVyKTogc3RyaW5nIHsKICByZXR1cm4gYCR7X2N1cnJlbmN5U3ltYm9sfSR7bmV3IEludGwuTnVtYmVyRm9ybWF0KF9tb25leUxvY2FsZSwgeyBtaW5pbXVtRnJhY3Rpb25EaWdpdHM6IDIsIG1heGltdW1GcmFjdGlvbkRpZ2l0czogMiB9KS5mb3JtYXQobil9YDsKfQoKZXhwb3J0IGZ1bmN0aW9uIGZvcm1hdEN1cnJlbmN5Q29tcGFjdChuOiBudW1iZXIpOiBzdHJpbmcgewogIHJldHVybiBgJHtfY3VycmVuY3lTeW1ib2x9JHtuZXcgSW50bC5OdW1iZXJGb3JtYXQoX21vbmV5TG9jYWxlLCB7IG5vdGF0aW9uOiAiY29tcGFjdCIsIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMiwgbWF4aW11bUZyYWN0aW9uRGlnaXRzOiAyIH0pLmZvcm1hdChuKX1gOwp9CgpleHBvcnQgZnVuY3Rpb24gZm9ybWF0UGVyY2VudChuOiBudW1iZXIsIGRpZ2l0cyA9IDIpOiBzdHJpbmcgewogIHJldHVybiBgJHtuLnRvRml4ZWQoZGlnaXRzKX0lYDsKfQoKLyoqICIyMDI2LTA0LTA5IiDihpIgIkFwciA5IiDigJQgZm9yIGNoYXJ0IGF4ZXMgYW5kIGxlZ2VuZHMuICovCmV4cG9ydCBmdW5jdGlvbiBmb3JtYXRTaG9ydERhdGUoaXNvOiBzdHJpbmcpOiBzdHJpbmcgewogIGNvbnN0IGQgPSBuZXcgRGF0ZShpc28uc2xpY2UoMCwgMTApICsgIlQwMDowMDowMFoiKTsKICBpZiAoaXNOYU4oZC5nZXRUaW1lKCkpKSByZXR1cm4gaXNvOwogIHJldHVybiBkLnRvTG9jYWxlRGF0ZVN0cmluZygiZW4tVVMiLCB7IG1vbnRoOiAic2hvcnQiLCBkYXk6ICJudW1lcmljIiwgdGltZVpvbmU6ICJVVEMiIH0pOwp9Cg=="}
+let _currency = "INR";
+let _currencySymbol = "₹";
+let _moneyLocale = "en-IN";
+
+const CURRENCY_SYMBOLS: Record<string, string> = {
+  USD: "$", EUR: "€", GBP: "£", INR: "₹", JPY: "¥", CAD: "C$", AUD: "A$",
+  BRL: "R$", MXN: "MX$", SGD: "S$", HKD: "HK$", KRW: "₩", THB: "฿",
+  IDR: "Rp", PHP: "₱", VND: "₫", MYR: "RM", AED: "AED", SAR: "SAR",
+  ZAR: "R", NGN: "₦", EGP: "E£", TRY: "₺", PLN: "zł", SEK: "kr",
+  NOK: "kr", DKK: "kr", CZK: "Kč", HUF: "Ft", RON: "lei", BGN: "лв",
+  PKR: "₨", BDT: "৳", LKR: "Rs", NPR: "Rs",
+};
+
+export function setCurrency(code: string) {
+  _currency = code;
+  _currencySymbol = CURRENCY_SYMBOLS[code] ?? code;
+  // Indian accounts read money in lakh/crore grouping (₹3,48,44,548) and
+  // compact units (₹5.8Cr), not thousands/millions.
+  _moneyLocale = code === "INR" ? "en-IN" : "en-US";
+}
+
+export function getCurrencySymbol(): string {
+  return _currencySymbol;
+}
+
+/** Full grouped number in the active locale — 16,626,347 (en-US) or 1,66,26,347 (en-IN). */
+export function formatNumber(n: number): string {
+  return new Intl.NumberFormat(_moneyLocale, { maximumFractionDigits: 0 }).format(n);
+}
+
+/** Compact reach/count number — 16.60M (en-US) or 16.60L / 4.80Cr (en-IN). Always
+ *  2 decimal places — never collapsed to a rounder, less precise whole number. */
+export function formatCompactNumber(n: number): string {
+  return new Intl.NumberFormat(_moneyLocale, { notation: "compact", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n);
+}
+
+/** Always 2 decimal places, regardless of magnitude — ₹1,01,32,704.43, not
+ *  rounded to ₹1,01,32,704 just because the amount is large. */
+export function formatCurrency(n: number): string {
+  return `${_currencySymbol}${new Intl.NumberFormat(_moneyLocale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n)}`;
+}
+
+export function formatCurrencyCompact(n: number): string {
+  return `${_currencySymbol}${new Intl.NumberFormat(_moneyLocale, { notation: "compact", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n)}`;
+}
+
+export function formatPercent(n: number, digits = 2): string {
+  return `${n.toFixed(digits)}%`;
+}
+
+/** "2026-04-09" → "Apr 9" — for chart axes and legends. */
+export function formatShortDate(iso: string): string {
+  const d = new Date(iso.slice(0, 10) + "T00:00:00Z");
+  if (isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+}

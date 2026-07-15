@@ -1,1 +1,65 @@
-{"data":"aW1wb3J0IHsgbWV0YUluc2lnaHRzIH0gZnJvbSAiQC9saWIvbWV0YS1hcGkiOwppbXBvcnQgeyBudW0sIGZpbmRBY3Rpb24sIHVwbGlmdFJhdGlvLCBwZXJjZW50IH0gZnJvbSAiQC9saWIvY2FsY3VsYXRpb25zIjsKaW1wb3J0IHR5cGUgeyBEYXRlUmFuZ2UgfSBmcm9tICJAL2xpYi90eXBlcyI7CgpleHBvcnQgaW50ZXJmYWNlIENvbnZlcnNpb25XaW5kb3dXZWVrUm93IHsKICB3ZWVrU3RhcnQ6IHN0cmluZzsKICB3ZWVrRW5kOiBzdHJpbmc7CiAgcHVyY2hhc2VzMWRjOiBudW1iZXI7CiAgcHVyY2hhc2VzN2RjOiBudW1iZXI7CiAgcHVyY2hhc2VzMjhkYzogbnVtYmVyOwogIHNwZW5kOiBudW1iZXI7CiAgdXBsaWZ0UmF0aW86IG51bWJlcjsKICBzYW1lRGF5UGN0OiBudW1iZXI7Cn0KCmV4cG9ydCBpbnRlcmZhY2UgQ29udmVyc2lvbldpbmRvd3NSZXBvcnQgewogIHdlZWtzOiBDb252ZXJzaW9uV2luZG93V2Vla1Jvd1tdOwogIHRvdGFsUHVyY2hhc2VzMWRjOiBudW1iZXI7CiAgdG90YWxQdXJjaGFzZXMyOGRjOiBudW1iZXI7CiAgb3ZlcmFsbFVwbGlmdFJhdGlvOiBudW1iZXI7Cn0KCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBnZXRDb252ZXJzaW9uV2luZG93c1JlcG9ydCgKICB0b2tlbjogc3RyaW5nLAogIGFjY291bnRJZDogc3RyaW5nLAogIHJhbmdlOiBEYXRlUmFuZ2UKKTogUHJvbWlzZTxDb252ZXJzaW9uV2luZG93c1JlcG9ydD4gewogIGNvbnN0IHJvd3MgPSBhd2FpdCBtZXRhSW5zaWdodHMoewogICAgdG9rZW4sCiAgICBvYmplY3RJZDogYWNjb3VudElkLAogICAgZmllbGRzOiBbImFjdGlvbnMiLCAic3BlbmQiLCAiaW1wcmVzc2lvbnMiXSwKICAgIHRpbWVSYW5nZTogcmFuZ2UsCiAgICBhY3Rpb25BdHRyaWJ1dGlvbldpbmRvd3M6IFsiMWRfY2xpY2siLCAiN2RfY2xpY2siLCAiMjhkX2NsaWNrIl0sCiAgICB0aW1lSW5jcmVtZW50OiA3LAogIH0pOwoKICBjb25zdCB3ZWVrczogQ29udmVyc2lvbldpbmRvd1dlZWtSb3dbXSA9IHJvd3MKICAgIC5tYXAoKHJvdykgPT4gewogICAgICBjb25zdCBhY3Rpb25zID0gcm93LmFjdGlvbnMgYXMgQXJyYXk8UmVjb3JkPHN0cmluZywgc3RyaW5nPj4gfCB1bmRlZmluZWQ7CiAgICAgIGNvbnN0IHB1cmNoYXNlczFkYyA9IGZpbmRBY3Rpb24oYWN0aW9ucywgInB1cmNoYXNlIiwgIjFkX2NsaWNrIik7CiAgICAgIGNvbnN0IHB1cmNoYXNlczdkYyA9IGZpbmRBY3Rpb24oYWN0aW9ucywgInB1cmNoYXNlIiwgIjdkX2NsaWNrIik7CiAgICAgIGNvbnN0IHB1cmNoYXNlczI4ZGMgPSBmaW5kQWN0aW9uKGFjdGlvbnMsICJwdXJjaGFzZSIsICIyOGRfY2xpY2siKTsKICAgICAgcmV0dXJuIHsKICAgICAgICB3ZWVrU3RhcnQ6IHJvdy5kYXRlX3N0YXJ0IGFzIHN0cmluZywKICAgICAgICB3ZWVrRW5kOiByb3cuZGF0ZV9zdG9wIGFzIHN0cmluZywKICAgICAgICBwdXJjaGFzZXMxZGMsCiAgICAgICAgcHVyY2hhc2VzN2RjLAogICAgICAgIHB1cmNoYXNlczI4ZGMsCiAgICAgICAgc3BlbmQ6IG51bShyb3cuc3BlbmQpLAogICAgICAgIHVwbGlmdFJhdGlvOiB1cGxpZnRSYXRpbyhwdXJjaGFzZXMxZGMsIHB1cmNoYXNlczI4ZGMpLAogICAgICAgIHNhbWVEYXlQY3Q6IHBlcmNlbnQocHVyY2hhc2VzMWRjLCBwdXJjaGFzZXMyOGRjKSwKICAgICAgfTsKICAgIH0pCiAgICAuc29ydCgoYSwgYikgPT4gYS53ZWVrU3RhcnQubG9jYWxlQ29tcGFyZShiLndlZWtTdGFydCkpOwoKICBjb25zdCB0b3RhbFB1cmNoYXNlczFkYyA9IHdlZWtzLnJlZHVjZSgoc3VtLCB3KSA9PiBzdW0gKyB3LnB1cmNoYXNlczFkYywgMCk7CiAgY29uc3QgdG90YWxQdXJjaGFzZXMyOGRjID0gd2Vla3MucmVkdWNlKChzdW0sIHcpID0+IHN1bSArIHcucHVyY2hhc2VzMjhkYywgMCk7CgogIHJldHVybiB7CiAgICB3ZWVrcywKICAgIHRvdGFsUHVyY2hhc2VzMWRjLAogICAgdG90YWxQdXJjaGFzZXMyOGRjLAogICAgb3ZlcmFsbFVwbGlmdFJhdGlvOiB1cGxpZnRSYXRpbyh0b3RhbFB1cmNoYXNlczFkYywgdG90YWxQdXJjaGFzZXMyOGRjKSwKICB9Owp9Cg=="}
+import { metaInsights } from "@/lib/meta-api";
+import { num, findAction, upliftRatio, percent } from "@/lib/calculations";
+import type { DateRange } from "@/lib/types";
+
+export interface ConversionWindowWeekRow {
+  weekStart: string;
+  weekEnd: string;
+  purchases1dc: number;
+  purchases7dc: number;
+  purchases28dc: number;
+  spend: number;
+  upliftRatio: number;
+  sameDayPct: number;
+}
+
+export interface ConversionWindowsReport {
+  weeks: ConversionWindowWeekRow[];
+  totalPurchases1dc: number;
+  totalPurchases28dc: number;
+  overallUpliftRatio: number;
+}
+
+export async function getConversionWindowsReport(
+  token: string,
+  accountId: string,
+  range: DateRange
+): Promise<ConversionWindowsReport> {
+  const rows = await metaInsights({
+    token,
+    objectId: accountId,
+    fields: ["actions", "spend", "impressions"],
+    timeRange: range,
+    actionAttributionWindows: ["1d_click", "7d_click", "28d_click"],
+    timeIncrement: 7,
+  });
+
+  const weeks: ConversionWindowWeekRow[] = rows
+    .map((row) => {
+      const actions = row.actions as Array<Record<string, string>> | undefined;
+      const purchases1dc = findAction(actions, "purchase", "1d_click");
+      const purchases7dc = findAction(actions, "purchase", "7d_click");
+      const purchases28dc = findAction(actions, "purchase", "28d_click");
+      return {
+        weekStart: row.date_start as string,
+        weekEnd: row.date_stop as string,
+        purchases1dc,
+        purchases7dc,
+        purchases28dc,
+        spend: num(row.spend),
+        upliftRatio: upliftRatio(purchases1dc, purchases28dc),
+        sameDayPct: percent(purchases1dc, purchases28dc),
+      };
+    })
+    .sort((a, b) => a.weekStart.localeCompare(b.weekStart));
+
+  const totalPurchases1dc = weeks.reduce((sum, w) => sum + w.purchases1dc, 0);
+  const totalPurchases28dc = weeks.reduce((sum, w) => sum + w.purchases28dc, 0);
+
+  return {
+    weeks,
+    totalPurchases1dc,
+    totalPurchases28dc,
+    overallUpliftRatio: upliftRatio(totalPurchases1dc, totalPurchases28dc),
+  };
+}

@@ -1,1 +1,35 @@
-{"data":"ZXhwb3J0IHR5cGUgUHJvZ3Jlc3NFbWl0ID0gKHByb2dyZXNzOiB7IGN1cnJlbnQ6IG51bWJlcjsgdG90YWw6IG51bWJlcjsgbGFiZWw6IHN0cmluZyB9KSA9PiB2b2lkOwoKZXhwb3J0IHR5cGUgTmRqc29uRXZlbnQgPQogIHwgeyB0eXBlOiAicHJvZ3Jlc3MiOyBjdXJyZW50OiBudW1iZXI7IHRvdGFsOiBudW1iZXI7IGxhYmVsOiBzdHJpbmcgfQogIHwgeyB0eXBlOiAiZG9uZSI7IGRhdGE6IHVua25vd24gfQogIHwgeyB0eXBlOiAiZXJyb3IiOyBtZXNzYWdlOiBzdHJpbmcgfTsKCi8qKiBXcmFwcyBhIGxvbmctcnVubmluZyByZXBvcnQgY29tcHV0YXRpb24gaW4gYW4gTkRKU09OIHN0cmVhbSBzbyB0aGUgY2xpZW50IGNhbiByZW5kZXIgbGl2ZSBwcm9ncmVzcy4gKi8KZXhwb3J0IGZ1bmN0aW9uIG5kanNvblJlc3BvbnNlKHdvcms6IChlbWl0OiBQcm9ncmVzc0VtaXQpID0+IFByb21pc2U8dW5rbm93bj4pOiBSZXNwb25zZSB7CiAgY29uc3QgZW5jb2RlciA9IG5ldyBUZXh0RW5jb2RlcigpOwogIGNvbnN0IHN0cmVhbSA9IG5ldyBSZWFkYWJsZVN0cmVhbSh7CiAgICBhc3luYyBzdGFydChjb250cm9sbGVyKSB7CiAgICAgIGNvbnN0IGVtaXQ6IFByb2dyZXNzRW1pdCA9IChwcm9ncmVzcykgPT4gewogICAgICAgIGNvbnRyb2xsZXIuZW5xdWV1ZShlbmNvZGVyLmVuY29kZShKU09OLnN0cmluZ2lmeSh7IHR5cGU6ICJwcm9ncmVzcyIsIC4uLnByb2dyZXNzIH0pICsgIlxuIikpOwogICAgICB9OwogICAgICB0cnkgewogICAgICAgIGNvbnN0IGRhdGEgPSBhd2FpdCB3b3JrKGVtaXQpOwogICAgICAgIGNvbnRyb2xsZXIuZW5xdWV1ZShlbmNvZGVyLmVuY29kZShKU09OLnN0cmluZ2lmeSh7IHR5cGU6ICJkb25lIiwgZGF0YSB9KSArICJcbiIpKTsKICAgICAgfSBjYXRjaCAoZXJyKSB7CiAgICAgICAgY29uc29sZS5lcnJvcigiU3RyZWFtaW5nIHJlcG9ydCBmYWlsZWQ6IiwgZXJyKTsKICAgICAgICBjb25zdCBtZXNzYWdlID0gZXJyIGluc3RhbmNlb2YgRXJyb3IgPyBlcnIubWVzc2FnZSA6ICJVbmtub3duIGVycm9yIjsKICAgICAgICBjb250cm9sbGVyLmVucXVldWUoZW5jb2Rlci5lbmNvZGUoSlNPTi5zdHJpbmdpZnkoeyB0eXBlOiAiZXJyb3IiLCBtZXNzYWdlIH0pICsgIlxuIikpOwogICAgICB9IGZpbmFsbHkgewogICAgICAgIGNvbnRyb2xsZXIuY2xvc2UoKTsKICAgICAgfQogICAgfSwKICB9KTsKCiAgcmV0dXJuIG5ldyBSZXNwb25zZShzdHJlYW0sIHsKICAgIGhlYWRlcnM6IHsKICAgICAgIkNvbnRlbnQtVHlwZSI6ICJhcHBsaWNhdGlvbi94LW5kanNvbjsgY2hhcnNldD11dGYtOCIsCiAgICAgICJDYWNoZS1Db250cm9sIjogIm5vLWNhY2hlIiwKICAgIH0sCiAgfSk7Cn0K"}
+export type ProgressEmit = (progress: { current: number; total: number; label: string }) => void;
+
+export type NdjsonEvent =
+  | { type: "progress"; current: number; total: number; label: string }
+  | { type: "done"; data: unknown }
+  | { type: "error"; message: string };
+
+/** Wraps a long-running report computation in an NDJSON stream so the client can render live progress. */
+export function ndjsonResponse(work: (emit: ProgressEmit) => Promise<unknown>): Response {
+  const encoder = new TextEncoder();
+  const stream = new ReadableStream({
+    async start(controller) {
+      const emit: ProgressEmit = (progress) => {
+        controller.enqueue(encoder.encode(JSON.stringify({ type: "progress", ...progress }) + "\n"));
+      };
+      try {
+        const data = await work(emit);
+        controller.enqueue(encoder.encode(JSON.stringify({ type: "done", data }) + "\n"));
+      } catch (err) {
+        console.error("Streaming report failed:", err);
+        const message = err instanceof Error ? err.message : "Unknown error";
+        controller.enqueue(encoder.encode(JSON.stringify({ type: "error", message }) + "\n"));
+      } finally {
+        controller.close();
+      }
+    },
+  });
+
+  return new Response(stream, {
+    headers: {
+      "Content-Type": "application/x-ndjson; charset=utf-8",
+      "Cache-Control": "no-cache",
+    },
+  });
+}

@@ -1,1 +1,79 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgQmFyLCBCYXJDaGFydCwgQ2FydGVzaWFuR3JpZCwgQ2VsbCwgTGVnZW5kLCBSZXNwb25zaXZlQ29udGFpbmVyLCBUb29sdGlwLCBYQXhpcywgWUF4aXMgfSBmcm9tICJyZWNoYXJ0cyI7CmltcG9ydCB7IENIQVJUX0NIUk9NRSwgQ0hBUlRfSU5LIH0gZnJvbSAiQC9saWIvY2hhcnQtdGhlbWUiOwppbXBvcnQgeyB1c2VSZWR1Y2VkTW90aW9uIH0gZnJvbSAiQC9saWIvaG9va3MvdXNlUmVkdWNlZE1vdGlvbiI7CmltcG9ydCB7IENoYXJ0VG9vbHRpcENvbnRlbnQsIGNvbXBhY3RUaWNrRm9ybWF0dGVyLCB0eXBlIFZhbHVlRm9ybWF0IH0gZnJvbSAiLi9DaGFydFRvb2x0aXAiOwppbXBvcnQgdHlwZSB7IFNlcmllc0NvbmZpZyB9IGZyb20gIi4vTGluZUNoYXJ0IjsKCmludGVyZmFjZSBIb3Jpem9udGFsQmFyUHJvcHMgewogIGRhdGE6IEFycmF5PFJlY29yZDxzdHJpbmcsIHN0cmluZyB8IG51bWJlcj4+OwogIGNhdGVnb3J5S2V5OiBzdHJpbmc7CiAgc2VyaWVzOiBTZXJpZXNDb25maWdbXTsKICBzdGFja2VkPzogYm9vbGVhbjsKICBoZWlnaHQ/OiBudW1iZXI7CiAgY2F0ZWdvcnlDb2xvcnM/OiBSZWNvcmQ8c3RyaW5nLCBzdHJpbmc+OwogIHZhbHVlRm9ybWF0PzogVmFsdWVGb3JtYXQ7Cn0KCmNvbnN0IHRpY2tTdHlsZSA9IHsgZm9udFNpemU6IDEyLCBmaWxsOiBDSEFSVF9JTksubXV0ZWQgfTsKCmZ1bmN0aW9uIHRydW5jYXRlKHM6IHN0cmluZywgbWF4OiBudW1iZXIpOiBzdHJpbmcgewogIHJldHVybiBzLmxlbmd0aCA+IG1heCA/IHMuc2xpY2UoMCwgbWF4IC0gMSkgKyAi4oCmIiA6IHM7Cn0KCmV4cG9ydCBmdW5jdGlvbiBIb3Jpem9udGFsQmFyKHsgZGF0YSwgY2F0ZWdvcnlLZXksIHNlcmllcywgc3RhY2tlZCA9IGZhbHNlLCBoZWlnaHQsIGNhdGVnb3J5Q29sb3JzLCB2YWx1ZUZvcm1hdCA9ICJjb21wYWN0IiB9OiBIb3Jpem9udGFsQmFyUHJvcHMpIHsKICAvLyBbUE0gRU5IQU5DRU1FTlRdIOKAlCBjaGFydCBhbmltYXRpb25zIHJlc3BlY3QgdGhlIE9TIHJlZHVjZWQtbW90aW9uIHNldHRpbmcKICBjb25zdCBhbmltYXRlID0gIXVzZVJlZHVjZWRNb3Rpb24oKTsKICBjb25zdCBiYXJIZWlnaHQgPSBNYXRoLm1heCgzMjAsIGRhdGEubGVuZ3RoICogMzYpOwogIGNvbnN0IGggPSBoZWlnaHQgPz8gYmFySGVpZ2h0OwoKICByZXR1cm4gKAogICAgPGRpdiBzdHlsZT17eyB3aWR0aDogIjEwMCUiLCBoZWlnaHQ6IGggfX0+CiAgICAgIDxSZXNwb25zaXZlQ29udGFpbmVyPgogICAgICAgIDxCYXJDaGFydCBkYXRhPXtkYXRhfSBsYXlvdXQ9InZlcnRpY2FsIiBtYXJnaW49e3sgdG9wOiA4LCByaWdodDogMTYsIGxlZnQ6IDgsIGJvdHRvbTogMCB9fT4KICAgICAgICAgIDxDYXJ0ZXNpYW5HcmlkIGhvcml6b250YWw9e2ZhbHNlfSBzdHJva2U9e0NIQVJUX0NIUk9NRS5ncmlkbGluZX0gLz4KICAgICAgICAgIDxYQXhpcwogICAgICAgICAgICB0eXBlPSJudW1iZXIiCiAgICAgICAgICAgIHRpY2s9e3RpY2tTdHlsZX0KICAgICAgICAgICAgYXhpc0xpbmU9e3sgc3Ryb2tlOiBDSEFSVF9DSFJPTUUuYXhpcyB9fQogICAgICAgICAgICB0aWNrTGluZT17ZmFsc2V9CiAgICAgICAgICAgIHRpY2tGb3JtYXR0ZXI9e2NvbXBhY3RUaWNrRm9ybWF0dGVyfQogICAgICAgICAgLz4KICAgICAgICAgIDxZQXhpcwogICAgICAgICAgICB0eXBlPSJjYXRlZ29yeSIKICAgICAgICAgICAgZGF0YUtleT17Y2F0ZWdvcnlLZXl9CiAgICAgICAgICAgIHdpZHRoPXsxODB9CiAgICAgICAgICAgIHRpY2s9e3RpY2tTdHlsZX0KICAgICAgICAgICAgYXhpc0xpbmU9e2ZhbHNlfQogICAgICAgICAgICB0aWNrTGluZT17ZmFsc2V9CiAgICAgICAgICAgIHRpY2tGb3JtYXR0ZXI9eyh2OiBzdHJpbmcpID0+IHRydW5jYXRlKHYsIDI4KX0KICAgICAgICAgIC8+CiAgICAgICAgICA8VG9vbHRpcCBjb250ZW50PXs8Q2hhcnRUb29sdGlwQ29udGVudCBkZWZhdWx0Rm9ybWF0PXt2YWx1ZUZvcm1hdH0gLz59IGN1cnNvcj17eyBmaWxsOiAicmdiYSgxNDgsMTYzLDE4NCwwLjA4KSIgfX0gLz4KICAgICAgICAgIHtzZXJpZXMubGVuZ3RoID4gMSAmJiA8TGVnZW5kIHdyYXBwZXJTdHlsZT17eyBmb250U2l6ZTogMTIsIHBhZGRpbmdUb3A6IDggfX0gaWNvblR5cGU9ImNpcmNsZSIgaWNvblNpemU9ezh9IC8+fQogICAgICAgICAge3Nlcmllcy5tYXAoKHMpID0+ICgKICAgICAgICAgICAgPEJhcgogICAgICAgICAgICAgIGtleT17cy5rZXl9CiAgICAgICAgICAgICAgZGF0YUtleT17cy5rZXl9CiAgICAgICAgICAgICAgbmFtZT17cy5sYWJlbH0KICAgICAgICAgICAgICBmaWxsPXtzLmNvbG9yfQogICAgICAgICAgICAgIHN0YWNrSWQ9e3N0YWNrZWQgPyAiMSIgOiB1bmRlZmluZWR9CiAgICAgICAgICAgICAgc3Ryb2tlPXtDSEFSVF9DSFJPTUUuc3VyZmFjZX0KICAgICAgICAgICAgICBzdHJva2VXaWR0aD17c3RhY2tlZCA/IDIgOiAwfQogICAgICAgICAgICAgIHJhZGl1cz17c3RhY2tlZCA/IDAgOiBbMCwgNCwgNCwgMF19CiAgICAgICAgICAgICAgbWF4QmFyU2l6ZT17Mjh9CiAgICAgICAgICAgICAgaXNBbmltYXRpb25BY3RpdmU9e2FuaW1hdGV9CiAgICAgICAgICAgICAgYW5pbWF0aW9uRHVyYXRpb249ezQwMH0KICAgICAgICAgICAgICBhbmltYXRpb25FYXNpbmc9ImVhc2Utb3V0IgogICAgICAgICAgICA+CiAgICAgICAgICAgICAge2NhdGVnb3J5Q29sb3JzICYmCiAgICAgICAgICAgICAgICBkYXRhLm1hcCgoZW50cnksIGkpID0+ICgKICAgICAgICAgICAgICAgICAgPENlbGwga2V5PXtpfSBmaWxsPXtjYXRlZ29yeUNvbG9yc1tTdHJpbmcoZW50cnlbY2F0ZWdvcnlLZXldKV0gPz8gcy5jb2xvcn0gLz4KICAgICAgICAgICAgICAgICkpfQogICAgICAgICAgICA8L0Jhcj4KICAgICAgICAgICkpfQogICAgICAgIDwvQmFyQ2hhcnQ+CiAgICAgIDwvUmVzcG9uc2l2ZUNvbnRhaW5lcj4KICAgIDwvZGl2PgogICk7Cn0K"}
+"use client";
+
+import { Bar, BarChart, CartesianGrid, Cell, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
+import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+import { ChartTooltipContent, compactTickFormatter, type ValueFormat } from "./ChartTooltip";
+import type { SeriesConfig } from "./LineChart";
+
+interface HorizontalBarProps {
+  data: Array<Record<string, string | number>>;
+  categoryKey: string;
+  series: SeriesConfig[];
+  stacked?: boolean;
+  height?: number;
+  categoryColors?: Record<string, string>;
+  valueFormat?: ValueFormat;
+}
+
+const tickStyle = { fontSize: 12, fill: CHART_INK.muted };
+
+function truncate(s: string, max: number): string {
+  return s.length > max ? s.slice(0, max - 1) + "…" : s;
+}
+
+export function HorizontalBar({ data, categoryKey, series, stacked = false, height, categoryColors, valueFormat = "compact" }: HorizontalBarProps) {
+  // [PM ENHANCEMENT] — chart animations respect the OS reduced-motion setting
+  const animate = !useReducedMotion();
+  const barHeight = Math.max(320, data.length * 36);
+  const h = height ?? barHeight;
+
+  return (
+    <div style={{ width: "100%", height: h }}>
+      <ResponsiveContainer>
+        <BarChart data={data} layout="vertical" margin={{ top: 8, right: 16, left: 8, bottom: 0 }}>
+          <CartesianGrid horizontal={false} stroke={CHART_CHROME.gridline} />
+          <XAxis
+            type="number"
+            tick={tickStyle}
+            axisLine={{ stroke: CHART_CHROME.axis }}
+            tickLine={false}
+            tickFormatter={compactTickFormatter}
+          />
+          <YAxis
+            type="category"
+            dataKey={categoryKey}
+            width={180}
+            tick={tickStyle}
+            axisLine={false}
+            tickLine={false}
+            tickFormatter={(v: string) => truncate(v, 28)}
+          />
+          <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} />} cursor={{ fill: "rgba(148,163,184,0.08)" }} />
+          {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
+          {series.map((s) => (
+            <Bar
+              key={s.key}
+              dataKey={s.key}
+              name={s.label}
+              fill={s.color}
+              stackId={stacked ? "1" : undefined}
+              stroke={CHART_CHROME.surface}
+              strokeWidth={stacked ? 2 : 0}
+              radius={stacked ? 0 : [0, 4, 4, 0]}
+              maxBarSize={28}
+              isAnimationActive={animate}
+              animationDuration={400}
+              animationEasing="ease-out"
+            >
+              {categoryColors &&
+                data.map((entry, i) => (
+                  <Cell key={i} fill={categoryColors[String(entry[categoryKey])] ?? s.color} />
+                ))}
+            </Bar>
+          ))}
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}

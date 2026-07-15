@@ -1,1 +1,71 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlUm91dGVyIH0gZnJvbSAibmV4dC9uYXZpZ2F0aW9uIjsKaW1wb3J0IHsgQWNjb3VudFNlbGVjdG9yIH0gZnJvbSAiLi9BY2NvdW50U2VsZWN0b3IiOwppbXBvcnQgeyB1c2VBY2NvdW50IH0gZnJvbSAiQC9jb21wb25lbnRzL3Byb3ZpZGVycy9BY2NvdW50UHJvdmlkZXIiOwoKaW50ZXJmYWNlIFRvcEJhclByb3BzIHsKICBvblRvZ2dsZVNpZGViYXI/OiAoKSA9PiB2b2lkOwogIHNpZGViYXJDb2xsYXBzZWQ/OiBib29sZWFuOwp9CgpleHBvcnQgZnVuY3Rpb24gVG9wQmFyKHsgb25Ub2dnbGVTaWRlYmFyLCBzaWRlYmFyQ29sbGFwc2VkIH06IFRvcEJhclByb3BzKSB7CiAgY29uc3Qgcm91dGVyID0gdXNlUm91dGVyKCk7CiAgY29uc3QgeyB0b2tlbkV4cGlyaW5nU29vbiB9ID0gdXNlQWNjb3VudCgpOwoKICBhc3luYyBmdW5jdGlvbiBoYW5kbGVMb2dvdXQoKSB7CiAgICBhd2FpdCBmZXRjaCgiL2FwaS9hdXRoL2xvZ291dCIsIHsgbWV0aG9kOiAiUE9TVCIgfSk7CiAgICByb3V0ZXIucHVzaCgiLyIpOwogICAgcm91dGVyLnJlZnJlc2goKTsKICB9CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0iYm9yZGVyLWIgYm9yZGVyLXNsYXRlLTIwMC84MCBiZy13aGl0ZSI+CiAgICAgIHt0b2tlbkV4cGlyaW5nU29vbiAmJiAoCiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIGdhcC0zIGJnLWFtYmVyLTUwIHB4LTQgcHktMiB0ZXh0LXNtIj4KICAgICAgICAgIDxzdmcgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I0NTMwOSIgc3Ryb2tlV2lkdGg9IjIiIHN0cm9rZUxpbmVjYXA9InJvdW5kIiBzdHJva2VMaW5lam9pbj0icm91bmQiPgogICAgICAgICAgICA8cGF0aCBkPSJNMTAuMjkgMy44NkwxLjgyIDE4YTIgMiAwIDAgMCAxLjcxIDNoMTYuOTRhMiAyIDAgMCAwIDEuNzEtM0wxMy43MSAzLjg2YTIgMiAwIDAgMC0zLjQyIDB6IiAvPgogICAgICAgICAgICA8bGluZSB4MT0iMTIiIHkxPSI5IiB4Mj0iMTIiIHkyPSIxMyIgLz48bGluZSB4MT0iMTIiIHkxPSIxNyIgeDI9IjEyLjAxIiB5Mj0iMTciIC8+CiAgICAgICAgICA8L3N2Zz4KICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0iZm9udC1tZWRpdW0gdGV4dC1hbWJlci04MDAiPllvdXIgc2Vzc2lvbiBleHBpcmVzIHNvb24uPC9zcGFuPgogICAgICAgICAgPGEKICAgICAgICAgICAgaHJlZj0iL2FwaS9hdXRoL2xvZ2luIgogICAgICAgICAgICBjbGFzc05hbWU9InJvdW5kZWQtbWQgYmctYW1iZXItNjAwIHB4LTMgcHktMSB0ZXh0LXhzIGZvbnQtc2VtaWJvbGQgdGV4dC13aGl0ZSB0cmFuc2l0aW9uLWNvbG9ycyBob3ZlcjpiZy1hbWJlci03MDAiCiAgICAgICAgICA+CiAgICAgICAgICAgIFJlLWF1dGhlbnRpY2F0ZQogICAgICAgICAgPC9hPgogICAgICAgIDwvZGl2PgogICAgICApfQogICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIHB4LTQgcHktMyI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGdhcC0zIj4KICAgICAgICAgIHsvKiBTaWRlYmFyIHRvZ2dsZSDigJQgYWx3YXlzIHZpc2libGUsIHByb21pbmVudCAqL30KICAgICAgICAgIHtvblRvZ2dsZVNpZGViYXIgJiYgKAogICAgICAgICAgICA8YnV0dG9uCiAgICAgICAgICAgICAgb25DbGljaz17b25Ub2dnbGVTaWRlYmFyfQogICAgICAgICAgICAgIHRpdGxlPXtzaWRlYmFyQ29sbGFwc2VkID8gIkV4cGFuZCBzaWRlYmFyIiA6ICJDb2xsYXBzZSBzaWRlYmFyIn0KICAgICAgICAgICAgICBjbGFzc05hbWU9ImZsZXggaC04IHctOCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgcm91bmRlZC1sZyBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMCBiZy13aGl0ZSB0ZXh0LXNsYXRlLTUwMCBzaGFkb3ctc20gdHJhbnNpdGlvbi1jb2xvcnMgaG92ZXI6Ym9yZGVyLWJyYW5kLTMwMCBob3ZlcjpiZy1icmFuZC01MCBob3Zlcjp0ZXh0LWJyYW5kLTYwMCIKICAgICAgICAgICAgPgogICAgICAgICAgICAgIHtzaWRlYmFyQ29sbGFwc2VkID8gKAogICAgICAgICAgICAgICAgPHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZVdpZHRoPSIyIiBzdHJva2VMaW5lY2FwPSJyb3VuZCIgc3Ryb2tlTGluZWpvaW49InJvdW5kIj4KICAgICAgICAgICAgICAgICAgPHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iMiIvPjxwYXRoIGQ9Ik05IDN2MTgiLz48cGF0aCBkPSJtMTQgOSAzIDMtMyAzIi8+CiAgICAgICAgICAgICAgICA8L3N2Zz4KICAgICAgICAgICAgICApIDogKAogICAgICAgICAgICAgICAgPHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZVdpZHRoPSIyIiBzdHJva2VMaW5lY2FwPSJyb3VuZCIgc3Ryb2tlTGluZWpvaW49InJvdW5kIj4KICAgICAgICAgICAgICAgICAgPHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iMiIvPjxwYXRoIGQ9Ik05IDN2MTgiLz48cGF0aCBkPSJtMTYgMTUtMy0zIDMtMyIvPgogICAgICAgICAgICAgICAgPC9zdmc+CiAgICAgICAgICAgICAgKX0KICAgICAgICAgICAgPC9idXR0b24+CiAgICAgICAgICApfQogICAgICAgICAgPEFjY291bnRTZWxlY3RvciAvPgogICAgICAgIDwvZGl2PgogICAgICAgIHsvKiBbUE0gRU5IQU5DRU1FTlRdIOKAlCBkZXN0cnVjdGl2ZSBhY3Rpb24gc2lnbmFscyByZWQgb24gaG92ZXIsIG5vdCBuZXV0cmFsIGdyYXkgKi99CiAgICAgICAgPGJ1dHRvbgogICAgICAgICAgb25DbGljaz17aGFuZGxlTG9nb3V0fQogICAgICAgICAgY2xhc3NOYW1lPSJyb3VuZGVkLWxnIGJvcmRlciBib3JkZXItc2xhdGUtMjAwIHB4LTMuNSBweS0xLjUgdGV4dC1zbSBmb250LW1lZGl1bSB0ZXh0LXNsYXRlLTUwMCB0cmFuc2l0aW9uLWNvbG9ycyBob3Zlcjpib3JkZXItcmVkLTIwMCBob3ZlcjpiZy1yZWQtNTAgaG92ZXI6dGV4dC1yZWQtNjAwIgogICAgICAgID4KICAgICAgICAgIExvZyBvdXQKICAgICAgICA8L2J1dHRvbj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApOwp9Cg=="}
+"use client";
+
+import { useRouter } from "next/navigation";
+import { AccountSelector } from "./AccountSelector";
+import { useAccount } from "@/components/providers/AccountProvider";
+
+interface TopBarProps {
+  onToggleSidebar?: () => void;
+  sidebarCollapsed?: boolean;
+}
+
+export function TopBar({ onToggleSidebar, sidebarCollapsed }: TopBarProps) {
+  const router = useRouter();
+  const { tokenExpiringSoon } = useAccount();
+
+  async function handleLogout() {
+    await fetch("/api/auth/logout", { method: "POST" });
+    router.push("/");
+    router.refresh();
+  }
+
+  return (
+    <div className="border-b border-slate-200/80 bg-white">
+      {tokenExpiringSoon && (
+        <div className="flex items-center justify-center gap-3 bg-amber-50 px-4 py-2 text-sm">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b45309" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          <span className="font-medium text-amber-800">Your session expires soon.</span>
+          <a
+            href="/api/auth/login"
+            className="rounded-md bg-amber-600 px-3 py-1 text-xs font-semibold text-white transition-colors hover:bg-amber-700"
+          >
+            Re-authenticate
+          </a>
+        </div>
+      )}
+      <div className="flex items-center justify-between px-4 py-3">
+        <div className="flex items-center gap-3">
+          {/* Sidebar toggle — always visible, prominent */}
+          {onToggleSidebar && (
+            <button
+              onClick={onToggleSidebar}
+              title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 shadow-sm transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600"
+            >
+              {sidebarCollapsed ? (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/>
+                </svg>
+              ) : (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/>
+                </svg>
+              )}
+            </button>
+          )}
+          <AccountSelector />
+        </div>
+        {/* [PM ENHANCEMENT] — destructive action signals red on hover, not neutral gray */}
+        <button
+          onClick={handleLogout}
+          className="rounded-lg border border-slate-200 px-3.5 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+        >
+          Log out
+        </button>
+      </div>
+    </div>
+  );
+}

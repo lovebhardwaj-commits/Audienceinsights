@@ -1,1 +1,28 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlQWNjb3VudCB9IGZyb20gIkAvY29tcG9uZW50cy9wcm92aWRlcnMvQWNjb3VudFByb3ZpZGVyIjsKCmV4cG9ydCBmdW5jdGlvbiBBY2NvdW50U2VsZWN0b3IoKSB7CiAgY29uc3QgeyBhY2NvdW50cywgc2VsZWN0ZWRBY2NvdW50SWQsIHNldFNlbGVjdGVkQWNjb3VudElkLCBsb2FkaW5nLCBlcnJvciB9ID0gdXNlQWNjb3VudCgpOwoKICBpZiAobG9hZGluZykgcmV0dXJuIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMiB0ZXh0LXhzIHRleHQtc2xhdGUtNDAwIj48ZGl2IGNsYXNzTmFtZT0iaC0yIHctMiBhbmltYXRlLXB1bHNlIHJvdW5kZWQtZnVsbCBiZy1zbGF0ZS0zMDAiIC8+TG9hZGluZyBhY2NvdW50c+KApjwvZGl2PjsKICBpZiAoZXJyb3IpIHJldHVybiA8ZGl2IGNsYXNzTmFtZT0idGV4dC14cyBmb250LW1lZGl1bSB0ZXh0LXJlZC01MDAiPntlcnJvcn08L2Rpdj47CiAgaWYgKGFjY291bnRzLmxlbmd0aCA9PT0gMCkgcmV0dXJuIDxkaXYgY2xhc3NOYW1lPSJ0ZXh0LXhzIHRleHQtc2xhdGUtNDAwIj5ObyBhZCBhY2NvdW50cyBmb3VuZDwvZGl2PjsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMiI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJoLTIgdy0yIHJvdW5kZWQtZnVsbCBiZy1lbWVyYWxkLTQwMCIgLz4KICAgICAgPHNlbGVjdAogICAgICAgIHZhbHVlPXtzZWxlY3RlZEFjY291bnRJZCA/PyAiIn0KICAgICAgICBvbkNoYW5nZT17KGUpID0+IHNldFNlbGVjdGVkQWNjb3VudElkKGUudGFyZ2V0LnZhbHVlKX0KICAgICAgICBjbGFzc05hbWU9InJvdW5kZWQtbGcgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgYmctd2hpdGUgcHgtMyBweS0xLjUgdGV4dC1zbSBmb250LW1lZGl1bSB0ZXh0LXNsYXRlLTcwMCB0cmFuc2l0aW9uLWNvbG9ycyBob3Zlcjpib3JkZXItc2xhdGUtMzAwIgogICAgICA+CiAgICAgICAge2FjY291bnRzLm1hcCgoYWNjb3VudCkgPT4gKAogICAgICAgICAgPG9wdGlvbiBrZXk9e2FjY291bnQuaWR9IHZhbHVlPXthY2NvdW50LmlkfT4KICAgICAgICAgICAge2FjY291bnQubmFtZX0gKHthY2NvdW50LmN1cnJlbmN5fSkKICAgICAgICAgIDwvb3B0aW9uPgogICAgICAgICkpfQogICAgICA8L3NlbGVjdD4KICAgIDwvZGl2PgogICk7Cn0K"}
+"use client";
+
+import { useAccount } from "@/components/providers/AccountProvider";
+
+export function AccountSelector() {
+  const { accounts, selectedAccountId, setSelectedAccountId, loading, error } = useAccount();
+
+  if (loading) return <div className="flex items-center gap-2 text-xs text-slate-400"><div className="h-2 w-2 animate-pulse rounded-full bg-slate-300" />Loading accounts…</div>;
+  if (error) return <div className="text-xs font-medium text-red-500">{error}</div>;
+  if (accounts.length === 0) return <div className="text-xs text-slate-400">No ad accounts found</div>;
+
+  return (
+    <div className="flex items-center gap-2">
+      <div className="h-2 w-2 rounded-full bg-emerald-400" />
+      <select
+        value={selectedAccountId ?? ""}
+        onChange={(e) => setSelectedAccountId(e.target.value)}
+        className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300"
+      >
+        {accounts.map((account) => (
+          <option key={account.id} value={account.id}>
+            {account.name} ({account.currency})
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}

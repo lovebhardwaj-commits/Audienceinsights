@@ -1,1 +1,128 @@
-{"data":"aW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gIm5leHQvc2VydmVyIjsKaW1wb3J0IHsgZ2V0U2Vzc2lvbiwgaXNUb2tlbkV4cGlyaW5nU29vbiB9IGZyb20gIkAvbGliL3Nlc3Npb24iOwppbXBvcnQgeyBNZXRhQXBpRXJyb3IgfSBmcm9tICJAL2xpYi9tZXRhLWFwaSI7CmltcG9ydCB7IG5kanNvblJlc3BvbnNlIH0gZnJvbSAiQC9saWIvc3RyZWFtIjsKaW1wb3J0IHsgZ2V0QXVkaWVuY2VTZWdtZW50c1JlcG9ydCB9IGZyb20gIkAvbGliL3JlcG9ydHMvYXVkaWVuY2Utc2VnbWVudHMiOwppbXBvcnQgeyBnZXRDcmVhdGl2ZUNodXJuUmVwb3J0IH0gZnJvbSAiQC9saWIvcmVwb3J0cy9jcmVhdGl2ZS1jaHVybiI7CmltcG9ydCB7IGdldENyZWF0aXZlU2VnbWVudHNSZXBvcnQsIHR5cGUgRW50aXR5TGV2ZWwgfSBmcm9tICJAL2xpYi9yZXBvcnRzL2NyZWF0aXZlLXNlZ21lbnRzIjsKaW1wb3J0IHsgZ2V0Q29udmVyc2lvbldpbmRvd3NSZXBvcnQgfSBmcm9tICJAL2xpYi9yZXBvcnRzL2NvbnZlcnNpb24td2luZG93cyI7CmltcG9ydCB7IGdldFBhcnRuZXJzaGlwQWRzUmVwb3J0IH0gZnJvbSAiQC9saWIvcmVwb3J0cy9wYXJ0bmVyc2hpcC1hZHMiOwppbXBvcnQgeyBnZXRSb2xsaW5nUmVhY2hSZXBvcnQgfSBmcm9tICJAL2xpYi9yZXBvcnRzL3JvbGxpbmctcmVhY2giOwppbXBvcnQgeyBnZXROZXROZXdSZWFjaFJlcG9ydCB9IGZyb20gIkAvbGliL3JlcG9ydHMvbmV0LW5ldy1yZWFjaCI7CmltcG9ydCB7IGdldENhbXBhaWduT3ZlcmxhcFJlcG9ydCwgdHlwZSBPdmVybGFwTGV2ZWwgfSBmcm9tICJAL2xpYi9yZXBvcnRzL2NhbXBhaWduLW92ZXJsYXAiOwppbXBvcnQgeyBmZXRjaENhbXBhaWduTGlzdCB9IGZyb20gIkAvbGliL3JlcG9ydHMvc2hhcmVkIjsKCmV4cG9ydCBjb25zdCBtYXhEdXJhdGlvbiA9IDEyMDsKCnR5cGUgUm91dGVDb250ZXh0ID0geyBwYXJhbXM6IFByb21pc2U8eyB0eXBlOiBzdHJpbmcgfT4gfTsKCmNvbnN0IFNUUkVBTUlOR19UWVBFUyA9IG5ldyBTZXQoWwogICJyb2xsaW5nLXJlYWNoIiwKICAibmV0LW5ldy1yZWFjaCIsCiAgImNhbXBhaWduLW92ZXJsYXAiLApdKTsKCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBHRVQocmVxdWVzdDogTmV4dFJlcXVlc3QsIGNvbnRleHQ6IFJvdXRlQ29udGV4dCkgewogIGNvbnN0IHsgdHlwZSB9ID0gYXdhaXQgY29udGV4dC5wYXJhbXM7CiAgY29uc3Qgc2Vzc2lvbiA9IGF3YWl0IGdldFNlc3Npb24oKTsKICBpZiAoIXNlc3Npb24uYWNjZXNzVG9rZW4pIHsKICAgIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGVycm9yOiAiTm90IGF1dGhlbnRpY2F0ZWQiIH0sIHsgc3RhdHVzOiA0MDEgfSk7CiAgfQogIGNvbnN0IHRva2VuID0gc2Vzc2lvbi5hY2Nlc3NUb2tlbjsKCiAgY29uc3Qgc2VhcmNoUGFyYW1zID0gcmVxdWVzdC5uZXh0VXJsLnNlYXJjaFBhcmFtczsKICBjb25zdCBhY2NvdW50SWQgPSBzZWFyY2hQYXJhbXMuZ2V0KCJhY2NvdW50SWQiKTsKICBpZiAoIWFjY291bnRJZCkgewogICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6ICJhY2NvdW50SWQgaXMgcmVxdWlyZWQiIH0sIHsgc3RhdHVzOiA0MDAgfSk7CiAgfQogIGNvbnN0IHNpbmNlID0gc2VhcmNoUGFyYW1zLmdldCgic2luY2UiKTsKICBjb25zdCB1bnRpbCA9IHNlYXJjaFBhcmFtcy5nZXQoInVudGlsIik7CiAgY29uc3QgcmFuZ2UgPSBzaW5jZSAmJiB1bnRpbCA/IHsgc2luY2UsIHVudGlsIH0gOiBudWxsOwoKICBpZiAoU1RSRUFNSU5HX1RZUEVTLmhhcyh0eXBlKSkgewogICAgaWYgKCFyYW5nZSkgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6ICJzaW5jZSBhbmQgdW50aWwgYXJlIHJlcXVpcmVkIiB9LCB7IHN0YXR1czogNDAwIH0pOwogICAgcmV0dXJuIG5kanNvblJlc3BvbnNlKChlbWl0KSA9PiBydW5TdHJlYW1pbmdSZXBvcnQodHlwZSwgdG9rZW4sIGFjY291bnRJZCwgcmFuZ2UsIHNlYXJjaFBhcmFtcywgZW1pdCkpOwogIH0KCiAgdHJ5IHsKICAgIGNvbnN0IGRhdGEgPSBhd2FpdCBydW5Kc29uUmVwb3J0KHR5cGUsIHRva2VuLCBhY2NvdW50SWQsIHJhbmdlLCBzZWFyY2hQYXJhbXMpOwogICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZGF0YSwgdG9rZW5FeHBpcmluZ1Nvb246IGlzVG9rZW5FeHBpcmluZ1Nvb24oc2Vzc2lvbi50b2tlbkV4cGlyZXNBdCkgfSk7CiAgfSBjYXRjaCAoZXJyKSB7CiAgICBpZiAoZXJyIGluc3RhbmNlb2YgTWV0YUFwaUVycm9yICYmIGVyci5pc0F1dGhFcnJvcikgewogICAgICByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogZXJyLm1lc3NhZ2UgfSwgeyBzdGF0dXM6IDQwMSB9KTsKICAgIH0KICAgIGlmIChlcnIgaW5zdGFuY2VvZiBOb3RGb3VuZEVycm9yKSB7CiAgICAgIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGVycm9yOiBlcnIubWVzc2FnZSB9LCB7IHN0YXR1czogNDA0IH0pOwogICAgfQogICAgY29uc29sZS5lcnJvcihgUmVwb3J0ICIke3R5cGV9IiBmYWlsZWQ6YCwgZXJyKTsKICAgIGNvbnN0IG1lc3NhZ2UgPSBlcnIgaW5zdGFuY2VvZiBFcnJvciA/IGVyci5tZXNzYWdlIDogIlJlcG9ydCBmYWlsZWQiOwogICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6IG1lc3NhZ2UgfSwgeyBzdGF0dXM6IDUwMiB9KTsKICB9Cn0KCmFzeW5jIGZ1bmN0aW9uIHJ1bkpzb25SZXBvcnQoCiAgdHlwZTogc3RyaW5nLAogIHRva2VuOiBzdHJpbmcsCiAgYWNjb3VudElkOiBzdHJpbmcsCiAgcmFuZ2U6IHsgc2luY2U6IHN0cmluZzsgdW50aWw6IHN0cmluZyB9IHwgbnVsbCwKICBzZWFyY2hQYXJhbXM6IFVSTFNlYXJjaFBhcmFtcwopOiBQcm9taXNlPHVua25vd24+IHsKICBzd2l0Y2ggKHR5cGUpIHsKICAgIGNhc2UgImNhbXBhaWduLWxpc3QiOgogICAgICByZXR1cm4gZmV0Y2hDYW1wYWlnbkxpc3QodG9rZW4sIGFjY291bnRJZCk7CiAgICBjYXNlICJhdWRpZW5jZS1zZWdtZW50cyI6IHsKICAgICAgcmVxdWlyZVJhbmdlKHJhbmdlKTsKICAgICAgcmV0dXJuIGdldEF1ZGllbmNlU2VnbWVudHNSZXBvcnQodG9rZW4sIGFjY291bnRJZCwgcmFuZ2UpOwogICAgfQogICAgY2FzZSAiY3JlYXRpdmUtY2h1cm4iOiB7CiAgICAgIHJlcXVpcmVSYW5nZShyYW5nZSk7CiAgICAgIHJldHVybiBnZXRDcmVhdGl2ZUNodXJuUmVwb3J0KHRva2VuLCBhY2NvdW50SWQsIHJhbmdlKTsKICAgIH0KICAgIGNhc2UgImNyZWF0aXZlLXNlZ21lbnRzIjogewogICAgICByZXF1aXJlUmFuZ2UocmFuZ2UpOwogICAgICBjb25zdCBlbnRpdHlMZXZlbCA9IChzZWFyY2hQYXJhbXMuZ2V0KCJsZXZlbCIpIGFzIEVudGl0eUxldmVsKSA/PyAiYWQiOwogICAgICByZXR1cm4gZ2V0Q3JlYXRpdmVTZWdtZW50c1JlcG9ydCh0b2tlbiwgYWNjb3VudElkLCByYW5nZSwgZW50aXR5TGV2ZWwpOwogICAgfQogICAgY2FzZSAiY29udmVyc2lvbi13aW5kb3dzIjogewogICAgICByZXF1aXJlUmFuZ2UocmFuZ2UpOwogICAgICByZXR1cm4gZ2V0Q29udmVyc2lvbldpbmRvd3NSZXBvcnQodG9rZW4sIGFjY291bnRJZCwgcmFuZ2UpOwogICAgfQogICAgY2FzZSAicGFydG5lcnNoaXAtYWRzIjogewogICAgICByZXF1aXJlUmFuZ2UocmFuZ2UpOwogICAgICByZXR1cm4gZ2V0UGFydG5lcnNoaXBBZHNSZXBvcnQodG9rZW4sIGFjY291bnRJZCwgcmFuZ2UpOwogICAgfQogICAgZGVmYXVsdDoKICAgICAgdGhyb3cgbmV3IE5vdEZvdW5kRXJyb3IoYFVua25vd24gcmVwb3J0IHR5cGU6ICR7dHlwZX1gKTsKICB9Cn0KCmFzeW5jIGZ1bmN0aW9uIHJ1blN0cmVhbWluZ1JlcG9ydCgKICB0eXBlOiBzdHJpbmcsCiAgdG9rZW46IHN0cmluZywKICBhY2NvdW50SWQ6IHN0cmluZywKICByYW5nZTogeyBzaW5jZTogc3RyaW5nOyB1bnRpbDogc3RyaW5nIH0sCiAgc2VhcmNoUGFyYW1zOiBVUkxTZWFyY2hQYXJhbXMsCiAgZW1pdDogKHByb2dyZXNzOiB7IGN1cnJlbnQ6IG51bWJlcjsgdG90YWw6IG51bWJlcjsgbGFiZWw6IHN0cmluZyB9KSA9PiB2b2lkCik6IFByb21pc2U8dW5rbm93bj4gewogIHN3aXRjaCAodHlwZSkgewogICAgY2FzZSAicm9sbGluZy1yZWFjaCI6CiAgICAgIHJldHVybiBnZXRSb2xsaW5nUmVhY2hSZXBvcnQodG9rZW4sIGFjY291bnRJZCwgcmFuZ2UsIGVtaXQpOwogICAgY2FzZSAibmV0LW5ldy1yZWFjaCI6IHsKICAgICAgY29uc3QgbG9va2JhY2tEYXlzID0gTnVtYmVyKHNlYXJjaFBhcmFtcy5nZXQoImxvb2tiYWNrRGF5cyIpID8/IDE4MCk7CiAgICAgIHJldHVybiBnZXROZXROZXdSZWFjaFJlcG9ydCh0b2tlbiwgYWNjb3VudElkLCByYW5nZSwgbG9va2JhY2tEYXlzLCBlbWl0KTsKICAgIH0KICAgIGNhc2UgImNhbXBhaWduLW92ZXJsYXAiOiB7CiAgICAgIGNvbnN0IGxldmVsID0gKHNlYXJjaFBhcmFtcy5nZXQoImxldmVsIikgYXMgT3ZlcmxhcExldmVsKSA/PyAiY2FtcGFpZ24iOwogICAgICBjb25zdCB0b3BOID0gTnVtYmVyKHNlYXJjaFBhcmFtcy5nZXQoInRvcE4iKSA/PyAxNSk7CiAgICAgIHJldHVybiBnZXRDYW1wYWlnbk92ZXJsYXBSZXBvcnQodG9rZW4sIGFjY291bnRJZCwgcmFuZ2UsIHsgbGV2ZWwsIHRvcE4sIG1pblJlYWNoOiAxMDAwIH0sIGVtaXQpOwogICAgfQogICAgZGVmYXVsdDoKICAgICAgdGhyb3cgbmV3IE5vdEZvdW5kRXJyb3IoYFVua25vd24gc3RyZWFtaW5nIHJlcG9ydCB0eXBlOiAke3R5cGV9YCk7CiAgfQp9CgpjbGFzcyBOb3RGb3VuZEVycm9yIGV4dGVuZHMgRXJyb3Ige30KCmZ1bmN0aW9uIHJlcXVpcmVSYW5nZShyYW5nZTogeyBzaW5jZTogc3RyaW5nOyB1bnRpbDogc3RyaW5nIH0gfCBudWxsKTogYXNzZXJ0cyByYW5nZSBpcyB7IHNpbmNlOiBzdHJpbmc7IHVudGlsOiBzdHJpbmcgfSB7CiAgaWYgKCFyYW5nZSkgdGhyb3cgbmV3IEVycm9yKCJzaW5jZSBhbmQgdW50aWwgYXJlIHJlcXVpcmVkIik7Cn0K"}
+import { NextRequest, NextResponse } from "next/server";
+import { getSession, isTokenExpiringSoon } from "@/lib/session";
+import { MetaApiError } from "@/lib/meta-api";
+import { ndjsonResponse } from "@/lib/stream";
+import { getAudienceSegmentsReport } from "@/lib/reports/audience-segments";
+import { getCreativeChurnReport } from "@/lib/reports/creative-churn";
+import { getCreativeSegmentsReport, type EntityLevel } from "@/lib/reports/creative-segments";
+import { getConversionWindowsReport } from "@/lib/reports/conversion-windows";
+import { getPartnershipAdsReport } from "@/lib/reports/partnership-ads";
+import { getRollingReachReport } from "@/lib/reports/rolling-reach";
+import { getNetNewReachReport } from "@/lib/reports/net-new-reach";
+import { getCampaignOverlapReport, type OverlapLevel } from "@/lib/reports/campaign-overlap";
+import { fetchCampaignList } from "@/lib/reports/shared";
+
+export const maxDuration = 120;
+
+type RouteContext = { params: Promise<{ type: string }> };
+
+const STREAMING_TYPES = new Set([
+  "rolling-reach",
+  "net-new-reach",
+  "campaign-overlap",
+]);
+
+export async function GET(request: NextRequest, context: RouteContext) {
+  const { type } = await context.params;
+  const session = await getSession();
+  if (!session.accessToken) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  }
+  const token = session.accessToken;
+
+  const searchParams = request.nextUrl.searchParams;
+  const accountId = searchParams.get("accountId");
+  if (!accountId) {
+    return NextResponse.json({ error: "accountId is required" }, { status: 400 });
+  }
+  const since = searchParams.get("since");
+  const until = searchParams.get("until");
+  const range = since && until ? { since, until } : null;
+
+  if (STREAMING_TYPES.has(type)) {
+    if (!range) return NextResponse.json({ error: "since and until are required" }, { status: 400 });
+    return ndjsonResponse((emit) => runStreamingReport(type, token, accountId, range, searchParams, emit));
+  }
+
+  try {
+    const data = await runJsonReport(type, token, accountId, range, searchParams);
+    return NextResponse.json({ data, tokenExpiringSoon: isTokenExpiringSoon(session.tokenExpiresAt) });
+  } catch (err) {
+    if (err instanceof MetaApiError && err.isAuthError) {
+      return NextResponse.json({ error: err.message }, { status: 401 });
+    }
+    if (err instanceof NotFoundError) {
+      return NextResponse.json({ error: err.message }, { status: 404 });
+    }
+    console.error(`Report "${type}" failed:`, err);
+    const message = err instanceof Error ? err.message : "Report failed";
+    return NextResponse.json({ error: message }, { status: 502 });
+  }
+}
+
+async function runJsonReport(
+  type: string,
+  token: string,
+  accountId: string,
+  range: { since: string; until: string } | null,
+  searchParams: URLSearchParams
+): Promise<unknown> {
+  switch (type) {
+    case "campaign-list":
+      return fetchCampaignList(token, accountId);
+    case "audience-segments": {
+      requireRange(range);
+      return getAudienceSegmentsReport(token, accountId, range);
+    }
+    case "creative-churn": {
+      requireRange(range);
+      return getCreativeChurnReport(token, accountId, range);
+    }
+    case "creative-segments": {
+      requireRange(range);
+      const entityLevel = (searchParams.get("level") as EntityLevel) ?? "ad";
+      return getCreativeSegmentsReport(token, accountId, range, entityLevel);
+    }
+    case "conversion-windows": {
+      requireRange(range);
+      return getConversionWindowsReport(token, accountId, range);
+    }
+    case "partnership-ads": {
+      requireRange(range);
+      return getPartnershipAdsReport(token, accountId, range);
+    }
+    default:
+      throw new NotFoundError(`Unknown report type: ${type}`);
+  }
+}
+
+async function runStreamingReport(
+  type: string,
+  token: string,
+  accountId: string,
+  range: { since: string; until: string },
+  searchParams: URLSearchParams,
+  emit: (progress: { current: number; total: number; label: string }) => void
+): Promise<unknown> {
+  switch (type) {
+    case "rolling-reach":
+      return getRollingReachReport(token, accountId, range, emit);
+    case "net-new-reach": {
+      const lookbackDays = Number(searchParams.get("lookbackDays") ?? 180);
+      return getNetNewReachReport(token, accountId, range, lookbackDays, emit);
+    }
+    case "campaign-overlap": {
+      const level = (searchParams.get("level") as OverlapLevel) ?? "campaign";
+      const topN = Number(searchParams.get("topN") ?? 15);
+      return getCampaignOverlapReport(token, accountId, range, { level, topN, minReach: 1000 }, emit);
+    }
+    default:
+      throw new NotFoundError(`Unknown streaming report type: ${type}`);
+  }
+}
+
+class NotFoundError extends Error {}
+
+function requireRange(range: { since: string; until: string } | null): asserts range is { since: string; until: string } {
+  if (!range) throw new Error("since and until are required");
+}

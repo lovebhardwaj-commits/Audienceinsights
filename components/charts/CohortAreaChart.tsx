@@ -1,1 +1,107 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgQXJlYSwgQXJlYUNoYXJ0LCBCcnVzaCwgQ2FydGVzaWFuR3JpZCwgUmVzcG9uc2l2ZUNvbnRhaW5lciwgVG9vbHRpcCwgWEF4aXMsIFlBeGlzIH0gZnJvbSAicmVjaGFydHMiOwppbXBvcnQgeyBDSEFSVF9DSFJPTUUsIENIQVJUX0lOSyB9IGZyb20gIkAvbGliL2NoYXJ0LXRoZW1lIjsKaW1wb3J0IHsgdXNlUmVkdWNlZE1vdGlvbiB9IGZyb20gIkAvbGliL2hvb2tzL3VzZVJlZHVjZWRNb3Rpb24iOwppbXBvcnQgeyBmb3JtYXRDdXJyZW5jeSwgZm9ybWF0Q3VycmVuY3lDb21wYWN0IH0gZnJvbSAiQC9saWIvZm9ybWF0IjsKCmV4cG9ydCBpbnRlcmZhY2UgQ29ob3J0U2VyaWVzIHsKICBrZXk6IHN0cmluZzsKICBsYWJlbDogc3RyaW5nOwogIGNvbG9yOiBzdHJpbmc7Cn0KCmludGVyZmFjZSBDb2hvcnRBcmVhQ2hhcnRQcm9wcyB7CiAgZGF0YTogQXJyYXk8UmVjb3JkPHN0cmluZywgc3RyaW5nIHwgbnVtYmVyPj47CiAgeEtleTogc3RyaW5nOwogIHNlcmllczogQ29ob3J0U2VyaWVzW107IC8vIHN0YWNrIG9yZGVyOiBmaXJzdCA9IGJvdHRvbSBsYXllcgogIGhlaWdodD86IG51bWJlcjsKICAvKiogRmlyZXMgYXMgdGhlIGJydXNoIGhhbmRsZXMgbW92ZSDigJQgaW5kZXggcmFuZ2UgaW50byBgZGF0YWAuICovCiAgb25SYW5nZUNoYW5nZT86IChzdGFydEluZGV4OiBudW1iZXIsIGVuZEluZGV4OiBudW1iZXIpID0+IHZvaWQ7Cn0KCmNvbnN0IHRpY2tTdHlsZSA9IHsgZm9udFNpemU6IDExLCBmaWxsOiBDSEFSVF9JTksubXV0ZWQgfTsKCmludGVyZmFjZSBUb29sdGlwRW50cnkgewogIGRhdGFLZXk/OiBzdHJpbmcgfCBudW1iZXI7CiAgbmFtZT86IHN0cmluZyB8IG51bWJlcjsKICB2YWx1ZT86IG51bWJlciB8IHN0cmluZyB8IEFycmF5PG51bWJlciB8IHN0cmluZz47CiAgY29sb3I/OiBzdHJpbmc7Cn0KCi8qKiBXaGl0ZSBjYXJkLCBib2xkIGRhdGUgaGVhZGVyLCBvbmUgc3dhdGNoK2xhYmVsK3ZhbHVlIHJvdyBwZXIgbm9uLW5lZ2xpZ2libGUKICogIGNvaG9ydCwgb3JkZXJlZCB0byBtYXRjaCB0aGUgc3RhY2suICovCmZ1bmN0aW9uIENvaG9ydFRvb2x0aXAoeyBhY3RpdmUsIGxhYmVsLCBwYXlsb2FkIH06IHsgYWN0aXZlPzogYm9vbGVhbjsgbGFiZWw/OiBzdHJpbmcgfCBudW1iZXI7IHBheWxvYWQ/OiBUb29sdGlwRW50cnlbXSB9KSB7CiAgaWYgKCFhY3RpdmUgfHwgIXBheWxvYWQgfHwgcGF5bG9hZC5sZW5ndGggPT09IDApIHJldHVybiBudWxsOwogIGNvbnN0IHJvd3MgPSBwYXlsb2FkLmZpbHRlcigoZSkgPT4gTnVtYmVyKEFycmF5LmlzQXJyYXkoZS52YWx1ZSkgPyBlLnZhbHVlWzBdIDogZS52YWx1ZSA/PyAwKSA+PSAxKTsKICBpZiAocm93cy5sZW5ndGggPT09IDApIHJldHVybiBudWxsOwogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0ibWluLXctWzIwMHB4XSByb3VuZGVkLXhsIGJvcmRlciBib3JkZXItc2xhdGUtMjAwIGJnLXdoaXRlIHB4LTMuNSBweS0yLjUgc2hhZG93LXhsIHNoYWRvdy1zbGF0ZS0zMDAvNDAiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0idGV4dC1bMTJweF0gZm9udC1ib2xkIHRleHQtc2xhdGUtODAwIj57bGFiZWx9PC9kaXY+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC0xLjUgc3BhY2UteS0xIj4KICAgICAgICB7cm93cy5tYXAoKGVudHJ5LCBpKSA9PiB7CiAgICAgICAgICBjb25zdCByYXcgPSBOdW1iZXIoQXJyYXkuaXNBcnJheShlbnRyeS52YWx1ZSkgPyBlbnRyeS52YWx1ZVswXSA6IGVudHJ5LnZhbHVlID8/IDApOwogICAgICAgICAgcmV0dXJuICgKICAgICAgICAgICAgPGRpdiBrZXk9e1N0cmluZyhlbnRyeS5kYXRhS2V5ID8/IGkpfSBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGdhcC0yIHRleHQtWzEycHhdIj4KICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImgtMi41IHctMi41IHNocmluay0wIHJvdW5kZWQtWzNweF0iIHN0eWxlPXt7IGJhY2tncm91bmQ6IGVudHJ5LmNvbG9yIH19IC8+CiAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJ0ZXh0LXNsYXRlLTUwMCI+e2VudHJ5Lm5hbWV9PC9zcGFuPgogICAgICAgICAgICAgIHsvKiB3aG9sZSBydXBlZXMg4oCUIHBhaXNlIHByZWNpc2lvbiBpcyBub2lzZSBvbiBhIHNwZW5kLXRyZW5kIGNoYXJ0ICovfQogICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0ibWwtYXV0byBwbC00IGZvbnQtYm9sZCB0YWJ1bGFyLW51bXMgdGV4dC1zbGF0ZS04MDAiPntmb3JtYXRDdXJyZW5jeShNYXRoLnJvdW5kKHJhdykpfTwvc3Bhbj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICApOwogICAgICAgIH0pfQogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICk7Cn0KCmV4cG9ydCBmdW5jdGlvbiBDb2hvcnRBcmVhQ2hhcnQoeyBkYXRhLCB4S2V5LCBzZXJpZXMsIGhlaWdodCA9IDM2MCwgb25SYW5nZUNoYW5nZSB9OiBDb2hvcnRBcmVhQ2hhcnRQcm9wcykgewogIC8vIFtQTSBFTkhBTkNFTUVOVF0g4oCUIGNoYXJ0IGFuaW1hdGlvbnMgcmVzcGVjdCB0aGUgT1MgcmVkdWNlZC1tb3Rpb24gc2V0dGluZwogIGNvbnN0IGFuaW1hdGUgPSAhdXNlUmVkdWNlZE1vdGlvbigpOwogIHJldHVybiAoCiAgICA8ZGl2IHN0eWxlPXt7IHdpZHRoOiAiMTAwJSIsIGhlaWdodDogaGVpZ2h0ICsgNTIgfX0+CiAgICAgIDxSZXNwb25zaXZlQ29udGFpbmVyPgogICAgICAgIDxBcmVhQ2hhcnQgZGF0YT17ZGF0YX0gbWFyZ2luPXt7IHRvcDogOCwgcmlnaHQ6IDE2LCBsZWZ0OiA0LCBib3R0b206IDAgfX0+CiAgICAgICAgICA8Q2FydGVzaWFuR3JpZCB2ZXJ0aWNhbD17ZmFsc2V9IHN0cm9rZT17Q0hBUlRfQ0hST01FLmdyaWRsaW5lfSAvPgogICAgICAgICAgPFhBeGlzIGRhdGFLZXk9e3hLZXl9IHRpY2s9e3RpY2tTdHlsZX0gYXhpc0xpbmU9e3sgc3Ryb2tlOiBDSEFSVF9DSFJPTUUuYXhpcyB9fSB0aWNrTGluZT17ZmFsc2V9IG1pblRpY2tHYXA9ezQ4fSAvPgogICAgICAgICAgPFlBeGlzCiAgICAgICAgICAgIHRpY2s9e3RpY2tTdHlsZX0KICAgICAgICAgICAgYXhpc0xpbmU9e2ZhbHNlfQogICAgICAgICAgICB0aWNrTGluZT17ZmFsc2V9CiAgICAgICAgICAgIHdpZHRoPXs2Mn0KICAgICAgICAgICAgdGlja0Zvcm1hdHRlcj17KHY6IG51bWJlcikgPT4gZm9ybWF0Q3VycmVuY3lDb21wYWN0KHYpfQogICAgICAgICAgLz4KICAgICAgICAgIDxUb29sdGlwIGNvbnRlbnQ9ezxDb2hvcnRUb29sdGlwIC8+fSAvPgogICAgICAgICAge3Nlcmllcy5tYXAoKHMpID0+ICgKICAgICAgICAgICAgPEFyZWEKICAgICAgICAgICAgICBrZXk9e3Mua2V5fQogICAgICAgICAgICAgIHR5cGU9Im1vbm90b25lIgogICAgICAgICAgICAgIGRhdGFLZXk9e3Mua2V5fQogICAgICAgICAgICAgIG5hbWU9e3MubGFiZWx9CiAgICAgICAgICAgICAgc3RhY2tJZD0iMSIKICAgICAgICAgICAgICBzdHJva2U9e3MuY29sb3J9CiAgICAgICAgICAgICAgc3Ryb2tlV2lkdGg9ezEuNX0KICAgICAgICAgICAgICBmaWxsPXtzLmNvbG9yfQogICAgICAgICAgICAgIGZpbGxPcGFjaXR5PXswLjY1fQogICAgICAgICAgICAgIGlzQW5pbWF0aW9uQWN0aXZlPXthbmltYXRlfQogICAgICAgICAgICAgIGFuaW1hdGlvbkR1cmF0aW9uPXs2MDB9CiAgICAgICAgICAgICAgYW5pbWF0aW9uRWFzaW5nPSJlYXNlLW91dCIKICAgICAgICAgICAgLz4KICAgICAgICAgICkpfQogICAgICAgICAgPEJydXNoCiAgICAgICAgICAgIGRhdGFLZXk9e3hLZXl9CiAgICAgICAgICAgIGhlaWdodD17NDB9CiAgICAgICAgICAgIHN0cm9rZT0iIzI1NjNFQiIKICAgICAgICAgICAgZmlsbD0iI0Y4RkFGQyIKICAgICAgICAgICAgdHJhdmVsbGVyV2lkdGg9ezEwfQogICAgICAgICAgICBvbkNoYW5nZT17KHJhbmdlKSA9PiB7CiAgICAgICAgICAgICAgaWYgKG9uUmFuZ2VDaGFuZ2UgJiYgcmFuZ2UgJiYgcmFuZ2Uuc3RhcnRJbmRleCAhPT0gdW5kZWZpbmVkICYmIHJhbmdlLmVuZEluZGV4ICE9PSB1bmRlZmluZWQpIHsKICAgICAgICAgICAgICAgIG9uUmFuZ2VDaGFuZ2UocmFuZ2Uuc3RhcnRJbmRleCwgcmFuZ2UuZW5kSW5kZXgpOwogICAgICAgICAgICAgIH0KICAgICAgICAgICAgfX0KICAgICAgICAgIC8+CiAgICAgICAgPC9BcmVhQ2hhcnQ+CiAgICAgIDwvUmVzcG9uc2l2ZUNvbnRhaW5lcj4KICAgIDwvZGl2PgogICk7Cn0K"}
+"use client";
+
+import { Area, AreaChart, Brush, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
+import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+import { formatCurrency, formatCurrencyCompact } from "@/lib/format";
+
+export interface CohortSeries {
+  key: string;
+  label: string;
+  color: string;
+}
+
+interface CohortAreaChartProps {
+  data: Array<Record<string, string | number>>;
+  xKey: string;
+  series: CohortSeries[]; // stack order: first = bottom layer
+  height?: number;
+  /** Fires as the brush handles move — index range into `data`. */
+  onRangeChange?: (startIndex: number, endIndex: number) => void;
+}
+
+const tickStyle = { fontSize: 11, fill: CHART_INK.muted };
+
+interface TooltipEntry {
+  dataKey?: string | number;
+  name?: string | number;
+  value?: number | string | Array<number | string>;
+  color?: string;
+}
+
+/** White card, bold date header, one swatch+label+value row per non-negligible
+ *  cohort, ordered to match the stack. */
+function CohortTooltip({ active, label, payload }: { active?: boolean; label?: string | number; payload?: TooltipEntry[] }) {
+  if (!active || !payload || payload.length === 0) return null;
+  const rows = payload.filter((e) => Number(Array.isArray(e.value) ? e.value[0] : e.value ?? 0) >= 1);
+  if (rows.length === 0) return null;
+  return (
+    <div className="min-w-[200px] rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-xl shadow-slate-300/40">
+      <div className="text-[12px] font-bold text-slate-800">{label}</div>
+      <div className="mt-1.5 space-y-1">
+        {rows.map((entry, i) => {
+          const raw = Number(Array.isArray(entry.value) ? entry.value[0] : entry.value ?? 0);
+          return (
+            <div key={String(entry.dataKey ?? i)} className="flex items-center gap-2 text-[12px]">
+              <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: entry.color }} />
+              <span className="text-slate-500">{entry.name}</span>
+              {/* whole rupees — paise precision is noise on a spend-trend chart */}
+              <span className="ml-auto pl-4 font-bold tabular-nums text-slate-800">{formatCurrency(Math.round(raw))}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export function CohortAreaChart({ data, xKey, series, height = 360, onRangeChange }: CohortAreaChartProps) {
+  // [PM ENHANCEMENT] — chart animations respect the OS reduced-motion setting
+  const animate = !useReducedMotion();
+  return (
+    <div style={{ width: "100%", height: height + 52 }}>
+      <ResponsiveContainer>
+        <AreaChart data={data} margin={{ top: 8, right: 16, left: 4, bottom: 0 }}>
+          <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
+          <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} minTickGap={48} />
+          <YAxis
+            tick={tickStyle}
+            axisLine={false}
+            tickLine={false}
+            width={62}
+            tickFormatter={(v: number) => formatCurrencyCompact(v)}
+          />
+          <Tooltip content={<CohortTooltip />} />
+          {series.map((s) => (
+            <Area
+              key={s.key}
+              type="monotone"
+              dataKey={s.key}
+              name={s.label}
+              stackId="1"
+              stroke={s.color}
+              strokeWidth={1.5}
+              fill={s.color}
+              fillOpacity={0.65}
+              isAnimationActive={animate}
+              animationDuration={600}
+              animationEasing="ease-out"
+            />
+          ))}
+          <Brush
+            dataKey={xKey}
+            height={40}
+            stroke="#2563EB"
+            fill="#F8FAFC"
+            travellerWidth={10}
+            onChange={(range) => {
+              if (onRangeChange && range && range.startIndex !== undefined && range.endIndex !== undefined) {
+                onRangeChange(range.startIndex, range.endIndex);
+              }
+            }}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}

@@ -1,1 +1,21 @@
-{"data":"aW50ZXJmYWNlIFNrZWxldG9uUHJvcHMgewogIGNsYXNzTmFtZT86IHN0cmluZzsKfQoKZXhwb3J0IGZ1bmN0aW9uIFNrZWxldG9uKHsgY2xhc3NOYW1lID0gIiIgfTogU2tlbGV0b25Qcm9wcykgewogIHJldHVybiA8ZGl2IGNsYXNzTmFtZT17YGFuaW1hdGUtcHVsc2Ugcm91bmRlZC1tZCBiZy1zbGF0ZS0xMDAgJHtjbGFzc05hbWV9YH0gLz47Cn0KCmV4cG9ydCBmdW5jdGlvbiBDaGFydFNrZWxldG9uKHsgaGVpZ2h0ID0gMzYwIH06IHsgaGVpZ2h0PzogbnVtYmVyIH0pIHsKICByZXR1cm4gKAogICAgPGRpdiBzdHlsZT17eyBoZWlnaHQgfX0gY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWVuZCBnYXAtMyBweC00IHBiLTYgcHQtNCI+CiAgICAgIHtbMzUsIDU1LCA0MCwgNzIsIDQ4LCA2NSwgNDIsIDgwLCA1MiwgNjhdLm1hcCgoaCwgaSkgPT4gKAogICAgICAgIDxkaXYKICAgICAgICAgIGtleT17aX0KICAgICAgICAgIGNsYXNzTmFtZT0iZmxleC0xIGFuaW1hdGUtcHVsc2Ugcm91bmRlZC10LW1kIGJnLWdyYWRpZW50LXRvLXQgZnJvbS1zbGF0ZS0xMDAgdG8tc2xhdGUtNTAiCiAgICAgICAgICBzdHlsZT17eyBoZWlnaHQ6IGAke2h9JWAsIGFuaW1hdGlvbkRlbGF5OiBgJHtpICogODB9bXNgIH19CiAgICAgICAgLz4KICAgICAgKSl9CiAgICA8L2Rpdj4KICApOwp9Cg=="}
+interface SkeletonProps {
+  className?: string;
+}
+
+export function Skeleton({ className = "" }: SkeletonProps) {
+  return <div className={`animate-pulse rounded-md bg-slate-100 ${className}`} />;
+}
+
+export function ChartSkeleton({ height = 360 }: { height?: number }) {
+  return (
+    <div style={{ height }} className="flex items-end gap-3 px-4 pb-6 pt-4">
+      {[35, 55, 40, 72, 48, 65, 42, 80, 52, 68].map((h, i) => (
+        <div
+          key={i}
+          className="flex-1 animate-pulse rounded-t-md bg-gradient-to-t from-slate-100 to-slate-50"
+          style={{ height: `${h}%`, animationDelay: `${i * 80}ms` }}
+        />
+      ))}
+    </div>
+  );
+}

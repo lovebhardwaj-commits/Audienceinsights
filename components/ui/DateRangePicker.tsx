@@ -1,1 +1,179 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VSZWYsIHVzZVN0YXRlIH0gZnJvbSAicmVhY3QiOwppbXBvcnQgdHlwZSB7IERhdGVSYW5nZSB9IGZyb20gIkAvbGliL3R5cGVzIjsKaW1wb3J0IHsgbGFzdE5Nb250aHMgfSBmcm9tICJAL2xpYi9kYXRlcyI7CgppbnRlcmZhY2UgRGF0ZVJhbmdlUGlja2VyUHJvcHMgewogIHZhbHVlOiBEYXRlUmFuZ2UgfCBudWxsOwogIG9uQ2hhbmdlOiAocmFuZ2U6IERhdGVSYW5nZSkgPT4gdm9pZDsKfQoKLy8gUHJldmlvdXMgMeKAkzEzIGNvbXBsZXRlIG1vbnRocyAoMTMgPSBtYXggbG9va2JhY2sgZm9yIE1ldGEgcmVhY2ggZGF0YSkKY29uc3QgTU9OVEhfT1BUSU9OUyA9IEFycmF5LmZyb20oeyBsZW5ndGg6IDEzIH0sIChfLCBpKSA9PiBpICsgMSk7CgpmdW5jdGlvbiBmb3JtYXRGdWxsUmFuZ2UocmFuZ2U6IERhdGVSYW5nZSk6IHN0cmluZyB7CiAgY29uc3Qgb3B0czogSW50bC5EYXRlVGltZUZvcm1hdE9wdGlvbnMgPSB7IG1vbnRoOiAic2hvcnQiLCBkYXk6ICJudW1lcmljIiwgeWVhcjogIm51bWVyaWMiLCB0aW1lWm9uZTogIlVUQyIgfTsKICBjb25zdCBzaW5jZSA9IG5ldyBEYXRlKHJhbmdlLnNpbmNlICsgIlQwMDowMDowMFoiKS50b0xvY2FsZURhdGVTdHJpbmcoImVuLUlOIiwgb3B0cyk7CiAgY29uc3QgdW50aWwgPSBuZXcgRGF0ZShyYW5nZS51bnRpbCArICJUMDA6MDA6MDBaIikudG9Mb2NhbGVEYXRlU3RyaW5nKCJlbi1JTiIsIG9wdHMpOwogIHJldHVybiBgJHtzaW5jZX0g4oCTICR7dW50aWx9YDsKfQoKZnVuY3Rpb24gQ2FsZW5kYXJJY29uKHsgY2xhc3NOYW1lIH06IHsgY2xhc3NOYW1lPzogc3RyaW5nIH0pIHsKICByZXR1cm4gKAogICAgPHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZVdpZHRoPSIyIiBzdHJva2VMaW5lY2FwPSJyb3VuZCIgc3Ryb2tlTGluZWpvaW49InJvdW5kIiBjbGFzc05hbWU9e2NsYXNzTmFtZX0+CiAgICAgIDxyZWN0IHg9IjMiIHk9IjQiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjIiIC8+CiAgICAgIDxsaW5lIHgxPSIxNiIgeTE9IjIiIHgyPSIxNiIgeTI9IjYiIC8+CiAgICAgIDxsaW5lIHgxPSI4IiB5MT0iMiIgeDI9IjgiIHkyPSI2IiAvPgogICAgICA8bGluZSB4MT0iMyIgeTE9IjEwIiB4Mj0iMjEiIHkyPSIxMCIgLz4KICAgIDwvc3ZnPgogICk7Cn0KCmV4cG9ydCBmdW5jdGlvbiBEYXRlUmFuZ2VQaWNrZXIoeyB2YWx1ZSwgb25DaGFuZ2UgfTogRGF0ZVJhbmdlUGlja2VyUHJvcHMpIHsKICBjb25zdCBbbWVudU9wZW4sIHNldE1lbnVPcGVuXSA9IHVzZVN0YXRlKGZhbHNlKTsKICBjb25zdCBbY3VzdG9tT3Blbiwgc2V0Q3VzdG9tT3Blbl0gPSB1c2VTdGF0ZShmYWxzZSk7CiAgY29uc3QgW2RyYWZ0U2luY2UsIHNldERyYWZ0U2luY2VdID0gdXNlU3RhdGUoIiIpOwogIGNvbnN0IFtkcmFmdFVudGlsLCBzZXREcmFmdFVudGlsXSA9IHVzZVN0YXRlKCIiKTsKICBjb25zdCByb290UmVmID0gdXNlUmVmPEhUTUxEaXZFbGVtZW50PihudWxsKTsKCiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIGlmICghbWVudU9wZW4pIHJldHVybjsKICAgIGZ1bmN0aW9uIGhhbmRsZUNsaWNrKGU6IE1vdXNlRXZlbnQpIHsKICAgICAgaWYgKHJvb3RSZWYuY3VycmVudCAmJiAhcm9vdFJlZi5jdXJyZW50LmNvbnRhaW5zKGUudGFyZ2V0IGFzIE5vZGUpKSBzZXRNZW51T3BlbihmYWxzZSk7CiAgICB9CiAgICBkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCJtb3VzZWRvd24iLCBoYW5kbGVDbGljayk7CiAgICByZXR1cm4gKCkgPT4gZG9jdW1lbnQucmVtb3ZlRXZlbnRMaXN0ZW5lcigibW91c2Vkb3duIiwgaGFuZGxlQ2xpY2spOwogIH0sIFttZW51T3Blbl0pOwoKICBjb25zdCBhY3RpdmVNb250aHMgPSB2YWx1ZQogICAgPyBNT05USF9PUFRJT05TLmZpbmQoKG4pID0+IHsKICAgICAgICBjb25zdCByID0gbGFzdE5Nb250aHMobik7CiAgICAgICAgcmV0dXJuIHIuc2luY2UgPT09IHZhbHVlLnNpbmNlICYmIHIudW50aWwgPT09IHZhbHVlLnVudGlsOwogICAgICB9KSA/PyBudWxsCiAgICA6IG51bGw7CgogIGZ1bmN0aW9uIGhhbmRsZU1vbnRoU2VsZWN0KG46IG51bWJlcikgewogICAgc2V0Q3VzdG9tT3BlbihmYWxzZSk7CiAgICBzZXRNZW51T3BlbihmYWxzZSk7CiAgICBvbkNoYW5nZShsYXN0Tk1vbnRocyhuKSk7CiAgfQoKICBmdW5jdGlvbiBvcGVuQ3VzdG9tKCkgewogICAgc2V0TWVudU9wZW4oZmFsc2UpOwogICAgc2V0Q3VzdG9tT3Blbih0cnVlKTsKICAgIGNvbnN0IHRvZGF5ID0gbmV3IERhdGUoKS50b0lTT1N0cmluZygpLnNsaWNlKDAsIDEwKTsKICAgIHNldERyYWZ0VW50aWwodmFsdWU/LnVudGlsID8/IHRvZGF5KTsKICAgIHNldERyYWZ0U2luY2UodmFsdWU/LnNpbmNlID8/IHRvZGF5KTsKICB9CgogIGZ1bmN0aW9uIGFwcGx5Q3VzdG9tKCkgewogICAgaWYgKCFkcmFmdFNpbmNlIHx8ICFkcmFmdFVudGlsKSByZXR1cm47CiAgICBvbkNoYW5nZSh7IHNpbmNlOiBkcmFmdFNpbmNlLCB1bnRpbDogZHJhZnRVbnRpbCB9KTsKICAgIHNldEN1c3RvbU9wZW4oZmFsc2UpOwogIH0KCiAgcmV0dXJuICgKICAgIDxkaXYgcmVmPXtyb290UmVmfSBjbGFzc05hbWU9InJlbGF0aXZlIGZsZXggZmxleC1jb2wgaXRlbXMtZW5kIGdhcC0xLjUiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTEuNSI+CiAgICAgICAgey8qIFRyaWdnZXIg4oCUIGFsd2F5cyBzaG93cyB0aGUgcmVzb2x2ZWQgZGF0ZXMgd2hlbiBhIHJhbmdlIGlzIGFjdGl2ZSAqL30KICAgICAgICA8YnV0dG9uCiAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRNZW51T3BlbigobykgPT4gIW8pfQogICAgICAgICAgY2xhc3NOYW1lPXtgZmxleCBoLTkgaXRlbXMtY2VudGVyIGdhcC0yIHJvdW5kZWQtbGcgYm9yZGVyIHB4LTMuNSB0ZXh0LVsxM3B4XSBmb250LXNlbWlib2xkIHNoYWRvdy1zbSB0cmFuc2l0aW9uLWNvbG9ycyAkewogICAgICAgICAgICBtZW51T3BlbgogICAgICAgICAgICAgID8gImJvcmRlci1icmFuZC00MDAgYmctd2hpdGUgdGV4dC1zbGF0ZS04MDAgcmluZy0yIHJpbmctYnJhbmQtMTAwIgogICAgICAgICAgICAgIDogdmFsdWUKICAgICAgICAgICAgICA/ICJib3JkZXItc2xhdGUtMjAwIGJnLXdoaXRlIHRleHQtc2xhdGUtNzAwIGhvdmVyOmJvcmRlci1icmFuZC0zMDAiCiAgICAgICAgICAgICAgOiAiYm9yZGVyLWJyYW5kLTMwMCBiZy1icmFuZC02MDAgdGV4dC13aGl0ZSBob3ZlcjpiZy1icmFuZC03MDAiCiAgICAgICAgICB9YH0KICAgICAgICA+CiAgICAgICAgICA8Q2FsZW5kYXJJY29uIGNsYXNzTmFtZT17dmFsdWUgfHwgbWVudU9wZW4gPyAidGV4dC1icmFuZC02MDAiIDogInRleHQtd2hpdGUvODAifSAvPgogICAgICAgICAge3ZhbHVlID8gKAogICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImZsZXggaXRlbXMtYmFzZWxpbmUgZ2FwLTEuNSI+CiAgICAgICAgICAgICAge2FjdGl2ZU1vbnRocyAhPT0gbnVsbCAmJiAoCiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InRleHQtc2xhdGUtNTAwIj5QcmV2aW91cyB7YWN0aXZlTW9udGhzfSBNb250aHthY3RpdmVNb250aHMgPiAxID8gInMiIDogIiJ9IMK3PC9zcGFuPgogICAgICAgICAgICAgICl9CiAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJ0YWJ1bGFyLW51bXMiPntmb3JtYXRGdWxsUmFuZ2UodmFsdWUpfTwvc3Bhbj4KICAgICAgICAgICAgPC9zcGFuPgogICAgICAgICAgKSA6ICgKICAgICAgICAgICAgIlNlbGVjdCBwZXJpb2TigKYiCiAgICAgICAgICApfQogICAgICAgICAgPHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iMTEiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZVdpZHRoPSIyLjUiIHN0cm9rZUxpbmVjYXA9InJvdW5kIiBzdHJva2VMaW5lam9pbj0icm91bmQiIGNsYXNzTmFtZT17YHRyYW5zaXRpb24tdHJhbnNmb3JtICR7bWVudU9wZW4gPyAicm90YXRlLTE4MCIgOiAiIn0gJHt2YWx1ZSB8fCBtZW51T3BlbiA/ICJ0ZXh0LXNsYXRlLTQwMCIgOiAidGV4dC13aGl0ZS83MCJ9YH0+CiAgICAgICAgICAgIDxwYXRoIGQ9Im02IDkgNiA2IDYtNiIgLz4KICAgICAgICAgIDwvc3ZnPgogICAgICAgIDwvYnV0dG9uPgogICAgICA8L2Rpdj4KCiAgICAgIHsvKiBEcm9wZG93biBtZW51ICovfQogICAgICB7bWVudU9wZW4gJiYgKAogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSByaWdodC0wIHRvcC1mdWxsIHotNTAgbXQtMS41IG1heC1oLVs0MDBweF0gdy03MiBvdmVyZmxvdy15LWF1dG8gcm91bmRlZC1sZyBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMCBiZy13aGl0ZSBweS0xLjUgc2hhZG93LWxnIj4KICAgICAgICAgIHtNT05USF9PUFRJT05TLm1hcCgobikgPT4gewogICAgICAgICAgICBjb25zdCByID0gbGFzdE5Nb250aHMobik7CiAgICAgICAgICAgIGNvbnN0IHNlbGVjdGVkID0gYWN0aXZlTW9udGhzID09PSBuOwogICAgICAgICAgICByZXR1cm4gKAogICAgICAgICAgICAgIDxidXR0b24KICAgICAgICAgICAgICAgIGtleT17bn0KICAgICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IGhhbmRsZU1vbnRoU2VsZWN0KG4pfQogICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgZmxleCB3LWZ1bGwgaXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiBweC0zLjUgcHktMiB0ZXh0LWxlZnQgdGV4dC1bMTNweF0gdHJhbnNpdGlvbi1jb2xvcnMgaG92ZXI6Ymctc2xhdGUtNTAgJHsKICAgICAgICAgICAgICAgICAgc2VsZWN0ZWQgPyAiZm9udC1zZW1pYm9sZCB0ZXh0LWJyYW5kLTYwMCIgOiAidGV4dC1zbGF0ZS03MDAiCiAgICAgICAgICAgICAgICB9YH0KICAgICAgICAgICAgICA+CiAgICAgICAgICAgICAgICA8c3Bhbj5QcmV2aW91cyB7bn0gTW9udGh7biA+IDEgPyAicyIgOiAiIn08L3NwYW4+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGdhcC0yIj4KICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJ0ZXh0LVsxMXB4XSB0YWJ1bGFyLW51bXMgdGV4dC1zbGF0ZS00MDAiPntmb3JtYXRGdWxsUmFuZ2Uocil9PC9zcGFuPgogICAgICAgICAgICAgICAgICB7c2VsZWN0ZWQgJiYgKAogICAgICAgICAgICAgICAgICAgIDxzdmcgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzA1OTY2OSIgc3Ryb2tlV2lkdGg9IjIuNSIgc3Ryb2tlTGluZWNhcD0icm91bmQiIHN0cm9rZUxpbmVqb2luPSJyb3VuZCI+CiAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiIC8+CiAgICAgICAgICAgICAgICAgICAgPC9zdmc+CiAgICAgICAgICAgICAgICAgICl9CiAgICAgICAgICAgICAgICA8L3NwYW4+CiAgICAgICAgICAgICAgPC9idXR0b24+CiAgICAgICAgICAgICk7CiAgICAgICAgICB9KX0KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJteS0xIGJvcmRlci10IGJvcmRlci1zbGF0ZS0xMDAiIC8+CiAgICAgICAgICA8YnV0dG9uCiAgICAgICAgICAgIG9uQ2xpY2s9e29wZW5DdXN0b219CiAgICAgICAgICAgIGNsYXNzTmFtZT0iZmxleCB3LWZ1bGwgaXRlbXMtY2VudGVyIGdhcC0yIHB4LTMuNSBweS0yIHRleHQtbGVmdCB0ZXh0LVsxM3B4XSB0ZXh0LXNsYXRlLTcwMCB0cmFuc2l0aW9uLWNvbG9ycyBob3ZlcjpiZy1zbGF0ZS01MCIKICAgICAgICAgID4KICAgICAgICAgICAgPENhbGVuZGFySWNvbiBjbGFzc05hbWU9InRleHQtc2xhdGUtNDAwIiAvPgogICAgICAgICAgICBDdXN0b20gcmFuZ2XigKYKICAgICAgICAgIDwvYnV0dG9uPgogICAgICAgIDwvZGl2PgogICAgICApfQoKICAgICAgey8qIEN1c3RvbSBkYXRlIGlucHV0cyAqL30KICAgICAge2N1c3RvbU9wZW4gJiYgKAogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMiByb3VuZGVkLWxnIGJvcmRlciBib3JkZXItc2xhdGUtMjAwIGJnLXdoaXRlIHB4LTMgcHktMiBzaGFkb3ctbWQiPgogICAgICAgICAgPGlucHV0CiAgICAgICAgICAgIHR5cGU9ImRhdGUiCiAgICAgICAgICAgIHZhbHVlPXtkcmFmdFNpbmNlfQogICAgICAgICAgICBtYXg9e2RyYWZ0VW50aWwgfHwgdW5kZWZpbmVkfQogICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IHNldERyYWZ0U2luY2UoZS50YXJnZXQudmFsdWUpfQogICAgICAgICAgICBjbGFzc05hbWU9InJvdW5kZWQgYm9yZGVyIGJvcmRlci1zbGF0ZS0xMDAgcHgtMS41IHB5LTAuNSB0ZXh0LXhzIHRleHQtc2xhdGUtNjAwIG91dGxpbmUtbm9uZSBmb2N1czpib3JkZXItYnJhbmQtMzAwIgogICAgICAgICAgLz4KICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0idGV4dC14cyB0ZXh0LXNsYXRlLTMwMCI+4oaSPC9zcGFuPgogICAgICAgICAgPGlucHV0CiAgICAgICAgICAgIHR5cGU9ImRhdGUiCiAgICAgICAgICAgIHZhbHVlPXtkcmFmdFVudGlsfQogICAgICAgICAgICBtaW49e2RyYWZ0U2luY2UgfHwgdW5kZWZpbmVkfQogICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IHNldERyYWZ0VW50aWwoZS50YXJnZXQudmFsdWUpfQogICAgICAgICAgICBjbGFzc05hbWU9InJvdW5kZWQgYm9yZGVyIGJvcmRlci1zbGF0ZS0xMDAgcHgtMS41IHB5LTAuNSB0ZXh0LXhzIHRleHQtc2xhdGUtNjAwIG91dGxpbmUtbm9uZSBmb2N1czpib3JkZXItYnJhbmQtMzAwIgogICAgICAgICAgLz4KICAgICAgICAgIDxidXR0b24KICAgICAgICAgICAgb25DbGljaz17YXBwbHlDdXN0b219CiAgICAgICAgICAgIGRpc2FibGVkPXshZHJhZnRTaW5jZSB8fCAhZHJhZnRVbnRpbH0KICAgICAgICAgICAgY2xhc3NOYW1lPSJyb3VuZGVkLW1kIGJnLWJyYW5kLTYwMCBweC0zIHB5LTEgdGV4dC14cyBmb250LXNlbWlib2xkIHRleHQtd2hpdGUgdHJhbnNpdGlvbi1jb2xvcnMgaG92ZXI6YmctYnJhbmQtNzAwIGRpc2FibGVkOm9wYWNpdHktNDAiCiAgICAgICAgICA+CiAgICAgICAgICAgIEFwcGx5CiAgICAgICAgICA8L2J1dHRvbj4KICAgICAgICAgIDxidXR0b24KICAgICAgICAgICAgb25DbGljaz17KCkgPT4gc2V0Q3VzdG9tT3BlbihmYWxzZSl9CiAgICAgICAgICAgIGNsYXNzTmFtZT0idGV4dC14cyBmb250LW1lZGl1bSB0ZXh0LXNsYXRlLTQwMCB0cmFuc2l0aW9uLWNvbG9ycyBob3Zlcjp0ZXh0LXNsYXRlLTYwMCIKICAgICAgICAgID4KICAgICAgICAgICAgQ2FuY2VsCiAgICAgICAgICA8L2J1dHRvbj4KICAgICAgICA8L2Rpdj4KICAgICAgKX0KICAgIDwvZGl2PgogICk7Cn0K"}
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import type { DateRange } from "@/lib/types";
+import { lastNMonths } from "@/lib/dates";
+
+interface DateRangePickerProps {
+  value: DateRange | null;
+  onChange: (range: DateRange) => void;
+}
+
+// Previous 1–13 complete months (13 = max lookback for Meta reach data)
+const MONTH_OPTIONS = Array.from({ length: 13 }, (_, i) => i + 1);
+
+function formatFullRange(range: DateRange): string {
+  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" };
+  const since = new Date(range.since + "T00:00:00Z").toLocaleDateString("en-IN", opts);
+  const until = new Date(range.until + "T00:00:00Z").toLocaleDateString("en-IN", opts);
+  return `${since} – ${until}`;
+}
+
+function CalendarIcon({ className }: { className?: string }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
+  );
+}
+
+export function DateRangePicker({ value, onChange }: DateRangePickerProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [customOpen, setCustomOpen] = useState(false);
+  const [draftSince, setDraftSince] = useState("");
+  const [draftUntil, setDraftUntil] = useState("");
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    function handleClick(e: MouseEvent) {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setMenuOpen(false);
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [menuOpen]);
+
+  const activeMonths = value
+    ? MONTH_OPTIONS.find((n) => {
+        const r = lastNMonths(n);
+        return r.since === value.since && r.until === value.until;
+      }) ?? null
+    : null;
+
+  function handleMonthSelect(n: number) {
+    setCustomOpen(false);
+    setMenuOpen(false);
+    onChange(lastNMonths(n));
+  }
+
+  function openCustom() {
+    setMenuOpen(false);
+    setCustomOpen(true);
+    const today = new Date().toISOString().slice(0, 10);
+    setDraftUntil(value?.until ?? today);
+    setDraftSince(value?.since ?? today);
+  }
+
+  function applyCustom() {
+    if (!draftSince || !draftUntil) return;
+    onChange({ since: draftSince, until: draftUntil });
+    setCustomOpen(false);
+  }
+
+  return (
+    <div ref={rootRef} className="relative flex flex-col items-end gap-1.5">
+      <div className="flex items-center gap-1.5">
+        {/* Trigger — always shows the resolved dates when a range is active */}
+        <button
+          onClick={() => setMenuOpen((o) => !o)}
+          className={`flex h-9 items-center gap-2 rounded-lg border px-3.5 text-[13px] font-semibold shadow-sm transition-colors ${
+            menuOpen
+              ? "border-brand-400 bg-white text-slate-800 ring-2 ring-brand-100"
+              : value
+              ? "border-slate-200 bg-white text-slate-700 hover:border-brand-300"
+              : "border-brand-300 bg-brand-600 text-white hover:bg-brand-700"
+          }`}
+        >
+          <CalendarIcon className={value || menuOpen ? "text-brand-600" : "text-white/80"} />
+          {value ? (
+            <span className="flex items-baseline gap-1.5">
+              {activeMonths !== null && (
+                <span className="text-slate-500">Previous {activeMonths} Month{activeMonths > 1 ? "s" : ""} ·</span>
+              )}
+              <span className="tabular-nums">{formatFullRange(value)}</span>
+            </span>
+          ) : (
+            "Select period…"
+          )}
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform ${menuOpen ? "rotate-180" : ""} ${value || menuOpen ? "text-slate-400" : "text-white/70"}`}>
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Dropdown menu */}
+      {menuOpen && (
+        <div className="absolute right-0 top-full z-50 mt-1.5 max-h-[400px] w-72 overflow-y-auto rounded-lg border border-slate-200 bg-white py-1.5 shadow-lg">
+          {MONTH_OPTIONS.map((n) => {
+            const r = lastNMonths(n);
+            const selected = activeMonths === n;
+            return (
+              <button
+                key={n}
+                onClick={() => handleMonthSelect(n)}
+                className={`flex w-full items-center justify-between px-3.5 py-2 text-left text-[13px] transition-colors hover:bg-slate-50 ${
+                  selected ? "font-semibold text-brand-600" : "text-slate-700"
+                }`}
+              >
+                <span>Previous {n} Month{n > 1 ? "s" : ""}</span>
+                <span className="flex items-center gap-2">
+                  <span className="text-[11px] tabular-nums text-slate-400">{formatFullRange(r)}</span>
+                  {selected && (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  )}
+                </span>
+              </button>
+            );
+          })}
+          <div className="my-1 border-t border-slate-100" />
+          <button
+            onClick={openCustom}
+            className="flex w-full items-center gap-2 px-3.5 py-2 text-left text-[13px] text-slate-700 transition-colors hover:bg-slate-50"
+          >
+            <CalendarIcon className="text-slate-400" />
+            Custom range…
+          </button>
+        </div>
+      )}
+
+      {/* Custom date inputs */}
+      {customOpen && (
+        <div className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-md">
+          <input
+            type="date"
+            value={draftSince}
+            max={draftUntil || undefined}
+            onChange={(e) => setDraftSince(e.target.value)}
+            className="rounded border border-slate-100 px-1.5 py-0.5 text-xs text-slate-600 outline-none focus:border-brand-300"
+          />
+          <span className="text-xs text-slate-300">→</span>
+          <input
+            type="date"
+            value={draftUntil}
+            min={draftSince || undefined}
+            onChange={(e) => setDraftUntil(e.target.value)}
+            className="rounded border border-slate-100 px-1.5 py-0.5 text-xs text-slate-600 outline-none focus:border-brand-300"
+          />
+          <button
+            onClick={applyCustom}
+            disabled={!draftSince || !draftUntil}
+            className="rounded-md bg-brand-600 px-3 py-1 text-xs font-semibold text-white transition-colors hover:bg-brand-700 disabled:opacity-40"
+          >
+            Apply
+          </button>
+          <button
+            onClick={() => setCustomOpen(false)}
+            className="text-xs font-medium text-slate-400 transition-colors hover:text-slate-600"
+          >
+            Cancel
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}

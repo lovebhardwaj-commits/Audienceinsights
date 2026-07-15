@@ -1,1 +1,119 @@
-{"data":"aW1wb3J0IHsgbWV0YUluc2lnaHRzIH0gZnJvbSAiQC9saWIvbWV0YS1hcGkiOwppbXBvcnQgeyBudW0sIGNwbXIsIGNwcCwgcGVyY2VudCwgZXh0cmFjdFB1cmNoYXNlcyB9IGZyb20gIkAvbGliL2NhbGN1bGF0aW9ucyI7CmltcG9ydCB7IFNFR01FTlRfT1JERVIsIG5vcm1hbGl6ZVNlZ21lbnRLZXkgfSBmcm9tICJAL2xpYi9jb25zdGFudHMiOwppbXBvcnQgdHlwZSB7IERhdGVSYW5nZSwgU2VnbWVudEtleSB9IGZyb20gIkAvbGliL3R5cGVzIjsKCmludGVyZmFjZSBTZWdtZW50U3RhdHMgewogIHJlYWNoOiBudW1iZXI7CiAgc3BlbmQ6IG51bWJlcjsKICBpbXByZXNzaW9uczogbnVtYmVyOwogIHB1cmNoYXNlczogbnVtYmVyOwogIGNwbXI6IG51bWJlcjsKICBjcGE6IG51bWJlcjsKICBzcGVuZFBjdDogbnVtYmVyOwogIHJlYWNoUGN0OiBudW1iZXI7CiAgcHVyY2hhc2VQY3Q6IG51bWJlcjsKfQoKaW50ZXJmYWNlIFdlZWtSb3cgewogIHdlZWtTdGFydDogc3RyaW5nOwogIHdlZWtFbmQ6IHN0cmluZzsKICB0b3RhbFJlYWNoOiBudW1iZXI7CiAgdG90YWxTcGVuZDogbnVtYmVyOwogIHRvdGFsUHVyY2hhc2VzOiBudW1iZXI7CiAgc2VnbWVudHM6IFJlY29yZDxTZWdtZW50S2V5LCBTZWdtZW50U3RhdHM+Owp9CgpleHBvcnQgaW50ZXJmYWNlIEF1ZGllbmNlU2VnbWVudHNSZXBvcnQgewogIHdlZWtzOiBXZWVrUm93W107CiAgdG90YWxzOiBSZWNvcmQ8U2VnbWVudEtleSwgU2VnbWVudFN0YXRzPjsKICB0b3RhbFJlYWNoOiBudW1iZXI7CiAgdG90YWxTcGVuZDogbnVtYmVyOwogIHRvdGFsUHVyY2hhc2VzOiBudW1iZXI7Cn0KCmZ1bmN0aW9uIGVtcHR5U2VnbWVudE1hcCgpOiBSZWNvcmQ8U2VnbWVudEtleSwgU2VnbWVudFN0YXRzPiB7CiAgY29uc3QgbWFwID0ge30gYXMgUmVjb3JkPFNlZ21lbnRLZXksIFNlZ21lbnRTdGF0cz47CiAgZm9yIChjb25zdCBrZXkgb2YgU0VHTUVOVF9PUkRFUikgewogICAgbWFwW2tleV0gPSB7IHJlYWNoOiAwLCBzcGVuZDogMCwgaW1wcmVzc2lvbnM6IDAsIHB1cmNoYXNlczogMCwgY3BtcjogMCwgY3BhOiAwLCBzcGVuZFBjdDogMCwgcmVhY2hQY3Q6IDAsIHB1cmNoYXNlUGN0OiAwIH07CiAgfQogIHJldHVybiBtYXA7Cn0KCmZ1bmN0aW9uIGZpbmFsaXplU2VnbWVudHMoc2VnbWVudHM6IFJlY29yZDxTZWdtZW50S2V5LCBTZWdtZW50U3RhdHM+KSB7CiAgY29uc3QgdG90YWxSZWFjaCA9IFNFR01FTlRfT1JERVIucmVkdWNlKChzdW0sIGspID0+IHN1bSArIHNlZ21lbnRzW2tdLnJlYWNoLCAwKTsKICBjb25zdCB0b3RhbFNwZW5kID0gU0VHTUVOVF9PUkRFUi5yZWR1Y2UoKHN1bSwgaykgPT4gc3VtICsgc2VnbWVudHNba10uc3BlbmQsIDApOwogIGNvbnN0IHRvdGFsUHVyY2hhc2VzID0gU0VHTUVOVF9PUkRFUi5yZWR1Y2UoKHN1bSwgaykgPT4gc3VtICsgc2VnbWVudHNba10ucHVyY2hhc2VzLCAwKTsKICBmb3IgKGNvbnN0IGtleSBvZiBTRUdNRU5UX09SREVSKSB7CiAgICBjb25zdCBzZWcgPSBzZWdtZW50c1trZXldOwogICAgc2VnLmNwbXIgPSBjcG1yKHNlZy5zcGVuZCwgc2VnLnJlYWNoKTsKICAgIHNlZy5jcGEgPSBjcHAoc2VnLnNwZW5kLCBzZWcucHVyY2hhc2VzKTsKICAgIHNlZy5zcGVuZFBjdCA9IHBlcmNlbnQoc2VnLnNwZW5kLCB0b3RhbFNwZW5kKTsKICAgIHNlZy5yZWFjaFBjdCA9IHBlcmNlbnQoc2VnLnJlYWNoLCB0b3RhbFJlYWNoKTsKICAgIHNlZy5wdXJjaGFzZVBjdCA9IHBlcmNlbnQoc2VnLnB1cmNoYXNlcywgdG90YWxQdXJjaGFzZXMpOwogIH0KICByZXR1cm4geyB0b3RhbFJlYWNoLCB0b3RhbFNwZW5kLCB0b3RhbFB1cmNoYXNlcyB9Owp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gZ2V0QXVkaWVuY2VTZWdtZW50c1JlcG9ydCgKICB0b2tlbjogc3RyaW5nLAogIGFjY291bnRJZDogc3RyaW5nLAogIHJhbmdlOiBEYXRlUmFuZ2UKKTogUHJvbWlzZTxBdWRpZW5jZVNlZ21lbnRzUmVwb3J0PiB7CiAgY29uc3QgW3dlZWtseVJvd3MsIHRvdGFsUm93c10gPSBhd2FpdCBQcm9taXNlLmFsbChbCiAgICBtZXRhSW5zaWdodHMoewogICAgICB0b2tlbiwKICAgICAgb2JqZWN0SWQ6IGFjY291bnRJZCwKICAgICAgZmllbGRzOiBbInJlYWNoIiwgInNwZW5kIiwgImltcHJlc3Npb25zIiwgImFjdGlvbnMiXSwKICAgICAgdGltZVJhbmdlOiByYW5nZSwKICAgICAgYnJlYWtkb3duczogInVzZXJfc2VnbWVudF9rZXkiLAogICAgICB0aW1lSW5jcmVtZW50OiA3LAogICAgfSksCiAgICBtZXRhSW5zaWdodHMoewogICAgICB0b2tlbiwKICAgICAgb2JqZWN0SWQ6IGFjY291bnRJZCwKICAgICAgZmllbGRzOiBbInJlYWNoIiwgInNwZW5kIiwgImltcHJlc3Npb25zIiwgImFjdGlvbnMiXSwKICAgICAgdGltZVJhbmdlOiByYW5nZSwKICAgICAgYnJlYWtkb3duczogInVzZXJfc2VnbWVudF9rZXkiLAogICAgfSksCiAgXSk7CgogIGNvbnN0IHdlZWtCdWNrZXRzID0gbmV3IE1hcDxzdHJpbmcsIHsgd2Vla1N0YXJ0OiBzdHJpbmc7IHdlZWtFbmQ6IHN0cmluZzsgc2VnbWVudHM6IFJlY29yZDxTZWdtZW50S2V5LCBTZWdtZW50U3RhdHM+IH0+KCk7CgogIGZvciAoY29uc3Qgcm93IG9mIHdlZWtseVJvd3MpIHsKICAgIGNvbnN0IGtleSA9IGAke3Jvdy5kYXRlX3N0YXJ0fV8ke3Jvdy5kYXRlX3N0b3B9YDsKICAgIGlmICghd2Vla0J1Y2tldHMuaGFzKGtleSkpIHsKICAgICAgd2Vla0J1Y2tldHMuc2V0KGtleSwgewogICAgICAgIHdlZWtTdGFydDogcm93LmRhdGVfc3RhcnQgYXMgc3RyaW5nLAogICAgICAgIHdlZWtFbmQ6IHJvdy5kYXRlX3N0b3AgYXMgc3RyaW5nLAogICAgICAgIHNlZ21lbnRzOiBlbXB0eVNlZ21lbnRNYXAoKSwKICAgICAgfSk7CiAgICB9CiAgICBjb25zdCBidWNrZXQgPSB3ZWVrQnVja2V0cy5nZXQoa2V5KSE7CiAgICBjb25zdCBzZWdtZW50S2V5ID0gbm9ybWFsaXplU2VnbWVudEtleShyb3cudXNlcl9zZWdtZW50X2tleSk7CiAgICBjb25zdCBzZWdtZW50ID0gYnVja2V0LnNlZ21lbnRzW3NlZ21lbnRLZXldOwogICAgc2VnbWVudC5yZWFjaCArPSBudW0ocm93LnJlYWNoKTsKICAgIHNlZ21lbnQuc3BlbmQgKz0gbnVtKHJvdy5zcGVuZCk7CiAgICBzZWdtZW50LmltcHJlc3Npb25zICs9IG51bShyb3cuaW1wcmVzc2lvbnMpOwogICAgc2VnbWVudC5wdXJjaGFzZXMgKz0gZXh0cmFjdFB1cmNoYXNlcyhyb3cuYWN0aW9ucyBhcyBBcnJheTxSZWNvcmQ8c3RyaW5nLCBzdHJpbmc+PiB8IHVuZGVmaW5lZCk7CiAgfQoKICBjb25zdCB3ZWVrczogV2Vla1Jvd1tdID0gQXJyYXkuZnJvbSh3ZWVrQnVja2V0cy52YWx1ZXMoKSkKICAgIC5zb3J0KChhLCBiKSA9PiBhLndlZWtTdGFydC5sb2NhbGVDb21wYXJlKGIud2Vla1N0YXJ0KSkKICAgIC5tYXAoKGJ1Y2tldCkgPT4gewogICAgICBjb25zdCB7IHRvdGFsUmVhY2gsIHRvdGFsU3BlbmQsIHRvdGFsUHVyY2hhc2VzIH0gPSBmaW5hbGl6ZVNlZ21lbnRzKGJ1Y2tldC5zZWdtZW50cyk7CiAgICAgIHJldHVybiB7IHdlZWtTdGFydDogYnVja2V0LndlZWtTdGFydCwgd2Vla0VuZDogYnVja2V0LndlZWtFbmQsIHRvdGFsUmVhY2gsIHRvdGFsU3BlbmQsIHRvdGFsUHVyY2hhc2VzLCBzZWdtZW50czogYnVja2V0LnNlZ21lbnRzIH07CiAgICB9KTsKCiAgY29uc3QgdG90YWxzID0gZW1wdHlTZWdtZW50TWFwKCk7CiAgZm9yIChjb25zdCByb3cgb2YgdG90YWxSb3dzKSB7CiAgICBjb25zdCBzZWdtZW50S2V5ID0gbm9ybWFsaXplU2VnbWVudEtleShyb3cudXNlcl9zZWdtZW50X2tleSk7CiAgICB0b3RhbHNbc2VnbWVudEtleV0ucmVhY2ggKz0gbnVtKHJvdy5yZWFjaCk7CiAgICB0b3RhbHNbc2VnbWVudEtleV0uc3BlbmQgKz0gbnVtKHJvdy5zcGVuZCk7CiAgICB0b3RhbHNbc2VnbWVudEtleV0uaW1wcmVzc2lvbnMgKz0gbnVtKHJvdy5pbXByZXNzaW9ucyk7CiAgICB0b3RhbHNbc2VnbWVudEtleV0ucHVyY2hhc2VzICs9IGV4dHJhY3RQdXJjaGFzZXMocm93LmFjdGlvbnMgYXMgQXJyYXk8UmVjb3JkPHN0cmluZywgc3RyaW5nPj4gfCB1bmRlZmluZWQpOwogIH0KICBjb25zdCB7IHRvdGFsUmVhY2gsIHRvdGFsU3BlbmQsIHRvdGFsUHVyY2hhc2VzIH0gPSBmaW5hbGl6ZVNlZ21lbnRzKHRvdGFscyk7CgogIHJldHVybiB7IHdlZWtzLCB0b3RhbHMsIHRvdGFsUmVhY2gsIHRvdGFsU3BlbmQsIHRvdGFsUHVyY2hhc2VzIH07Cn0K"}
+import { metaInsights } from "@/lib/meta-api";
+import { num, cpmr, cpp, percent, extractPurchases } from "@/lib/calculations";
+import { SEGMENT_ORDER, normalizeSegmentKey } from "@/lib/constants";
+import type { DateRange, SegmentKey } from "@/lib/types";
+
+interface SegmentStats {
+  reach: number;
+  spend: number;
+  impressions: number;
+  purchases: number;
+  cpmr: number;
+  cpa: number;
+  spendPct: number;
+  reachPct: number;
+  purchasePct: number;
+}
+
+interface WeekRow {
+  weekStart: string;
+  weekEnd: string;
+  totalReach: number;
+  totalSpend: number;
+  totalPurchases: number;
+  segments: Record<SegmentKey, SegmentStats>;
+}
+
+export interface AudienceSegmentsReport {
+  weeks: WeekRow[];
+  totals: Record<SegmentKey, SegmentStats>;
+  totalReach: number;
+  totalSpend: number;
+  totalPurchases: number;
+}
+
+function emptySegmentMap(): Record<SegmentKey, SegmentStats> {
+  const map = {} as Record<SegmentKey, SegmentStats>;
+  for (const key of SEGMENT_ORDER) {
+    map[key] = { reach: 0, spend: 0, impressions: 0, purchases: 0, cpmr: 0, cpa: 0, spendPct: 0, reachPct: 0, purchasePct: 0 };
+  }
+  return map;
+}
+
+function finalizeSegments(segments: Record<SegmentKey, SegmentStats>) {
+  const totalReach = SEGMENT_ORDER.reduce((sum, k) => sum + segments[k].reach, 0);
+  const totalSpend = SEGMENT_ORDER.reduce((sum, k) => sum + segments[k].spend, 0);
+  const totalPurchases = SEGMENT_ORDER.reduce((sum, k) => sum + segments[k].purchases, 0);
+  for (const key of SEGMENT_ORDER) {
+    const seg = segments[key];
+    seg.cpmr = cpmr(seg.spend, seg.reach);
+    seg.cpa = cpp(seg.spend, seg.purchases);
+    seg.spendPct = percent(seg.spend, totalSpend);
+    seg.reachPct = percent(seg.reach, totalReach);
+    seg.purchasePct = percent(seg.purchases, totalPurchases);
+  }
+  return { totalReach, totalSpend, totalPurchases };
+}
+
+export async function getAudienceSegmentsReport(
+  token: string,
+  accountId: string,
+  range: DateRange
+): Promise<AudienceSegmentsReport> {
+  const [weeklyRows, totalRows] = await Promise.all([
+    metaInsights({
+      token,
+      objectId: accountId,
+      fields: ["reach", "spend", "impressions", "actions"],
+      timeRange: range,
+      breakdowns: "user_segment_key",
+      timeIncrement: 7,
+    }),
+    metaInsights({
+      token,
+      objectId: accountId,
+      fields: ["reach", "spend", "impressions", "actions"],
+      timeRange: range,
+      breakdowns: "user_segment_key",
+    }),
+  ]);
+
+  const weekBuckets = new Map<string, { weekStart: string; weekEnd: string; segments: Record<SegmentKey, SegmentStats> }>();
+
+  for (const row of weeklyRows) {
+    const key = `${row.date_start}_${row.date_stop}`;
+    if (!weekBuckets.has(key)) {
+      weekBuckets.set(key, {
+        weekStart: row.date_start as string,
+        weekEnd: row.date_stop as string,
+        segments: emptySegmentMap(),
+      });
+    }
+    const bucket = weekBuckets.get(key)!;
+    const segmentKey = normalizeSegmentKey(row.user_segment_key);
+    const segment = bucket.segments[segmentKey];
+    segment.reach += num(row.reach);
+    segment.spend += num(row.spend);
+    segment.impressions += num(row.impressions);
+    segment.purchases += extractPurchases(row.actions as Array<Record<string, string>> | undefined);
+  }
+
+  const weeks: WeekRow[] = Array.from(weekBuckets.values())
+    .sort((a, b) => a.weekStart.localeCompare(b.weekStart))
+    .map((bucket) => {
+      const { totalReach, totalSpend, totalPurchases } = finalizeSegments(bucket.segments);
+      return { weekStart: bucket.weekStart, weekEnd: bucket.weekEnd, totalReach, totalSpend, totalPurchases, segments: bucket.segments };
+    });
+
+  const totals = emptySegmentMap();
+  for (const row of totalRows) {
+    const segmentKey = normalizeSegmentKey(row.user_segment_key);
+    totals[segmentKey].reach += num(row.reach);
+    totals[segmentKey].spend += num(row.spend);
+    totals[segmentKey].impressions += num(row.impressions);
+    totals[segmentKey].purchases += extractPurchases(row.actions as Array<Record<string, string>> | undefined);
+  }
+  const { totalReach, totalSpend, totalPurchases } = finalizeSegments(totals);
+
+  return { weeks, totals, totalReach, totalSpend, totalPurchases };
+}

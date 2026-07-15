@@ -1,1 +1,62 @@
-{"data":"LyoqIE1ldGEgcmV0dXJucyBudW1lcmljIGZpZWxkcyBhcyBzdHJpbmdzIOKAlCBhbHdheXMgcGFyc2UgYmVmb3JlIGRvaW5nIG1hdGguICovCmV4cG9ydCBmdW5jdGlvbiBudW0odmFsdWU6IHN0cmluZyB8IG51bWJlciB8IHVuZGVmaW5lZCB8IG51bGwpOiBudW1iZXIgewogIGlmICh2YWx1ZSA9PT0gdW5kZWZpbmVkIHx8IHZhbHVlID09PSBudWxsKSByZXR1cm4gMDsKICBjb25zdCBuID0gdHlwZW9mIHZhbHVlID09PSAibnVtYmVyIiA/IHZhbHVlIDogcGFyc2VGbG9hdCh2YWx1ZSk7CiAgcmV0dXJuIE51bWJlci5pc0Zpbml0ZShuKSA/IG4gOiAwOwp9CgpleHBvcnQgZnVuY3Rpb24gY3BtcihzcGVuZDogbnVtYmVyLCByZWFjaDogbnVtYmVyKTogbnVtYmVyIHsKICByZXR1cm4gcmVhY2ggPiAwID8gKHNwZW5kIC8gcmVhY2gpICogMTAwMCA6IDA7Cn0KCmV4cG9ydCBmdW5jdGlvbiBjb3N0UGVyMWsoc3BlbmQ6IG51bWJlciwgY291bnQ6IG51bWJlcik6IG51bWJlciB7CiAgcmV0dXJuIGNvdW50ID4gMCA/IChzcGVuZCAvIGNvdW50KSAqIDEwMDAgOiAwOwp9CgpleHBvcnQgZnVuY3Rpb24gY3BwKHNwZW5kOiBudW1iZXIsIHB1cmNoYXNlczogbnVtYmVyKTogbnVtYmVyIHsKICByZXR1cm4gcHVyY2hhc2VzID4gMCA/IHNwZW5kIC8gcHVyY2hhc2VzIDogMDsKfQoKZXhwb3J0IGZ1bmN0aW9uIHBlcmNlbnQocGFydDogbnVtYmVyLCB0b3RhbDogbnVtYmVyKTogbnVtYmVyIHsKICByZXR1cm4gdG90YWwgPiAwID8gKHBhcnQgLyB0b3RhbCkgKiAxMDAgOiAwOwp9CgpleHBvcnQgZnVuY3Rpb24gbmV0TmV3KGN1cnJlbnQ6IG51bWJlciwgcHJldmlvdXM6IG51bWJlcik6IG51bWJlciB7CiAgcmV0dXJuIGN1cnJlbnQgLSBwcmV2aW91czsKfQoKLyoqIE92ZXJsYXAgJSBmb3IgYSBjYW1wYWlnbi9hZHNldC9hZCBnaXZlbiBpdHMgb3duIHJlYWNoIGFuZCBpdHMgdW5pcXVlIGNvbnRyaWJ1dGlvbiB0byBhY2NvdW50IHJlYWNoLiAqLwpleHBvcnQgZnVuY3Rpb24gb3ZlcmxhcFBlcmNlbnQoZW50aXR5UmVhY2g6IG51bWJlciwgdW5pcXVlQ29udHJpYnV0aW9uOiBudW1iZXIpOiBudW1iZXIgewogIGlmIChlbnRpdHlSZWFjaCA8PSAwKSByZXR1cm4gMDsKICBjb25zdCBvdmVybGFwID0gZW50aXR5UmVhY2ggLSB1bmlxdWVDb250cmlidXRpb247CiAgcmV0dXJuIChvdmVybGFwIC8gZW50aXR5UmVhY2gpICogMTAwOwp9CgpleHBvcnQgZnVuY3Rpb24gdW5pcXVlQ29udHJpYnV0aW9uKHRvdGFsQWNjb3VudFJlYWNoOiBudW1iZXIsIHJlYWNoV2l0aG91dEVudGl0eTogbnVtYmVyKTogbnVtYmVyIHsKICByZXR1cm4gdG90YWxBY2NvdW50UmVhY2ggLSByZWFjaFdpdGhvdXRFbnRpdHk7Cn0KCmV4cG9ydCBmdW5jdGlvbiB1cGxpZnRSYXRpbyhsb3dXaW5kb3c6IG51bWJlciwgaGlnaFdpbmRvdzogbnVtYmVyKTogbnVtYmVyIHsKICByZXR1cm4gbG93V2luZG93ID4gMCA/ICgoaGlnaFdpbmRvdyAtIGxvd1dpbmRvdykgLyBsb3dXaW5kb3cpICogMTAwIDogMDsKfQoKLyoqIEZpbmRzIHRoZSB2YWx1ZSBmb3IgYSBnaXZlbiBhY3Rpb25fdHlwZSBpbiBhIE1ldGEgYGFjdGlvbnNgIGFycmF5LCBvcHRpb25hbGx5IGZvciBhIHNwZWNpZmljIGF0dHJpYnV0aW9uIHdpbmRvdy4gKi8KZXhwb3J0IGZ1bmN0aW9uIGZpbmRBY3Rpb24oCiAgYWN0aW9uczogQXJyYXk8UmVjb3JkPHN0cmluZywgc3RyaW5nPj4gfCB1bmRlZmluZWQsCiAgYWN0aW9uVHlwZTogc3RyaW5nLAogIHdpbmRvdz86IHN0cmluZwopOiBudW1iZXIgewogIGlmICghYWN0aW9ucykgcmV0dXJuIDA7CiAgY29uc3Qgcm93ID0gYWN0aW9ucy5maW5kKChhKSA9PiBhLmFjdGlvbl90eXBlID09PSBhY3Rpb25UeXBlKTsKICBpZiAoIXJvdykgcmV0dXJuIDA7CiAgaWYgKHdpbmRvdykgcmV0dXJuIG51bShyb3dbd2luZG93XSk7CiAgcmV0dXJuIG51bShyb3cudmFsdWUpOwp9CgovKiogUHVyY2hhc2VzIHBvc3QgYXMgZWl0aGVyICJwdXJjaGFzZSIgb3IgIm9tbmlfcHVyY2hhc2UiIGRlcGVuZGluZyBvbiBhY2NvdW50IHNldHVwIOKAlCBuZXZlciBib3RoIGZvciB0aGUKICogIHNhbWUgZXZlbnQsIHNvIHRha2Ugd2hpY2hldmVyIGlzIHByZXNlbnQgcmF0aGVyIHRoYW4gc3VtbWluZyAoc3VtbWluZyB3b3VsZCBkb3VibGUtY291bnQgb21uaSBhY2NvdW50cykuICovCmV4cG9ydCBmdW5jdGlvbiBleHRyYWN0UHVyY2hhc2VzKGFjdGlvbnM6IEFycmF5PFJlY29yZDxzdHJpbmcsIHN0cmluZz4+IHwgdW5kZWZpbmVkKTogbnVtYmVyIHsKICBpZiAoIWFjdGlvbnMpIHJldHVybiAwOwogIGNvbnN0IHJvdyA9IGFjdGlvbnMuZmluZCgoYSkgPT4gYS5hY3Rpb25fdHlwZSA9PT0gInB1cmNoYXNlIiB8fCBhLmFjdGlvbl90eXBlID09PSAib21uaV9wdXJjaGFzZSIpOwogIHJldHVybiByb3cgPyBudW0ocm93LnZhbHVlKSA6IDA7Cn0K"}
+/** Meta returns numeric fields as strings — always parse before doing math. */
+export function num(value: string | number | undefined | null): number {
+  if (value === undefined || value === null) return 0;
+  const n = typeof value === "number" ? value : parseFloat(value);
+  return Number.isFinite(n) ? n : 0;
+}
+
+export function cpmr(spend: number, reach: number): number {
+  return reach > 0 ? (spend / reach) * 1000 : 0;
+}
+
+export function costPer1k(spend: number, count: number): number {
+  return count > 0 ? (spend / count) * 1000 : 0;
+}
+
+export function cpp(spend: number, purchases: number): number {
+  return purchases > 0 ? spend / purchases : 0;
+}
+
+export function percent(part: number, total: number): number {
+  return total > 0 ? (part / total) * 100 : 0;
+}
+
+export function netNew(current: number, previous: number): number {
+  return current - previous;
+}
+
+/** Overlap % for a campaign/adset/ad given its own reach and its unique contribution to account reach. */
+export function overlapPercent(entityReach: number, uniqueContribution: number): number {
+  if (entityReach <= 0) return 0;
+  const overlap = entityReach - uniqueContribution;
+  return (overlap / entityReach) * 100;
+}
+
+export function uniqueContribution(totalAccountReach: number, reachWithoutEntity: number): number {
+  return totalAccountReach - reachWithoutEntity;
+}
+
+export function upliftRatio(lowWindow: number, highWindow: number): number {
+  return lowWindow > 0 ? ((highWindow - lowWindow) / lowWindow) * 100 : 0;
+}
+
+/** Finds the value for a given action_type in a Meta `actions` array, optionally for a specific attribution window. */
+export function findAction(
+  actions: Array<Record<string, string>> | undefined,
+  actionType: string,
+  window?: string
+): number {
+  if (!actions) return 0;
+  const row = actions.find((a) => a.action_type === actionType);
+  if (!row) return 0;
+  if (window) return num(row[window]);
+  return num(row.value);
+}
+
+/** Purchases post as either "purchase" or "omni_purchase" depending on account setup — never both for the
+ *  same event, so take whichever is present rather than summing (summing would double-count omni accounts). */
+export function extractPurchases(actions: Array<Record<string, string>> | undefined): number {
+  if (!actions) return 0;
+  const row = actions.find((a) => a.action_type === "purchase" || a.action_type === "omni_purchase");
+  return row ? num(row.value) : 0;
+}

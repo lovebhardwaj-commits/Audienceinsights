@@ -1,1 +1,168 @@
-{"data": "InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VNZW1vLCB1c2VTdGF0ZSB9IGZyb20gInJlYWN0IjsKaW1wb3J0IHsgdXNlQWNjb3VudCB9IGZyb20gIkAvY29tcG9uZW50cy9wcm92aWRlcnMvQWNjb3VudFByb3ZpZGVyIjsKaW1wb3J0IHsgdXNlSnNvblJlcG9ydCB9IGZyb20gIkAvbGliL2hvb2tzL3VzZUpzb25SZXBvcnQiOwppbXBvcnQgeyBEYXRlUmFuZ2VQaWNrZXIgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvRGF0ZVJhbmdlUGlja2VyIjsKaW1wb3J0IHsgRW1wdHlTdGF0ZSB9IGZyb20gIkAvY29tcG9uZW50cy91aS9FbXB0eVN0YXRlIjsKaW1wb3J0IHsgRmV0Y2hpbmdTdGF0ZSB9IGZyb20gIkAvY29tcG9uZW50cy91aS9GZXRjaGluZ1N0YXRlIjsKaW1wb3J0IHsgRXJyb3JCYW5uZXIgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvRXJyb3JCYW5uZXIiOwppbXBvcnQgeyBIb3dUb1JlYWQgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvSG93VG9SZWFkIjsKaW1wb3J0IHsgU3VtbWFyeUNhcmQgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvU3VtbWFyeUNhcmQiOwppbXBvcnQgeyBSZXBvcnRTdW1tYXJ5IH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL1JlcG9ydFN1bW1hcnkiOwppbXBvcnQgeyBEYXRhVGFibGUsIHR5cGUgRGF0YVRhYmxlQ29sdW1uIH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL0RhdGFUYWJsZSI7CmltcG9ydCB7IER1YWxBeGlzQ2hhcnQgfSBmcm9tICJAL2NvbXBvbmVudHMvY2hhcnRzL0R1YWxBeGlzQ2hhcnQiOwppbXBvcnQgeyBDaGFydFNrZWxldG9uIH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL1NrZWxldG9uIjsKaW1wb3J0IHsgQ2hhcnRCYXJJY29uLCBDbG9ja1NtYWxsSWNvbiwgVHJlbmRVcEljb24gfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvS3BpSWNvbnMiOwppbXBvcnQgeyBmb3JtYXRDdXJyZW5jeSwgZm9ybWF0TnVtYmVyLCBmb3JtYXRQZXJjZW50LCBmb3JtYXRTaG9ydERhdGUgfSBmcm9tICJAL2xpYi9mb3JtYXQiOwppbXBvcnQgeyBwZXJjZW50IH0gZnJvbSAiQC9saWIvY2FsY3VsYXRpb25zIjsKaW1wb3J0IHsgY29udmVyc2lvbldpbmRvd0luc2lnaHRzIH0gZnJvbSAiQC9saWIvaW5zaWdodHMiOwppbXBvcnQgeyBHTE9TU0FSWSB9IGZyb20gIkAvbGliL2dsb3NzYXJ5IjsKaW1wb3J0IHsgbGFzdE5EYXlzIH0gZnJvbSAiQC9saWIvZGF0ZXMiOwppbXBvcnQgdHlwZSB7IERhdGVSYW5nZSB9IGZyb20gIkAvbGliL3R5cGVzIjsKaW1wb3J0IHR5cGUgeyBDb252ZXJzaW9uV2luZG93V2Vla1JvdywgQ29udmVyc2lvbldpbmRvd3NSZXBvcnQgfSBmcm9tICJAL2xpYi9yZXBvcnRzL2NvbnZlcnNpb24td2luZG93cyI7CgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBDb252ZXJzaW9uV2luZG93c1BhZ2UoKSB7CiAgY29uc3QgeyBzZWxlY3RlZEFjY291bnRJZCB9ID0gdXNlQWNjb3VudCgpOwogIGNvbnN0IFtyYW5nZSwgc2V0UmFuZ2VdID0gdXNlU3RhdGU8RGF0ZVJhbmdlIHwgbnVsbD4obnVsbCk7CiAgLy8gW1BNIEVOSEFOQ0VNRU5UXSDigJQgYnVtcCB0byByZS1ydW4gdGhlIGZldGNoIGZyb20gdGhlIGVycm9yIGJhbm5lcidzICJUcnkgYWdhaW4iCiAgY29uc3QgW3JldHJ5S2V5LCBzZXRSZXRyeUtleV0gPSB1c2VTdGF0ZSgwKTsKICBjb25zdCB7IGxvYWRpbmcsIGlzSW5pdGlhbExvYWQsIGRhdGEsIGVycm9yLCBydW4gfSA9IHVzZUpzb25SZXBvcnQ8eyBkYXRhOiBDb252ZXJzaW9uV2luZG93c1JlcG9ydCB9PigpOwoKICB1c2VFZmZlY3QoKCkgPT4gewogICAgaWYgKCFzZWxlY3RlZEFjY291bnRJZCB8fCAhcmFuZ2UpIHJldHVybjsKICAgIGNvbnN0IHBhcmFtcyA9IG5ldyBVUkxTZWFyY2hQYXJhbXMoeyBhY2NvdW50SWQ6IHNlbGVjdGVkQWNjb3VudElkLCBzaW5jZTogcmFuZ2Uuc2luY2UsIHVudGlsOiByYW5nZS51bnRpbCB9KTsKICAgIHJ1bihgL2FwaS9yZXBvcnRzL2NvbnZlcnNpb24td2luZG93cz8ke3BhcmFtc31gKTsKICB9LCBbc2VsZWN0ZWRBY2NvdW50SWQsIHJhbmdlLCBydW4sIHJldHJ5S2V5XSk7CgogIGNvbnN0IHJlcG9ydCA9IGRhdGE/LmRhdGE7CgogIGNvbnN0IGNvbHVtbnM6IERhdGFUYWJsZUNvbHVtbjxDb252ZXJzaW9uV2luZG93V2Vla1Jvdz5bXSA9IFsKICAgIHsga2V5OiAid2Vla1N0YXJ0IiwgaGVhZGVyOiAiV2VlayIsIGFjY2Vzc29yOiAocikgPT4gci53ZWVrU3RhcnQsIHJlbmRlcjogKHIpID0+IGZvcm1hdFNob3J0RGF0ZShyLndlZWtTdGFydCkgfSwKICAgIHsga2V5OiAicHVyY2hhc2VzMWRjIiwgaGVhZGVyOiAiMURDIFB1cmNoYXNlcyIsIGhlbHA6IEdMT1NTQVJZLmF0dHJpYnV0aW9uV2luZG93LCBhY2Nlc3NvcjogKHIpID0+IHIucHVyY2hhc2VzMWRjLCBhbGlnbjogInJpZ2h0IiwgcmVuZGVyOiAocikgPT4gZm9ybWF0TnVtYmVyKHIucHVyY2hhc2VzMWRjKSB9LAogICAgeyBrZXk6ICJwdXJjaGFzZXM3ZGMiLCBoZWFkZXI6ICI3REMgUHVyY2hhc2VzIiwgaGVscDogR0xPU1NBUlkuYXR0cmlidXRpb25XaW5kb3csIGFjY2Vzc29yOiAocikgPT4gci5wdXJjaGFzZXM3ZGMsIGFsaWduOiAicmlnaHQiLCByZW5kZXI6IChyKSA9PiBmb3JtYXROdW1iZXIoci5wdXJjaGFzZXM3ZGMpIH0sCiAgICB7IGtleTogInB1cmNoYXNlczI4ZGMiLCBoZWFkZXI6ICIyOERDIFB1cmNoYXNlcyIsIGhlbHA6IEdMT1NTQVJZLmF0dHJpYnV0aW9uV2luZG93LCBhY2Nlc3NvcjogKHIpID0+IHIucHVyY2hhc2VzMjhkYywgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IGZvcm1hdE51bWJlcihyLnB1cmNoYXNlczI4ZGMpIH0sCiAgICB7CiAgICAgIGtleTogInVwbGlmdFJhdGlvIiwKICAgICAgaGVhZGVyOiAiVXBsaWZ0IFJhdGlvIiwKICAgICAgaGVscDogR0xPU1NBUlkudXBsaWZ0UmF0aW8sCiAgICAgIGFjY2Vzc29yOiAocikgPT4gci51cGxpZnRSYXRpbywKICAgICAgYWxpZ246ICJyaWdodCIsCiAgICAgIGNlbGxDbGFzczogKHIpID0+IHIudXBsaWZ0UmF0aW8gPiAxNSA/ICJ0ZXh0LXJlZC02MDAgZm9udC1zZW1pYm9sZCIgOiByLnVwbGlmdFJhdGlvID4gNSA/ICJ0ZXh0LWFtYmVyLTYwMCIgOiAidGV4dC1ncmVlbi03MDAiLAogICAgICByZW5kZXI6IChyKSA9PiBmb3JtYXRQZXJjZW50KHIudXBsaWZ0UmF0aW8pLAogICAgfSwKICAgIHsga2V5OiAic2FtZURheVBjdCIsIGhlYWRlcjogIiUgU2FtZS1EYXkiLCBoZWxwOiBHTE9TU0FSWS5zYW1lRGF5UGN0LCBhY2Nlc3NvcjogKHIpID0+IHIuc2FtZURheVBjdCwgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IGZvcm1hdFBlcmNlbnQoci5zYW1lRGF5UGN0KSB9LAogICAgeyBrZXk6ICJzcGVuZCIsIGhlYWRlcjogIlNwZW5kIiwgYWNjZXNzb3I6IChyKSA9PiByLnNwZW5kLCBhbGlnbjogInJpZ2h0IiwgcmVuZGVyOiAocikgPT4gZm9ybWF0Q3VycmVuY3koci5zcGVuZCkgfSwKICBdOwoKICBjb25zdCBjaGFydERhdGEgPSB1c2VNZW1vKCgpID0+IHsKICAgIGlmICghcmVwb3J0KSByZXR1cm4gW107CiAgICByZXR1cm4gcmVwb3J0LndlZWtzLm1hcCgodykgPT4gKHsKICAgICAgd2VlazogZm9ybWF0U2hvcnREYXRlKHcud2Vla1N0YXJ0KSwKICAgICAgd2l0aGluMURheTogcGVyY2VudCh3LnB1cmNoYXNlczFkYywgdy5wdXJjaGFzZXMyOGRjKSwKICAgICAgZGF5MnRvNzogcGVyY2VudCh3LnB1cmNoYXNlczdkYyAtIHcucHVyY2hhc2VzMWRjLCB3LnB1cmNoYXNlczI4ZGMpLAogICAgICBkYXk4dG8yODogcGVyY2VudCh3LnB1cmNoYXNlczI4ZGMgLSB3LnB1cmNoYXNlczdkYywgdy5wdXJjaGFzZXMyOGRjKSwKICAgICAgdXBsaWZ0UmF0aW86IHcudXBsaWZ0UmF0aW8sCiAgICB9KSk7CiAgfSwgW3JlcG9ydF0pOwoKICBjb25zdCBpbnNpZ2h0cyA9IHVzZU1lbW8oKCkgPT4gKHJlcG9ydCA/IGNvbnZlcnNpb25XaW5kb3dJbnNpZ2h0cyhyZXBvcnQpIDogW10pLCBbcmVwb3J0XSk7CgogIHJldHVybiAoCiAgICA8ZGl2PgogICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBmbGV4LXdyYXAgaXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiBnYXAtMyI+CiAgICAgICAgPGRpdj4KICAgICAgICAgIDxoMSBjbGFzc05hbWU9InRleHQtbGcgZm9udC1ib2xkIHRleHQtc2xhdGUtOTAwIj5Db252ZXJzaW9uIFdpbmRvd3M8L2gxPgogICAgICAgICAgPHAgY2xhc3NOYW1lPSJtdC0xIHRleHQtc20gdGV4dC1zbGF0ZS01MDAiPkNvbXBhcmUgMS1kYXksIDctZGF5LCBhbmQgMjgtZGF5IGF0dHJpYnV0aW9uIHRvIHVuZGVyc3RhbmQgaG93IGxvbmcgY29udmVyc2lvbnMgdGFrZS48L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPERhdGVSYW5nZVBpY2tlciB2YWx1ZT17cmFuZ2V9IG9uQ2hhbmdlPXtzZXRSYW5nZX0gLz4KICAgICAgPC9kaXY+CgogICAgICB7LyogW1BNIEVOSEFOQ0VNRU5UXSDigJQgcGxhaW4tbGFuZ3VhZ2UgZXhwbGFpbmVyIHNvIGV2ZXJ5IG1ldHJpYyBpcyB1bmRlcnN0YW5kYWJsZSAqL30KICAgICAgPEhvd1RvUmVhZAogICAgICAgIGl0ZW1zPXtbCiAgICAgICAgICB7IGxhYmVsOiAiMURDIC8gN0RDIC8gMjhEQyIsIHRleHQ6ICJwdXJjaGFzZXMgTWV0YSBjcmVkaXRzIHRvIGFuIGFkIHdpdGhpbiAxLCA3LCBvciAyOCBkYXlzIG9mIHNvbWVvbmUgY2xpY2tpbmcgaXQuIiB9LAogICAgICAgICAgeyBsYWJlbDogIlVwbGlmdCBSYXRpbyIsIHRleHQ6ICJob3cgbWFueSBleHRyYSBwdXJjaGFzZXMgdGhlIDI4LWRheSB2aWV3IGFkZHMgdnMgdGhlIDEtZGF5IHZpZXcuIEhpZ2ggPSBjdXN0b21lcnMgdGFrZSBkYXlzIHRvIGRlY2lkZTsgbG93ID0gdGhleSBidXkgZmFzdC4iIH0sCiAgICAgICAgICB7IGxhYmVsOiAiJSBTYW1lLURheSIsIHRleHQ6ICJ0aGUgc2hhcmUgb2YgYWxsIGF0dHJpYnV0ZWQgcHVyY2hhc2VzIHRoYXQgaGFwcGVuZWQgd2l0aGluIGEgZGF5IG9mIHRoZSBjbGljayDigJQgeW91ciBpbXB1bHNlLXB1cmNoYXNlIHJhdGUuIiB9LAogICAgICAgICAgeyBsYWJlbDogIlRoZSBjaGFydCIsIHRleHQ6ICJlYWNoIGJhciBzcGxpdHMgYSB3ZWVrJ3MgcHVyY2hhc2VzIGJ5IGhvdyBsb25nIHRoZXkgdG9vazsgdGhlIHBpbmsgbGluZSB0cmFja3MgdGhlIHVwbGlmdCByYXRpbyBvbiB0aGUgcmlnaHQgYXhpcy4iIH0sCiAgICAgICAgXX0KICAgICAgLz4KCiAgICAgIHtlcnJvciAmJiA8RXJyb3JCYW5uZXIgbWVzc2FnZT17ZXJyb3J9IG9uUmV0cnk9eygpID0+IHNldFJldHJ5S2V5KChrKSA9PiBrICsgMSl9IC8+fQogICAgICB7bG9hZGluZyAmJiA8RmV0Y2hpbmdTdGF0ZSAvPn0KCiAgICAgIHshcmFuZ2UgJiYgPEVtcHR5U3RhdGUgdGl0bGU9IlNlbGVjdCBhIGRhdGUgcmFuZ2UiIGRlc2NyaXB0aW9uPSJDaG9vc2UgYSBwZXJpb2QgYWJvdmUgdG8gbG9hZCB0aGlzIHJlcG9ydC4iIC8+fQoKICAgICAge3JhbmdlICYmICgKICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYW5pbWF0ZS1mYWRlLWluIj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPXtgbXQtNCBncmlkIGdyaWQtY29scy0xIGdhcC0zIHRyYW5zaXRpb24tb3BhY2l0eSBkdXJhdGlvbi0yMDAgc206Z3JpZC1jb2xzLTMgJHtsb2FkaW5nICYmICFpc0luaXRpYWxMb2FkID8gIm9wYWNpdHktNTAgcG9pbnRlci1ldmVudHMtbm9uZSIgOiAiIn1gfT4KICAgICAgICAgICAgPFN1bW1hcnlDYXJkCiAgICAgICAgICAgICAgbGFiZWw9IjI4REMgUHVyY2hhc2VzIgogICAgICAgICAgICAgIHZhbHVlPXtyZXBvcnQgPyBmb3JtYXROdW1iZXIocmVwb3J0LnRvdGFsUHVyY2hhc2VzMjhkYykgOiAi4oCUIn0KICAgICAgICAgICAgICBzdWJsYWJlbD0id2l0aGluIDI4IGRheXMgb2YgY2xpY2siCiAgICAgICAgICAgICAgbG9hZGluZz17aXNJbml0aWFsTG9hZH0KICAgICAgICAgICAgICBpY29uPXs8Q2hhcnRCYXJJY29uIC8+fQogICAgICAgICAgICAgIGljb25Db2xvcj0iYmctYmx1ZS01MCB0ZXh0LWJsdWUtNjAwIgogICAgICAgICAgICAgIGFjY2VudENvbG9yPSJib3JkZXItbC1ibHVlLTUwMCIKICAgICAgICAgICAgLz4KICAgICAgICAgICAgPFN1bW1hcnlDYXJkCiAgICAgICAgICAgICAgbGFiZWw9IjFEQyBQdXJjaGFzZXMiCiAgICAgICAgICAgICAgdmFsdWU9e3JlcG9ydCA/IGZvcm1hdE51bWJlcihyZXBvcnQudG90YWxQdXJjaGFzZXMxZGMpIDogIuKAlCJ9CiAgICAgICAgICAgICAgc3VibGFiZWw9InNhbWUtZGF5IGNvbnZlcnNpb25zIgogICAgICAgICAgICAgIGxvYWRpbmc9e2lzSW5pdGlhbExvYWR9CiAgICAgICAgICAgICAgaWNvbj17PENsb2NrU21hbGxJY29uIC8+fQogICAgICAgICAgICAgIGljb25Db2xvcj0iYmctZW1lcmFsZC01MCB0ZXh0LWVtZXJhbGQtNjAwIgogICAgICAgICAgICAgIGFjY2VudENvbG9yPSJib3JkZXItbC1lbWVyYWxkLTUwMCIKICAgICAgICAgICAgLz4KICAgICAgICAgICAgPFN1bW1hcnlDYXJkCiAgICAgICAgICAgICAgbGFiZWw9IlVwbGlmdCBSYXRpbyIKICAgICAgICAgICAgICB2YWx1ZT17cmVwb3J0ID8gZm9ybWF0UGVyY2VudChyZXBvcnQub3ZlcmFsbFVwbGlmdFJhdGlvKSA6ICLigJQifQogICAgICAgICAgICAgIHN1YmxhYmVsPSIyOERDIHZzIDFEQyIKICAgICAgICAgICAgICBoZWxwPXtHTE9TU0FSWS51cGxpZnRSYXRpb30KICAgICAgICAgICAgICBsb2FkaW5nPXtpc0luaXRpYWxMb2FkfQogICAgICAgICAgICAgIGljb249ezxUcmVuZFVwSWNvbiAvPn0KICAgICAgICAgICAgICBpY29uQ29sb3I9ImJnLXZpb2xldC01MCB0ZXh0LXZpb2xldC02MDAiCiAgICAgICAgICAgICAgYWNjZW50Q29sb3I9ImJvcmRlci1sLXZpb2xldC01MDAiCiAgICAgICAgICAgIC8+CiAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICA8UmVwb3J0U3VtbWFyeSBpbnNpZ2h0cz17aW5zaWdodHN9IGxvYWRpbmc9e2lzSW5pdGlhbExvYWR9IC8+CgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9e2BtdC02IHJvdW5kZWQteGwgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAvODAgYmctd2hpdGUgcC01IHNoYWRvdy1zbSB0cmFuc2l0aW9uLW9wYWNpdHkgZHVyYXRpb24tMjAwICR7bG9hZGluZyAmJiAhaXNJbml0aWFsTG9hZCA/ICJvcGFjaXR5LTUwIHBvaW50ZXItZXZlbnRzLW5vbmUiIDogIiJ9YH0+CiAgICAgICAgICAgIDxoMiBjbGFzc05hbWU9InRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LXNsYXRlLTgwMCI+UHVyY2hhc2VzIGJ5IGF0dHJpYnV0aW9uIHdpbmRvdzwvaDI+CiAgICAgICAgICAgIDxwIGNsYXNzTmFtZT0ibWItNCBtdC0wLjUgdGV4dC14cyB0ZXh0LXNsYXRlLTQwMCI+V2Vla2x5IHB1cmNoYXNlIHNoYXJlIGJ5IGhvdyBsb25nIGFmdGVyIHRoZSBhZCBjbGljayB0aGV5IGhhcHBlbmVkLCB3aXRoIHRoZSB1cGxpZnQgcmF0aW8gKDI4REMgdnMgMURDKSBvdmVybGFpZC48L3A+CiAgICAgICAgICAgIHtpc0luaXRpYWxMb2FkID8gKAogICAgICAgICAgICAgIDxDaGFydFNrZWxldG9uIC8+CiAgICAgICAgICAgICkgOiAoCiAgICAgICAgICAgICAgPER1YWxBeGlzQ2hhcnQKICAgICAgICAgICAgICAgIGRhdGE9e2NoYXJ0RGF0YX0KICAgICAgICAgICAgICAgIHhLZXk9IndlZWsiCiAgICAgICAgICAgICAgICBiYXJzPXtbCiAgICAgICAgICAgICAgICAgIHsga2V5OiAid2l0aGluMURheSIsIGxhYmVsOiAiV2l0aGluIDEgZGF5IiwgY29sb3I6ICIjMWQ0ZWQ4IiB9LAogICAgICAgICAgICAgICAgICB7IGtleTogImRheTJ0bzciLCBsYWJlbDogIkRheSAy4oCTNyIsIGNvbG9yOiAiIzA4OTFiMiIgfSwKICAgICAgICAgICAgICAgICAgeyBrZXk6ICJkYXk4dG8yOCIsIGxhYmVsOiAiRGF5IDjigJMyOCIsIGNvbG9yOiAiI2Q5NzcwNiIgfSwKICAgICAgICAgICAgICAgIF19CiAgICAgICAgICAgICAgICBsaW5lcz17W3sga2V5OiAidXBsaWZ0UmF0aW8iLCBsYWJlbDogIlVwbGlmdCBSYXRpbyIsIGNvbG9yOiAiI2Y1OWUwYiIgfV19CiAgICAgICAgICAgICAgICBiYXJGb3JtYXQ9InBlcmNlbnQiCiAgICAgICAgICAgICAgICBsaW5lRm9ybWF0PSJwZXJjZW50IgogICAgICAgICAgICAgICAgYmFyRG9tYWluPXtbNzAsIDEwMF19CiAgICAgICAgICAgICAgICBsaW5lRG9tYWluPXtbMCwgImF1dG8iXX0KICAgICAgICAgICAgICAvPgogICAgICAgICAgICApfQogICAgICAgICAgPC9kaXY+CgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9e2BtdC02IHRyYW5zaXRpb24tb3BhY2l0eSBkdXJhdGlvbi0yMDAgJHtsb2FkaW5nICYmICFpc0luaXRpYWxMb2FkID8gIm9wYWNpdHktNTAgcG9pbnRlci1ldmVudHMtbm9uZSIgOiAiIn1gfT4KICAgICAgICAgICAgPERhdGFUYWJsZQogICAgICAgICAgICAgIGNvbHVtbnM9e2NvbHVtbnN9CiAgICAgICAgICAgICAgcm93cz17cmVwb3J0Py53ZWVrcyA/PyBbXX0KICAgICAgICAgICAgICBsb2FkaW5nPXtpc0luaXRpYWxMb2FkfQogICAgICAgICAgICAgIGZpbGVuYW1lPSJjb252ZXJzaW9uLXdpbmRvd3MiCiAgICAgICAgICAgICAgZGVmYXVsdFNvcnRLZXk9IndlZWtTdGFydCIKICAgICAgICAgICAgICBkZWZhdWx0U29ydERpcj0iYXNjIgogICAgICAgICAgICAvPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgICl9CiAgICA8L2Rpdj4KICApOwp9Cg=="}
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { useAccount } from "@/components/providers/AccountProvider";
+import { useJsonReport } from "@/lib/hooks/useJsonReport";
+import { DateRangePicker } from "@/components/ui/DateRangePicker";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { FetchingState } from "@/components/ui/FetchingState";
+import { ErrorBanner } from "@/components/ui/ErrorBanner";
+import { HowToRead } from "@/components/ui/HowToRead";
+import { SummaryCard } from "@/components/ui/SummaryCard";
+import { ReportSummary } from "@/components/ui/ReportSummary";
+import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
+import { DualAxisChart } from "@/components/charts/DualAxisChart";
+import { ChartSkeleton } from "@/components/ui/Skeleton";
+import { ChartBarIcon, ClockSmallIcon, TrendUpIcon } from "@/components/ui/KpiIcons";
+import { formatCurrency, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
+import { percent } from "@/lib/calculations";
+import { conversionWindowInsights } from "@/lib/insights";
+import { GLOSSARY } from "@/lib/glossary";
+import { lastNDays } from "@/lib/dates";
+import type { DateRange } from "@/lib/types";
+import type { ConversionWindowWeekRow, ConversionWindowsReport } from "@/lib/reports/conversion-windows";
+
+export default function ConversionWindowsPage() {
+  const { selectedAccountId } = useAccount();
+  const [range, setRange] = useState<DateRange | null>(null);
+  // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
+  const [retryKey, setRetryKey] = useState(0);
+  const { loading, isInitialLoad, data, error, run } = useJsonReport<{ data: ConversionWindowsReport }>();
+
+  useEffect(() => {
+    if (!selectedAccountId || !range) return;
+    const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
+    run(`/api/reports/conversion-windows?${params}`);
+  }, [selectedAccountId, range, run, retryKey]);
+
+  const report = data?.data;
+
+  const columns: DataTableColumn<ConversionWindowWeekRow>[] = [
+    { key: "weekStart", header: "Week", accessor: (r) => r.weekStart, render: (r) => formatShortDate(r.weekStart) },
+    { key: "purchases1dc", header: "1DC Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchases1dc, align: "right", render: (r) => formatNumber(r.purchases1dc) },
+    { key: "purchases7dc", header: "7DC Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchases7dc, align: "right", render: (r) => formatNumber(r.purchases7dc) },
+    { key: "purchases28dc", header: "28DC Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchases28dc, align: "right", render: (r) => formatNumber(r.purchases28dc) },
+    {
+      key: "upliftRatio",
+      header: "Uplift Ratio",
+      help: GLOSSARY.upliftRatio,
+      accessor: (r) => r.upliftRatio,
+      align: "right",
+      cellClass: (r) => r.upliftRatio > 15 ? "text-red-600 font-semibold" : r.upliftRatio > 5 ? "text-amber-600" : "text-green-700",
+      render: (r) => formatPercent(r.upliftRatio),
+    },
+    { key: "sameDayPct", header: "% Same-Day", help: GLOSSARY.sameDayPct, accessor: (r) => r.sameDayPct, align: "right", render: (r) => formatPercent(r.sameDayPct) },
+    { key: "spend", header: "Spend", accessor: (r) => r.spend, align: "right", render: (r) => formatCurrency(r.spend) },
+  ];
+
+  const chartData = useMemo(() => {
+    if (!report) return [];
+    return report.weeks.map((w) => ({
+      week: formatShortDate(w.weekStart),
+      within1Day: percent(w.purchases1dc, w.purchases28dc),
+      day2to7: percent(w.purchases7dc - w.purchases1dc, w.purchases28dc),
+      day8to28: percent(w.purchases28dc - w.purchases7dc, w.purchases28dc),
+      upliftRatio: w.upliftRatio,
+    }));
+  }, [report]);
+
+  const insights = useMemo(() => (report ? conversionWindowInsights(report) : []), [report]);
+
+  return (
+    <div>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 className="text-lg font-bold text-slate-900">Conversion Windows</h1>
+          <p className="mt-1 text-sm text-slate-500">Compare 1-day, 7-day, and 28-day attribution to understand how long conversions take.</p>
+        </div>
+        <DateRangePicker value={range} onChange={setRange} />
+      </div>
+
+      {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
+      <HowToRead
+        items={[
+          { label: "1DC / 7DC / 28DC", text: "purchases Meta credits to an ad within 1, 7, or 28 days of someone clicking it." },
+          { label: "Uplift Ratio", text: "how many extra purchases the 28-day view adds vs the 1-day view. High = customers take days to decide; low = they buy fast." },
+          { label: "% Same-Day", text: "the share of all attributed purchases that happened within a day of the click — your impulse-purchase rate." },
+          { label: "The chart", text: "each bar splits a week's purchases by how long they took; the pink line tracks the uplift ratio on the right axis." },
+        ]}
+      />
+
+      {error && <ErrorBanner message={error} onRetry={() => setRetryKey((k) => k + 1)} />}
+      {loading && <FetchingState />}
+
+      {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
+
+      {range && (
+        <div className="animate-fade-in">
+          <div className={`mt-4 grid grid-cols-1 gap-3 transition-opacity duration-200 sm:grid-cols-3 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+            <SummaryCard
+              label="28DC Purchases"
+              value={report ? formatNumber(report.totalPurchases28dc) : "—"}
+              sublabel="within 28 days of click"
+              loading={isInitialLoad}
+              icon={<ChartBarIcon />}
+              iconColor="bg-blue-50 text-blue-600"
+              accentColor="border-l-blue-500"
+            />
+            <SummaryCard
+              label="1DC Purchases"
+              value={report ? formatNumber(report.totalPurchases1dc) : "—"}
+              sublabel="same-day conversions"
+              loading={isInitialLoad}
+              icon={<ClockSmallIcon />}
+              iconColor="bg-emerald-50 text-emerald-600"
+              accentColor="border-l-emerald-500"
+            />
+            <SummaryCard
+              label="Uplift Ratio"
+              value={report ? formatPercent(report.overallUpliftRatio) : "—"}
+              sublabel="28DC vs 1DC"
+              help={GLOSSARY.upliftRatio}
+              loading={isInitialLoad}
+              icon={<TrendUpIcon />}
+              iconColor="bg-violet-50 text-violet-600"
+              accentColor="border-l-violet-500"
+            />
+          </div>
+
+          <ReportSummary insights={insights} loading={isInitialLoad} />
+
+          <div className={`mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+            <h2 className="text-sm font-semibold text-slate-800">Purchases by attribution window</h2>
+            <p className="mb-4 mt-0.5 text-xs text-slate-400">Weekly purchase share by how long after the ad click they happened, with the uplift ratio (28DC vs 1DC) overlaid.</p>
+            {isInitialLoad ? (
+              <ChartSkeleton />
+            ) : (
+              <DualAxisChart
+                data={chartData}
+                xKey="week"
+                bars={[
+                  { key: "within1Day", label: "Within 1 day", color: "#1d4ed8" },
+                  { key: "day2to7", label: "Day 2–7", color: "#0891b2" },
+                  { key: "day8to28", label: "Day 8–28", color: "#d97706" },
+                ]}
+                lines={[{ key: "upliftRatio", label: "Uplift Ratio", color: "#f59e0b" }]}
+                barFormat="percent"
+                lineFormat="percent"
+                barDomain={[70, 100]}
+                lineDomain={[0, "auto"]}
+              />
+            )}
+          </div>
+
+          <div className={`mt-6 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+            <DataTable
+              columns={columns}
+              rows={report?.weeks ?? []}
+              loading={isInitialLoad}
+              filename="conversion-windows"
+              defaultSortKey="weekStart"
+              defaultSortDir="asc"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

@@ -1,1 +1,34 @@
-{"data":"aW50ZXJmYWNlIFByb2dyZXNzSW5kaWNhdG9yUHJvcHMgewogIGN1cnJlbnQ6IG51bWJlcjsKICB0b3RhbDogbnVtYmVyOwogIGxhYmVsOiBzdHJpbmc7CiAgb25DYW5jZWw/OiAoKSA9PiB2b2lkOwp9CgpleHBvcnQgZnVuY3Rpb24gUHJvZ3Jlc3NJbmRpY2F0b3IoeyBjdXJyZW50LCB0b3RhbCwgbGFiZWwsIG9uQ2FuY2VsIH06IFByb2dyZXNzSW5kaWNhdG9yUHJvcHMpIHsKICBjb25zdCBwY3QgPSB0b3RhbCA+IDAgPyBNYXRoLm1pbigxMDAsIE1hdGgucm91bmQoKGN1cnJlbnQgLyB0b3RhbCkgKiAxMDApKSA6IDA7CiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJyb3VuZGVkLXhsIGJvcmRlciBib3JkZXItYmx1ZS0xMDAgYmctYmx1ZS01MC81MCBwLTQiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIiPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImgtMiB3LTIgYW5pbWF0ZS1wdWxzZSByb3VuZGVkLWZ1bGwgYmctYnJhbmQtNTAwIiAvPgogICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJ0ZXh0LXNtIGZvbnQtbWVkaXVtIHRleHQtc2xhdGUtNzAwIj57bGFiZWx9PC9zcGFuPgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMyI+CiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InRleHQteHMgZm9udC1zZW1pYm9sZCB0YWJ1bGFyLW51bXMgdGV4dC1icmFuZC02MDAiPntwY3R9JTwvc3Bhbj4KICAgICAgICAgIHtvbkNhbmNlbCAmJiAoCiAgICAgICAgICAgIDxidXR0b24gb25DbGljaz17b25DYW5jZWx9IGNsYXNzTmFtZT0idGV4dC14cyBmb250LW1lZGl1bSB0ZXh0LXNsYXRlLTQwMCB0cmFuc2l0aW9uLWNvbG9ycyBob3Zlcjp0ZXh0LXJlZC01MDAiPgogICAgICAgICAgICAgIENhbmNlbAogICAgICAgICAgICA8L2J1dHRvbj4KICAgICAgICAgICl9CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMi41IGgtMS41IHctZnVsbCBvdmVyZmxvdy1oaWRkZW4gcm91bmRlZC1mdWxsIGJnLWJsdWUtMTAwIj4KICAgICAgICA8ZGl2CiAgICAgICAgICBjbGFzc05hbWU9ImgtZnVsbCByb3VuZGVkLWZ1bGwgYmctZ3JhZGllbnQtdG8tciBmcm9tLWJyYW5kLTUwMCB0by1icmFuZC02MDAgdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMzAwIgogICAgICAgICAgc3R5bGU9e3sgd2lkdGg6IGAke3BjdH0lYCB9fQogICAgICAgIC8+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKTsKfQo="}
+interface ProgressIndicatorProps {
+  current: number;
+  total: number;
+  label: string;
+  onCancel?: () => void;
+}
+
+export function ProgressIndicator({ current, total, label, onCancel }: ProgressIndicatorProps) {
+  const pct = total > 0 ? Math.min(100, Math.round((current / total) * 100)) : 0;
+  return (
+    <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="h-2 w-2 animate-pulse rounded-full bg-brand-500" />
+          <span className="text-sm font-medium text-slate-700">{label}</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-semibold tabular-nums text-brand-600">{pct}%</span>
+          {onCancel && (
+            <button onClick={onCancel} className="text-xs font-medium text-slate-400 transition-colors hover:text-red-500">
+              Cancel
+            </button>
+          )}
+        </div>
+      </div>
+      <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-blue-100">
+        <div
+          className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-600 transition-all duration-300"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+    </div>
+  );
+}

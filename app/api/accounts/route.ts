@@ -1,1 +1,28 @@
-{"data":"aW1wb3J0IHsgTmV4dFJlc3BvbnNlIH0gZnJvbSAibmV4dC9zZXJ2ZXIiOwppbXBvcnQgeyBnZXRTZXNzaW9uLCBpc1Rva2VuRXhwaXJpbmdTb29uIH0gZnJvbSAiQC9saWIvc2Vzc2lvbiI7CmltcG9ydCB7IG1ldGFHZXRBbGxQYWdlcywgTWV0YUFwaUVycm9yIH0gZnJvbSAiQC9saWIvbWV0YS1hcGkiOwppbXBvcnQgdHlwZSB7IE1ldGFBZEFjY291bnQgfSBmcm9tICJAL2xpYi90eXBlcyI7CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gR0VUKCkgewogIGNvbnN0IHNlc3Npb24gPSBhd2FpdCBnZXRTZXNzaW9uKCk7CiAgaWYgKCFzZXNzaW9uLmFjY2Vzc1Rva2VuKSB7CiAgICByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogIk5vdCBhdXRoZW50aWNhdGVkIiB9LCB7IHN0YXR1czogNDAxIH0pOwogIH0KCiAgdHJ5IHsKICAgIGNvbnN0IGFjY291bnRzID0gYXdhaXQgbWV0YUdldEFsbFBhZ2VzKCIvbWUvYWRhY2NvdW50cyIsIHNlc3Npb24uYWNjZXNzVG9rZW4sIHsKICAgICAgZmllbGRzOiAiaWQsbmFtZSxhY2NvdW50X3N0YXR1cyxjdXJyZW5jeSxidXNpbmVzc19uYW1lIiwKICAgICAgbGltaXQ6ICIxMDAiLAogICAgfSk7CiAgICByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oewogICAgICBhY2NvdW50czogYWNjb3VudHMgYXMgTWV0YUFkQWNjb3VudFtdLAogICAgICB0b2tlbkV4cGlyaW5nU29vbjogaXNUb2tlbkV4cGlyaW5nU29vbihzZXNzaW9uLnRva2VuRXhwaXJlc0F0KSwKICAgIH0pOwogIH0gY2F0Y2ggKGVycikgewogICAgaWYgKGVyciBpbnN0YW5jZW9mIE1ldGFBcGlFcnJvciAmJiBlcnIuaXNBdXRoRXJyb3IpIHsKICAgICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6IGVyci5tZXNzYWdlIH0sIHsgc3RhdHVzOiA0MDEgfSk7CiAgICB9CiAgICBjb25zdCBtZXNzYWdlID0gZXJyIGluc3RhbmNlb2YgRXJyb3IgPyBlcnIubWVzc2FnZSA6ICJGYWlsZWQgdG8gbG9hZCBhZCBhY2NvdW50cyI7CiAgICByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogbWVzc2FnZSB9LCB7IHN0YXR1czogNTAyIH0pOwogIH0KfQo="}
+import { NextResponse } from "next/server";
+import { getSession, isTokenExpiringSoon } from "@/lib/session";
+import { metaGetAllPages, MetaApiError } from "@/lib/meta-api";
+import type { MetaAdAccount } from "@/lib/types";
+
+export async function GET() {
+  const session = await getSession();
+  if (!session.accessToken) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  }
+
+  try {
+    const accounts = await metaGetAllPages("/me/adaccounts", session.accessToken, {
+      fields: "id,name,account_status,currency,business_name",
+      limit: "100",
+    });
+    return NextResponse.json({
+      accounts: accounts as MetaAdAccount[],
+      tokenExpiringSoon: isTokenExpiringSoon(session.tokenExpiresAt),
+    });
+  } catch (err) {
+    if (err instanceof MetaApiError && err.isAuthError) {
+      return NextResponse.json({ error: err.message }, { status: 401 });
+    }
+    const message = err instanceof Error ? err.message : "Failed to load ad accounts";
+    return NextResponse.json({ error: message }, { status: 502 });
+  }
+}

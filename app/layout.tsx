@@ -1,1 +1,33 @@
-{"data":"aW1wb3J0IHR5cGUgeyBNZXRhZGF0YSB9IGZyb20gIm5leHQiOwppbXBvcnQgeyBHZWlzdCwgR2Vpc3RfTW9ubyB9IGZyb20gIm5leHQvZm9udC9nb29nbGUiOwppbXBvcnQgIi4vZ2xvYmFscy5jc3MiOwoKY29uc3QgZ2Vpc3RTYW5zID0gR2Vpc3QoewogIHZhcmlhYmxlOiAiLS1mb250LWdlaXN0LXNhbnMiLAogIHN1YnNldHM6IFsibGF0aW4iXSwKfSk7Cgpjb25zdCBnZWlzdE1vbm8gPSBHZWlzdF9Nb25vKHsKICB2YXJpYWJsZTogIi0tZm9udC1nZWlzdC1tb25vIiwKICBzdWJzZXRzOiBbImxhdGluIl0sCn0pOwoKZXhwb3J0IGNvbnN0IG1ldGFkYXRhOiBNZXRhZGF0YSA9IHsKICB0aXRsZTogIkFkcyBSZWFjaCIsCiAgZGVzY3JpcHRpb246ICJSZWFjaCwgYXVkaWVuY2UsIGFuZCBjcmVhdGl2ZSBpbnRlbGxpZ2VuY2UgZm9yIE1ldGEgYWQgYWNjb3VudHMiLAp9OwoKZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gUm9vdExheW91dCh7CiAgY2hpbGRyZW4sCn06IFJlYWRvbmx5PHsKICBjaGlsZHJlbjogUmVhY3QuUmVhY3ROb2RlOwp9PikgewogIHJldHVybiAoCiAgICA8aHRtbAogICAgICBsYW5nPSJlbiIKICAgICAgY2xhc3NOYW1lPXtgJHtnZWlzdFNhbnMudmFyaWFibGV9ICR7Z2Vpc3RNb25vLnZhcmlhYmxlfSBoLWZ1bGwgYW50aWFsaWFzZWRgfQogICAgPgogICAgICA8Ym9keSBjbGFzc05hbWU9Im1pbi1oLWZ1bGwgZmxleCBmbGV4LWNvbCI+e2NoaWxkcmVufTwvYm9keT4KICAgIDwvaHRtbD4KICApOwp9Cg=="}
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Ads Reach",
+  description: "Reach, audience, and creative intelligence for Meta ad accounts",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">{children}</body>
+    </html>
+  );
+}

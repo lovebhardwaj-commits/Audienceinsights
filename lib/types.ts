@@ -1,1 +1,57 @@
-{"data":"ZXhwb3J0IHR5cGUgU2VnbWVudEtleSA9ICJwcm9zcGVjdGluZyIgfCAiZW5nYWdlZCIgfCAiZXhpc3RpbmciIHwgInVua25vd24iOwoKZXhwb3J0IGludGVyZmFjZSBEYXRlUmFuZ2UgewogIHNpbmNlOiBzdHJpbmc7CiAgdW50aWw6IHN0cmluZzsKfQoKZXhwb3J0IGludGVyZmFjZSBNZXRhQWRBY2NvdW50IHsKICBpZDogc3RyaW5nOyAvLyAiYWN0X1hYWFhYWFhYWCIKICBuYW1lOiBzdHJpbmc7CiAgYWNjb3VudF9zdGF0dXM6IG51bWJlcjsKICBjdXJyZW5jeTogc3RyaW5nOwogIGJ1c2luZXNzX25hbWU/OiBzdHJpbmc7Cn0KCmV4cG9ydCBpbnRlcmZhY2UgSW5zaWdodFJvdyB7CiAgW2tleTogc3RyaW5nXTogc3RyaW5nIHwgbnVtYmVyIHwgQWN0aW9uUm93W10gfCB1bmRlZmluZWQ7CiAgcmVhY2g/OiBzdHJpbmc7CiAgc3BlbmQ/OiBzdHJpbmc7CiAgaW1wcmVzc2lvbnM/OiBzdHJpbmc7CiAgZnJlcXVlbmN5Pzogc3RyaW5nOwogIGRhdGVfc3RhcnQ/OiBzdHJpbmc7CiAgZGF0ZV9zdG9wPzogc3RyaW5nOwogIHVzZXJfc2VnbWVudF9rZXk/OiBTZWdtZW50S2V5OwogIHB1Ymxpc2hlcl9wbGF0Zm9ybT86IHN0cmluZzsKICBhZ2U/OiBzdHJpbmc7CiAgY2FtcGFpZ25faWQ/OiBzdHJpbmc7CiAgY2FtcGFpZ25fbmFtZT86IHN0cmluZzsKICBhZHNldF9pZD86IHN0cmluZzsKICBhZHNldF9uYW1lPzogc3RyaW5nOwogIGFkX2lkPzogc3RyaW5nOwogIGFkX25hbWU/OiBzdHJpbmc7CiAgYWN0aW9ucz86IEFjdGlvblJvd1tdOwp9CgpleHBvcnQgaW50ZXJmYWNlIEFjdGlvblJvdyB7CiAgYWN0aW9uX3R5cGU6IHN0cmluZzsKICB2YWx1ZTogc3RyaW5nOwogICIxZF9jbGljayI/OiBzdHJpbmc7CiAgIjdkX2NsaWNrIj86IHN0cmluZzsKICAiMjhkX2NsaWNrIj86IHN0cmluZzsKICAiMWRfdmlldyI/OiBzdHJpbmc7Cn0KCmV4cG9ydCBpbnRlcmZhY2UgTWV0YUFkIHsKICBpZDogc3RyaW5nOwogIG5hbWU6IHN0cmluZzsKICBjcmVhdGVkX3RpbWU6IHN0cmluZzsKICBzdGF0dXM6IHN0cmluZzsKICBjYW1wYWlnbl9pZDogc3RyaW5nOwp9CgpleHBvcnQgaW50ZXJmYWNlIEFwaUZpbHRlcmluZyB7CiAgZmllbGQ6IHN0cmluZzsKICBvcGVyYXRvcjogIklOIiB8ICJOT1RfSU4iIHwgIkVRVUFMIjsKICB2YWx1ZTogc3RyaW5nW107Cn0K"}
+export type SegmentKey = "prospecting" | "engaged" | "existing" | "unknown";
+
+export interface DateRange {
+  since: string;
+  until: string;
+}
+
+export interface MetaAdAccount {
+  id: string; // "act_XXXXXXXXX"
+  name: string;
+  account_status: number;
+  currency: string;
+  business_name?: string;
+}
+
+export interface InsightRow {
+  [key: string]: string | number | ActionRow[] | undefined;
+  reach?: string;
+  spend?: string;
+  impressions?: string;
+  frequency?: string;
+  date_start?: string;
+  date_stop?: string;
+  user_segment_key?: SegmentKey;
+  publisher_platform?: string;
+  age?: string;
+  campaign_id?: string;
+  campaign_name?: string;
+  adset_id?: string;
+  adset_name?: string;
+  ad_id?: string;
+  ad_name?: string;
+  actions?: ActionRow[];
+}
+
+export interface ActionRow {
+  action_type: string;
+  value: string;
+  "1d_click"?: string;
+  "7d_click"?: string;
+  "28d_click"?: string;
+  "1d_view"?: string;
+}
+
+export interface MetaAd {
+  id: string;
+  name: string;
+  created_time: string;
+  status: string;
+  campaign_id: string;
+}
+
+export interface ApiFiltering {
+  field: string;
+  operator: "IN" | "NOT_IN" | "EQUAL";
+  value: string[];
+}

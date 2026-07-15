@@ -1,1 +1,127 @@
-{"data": "InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgQmFyLCBDYXJ0ZXNpYW5HcmlkLCBDb21wb3NlZENoYXJ0LCBMZWdlbmQsIExpbmUsIFJlc3BvbnNpdmVDb250YWluZXIsIFRvb2x0aXAsIFhBeGlzLCBZQXhpcyB9IGZyb20gInJlY2hhcnRzIjsKaW1wb3J0IHsgQ0hBUlRfQ0hST01FLCBDSEFSVF9JTksgfSBmcm9tICJAL2xpYi9jaGFydC10aGVtZSI7CmltcG9ydCB7IHVzZVJlZHVjZWRNb3Rpb24gfSBmcm9tICJAL2xpYi9ob29rcy91c2VSZWR1Y2VkTW90aW9uIjsKaW1wb3J0IHsKICBDaGFydFRvb2x0aXBDb250ZW50LAogIGNvbXBhY3RUaWNrRm9ybWF0dGVyLAogIGN1cnJlbmN5VGlja0Zvcm1hdHRlciwKICBwZXJjZW50VGlja0Zvcm1hdHRlciwKICB0eXBlIFZhbHVlRm9ybWF0LAp9IGZyb20gIi4vQ2hhcnRUb29sdGlwIjsKCmV4cG9ydCBpbnRlcmZhY2UgRHVhbEF4aXNTZXJpZXMgewogIGtleTogc3RyaW5nOwogIGxhYmVsOiBzdHJpbmc7CiAgY29sb3I6IHN0cmluZzsKfQoKaW50ZXJmYWNlIER1YWxBeGlzQ2hhcnRQcm9wcyB7CiAgZGF0YTogQXJyYXk8UmVjb3JkPHN0cmluZywgc3RyaW5nIHwgbnVtYmVyPj47CiAgeEtleTogc3RyaW5nOwogIC8qKiBTdGFja2VkIGJhcnMsIHBsb3R0ZWQgb24gdGhlIGxlZnQgYXhpcy4gKi8KICBiYXJzOiBEdWFsQXhpc1Nlcmllc1tdOwogIC8qKiBMaW5lcyBwbG90dGVkIG9uIHRoZSByaWdodCBheGlzLiAqLwogIGxpbmVzOiBEdWFsQXhpc1Nlcmllc1tdOwogIGJhckZvcm1hdD86IFZhbHVlRm9ybWF0OwogIGxpbmVGb3JtYXQ/OiBWYWx1ZUZvcm1hdDsKICBoZWlnaHQ/OiBudW1iZXI7CiAgLyoqIE92ZXJyaWRlIHRoZSBsZWZ0IChiYXIpIGF4aXMgZG9tYWluIOKAlCBlLmcuIFswLCAxMDBdIGZvciBhICUgc3RhY2tlZCBjaGFydC4gKi8KICBiYXJEb21haW4/OiBbbnVtYmVyIHwgc3RyaW5nLCBudW1iZXIgfCBzdHJpbmddOwogIC8qKiBPdmVycmlkZSB0aGUgcmlnaHQgKGxpbmUpIGF4aXMgZG9tYWluIOKAlCBkZWZhdWx0cyB0byBbMCwgMTAwXSB3aGVuIGxpbmVGb3JtYXQgaXMgInBlcmNlbnQiLAogICAqICBidXQgcmF0aW9zIGxpa2UgdXBsaWZ0ICUgYXJlbid0IGJvdW5kZWQgYXQgMTAwLCBzbyBwYXNzIGUuZy4gWzAsICJhdXRvIl0gdG8gbGV0IGl0IHNjYWxlIHVwLiAqLwogIGxpbmVEb21haW4/OiBbbnVtYmVyIHwgc3RyaW5nLCBudW1iZXIgfCBzdHJpbmddOwp9Cgpjb25zdCB0aWNrU3R5bGUgPSB7IGZvbnRTaXplOiAxMiwgZmlsbDogQ0hBUlRfSU5LLm11dGVkIH07CgpmdW5jdGlvbiB0aWNrRm9ybWF0dGVyRm9yKGZtdDogVmFsdWVGb3JtYXQpOiAodjogbnVtYmVyKSA9PiBzdHJpbmcgewogIGlmIChmbXQgPT09ICJwZXJjZW50IikgcmV0dXJuIHBlcmNlbnRUaWNrRm9ybWF0dGVyOwogIGlmIChmbXQgPT09ICJjdXJyZW5jeSIgfHwgZm10ID09PSAiY3VycmVuY3lDb21wYWN0IikgcmV0dXJuIGN1cnJlbmN5VGlja0Zvcm1hdHRlcjsKICByZXR1cm4gY29tcGFjdFRpY2tGb3JtYXR0ZXI7Cn0KCi8qKiBTdGFja2VkIGJhcnMgb24gdGhlIGxlZnQgYXhpcyB3aXRoIG9uZSBvciBtb3JlIG92ZXJsYXkgbGluZXMgb24gYW4KICogIGluZGVwZW5kZW50IHJpZ2h0IGF4aXMg4oCUIGUuZy4gcmVhY2ggY29tcG9zaXRpb24gYmFycyArICIlIG5ldCBuZXciIGxpbmUuICovCmV4cG9ydCBmdW5jdGlvbiBEdWFsQXhpc0NoYXJ0KHsKICBkYXRhLAogIHhLZXksCiAgYmFycywKICBsaW5lcywKICBiYXJGb3JtYXQgPSAiY29tcGFjdCIsCiAgbGluZUZvcm1hdCA9ICJwZXJjZW50IiwKICBoZWlnaHQgPSAzNjAsCiAgYmFyRG9tYWluLAogIGxpbmVEb21haW4sCn06IER1YWxBeGlzQ2hhcnRQcm9wcykgewogIC8vIFtQTSBFTkhBTkNFTUVOVF0g4oCUIGNoYXJ0IGFuaW1hdGlvbnMgcmVzcGVjdCB0aGUgT1MgcmVkdWNlZC1tb3Rpb24gc2V0dGluZwogIGNvbnN0IGFuaW1hdGUgPSAhdXNlUmVkdWNlZE1vdGlvbigpOwogIGNvbnN0IGZvcm1hdHM6IFJlY29yZDxzdHJpbmcsIFZhbHVlRm9ybWF0PiA9IHt9OwogIGZvciAoY29uc3QgYiBvZiBiYXJzKSBmb3JtYXRzW2Iua2V5XSA9IGJhckZvcm1hdDsKICBmb3IgKGNvbnN0IGwgb2YgbGluZXMpIGZvcm1hdHNbbC5rZXldID0gbGluZUZvcm1hdDsKCiAgcmV0dXJuICgKICAgIDxkaXYgc3R5bGU9e3sgd2lkdGg6ICIxMDAlIiwgaGVpZ2h0IH19PgogICAgICA8UmVzcG9uc2l2ZUNvbnRhaW5lcj4KICAgICAgICA8Q29tcG9zZWRDaGFydCBkYXRhPXtkYXRhfSBtYXJnaW49e3sgdG9wOiA4LCByaWdodDogOCwgbGVmdDogMCwgYm90dG9tOiAwIH19PgogICAgICAgICAgPENhcnRlc2lhbkdyaWQgdmVydGljYWw9e2ZhbHNlfSBzdHJva2U9e0NIQVJUX0NIUk9NRS5ncmlkbGluZX0gLz4KICAgICAgICAgIDxYQXhpcyBkYXRhS2V5PXt4S2V5fSB0aWNrPXt0aWNrU3R5bGV9IGF4aXNMaW5lPXt7IHN0cm9rZTogQ0hBUlRfQ0hST01FLmF4aXMgfX0gdGlja0xpbmU9e2ZhbHNlfSAvPgogICAgICAgICAgPFlBeGlzCiAgICAgICAgICAgIHlBeGlzSWQ9ImxlZnQiCiAgICAgICAgICAgIHRpY2s9e3RpY2tTdHlsZX0KICAgICAgICAgICAgYXhpc0xpbmU9e2ZhbHNlfQogICAgICAgICAgICB0aWNrTGluZT17ZmFsc2V9CiAgICAgICAgICAgIHdpZHRoPXs1Nn0KICAgICAgICAgICAgdGlja0Zvcm1hdHRlcj17dGlja0Zvcm1hdHRlckZvcihiYXJGb3JtYXQpfQogICAgICAgICAgICBkb21haW49e2JhckRvbWFpbiA/PyAoYmFyRm9ybWF0ID09PSAicGVyY2VudCIgPyBbMCwgMTAwXSA6IHVuZGVmaW5lZCl9CiAgICAgICAgICAvPgogICAgICAgICAgPFlBeGlzCiAgICAgICAgICAgIHlBeGlzSWQ9InJpZ2h0IgogICAgICAgICAgICBvcmllbnRhdGlvbj0icmlnaHQiCiAgICAgICAgICAgIHRpY2s9e3RpY2tTdHlsZX0KICAgICAgICAgICAgYXhpc0xpbmU9e2ZhbHNlfQogICAgICAgICAgICB0aWNrTGluZT17ZmFsc2V9CiAgICAgICAgICAgIHdpZHRoPXs1Mn0KICAgICAgICAgICAgdGlja0Zvcm1hdHRlcj17dGlja0Zvcm1hdHRlckZvcihsaW5lRm9ybWF0KX0KICAgICAgICAgICAgZG9tYWluPXtsaW5lRG9tYWluID8/IChsaW5lRm9ybWF0ID09PSAicGVyY2VudCIgPyBbMCwgMTAwXSA6IHVuZGVmaW5lZCl9CiAgICAgICAgICAvPgogICAgICAgICAgPFRvb2x0aXAgY29udGVudD17PENoYXJ0VG9vbHRpcENvbnRlbnQgZm9ybWF0cz17Zm9ybWF0c30gLz59IC8+CiAgICAgICAgICA8TGVnZW5kIHdyYXBwZXJTdHlsZT17eyBmb250U2l6ZTogMTIsIHBhZGRpbmdUb3A6IDggfX0gaWNvblR5cGU9ImNpcmNsZSIgaWNvblNpemU9ezh9IC8+CiAgICAgICAgICB7YmFycy5tYXAoKHMpID0+ICgKICAgICAgICAgICAgPEJhcgogICAgICAgICAgICAgIGtleT17cy5rZXl9CiAgICAgICAgICAgICAgeUF4aXNJZD0ibGVmdCIKICAgICAgICAgICAgICBkYXRhS2V5PXtzLmtleX0KICAgICAgICAgICAgICBuYW1lPXtzLmxhYmVsfQogICAgICAgICAgICAgIHN0YWNrSWQ9ImNvbXBvc2l0aW9uIgogICAgICAgICAgICAgIGZpbGw9e3MuY29sb3J9CiAgICAgICAgICAgICAgc3Ryb2tlPXtDSEFSVF9DSFJPTUUuc3VyZmFjZX0KICAgICAgICAgICAgICBzdHJva2VXaWR0aD17MX0KICAgICAgICAgICAgICBtYXhCYXJTaXplPXs4MH0KICAgICAgICAgICAgICBpc0FuaW1hdGlvbkFjdGl2ZT17YW5pbWF0ZX0KICAgICAgICAgICAgICBhbmltYXRpb25EdXJhdGlvbj17NDAwfQogICAgICAgICAgICAgIGFuaW1hdGlvbkVhc2luZz0iZWFzZS1vdXQiCiAgICAgICAgICAgIC8+CiAgICAgICAgICApKX0KICAgICAgICAgIHtsaW5lcy5tYXAoKHMpID0+ICgKICAgICAgICAgICAgPExpbmUKICAgICAgICAgICAgICBrZXk9e3Mua2V5fQogICAgICAgICAgICAgIHlBeGlzSWQ9InJpZ2h0IgogICAgICAgICAgICAgIHR5cGU9Im1vbm90b25lIgogICAgICAgICAgICAgIGRhdGFLZXk9e3Mua2V5fQogICAgICAgICAgICAgIG5hbWU9e3MubGFiZWx9CiAgICAgICAgICAgICAgc3Ryb2tlPXtzLmNvbG9yfQogICAgICAgICAgICAgIHN0cm9rZVdpZHRoPXsyLjV9CiAgICAgICAgICAgICAgZG90PXt7IHI6IDMsIHN0cm9rZVdpZHRoOiAwLCBmaWxsOiBzLmNvbG9yIH19CiAgICAgICAgICAgICAgYWN0aXZlRG90PXt7IHI6IDYsIHN0cm9rZVdpZHRoOiAyLCBzdHJva2U6ICIjZmZmIiB9fQogICAgICAgICAgICAgIGlzQW5pbWF0aW9uQWN0aXZlPXthbmltYXRlfQogICAgICAgICAgICAgIGFuaW1hdGlvbkR1cmF0aW9uPXs2MDB9CiAgICAgICAgICAgICAgYW5pbWF0aW9uRWFzaW5nPSJlYXNlLW91dCIKICAgICAgICAgICAgLz4KICAgICAgICAgICkpfQogICAgICAgIDwvQ29tcG9zZWRDaGFydD4KICAgICAgPC9SZXNwb25zaXZlQ29udGFpbmVyPgogICAgPC9kaXY+CiAgKTsKfQo="}
+"use client";
+
+import { Bar, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
+import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+import {
+  ChartTooltipContent,
+  compactTickFormatter,
+  currencyTickFormatter,
+  percentTickFormatter,
+  type ValueFormat,
+} from "./ChartTooltip";
+
+export interface DualAxisSeries {
+  key: string;
+  label: string;
+  color: string;
+}
+
+interface DualAxisChartProps {
+  data: Array<Record<string, string | number>>;
+  xKey: string;
+  /** Stacked bars, plotted on the left axis. */
+  bars: DualAxisSeries[];
+  /** Lines plotted on the right axis. */
+  lines: DualAxisSeries[];
+  barFormat?: ValueFormat;
+  lineFormat?: ValueFormat;
+  height?: number;
+  /** Override the left (bar) axis domain — e.g. [0, 100] for a % stacked chart. */
+  barDomain?: [number | string, number | string];
+  /** Override the right (line) axis domain — defaults to [0, 100] when lineFormat is "percent",
+   *  but ratios like uplift % aren't bounded at 100, so pass e.g. [0, "auto"] to let it scale up. */
+  lineDomain?: [number | string, number | string];
+}
+
+const tickStyle = { fontSize: 12, fill: CHART_INK.muted };
+
+function tickFormatterFor(fmt: ValueFormat): (v: number) => string {
+  if (fmt === "percent") return percentTickFormatter;
+  if (fmt === "currency" || fmt === "currencyCompact") return currencyTickFormatter;
+  return compactTickFormatter;
+}
+
+/** Stacked bars on the left axis with one or more overlay lines on an
+ *  independent right axis — e.g. reach composition bars + "% net new" line. */
+export function DualAxisChart({
+  data,
+  xKey,
+  bars,
+  lines,
+  barFormat = "compact",
+  lineFormat = "percent",
+  height = 360,
+  barDomain,
+  lineDomain,
+}: DualAxisChartProps) {
+  // [PM ENHANCEMENT] — chart animations respect the OS reduced-motion setting
+  const animate = !useReducedMotion();
+  const formats: Record<string, ValueFormat> = {};
+  for (const b of bars) formats[b.key] = barFormat;
+  for (const l of lines) formats[l.key] = lineFormat;
+
+  return (
+    <div style={{ width: "100%", height }}>
+      <ResponsiveContainer>
+        <ComposedChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+          <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
+          <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
+          <YAxis
+            yAxisId="left"
+            tick={tickStyle}
+            axisLine={false}
+            tickLine={false}
+            width={56}
+            tickFormatter={tickFormatterFor(barFormat)}
+            domain={barDomain ?? (barFormat === "percent" ? [0, 100] : undefined)}
+          />
+          <YAxis
+            yAxisId="right"
+            orientation="right"
+            tick={tickStyle}
+            axisLine={false}
+            tickLine={false}
+            width={52}
+            tickFormatter={tickFormatterFor(lineFormat)}
+            domain={lineDomain ?? (lineFormat === "percent" ? [0, 100] : undefined)}
+          />
+          <Tooltip content={<ChartTooltipContent formats={formats} />} />
+          <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />
+          {bars.map((s) => (
+            <Bar
+              key={s.key}
+              yAxisId="left"
+              dataKey={s.key}
+              name={s.label}
+              stackId="composition"
+              fill={s.color}
+              stroke={CHART_CHROME.surface}
+              strokeWidth={1}
+              maxBarSize={80}
+              isAnimationActive={animate}
+              animationDuration={400}
+              animationEasing="ease-out"
+            />
+          ))}
+          {lines.map((s) => (
+            <Line
+              key={s.key}
+              yAxisId="right"
+              type="monotone"
+              dataKey={s.key}
+              name={s.label}
+              stroke={s.color}
+              strokeWidth={2.5}
+              dot={{ r: 3, strokeWidth: 0, fill: s.color }}
+              activeDot={{ r: 6, strokeWidth: 2, stroke: "#fff" }}
+              isAnimationActive={animate}
+              animationDuration={600}
+              animationEasing="ease-out"
+            />
+          ))}
+        </ComposedChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}

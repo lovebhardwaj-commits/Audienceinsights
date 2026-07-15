@@ -1,1 +1,39 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VTdGF0ZSB9IGZyb20gInJlYWN0IjsKCmNvbnN0IE1FU1NBR0VTID0gWwogICJGZXRjaGluZyB5b3VyIGRhdGHigKYiLAogICJUYWxraW5nIHRvIE1ldGEncyBBZHMgQVBJ4oCmIiwKICAiQ3J1bmNoaW5nIHRoZSBudW1iZXJz4oCmIiwKICAiQWxtb3N0IHRoZXJl4oCmIiwKXTsKCi8qKiBQcm9taW5lbnQgbG9hZGluZyBiYW5uZXIgc2hvd24gd2hpbGUgYSByZXBvcnQncyBmaXJzdCBmZXRjaCBpcyBpbiBmbGlnaHQg4oCUCiAqICByb3RhdGVzIHRocm91Z2ggZnJpZW5kbHkgbWVzc2FnZXMgc28gbG9uZyBwdWxscyBuZXZlciBsb29rIGZyb3plbi4gKi8KZXhwb3J0IGZ1bmN0aW9uIEZldGNoaW5nU3RhdGUoeyBsYWJlbCB9OiB7IGxhYmVsPzogc3RyaW5nIH0pIHsKICBjb25zdCBbbXNnSW5kZXgsIHNldE1zZ0luZGV4XSA9IHVzZVN0YXRlKDApOwoKICB1c2VFZmZlY3QoKCkgPT4gewogICAgY29uc3QgaWQgPSBzZXRJbnRlcnZhbCgoKSA9PiBzZXRNc2dJbmRleCgoaSkgPT4gTWF0aC5taW4oaSArIDEsIE1FU1NBR0VTLmxlbmd0aCAtIDEpKSwgNDAwMCk7CiAgICByZXR1cm4gKCkgPT4gY2xlYXJJbnRlcnZhbChpZCk7CiAgfSwgW10pOwoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9Im10LTQgZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTQgcm91bmRlZC14bCBib3JkZXIgYm9yZGVyLWJsdWUtMTAwIGJnLWJsdWUtNTAvNjAgcHgtNSBweS00Ij4KICAgICAgPGRpdiBjbGFzc05hbWU9InJlbGF0aXZlIGZsZXggaC05IHctOSBzaHJpbmstMCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIiPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJhYnNvbHV0ZSBpbnNldC0wIGFuaW1hdGUtc3BpbiByb3VuZGVkLWZ1bGwgYm9yZGVyLTIgYm9yZGVyLWJsdWUtMTAwIGJvcmRlci10LWJyYW5kLTYwMCIgLz4KICAgICAgICA8c3ZnIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZVdpZHRoPSIyIiBzdHJva2VMaW5lY2FwPSJyb3VuZCIgc3Ryb2tlTGluZWpvaW49InJvdW5kIj4KICAgICAgICAgIDxwYXRoIGQ9Ik0zIDN2MTZhMiAyIDAgMCAwIDIgMmgxNiIgLz4KICAgICAgICAgIDxwYXRoIGQ9Ik03IDE0bDQtNCA0IDMgNS02IiAvPgogICAgICAgIDwvc3ZnPgogICAgICA8L2Rpdj4KICAgICAgPGRpdj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0idGV4dC1zbSBmb250LXNlbWlib2xkIHRleHQtc2xhdGUtODAwIj57bGFiZWwgPz8gTUVTU0FHRVNbbXNnSW5kZXhdfTwvZGl2PgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC0wLjUgdGV4dC14cyB0ZXh0LXNsYXRlLTUwMCI+CiAgICAgICAgICBQdWxsaW5nIGxpdmUgZGF0YSBmcm9tIHlvdXIgYWQgYWNjb3VudCDigJQgdGhpcyB1c3VhbGx5IHRha2VzIGEgZmV3IHNlY29uZHMuCiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKTsKfQo="}
+"use client";
+
+import { useEffect, useState } from "react";
+
+const MESSAGES = [
+  "Fetching your data…",
+  "Talking to Meta's Ads API…",
+  "Crunching the numbers…",
+  "Almost there…",
+];
+
+/** Prominent loading banner shown while a report's first fetch is in flight —
+ *  rotates through friendly messages so long pulls never look frozen. */
+export function FetchingState({ label }: { label?: string }) {
+  const [msgIndex, setMsgIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setMsgIndex((i) => Math.min(i + 1, MESSAGES.length - 1)), 4000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className="mt-4 flex items-center gap-4 rounded-xl border border-blue-100 bg-blue-50/60 px-5 py-4">
+      <div className="relative flex h-9 w-9 shrink-0 items-center justify-center">
+        <div className="absolute inset-0 animate-spin rounded-full border-2 border-blue-100 border-t-brand-600" />
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+          <path d="M7 14l4-4 4 3 5-6" />
+        </svg>
+      </div>
+      <div>
+        <div className="text-sm font-semibold text-slate-800">{label ?? MESSAGES[msgIndex]}</div>
+        <div className="mt-0.5 text-xs text-slate-500">
+          Pulling live data from your ad account — this usually takes a few seconds.
+        </div>
+      </div>
+    </div>
+  );
+}

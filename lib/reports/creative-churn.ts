@@ -1,1 +1,122 @@
-{"data":"aW1wb3J0IHsgbWV0YUdldEFsbFBhZ2VzLCBtZXRhSW5zaWdodHMgfSBmcm9tICJAL2xpYi9tZXRhLWFwaSI7CmltcG9ydCB7IG51bSB9IGZyb20gIkAvbGliL2NhbGN1bGF0aW9ucyI7CmltcG9ydCB7IG1vbnRoTGFiZWwsIHN0YXJ0T2ZNb250aCB9IGZyb20gIkAvbGliL2RhdGVzIjsKaW1wb3J0IHR5cGUgeyBEYXRlUmFuZ2UsIE1ldGFBZCB9IGZyb20gIkAvbGliL3R5cGVzIjsKCi8qKiBTZW50aW5lbCBjb2hvcnQga2V5IGZvciBhZHMgbGF1bmNoZWQgYmVmb3JlIHRoZSByZXBvcnQgd2luZG93LiAqLwpleHBvcnQgY29uc3QgUFJFX0NPSE9SVF9LRVkgPSAiX19wcmVfXyI7CgpleHBvcnQgaW50ZXJmYWNlIENyZWF0aXZlQ2h1cm5Db2hvcnQgewogIC8qKiAiMjAyNi0wMyIgbW9udGgga2V5LCBvciBQUkVfQ09IT1JUX0tFWSBmb3IgdGhlIGxlZ2FjeSBidWNrZXQuICovCiAga2V5OiBzdHJpbmc7CiAgLyoqICJNYXIgMjAyNiIsIG9yICJQcmUtRmViIDIwMjYiIGZvciB0aGUgbGVnYWN5IGJ1Y2tldC4gKi8KICBsYWJlbDogc3RyaW5nOwogIGFkQ291bnQ6IG51bWJlcjsKICB0b3RhbFNwZW5kOiBudW1iZXI7Cn0KCmV4cG9ydCBpbnRlcmZhY2UgQ3JlYXRpdmVDaHVybkRheVJvdyB7CiAgZGF0ZTogc3RyaW5nOyAvLyAiMjAyNi0wMy0wNyIKICB0b3RhbFNwZW5kOiBudW1iZXI7CiAgY29ob3J0U3BlbmQ6IFJlY29yZDxzdHJpbmcsIG51bWJlcj47Cn0KCmV4cG9ydCBpbnRlcmZhY2UgQ3JlYXRpdmVDaHVyblJlcG9ydCB7CiAgY29ob3J0czogQ3JlYXRpdmVDaHVybkNvaG9ydFtdOwogIGRheXM6IENyZWF0aXZlQ2h1cm5EYXlSb3dbXTsKICB0b3RhbFNwZW5kOiBudW1iZXI7Cn0KCi8qKgogKiBEYWlseSBzcGVuZCBzcGxpdCBieSB0aGUgbW9udGggZWFjaCBhZCBmaXJzdCBsYXVuY2hlZCAoY29ob3J0LXN0YWNrZWQgYXJlYSBkYXRhKS4KICogQWRzIGNyZWF0ZWQgYmVmb3JlIHRoZSByZXBvcnQgd2luZG93IGNvbGxhcHNlIGludG8gYSBzaW5nbGUgIlByZS17bW9udGh9IiBidWNrZXQKICogc28gdGhlIGNoYXJ0J3MgYmFzZSBsYXllciBpcyBsZWdhY3kgY3JlYXRpdmUgc3BlbmQsIHBlciB0aGUgZGVzaWduIHNwZWMuCiAqLwpleHBvcnQgYXN5bmMgZnVuY3Rpb24gZ2V0Q3JlYXRpdmVDaHVyblJlcG9ydCgKICB0b2tlbjogc3RyaW5nLAogIGFjY291bnRJZDogc3RyaW5nLAogIHJhbmdlOiBEYXRlUmFuZ2UKKTogUHJvbWlzZTxDcmVhdGl2ZUNodXJuUmVwb3J0PiB7CiAgY29uc3QgW2Fkcywgc3BlbmRSb3dzXSA9IGF3YWl0IFByb21pc2UuYWxsKFsKICAgIC8vIE5vIHN0YXR1cyBmaWx0ZXI6IGFuIGFkIHRoYXQgc3BlbnQgbW9uZXkgZHVyaW5nIGByYW5nZWAgYnV0IGhhcyBzaW5jZSBiZWVuIHBhdXNlZC9hcmNoaXZlZAogICAgLy8gc3RpbGwgbmVlZHMgaXRzIGNyZWF0ZWRfdGltZSBtYXBwZWQgdG8gYSBjb2hvcnQsIG9yIGl0cyBzcGVuZCBmYWxscyBpbnRvICJVbmtub3duIi4KICAgIG1ldGFHZXRBbGxQYWdlcyhgLyR7YWNjb3VudElkfS9hZHNgLCB0b2tlbiwgewogICAgICBmaWVsZHM6ICJpZCxuYW1lLGNyZWF0ZWRfdGltZSxzdGF0dXMsY2FtcGFpZ25faWQiLAogICAgICBsaW1pdDogIjIwMCIsCiAgICB9KSwKICAgIG1ldGFJbnNpZ2h0cyh7CiAgICAgIHRva2VuLAogICAgICBvYmplY3RJZDogYWNjb3VudElkLAogICAgICBmaWVsZHM6IFsiYWRfaWQiLCAic3BlbmQiXSwKICAgICAgdGltZVJhbmdlOiByYW5nZSwKICAgICAgbGV2ZWw6ICJhZCIsCiAgICAgIHRpbWVJbmNyZW1lbnQ6IDEsCiAgICAgIGxpbWl0OiA1MDAsCiAgICB9KSwKICBdKTsKCiAgY29uc3Qgd2luZG93U3RhcnRNb250aCA9IHN0YXJ0T2ZNb250aChyYW5nZS5zaW5jZSk7IC8vICIyMDI2LTAyLTAxIgogIGNvbnN0IHByZUxhYmVsID0gYFByZS0ke21vbnRoTGFiZWwod2luZG93U3RhcnRNb250aCl9YDsKCiAgY29uc3QgY29ob3J0QnlBZElkID0gbmV3IE1hcDxzdHJpbmcsIHN0cmluZz4oKTsKICBjb25zdCBjb2hvcnRBZENvdW50ID0gbmV3IE1hcDxzdHJpbmcsIG51bWJlcj4oKTsKICBmb3IgKGNvbnN0IGFkIG9mIGFkcyBhcyBNZXRhQWRbXSkgewogICAgY29uc3QgbGF1bmNoTW9udGggPSBzdGFydE9mTW9udGgoYWQuY3JlYXRlZF90aW1lLnNsaWNlKDAsIDEwKSk7CiAgICBjb25zdCBrZXkgPSBsYXVuY2hNb250aCA8IHdpbmRvd1N0YXJ0TW9udGggPyBQUkVfQ09IT1JUX0tFWSA6IGxhdW5jaE1vbnRoLnNsaWNlKDAsIDcpOwogICAgY29ob3J0QnlBZElkLnNldChhZC5pZCwga2V5KTsKICAgIGNvaG9ydEFkQ291bnQuc2V0KGtleSwgKGNvaG9ydEFkQ291bnQuZ2V0KGtleSkgPz8gMCkgKyAxKTsKICB9CgogIGNvbnN0IGRheUJ1Y2tldHMgPSBuZXcgTWFwPHN0cmluZywgeyB0b3RhbFNwZW5kOiBudW1iZXI7IGNvaG9ydFNwZW5kOiBNYXA8c3RyaW5nLCBudW1iZXI+IH0+KCk7CiAgY29uc3QgY29ob3J0VG90YWxzID0gbmV3IE1hcDxzdHJpbmcsIG51bWJlcj4oKTsKCiAgZm9yIChjb25zdCByb3cgb2Ygc3BlbmRSb3dzKSB7CiAgICBjb25zdCBkYXRlID0gKHJvdy5kYXRlX3N0YXJ0IGFzIHN0cmluZykgPz8gIiI7CiAgICBpZiAoIWRhdGUpIGNvbnRpbnVlOwogICAgaWYgKCFkYXlCdWNrZXRzLmhhcyhkYXRlKSkgZGF5QnVja2V0cy5zZXQoZGF0ZSwgeyB0b3RhbFNwZW5kOiAwLCBjb2hvcnRTcGVuZDogbmV3IE1hcCgpIH0pOwogICAgY29uc3QgYnVja2V0ID0gZGF5QnVja2V0cy5nZXQoZGF0ZSkhOwogICAgY29uc3QgY29ob3J0ID0gY29ob3J0QnlBZElkLmdldChyb3cuYWRfaWQgYXMgc3RyaW5nKSA/PyBQUkVfQ09IT1JUX0tFWTsKICAgIGNvbnN0IHNwZW5kID0gbnVtKHJvdy5zcGVuZCk7CiAgICBidWNrZXQuY29ob3J0U3BlbmQuc2V0KGNvaG9ydCwgKGJ1Y2tldC5jb2hvcnRTcGVuZC5nZXQoY29ob3J0KSA/PyAwKSArIHNwZW5kKTsKICAgIGJ1Y2tldC50b3RhbFNwZW5kICs9IHNwZW5kOwogICAgY29ob3J0VG90YWxzLnNldChjb2hvcnQsIChjb2hvcnRUb3RhbHMuZ2V0KGNvaG9ydCkgPz8gMCkgKyBzcGVuZCk7CiAgfQoKICAvLyBPbmx5IGNvaG9ydHMgdGhhdCBhY3R1YWxseSBzcGVudCBpbiB0aGUgd2luZG93IGdldCBhIGxheWVyIOKAlCBzdGFjayBvcmRlciBpcwogIC8vIGNocm9ub2xvZ2ljYWwgd2l0aCB0aGUgbGVnYWN5IGJ1Y2tldCBhdCB0aGUgYm90dG9tLgogIGNvbnN0IG1vbnRoS2V5cyA9IEFycmF5LmZyb20oY29ob3J0VG90YWxzLmtleXMoKSkKICAgIC5maWx0ZXIoKGspID0+IGsgIT09IFBSRV9DT0hPUlRfS0VZICYmIChjb2hvcnRUb3RhbHMuZ2V0KGspID8/IDApID4gMCkKICAgIC5zb3J0KCk7CgogIGNvbnN0IGNvaG9ydHM6IENyZWF0aXZlQ2h1cm5Db2hvcnRbXSA9IFtdOwogIGlmICgoY29ob3J0VG90YWxzLmdldChQUkVfQ09IT1JUX0tFWSkgPz8gMCkgPiAwKSB7CiAgICBjb2hvcnRzLnB1c2goewogICAgICBrZXk6IFBSRV9DT0hPUlRfS0VZLAogICAgICBsYWJlbDogcHJlTGFiZWwsCiAgICAgIGFkQ291bnQ6IGNvaG9ydEFkQ291bnQuZ2V0KFBSRV9DT0hPUlRfS0VZKSA/PyAwLAogICAgICB0b3RhbFNwZW5kOiBjb2hvcnRUb3RhbHMuZ2V0KFBSRV9DT0hPUlRfS0VZKSA/PyAwLAogICAgfSk7CiAgfQogIGZvciAoY29uc3Qga2V5IG9mIG1vbnRoS2V5cykgewogICAgY29ob3J0cy5wdXNoKHsKICAgICAga2V5LAogICAgICBsYWJlbDogbW9udGhMYWJlbChgJHtrZXl9LTAxYCksCiAgICAgIGFkQ291bnQ6IGNvaG9ydEFkQ291bnQuZ2V0KGtleSkgPz8gMCwKICAgICAgdG90YWxTcGVuZDogY29ob3J0VG90YWxzLmdldChrZXkpID8/IDAsCiAgICB9KTsKICB9CgogIGNvbnN0IGRheXM6IENyZWF0aXZlQ2h1cm5EYXlSb3dbXSA9IEFycmF5LmZyb20oZGF5QnVja2V0cy5lbnRyaWVzKCkpCiAgICAuc29ydCgoW2FdLCBbYl0pID0+IGEubG9jYWxlQ29tcGFyZShiKSkKICAgIC5tYXAoKFtkYXRlLCBidWNrZXRdKSA9PiAoewogICAgICBkYXRlLAogICAgICB0b3RhbFNwZW5kOiBidWNrZXQudG90YWxTcGVuZCwKICAgICAgY29ob3J0U3BlbmQ6IE9iamVjdC5mcm9tRW50cmllcyhidWNrZXQuY29ob3J0U3BlbmQpLAogICAgfSkpOwoKICByZXR1cm4gewogICAgY29ob3J0cywKICAgIGRheXMsCiAgICB0b3RhbFNwZW5kOiBkYXlzLnJlZHVjZSgoc3VtLCBkKSA9PiBzdW0gKyBkLnRvdGFsU3BlbmQsIDApLAogIH07Cn0K"}
+import { metaGetAllPages, metaInsights } from "@/lib/meta-api";
+import { num } from "@/lib/calculations";
+import { monthLabel, startOfMonth } from "@/lib/dates";
+import type { DateRange, MetaAd } from "@/lib/types";
+
+/** Sentinel cohort key for ads launched before the report window. */
+export const PRE_COHORT_KEY = "__pre__";
+
+export interface CreativeChurnCohort {
+  /** "2026-03" month key, or PRE_COHORT_KEY for the legacy bucket. */
+  key: string;
+  /** "Mar 2026", or "Pre-Feb 2026" for the legacy bucket. */
+  label: string;
+  adCount: number;
+  totalSpend: number;
+}
+
+export interface CreativeChurnDayRow {
+  date: string; // "2026-03-07"
+  totalSpend: number;
+  cohortSpend: Record<string, number>;
+}
+
+export interface CreativeChurnReport {
+  cohorts: CreativeChurnCohort[];
+  days: CreativeChurnDayRow[];
+  totalSpend: number;
+}
+
+/**
+ * Daily spend split by the month each ad first launched (cohort-stacked area data).
+ * Ads created before the report window collapse into a single "Pre-{month}" bucket
+ * so the chart's base layer is legacy creative spend, per the design spec.
+ */
+export async function getCreativeChurnReport(
+  token: string,
+  accountId: string,
+  range: DateRange
+): Promise<CreativeChurnReport> {
+  const [ads, spendRows] = await Promise.all([
+    // No status filter: an ad that spent money during `range` but has since been paused/archived
+    // still needs its created_time mapped to a cohort, or its spend falls into "Unknown".
+    metaGetAllPages(`/${accountId}/ads`, token, {
+      fields: "id,name,created_time,status,campaign_id",
+      limit: "200",
+    }),
+    metaInsights({
+      token,
+      objectId: accountId,
+      fields: ["ad_id", "spend"],
+      timeRange: range,
+      level: "ad",
+      timeIncrement: 1,
+      limit: 500,
+    }),
+  ]);
+
+  const windowStartMonth = startOfMonth(range.since); // "2026-02-01"
+  const preLabel = `Pre-${monthLabel(windowStartMonth)}`;
+
+  const cohortByAdId = new Map<string, string>();
+  const cohortAdCount = new Map<string, number>();
+  for (const ad of ads as MetaAd[]) {
+    const launchMonth = startOfMonth(ad.created_time.slice(0, 10));
+    const key = launchMonth < windowStartMonth ? PRE_COHORT_KEY : launchMonth.slice(0, 7);
+    cohortByAdId.set(ad.id, key);
+    cohortAdCount.set(key, (cohortAdCount.get(key) ?? 0) + 1);
+  }
+
+  const dayBuckets = new Map<string, { totalSpend: number; cohortSpend: Map<string, number> }>();
+  const cohortTotals = new Map<string, number>();
+
+  for (const row of spendRows) {
+    const date = (row.date_start as string) ?? "";
+    if (!date) continue;
+    if (!dayBuckets.has(date)) dayBuckets.set(date, { totalSpend: 0, cohortSpend: new Map() });
+    const bucket = dayBuckets.get(date)!;
+    const cohort = cohortByAdId.get(row.ad_id as string) ?? PRE_COHORT_KEY;
+    const spend = num(row.spend);
+    bucket.cohortSpend.set(cohort, (bucket.cohortSpend.get(cohort) ?? 0) + spend);
+    bucket.totalSpend += spend;
+    cohortTotals.set(cohort, (cohortTotals.get(cohort) ?? 0) + spend);
+  }
+
+  // Only cohorts that actually spent in the window get a layer — stack order is
+  // chronological with the legacy bucket at the bottom.
+  const monthKeys = Array.from(cohortTotals.keys())
+    .filter((k) => k !== PRE_COHORT_KEY && (cohortTotals.get(k) ?? 0) > 0)
+    .sort();
+
+  const cohorts: CreativeChurnCohort[] = [];
+  if ((cohortTotals.get(PRE_COHORT_KEY) ?? 0) > 0) {
+    cohorts.push({
+      key: PRE_COHORT_KEY,
+      label: preLabel,
+      adCount: cohortAdCount.get(PRE_COHORT_KEY) ?? 0,
+      totalSpend: cohortTotals.get(PRE_COHORT_KEY) ?? 0,
+    });
+  }
+  for (const key of monthKeys) {
+    cohorts.push({
+      key,
+      label: monthLabel(`${key}-01`),
+      adCount: cohortAdCount.get(key) ?? 0,
+      totalSpend: cohortTotals.get(key) ?? 0,
+    });
+  }
+
+  const days: CreativeChurnDayRow[] = Array.from(dayBuckets.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([date, bucket]) => ({
+      date,
+      totalSpend: bucket.totalSpend,
+      cohortSpend: Object.fromEntries(bucket.cohortSpend),
+    }));
+
+  return {
+    cohorts,
+    days,
+    totalSpend: days.reduce((sum, d) => sum + d.totalSpend, 0),
+  };
+}

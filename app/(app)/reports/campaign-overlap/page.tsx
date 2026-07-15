@@ -1,1 +1,265 @@
-{"data": "InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VNZW1vLCB1c2VTdGF0ZSB9IGZyb20gInJlYWN0IjsKaW1wb3J0IHsgdXNlQWNjb3VudCB9IGZyb20gIkAvY29tcG9uZW50cy9wcm92aWRlcnMvQWNjb3VudFByb3ZpZGVyIjsKaW1wb3J0IHsgdXNlU3RyZWFtaW5nUmVwb3J0IH0gZnJvbSAiQC9saWIvaG9va3MvdXNlU3RyZWFtaW5nUmVwb3J0IjsKaW1wb3J0IHsgRGF0ZVJhbmdlUGlja2VyIH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL0RhdGVSYW5nZVBpY2tlciI7CmltcG9ydCB7IFN1bW1hcnlDYXJkIH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL1N1bW1hcnlDYXJkIjsKaW1wb3J0IHsgUHJvZ3Jlc3NJbmRpY2F0b3IgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvUHJvZ3Jlc3NJbmRpY2F0b3IiOwppbXBvcnQgeyBEYXRhVGFibGUsIHR5cGUgRGF0YVRhYmxlQ29sdW1uIH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL0RhdGFUYWJsZSI7CmltcG9ydCB7IENoYXJ0U2tlbGV0b24gfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvU2tlbGV0b24iOwppbXBvcnQgeyBIb3Jpem9udGFsQmFyIH0gZnJvbSAiQC9jb21wb25lbnRzL2NoYXJ0cy9Ib3Jpem9udGFsQmFyIjsKaW1wb3J0IHsgRW1wdHlTdGF0ZSB9IGZyb20gIkAvY29tcG9uZW50cy91aS9FbXB0eVN0YXRlIjsKaW1wb3J0IHsgRmV0Y2hpbmdTdGF0ZSB9IGZyb20gIkAvY29tcG9uZW50cy91aS9GZXRjaGluZ1N0YXRlIjsKaW1wb3J0IHsgRXJyb3JCYW5uZXIgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvRXJyb3JCYW5uZXIiOwppbXBvcnQgeyBIb3dUb1JlYWQgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvSG93VG9SZWFkIjsKaW1wb3J0IHsgUmVwb3J0U3VtbWFyeSB9IGZyb20gIkAvY29tcG9uZW50cy91aS9SZXBvcnRTdW1tYXJ5IjsKaW1wb3J0IHsgb3ZlcmxhcEluc2lnaHRzIH0gZnJvbSAiQC9saWIvaW5zaWdodHMiOwppbXBvcnQgeyBSZWFjaEljb24sIFNwZW5kSWNvbiwgQ291bnRJY29uIH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL0twaUljb25zIjsKaW1wb3J0IHsgZm9ybWF0Q29tcGFjdE51bWJlciwgZm9ybWF0Q3VycmVuY3ksIGZvcm1hdEN1cnJlbmN5Q29tcGFjdCwgZm9ybWF0TnVtYmVyLCBmb3JtYXRQZXJjZW50IH0gZnJvbSAiQC9saWIvZm9ybWF0IjsKaW1wb3J0IHsgR0xPU1NBUlkgfSBmcm9tICJAL2xpYi9nbG9zc2FyeSI7CmltcG9ydCB7IGxhc3RORGF5cyB9IGZyb20gIkAvbGliL2RhdGVzIjsKaW1wb3J0IHR5cGUgeyBEYXRlUmFuZ2UgfSBmcm9tICJAL2xpYi90eXBlcyI7CmltcG9ydCB0eXBlIHsgQ2FtcGFpZ25PdmVybGFwUmVwb3J0LCBPdmVybGFwRW50aXR5Um93LCBPdmVybGFwTGV2ZWwgfSBmcm9tICJAL2xpYi9yZXBvcnRzL2NhbXBhaWduLW92ZXJsYXAiOwoKLy8gSW5jcmVtZW50YWwgUmVhY2ggJSBpcyB0aGUgcG9zaXRpdmUgZnJhbWluZyBvZiB0aGUgc2FtZSBudW1iZXIgKDEwMCDiiJIgT3ZlcmxhcCAlKSDigJQKLy8gaGlnaCBpbmNyZW1lbnRhbCA9IGdvb2QgKHVuaXF1ZSBhdWRpZW5jZSksIHNvIGhpZ2ggPSBncmVlbiBoZXJlLCB1bmxpa2Ugb3ZlcmxhcCdzIG9sZCBmcmFtaW5nLgpmdW5jdGlvbiBpbmNyZW1lbnRhbENlbGxDbGFzcyhwY3Q6IG51bWJlcik6IHN0cmluZyB7CiAgaWYgKHBjdCA+IDYwKSByZXR1cm4gInRleHQtZ3JlZW4tNzAwIjsKICBpZiAocGN0IDwgMTApIHJldHVybiAidGV4dC1yZWQtNjAwIGZvbnQtc2VtaWJvbGQiOwogIGlmIChwY3QgPCAzMCkgcmV0dXJuICJ0ZXh0LWFtYmVyLTYwMCI7CiAgcmV0dXJuICIiOwp9Cgpjb25zdCBMRVZFTFM6IHsga2V5OiBPdmVybGFwTGV2ZWw7IGxhYmVsOiBzdHJpbmcgfVtdID0gWwogIHsga2V5OiAiY2FtcGFpZ24iLCBsYWJlbDogIkNhbXBhaWduIiB9LAogIHsga2V5OiAiYWRzZXQiLCBsYWJlbDogIkFkc2V0IiB9LAogIHsga2V5OiAiYWQiLCBsYWJlbDogIkFkIiB9LApdOwoKZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gQ2FtcGFpZ25PdmVybGFwUGFnZSgpIHsKICBjb25zdCB7IHNlbGVjdGVkQWNjb3VudElkIH0gPSB1c2VBY2NvdW50KCk7CiAgY29uc3QgW3JhbmdlLCBzZXRSYW5nZV0gPSB1c2VTdGF0ZTxEYXRlUmFuZ2UgfCBudWxsPihudWxsKTsKICBjb25zdCBbbGV2ZWwsIHNldExldmVsXSA9IHVzZVN0YXRlPE92ZXJsYXBMZXZlbD4oImNhbXBhaWduIik7CiAgY29uc3QgW3RvcE4sIHNldFRvcE5dID0gdXNlU3RhdGUoMTUpOwogIC8vIFtQTSBFTkhBTkNFTUVOVF0g4oCUIGJ1bXAgdG8gcmUtcnVuIHRoZSBmZXRjaCBmcm9tIHRoZSBlcnJvciBiYW5uZXIncyAiVHJ5IGFnYWluIgogIGNvbnN0IFtyZXRyeUtleSwgc2V0UmV0cnlLZXldID0gdXNlU3RhdGUoMCk7CiAgY29uc3QgeyBsb2FkaW5nLCBpc0luaXRpYWxMb2FkLCBwcm9ncmVzcywgZGF0YSwgZXJyb3IsIHJ1biwgY2FuY2VsIH0gPSB1c2VTdHJlYW1pbmdSZXBvcnQ8Q2FtcGFpZ25PdmVybGFwUmVwb3J0PigpOwoKICB1c2VFZmZlY3QoKCkgPT4gewogICAgaWYgKCFzZWxlY3RlZEFjY291bnRJZCB8fCAhcmFuZ2UpIHJldHVybjsKICAgIGNvbnN0IHBhcmFtcyA9IG5ldyBVUkxTZWFyY2hQYXJhbXMoewogICAgICBhY2NvdW50SWQ6IHNlbGVjdGVkQWNjb3VudElkLAogICAgICBzaW5jZTogcmFuZ2Uuc2luY2UsCiAgICAgIHVudGlsOiByYW5nZS51bnRpbCwKICAgICAgbGV2ZWwsCiAgICAgIHRvcE46IFN0cmluZyh0b3BOKSwKICAgIH0pOwogICAgcnVuKGAvYXBpL3JlcG9ydHMvY2FtcGFpZ24tb3ZlcmxhcD8ke3BhcmFtc31gKTsKICAgIC8vIGVzbGludC1kaXNhYmxlLW5leHQtbGluZSByZWFjdC1ob29rcy9leGhhdXN0aXZlLWRlcHMKICB9LCBbc2VsZWN0ZWRBY2NvdW50SWQsIHJhbmdlLCBsZXZlbCwgdG9wTiwgcmV0cnlLZXldKTsKCiAgY29uc3QgZW50aXR5TGFiZWwgPSBsZXZlbCA9PT0gImNhbXBhaWduIiA/ICJDYW1wYWlnbiIgOiBsZXZlbCA9PT0gImFkc2V0IiA/ICJBZHNldCIgOiAiQWQiOwoKICBjb25zdCBjb2x1bW5zOiBEYXRhVGFibGVDb2x1bW48T3ZlcmxhcEVudGl0eVJvdz5bXSA9IHVzZU1lbW8oKCkgPT4gWwogICAgeyBrZXk6ICJuYW1lIiwgaGVhZGVyOiBlbnRpdHlMYWJlbCwgYWNjZXNzb3I6IChyKSA9PiByLm5hbWUgfSwKICAgIHsga2V5OiAicmVhY2giLCBoZWFkZXI6ICJSZWFjaCIsIGhlbHA6IEdMT1NTQVJZLnJlYWNoLCBhY2Nlc3NvcjogKHIpID0+IHIucmVhY2gsIGFsaWduOiAicmlnaHQiLCByZW5kZXI6IChyKSA9PiBmb3JtYXRDb21wYWN0TnVtYmVyKHIucmVhY2gpIH0sCiAgICB7IGtleTogInNwZW5kIiwgaGVhZGVyOiAiU3BlbmQiLCBoZWxwOiBHTE9TU0FSWS5zcGVuZCwgYWNjZXNzb3I6IChyKSA9PiByLnNwZW5kLCBhbGlnbjogInJpZ2h0IiwgcmVuZGVyOiAocikgPT4gZm9ybWF0Q3VycmVuY3koci5zcGVuZCkgfSwKICAgIHsga2V5OiAiY3BtciIsIGhlYWRlcjogIkNQTVIiLCBoZWxwOiBHTE9TU0FSWS5jcG1yLCBhY2Nlc3NvcjogKHIpID0+IHIuY3BtciwgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IGZvcm1hdEN1cnJlbmN5KHIuY3BtcikgfSwKICAgIHsKICAgICAga2V5OiAidG90YWxBY2NvdW50UmVhY2giLAogICAgICBoZWFkZXI6ICJUb3RhbCBBY2N0IFJlYWNoIiwKICAgICAgaGVscDogIlRvdGFsIGRlZHVwbGljYXRlZCB1bmlxdWUgcGVvcGxlIHJlYWNoZWQgYnkgYWxsIGNhbXBhaWducyBpbiB0aGlzIHBlcmlvZC4iLAogICAgICBhY2Nlc3NvcjogKCkgPT4gZGF0YT8udG90YWxBY2NvdW50UmVhY2ggPz8gMCwKICAgICAgYWxpZ246ICJyaWdodCIsCiAgICAgIHJlbmRlcjogKCkgPT4gZm9ybWF0Q29tcGFjdE51bWJlcihkYXRhPy50b3RhbEFjY291bnRSZWFjaCA/PyAwKSwKICAgIH0sCiAgICB7IGtleTogInJlYWNoV2l0aG91dEVudGl0eSIsIGhlYWRlcjogYEFjY3QgUmVhY2ggVy9PICR7ZW50aXR5TGFiZWx9YCwgaGVscDogYFdoYXQgdG90YWwgYWNjb3VudCByZWFjaCB3b3VsZCBiZSBpZiB0aGlzICR7ZW50aXR5TGFiZWwudG9Mb3dlckNhc2UoKX0gZGlkbid0IGV4aXN0LmAsIGFjY2Vzc29yOiAocikgPT4gci5yZWFjaFdpdGhvdXRFbnRpdHksIGFsaWduOiAicmlnaHQiLCByZW5kZXI6IChyKSA9PiBmb3JtYXRDb21wYWN0TnVtYmVyKHIucmVhY2hXaXRob3V0RW50aXR5KSB9LAogICAgeyBrZXk6ICJ1bmlxdWVDb250cmlidXRpb24iLCBoZWFkZXI6ICJJbmNyZW1lbnRhbCBSZWFjaCIsIGhlbHA6IEdMT1NTQVJZLnVuaXF1ZUNvbnRyaWJ1dGlvbiwgYWNjZXNzb3I6IChyKSA9PiByLnVuaXF1ZUNvbnRyaWJ1dGlvbiwgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IGZvcm1hdENvbXBhY3ROdW1iZXIoci51bmlxdWVDb250cmlidXRpb24pIH0sCiAgICB7CiAgICAgIGtleTogImluY3JlbWVudGFsUGN0IiwKICAgICAgaGVhZGVyOiAiSW5jcmVtZW50YWwgUmVhY2ggJSIsCiAgICAgIGhlbHA6ICJXaGF0ICUgb2YgdGhpcyBlbnRpdHkncyByZWFjaCBpcyB0cnVseSB1bmlxdWUg4oCUIHJlYWNoZWQgYnkgbm8gb3RoZXIgY2FtcGFpZ24uIEhpZ2hlciBpcyBiZXR0ZXIuIiwKICAgICAgYWNjZXNzb3I6IChyKSA9PiAxMDAgLSByLm92ZXJsYXBQY3QsCiAgICAgIGFsaWduOiAicmlnaHQiLAogICAgICBjZWxsQ2xhc3M6IChyKSA9PiBpbmNyZW1lbnRhbENlbGxDbGFzcygxMDAgLSByLm92ZXJsYXBQY3QpLAogICAgICByZW5kZXI6IChyKSA9PiBmb3JtYXRQZXJjZW50KDEwMCAtIHIub3ZlcmxhcFBjdCksCiAgICB9LAogIF0sIFtlbnRpdHlMYWJlbCwgZGF0YT8udG90YWxBY2NvdW50UmVhY2hdKTsKCiAgY29uc3QgY2hhcnREYXRhID0gdXNlTWVtbygoKSA9PiB7CiAgICBjb25zdCBlbnRpdGllcyA9IGRhdGE/LmVudGl0aWVzID8/IFtdOwogICAgY29uc3QgbmFtZXMgPSBlbnRpdGllcy5tYXAoKGUpID0+IGUubmFtZSk7CiAgICAvLyBTdHJpcCB0aGUgbG9uZ2VzdCBjb21tb24gcHJlZml4IHNvIFktYXhpcyBsYWJlbHMgc2hvdyB0aGUgZGlmZmVyZW50aWF0aW5nIHN1ZmZpeAogICAgbGV0IHByZWZpeCA9IG5hbWVzWzBdID8/ICIiOwogICAgZm9yIChjb25zdCBuIG9mIG5hbWVzKSB7CiAgICAgIHdoaWxlIChwcmVmaXggJiYgIW4uc3RhcnRzV2l0aChwcmVmaXgpKSBwcmVmaXggPSBwcmVmaXguc2xpY2UoMCwgLTEpOwogICAgfQogICAgY29uc3Qgc3RyaXAgPSBwcmVmaXgubGVuZ3RoID4gOCA/IHByZWZpeCA6ICIiOwogICAgcmV0dXJuIGVudGl0aWVzCiAgICAgIC5tYXAoKGUpID0+ICh7CiAgICAgICAgbmFtZTogc3RyaXAgPyBlLm5hbWUuc2xpY2Uoc3RyaXAubGVuZ3RoKS5yZXBsYWNlKC9eW19cc10rLywgIiIpIDogZS5uYW1lLAogICAgICAgIHVuaXF1ZTogZS51bmlxdWVDb250cmlidXRpb24sCiAgICAgICAgb3ZlcmxhcDogTWF0aC5tYXgoMCwgZS5yZWFjaCAtIGUudW5pcXVlQ29udHJpYnV0aW9uKSwKICAgICAgfSkpCiAgICAgIC5zb3J0KChhLCBiKSA9PiB7CiAgICAgICAgY29uc3QgYVBjdCA9IGEub3ZlcmxhcCAvIChhLnVuaXF1ZSArIGEub3ZlcmxhcCB8fCAxKTsKICAgICAgICBjb25zdCBiUGN0ID0gYi5vdmVybGFwIC8gKGIudW5pcXVlICsgYi5vdmVybGFwIHx8IDEpOwogICAgICAgIHJldHVybiBiUGN0IC0gYVBjdDsgLy8gd29yc3Qgb3ZlcmxhcCBmaXJzdAogICAgICB9KTsKICB9LCBbZGF0YV0pOwoKICBjb25zdCBpbnNpZ2h0cyA9IHVzZU1lbW8oKCkgPT4gewogICAgaWYgKCFkYXRhKSByZXR1cm4gW107CiAgICByZXR1cm4gb3ZlcmxhcEluc2lnaHRzKGRhdGEudG90YWxBY2NvdW50UmVhY2gsIGRhdGEuZW50aXRpZXMsIGxldmVsKTsKICB9LCBbZGF0YSwgbGV2ZWxdKTsKCiAgY29uc3Qgc3VtT2ZSZWFjaGVzID0gdXNlTWVtbygKICAgICgpID0+IChkYXRhPy5lbnRpdGllcyA/PyBbXSkucmVkdWNlKChzdW0sIGUpID0+IHN1bSArIGUucmVhY2gsIDApLAogICAgW2RhdGFdCiAgKTsKCiAgcmV0dXJuICgKICAgIDxkaXY+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGZsZXgtd3JhcCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIGdhcC0zIj4KICAgICAgICA8ZGl2PgogICAgICAgICAgPGgxIGNsYXNzTmFtZT0idGV4dC1sZyBmb250LWJvbGQgdGV4dC1zbGF0ZS05MDAiPkNhbXBhaWduICYgQWRzZXQgT3ZlcmxhcDwvaDE+CiAgICAgICAgICA8cCBjbGFzc05hbWU9Im10LTEgdGV4dC1zbSB0ZXh0LXNsYXRlLTUwMCI+RGlzY292ZXIgd2hpY2ggY2FtcGFpZ25zIGNvbXBldGUgZm9yIHRoZSBzYW1lIGF1ZGllbmNlIHZzLiByZWFjaGluZyB1bmlxdWUgcGVvcGxlLjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA8RGF0ZVJhbmdlUGlja2VyIHZhbHVlPXtyYW5nZX0gb25DaGFuZ2U9e3NldFJhbmdlfSAvPgogICAgICA8L2Rpdj4KCiAgICAgIHsvKiBbUE0gRU5IQU5DRU1FTlRdIOKAlCBwbGFpbi1sYW5ndWFnZSBleHBsYWluZXIgc28gZXZlcnkgbWV0cmljIGlzIHVuZGVyc3RhbmRhYmxlICovfQogICAgICA8SG93VG9SZWFkCiAgICAgICAgaXRlbXM9e1sKICAgICAgICAgIHsgbGFiZWw6ICJJbmNyZW1lbnRhbCBSZWFjaCIsIHRleHQ6ICJwZW9wbGUgb25seSB0aGlzIGNhbXBhaWduIHJlYWNoZXMg4oCUIHBhdXNlIGl0IGFuZCB0aGV5J3JlIGdvbmUgZnJvbSB5b3VyIGZ1bm5lbC4iIH0sCiAgICAgICAgICB7IGxhYmVsOiAiSW5jcmVtZW50YWwgUmVhY2ggJSIsIHRleHQ6ICJ3aGF0IHNoYXJlIG9mIHRoaXMgY2FtcGFpZ24ncyBhdWRpZW5jZSBpcyB0cnVseSB1bmlxdWUuIEhpZ2ggPSByZWFjaGluZyBpdHMgb3duIGF1ZGllbmNlOyBsb3cgPSBtb3N0bHkgY29tcGV0aW5nIHdpdGggeW91ciBvdGhlciBjYW1wYWlnbnMgZm9yIHRoZSBzYW1lIHBlb3BsZS4iIH0sCiAgICAgICAgICB7IGxhYmVsOiAiQWNjdCBSZWFjaCBXL08gQ2FtcGFpZ24iLCB0ZXh0OiAid2hhdCB5b3VyIHRvdGFsIGFjY291bnQgcmVhY2ggd291bGQgYmUgaWYgdGhpcyBjYW1wYWlnbiBkaWRuJ3QgZXhpc3QuIiB9LAogICAgICAgICAgeyBsYWJlbDogIlN1bSBvZiBBbGwgUmVhY2hlcyB2cyBUb3RhbCBBY2NvdW50IFJlYWNoIiwgdGV4dDogInRoZSBnYXAgYmV0d2VlbiB0aGVtIGlzIGF1ZGllbmNlIGNvdW50ZWQgdHdpY2UgYWNyb3NzIGNhbXBhaWducyDigJQgeW91ciBvdmVybGFwLCBtYWRlIHZpc2libGUuIiB9LAogICAgICAgICAgeyBsYWJlbDogIlRoZSBjaGFydCIsIHRleHQ6ICJibHVlIGlzIGF1ZGllbmNlIHVuaXF1ZSB0byB0aGF0IGNhbXBhaWduOyBvcmFuZ2UgaXMgYXVkaWVuY2UgaXQgc2hhcmVzIHdpdGggdGhlIHJlc3Qgb2YgdGhlIGFjY291bnQuIiB9LAogICAgICAgIF19CiAgICAgIC8+CgogICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMyBmbGV4IGZsZXgtd3JhcCBpdGVtcy1jZW50ZXIgZ2FwLTMiPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IHJvdW5kZWQtbWQgYm9yZGVyIGJvcmRlci1zbGF0ZS0yMDAgYmctd2hpdGUgcC0wLjUiPgogICAgICAgICAge0xFVkVMUy5tYXAoKGwpID0+ICgKICAgICAgICAgICAgPGJ1dHRvbgogICAgICAgICAgICAgIGtleT17bC5rZXl9CiAgICAgICAgICAgICAgb25DbGljaz17KCkgPT4gc2V0TGV2ZWwobC5rZXkpfQogICAgICAgICAgICAgIGNsYXNzTmFtZT17YHJvdW5kZWQgcHgtMyBweS0xIHRleHQtc20gZm9udC1tZWRpdW0gdHJhbnNpdGlvbi1jb2xvcnMgJHsKICAgICAgICAgICAgICAgIGxldmVsID09PSBsLmtleSA/ICJiZy1zbGF0ZS05MDAgdGV4dC13aGl0ZSIgOiAidGV4dC1zbGF0ZS02MDAgaG92ZXI6Ymctc2xhdGUtMTAwIgogICAgICAgICAgICAgIH1gfQogICAgICAgICAgICA+CiAgICAgICAgICAgICAge2wubGFiZWx9CiAgICAgICAgICAgIDwvYnV0dG9uPgogICAgICAgICAgKSl9CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGxhYmVsIGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgdGV4dC1zbSB0ZXh0LXNsYXRlLTYwMCI+CiAgICAgICAgICBUb3AgTgogICAgICAgICAgPGlucHV0CiAgICAgICAgICAgIHR5cGU9Im51bWJlciIKICAgICAgICAgICAgbWluPXsxfQogICAgICAgICAgICBtYXg9ezUwfQogICAgICAgICAgICB2YWx1ZT17dG9wTn0KICAgICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXRUb3BOKE51bWJlcihlLnRhcmdldC52YWx1ZSkgfHwgMTUpfQogICAgICAgICAgICBjbGFzc05hbWU9InctMTYgcm91bmRlZC1tZCBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMCBweC0yIHB5LTEgdGV4dC1zbSIKICAgICAgICAgIC8+CiAgICAgICAgPC9sYWJlbD4KICAgICAgPC9kaXY+CgogICAgICB7ZXJyb3IgJiYgPEVycm9yQmFubmVyIG1lc3NhZ2U9e2Vycm9yfSBvblJldHJ5PXsoKSA9PiBzZXRSZXRyeUtleSgoaykgPT4gayArIDEpfSAvPn0KICAgICAge2xvYWRpbmcgJiYgIXByb2dyZXNzICYmIDxGZXRjaGluZ1N0YXRlIC8+fQogICAgICB7bG9hZGluZyAmJiBwcm9ncmVzcyAmJiAoCiAgICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTQiPgogICAgICAgICAgPFByb2dyZXNzSW5kaWNhdG9yIGN1cnJlbnQ9e3Byb2dyZXNzLmN1cnJlbnR9IHRvdGFsPXtwcm9ncmVzcy50b3RhbH0gbGFiZWw9e3Byb2dyZXNzLmxhYmVsfSBvbkNhbmNlbD17Y2FuY2VsfSAvPgogICAgICAgIDwvZGl2PgogICAgICApfQoKICAgICAgeyFyYW5nZSAmJiA8RW1wdHlTdGF0ZSB0aXRsZT0iU2VsZWN0IGEgZGF0ZSByYW5nZSIgZGVzY3JpcHRpb249IkNob29zZSBhIHBlcmlvZCBhYm92ZSB0byBsb2FkIHRoaXMgcmVwb3J0LiIgLz59CgogICAgICB7cmFuZ2UgJiYgKAogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJhbmltYXRlLWZhZGUtaW4iPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9e2B0cmFuc2l0aW9uLW9wYWNpdHkgZHVyYXRpb24tMjAwICR7bG9hZGluZyAmJiAhaXNJbml0aWFsTG9hZCA/ICJvcGFjaXR5LTUwIHBvaW50ZXItZXZlbnRzLW5vbmUiIDogIiJ9YH0+CiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC00IGdyaWQgZ3JpZC1jb2xzLTEgZ2FwLTMgc206Z3JpZC1jb2xzLTIgbGc6Z3JpZC1jb2xzLTQiPgogICAgICAgICAgICAgIDxTdW1tYXJ5Q2FyZAogICAgICAgICAgICAgICAgbGFiZWw9IlRvdGFsIEFjY291bnQgUmVhY2giCiAgICAgICAgICAgICAgICB2YWx1ZT17ZGF0YSA/IGZvcm1hdENvbXBhY3ROdW1iZXIoZGF0YS50b3RhbEFjY291bnRSZWFjaCkgOiAi4oCUIn0KICAgICAgICAgICAgICAgIHRpdGxlPXtkYXRhID8gZm9ybWF0TnVtYmVyKGRhdGEudG90YWxBY2NvdW50UmVhY2gpIDogdW5kZWZpbmVkfQogICAgICAgICAgICAgICAgc3VibGFiZWw9ImRlZHVwbGljYXRlZCIKICAgICAgICAgICAgICAgIGhlbHA9e0dMT1NTQVJZLnJlYWNofQogICAgICAgICAgICAgICAgbG9hZGluZz17aXNJbml0aWFsTG9hZH0KICAgICAgICAgICAgICAgIGljb249ezxSZWFjaEljb24gLz59CiAgICAgICAgICAgICAgICBpY29uQ29sb3I9ImJnLWJsdWUtNTAgdGV4dC1ibHVlLTYwMCIKICAgICAgICAgICAgICAgIGFjY2VudENvbG9yPSJib3JkZXItbC1ibHVlLTUwMCIKICAgICAgICAgICAgICAvPgogICAgICAgICAgICAgIDxTdW1tYXJ5Q2FyZAogICAgICAgICAgICAgICAgbGFiZWw9IlN1bSBvZiBBbGwgUmVhY2hlcyIKICAgICAgICAgICAgICAgIHZhbHVlPXtkYXRhID8gZm9ybWF0Q29tcGFjdE51bWJlcihzdW1PZlJlYWNoZXMpIDogIuKAlCJ9CiAgICAgICAgICAgICAgICB0aXRsZT17ZGF0YSA/IGZvcm1hdE51bWJlcihzdW1PZlJlYWNoZXMpIDogdW5kZWZpbmVkfQogICAgICAgICAgICAgICAgc3VibGFiZWw9e2RhdGEgPyBgJHtmb3JtYXRQZXJjZW50KChzdW1PZlJlYWNoZXMgLyAoZGF0YS50b3RhbEFjY291bnRSZWFjaCB8fCAxKSAtIDEpICogMTAwKX0gb3ZlcmxhcCBnYXBgIDogIm5vbi1kZWR1cGxpY2F0ZWQifQogICAgICAgICAgICAgICAgaGVscD0iQWRkaW5nIHVwIGV2ZXJ5IGVudGl0eSdzIHJlYWNoIHdpdGhvdXQgZGVkdXBsaWNhdGlvbiDigJQgdGhlIGdhcCB2cy4gVG90YWwgQWNjb3VudCBSZWFjaCBpcyBhdWRpZW5jZSBkb3VibGUtY291bnRlZCBhY3Jvc3MgZW50aXRpZXMuIgogICAgICAgICAgICAgICAgbG9hZGluZz17aXNJbml0aWFsTG9hZH0KICAgICAgICAgICAgICAgIGljb249ezxDb3VudEljb24gLz59CiAgICAgICAgICAgICAgICBpY29uQ29sb3I9ImJnLW9yYW5nZS01MCB0ZXh0LW9yYW5nZS02MDAiCiAgICAgICAgICAgICAgICBhY2NlbnRDb2xvcj0iYm9yZGVyLWwtb3JhbmdlLTUwMCIKICAgICAgICAgICAgICAvPgogICAgICAgICAgICAgIDxTdW1tYXJ5Q2FyZAogICAgICAgICAgICAgICAgbGFiZWw9IlRvdGFsIFNwZW5kIgogICAgICAgICAgICAgICAgdmFsdWU9e2RhdGEgPyBmb3JtYXRDdXJyZW5jeUNvbXBhY3QoZGF0YS50b3RhbFNwZW5kKSA6ICLigJQifQogICAgICAgICAgICAgICAgdGl0bGU9e2RhdGEgPyBmb3JtYXRDdXJyZW5jeShkYXRhLnRvdGFsU3BlbmQpIDogdW5kZWZpbmVkfQogICAgICAgICAgICAgICAgaGVscD17R0xPU1NBUlkuc3BlbmR9CiAgICAgICAgICAgICAgICBsb2FkaW5nPXtpc0luaXRpYWxMb2FkfQogICAgICAgICAgICAgICAgaWNvbj17PFNwZW5kSWNvbiAvPn0KICAgICAgICAgICAgICAgIGljb25Db2xvcj0iYmctZW1lcmFsZC01MCB0ZXh0LWVtZXJhbGQtNjAwIgogICAgICAgICAgICAgICAgYWNjZW50Q29sb3I9ImJvcmRlci1sLWVtZXJhbGQtNTAwIgogICAgICAgICAgICAgIC8+CiAgICAgICAgICAgICAgPFN1bW1hcnlDYXJkCiAgICAgICAgICAgICAgICBsYWJlbD17YCMgJHtlbnRpdHlMYWJlbH1zYH0KICAgICAgICAgICAgICAgIHZhbHVlPXtkYXRhID8gZm9ybWF0TnVtYmVyKGRhdGEuZW50aXR5Q291bnQpIDogIuKAlCJ9CiAgICAgICAgICAgICAgICBsb2FkaW5nPXtpc0luaXRpYWxMb2FkfQogICAgICAgICAgICAgICAgaWNvbj17PENvdW50SWNvbiAvPn0KICAgICAgICAgICAgICAgIGljb25Db2xvcj0iYmctYW1iZXItNTAgdGV4dC1hbWJlci02MDAiCiAgICAgICAgICAgICAgICBhY2NlbnRDb2xvcj0iYm9yZGVyLWwtYW1iZXItNTAwIgogICAgICAgICAgICAgIC8+CiAgICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgICAgPFJlcG9ydFN1bW1hcnkgaW5zaWdodHM9e2luc2lnaHRzfSBsb2FkaW5nPXtpc0luaXRpYWxMb2FkfSAvPgoKICAgICAgICAgICAgeyhpc0luaXRpYWxMb2FkIHx8IGNoYXJ0RGF0YS5sZW5ndGggPiAwKSAmJiAoCiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTYgcm91bmRlZC14bCBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMC84MCBiZy13aGl0ZSBwLTUgc2hhZG93LXNtIj4KICAgICAgICAgICAgICAgIDxoMiBjbGFzc05hbWU9InRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LXNsYXRlLTgwMCI+VW5pcXVlIHZzLiBvdmVybGFwcGluZyByZWFjaDwvaDI+CiAgICAgICAgICAgICAgICA8cCBjbGFzc05hbWU9Im1iLTQgbXQtMC41IHRleHQteHMgdGV4dC1zbGF0ZS00MDAiPgogICAgICAgICAgICAgICAgICBCbHVlID0gYXVkaWVuY2Ugb25seSB0aGlzIHtlbnRpdHlMYWJlbC50b0xvd2VyQ2FzZSgpfSByZWFjaGVkOyBncmV5ID0gYXVkaWVuY2UgaXQgc2hhcmVzIHdpdGggdGhlIHJlc3Qgb2YgdGhlIGFjY291bnQuCiAgICAgICAgICAgICAgICA8L3A+CiAgICAgICAgICAgICAgICB7aXNJbml0aWFsTG9hZCA/ICgKICAgICAgICAgICAgICAgICAgPENoYXJ0U2tlbGV0b24gLz4KICAgICAgICAgICAgICAgICkgOiAoCiAgICAgICAgICAgICAgICAgIDxIb3Jpem9udGFsQmFyCiAgICAgICAgICAgICAgICAgICAgZGF0YT17Y2hhcnREYXRhfQogICAgICAgICAgICAgICAgICAgIGNhdGVnb3J5S2V5PSJuYW1lIgogICAgICAgICAgICAgICAgICAgIHN0YWNrZWQKICAgICAgICAgICAgICAgICAgICBzZXJpZXM9e1sKICAgICAgICAgICAgICAgICAgICAgIHsga2V5OiAidW5pcXVlIiwgbGFiZWw6ICJVbmlxdWUiLCBjb2xvcjogIiMyNTYzRUIiIH0sCiAgICAgICAgICAgICAgICAgICAgICB7IGtleTogIm92ZXJsYXAiLCBsYWJlbDogIk92ZXJsYXAiLCBjb2xvcjogIiNGOTczMTYiIH0sCiAgICAgICAgICAgICAgICAgICAgXX0KICAgICAgICAgICAgICAgICAgLz4KICAgICAgICAgICAgICAgICl9CiAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICl9CgogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtNiI+CiAgICAgICAgICAgICAgPERhdGFUYWJsZQogICAgICAgICAgICAgICAgY29sdW1ucz17Y29sdW1uc30KICAgICAgICAgICAgICAgIHJvd3M9e2RhdGE/LmVudGl0aWVzID8/IFtdfQogICAgICAgICAgICAgICAgbG9hZGluZz17aXNJbml0aWFsTG9hZH0KICAgICAgICAgICAgICAgIGZpbGVuYW1lPXtgJHtsZXZlbH0tb3ZlcmxhcGB9CiAgICAgICAgICAgICAgICBkZWZhdWx0U29ydEtleT0iaW5jcmVtZW50YWxQY3QiCiAgICAgICAgICAgICAgICBkZWZhdWx0U29ydERpcj0iZGVzYyIKICAgICAgICAgICAgICAvPgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvZGl2PgogICAgICApfQogICAgPC9kaXY+CiAgKTsKfQo="}
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { useAccount } from "@/components/providers/AccountProvider";
+import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
+import { DateRangePicker } from "@/components/ui/DateRangePicker";
+import { SummaryCard } from "@/components/ui/SummaryCard";
+import { ProgressIndicator } from "@/components/ui/ProgressIndicator";
+import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
+import { ChartSkeleton } from "@/components/ui/Skeleton";
+import { HorizontalBar } from "@/components/charts/HorizontalBar";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { FetchingState } from "@/components/ui/FetchingState";
+import { ErrorBanner } from "@/components/ui/ErrorBanner";
+import { HowToRead } from "@/components/ui/HowToRead";
+import { ReportSummary } from "@/components/ui/ReportSummary";
+import { overlapInsights } from "@/lib/insights";
+import { ReachIcon, SpendIcon, CountIcon } from "@/components/ui/KpiIcons";
+import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent } from "@/lib/format";
+import { GLOSSARY } from "@/lib/glossary";
+import { lastNDays } from "@/lib/dates";
+import type { DateRange } from "@/lib/types";
+import type { CampaignOverlapReport, OverlapEntityRow, OverlapLevel } from "@/lib/reports/campaign-overlap";
+
+// Incremental Reach % is the positive framing of the same number (100 − Overlap %) —
+// high incremental = good (unique audience), so high = green here, unlike overlap's old framing.
+function incrementalCellClass(pct: number): string {
+  if (pct > 60) return "text-green-700";
+  if (pct < 10) return "text-red-600 font-semibold";
+  if (pct < 30) return "text-amber-600";
+  return "";
+}
+
+const LEVELS: { key: OverlapLevel; label: string }[] = [
+  { key: "campaign", label: "Campaign" },
+  { key: "adset", label: "Adset" },
+  { key: "ad", label: "Ad" },
+];
+
+export default function CampaignOverlapPage() {
+  const { selectedAccountId } = useAccount();
+  const [range, setRange] = useState<DateRange | null>(null);
+  const [level, setLevel] = useState<OverlapLevel>("campaign");
+  const [topN, setTopN] = useState(15);
+  // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
+  const [retryKey, setRetryKey] = useState(0);
+  const { loading, isInitialLoad, progress, data, error, run, cancel } = useStreamingReport<CampaignOverlapReport>();
+
+  useEffect(() => {
+    if (!selectedAccountId || !range) return;
+    const params = new URLSearchParams({
+      accountId: selectedAccountId,
+      since: range.since,
+      until: range.until,
+      level,
+      topN: String(topN),
+    });
+    run(`/api/reports/campaign-overlap?${params}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedAccountId, range, level, topN, retryKey]);
+
+  const entityLabel = level === "campaign" ? "Campaign" : level === "adset" ? "Adset" : "Ad";
+
+  const columns: DataTableColumn<OverlapEntityRow>[] = useMemo(() => [
+    { key: "name", header: entityLabel, accessor: (r) => r.name },
+    { key: "reach", header: "Reach", help: GLOSSARY.reach, accessor: (r) => r.reach, align: "right", render: (r) => formatCompactNumber(r.reach) },
+    { key: "spend", header: "Spend", help: GLOSSARY.spend, accessor: (r) => r.spend, align: "right", render: (r) => formatCurrency(r.spend) },
+    { key: "cpmr", header: "CPMR", help: GLOSSARY.cpmr, accessor: (r) => r.cpmr, align: "right", render: (r) => formatCurrency(r.cpmr) },
+    {
+      key: "totalAccountReach",
+      header: "Total Acct Reach",
+      help: "Total deduplicated unique people reached by all campaigns in this period.",
+      accessor: () => data?.totalAccountReach ?? 0,
+      align: "right",
+      render: () => formatCompactNumber(data?.totalAccountReach ?? 0),
+    },
+    { key: "reachWithoutEntity", header: `Acct Reach W/O ${entityLabel}`, help: `What total account reach would be if this ${entityLabel.toLowerCase()} didn't exist.`, accessor: (r) => r.reachWithoutEntity, align: "right", render: (r) => formatCompactNumber(r.reachWithoutEntity) },
+    { key: "uniqueContribution", header: "Incremental Reach", help: GLOSSARY.uniqueContribution, accessor: (r) => r.uniqueContribution, align: "right", render: (r) => formatCompactNumber(r.uniqueContribution) },
+    {
+      key: "incrementalPct",
+      header: "Incremental Reach %",
+      help: "What % of this entity's reach is truly unique — reached by no other campaign. Higher is better.",
+      accessor: (r) => 100 - r.overlapPct,
+      align: "right",
+      cellClass: (r) => incrementalCellClass(100 - r.overlapPct),
+      render: (r) => formatPercent(100 - r.overlapPct),
+    },
+  ], [entityLabel, data?.totalAccountReach]);
+
+  const chartData = useMemo(() => {
+    const entities = data?.entities ?? [];
+    const names = entities.map((e) => e.name);
+    // Strip the longest common prefix so Y-axis labels show the differentiating suffix
+    let prefix = names[0] ?? "";
+    for (const n of names) {
+      while (prefix && !n.startsWith(prefix)) prefix = prefix.slice(0, -1);
+    }
+    const strip = prefix.length > 8 ? prefix : "";
+    return entities
+      .map((e) => ({
+        name: strip ? e.name.slice(strip.length).replace(/^[_\s]+/, "") : e.name,
+        unique: e.uniqueContribution,
+        overlap: Math.max(0, e.reach - e.uniqueContribution),
+      }))
+      .sort((a, b) => {
+        const aPct = a.overlap / (a.unique + a.overlap || 1);
+        const bPct = b.overlap / (b.unique + b.overlap || 1);
+        return bPct - aPct; // worst overlap first
+      });
+  }, [data]);
+
+  const insights = useMemo(() => {
+    if (!data) return [];
+    return overlapInsights(data.totalAccountReach, data.entities, level);
+  }, [data, level]);
+
+  const sumOfReaches = useMemo(
+    () => (data?.entities ?? []).reduce((sum, e) => sum + e.reach, 0),
+    [data]
+  );
+
+  return (
+    <div>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 className="text-lg font-bold text-slate-900">Campaign & Adset Overlap</h1>
+          <p className="mt-1 text-sm text-slate-500">Discover which campaigns compete for the same audience vs. reaching unique people.</p>
+        </div>
+        <DateRangePicker value={range} onChange={setRange} />
+      </div>
+
+      {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
+      <HowToRead
+        items={[
+          { label: "Incremental Reach", text: "people only this campaign reaches — pause it and they're gone from your funnel." },
+          { label: "Incremental Reach %", text: "what share of this campaign's audience is truly unique. High = reaching its own audience; low = mostly competing with your other campaigns for the same people." },
+          { label: "Acct Reach W/O Campaign", text: "what your total account reach would be if this campaign didn't exist." },
+          { label: "Sum of All Reaches vs Total Account Reach", text: "the gap between them is audience counted twice across campaigns — your overlap, made visible." },
+          { label: "The chart", text: "blue is audience unique to that campaign; orange is audience it shares with the rest of the account." },
+        ]}
+      />
+
+      <div className="mt-3 flex flex-wrap items-center gap-3">
+        <div className="flex rounded-md border border-slate-200 bg-white p-0.5">
+          {LEVELS.map((l) => (
+            <button
+              key={l.key}
+              onClick={() => setLevel(l.key)}
+              className={`rounded px-3 py-1 text-sm font-medium transition-colors ${
+                level === l.key ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+              }`}
+            >
+              {l.label}
+            </button>
+          ))}
+        </div>
+        <label className="flex items-center gap-2 text-sm text-slate-600">
+          Top N
+          <input
+            type="number"
+            min={1}
+            max={50}
+            value={topN}
+            onChange={(e) => setTopN(Number(e.target.value) || 15)}
+            className="w-16 rounded-md border border-slate-200 px-2 py-1 text-sm"
+          />
+        </label>
+      </div>
+
+      {error && <ErrorBanner message={error} onRetry={() => setRetryKey((k) => k + 1)} />}
+      {loading && !progress && <FetchingState />}
+      {loading && progress && (
+        <div className="mt-4">
+          <ProgressIndicator current={progress.current} total={progress.total} label={progress.label} onCancel={cancel} />
+        </div>
+      )}
+
+      {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
+
+      {range && (
+        <div className="animate-fade-in">
+          <div className={`transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <SummaryCard
+                label="Total Account Reach"
+                value={data ? formatCompactNumber(data.totalAccountReach) : "—"}
+                title={data ? formatNumber(data.totalAccountReach) : undefined}
+                sublabel="deduplicated"
+                help={GLOSSARY.reach}
+                loading={isInitialLoad}
+                icon={<ReachIcon />}
+                iconColor="bg-blue-50 text-blue-600"
+                accentColor="border-l-blue-500"
+              />
+              <SummaryCard
+                label="Sum of All Reaches"
+                value={data ? formatCompactNumber(sumOfReaches) : "—"}
+                title={data ? formatNumber(sumOfReaches) : undefined}
+                sublabel={data ? `${formatPercent((sumOfReaches / (data.totalAccountReach || 1) - 1) * 100)} overlap gap` : "non-deduplicated"}
+                help="Adding up every entity's reach without deduplication — the gap vs. Total Account Reach is audience double-counted across entities."
+                loading={isInitialLoad}
+                icon={<CountIcon />}
+                iconColor="bg-orange-50 text-orange-600"
+                accentColor="border-l-orange-500"
+              />
+              <SummaryCard
+                label="Total Spend"
+                value={data ? formatCurrencyCompact(data.totalSpend) : "—"}
+                title={data ? formatCurrency(data.totalSpend) : undefined}
+                help={GLOSSARY.spend}
+                loading={isInitialLoad}
+                icon={<SpendIcon />}
+                iconColor="bg-emerald-50 text-emerald-600"
+                accentColor="border-l-emerald-500"
+              />
+              <SummaryCard
+                label={`# ${entityLabel}s`}
+                value={data ? formatNumber(data.entityCount) : "—"}
+                loading={isInitialLoad}
+                icon={<CountIcon />}
+                iconColor="bg-amber-50 text-amber-600"
+                accentColor="border-l-amber-500"
+              />
+            </div>
+
+            <ReportSummary insights={insights} loading={isInitialLoad} />
+
+            {(isInitialLoad || chartData.length > 0) && (
+              <div className="mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm">
+                <h2 className="text-sm font-semibold text-slate-800">Unique vs. overlapping reach</h2>
+                <p className="mb-4 mt-0.5 text-xs text-slate-400">
+                  Blue = audience only this {entityLabel.toLowerCase()} reached; grey = audience it shares with the rest of the account.
+                </p>
+                {isInitialLoad ? (
+                  <ChartSkeleton />
+                ) : (
+                  <HorizontalBar
+                    data={chartData}
+                    categoryKey="name"
+                    stacked
+                    series={[
+                      { key: "unique", label: "Unique", color: "#2563EB" },
+                      { key: "overlap", label: "Overlap", color: "#F97316" },
+                    ]}
+                  />
+                )}
+              </div>
+            )}
+
+            <div className="mt-6">
+              <DataTable
+                columns={columns}
+                rows={data?.entities ?? []}
+                loading={isInitialLoad}
+                filename={`${level}-overlap`}
+                defaultSortKey="incrementalPct"
+                defaultSortDir="desc"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

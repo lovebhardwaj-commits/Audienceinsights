@@ -1,1 +1,101 @@
-{"data":"aW1wb3J0IHR5cGUgeyBEYXRlUmFuZ2UgfSBmcm9tICIuL3R5cGVzIjsKCmV4cG9ydCBmdW5jdGlvbiB0b0lTT0RhdGUoZDogRGF0ZSk6IHN0cmluZyB7CiAgcmV0dXJuIGQudG9JU09TdHJpbmcoKS5zbGljZSgwLCAxMCk7Cn0KCmV4cG9ydCBmdW5jdGlvbiBwYXJzZUlTT0RhdGUoczogc3RyaW5nKTogRGF0ZSB7CiAgY29uc3QgW3ksIG0sIGRdID0gcy5zbGljZSgwLCAxMCkuc3BsaXQoIi0iKS5tYXAoTnVtYmVyKTsKICByZXR1cm4gbmV3IERhdGUoRGF0ZS5VVEMoeSwgbSAtIDEsIGQpKTsKfQoKZXhwb3J0IGZ1bmN0aW9uIGFkZERheXMoczogc3RyaW5nLCBkYXlzOiBudW1iZXIpOiBzdHJpbmcgewogIGNvbnN0IGQgPSBwYXJzZUlTT0RhdGUocyk7CiAgZC5zZXRVVENEYXRlKGQuZ2V0VVRDRGF0ZSgpICsgZGF5cyk7CiAgcmV0dXJuIHRvSVNPRGF0ZShkKTsKfQoKZXhwb3J0IGZ1bmN0aW9uIGFkZE1vbnRocyhzOiBzdHJpbmcsIG1vbnRoczogbnVtYmVyKTogc3RyaW5nIHsKICBjb25zdCBkID0gcGFyc2VJU09EYXRlKHMpOwogIGQuc2V0VVRDTW9udGgoZC5nZXRVVENNb250aCgpICsgbW9udGhzKTsKICByZXR1cm4gdG9JU09EYXRlKGQpOwp9CgpleHBvcnQgZnVuY3Rpb24gc3RhcnRPZk1vbnRoKHM6IHN0cmluZyk6IHN0cmluZyB7CiAgY29uc3QgZCA9IHBhcnNlSVNPRGF0ZShzKTsKICByZXR1cm4gdG9JU09EYXRlKG5ldyBEYXRlKERhdGUuVVRDKGQuZ2V0VVRDRnVsbFllYXIoKSwgZC5nZXRVVENNb250aCgpLCAxKSkpOwp9CgpleHBvcnQgZnVuY3Rpb24gZW5kT2ZNb250aChzOiBzdHJpbmcpOiBzdHJpbmcgewogIGNvbnN0IGQgPSBwYXJzZUlTT0RhdGUocyk7CiAgcmV0dXJuIHRvSVNPRGF0ZShuZXcgRGF0ZShEYXRlLlVUQyhkLmdldFVUQ0Z1bGxZZWFyKCksIGQuZ2V0VVRDTW9udGgoKSArIDEsIDApKSk7Cn0KCmV4cG9ydCBmdW5jdGlvbiBtb250aExhYmVsKHM6IHN0cmluZyk6IHN0cmluZyB7CiAgY29uc3QgZCA9IHBhcnNlSVNPRGF0ZShzKTsKICByZXR1cm4gZC50b0xvY2FsZVN0cmluZygiZW4tVVMiLCB7IG1vbnRoOiAic2hvcnQiLCB5ZWFyOiAibnVtZXJpYyIsIHRpbWVab25lOiAiVVRDIiB9KTsKfQoKZXhwb3J0IGludGVyZmFjZSBNb250aFdpbmRvdyB7CiAgbGFiZWw6IHN0cmluZzsKICBtb250aFN0YXJ0OiBzdHJpbmc7CiAgbW9udGhFbmQ6IHN0cmluZzsKfQoKLyoqIFNwbGl0cyBbc2luY2UsIHVudGlsXSBpbnRvIGNhbGVuZGFyLW1vbnRoIGNodW5rcywgY2xpcHBlZCB0byB0aGUgcmVxdWVzdGVkIHJhbmdlLiAqLwpleHBvcnQgZnVuY3Rpb24gbW9udGhXaW5kb3dzKHNpbmNlOiBzdHJpbmcsIHVudGlsOiBzdHJpbmcpOiBNb250aFdpbmRvd1tdIHsKICBjb25zdCB3aW5kb3dzOiBNb250aFdpbmRvd1tdID0gW107CiAgY29uc3QgdW50aWxEYXRlID0gcGFyc2VJU09EYXRlKHVudGlsKTsKICBsZXQgY3Vyc29yID0gc2luY2U7CiAgd2hpbGUgKHBhcnNlSVNPRGF0ZShjdXJzb3IpIDw9IHVudGlsRGF0ZSkgewogICAgY29uc3QgY2FsZW5kYXJFbmQgPSBlbmRPZk1vbnRoKGN1cnNvcik7CiAgICBjb25zdCBtb250aEVuZCA9IHBhcnNlSVNPRGF0ZShjYWxlbmRhckVuZCkgPiB1bnRpbERhdGUgPyB1bnRpbCA6IGNhbGVuZGFyRW5kOwogICAgd2luZG93cy5wdXNoKHsgbGFiZWw6IG1vbnRoTGFiZWwoY3Vyc29yKSwgbW9udGhTdGFydDogY3Vyc29yLCBtb250aEVuZCB9KTsKICAgIGN1cnNvciA9IHN0YXJ0T2ZNb250aChhZGRNb250aHMoY3Vyc29yLCAxKSk7CiAgfQogIHJldHVybiB3aW5kb3dzOwp9CgovKiogSVNPLWlzaCB3ZWVrIHN0YXJ0IChNb25kYXkpIGZvciBhIGdpdmVuIGRhdGUgc3RyaW5nLCB1c2VkIGZvciBjb2hvcnQgZ3JvdXBpbmcuICovCmV4cG9ydCBmdW5jdGlvbiB3ZWVrU3RhcnQoczogc3RyaW5nKTogc3RyaW5nIHsKICBjb25zdCBkID0gcGFyc2VJU09EYXRlKHMpOwogIGNvbnN0IGRheSA9IGQuZ2V0VVRDRGF5KCkgfHwgNzsgLy8gTW9uPTEuLlN1bj03CiAgaWYgKGRheSAhPT0gMSkgZC5zZXRVVENEYXRlKGQuZ2V0VVRDRGF0ZSgpIC0gKGRheSAtIDEpKTsKICByZXR1cm4gdG9JU09EYXRlKGQpOwp9CgpleHBvcnQgaW50ZXJmYWNlIFdlZWtXaW5kb3cgewogIGxhYmVsOiBzdHJpbmc7CiAgc2luY2U6IHN0cmluZzsKICB1bnRpbDogc3RyaW5nOwp9CgovKiogRXhwYW5kaW5nIHdlZWtseSB3aW5kb3dzIGZyb20gYHNpbmNlYCwgZWFjaCA3IGRheXMgbG9uZ2VyLCBjbGlwcGVkIHRvIGB1bnRpbGAuICovCmV4cG9ydCBmdW5jdGlvbiBleHBhbmRpbmdXZWVrbHlXaW5kb3dzKHNpbmNlOiBzdHJpbmcsIHVudGlsOiBzdHJpbmcpOiBXZWVrV2luZG93W10gewogIGNvbnN0IHdpbmRvd3M6IFdlZWtXaW5kb3dbXSA9IFtdOwogIGNvbnN0IHVudGlsRGF0ZSA9IHBhcnNlSVNPRGF0ZSh1bnRpbCk7CiAgbGV0IHdlZWtFbmQgPSBhZGREYXlzKHNpbmNlLCA2KTsKICBsZXQgd2Vla051bSA9IDE7CiAgd2hpbGUgKHBhcnNlSVNPRGF0ZSh3ZWVrRW5kKSA8IHVudGlsRGF0ZSkgewogICAgd2luZG93cy5wdXNoKHsgbGFiZWw6IGBXZWVrICR7d2Vla051bX1gLCBzaW5jZSwgdW50aWw6IHdlZWtFbmQgfSk7CiAgICB3ZWVrTnVtKys7CiAgICB3ZWVrRW5kID0gYWRkRGF5cyh3ZWVrRW5kLCA3KTsKICB9CiAgd2luZG93cy5wdXNoKHsgbGFiZWw6IGBXZWVrICR7d2Vla051bX1gLCBzaW5jZSwgdW50aWwgfSk7CiAgcmV0dXJuIHdpbmRvd3M7Cn0KCmV4cG9ydCBmdW5jdGlvbiBsYXN0TkRheXMobjogbnVtYmVyKTogRGF0ZVJhbmdlIHsKICBjb25zdCB1bnRpbCA9IHRvSVNPRGF0ZShuZXcgRGF0ZSgpKTsKICBjb25zdCBzaW5jZSA9IGFkZERheXModW50aWwsIC1uKTsKICByZXR1cm4geyBzaW5jZSwgdW50aWwgfTsKfQoKLyoqIFByZXZpb3VzIE4gKmNvbXBsZXRlKiBjYWxlbmRhciBtb250aHMg4oCUICJQcmV2aW91cyAxIE1vbnRoIiBpbiBKdWx5ID0gSnVuIDHigJNKdW4gMzAsCiAqICAiUHJldmlvdXMgMyBNb250aHMiID0gQXByIDHigJNKdW4gMzAuIFRoZSBydW5uaW5nIG1vbnRoIGlzIG5ldmVyIGluY2x1ZGVkLiAqLwpleHBvcnQgZnVuY3Rpb24gbGFzdE5Nb250aHMobjogbnVtYmVyKTogRGF0ZVJhbmdlIHsKICBjb25zdCB0b2RheSA9IHRvSVNPRGF0ZShuZXcgRGF0ZSgpKTsKICBjb25zdCB1bnRpbCA9IGVuZE9mTW9udGgoYWRkTW9udGhzKHN0YXJ0T2ZNb250aCh0b2RheSksIC0xKSk7CiAgY29uc3Qgc2luY2UgPSBzdGFydE9mTW9udGgoYWRkTW9udGhzKHN0YXJ0T2ZNb250aCh0b2RheSksIC1uKSk7CiAgcmV0dXJuIHsgc2luY2UsIHVudGlsIH07Cn0K"}
+import type { DateRange } from "./types";
+
+export function toISODate(d: Date): string {
+  return d.toISOString().slice(0, 10);
+}
+
+export function parseISODate(s: string): Date {
+  const [y, m, d] = s.slice(0, 10).split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d));
+}
+
+export function addDays(s: string, days: number): string {
+  const d = parseISODate(s);
+  d.setUTCDate(d.getUTCDate() + days);
+  return toISODate(d);
+}
+
+export function addMonths(s: string, months: number): string {
+  const d = parseISODate(s);
+  d.setUTCMonth(d.getUTCMonth() + months);
+  return toISODate(d);
+}
+
+export function startOfMonth(s: string): string {
+  const d = parseISODate(s);
+  return toISODate(new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1)));
+}
+
+export function endOfMonth(s: string): string {
+  const d = parseISODate(s);
+  return toISODate(new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)));
+}
+
+export function monthLabel(s: string): string {
+  const d = parseISODate(s);
+  return d.toLocaleString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
+}
+
+export interface MonthWindow {
+  label: string;
+  monthStart: string;
+  monthEnd: string;
+}
+
+/** Splits [since, until] into calendar-month chunks, clipped to the requested range. */
+export function monthWindows(since: string, until: string): MonthWindow[] {
+  const windows: MonthWindow[] = [];
+  const untilDate = parseISODate(until);
+  let cursor = since;
+  while (parseISODate(cursor) <= untilDate) {
+    const calendarEnd = endOfMonth(cursor);
+    const monthEnd = parseISODate(calendarEnd) > untilDate ? until : calendarEnd;
+    windows.push({ label: monthLabel(cursor), monthStart: cursor, monthEnd });
+    cursor = startOfMonth(addMonths(cursor, 1));
+  }
+  return windows;
+}
+
+/** ISO-ish week start (Monday) for a given date string, used for cohort grouping. */
+export function weekStart(s: string): string {
+  const d = parseISODate(s);
+  const day = d.getUTCDay() || 7; // Mon=1..Sun=7
+  if (day !== 1) d.setUTCDate(d.getUTCDate() - (day - 1));
+  return toISODate(d);
+}
+
+export interface WeekWindow {
+  label: string;
+  since: string;
+  until: string;
+}
+
+/** Expanding weekly windows from `since`, each 7 days longer, clipped to `until`. */
+export function expandingWeeklyWindows(since: string, until: string): WeekWindow[] {
+  const windows: WeekWindow[] = [];
+  const untilDate = parseISODate(until);
+  let weekEnd = addDays(since, 6);
+  let weekNum = 1;
+  while (parseISODate(weekEnd) < untilDate) {
+    windows.push({ label: `Week ${weekNum}`, since, until: weekEnd });
+    weekNum++;
+    weekEnd = addDays(weekEnd, 7);
+  }
+  windows.push({ label: `Week ${weekNum}`, since, until });
+  return windows;
+}
+
+export function lastNDays(n: number): DateRange {
+  const until = toISODate(new Date());
+  const since = addDays(until, -n);
+  return { since, until };
+}
+
+/** Previous N *complete* calendar months — "Previous 1 Month" in July = Jun 1–Jun 30,
+ *  "Previous 3 Months" = Apr 1–Jun 30. The running month is never included. */
+export function lastNMonths(n: number): DateRange {
+  const today = toISODate(new Date());
+  const until = endOfMonth(addMonths(startOfMonth(today), -1));
+  const since = startOfMonth(addMonths(startOfMonth(today), -n));
+  return { since, until };
+}

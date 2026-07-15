@@ -1,1 +1,86 @@
-{"data":"aW1wb3J0IHsgU2tlbGV0b24gfSBmcm9tICIuL1NrZWxldG9uIjsKaW1wb3J0IHsgSW5mb1Rvb2x0aXAgfSBmcm9tICIuL0luZm9Ub29sdGlwIjsKCmludGVyZmFjZSBTdW1tYXJ5Q2FyZFByb3BzIHsKICBsYWJlbDogc3RyaW5nOwogIHZhbHVlOiBzdHJpbmc7CiAgc3VibGFiZWw/OiBzdHJpbmc7CiAgdGl0bGU/OiBzdHJpbmc7CiAgaGVscD86IHN0cmluZzsKICBsb2FkaW5nPzogYm9vbGVhbjsKICBpY29uPzogUmVhY3QuUmVhY3ROb2RlOwogIGljb25Db2xvcj86IHN0cmluZzsKICAvKiogUGVyY2VudGFnZSBjaGFuZ2UgdnMgcHJldiBwZXJpb2QgKHBvc2l0aXZlID0gZ29vZCwgbmVnYXRpdmUgPSBiYWQpLiBTaG93cyDilrIv4pa8IGJhZGdlLiAqLwogIHRyZW5kPzogbnVtYmVyOwogIHRyZW5kTGFiZWw/OiBzdHJpbmc7CiAgLyoqIExlZnQgYWNjZW50IGJvcmRlciBjb2xvciBjbGFzcywgZS5nLiAiYm9yZGVyLWwtYmx1ZS01MDAiICovCiAgYWNjZW50Q29sb3I/OiBzdHJpbmc7Cn0KCmV4cG9ydCBmdW5jdGlvbiBTdW1tYXJ5Q2FyZCh7CiAgbGFiZWwsCiAgdmFsdWUsCiAgc3VibGFiZWwsCiAgdGl0bGUsCiAgaGVscCwKICBsb2FkaW5nID0gZmFsc2UsCiAgaWNvbiwKICBpY29uQ29sb3IgPSAiYmctYnJhbmQtNTAgdGV4dC1icmFuZC02MDAiLAogIHRyZW5kLAogIHRyZW5kTGFiZWwsCiAgYWNjZW50Q29sb3IsCn06IFN1bW1hcnlDYXJkUHJvcHMpIHsKICBjb25zdCB0cmVuZFBvc2l0aXZlID0gdHJlbmQgIT09IHVuZGVmaW5lZCAmJiB0cmVuZCA+PSAwOwogIGNvbnN0IHRyZW5kTmV1dHJhbCA9IHRyZW5kICE9PSB1bmRlZmluZWQgJiYgTWF0aC5hYnModHJlbmQpIDwgMTsKCiAgcmV0dXJuICgKICAgIDxkaXYKICAgICAgY2xhc3NOYW1lPXtgcm91bmRlZC14bCBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMC84MCBiZy1ncmFkaWVudC10by1iciBmcm9tLXdoaXRlIHRvLXNsYXRlLTUwLzYwIHAtNSBzaGFkb3ctWzBfMXB4XzRweF8wX3JnYigwLDAsMCwwLjA3KV0gdHJhbnNpdGlvbi1hbGwgaG92ZXI6LXRyYW5zbGF0ZS15LTAuNSBob3ZlcjpzaGFkb3ctWzBfNHB4XzEycHhfMF9yZ2IoMCwwLDAsMC4xKV0gJHsKICAgICAgICBhY2NlbnRDb2xvciA/IGBib3JkZXItbC00ICR7YWNjZW50Q29sb3J9YCA6ICIiCiAgICAgIH1gfQogICAgPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1zdGFydCBqdXN0aWZ5LWJldHdlZW4gZ2FwLTIiPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4LTEgbWluLXctMCI+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIgdGV4dC1bMTFweF0gZm9udC1zZW1pYm9sZCB1cHBlcmNhc2UgdHJhY2tpbmctd2lkZXIgdGV4dC1zbGF0ZS00MDAiPgogICAgICAgICAgICB7bGFiZWx9CiAgICAgICAgICAgIHtoZWxwICYmIDxJbmZvVG9vbHRpcCB0ZXh0PXtoZWxwfSAvPn0KICAgICAgICAgIDwvZGl2PgogICAgICAgICAge2xvYWRpbmcgPyAoCiAgICAgICAgICAgIDxTa2VsZXRvbiBjbGFzc05hbWU9Im10LTIuNSBoLTggdy0yOCIgLz4KICAgICAgICAgICkgOiAoCiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC0xLjUiPgogICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0idGV4dC1bMjhweF0gZm9udC1ib2xkIGxlYWRpbmctdGlnaHQgdGFidWxhci1udW1zIHRleHQtc2xhdGUtOTAwIiB0aXRsZT17dGl0bGV9PgogICAgICAgICAgICAgICAge3ZhbHVlfQogICAgICAgICAgICAgIDwvc3Bhbj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICApfQogICAgICAgICAge3N1YmxhYmVsICYmICFsb2FkaW5nICYmIDxkaXYgY2xhc3NOYW1lPSJtdC0wLjUgdGV4dC1bMTFweF0gdGV4dC1zbGF0ZS00MDAiPntzdWJsYWJlbH08L2Rpdj59CiAgICAgICAgPC9kaXY+CgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IGZsZXgtY29sIGl0ZW1zLWVuZCBnYXAtMiBzaHJpbmstMCI+CiAgICAgICAgICB7dHJlbmQgIT09IHVuZGVmaW5lZCAmJiAhbG9hZGluZyAmJiAoCiAgICAgICAgICAgIDxzcGFuCiAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgaW5saW5lLWZsZXggaXRlbXMtY2VudGVyIGdhcC0wLjUgcm91bmRlZC1mdWxsIHB4LTIgcHktMC41IHRleHQtWzExcHhdIGZvbnQtc2VtaWJvbGQgJHsKICAgICAgICAgICAgICAgIHRyZW5kTmV1dHJhbAogICAgICAgICAgICAgICAgICA/ICJiZy1zbGF0ZS0xMDAgdGV4dC1zbGF0ZS01MDAiCiAgICAgICAgICAgICAgICAgIDogdHJlbmRQb3NpdGl2ZQogICAgICAgICAgICAgICAgICA/ICJiZy1ncmVlbi0xMDAgdGV4dC1ncmVlbi03MDAiCiAgICAgICAgICAgICAgICAgIDogImJnLXJlZC0xMDAgdGV4dC1yZWQtNjAwIgogICAgICAgICAgICAgIH1gfQogICAgICAgICAgICA+CiAgICAgICAgICAgICAge3RyZW5kTmV1dHJhbCA/ICLihpIiIDogdHJlbmRQb3NpdGl2ZSA/ICLilrIiIDogIuKWvCJ9CiAgICAgICAgICAgICAgeyIgIn0KICAgICAgICAgICAgICB7TWF0aC5hYnModHJlbmQpLnRvRml4ZWQoMSl9JQogICAgICAgICAgICAgIHt0cmVuZExhYmVsICYmIDxzcGFuIGNsYXNzTmFtZT0ibWwtMC41IGZvbnQtbm9ybWFsIHRleHQtWzEwcHhdIj57dHJlbmRMYWJlbH08L3NwYW4+fQogICAgICAgICAgICA8L3NwYW4+CiAgICAgICAgICApfQogICAgICAgICAge2ljb24gJiYgKAogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT17YGZsZXggaC0xMSB3LTExIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciByb3VuZGVkLXhsIHNoYWRvdy1zbSAke2ljb25Db2xvcn1gfT4KICAgICAgICAgICAgICB7aWNvbn0KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICApfQogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICk7Cn0K"}
+import { Skeleton } from "./Skeleton";
+import { InfoTooltip } from "./InfoTooltip";
+
+interface SummaryCardProps {
+  label: string;
+  value: string;
+  sublabel?: string;
+  title?: string;
+  help?: string;
+  loading?: boolean;
+  icon?: React.ReactNode;
+  iconColor?: string;
+  /** Percentage change vs prev period (positive = good, negative = bad). Shows ▲/▼ badge. */
+  trend?: number;
+  trendLabel?: string;
+  /** Left accent border color class, e.g. "border-l-blue-500" */
+  accentColor?: string;
+}
+
+export function SummaryCard({
+  label,
+  value,
+  sublabel,
+  title,
+  help,
+  loading = false,
+  icon,
+  iconColor = "bg-brand-50 text-brand-600",
+  trend,
+  trendLabel,
+  accentColor,
+}: SummaryCardProps) {
+  const trendPositive = trend !== undefined && trend >= 0;
+  const trendNeutral = trend !== undefined && Math.abs(trend) < 1;
+
+  return (
+    <div
+      className={`rounded-xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50/60 p-5 shadow-[0_1px_4px_0_rgb(0,0,0,0.07)] transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_12px_0_rgb(0,0,0,0.1)] ${
+        accentColor ? `border-l-4 ${accentColor}` : ""
+      }`}
+    >
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+            {label}
+            {help && <InfoTooltip text={help} />}
+          </div>
+          {loading ? (
+            <Skeleton className="mt-2.5 h-8 w-28" />
+          ) : (
+            <div className="mt-1.5">
+              <span className="text-[28px] font-bold leading-tight tabular-nums text-slate-900" title={title}>
+                {value}
+              </span>
+            </div>
+          )}
+          {sublabel && !loading && <div className="mt-0.5 text-[11px] text-slate-400">{sublabel}</div>}
+        </div>
+
+        <div className="flex flex-col items-end gap-2 shrink-0">
+          {trend !== undefined && !loading && (
+            <span
+              className={`inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+                trendNeutral
+                  ? "bg-slate-100 text-slate-500"
+                  : trendPositive
+                  ? "bg-green-100 text-green-700"
+                  : "bg-red-100 text-red-600"
+              }`}
+            >
+              {trendNeutral ? "→" : trendPositive ? "▲" : "▼"}
+              {" "}
+              {Math.abs(trend).toFixed(1)}%
+              {trendLabel && <span className="ml-0.5 font-normal text-[10px]">{trendLabel}</span>}
+            </span>
+          )}
+          {icon && (
+            <div className={`flex h-11 w-11 items-center justify-center rounded-xl shadow-sm ${iconColor}`}>
+              {icon}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

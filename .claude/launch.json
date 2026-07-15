@@ -1,1 +1,11 @@
-{"data":"ewogICJ2ZXJzaW9uIjogIjAuMC4xIiwKICAiY29uZmlndXJhdGlvbnMiOiBbCiAgICB7CiAgICAgICJuYW1lIjogImFkcy1yZWFjaC1kZXYiLAogICAgICAicnVudGltZUV4ZWN1dGFibGUiOiAiL2Jpbi9iYXNoIiwKICAgICAgInJ1bnRpbWVBcmdzIjogWyItYyIsICJleHBvcnQgUEFUSD0vVXNlcnMvbG92ZWJoYXJhZHdhai8ubnZtL3ZlcnNpb25zL25vZGUvdjI0LjE4LjAvYmluOiRQQVRIICYmIG5wbSBydW4gZGV2Il0sCiAgICAgICJwb3J0IjogMzAwMAogICAgfQogIF0KfQo="}
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ads-reach-dev",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": ["-c", "export PATH=/Users/lovebharadwaj/.nvm/versions/node/v24.18.0/bin:$PATH && npm run dev"],
+      "port": 3000
+    }
+  ]
+}

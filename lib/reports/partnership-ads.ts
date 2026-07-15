@@ -1,1 +1,392 @@
-{"data":"aW1wb3J0IHsgbWV0YUdldCwgbWV0YUluc2lnaHRzIH0gZnJvbSAiQC9saWIvbWV0YS1hcGkiOwppbXBvcnQgeyBudW0sIGNwbXIsIGNwcCwgcGVyY2VudCwgZXh0cmFjdFB1cmNoYXNlcyB9IGZyb20gIkAvbGliL2NhbGN1bGF0aW9ucyI7CmltcG9ydCB7IGZldGNoQWNjb3VudFRvdGFscyB9IGZyb20gIi4vc2hhcmVkIjsKaW1wb3J0IHsgU0VHTUVOVF9PUkRFUiwgbm9ybWFsaXplU2VnbWVudEtleSB9IGZyb20gIkAvbGliL2NvbnN0YW50cyI7CmltcG9ydCB0eXBlIHsgRGF0ZVJhbmdlLCBTZWdtZW50S2V5IH0gZnJvbSAiQC9saWIvdHlwZXMiOwoKLy8gTWV0YSdzIGZpbHRlcmluZyB2YWx1ZSBhcnJheSBoYXMgYSBwcmFjdGljYWwgbGltaXQg4oCUIGJhdGNoIGFuZCBtZXJnZSBiZXlvbmQgdGhpcy4KY29uc3QgRklMVEVSX0JBVENIX1NJWkUgPSA1MDA7CgppbnRlcmZhY2UgU2VnbWVudEJ1Y2tldCB7CiAgcmVhY2g6IG51bWJlcjsKICBzcGVuZDogbnVtYmVyOwogIHB1cmNoYXNlczogbnVtYmVyOwp9CgpleHBvcnQgaW50ZXJmYWNlIEdyb3VwTWV0cmljcyB7CiAgYWRDb3VudDogbnVtYmVyOwogIHJlYWNoOiBudW1iZXI7CiAgc3BlbmQ6IG51bWJlcjsKICBpbXByZXNzaW9uczogbnVtYmVyOwogIHB1cmNoYXNlczogbnVtYmVyOwogIHNlZ21lbnRzOiB7CiAgICBwcm9zcGVjdGluZzogU2VnbWVudEJ1Y2tldDsKICAgIGVuZ2FnZWQ6IFNlZ21lbnRCdWNrZXQ7CiAgICBleGlzdGluZzogU2VnbWVudEJ1Y2tldDsKICB9OwogIG5ld1JlYWNoUGN0OiBudW1iZXI7CiAgbmV3UHVyY2hhc2VQY3Q6IG51bWJlcjsKICBjcG1yOiBudW1iZXI7CiAgY3BhOiBudW1iZXI7CiAgbmV3Q3BhOiBudW1iZXI7CiAgLyoqIEFjY291bnQgcmVhY2ggaWYgdGhpcyBncm91cCdzIGFkcyB3ZXJlIGV4Y2x1ZGVkIGVudGlyZWx5LiAqLwogIGFjY291bnRSZWFjaFdpdGhvdXRHcm91cDogbnVtYmVyOwogIC8qKiBQZW9wbGUgdGhpcyBncm91cCByZWFjaGVzIHRoYXQgbm8gb3RoZXIgYWQgaW4gdGhlIGFjY291bnQgdG91Y2hlcy4gKi8KICBpbmNyZW1lbnRhbFJlYWNoOiBudW1iZXI7CiAgLyoqIGluY3JlbWVudGFsUmVhY2ggYXMgYSAlIG9mIHRoaXMgZ3JvdXAncyBvd24gcmVhY2guICovCiAgaW5jcmVtZW50YWxQY3Q6IG51bWJlcjsKfQoKZXhwb3J0IGludGVyZmFjZSBXZWVrbHlUcmVuZFJvdyB7CiAgd2Vla1N0YXJ0OiBzdHJpbmc7CiAgd2Vla0VuZDogc3RyaW5nOwogIHBhcnRuZXJzaGlwTmV3UGN0OiBudW1iZXI7CiAgbm9ybWFsTmV3UGN0OiBudW1iZXI7CiAgcGFydG5lcnNoaXBOZXdQdXJjaFBjdDogbnVtYmVyOwogIG5vcm1hbE5ld1B1cmNoUGN0OiBudW1iZXI7Cn0KCmV4cG9ydCBpbnRlcmZhY2UgQ3JlYXRvclJvdyB7CiAgaGFuZGxlOiBzdHJpbmc7CiAgYWRDb3VudDogbnVtYmVyOwogIGFkSWRzOiBzdHJpbmdbXTsKICB0b3RhbFJlYWNoOiBudW1iZXI7CiAgbmV3UmVhY2hQY3Q6IG51bWJlcjsKICB0b3RhbFNwZW5kOiBudW1iZXI7CiAgdG90YWxQdXJjaGFzZXM6IG51bWJlcjsKICBuZXdQdXJjaGFzZXM6IG51bWJlcjsKICBuZXdQdXJjaGFzZVBjdDogbnVtYmVyOwogIG5ld0NwYTogbnVtYmVyOwogIGNwbXI6IG51bWJlcjsKfQoKZXhwb3J0IGludGVyZmFjZSBQYXJ0bmVyc2hpcEFkUm93IHsKICBhZElkOiBzdHJpbmc7CiAgYWROYW1lOiBzdHJpbmc7CiAgY3JlYXRvckhhbmRsZTogc3RyaW5nOwogIHJlYWNoOiBudW1iZXI7CiAgbmV3UmVhY2hQY3Q6IG51bWJlcjsKICBzcGVuZDogbnVtYmVyOwogIHB1cmNoYXNlczogbnVtYmVyOwogIG5ld1B1cmNoYXNlczogbnVtYmVyOwogIG5ld1B1cmNoYXNlUGN0OiBudW1iZXI7Cn0KCmV4cG9ydCBpbnRlcmZhY2UgUGFydG5lcnNoaXBSZXBvcnQgewogIHBhcnRuZXJzaGlwOiBHcm91cE1ldHJpY3M7CiAgbm9ybWFsOiBHcm91cE1ldHJpY3M7CiAgd2Vla2x5VHJlbmQ6IFdlZWtseVRyZW5kUm93W107CiAgY3JlYXRvcnM6IENyZWF0b3JSb3dbXTsKICBwYXJ0bmVyc2hpcEFkczogUGFydG5lcnNoaXBBZFJvd1tdOwogIHRvdGFsQWNjb3VudFJlYWNoOiBudW1iZXI7CiAgLyoqIFBlb3BsZSByZWFjaGVkIGJ5IEJPVEggcGFydG5lcnNoaXAgYW5kIG5vcm1hbCBhZHMuICovCiAgb3ZlcmxhcEJldHdlZW5Hcm91cHM6IG51bWJlcjsKICBvdmVybGFwQmV0d2Vlbkdyb3Vwc1BjdDogbnVtYmVyOwp9CgppbnRlcmZhY2UgQWRDcmVhdGl2ZSB7CiAgaWQ/OiBzdHJpbmc7CiAgbmFtZT86IHN0cmluZzsKICBhY3Rvcl9pZD86IHN0cmluZzsKICBpbnN0YWdyYW1fdXNlcl9pZD86IHN0cmluZzsKICBmYWNlYm9va19icmFuZGVkX2NvbnRlbnQ/OiB7IHNwb25zb3JfcGFnZV9pZD86IHN0cmluZyB9OwogIGluc3RhZ3JhbV9icmFuZGVkX2NvbnRlbnQ/OiBSZWNvcmQ8c3RyaW5nLCB1bmtub3duPjsKfQoKaW50ZXJmYWNlIE1ldGFBZFdpdGhDcmVhdGl2ZSB7CiAgaWQ6IHN0cmluZzsKICBuYW1lOiBzdHJpbmc7CiAgYWRjcmVhdGl2ZXM/OiB7IGRhdGE/OiBBZENyZWF0aXZlW10gfTsKfQoKaW50ZXJmYWNlIENsYXNzaWZpZWRBZCB7CiAgaWQ6IHN0cmluZzsKICBuYW1lOiBzdHJpbmc7CiAgaXNQYXJ0bmVyc2hpcDogYm9vbGVhbjsKICBjcmVhdG9ySGFuZGxlOiBzdHJpbmcgfCBudWxsOwp9CgpmdW5jdGlvbiBjbGFzc2lmeUFkKGFkOiBNZXRhQWRXaXRoQ3JlYXRpdmUpOiBDbGFzc2lmaWVkQWQgewogIGNvbnN0IGNyZWF0aXZlID0gYWQuYWRjcmVhdGl2ZXM/LmRhdGE/LlswXTsKICBjb25zdCBpc1BhcnRuZXJzaGlwID0gISEoCiAgICBjcmVhdGl2ZT8uZmFjZWJvb2tfYnJhbmRlZF9jb250ZW50Py5zcG9uc29yX3BhZ2VfaWQgfHwKICAgIGNyZWF0aXZlPy5pbnN0YWdyYW1fYnJhbmRlZF9jb250ZW50CiAgKTsKICAvLyBDcmVhdG9yIGhhbmRsZSBmcm9tIHRoZSBpZnNfe2NyZWF0b3J9X2lmZSBuYW1pbmcgY29udmVudGlvbi4KICAvLyBOb3JtYWxpc2UgdG8gbG93ZXJjYXNlIHNvICJOYXZlZW5hIiBhbmQgIm5hdmVlbmEiIG1lcmdlIGludG8gb25lIHJvdy4KICBjb25zdCBtYXRjaCA9IGFkLm5hbWU/Lm1hdGNoKC9pZnNfKFteX10rKV9pZmUvaSk7CiAgcmV0dXJuIHsKICAgIGlkOiBhZC5pZCwKICAgIG5hbWU6IGFkLm5hbWUgPz8gYWQuaWQsCiAgICBpc1BhcnRuZXJzaGlwLAogICAgY3JlYXRvckhhbmRsZTogbWF0Y2ggPyBtYXRjaFsxXS50b0xvd2VyQ2FzZSgpLnRyaW0oKSA6IG51bGwsCiAgfTsKfQoKZnVuY3Rpb24gY2h1bms8VD4oYXJyOiBUW10sIHNpemU6IG51bWJlcik6IFRbXVtdIHsKICBjb25zdCBvdXQ6IFRbXVtdID0gW107CiAgZm9yIChsZXQgaSA9IDA7IGkgPCBhcnIubGVuZ3RoOyBpICs9IHNpemUpIG91dC5wdXNoKGFyci5zbGljZShpLCBpICsgc2l6ZSkpOwogIHJldHVybiBvdXQ7Cn0KCi8qKgogKiBGZXRjaCBjcmVhdGl2ZSArIG5hbWUgZmllbGRzIGZvciBhIHNwZWNpZmljIGxpc3Qgb2YgYWQgSURzLCA1MCBwZXIgYmF0Y2guCiAqIFVzZXMgdGhlIG11bHRpLUlEIHJvb3QgZW5kcG9pbnQgc28gd2Ugb25seSBwdWxsIGFkcyBhY3RpdmUgaW4gdGhlIGRhdGUgcmFuZ2UuCiAqLwphc3luYyBmdW5jdGlvbiBmZXRjaEFkc0J5SWRzKHRva2VuOiBzdHJpbmcsIGFkSWRzOiBzdHJpbmdbXSk6IFByb21pc2U8TWV0YUFkV2l0aENyZWF0aXZlW10+IHsKICBpZiAoYWRJZHMubGVuZ3RoID09PSAwKSByZXR1cm4gW107CiAgY29uc3QgZmllbGRzID0KICAgICJpZCxuYW1lLGFkY3JlYXRpdmVze2lkLG5hbWUsYWN0b3JfaWQsaW5zdGFncmFtX3VzZXJfaWQsZmFjZWJvb2tfYnJhbmRlZF9jb250ZW50LGluc3RhZ3JhbV9icmFuZGVkX2NvbnRlbnR9IjsKICBjb25zdCByZXN1bHRzOiBNZXRhQWRXaXRoQ3JlYXRpdmVbXSA9IFtdOwogIGZvciAoY29uc3QgYmF0Y2ggb2YgY2h1bmsoYWRJZHMsIDUwKSkgewogICAgY29uc3QganNvbiA9IGF3YWl0IG1ldGFHZXQoIi8iLCB0b2tlbiwgeyBpZHM6IGJhdGNoLmpvaW4oIiwiKSwgZmllbGRzIH0pOwogICAgLy8gTXVsdGktSUQgcmVzcG9uc2UgaXMgYW4gb2JqZWN0IGtleWVkIGJ5IGFkIElELCBub3QgYW4gYXJyYXkKICAgIHJlc3VsdHMucHVzaCguLi4oT2JqZWN0LnZhbHVlcyhqc29uKSBhcyBNZXRhQWRXaXRoQ3JlYXRpdmVbXSkpOwogIH0KICByZXR1cm4gcmVzdWx0czsKfQoKLyoqIFNlZ21lbnQtYnJva2VuLWRvd24gaW5zaWdodHMgZm9yIGEgc2V0IG9mIGFkIGlkcywgYmF0Y2hlZCBwYXN0IE1ldGEncyBmaWx0ZXItYXJyYXkgbGltaXQuICovCmFzeW5jIGZ1bmN0aW9uIGZldGNoU2VnbWVudEluc2lnaHRzKAogIHRva2VuOiBzdHJpbmcsCiAgYWNjb3VudElkOiBzdHJpbmcsCiAgcmFuZ2U6IERhdGVSYW5nZSwKICBhZElkczogc3RyaW5nW10sCiAgZXh0cmE6IHsgdGltZUluY3JlbWVudD86IG51bWJlcjsgbGV2ZWw/OiAiYWQiOyBleHRyYUZpZWxkcz86IHN0cmluZ1tdIH0gPSB7fQopOiBQcm9taXNlPGFueVtdPiB7CiAgaWYgKGFkSWRzLmxlbmd0aCA9PT0gMCkgcmV0dXJuIFtdOwogIGNvbnN0IGJhdGNoZXMgPSBjaHVuayhhZElkcywgRklMVEVSX0JBVENIX1NJWkUpOwogIGNvbnN0IHJlc3VsdHM6IGFueVtdID0gW107CiAgZm9yIChjb25zdCBiYXRjaCBvZiBiYXRjaGVzKSB7CiAgICBjb25zdCByb3dzID0gYXdhaXQgbWV0YUluc2lnaHRzKHsKICAgICAgdG9rZW4sCiAgICAgIG9iamVjdElkOiBhY2NvdW50SWQsCiAgICAgIGZpZWxkczogWy4uLihleHRyYS5leHRyYUZpZWxkcyA/PyBbXSksICJyZWFjaCIsICJzcGVuZCIsICJpbXByZXNzaW9ucyIsICJhY3Rpb25zIl0sCiAgICAgIHRpbWVSYW5nZTogcmFuZ2UsCiAgICAgIGJyZWFrZG93bnM6ICJ1c2VyX3NlZ21lbnRfa2V5IiwKICAgICAgZmlsdGVyaW5nOiBbeyBmaWVsZDogImFkLmlkIiwgb3BlcmF0b3I6ICJJTiIsIHZhbHVlOiBiYXRjaCB9XSwKICAgICAgdGltZUluY3JlbWVudDogZXh0cmEudGltZUluY3JlbWVudCwKICAgICAgbGV2ZWw6IGV4dHJhLmxldmVsLAogICAgICBsaW1pdDogNTAwLAogICAgfSk7CiAgICByZXN1bHRzLnB1c2goLi4ucm93cyk7CiAgfQogIHJldHVybiByZXN1bHRzOwp9CgpmdW5jdGlvbiBlbXB0eUJ1Y2tldHMoKTogUmVjb3JkPFNlZ21lbnRLZXksIFNlZ21lbnRCdWNrZXQ+IHsKICBjb25zdCBtYXAgPSB7fSBhcyBSZWNvcmQ8U2VnbWVudEtleSwgU2VnbWVudEJ1Y2tldD47CiAgZm9yIChjb25zdCBrZXkgb2YgU0VHTUVOVF9PUkRFUikgbWFwW2tleV0gPSB7IHJlYWNoOiAwLCBzcGVuZDogMCwgcHVyY2hhc2VzOiAwIH07CiAgcmV0dXJuIG1hcDsKfQoKZnVuY3Rpb24gYnVpbGRHcm91cE1ldHJpY3Mocm93czogYW55W10sIGFkQ291bnQ6IG51bWJlciwgYWNjb3VudFJlYWNoV2l0aG91dEdyb3VwOiBudW1iZXIsIHRvdGFsQWNjb3VudFJlYWNoOiBudW1iZXIpOiBHcm91cE1ldHJpY3MgewogIGNvbnN0IGJ1Y2tldHMgPSBlbXB0eUJ1Y2tldHMoKTsKICBsZXQgaW1wcmVzc2lvbnMgPSAwOwogIGZvciAoY29uc3Qgcm93IG9mIHJvd3MpIHsKICAgIGNvbnN0IHNlZyA9IGJ1Y2tldHNbbm9ybWFsaXplU2VnbWVudEtleShyb3cudXNlcl9zZWdtZW50X2tleSldOwogICAgc2VnLnJlYWNoICs9IG51bShyb3cucmVhY2gpOwogICAgc2VnLnNwZW5kICs9IG51bShyb3cuc3BlbmQpOwogICAgc2VnLnB1cmNoYXNlcyArPSBleHRyYWN0UHVyY2hhc2VzKHJvdy5hY3Rpb25zKTsKICAgIGltcHJlc3Npb25zICs9IG51bShyb3cuaW1wcmVzc2lvbnMpOwogIH0KICBjb25zdCByZWFjaCA9IFNFR01FTlRfT1JERVIucmVkdWNlKChzLCBrKSA9PiBzICsgYnVja2V0c1trXS5yZWFjaCwgMCk7CiAgY29uc3Qgc3BlbmQgPSBTRUdNRU5UX09SREVSLnJlZHVjZSgocywgaykgPT4gcyArIGJ1Y2tldHNba10uc3BlbmQsIDApOwogIGNvbnN0IHB1cmNoYXNlcyA9IFNFR01FTlRfT1JERVIucmVkdWNlKChzLCBrKSA9PiBzICsgYnVja2V0c1trXS5wdXJjaGFzZXMsIDApOwogIC8vIENsYW1wIOKAlCBmbG9hdGluZyByZWNvbmNpbGlhdGlvbiBhY3Jvc3Mgc2VwYXJhdGUgTWV0YSBxdWVyaWVzIGNhbiBudWRnZSB0aGlzIMKxYSBmZXcgcGVvcGxlLgogIGNvbnN0IGluY3JlbWVudGFsUmVhY2ggPSBNYXRoLm1heCgwLCB0b3RhbEFjY291bnRSZWFjaCAtIGFjY291bnRSZWFjaFdpdGhvdXRHcm91cCk7CiAgcmV0dXJuIHsKICAgIGFkQ291bnQsCiAgICByZWFjaCwKICAgIHNwZW5kLAogICAgaW1wcmVzc2lvbnMsCiAgICBwdXJjaGFzZXMsCiAgICBzZWdtZW50czogewogICAgICBwcm9zcGVjdGluZzogYnVja2V0cy5wcm9zcGVjdGluZywKICAgICAgZW5nYWdlZDogYnVja2V0cy5lbmdhZ2VkLAogICAgICBleGlzdGluZzogYnVja2V0cy5leGlzdGluZywKICAgIH0sCiAgICBuZXdSZWFjaFBjdDogcGVyY2VudChidWNrZXRzLnByb3NwZWN0aW5nLnJlYWNoLCByZWFjaCksCiAgICBuZXdQdXJjaGFzZVBjdDogcGVyY2VudChidWNrZXRzLnByb3NwZWN0aW5nLnB1cmNoYXNlcywgcHVyY2hhc2VzKSwKICAgIGNwbXI6IGNwbXIoc3BlbmQsIHJlYWNoKSwKICAgIGNwYTogY3BwKHNwZW5kLCBwdXJjaGFzZXMpLAogICAgbmV3Q3BhOiBjcHAoYnVja2V0cy5wcm9zcGVjdGluZy5zcGVuZCwgYnVja2V0cy5wcm9zcGVjdGluZy5wdXJjaGFzZXMpLAogICAgYWNjb3VudFJlYWNoV2l0aG91dEdyb3VwLAogICAgaW5jcmVtZW50YWxSZWFjaCwKICAgIGluY3JlbWVudGFsUGN0OiBwZXJjZW50KGluY3JlbWVudGFsUmVhY2gsIHJlYWNoKSwKICB9Owp9CgovKiogV2Vla2x5IHJvd3Mg4oaSIHBlci13ZWVrIHsgbmV3UmVhY2hQY3QsIG5ld1B1cmNoUGN0IH0sIGtleWVkIGJ5IHdlZWtTdGFydC4gKi8KZnVuY3Rpb24gd2Vla2x5TmV3UGN0cyhyb3dzOiBhbnlbXSk6IE1hcDxzdHJpbmcsIHsgd2Vla0VuZDogc3RyaW5nOyBuZXdQY3Q6IG51bWJlcjsgbmV3UHVyY2hQY3Q6IG51bWJlciB9PiB7CiAgY29uc3Qgd2Vla3MgPSBuZXcgTWFwPHN0cmluZywgeyB3ZWVrRW5kOiBzdHJpbmc7IHNlZ21lbnRzOiBSZWNvcmQ8U2VnbWVudEtleSwgU2VnbWVudEJ1Y2tldD4gfT4oKTsKICBmb3IgKGNvbnN0IHJvdyBvZiByb3dzKSB7CiAgICBjb25zdCBrZXkgPSByb3cuZGF0ZV9zdGFydCBhcyBzdHJpbmc7CiAgICBpZiAoIWtleSkgY29udGludWU7CiAgICBpZiAoIXdlZWtzLmhhcyhrZXkpKSB3ZWVrcy5zZXQoa2V5LCB7IHdlZWtFbmQ6IHJvdy5kYXRlX3N0b3AgYXMgc3RyaW5nLCBzZWdtZW50czogZW1wdHlCdWNrZXRzKCkgfSk7CiAgICBjb25zdCBzZWcgPSB3ZWVrcy5nZXQoa2V5KSEuc2VnbWVudHNbbm9ybWFsaXplU2VnbWVudEtleShyb3cudXNlcl9zZWdtZW50X2tleSldOwogICAgc2VnLnJlYWNoICs9IG51bShyb3cucmVhY2gpOwogICAgc2VnLnNwZW5kICs9IG51bShyb3cuc3BlbmQpOwogICAgc2VnLnB1cmNoYXNlcyArPSBleHRyYWN0UHVyY2hhc2VzKHJvdy5hY3Rpb25zKTsKICB9CiAgY29uc3Qgb3V0ID0gbmV3IE1hcDxzdHJpbmcsIHsgd2Vla0VuZDogc3RyaW5nOyBuZXdQY3Q6IG51bWJlcjsgbmV3UHVyY2hQY3Q6IG51bWJlciB9PigpOwogIGZvciAoY29uc3QgW3dlZWtTdGFydCwgd10gb2Ygd2Vla3MpIHsKICAgIGNvbnN0IHRvdGFsUmVhY2ggPSBTRUdNRU5UX09SREVSLnJlZHVjZSgocywgaykgPT4gcyArIHcuc2VnbWVudHNba10ucmVhY2gsIDApOwogICAgY29uc3QgdG90YWxQdXJjaCA9IFNFR01FTlRfT1JERVIucmVkdWNlKChzLCBrKSA9PiBzICsgdy5zZWdtZW50c1trXS5wdXJjaGFzZXMsIDApOwogICAgb3V0LnNldCh3ZWVrU3RhcnQsIHsKICAgICAgd2Vla0VuZDogdy53ZWVrRW5kLAogICAgICBuZXdQY3Q6IHBlcmNlbnQody5zZWdtZW50cy5wcm9zcGVjdGluZy5yZWFjaCwgdG90YWxSZWFjaCksCiAgICAgIG5ld1B1cmNoUGN0OiBwZXJjZW50KHcuc2VnbWVudHMucHJvc3BlY3RpbmcucHVyY2hhc2VzLCB0b3RhbFB1cmNoKSwKICAgIH0pOwogIH0KICByZXR1cm4gb3V0Owp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gZ2V0UGFydG5lcnNoaXBBZHNSZXBvcnQoCiAgdG9rZW46IHN0cmluZywKICBhY2NvdW50SWQ6IHN0cmluZywKICByYW5nZTogRGF0ZVJhbmdlCik6IFByb21pc2U8UGFydG5lcnNoaXBSZXBvcnQ+IHsKICAvLyBTdGVwIDEg4oCUIGFkcyBhY3RpdmUgaW4gdGhpcyBkYXRlIHJhbmdlIG9ubHkuCiAgLy8gVGhlIC9hZHMgZW5kcG9pbnQgaGFzIG5vIGRhdGUgZmlsdGVyIHNvIGl0IHJldHVybnMgZXZlcnkgYWQgZXZlciBjcmVhdGVkOwogIC8vIGluc3RlYWQgd2UgYXNrIHRoZSBpbnNpZ2h0cyBBUEkgZm9yIGFkIElEcyB0aGF0IGFjdHVhbGx5IGRlbGl2ZXJlZCBpbiB0aGUKICAvLyBwZXJpb2QsIHRoZW4gZmV0Y2ggY3JlYXRpdmUgZmllbGRzIG9ubHkgZm9yIHRob3NlIElEcy4KICBjb25zdCBhY3RpdmVBZFJvd3MgPSBhd2FpdCBtZXRhSW5zaWdodHMoewogICAgdG9rZW4sCiAgICBvYmplY3RJZDogYWNjb3VudElkLAogICAgZmllbGRzOiBbImFkX2lkIl0sCiAgICB0aW1lUmFuZ2U6IHJhbmdlLAogICAgbGV2ZWw6ICJhZCIsCiAgICBsaW1pdDogMjAwMCwKICB9KTsKICBjb25zdCBhY3RpdmVBZElkcyA9IFsuLi5uZXcgU2V0KGFjdGl2ZUFkUm93cy5tYXAoKHIpID0+IHIuYWRfaWQgYXMgc3RyaW5nKS5maWx0ZXIoQm9vbGVhbikpXTsKICBjb25zdCByYXdBZHMgPSBhd2FpdCBmZXRjaEFkc0J5SWRzKHRva2VuLCBhY3RpdmVBZElkcyk7CgogIC8vIFN0ZXAgMiDigJQgY2xhc3NpZnkKICBjb25zdCBjbGFzc2lmaWVkID0gcmF3QWRzLm1hcChjbGFzc2lmeUFkKTsKICBjb25zdCBwYXJ0bmVyc2hpcEFkc0xpc3QgPSBjbGFzc2lmaWVkLmZpbHRlcigoYSkgPT4gYS5pc1BhcnRuZXJzaGlwKTsKICBjb25zdCBub3JtYWxBZHNMaXN0ID0gY2xhc3NpZmllZC5maWx0ZXIoKGEpID0+ICFhLmlzUGFydG5lcnNoaXApOwogIGNvbnN0IHBhcnRuZXJzaGlwSWRzID0gcGFydG5lcnNoaXBBZHNMaXN0Lm1hcCgoYSkgPT4gYS5pZCk7CiAgY29uc3Qgbm9ybWFsSWRzID0gbm9ybWFsQWRzTGlzdC5tYXAoKGEpID0+IGEuaWQpOwogIGNvbnN0IGhhbmRsZUJ5QWRJZCA9IG5ldyBNYXAocGFydG5lcnNoaXBBZHNMaXN0Lm1hcCgoYSkgPT4gW2EuaWQsIGEuY3JlYXRvckhhbmRsZSA/PyAiVW5rbm93biJdKSk7CgogIC8vIFN0ZXAgMyDigJQgYWdncmVnYXRlICsgd2Vla2x5ICsgcGVyLWFkIGluc2lnaHQgcHVsbHMgKyBpbmNyZW1lbnRhbC1yZWFjaCB0b3RhbHMuCiAgLy8gIlJlYWNoIHdpdGhvdXQgZ3JvdXAgWCIgbmVlZHMgb25lIE5PVF9JTiBxdWVyeSBwZXIgZ3JvdXAgd2l0aCB0aGUgKmZ1bGwqIGlkCiAgLy8gbGlzdCDigJQgdW5saWtlIHRoZSBJTi1maWx0ZXIgc2VnbWVudCBxdWVyaWVzIGFib3ZlLCB0aGlzIGNhbid0IGJlIHNwbGl0IGludG8KICAvLyBiYXRjaGVzIGFuZCBzdW1tZWQgKGV4Y2x1ZGluZyBoYWxmIGEgZ3JvdXAgaW4gb25lIGNhbGwsIHRoZSBvdGhlciBoYWxmIGluIGEKICAvLyBzZWNvbmQsIHRoZW4gYWRkaW5nIHRoZSB0d28gcmVhY2ggdG90YWxzIHRvZ2V0aGVyIGRvdWJsZS1jb3VudHMgdGhlIHBlb3BsZQogIC8vIGJvdGggY2FsbHMgc2F3KS4gTWV0YSdzIGZpbHRlci1hcnJheSBsaW1pdCBpcyBhIHNvZnQgY2VpbGluZyBpbiBwcmFjdGljZSwgc28KICAvLyBmb3IgYWNjb3VudHMgd2l0aCBhbiB1bnVzdWFsbHkgbGFyZ2UgYWQgZ3JvdXAgdGhpcyBjYWxsIGlzIGJlc3QtZWZmb3J0LgogIGNvbnN0IFtwQWdnLCBuQWdnLCBwV2Vla2x5LCBuV2Vla2x5LCBwZXJBZCwgdG90YWxBY2NvdW50LCByZWFjaFdpdGhvdXRQYXJ0bmVyc2hpcCwgcmVhY2hXaXRob3V0Tm9ybWFsXSA9IGF3YWl0IFByb21pc2UuYWxsKFsKICAgIGZldGNoU2VnbWVudEluc2lnaHRzKHRva2VuLCBhY2NvdW50SWQsIHJhbmdlLCBwYXJ0bmVyc2hpcElkcyksCiAgICBmZXRjaFNlZ21lbnRJbnNpZ2h0cyh0b2tlbiwgYWNjb3VudElkLCByYW5nZSwgbm9ybWFsSWRzKSwKICAgIGZldGNoU2VnbWVudEluc2lnaHRzKHRva2VuLCBhY2NvdW50SWQsIHJhbmdlLCBwYXJ0bmVyc2hpcElkcywgeyB0aW1lSW5jcmVtZW50OiA3IH0pLAogICAgZmV0Y2hTZWdtZW50SW5zaWdodHModG9rZW4sIGFjY291bnRJZCwgcmFuZ2UsIG5vcm1hbElkcywgeyB0aW1lSW5jcmVtZW50OiA3IH0pLAogICAgZmV0Y2hTZWdtZW50SW5zaWdodHModG9rZW4sIGFjY291bnRJZCwgcmFuZ2UsIHBhcnRuZXJzaGlwSWRzLCB7IGxldmVsOiAiYWQiLCBleHRyYUZpZWxkczogWyJhZF9pZCIsICJhZF9uYW1lIl0gfSksCiAgICBmZXRjaEFjY291bnRUb3RhbHModG9rZW4sIGFjY291bnRJZCwgcmFuZ2UpLAogICAgcGFydG5lcnNoaXBJZHMubGVuZ3RoID4gMAogICAgICA/IGZldGNoQWNjb3VudFRvdGFscyh0b2tlbiwgYWNjb3VudElkLCByYW5nZSwgW3sgZmllbGQ6ICJhZC5pZCIsIG9wZXJhdG9yOiAiTk9UX0lOIiwgdmFsdWU6IHBhcnRuZXJzaGlwSWRzIH1dKQogICAgICA6IGZldGNoQWNjb3VudFRvdGFscyh0b2tlbiwgYWNjb3VudElkLCByYW5nZSksCiAgICBub3JtYWxJZHMubGVuZ3RoID4gMAogICAgICA/IGZldGNoQWNjb3VudFRvdGFscyh0b2tlbiwgYWNjb3VudElkLCByYW5nZSwgW3sgZmllbGQ6ICJhZC5pZCIsIG9wZXJhdG9yOiAiTk9UX0lOIiwgdmFsdWU6IG5vcm1hbElkcyB9XSkKICAgICAgOiBmZXRjaEFjY291bnRUb3RhbHModG9rZW4sIGFjY291bnRJZCwgcmFuZ2UpLAogIF0pOwoKICBjb25zdCB0b3RhbEFjY291bnRSZWFjaCA9IHRvdGFsQWNjb3VudC5yZWFjaDsKICBjb25zdCBwYXJ0bmVyc2hpcCA9IGJ1aWxkR3JvdXBNZXRyaWNzKHBBZ2csIHBhcnRuZXJzaGlwQWRzTGlzdC5sZW5ndGgsIHJlYWNoV2l0aG91dFBhcnRuZXJzaGlwLnJlYWNoLCB0b3RhbEFjY291bnRSZWFjaCk7CiAgY29uc3Qgbm9ybWFsID0gYnVpbGRHcm91cE1ldHJpY3MobkFnZywgbm9ybWFsQWRzTGlzdC5sZW5ndGgsIHJlYWNoV2l0aG91dE5vcm1hbC5yZWFjaCwgdG90YWxBY2NvdW50UmVhY2gpOwoKICBjb25zdCBvdmVybGFwQmV0d2Vlbkdyb3VwcyA9IE1hdGgubWF4KDAsIHBhcnRuZXJzaGlwLnJlYWNoICsgbm9ybWFsLnJlYWNoIC0gdG90YWxBY2NvdW50UmVhY2gpOwogIGNvbnN0IG92ZXJsYXBCZXR3ZWVuR3JvdXBzUGN0ID0gcGVyY2VudChvdmVybGFwQmV0d2Vlbkdyb3VwcywgdG90YWxBY2NvdW50UmVhY2gpOwoKICAvLyBXZWVrbHkgdHJlbmQg4oCUIG91dGVyLWpvaW4gYm90aCBncm91cHMnIHdlZWtzCiAgY29uc3QgcFdlZWtzID0gd2Vla2x5TmV3UGN0cyhwV2Vla2x5KTsKICBjb25zdCBuV2Vla3MgPSB3ZWVrbHlOZXdQY3RzKG5XZWVrbHkpOwogIGNvbnN0IGFsbFdlZWtTdGFydHMgPSBBcnJheS5mcm9tKG5ldyBTZXQoWy4uLnBXZWVrcy5rZXlzKCksIC4uLm5XZWVrcy5rZXlzKCldKSkuc29ydCgpOwogIGNvbnN0IHdlZWtseVRyZW5kOiBXZWVrbHlUcmVuZFJvd1tdID0gYWxsV2Vla1N0YXJ0cy5tYXAoKHdlZWtTdGFydCkgPT4gewogICAgY29uc3QgcCA9IHBXZWVrcy5nZXQod2Vla1N0YXJ0KTsKICAgIGNvbnN0IG4gPSBuV2Vla3MuZ2V0KHdlZWtTdGFydCk7CiAgICByZXR1cm4gewogICAgICB3ZWVrU3RhcnQsCiAgICAgIHdlZWtFbmQ6IHA/LndlZWtFbmQgPz8gbj8ud2Vla0VuZCA/PyB3ZWVrU3RhcnQsCiAgICAgIHBhcnRuZXJzaGlwTmV3UGN0OiBwPy5uZXdQY3QgPz8gMCwKICAgICAgbm9ybWFsTmV3UGN0OiBuPy5uZXdQY3QgPz8gMCwKICAgICAgcGFydG5lcnNoaXBOZXdQdXJjaFBjdDogcD8ubmV3UHVyY2hQY3QgPz8gMCwKICAgICAgbm9ybWFsTmV3UHVyY2hQY3Q6IG4/Lm5ld1B1cmNoUGN0ID8/IDAsCiAgICB9OwogIH0pOwoKICAvLyBTdGVwcyA04oCTNSDigJQgcGVyLWFkIHJvbGx1cCwgdGhlbiBncm91cCBieSBjcmVhdG9yIGhhbmRsZQogIGNvbnN0IGFkQnVja2V0cyA9IG5ldyBNYXA8c3RyaW5nLCB7IGFkTmFtZTogc3RyaW5nOyBzZWdtZW50czogUmVjb3JkPFNlZ21lbnRLZXksIFNlZ21lbnRCdWNrZXQ+IH0+KCk7CiAgZm9yIChjb25zdCByb3cgb2YgcGVyQWQpIHsKICAgIGNvbnN0IGFkSWQgPSByb3cuYWRfaWQgYXMgc3RyaW5nOwogICAgaWYgKCFhZElkKSBjb250aW51ZTsKICAgIGlmICghYWRCdWNrZXRzLmhhcyhhZElkKSkgYWRCdWNrZXRzLnNldChhZElkLCB7IGFkTmFtZTogKHJvdy5hZF9uYW1lIGFzIHN0cmluZykgPz8gYWRJZCwgc2VnbWVudHM6IGVtcHR5QnVja2V0cygpIH0pOwogICAgY29uc3Qgc2VnID0gYWRCdWNrZXRzLmdldChhZElkKSEuc2VnbWVudHNbbm9ybWFsaXplU2VnbWVudEtleShyb3cudXNlcl9zZWdtZW50X2tleSldOwogICAgc2VnLnJlYWNoICs9IG51bShyb3cucmVhY2gpOwogICAgc2VnLnNwZW5kICs9IG51bShyb3cuc3BlbmQpOwogICAgc2VnLnB1cmNoYXNlcyArPSBleHRyYWN0UHVyY2hhc2VzKHJvdy5hY3Rpb25zKTsKICB9CgogIGNvbnN0IHBhcnRuZXJzaGlwQWRzOiBQYXJ0bmVyc2hpcEFkUm93W10gPSBBcnJheS5mcm9tKGFkQnVja2V0cy5lbnRyaWVzKCkpLm1hcCgoW2FkSWQsIGJdKSA9PiB7CiAgICBjb25zdCByZWFjaCA9IFNFR01FTlRfT1JERVIucmVkdWNlKChzLCBrKSA9PiBzICsgYi5zZWdtZW50c1trXS5yZWFjaCwgMCk7CiAgICBjb25zdCBzcGVuZCA9IFNFR01FTlRfT1JERVIucmVkdWNlKChzLCBrKSA9PiBzICsgYi5zZWdtZW50c1trXS5zcGVuZCwgMCk7CiAgICBjb25zdCBwdXJjaGFzZXMgPSBTRUdNRU5UX09SREVSLnJlZHVjZSgocywgaykgPT4gcyArIGIuc2VnbWVudHNba10ucHVyY2hhc2VzLCAwKTsKICAgIHJldHVybiB7CiAgICAgIGFkSWQsCiAgICAgIGFkTmFtZTogYi5hZE5hbWUsCiAgICAgIGNyZWF0b3JIYW5kbGU6IGhhbmRsZUJ5QWRJZC5nZXQoYWRJZCkgPz8gIlVua25vd24iLAogICAgICByZWFjaCwKICAgICAgbmV3UmVhY2hQY3Q6IHBlcmNlbnQoYi5zZWdtZW50cy5wcm9zcGVjdGluZy5yZWFjaCwgcmVhY2gpLAogICAgICBzcGVuZCwKICAgICAgcHVyY2hhc2VzLAogICAgICBuZXdQdXJjaGFzZXM6IGIuc2VnbWVudHMucHJvc3BlY3RpbmcucHVyY2hhc2VzLAogICAgICBuZXdQdXJjaGFzZVBjdDogcGVyY2VudChiLnNlZ21lbnRzLnByb3NwZWN0aW5nLnB1cmNoYXNlcywgcHVyY2hhc2VzKSwKICAgIH07CiAgfSk7CgogIGNvbnN0IGNyZWF0b3JNYXAgPSBuZXcgTWFwPHN0cmluZywgeyBhZElkczogc3RyaW5nW107IHNlZ21lbnRzOiBSZWNvcmQ8U2VnbWVudEtleSwgU2VnbWVudEJ1Y2tldD4gfT4oKTsKICBmb3IgKGNvbnN0IFthZElkLCBiXSBvZiBhZEJ1Y2tldHMpIHsKICAgIGNvbnN0IGhhbmRsZSA9IGhhbmRsZUJ5QWRJZC5nZXQoYWRJZCkgPz8gIlVua25vd24iOwogICAgaWYgKCFjcmVhdG9yTWFwLmhhcyhoYW5kbGUpKSBjcmVhdG9yTWFwLnNldChoYW5kbGUsIHsgYWRJZHM6IFtdLCBzZWdtZW50czogZW1wdHlCdWNrZXRzKCkgfSk7CiAgICBjb25zdCBjcmVhdG9yID0gY3JlYXRvck1hcC5nZXQoaGFuZGxlKSE7CiAgICBjcmVhdG9yLmFkSWRzLnB1c2goYWRJZCk7CiAgICBmb3IgKGNvbnN0IGsgb2YgU0VHTUVOVF9PUkRFUikgewogICAgICBjcmVhdG9yLnNlZ21lbnRzW2tdLnJlYWNoICs9IGIuc2VnbWVudHNba10ucmVhY2g7CiAgICAgIGNyZWF0b3Iuc2VnbWVudHNba10uc3BlbmQgKz0gYi5zZWdtZW50c1trXS5zcGVuZDsKICAgICAgY3JlYXRvci5zZWdtZW50c1trXS5wdXJjaGFzZXMgKz0gYi5zZWdtZW50c1trXS5wdXJjaGFzZXM7CiAgICB9CiAgfQoKICBjb25zdCBjcmVhdG9yczogQ3JlYXRvclJvd1tdID0gQXJyYXkuZnJvbShjcmVhdG9yTWFwLmVudHJpZXMoKSkKICAgIC5tYXAoKFtoYW5kbGUsIGNdKSA9PiB7CiAgICAgIGNvbnN0IHRvdGFsUmVhY2ggPSBTRUdNRU5UX09SREVSLnJlZHVjZSgocywgaykgPT4gcyArIGMuc2VnbWVudHNba10ucmVhY2gsIDApOwogICAgICBjb25zdCB0b3RhbFNwZW5kID0gU0VHTUVOVF9PUkRFUi5yZWR1Y2UoKHMsIGspID0+IHMgKyBjLnNlZ21lbnRzW2tdLnNwZW5kLCAwKTsKICAgICAgY29uc3QgdG90YWxQdXJjaGFzZXMgPSBTRUdNRU5UX09SREVSLnJlZHVjZSgocywgaykgPT4gcyArIGMuc2VnbWVudHNba10ucHVyY2hhc2VzLCAwKTsKICAgICAgcmV0dXJuIHsKICAgICAgICBoYW5kbGUsCiAgICAgICAgYWRDb3VudDogYy5hZElkcy5sZW5ndGgsCiAgICAgICAgYWRJZHM6IGMuYWRJZHMsCiAgICAgICAgdG90YWxSZWFjaCwKICAgICAgICBuZXdSZWFjaFBjdDogcGVyY2VudChjLnNlZ21lbnRzLnByb3NwZWN0aW5nLnJlYWNoLCB0b3RhbFJlYWNoKSwKICAgICAgICB0b3RhbFNwZW5kLAogICAgICAgIHRvdGFsUHVyY2hhc2VzLAogICAgICAgIG5ld1B1cmNoYXNlczogYy5zZWdtZW50cy5wcm9zcGVjdGluZy5wdXJjaGFzZXMsCiAgICAgICAgbmV3UHVyY2hhc2VQY3Q6IHBlcmNlbnQoYy5zZWdtZW50cy5wcm9zcGVjdGluZy5wdXJjaGFzZXMsIHRvdGFsUHVyY2hhc2VzKSwKICAgICAgICBuZXdDcGE6IGNwcChjLnNlZ21lbnRzLnByb3NwZWN0aW5nLnNwZW5kLCBjLnNlZ21lbnRzLnByb3NwZWN0aW5nLnB1cmNoYXNlcyksCiAgICAgICAgY3BtcjogY3Btcih0b3RhbFNwZW5kLCB0b3RhbFJlYWNoKSwKICAgICAgfTsKICAgIH0pCiAgICAuc29ydCgoYSwgYikgPT4gYi5uZXdQdXJjaGFzZVBjdCAtIGEubmV3UHVyY2hhc2VQY3QpOwoKICByZXR1cm4gewogICAgcGFydG5lcnNoaXAsCiAgICBub3JtYWwsCiAgICB3ZWVrbHlUcmVuZCwKICAgIGNyZWF0b3JzLAogICAgcGFydG5lcnNoaXBBZHMsCiAgICB0b3RhbEFjY291bnRSZWFjaCwKICAgIG92ZXJsYXBCZXR3ZWVuR3JvdXBzLAogICAgb3ZlcmxhcEJldHdlZW5Hcm91cHNQY3QsCiAgfTsKfQo="}
+import { metaGet, metaInsights } from "@/lib/meta-api";
+import { num, cpmr, cpp, percent, extractPurchases } from "@/lib/calculations";
+import { fetchAccountTotals } from "./shared";
+import { SEGMENT_ORDER, normalizeSegmentKey } from "@/lib/constants";
+import type { DateRange, SegmentKey } from "@/lib/types";
+
+// Meta's filtering value array has a practical limit — batch and merge beyond this.
+const FILTER_BATCH_SIZE = 500;
+
+interface SegmentBucket {
+  reach: number;
+  spend: number;
+  purchases: number;
+}
+
+export interface GroupMetrics {
+  adCount: number;
+  reach: number;
+  spend: number;
+  impressions: number;
+  purchases: number;
+  segments: {
+    prospecting: SegmentBucket;
+    engaged: SegmentBucket;
+    existing: SegmentBucket;
+  };
+  newReachPct: number;
+  newPurchasePct: number;
+  cpmr: number;
+  cpa: number;
+  newCpa: number;
+  /** Account reach if this group's ads were excluded entirely. */
+  accountReachWithoutGroup: number;
+  /** People this group reaches that no other ad in the account touches. */
+  incrementalReach: number;
+  /** incrementalReach as a % of this group's own reach. */
+  incrementalPct: number;
+}
+
+export interface WeeklyTrendRow {
+  weekStart: string;
+  weekEnd: string;
+  partnershipNewPct: number;
+  normalNewPct: number;
+  partnershipNewPurchPct: number;
+  normalNewPurchPct: number;
+}
+
+export interface CreatorRow {
+  handle: string;
+  adCount: number;
+  adIds: string[];
+  totalReach: number;
+  newReachPct: number;
+  totalSpend: number;
+  totalPurchases: number;
+  newPurchases: number;
+  newPurchasePct: number;
+  newCpa: number;
+  cpmr: number;
+}
+
+export interface PartnershipAdRow {
+  adId: string;
+  adName: string;
+  creatorHandle: string;
+  reach: number;
+  newReachPct: number;
+  spend: number;
+  purchases: number;
+  newPurchases: number;
+  newPurchasePct: number;
+}
+
+export interface PartnershipReport {
+  partnership: GroupMetrics;
+  normal: GroupMetrics;
+  weeklyTrend: WeeklyTrendRow[];
+  creators: CreatorRow[];
+  partnershipAds: PartnershipAdRow[];
+  totalAccountReach: number;
+  /** People reached by BOTH partnership and normal ads. */
+  overlapBetweenGroups: number;
+  overlapBetweenGroupsPct: number;
+}
+
+interface AdCreative {
+  id?: string;
+  name?: string;
+  actor_id?: string;
+  instagram_user_id?: string;
+  facebook_branded_content?: { sponsor_page_id?: string };
+  instagram_branded_content?: Record<string, unknown>;
+}
+
+interface MetaAdWithCreative {
+  id: string;
+  name: string;
+  adcreatives?: { data?: AdCreative[] };
+}
+
+interface ClassifiedAd {
+  id: string;
+  name: string;
+  isPartnership: boolean;
+  creatorHandle: string | null;
+}
+
+function classifyAd(ad: MetaAdWithCreative): ClassifiedAd {
+  const creative = ad.adcreatives?.data?.[0];
+  const isPartnership = !!(
+    creative?.facebook_branded_content?.sponsor_page_id ||
+    creative?.instagram_branded_content
+  );
+  // Creator handle from the ifs_{creator}_ife naming convention.
+  // Normalise to lowercase so "Naveena" and "naveena" merge into one row.
+  const match = ad.name?.match(/ifs_([^_]+)_ife/i);
+  return {
+    id: ad.id,
+    name: ad.name ?? ad.id,
+    isPartnership,
+    creatorHandle: match ? match[1].toLowerCase().trim() : null,
+  };
+}
+
+function chunk<T>(arr: T[], size: number): T[][] {
+  const out: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
+/**
+ * Fetch creative + name fields for a specific list of ad IDs, 50 per batch.
+ * Uses the multi-ID root endpoint so we only pull ads active in the date range.
+ */
+async function fetchAdsByIds(token: string, adIds: string[]): Promise<MetaAdWithCreative[]> {
+  if (adIds.length === 0) return [];
+  const fields =
+    "id,name,adcreatives{id,name,actor_id,instagram_user_id,facebook_branded_content,instagram_branded_content}";
+  const results: MetaAdWithCreative[] = [];
+  for (const batch of chunk(adIds, 50)) {
+    const json = await metaGet("/", token, { ids: batch.join(","), fields });
+    // Multi-ID response is an object keyed by ad ID, not an array
+    results.push(...(Object.values(json) as MetaAdWithCreative[]));
+  }
+  return results;
+}
+
+/** Segment-broken-down insights for a set of ad ids, batched past Meta's filter-array limit. */
+async function fetchSegmentInsights(
+  token: string,
+  accountId: string,
+  range: DateRange,
+  adIds: string[],
+  extra: { timeIncrement?: number; level?: "ad"; extraFields?: string[] } = {}
+): Promise<any[]> {
+  if (adIds.length === 0) return [];
+  const batches = chunk(adIds, FILTER_BATCH_SIZE);
+  const results: any[] = [];
+  for (const batch of batches) {
+    const rows = await metaInsights({
+      token,
+      objectId: accountId,
+      fields: [...(extra.extraFields ?? []), "reach", "spend", "impressions", "actions"],
+      timeRange: range,
+      breakdowns: "user_segment_key",
+      filtering: [{ field: "ad.id", operator: "IN", value: batch }],
+      timeIncrement: extra.timeIncrement,
+      level: extra.level,
+      limit: 500,
+    });
+    results.push(...rows);
+  }
+  return results;
+}
+
+function emptyBuckets(): Record<SegmentKey, SegmentBucket> {
+  const map = {} as Record<SegmentKey, SegmentBucket>;
+  for (const key of SEGMENT_ORDER) map[key] = { reach: 0, spend: 0, purchases: 0 };
+  return map;
+}
+
+function buildGroupMetrics(rows: any[], adCount: number, accountReachWithoutGroup: number, totalAccountReach: number): GroupMetrics {
+  const buckets = emptyBuckets();
+  let impressions = 0;
+  for (const row of rows) {
+    const seg = buckets[normalizeSegmentKey(row.user_segment_key)];
+    seg.reach += num(row.reach);
+    seg.spend += num(row.spend);
+    seg.purchases += extractPurchases(row.actions);
+    impressions += num(row.impressions);
+  }
+  const reach = SEGMENT_ORDER.reduce((s, k) => s + buckets[k].reach, 0);
+  const spend = SEGMENT_ORDER.reduce((s, k) => s + buckets[k].spend, 0);
+  const purchases = SEGMENT_ORDER.reduce((s, k) => s + buckets[k].purchases, 0);
+  // Clamp — floating reconciliation across separate Meta queries can nudge this ±a few people.
+  const incrementalReach = Math.max(0, totalAccountReach - accountReachWithoutGroup);
+  return {
+    adCount,
+    reach,
+    spend,
+    impressions,
+    purchases,
+    segments: {
+      prospecting: buckets.prospecting,
+      engaged: buckets.engaged,
+      existing: buckets.existing,
+    },
+    newReachPct: percent(buckets.prospecting.reach, reach),
+    newPurchasePct: percent(buckets.prospecting.purchases, purchases),
+    cpmr: cpmr(spend, reach),
+    cpa: cpp(spend, purchases),
+    newCpa: cpp(buckets.prospecting.spend, buckets.prospecting.purchases),
+    accountReachWithoutGroup,
+    incrementalReach,
+    incrementalPct: percent(incrementalReach, reach),
+  };
+}
+
+/** Weekly rows → per-week { newReachPct, newPurchPct }, keyed by weekStart. */
+function weeklyNewPcts(rows: any[]): Map<string, { weekEnd: string; newPct: number; newPurchPct: number }> {
+  const weeks = new Map<string, { weekEnd: string; segments: Record<SegmentKey, SegmentBucket> }>();
+  for (const row of rows) {
+    const key = row.date_start as string;
+    if (!key) continue;
+    if (!weeks.has(key)) weeks.set(key, { weekEnd: row.date_stop as string, segments: emptyBuckets() });
+    const seg = weeks.get(key)!.segments[normalizeSegmentKey(row.user_segment_key)];
+    seg.reach += num(row.reach);
+    seg.spend += num(row.spend);
+    seg.purchases += extractPurchases(row.actions);
+  }
+  const out = new Map<string, { weekEnd: string; newPct: number; newPurchPct: number }>();
+  for (const [weekStart, w] of weeks) {
+    const totalReach = SEGMENT_ORDER.reduce((s, k) => s + w.segments[k].reach, 0);
+    const totalPurch = SEGMENT_ORDER.reduce((s, k) => s + w.segments[k].purchases, 0);
+    out.set(weekStart, {
+      weekEnd: w.weekEnd,
+      newPct: percent(w.segments.prospecting.reach, totalReach),
+      newPurchPct: percent(w.segments.prospecting.purchases, totalPurch),
+    });
+  }
+  return out;
+}
+
+export async function getPartnershipAdsReport(
+  token: string,
+  accountId: string,
+  range: DateRange
+): Promise<PartnershipReport> {
+  // Step 1 — ads active in this date range only.
+  // The /ads endpoint has no date filter so it returns every ad ever created;
+  // instead we ask the insights API for ad IDs that actually delivered in the
+  // period, then fetch creative fields only for those IDs.
+  const activeAdRows = await metaInsights({
+    token,
+    objectId: accountId,
+    fields: ["ad_id"],
+    timeRange: range,
+    level: "ad",
+    limit: 2000,
+  });
+  const activeAdIds = [...new Set(activeAdRows.map((r) => r.ad_id as string).filter(Boolean))];
+  const rawAds = await fetchAdsByIds(token, activeAdIds);
+
+  // Step 2 — classify
+  const classified = rawAds.map(classifyAd);
+  const partnershipAdsList = classified.filter((a) => a.isPartnership);
+  const normalAdsList = classified.filter((a) => !a.isPartnership);
+  const partnershipIds = partnershipAdsList.map((a) => a.id);
+  const normalIds = normalAdsList.map((a) => a.id);
+  const handleByAdId = new Map(partnershipAdsList.map((a) => [a.id, a.creatorHandle ?? "Unknown"]));
+
+  // Step 3 — aggregate + weekly + per-ad insight pulls + incremental-reach totals.
+  // "Reach without group X" needs one NOT_IN query per group with the *full* id
+  // list — unlike the IN-filter segment queries above, this can't be split into
+  // batches and summed (excluding half a group in one call, the other half in a
+  // second, then adding the two reach totals together double-counts the people
+  // both calls saw). Meta's filter-array limit is a soft ceiling in practice, so
+  // for accounts with an unusually large ad group this call is best-effort.
+  const [pAgg, nAgg, pWeekly, nWeekly, perAd, totalAccount, reachWithoutPartnership, reachWithoutNormal] = await Promise.all([
+    fetchSegmentInsights(token, accountId, range, partnershipIds),
+    fetchSegmentInsights(token, accountId, range, normalIds),
+    fetchSegmentInsights(token, accountId, range, partnershipIds, { timeIncrement: 7 }),
+    fetchSegmentInsights(token, accountId, range, normalIds, { timeIncrement: 7 }),
+    fetchSegmentInsights(token, accountId, range, partnershipIds, { level: "ad", extraFields: ["ad_id", "ad_name"] }),
+    fetchAccountTotals(token, accountId, range),
+    partnershipIds.length > 0
+      ? fetchAccountTotals(token, accountId, range, [{ field: "ad.id", operator: "NOT_IN", value: partnershipIds }])
+      : fetchAccountTotals(token, accountId, range),
+    normalIds.length > 0
+      ? fetchAccountTotals(token, accountId, range, [{ field: "ad.id", operator: "NOT_IN", value: normalIds }])
+      : fetchAccountTotals(token, accountId, range),
+  ]);
+
+  const totalAccountReach = totalAccount.reach;
+  const partnership = buildGroupMetrics(pAgg, partnershipAdsList.length, reachWithoutPartnership.reach, totalAccountReach);
+  const normal = buildGroupMetrics(nAgg, normalAdsList.length, reachWithoutNormal.reach, totalAccountReach);
+
+  const overlapBetweenGroups = Math.max(0, partnership.reach + normal.reach - totalAccountReach);
+  const overlapBetweenGroupsPct = percent(overlapBetweenGroups, totalAccountReach);
+
+  // Weekly trend — outer-join both groups' weeks
+  const pWeeks = weeklyNewPcts(pWeekly);
+  const nWeeks = weeklyNewPcts(nWeekly);
+  const allWeekStarts = Array.from(new Set([...pWeeks.keys(), ...nWeeks.keys()])).sort();
+  const weeklyTrend: WeeklyTrendRow[] = allWeekStarts.map((weekStart) => {
+    const p = pWeeks.get(weekStart);
+    const n = nWeeks.get(weekStart);
+    return {
+      weekStart,
+      weekEnd: p?.weekEnd ?? n?.weekEnd ?? weekStart,
+      partnershipNewPct: p?.newPct ?? 0,
+      normalNewPct: n?.newPct ?? 0,
+      partnershipNewPurchPct: p?.newPurchPct ?? 0,
+      normalNewPurchPct: n?.newPurchPct ?? 0,
+    };
+  });
+
+  // Steps 4–5 — per-ad rollup, then group by creator handle
+  const adBuckets = new Map<string, { adName: string; segments: Record<SegmentKey, SegmentBucket> }>();
+  for (const row of perAd) {
+    const adId = row.ad_id as string;
+    if (!adId) continue;
+    if (!adBuckets.has(adId)) adBuckets.set(adId, { adName: (row.ad_name as string) ?? adId, segments: emptyBuckets() });
+    const seg = adBuckets.get(adId)!.segments[normalizeSegmentKey(row.user_segment_key)];
+    seg.reach += num(row.reach);
+    seg.spend += num(row.spend);
+    seg.purchases += extractPurchases(row.actions);
+  }
+
+  const partnershipAds: PartnershipAdRow[] = Array.from(adBuckets.entries()).map(([adId, b]) => {
+    const reach = SEGMENT_ORDER.reduce((s, k) => s + b.segments[k].reach, 0);
+    const spend = SEGMENT_ORDER.reduce((s, k) => s + b.segments[k].spend, 0);
+    const purchases = SEGMENT_ORDER.reduce((s, k) => s + b.segments[k].purchases, 0);
+    return {
+      adId,
+      adName: b.adName,
+      creatorHandle: handleByAdId.get(adId) ?? "Unknown",
+      reach,
+      newReachPct: percent(b.segments.prospecting.reach, reach),
+      spend,
+      purchases,
+      newPurchases: b.segments.prospecting.purchases,
+      newPurchasePct: percent(b.segments.prospecting.purchases, purchases),
+    };
+  });
+
+  const creatorMap = new Map<string, { adIds: string[]; segments: Record<SegmentKey, SegmentBucket> }>();
+  for (const [adId, b] of adBuckets) {
+    const handle = handleByAdId.get(adId) ?? "Unknown";
+    if (!creatorMap.has(handle)) creatorMap.set(handle, { adIds: [], segments: emptyBuckets() });
+    const creator = creatorMap.get(handle)!;
+    creator.adIds.push(adId);
+    for (const k of SEGMENT_ORDER) {
+      creator.segments[k].reach += b.segments[k].reach;
+      creator.segments[k].spend += b.segments[k].spend;
+      creator.segments[k].purchases += b.segments[k].purchases;
+    }
+  }
+
+  const creators: CreatorRow[] = Array.from(creatorMap.entries())
+    .map(([handle, c]) => {
+      const totalReach = SEGMENT_ORDER.reduce((s, k) => s + c.segments[k].reach, 0);
+      const totalSpend = SEGMENT_ORDER.reduce((s, k) => s + c.segments[k].spend, 0);
+      const totalPurchases = SEGMENT_ORDER.reduce((s, k) => s + c.segments[k].purchases, 0);
+      return {
+        handle,
+        adCount: c.adIds.length,
+        adIds: c.adIds,
+        totalReach,
+        newReachPct: percent(c.segments.prospecting.reach, totalReach),
+        totalSpend,
+        totalPurchases,
+        newPurchases: c.segments.prospecting.purchases,
+        newPurchasePct: percent(c.segments.prospecting.purchases, totalPurchases),
+        newCpa: cpp(c.segments.prospecting.spend, c.segments.prospecting.purchases),
+        cpmr: cpmr(totalSpend, totalReach),
+      };
+    })
+    .sort((a, b) => b.newPurchasePct - a.newPurchasePct);
+
+  return {
+    partnership,
+    normal,
+    weeklyTrend,
+    creators,
+    partnershipAds,
+    totalAccountReach,
+    overlapBetweenGroups,
+    overlapBetweenGroupsPct,
+  };
+}

@@ -1,1 +1,76 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgZm9ybWF0Q29tcGFjdE51bWJlciwgZm9ybWF0UGVyY2VudCwgZm9ybWF0Q3VycmVuY3ksIGZvcm1hdEN1cnJlbmN5Q29tcGFjdCB9IGZyb20gIkAvbGliL2Zvcm1hdCI7CgpleHBvcnQgdHlwZSBWYWx1ZUZvcm1hdCA9ICJudW1iZXIiIHwgImNvbXBhY3QiIHwgInBlcmNlbnQiIHwgImN1cnJlbmN5IiB8ICJjdXJyZW5jeUNvbXBhY3QiOwoKZXhwb3J0IGZ1bmN0aW9uIGZvcm1hdENoYXJ0VmFsdWUodmFsdWU6IG51bWJlciwgZm10OiBWYWx1ZUZvcm1hdCk6IHN0cmluZyB7CiAgc3dpdGNoIChmbXQpIHsKICAgIGNhc2UgImNvbXBhY3QiOgogICAgICByZXR1cm4gZm9ybWF0Q29tcGFjdE51bWJlcih2YWx1ZSk7CiAgICBjYXNlICJwZXJjZW50IjoKICAgICAgcmV0dXJuIGZvcm1hdFBlcmNlbnQodmFsdWUpOwogICAgY2FzZSAiY3VycmVuY3kiOgogICAgICByZXR1cm4gZm9ybWF0Q3VycmVuY3kodmFsdWUpOwogICAgY2FzZSAiY3VycmVuY3lDb21wYWN0IjoKICAgICAgcmV0dXJuIGZvcm1hdEN1cnJlbmN5Q29tcGFjdCh2YWx1ZSk7CiAgICBkZWZhdWx0OgogICAgICByZXR1cm4gbmV3IEludGwuTnVtYmVyRm9ybWF0KCJlbi1VUyIsIHsgbWF4aW11bUZyYWN0aW9uRGlnaXRzOiAxIH0pLmZvcm1hdCh2YWx1ZSk7CiAgfQp9CgpleHBvcnQgZnVuY3Rpb24gY29tcGFjdFRpY2tGb3JtYXR0ZXIodmFsdWU6IG51bWJlcik6IHN0cmluZyB7CiAgcmV0dXJuIGZvcm1hdENvbXBhY3ROdW1iZXIodmFsdWUpOwp9CgpleHBvcnQgZnVuY3Rpb24gcGVyY2VudFRpY2tGb3JtYXR0ZXIodmFsdWU6IG51bWJlcik6IHN0cmluZyB7CiAgcmV0dXJuIGAke01hdGgucm91bmQodmFsdWUpfSVgOwp9CgpleHBvcnQgZnVuY3Rpb24gY3VycmVuY3lUaWNrRm9ybWF0dGVyKHZhbHVlOiBudW1iZXIpOiBzdHJpbmcgewogIHJldHVybiBmb3JtYXRDdXJyZW5jeUNvbXBhY3QodmFsdWUpOwp9CgppbnRlcmZhY2UgVG9vbHRpcEVudHJ5IHsKICBkYXRhS2V5Pzogc3RyaW5nIHwgbnVtYmVyOwogIG5hbWU/OiBzdHJpbmcgfCBudW1iZXI7CiAgdmFsdWU/OiBudW1iZXIgfCBzdHJpbmcgfCBBcnJheTxudW1iZXIgfCBzdHJpbmc+OwogIGNvbG9yPzogc3RyaW5nOwp9CgppbnRlcmZhY2UgQ2hhcnRUb29sdGlwQ29udGVudFByb3BzIHsKICBhY3RpdmU/OiBib29sZWFuOwogIGxhYmVsPzogc3RyaW5nIHwgbnVtYmVyOwogIHBheWxvYWQ/OiBUb29sdGlwRW50cnlbXTsKICAvKiogUGVyLXNlcmllcyB2YWx1ZSBmb3JtYXQsIGtleWVkIGJ5IGRhdGFLZXkuIEZhbGxzIGJhY2sgdG8gYGRlZmF1bHRGb3JtYXRgLiAqLwogIGZvcm1hdHM/OiBSZWNvcmQ8c3RyaW5nLCBWYWx1ZUZvcm1hdD47CiAgZGVmYXVsdEZvcm1hdD86IFZhbHVlRm9ybWF0Owp9CgovKiogU3R5bGVkIHJlcGxhY2VtZW50IGZvciB0aGUgZGVmYXVsdCBSZWNoYXJ0cyB0b29sdGlwOiB3aGl0ZSBjYXJkLCBjb2xvcmVkCiAqICBzZXJpZXMgZG90cywgcmlnaHQtYWxpZ25lZCBmb3JtYXR0ZWQgdmFsdWVzLiAqLwpleHBvcnQgZnVuY3Rpb24gQ2hhcnRUb29sdGlwQ29udGVudCh7IGFjdGl2ZSwgbGFiZWwsIHBheWxvYWQsIGZvcm1hdHMsIGRlZmF1bHRGb3JtYXQgPSAiY29tcGFjdCIgfTogQ2hhcnRUb29sdGlwQ29udGVudFByb3BzKSB7CiAgaWYgKCFhY3RpdmUgfHwgIXBheWxvYWQgfHwgcGF5bG9hZC5sZW5ndGggPT09IDApIHJldHVybiBudWxsOwoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9Im1pbi13LVsxOTBweF0gcm91bmRlZC14bCBib3JkZXIgYm9yZGVyLXdoaXRlLzEwIGJnLVsjMUUyOTNCXSBweC0zLjUgcHktMi41IHNoYWRvdy0yeGwgc2hhZG93LWJsYWNrLzMwIj4KICAgICAgPGRpdiBjbGFzc05hbWU9InRleHQtWzExcHhdIGZvbnQtc2VtaWJvbGQgdXBwZXJjYXNlIHRyYWNraW5nLXdpZGUgdGV4dC1zbGF0ZS00MDAiPntsYWJlbH08L2Rpdj4KICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTEuNSBzcGFjZS15LTEiPgogICAgICAgIHtwYXlsb2FkLm1hcCgoZW50cnksIGkpID0+IHsKICAgICAgICAgIGNvbnN0IGtleSA9IFN0cmluZyhlbnRyeS5kYXRhS2V5ID8/IGkpOwogICAgICAgICAgY29uc3QgZm10ID0gZm9ybWF0cz8uW2tleV0gPz8gZGVmYXVsdEZvcm1hdDsKICAgICAgICAgIGNvbnN0IHJhdyA9IEFycmF5LmlzQXJyYXkoZW50cnkudmFsdWUpID8gZW50cnkudmFsdWVbMF0gOiBlbnRyeS52YWx1ZTsKICAgICAgICAgIHJldHVybiAoCiAgICAgICAgICAgIDxkaXYga2V5PXtrZXl9IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgdGV4dC1bMTNweF0iPgogICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0iaC0yLjUgdy0yLjUgc2hyaW5rLTAgcm91bmRlZC1bM3B4XSIgc3R5bGU9e3sgYmFja2dyb3VuZDogZW50cnkuY29sb3IgfX0gLz4KICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InRleHQtc2xhdGUtMzAwIj57ZW50cnkubmFtZX08L3NwYW4+CiAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJtbC1hdXRvIHBsLTQgZm9udC1zZW1pYm9sZCB0YWJ1bGFyLW51bXMgdGV4dC13aGl0ZSI+CiAgICAgICAgICAgICAgICB7Zm9ybWF0Q2hhcnRWYWx1ZShOdW1iZXIocmF3ID8/IDApLCBmbXQpfQogICAgICAgICAgICAgIDwvc3Bhbj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICApOwogICAgICAgIH0pfQogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICk7Cn0K"}
+"use client";
+
+import { formatCompactNumber, formatPercent, formatCurrency, formatCurrencyCompact } from "@/lib/format";
+
+export type ValueFormat = "number" | "compact" | "percent" | "currency" | "currencyCompact";
+
+export function formatChartValue(value: number, fmt: ValueFormat): string {
+  switch (fmt) {
+    case "compact":
+      return formatCompactNumber(value);
+    case "percent":
+      return formatPercent(value);
+    case "currency":
+      return formatCurrency(value);
+    case "currencyCompact":
+      return formatCurrencyCompact(value);
+    default:
+      return new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 }).format(value);
+  }
+}
+
+export function compactTickFormatter(value: number): string {
+  return formatCompactNumber(value);
+}
+
+export function percentTickFormatter(value: number): string {
+  return `${Math.round(value)}%`;
+}
+
+export function currencyTickFormatter(value: number): string {
+  return formatCurrencyCompact(value);
+}
+
+interface TooltipEntry {
+  dataKey?: string | number;
+  name?: string | number;
+  value?: number | string | Array<number | string>;
+  color?: string;
+}
+
+interface ChartTooltipContentProps {
+  active?: boolean;
+  label?: string | number;
+  payload?: TooltipEntry[];
+  /** Per-series value format, keyed by dataKey. Falls back to `defaultFormat`. */
+  formats?: Record<string, ValueFormat>;
+  defaultFormat?: ValueFormat;
+}
+
+/** Styled replacement for the default Recharts tooltip: white card, colored
+ *  series dots, right-aligned formatted values. */
+export function ChartTooltipContent({ active, label, payload, formats, defaultFormat = "compact" }: ChartTooltipContentProps) {
+  if (!active || !payload || payload.length === 0) return null;
+
+  return (
+    <div className="min-w-[190px] rounded-xl border border-white/10 bg-[#1E293B] px-3.5 py-2.5 shadow-2xl shadow-black/30">
+      <div className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">{label}</div>
+      <div className="mt-1.5 space-y-1">
+        {payload.map((entry, i) => {
+          const key = String(entry.dataKey ?? i);
+          const fmt = formats?.[key] ?? defaultFormat;
+          const raw = Array.isArray(entry.value) ? entry.value[0] : entry.value;
+          return (
+            <div key={key} className="flex items-center gap-2 text-[13px]">
+              <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: entry.color }} />
+              <span className="text-slate-300">{entry.name}</span>
+              <span className="ml-auto pl-4 font-semibold tabular-nums text-white">
+                {formatChartValue(Number(raw ?? 0), fmt)}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}

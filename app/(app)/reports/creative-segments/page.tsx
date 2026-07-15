@@ -1,1 +1,239 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VNZW1vLCB1c2VTdGF0ZSB9IGZyb20gInJlYWN0IjsKaW1wb3J0IHsgdXNlQWNjb3VudCB9IGZyb20gIkAvY29tcG9uZW50cy9wcm92aWRlcnMvQWNjb3VudFByb3ZpZGVyIjsKaW1wb3J0IHsgdXNlSnNvblJlcG9ydCB9IGZyb20gIkAvbGliL2hvb2tzL3VzZUpzb25SZXBvcnQiOwppbXBvcnQgeyBEYXRlUmFuZ2VQaWNrZXIgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvRGF0ZVJhbmdlUGlja2VyIjsKaW1wb3J0IHsgRGF0YVRhYmxlLCB0eXBlIERhdGFUYWJsZUNvbHVtbiB9IGZyb20gIkAvY29tcG9uZW50cy91aS9EYXRhVGFibGUiOwppbXBvcnQgeyBIb3Jpem9udGFsQmFyIH0gZnJvbSAiQC9jb21wb25lbnRzL2NoYXJ0cy9Ib3Jpem9udGFsQmFyIjsKaW1wb3J0IHsgQ2hhcnRTa2VsZXRvbiB9IGZyb20gIkAvY29tcG9uZW50cy91aS9Ta2VsZXRvbiI7CmltcG9ydCB7IFN1bW1hcnlDYXJkIH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL1N1bW1hcnlDYXJkIjsKaW1wb3J0IHsgUmVwb3J0U3VtbWFyeSB9IGZyb20gIkAvY29tcG9uZW50cy91aS9SZXBvcnRTdW1tYXJ5IjsKaW1wb3J0IHsgRW1wdHlTdGF0ZSB9IGZyb20gIkAvY29tcG9uZW50cy91aS9FbXB0eVN0YXRlIjsKaW1wb3J0IHsgRmV0Y2hpbmdTdGF0ZSB9IGZyb20gIkAvY29tcG9uZW50cy91aS9GZXRjaGluZ1N0YXRlIjsKaW1wb3J0IHsgRXJyb3JCYW5uZXIgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvRXJyb3JCYW5uZXIiOwppbXBvcnQgeyBIb3dUb1JlYWQgfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvSG93VG9SZWFkIjsKaW1wb3J0IExpbmsgZnJvbSAibmV4dC9saW5rIjsKaW1wb3J0IHsgZm9ybWF0Q29tcGFjdE51bWJlciwgZm9ybWF0Q3VycmVuY3ksIGZvcm1hdE51bWJlciwgZm9ybWF0UGVyY2VudCB9IGZyb20gIkAvbGliL2Zvcm1hdCI7CmltcG9ydCB7IGNyZWF0aXZlU2VnbWVudEluc2lnaHRzIH0gZnJvbSAiQC9saWIvaW5zaWdodHMiOwppbXBvcnQgeyBHTE9TU0FSWSB9IGZyb20gIkAvbGliL2dsb3NzYXJ5IjsKaW1wb3J0IHsgU0VHTUVOVF9DT0xPUlMgfSBmcm9tICJAL2xpYi9jb25zdGFudHMiOwppbXBvcnQgeyBsYXN0TkRheXMgfSBmcm9tICJAL2xpYi9kYXRlcyI7CmltcG9ydCB0eXBlIHsgRGF0ZVJhbmdlIH0gZnJvbSAiQC9saWIvdHlwZXMiOwppbXBvcnQgdHlwZSB7IEVudGl0eVNlZ21lbnRSb3csIENyZWF0aXZlU2VnbWVudHNSZXBvcnQsIEVudGl0eUxldmVsIH0gZnJvbSAiQC9saWIvcmVwb3J0cy9jcmVhdGl2ZS1zZWdtZW50cyI7CgpmdW5jdGlvbiBuZXdQY3RDZWxsQ2xhc3Mocm93OiBFbnRpdHlTZWdtZW50Um93KTogc3RyaW5nIHsKICBpZiAocm93LnByb3NwZWN0aW5nUmVhY2hQY3QgPj0gNzApIHJldHVybiAidGV4dC1ncmVlbi03MDAgZm9udC1zZW1pYm9sZCI7CiAgaWYgKHJvdy5wcm9zcGVjdGluZ1JlYWNoUGN0IDwgNDApIHJldHVybiAidGV4dC1yZWQtNjAwIjsKICByZXR1cm4gInRleHQtYW1iZXItNjAwIjsKfQoKY29uc3QgTEVWRUxTOiB7IGtleTogRW50aXR5TGV2ZWw7IGxhYmVsOiBzdHJpbmcgfVtdID0gWwogIHsga2V5OiAiY2FtcGFpZ24iLCBsYWJlbDogIkNhbXBhaWduIiB9LAogIHsga2V5OiAiYWRzZXQiLCBsYWJlbDogIkFkc2V0IiB9LAogIHsga2V5OiAiYWQiLCBsYWJlbDogIkFkIiB9LApdOwoKZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gQ3JlYXRpdmVTZWdtZW50c1BhZ2UoKSB7CiAgY29uc3QgeyBzZWxlY3RlZEFjY291bnRJZCB9ID0gdXNlQWNjb3VudCgpOwogIGNvbnN0IFtyYW5nZSwgc2V0UmFuZ2VdID0gdXNlU3RhdGU8RGF0ZVJhbmdlIHwgbnVsbD4obnVsbCk7CiAgY29uc3QgW2xldmVsLCBzZXRMZXZlbF0gPSB1c2VTdGF0ZTxFbnRpdHlMZXZlbD4oImFkIik7CiAgLy8gW1BNIEVOSEFOQ0VNRU5UXSDigJQgYnVtcCB0byByZS1ydW4gdGhlIGZldGNoIGZyb20gdGhlIGVycm9yIGJhbm5lcidzICJUcnkgYWdhaW4iCiAgY29uc3QgW3JldHJ5S2V5LCBzZXRSZXRyeUtleV0gPSB1c2VTdGF0ZSgwKTsKICBjb25zdCB7IGxvYWRpbmcsIGlzSW5pdGlhbExvYWQsIGRhdGEsIGVycm9yLCBydW4gfSA9IHVzZUpzb25SZXBvcnQ8eyBkYXRhOiBDcmVhdGl2ZVNlZ21lbnRzUmVwb3J0IH0+KCk7CgogIHVzZUVmZmVjdCgoKSA9PiB7CiAgICBpZiAoIXNlbGVjdGVkQWNjb3VudElkIHx8ICFyYW5nZSkgcmV0dXJuOwogICAgY29uc3QgcGFyYW1zID0gbmV3IFVSTFNlYXJjaFBhcmFtcyh7CiAgICAgIGFjY291bnRJZDogc2VsZWN0ZWRBY2NvdW50SWQsCiAgICAgIHNpbmNlOiByYW5nZS5zaW5jZSwKICAgICAgdW50aWw6IHJhbmdlLnVudGlsLAogICAgICBsZXZlbCwKICAgIH0pOwogICAgcnVuKGAvYXBpL3JlcG9ydHMvY3JlYXRpdmUtc2VnbWVudHM/JHtwYXJhbXN9YCk7CiAgfSwgW3NlbGVjdGVkQWNjb3VudElkLCByYW5nZSwgbGV2ZWwsIHJ1biwgcmV0cnlLZXldKTsKCiAgY29uc3QgZW50aXRpZXMgPSBkYXRhPy5kYXRhLmVudGl0aWVzID8/IFtdOwogIGNvbnN0IGVudGl0eUxhYmVsID0gbGV2ZWwgPT09ICJjYW1wYWlnbiIgPyAiQ2FtcGFpZ24iIDogbGV2ZWwgPT09ICJhZHNldCIgPyAiQWRzZXQiIDogIkFkIjsKCiAgY29uc3Qgc29ydGVkID0gdXNlTWVtbygoKSA9PiBbLi4uZW50aXRpZXNdLnNvcnQoKGEsIGIpID0+IGIucHJvc3BlY3RpbmdSZWFjaFBjdCAtIGEucHJvc3BlY3RpbmdSZWFjaFBjdCksIFtlbnRpdGllc10pOwogIGNvbnN0IGJlc3QgPSBzb3J0ZWRbMF07CiAgY29uc3Qgd29yc3QgPSBzb3J0ZWRbc29ydGVkLmxlbmd0aCAtIDFdOwogIGNvbnN0IGhpZ2hOZXdDb3VudCA9IGVudGl0aWVzLmZpbHRlcigoZSkgPT4gZS5wcm9zcGVjdGluZ1JlYWNoUGN0ID49IDcwKS5sZW5ndGg7CgogIGNvbnN0IGNoYXJ0RGF0YSA9IHVzZU1lbW8oCiAgICAoKSA9PgogICAgICBbLi4uZW50aXRpZXNdCiAgICAgICAgLnNvcnQoKGEsIGIpID0+IGIucHJvc3BlY3RpbmdSZWFjaFBjdCAtIGEucHJvc3BlY3RpbmdSZWFjaFBjdCkKICAgICAgICAuc2xpY2UoMCwgMjUpCiAgICAgICAgLm1hcCgoZSkgPT4gKHsKICAgICAgICAgIG5hbWU6IGUubmFtZSwKICAgICAgICAgIE5ldzogZS5wcm9zcGVjdGluZ1JlYWNoUGN0LAogICAgICAgICAgRW5nYWdlZDogZS5lbmdhZ2VkUmVhY2hQY3QsCiAgICAgICAgICBFeGlzdGluZzogZS5leGlzdGluZ1JlYWNoUGN0LAogICAgICAgIH0pKSwKICAgIFtlbnRpdGllc10KICApOwoKICBjb25zdCBpbnNpZ2h0cyA9IHVzZU1lbW8oKCkgPT4gY3JlYXRpdmVTZWdtZW50SW5zaWdodHMoZW50aXRpZXMsIGVudGl0eUxhYmVsKSwgW2VudGl0aWVzLCBlbnRpdHlMYWJlbF0pOwoKICBjb25zdCBjb2x1bW5zOiBEYXRhVGFibGVDb2x1bW48RW50aXR5U2VnbWVudFJvdz5bXSA9IHVzZU1lbW8oKCkgPT4gWwogICAgeyBrZXk6ICJuYW1lIiwgaGVhZGVyOiBlbnRpdHlMYWJlbCwgYWNjZXNzb3I6IChyKSA9PiByLm5hbWUgfSwKICAgIHsga2V5OiAidG90YWxSZWFjaCIsIGhlYWRlcjogIlRvdGFsIFJlYWNoIiwgaGVscDogR0xPU1NBUlkucmVhY2gsIGFjY2Vzc29yOiAocikgPT4gci50b3RhbFJlYWNoLCBhbGlnbjogInJpZ2h0IiwgcmVuZGVyOiAocikgPT4gZm9ybWF0Q29tcGFjdE51bWJlcihyLnRvdGFsUmVhY2gpIH0sCiAgICB7IGtleTogInRvdGFsU3BlbmQiLCBoZWFkZXI6ICJUb3RhbCBTcGVuZCIsIGhlbHA6IEdMT1NTQVJZLnNwZW5kLCBhY2Nlc3NvcjogKHIpID0+IHIudG90YWxTcGVuZCwgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IGZvcm1hdEN1cnJlbmN5KHIudG90YWxTcGVuZCkgfSwKICAgIHsga2V5OiAidG90YWxQdXJjaGFzZXMiLCBoZWFkZXI6ICJUb3RhbCBQdXJjaGFzZXMiLCBoZWxwOiBHTE9TU0FSWS5jcHAsIGFjY2Vzc29yOiAocikgPT4gci50b3RhbFB1cmNoYXNlcywgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IGZvcm1hdE51bWJlcihyLnRvdGFsUHVyY2hhc2VzKSB9LAogICAgeyBrZXk6ICJwcm9zcGVjdGluZ1JlYWNoIiwgaGVhZGVyOiAiTmV3IFJlYWNoIiwgaGVscDogR0xPU1NBUlkucHJvc3BlY3RpbmcsIGFjY2Vzc29yOiAocikgPT4gci5wcm9zcGVjdGluZ1JlYWNoLCBhbGlnbjogInJpZ2h0IiwgcmVuZGVyOiAocikgPT4gZm9ybWF0Q29tcGFjdE51bWJlcihyLnByb3NwZWN0aW5nUmVhY2gpIH0sCiAgICB7CiAgICAgIGtleTogInByb3NwZWN0aW5nUmVhY2hQY3QiLAogICAgICBoZWFkZXI6ICJOZXcgUmVhY2ggJSIsCiAgICAgIGhlbHA6IEdMT1NTQVJZLm5ld1BjdCwKICAgICAgYWNjZXNzb3I6IChyKSA9PiByLnByb3NwZWN0aW5nUmVhY2hQY3QsCiAgICAgIGFsaWduOiAicmlnaHQiLAogICAgICBjZWxsQ2xhc3M6IG5ld1BjdENlbGxDbGFzcywKICAgICAgcmVuZGVyOiAocikgPT4gZm9ybWF0UGVyY2VudChyLnByb3NwZWN0aW5nUmVhY2hQY3QpLAogICAgfSwKICAgIHsga2V5OiAicHJvc3BlY3RpbmdQdXJjaGFzZXMiLCBoZWFkZXI6ICJOZXcgUHVyY2hhc2VzIiwgaGVscDogIlB1cmNoYXNlcyBhdHRyaWJ1dGVkIHRvIHRoZSBOZXcgQXVkaWVuY2Ugc2VnbWVudCBmb3IgdGhpcyBlbnRpdHkuIiwgYWNjZXNzb3I6IChyKSA9PiByLnByb3NwZWN0aW5nUHVyY2hhc2VzLCBhbGlnbjogInJpZ2h0IiwgcmVuZGVyOiAocikgPT4gZm9ybWF0TnVtYmVyKHIucHJvc3BlY3RpbmdQdXJjaGFzZXMpIH0sCiAgICB7IGtleTogInByb3NwZWN0aW5nUHVyY2hhc2VQY3QiLCBoZWFkZXI6ICJOZXcgUHVyY2hhc2UgJSIsIGhlbHA6ICJOZXcgQXVkaWVuY2UgcHVyY2hhc2VzIGFzIGEgJSBvZiB0aGlzIGVudGl0eSdzIHRvdGFsIHB1cmNoYXNlcy4iLCBhY2Nlc3NvcjogKHIpID0+IHIucHJvc3BlY3RpbmdQdXJjaGFzZVBjdCwgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IGZvcm1hdFBlcmNlbnQoci5wcm9zcGVjdGluZ1B1cmNoYXNlUGN0KSB9LAogICAgeyBrZXk6ICJwcm9zcGVjdGluZ0NwYSIsIGhlYWRlcjogIk5ldyBDUEEiLCBoZWxwOiBHTE9TU0FSWS5jcHAsIGFjY2Vzc29yOiAocikgPT4gci5wcm9zcGVjdGluZ0NwYSwgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IChyLnByb3NwZWN0aW5nQ3BhID4gMCA/IGZvcm1hdEN1cnJlbmN5KHIucHJvc3BlY3RpbmdDcGEpIDogIuKAlCIpIH0sCiAgICB7IGtleTogImVuZ2FnZWRSZWFjaCIsIGhlYWRlcjogIkVuZ2FnZWQgUmVhY2giLCBhY2Nlc3NvcjogKHIpID0+IHIuZW5nYWdlZFJlYWNoLCBhbGlnbjogInJpZ2h0IiwgcmVuZGVyOiAocikgPT4gZm9ybWF0Q29tcGFjdE51bWJlcihyLmVuZ2FnZWRSZWFjaCkgfSwKICAgIHsga2V5OiAiZW5nYWdlZFB1cmNoYXNlcyIsIGhlYWRlcjogIkVuZ2FnZWQgUHVyY2hhc2VzIiwgYWNjZXNzb3I6IChyKSA9PiByLmVuZ2FnZWRQdXJjaGFzZXMsIGFsaWduOiAicmlnaHQiLCByZW5kZXI6IChyKSA9PiBmb3JtYXROdW1iZXIoci5lbmdhZ2VkUHVyY2hhc2VzKSB9LAogICAgeyBrZXk6ICJleGlzdGluZ1JlYWNoIiwgaGVhZGVyOiAiRXhpc3RpbmcgUmVhY2giLCBhY2Nlc3NvcjogKHIpID0+IHIuZXhpc3RpbmdSZWFjaCwgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IGZvcm1hdENvbXBhY3ROdW1iZXIoci5leGlzdGluZ1JlYWNoKSB9LAogICAgeyBrZXk6ICJleGlzdGluZ1B1cmNoYXNlcyIsIGhlYWRlcjogIkV4aXN0aW5nIFB1cmNoYXNlcyIsIGFjY2Vzc29yOiAocikgPT4gci5leGlzdGluZ1B1cmNoYXNlcywgYWxpZ246ICJyaWdodCIsIHJlbmRlcjogKHIpID0+IGZvcm1hdE51bWJlcihyLmV4aXN0aW5nUHVyY2hhc2VzKSB9LAogIF0sIFtlbnRpdHlMYWJlbF0pOwoKICByZXR1cm4gKAogICAgPGRpdj4KICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZmxleC13cmFwIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWJldHdlZW4gZ2FwLTMiPgogICAgICAgIDxkaXY+CiAgICAgICAgICA8aDEgY2xhc3NOYW1lPSJ0ZXh0LWxnIGZvbnQtYm9sZCB0ZXh0LXNsYXRlLTkwMCI+U2VnbWVudHMgYnkgRW50aXR5PC9oMT4KICAgICAgICAgIDxwIGNsYXNzTmFtZT0ibXQtMSB0ZXh0LXNtIHRleHQtc2xhdGUtNTAwIj5XaGljaCBjYW1wYWlnbnMsIGFkc2V0cywgYW5kIGFkcyByZWFjaCB0aGUgbW9zdCBnZW51aW5lbHkgbmV3IGF1ZGllbmNlcy48L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPERhdGVSYW5nZVBpY2tlciB2YWx1ZT17cmFuZ2V9IG9uQ2hhbmdlPXtzZXRSYW5nZX0gLz4KICAgICAgPC9kaXY+CgogICAgICB7LyogW1BNIEVOSEFOQ0VNRU5UXSDigJQgcGxhaW4tbGFuZ3VhZ2UgZXhwbGFpbmVyIHNvIGV2ZXJ5IG1ldHJpYyBpcyB1bmRlcnN0YW5kYWJsZSAqL30KICAgICAgPEhvd1RvUmVhZAogICAgICAgIGl0ZW1zPXtbCiAgICAgICAgICB7IGxhYmVsOiAiVGhlIHRhYnMiLCB0ZXh0OiAidGhlIHNhbWUgYW5hbHlzaXMgYXQgdGhyZWUgem9vbSBsZXZlbHMg4oCUIHdob2xlIGNhbXBhaWducywgaW5kaXZpZHVhbCBhZHNldHMsIG9yIHNpbmdsZSBhZHMuIiB9LAogICAgICAgICAgeyBsYWJlbDogIk5ldyBSZWFjaCAlIiwgdGV4dDogImhvdyBtdWNoIG9mIHRoaXMgZW50aXR5J3MgYXVkaWVuY2UgaXMgZ2VudWluZWx5IG5ldyBwZW9wbGUuIEFib3ZlIDcwJSA9IGEgdHJ1ZSBwcm9zcGVjdGluZyB3b3JraG9yc2UuIiB9LAogICAgICAgICAgeyBsYWJlbDogIk5ldyBQdXJjaGFzZSAlIiwgdGV4dDogIm9mIGFsbCBwdXJjaGFzZXMgdGhpcyBlbnRpdHkgZHJvdmUsIHRoZSBzaGFyZSB0aGF0IGNhbWUgZnJvbSBicmFuZC1uZXcgY3VzdG9tZXJzIHJhdGhlciB0aGFuIHJlcGVhdCBidXllcnMuIiB9LAogICAgICAgICAgeyBsYWJlbDogIk5ldyBDUEEiLCB0ZXh0OiAid2hhdCBvbmUgbmV3IGN1c3RvbWVyIGNvc3RzIGZyb20gdGhpcyBlbnRpdHkg4oCUIGNvbXBhcmUgaXQgYWdhaW5zdCB5b3VyIHByb2R1Y3QgbWFyZ2luLiIgfSwKICAgICAgICAgIHsgbGFiZWw6ICJUaGUgY2hhcnQiLCB0ZXh0OiAiZWFjaCBiYXIgaXMgMTAwJSBvZiBvbmUgZW50aXR5J3MgcmVhY2gsIHNwbGl0IGludG8gbmV3IChibHVlKSwgZW5nYWdlZCAoYW1iZXIpLCBhbmQgZXhpc3RpbmcgKGdyZWVuKSwgc29ydGVkIGJlc3QgcHJvc3BlY3RvcnMgZmlyc3QuIiB9LAogICAgICAgIF19CiAgICAgIC8+CgogICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMyI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggcm91bmRlZC1tZCBib3JkZXIgYm9yZGVyLXNsYXRlLTIwMCBiZy13aGl0ZSBwLTAuNSB3LWZpdCI+CiAgICAgICAgICB7TEVWRUxTLm1hcCgobCkgPT4gKAogICAgICAgICAgICA8YnV0dG9uCiAgICAgICAgICAgICAga2V5PXtsLmtleX0KICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRMZXZlbChsLmtleSl9CiAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgcm91bmRlZCBweC0zIHB5LTEgdGV4dC1zbSBmb250LW1lZGl1bSB0cmFuc2l0aW9uLWNvbG9ycyAkewogICAgICAgICAgICAgICAgbGV2ZWwgPT09IGwua2V5ID8gImJnLXNsYXRlLTkwMCB0ZXh0LXdoaXRlIiA6ICJ0ZXh0LXNsYXRlLTYwMCBob3ZlcjpiZy1zbGF0ZS0xMDAiCiAgICAgICAgICAgICAgfWB9CiAgICAgICAgICAgID4KICAgICAgICAgICAgICB7bC5sYWJlbH0KICAgICAgICAgICAgPC9idXR0b24+CiAgICAgICAgICApKX0KICAgICAgICA8L2Rpdj4KICAgICAgPC9kaXY+CgogICAgICB7ZXJyb3IgJiYgPEVycm9yQmFubmVyIG1lc3NhZ2U9e2Vycm9yfSBvblJldHJ5PXsoKSA9PiBzZXRSZXRyeUtleSgoaykgPT4gayArIDEpfSAvPn0KICAgICAge2xvYWRpbmcgJiYgPEZldGNoaW5nU3RhdGUgLz59CgogICAgICB7IXJhbmdlICYmIDxFbXB0eVN0YXRlIHRpdGxlPSJTZWxlY3QgYSBkYXRlIHJhbmdlIiBkZXNjcmlwdGlvbj0iQ2hvb3NlIGEgcGVyaW9kIGFib3ZlIHRvIGxvYWQgdGhpcyByZXBvcnQuIiAvPn0KCiAgICAgIHtyYW5nZSAmJiAoCiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImFuaW1hdGUtZmFkZS1pbiI+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT17YG10LTQgZ3JpZCBncmlkLWNvbHMtMSBnYXAtMyBzbTpncmlkLWNvbHMtMyB0cmFuc2l0aW9uLW9wYWNpdHkgZHVyYXRpb24tMjAwICR7bG9hZGluZyAmJiAhaXNJbml0aWFsTG9hZCA/ICJvcGFjaXR5LTUwIHBvaW50ZXItZXZlbnRzLW5vbmUiIDogIiJ9YH0+CiAgICAgICAgICAgIDxTdW1tYXJ5Q2FyZAogICAgICAgICAgICAgIGxhYmVsPXtgQmVzdCBQcm9zcGVjdGluZyAke2VudGl0eUxhYmVsfWB9CiAgICAgICAgICAgICAgdmFsdWU9e2Jlc3QgPyBmb3JtYXRQZXJjZW50KGJlc3QucHJvc3BlY3RpbmdSZWFjaFBjdCkgOiAi4oCUIn0KICAgICAgICAgICAgICBzdWJsYWJlbD17YmVzdD8ubmFtZT8uc2xpY2UoMCwgMzYpfQogICAgICAgICAgICAgIGxvYWRpbmc9e2lzSW5pdGlhbExvYWR9CiAgICAgICAgICAgICAgaWNvbkNvbG9yPSJiZy1ibHVlLTUwIHRleHQtYmx1ZS02MDAiCiAgICAgICAgICAgICAgYWNjZW50Q29sb3I9ImJvcmRlci1sLWJsdWUtNTAwIgogICAgICAgICAgICAvPgogICAgICAgICAgICA8U3VtbWFyeUNhcmQKICAgICAgICAgICAgICBsYWJlbD17YFdvcnN0IFByb3NwZWN0aW5nICR7ZW50aXR5TGFiZWx9YH0KICAgICAgICAgICAgICB2YWx1ZT17d29yc3QgJiYgd29yc3QgIT09IGJlc3QgPyBmb3JtYXRQZXJjZW50KHdvcnN0LnByb3NwZWN0aW5nUmVhY2hQY3QpIDogIuKAlCJ9CiAgICAgICAgICAgICAgc3VibGFiZWw9e3dvcnN0ICYmIHdvcnN0ICE9PSBiZXN0ID8gd29yc3QubmFtZS5zbGljZSgwLCAzNikgOiB1bmRlZmluZWR9CiAgICAgICAgICAgICAgbG9hZGluZz17aXNJbml0aWFsTG9hZH0KICAgICAgICAgICAgICBpY29uQ29sb3I9ImJnLXJlZC01MCB0ZXh0LXJlZC01MDAiCiAgICAgICAgICAgICAgYWNjZW50Q29sb3I9ImJvcmRlci1sLXJlZC00MDAiCiAgICAgICAgICAgIC8+CiAgICAgICAgICAgIDxTdW1tYXJ5Q2FyZAogICAgICAgICAgICAgIGxhYmVsPXtgJHtlbnRpdHlMYWJlbH1zIHdpdGggPjcwJSBOZXdgfQogICAgICAgICAgICAgIHZhbHVlPXtkYXRhID8gYCR7aGlnaE5ld0NvdW50fSBvZiAke2VudGl0aWVzLmxlbmd0aH1gIDogIuKAlCJ9CiAgICAgICAgICAgICAgc3VibGFiZWw9e2hpZ2hOZXdDb3VudCA9PT0gMCA/ICJub25lIGFyZSBzdHJvbmcgcHJvc3BlY3RvcnMiIDogInN0cm9uZyBwcm9zcGVjdGluZyBwZXJmb3JtZXJzIn0KICAgICAgICAgICAgICBsb2FkaW5nPXtpc0luaXRpYWxMb2FkfQogICAgICAgICAgICAgIGljb25Db2xvcj0iYmctZW1lcmFsZC01MCB0ZXh0LWVtZXJhbGQtNjAwIgogICAgICAgICAgICAgIGFjY2VudENvbG9yPSJib3JkZXItbC1lbWVyYWxkLTUwMCIKICAgICAgICAgICAgLz4KICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPXtgdHJhbnNpdGlvbi1vcGFjaXR5IGR1cmF0aW9uLTIwMCAke2xvYWRpbmcgJiYgIWlzSW5pdGlhbExvYWQgPyAib3BhY2l0eS01MCBwb2ludGVyLWV2ZW50cy1ub25lIiA6ICIifWB9PgogICAgICAgICAgICA8UmVwb3J0U3VtbWFyeSBpbnNpZ2h0cz17aW5zaWdodHN9IGxvYWRpbmc9e2lzSW5pdGlhbExvYWR9IC8+CgogICAgICAgICAgICB7KGlzSW5pdGlhbExvYWQgfHwgY2hhcnREYXRhLmxlbmd0aCA+IDApICYmICgKICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtNiByb3VuZGVkLXhsIGJvcmRlciBib3JkZXItc2xhdGUtMjAwLzgwIGJnLXdoaXRlIHAtNSBzaGFkb3ctc20iPgogICAgICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT0idGV4dC1zbSBmb250LXNlbWlib2xkIHRleHQtc2xhdGUtODAwIj4KICAgICAgICAgICAgICAgICAgQXVkaWVuY2Ugc2VnbWVudCBjb21wb3NpdGlvbiBieSB7ZW50aXR5TGFiZWwudG9Mb3dlckNhc2UoKX0KICAgICAgICAgICAgICAgIDwvaDI+CiAgICAgICAgICAgICAgICA8cCBjbGFzc05hbWU9Im1iLTIgbXQtMC41IHRleHQteHMgdGV4dC1zbGF0ZS00MDAiPgogICAgICAgICAgICAgICAgICBFYWNoIGJhciA9IDEwMCUgb2YgdGhhdCB7ZW50aXR5TGFiZWwudG9Mb3dlckNhc2UoKX0mYXBvcztzIHJlYWNoLiBTb3J0ZWQgYnkgbmV3ICUgZGVzY2VuZGluZy4KICAgICAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtYi00IGZsZXggaXRlbXMtY2VudGVyIGdhcC00Ij4KICAgICAgICAgICAgICAgICAge1sKICAgICAgICAgICAgICAgICAgICB7IGNvbG9yOiBTRUdNRU5UX0NPTE9SUy5wcm9zcGVjdGluZywgbGFiZWw6ICJOZXcgQXVkaWVuY2UiIH0sCiAgICAgICAgICAgICAgICAgICAgeyBjb2xvcjogU0VHTUVOVF9DT0xPUlMuZW5nYWdlZCwgbGFiZWw6ICJFbmdhZ2VkIiB9LAogICAgICAgICAgICAgICAgICAgIHsgY29sb3I6IFNFR01FTlRfQ09MT1JTLmV4aXN0aW5nLCBsYWJlbDogIkV4aXN0aW5nIEN1c3RvbWVycyIgfSwKICAgICAgICAgICAgICAgICAgXS5tYXAoKHMpID0+ICgKICAgICAgICAgICAgICAgICAgICA8ZGl2IGtleT17cy5sYWJlbH0gY2xhc3NOYW1lPSJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMS41Ij4KICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoLTIgdy0yIHJvdW5kZWQtZnVsbCIgc3R5bGU9e3sgYmFja2dyb3VuZDogcy5jb2xvciB9fSAvPgogICAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJ0ZXh0LXhzIHRleHQtc2xhdGUtNTAwIj57cy5sYWJlbH08L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICkpfQogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICB7aXNJbml0aWFsTG9hZCA/ICgKICAgICAgICAgICAgICAgICAgPENoYXJ0U2tlbGV0b24gLz4KICAgICAgICAgICAgICAgICkgOiAoCiAgICAgICAgICAgICAgICAgIDxIb3Jpem9udGFsQmFyCiAgICAgICAgICAgICAgICAgICAgZGF0YT17Y2hhcnREYXRhfQogICAgICAgICAgICAgICAgICAgIGNhdGVnb3J5S2V5PSJuYW1lIgogICAgICAgICAgICAgICAgICAgIHN0YWNrZWQKICAgICAgICAgICAgICAgICAgICB2YWx1ZUZvcm1hdD0icGVyY2VudCIKICAgICAgICAgICAgICAgICAgICBzZXJpZXM9e1sKICAgICAgICAgICAgICAgICAgICAgIHsga2V5OiAiTmV3IiwgbGFiZWw6ICJOZXcgQXVkaWVuY2UiLCBjb2xvcjogU0VHTUVOVF9DT0xPUlMucHJvc3BlY3RpbmcgfSwKICAgICAgICAgICAgICAgICAgICAgIHsga2V5OiAiRW5nYWdlZCIsIGxhYmVsOiAiRW5nYWdlZCIsIGNvbG9yOiBTRUdNRU5UX0NPTE9SUy5lbmdhZ2VkIH0sCiAgICAgICAgICAgICAgICAgICAgICB7IGtleTogIkV4aXN0aW5nIiwgbGFiZWw6ICJFeGlzdGluZyBDdXN0b21lcnMiLCBjb2xvcjogU0VHTUVOVF9DT0xPUlMuZXhpc3RpbmcgfSwKICAgICAgICAgICAgICAgICAgICBdfQogICAgICAgICAgICAgICAgICAvPgogICAgICAgICAgICAgICAgKX0KICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgKX0KCiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC02Ij4KICAgICAgICAgICAgICA8RGF0YVRhYmxlCiAgICAgICAgICAgICAgICBjb2x1bW5zPXtjb2x1bW5zfQogICAgICAgICAgICAgICAgcm93cz17ZW50aXRpZXN9CiAgICAgICAgICAgICAgICBsb2FkaW5nPXtpc0luaXRpYWxMb2FkfQogICAgICAgICAgICAgICAgZmlsZW5hbWU9e2Ake2xldmVsfS1zZWdtZW50c2B9CiAgICAgICAgICAgICAgICBkZWZhdWx0U29ydEtleT0icHJvc3BlY3RpbmdSZWFjaFBjdCIKICAgICAgICAgICAgICAgIGRlZmF1bHRTb3J0RGlyPSJkZXNjIgogICAgICAgICAgICAgIC8+CiAgICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgICAgey8qIFtQTSBFTkhBTkNFTUVOVF0g4oCUIGNyb3NzLWxpbmsgaW5zdGVhZCBvZiBkdXBsaWNhdGluZyBvdmVybGFwIGFuYWx5c2lzIG9uIHRoaXMgcmVwb3J0ICovfQogICAgICAgICAgICA8cCBjbGFzc05hbWU9Im10LTMgdGV4dC14cyB0ZXh0LXNsYXRlLTQwMCI+CiAgICAgICAgICAgICAgV2FudCB0byBzZWUgaG93IG11Y2ggdW5pcXVlIHJlYWNoIGVhY2ggY2FtcGFpZ24gY29udHJpYnV0ZXM/eyIgIn0KICAgICAgICAgICAgICA8TGluayBocmVmPSIvcmVwb3J0cy9jYW1wYWlnbi1vdmVybGFwIiBjbGFzc05hbWU9InRleHQtYnJhbmQtNjAwIHVuZGVybGluZS1vZmZzZXQtMiBob3Zlcjp1bmRlcmxpbmUiPgogICAgICAgICAgICAgICAgQ2hlY2sgdGhlIENhbXBhaWduIE92ZXJsYXAgcmVwb3J0IOKGkgogICAgICAgICAgICAgIDwvTGluaz4KICAgICAgICAgICAgPC9wPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgICl9CiAgICA8L2Rpdj4KICApOwp9Cg=="}
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { useAccount } from "@/components/providers/AccountProvider";
+import { useJsonReport } from "@/lib/hooks/useJsonReport";
+import { DateRangePicker } from "@/components/ui/DateRangePicker";
+import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
+import { HorizontalBar } from "@/components/charts/HorizontalBar";
+import { ChartSkeleton } from "@/components/ui/Skeleton";
+import { SummaryCard } from "@/components/ui/SummaryCard";
+import { ReportSummary } from "@/components/ui/ReportSummary";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { FetchingState } from "@/components/ui/FetchingState";
+import { ErrorBanner } from "@/components/ui/ErrorBanner";
+import { HowToRead } from "@/components/ui/HowToRead";
+import Link from "next/link";
+import { formatCompactNumber, formatCurrency, formatNumber, formatPercent } from "@/lib/format";
+import { creativeSegmentInsights } from "@/lib/insights";
+import { GLOSSARY } from "@/lib/glossary";
+import { SEGMENT_COLORS } from "@/lib/constants";
+import { lastNDays } from "@/lib/dates";
+import type { DateRange } from "@/lib/types";
+import type { EntitySegmentRow, CreativeSegmentsReport, EntityLevel } from "@/lib/reports/creative-segments";
+
+function newPctCellClass(row: EntitySegmentRow): string {
+  if (row.prospectingReachPct >= 70) return "text-green-700 font-semibold";
+  if (row.prospectingReachPct < 40) return "text-red-600";
+  return "text-amber-600";
+}
+
+const LEVELS: { key: EntityLevel; label: string }[] = [
+  { key: "campaign", label: "Campaign" },
+  { key: "adset", label: "Adset" },
+  { key: "ad", label: "Ad" },
+];
+
+export default function CreativeSegmentsPage() {
+  const { selectedAccountId } = useAccount();
+  const [range, setRange] = useState<DateRange | null>(null);
+  const [level, setLevel] = useState<EntityLevel>("ad");
+  // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
+  const [retryKey, setRetryKey] = useState(0);
+  const { loading, isInitialLoad, data, error, run } = useJsonReport<{ data: CreativeSegmentsReport }>();
+
+  useEffect(() => {
+    if (!selectedAccountId || !range) return;
+    const params = new URLSearchParams({
+      accountId: selectedAccountId,
+      since: range.since,
+      until: range.until,
+      level,
+    });
+    run(`/api/reports/creative-segments?${params}`);
+  }, [selectedAccountId, range, level, run, retryKey]);
+
+  const entities = data?.data.entities ?? [];
+  const entityLabel = level === "campaign" ? "Campaign" : level === "adset" ? "Adset" : "Ad";
+
+  const sorted = useMemo(() => [...entities].sort((a, b) => b.prospectingReachPct - a.prospectingReachPct), [entities]);
+  const best = sorted[0];
+  const worst = sorted[sorted.length - 1];
+  const highNewCount = entities.filter((e) => e.prospectingReachPct >= 70).length;
+
+  const chartData = useMemo(
+    () =>
+      [...entities]
+        .sort((a, b) => b.prospectingReachPct - a.prospectingReachPct)
+        .slice(0, 25)
+        .map((e) => ({
+          name: e.name,
+          New: e.prospectingReachPct,
+          Engaged: e.engagedReachPct,
+          Existing: e.existingReachPct,
+        })),
+    [entities]
+  );
+
+  const insights = useMemo(() => creativeSegmentInsights(entities, entityLabel), [entities, entityLabel]);
+
+  const columns: DataTableColumn<EntitySegmentRow>[] = useMemo(() => [
+    { key: "name", header: entityLabel, accessor: (r) => r.name },
+    { key: "totalReach", header: "Total Reach", help: GLOSSARY.reach, accessor: (r) => r.totalReach, align: "right", render: (r) => formatCompactNumber(r.totalReach) },
+    { key: "totalSpend", header: "Total Spend", help: GLOSSARY.spend, accessor: (r) => r.totalSpend, align: "right", render: (r) => formatCurrency(r.totalSpend) },
+    { key: "totalPurchases", header: "Total Purchases", help: GLOSSARY.cpp, accessor: (r) => r.totalPurchases, align: "right", render: (r) => formatNumber(r.totalPurchases) },
+    { key: "prospectingReach", header: "New Reach", help: GLOSSARY.prospecting, accessor: (r) => r.prospectingReach, align: "right", render: (r) => formatCompactNumber(r.prospectingReach) },
+    {
+      key: "prospectingReachPct",
+      header: "New Reach %",
+      help: GLOSSARY.newPct,
+      accessor: (r) => r.prospectingReachPct,
+      align: "right",
+      cellClass: newPctCellClass,
+      render: (r) => formatPercent(r.prospectingReachPct),
+    },
+    { key: "prospectingPurchases", header: "New Purchases", help: "Purchases attributed to the New Audience segment for this entity.", accessor: (r) => r.prospectingPurchases, align: "right", render: (r) => formatNumber(r.prospectingPurchases) },
+    { key: "prospectingPurchasePct", header: "New Purchase %", help: "New Audience purchases as a % of this entity's total purchases.", accessor: (r) => r.prospectingPurchasePct, align: "right", render: (r) => formatPercent(r.prospectingPurchasePct) },
+    { key: "prospectingCpa", header: "New CPA", help: GLOSSARY.cpp, accessor: (r) => r.prospectingCpa, align: "right", render: (r) => (r.prospectingCpa > 0 ? formatCurrency(r.prospectingCpa) : "—") },
+    { key: "engagedReach", header: "Engaged Reach", accessor: (r) => r.engagedReach, align: "right", render: (r) => formatCompactNumber(r.engagedReach) },
+    { key: "engagedPurchases", header: "Engaged Purchases", accessor: (r) => r.engagedPurchases, align: "right", render: (r) => formatNumber(r.engagedPurchases) },
+    { key: "existingReach", header: "Existing Reach", accessor: (r) => r.existingReach, align: "right", render: (r) => formatCompactNumber(r.existingReach) },
+    { key: "existingPurchases", header: "Existing Purchases", accessor: (r) => r.existingPurchases, align: "right", render: (r) => formatNumber(r.existingPurchases) },
+  ], [entityLabel]);
+
+  return (
+    <div>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 className="text-lg font-bold text-slate-900">Segments by Entity</h1>
+          <p className="mt-1 text-sm text-slate-500">Which campaigns, adsets, and ads reach the most genuinely new audiences.</p>
+        </div>
+        <DateRangePicker value={range} onChange={setRange} />
+      </div>
+
+      {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
+      <HowToRead
+        items={[
+          { label: "The tabs", text: "the same analysis at three zoom levels — whole campaigns, individual adsets, or single ads." },
+          { label: "New Reach %", text: "how much of this entity's audience is genuinely new people. Above 70% = a true prospecting workhorse." },
+          { label: "New Purchase %", text: "of all purchases this entity drove, the share that came from brand-new customers rather than repeat buyers." },
+          { label: "New CPA", text: "what one new customer costs from this entity — compare it against your product margin." },
+          { label: "The chart", text: "each bar is 100% of one entity's reach, split into new (blue), engaged (amber), and existing (green), sorted best prospectors first." },
+        ]}
+      />
+
+      <div className="mt-3">
+        <div className="flex rounded-md border border-slate-200 bg-white p-0.5 w-fit">
+          {LEVELS.map((l) => (
+            <button
+              key={l.key}
+              onClick={() => setLevel(l.key)}
+              className={`rounded px-3 py-1 text-sm font-medium transition-colors ${
+                level === l.key ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+              }`}
+            >
+              {l.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {error && <ErrorBanner message={error} onRetry={() => setRetryKey((k) => k + 1)} />}
+      {loading && <FetchingState />}
+
+      {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
+
+      {range && (
+        <div className="animate-fade-in">
+          <div className={`mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+            <SummaryCard
+              label={`Best Prospecting ${entityLabel}`}
+              value={best ? formatPercent(best.prospectingReachPct) : "—"}
+              sublabel={best?.name?.slice(0, 36)}
+              loading={isInitialLoad}
+              iconColor="bg-blue-50 text-blue-600"
+              accentColor="border-l-blue-500"
+            />
+            <SummaryCard
+              label={`Worst Prospecting ${entityLabel}`}
+              value={worst && worst !== best ? formatPercent(worst.prospectingReachPct) : "—"}
+              sublabel={worst && worst !== best ? worst.name.slice(0, 36) : undefined}
+              loading={isInitialLoad}
+              iconColor="bg-red-50 text-red-500"
+              accentColor="border-l-red-400"
+            />
+            <SummaryCard
+              label={`${entityLabel}s with >70% New`}
+              value={data ? `${highNewCount} of ${entities.length}` : "—"}
+              sublabel={highNewCount === 0 ? "none are strong prospectors" : "strong prospecting performers"}
+              loading={isInitialLoad}
+              iconColor="bg-emerald-50 text-emerald-600"
+              accentColor="border-l-emerald-500"
+            />
+          </div>
+
+          <div className={`transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+            <ReportSummary insights={insights} loading={isInitialLoad} />
+
+            {(isInitialLoad || chartData.length > 0) && (
+              <div className="mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm">
+                <h2 className="text-sm font-semibold text-slate-800">
+                  Audience segment composition by {entityLabel.toLowerCase()}
+                </h2>
+                <p className="mb-2 mt-0.5 text-xs text-slate-400">
+                  Each bar = 100% of that {entityLabel.toLowerCase()}&apos;s reach. Sorted by new % descending.
+                </p>
+                <div className="mb-4 flex items-center gap-4">
+                  {[
+                    { color: SEGMENT_COLORS.prospecting, label: "New Audience" },
+                    { color: SEGMENT_COLORS.engaged, label: "Engaged" },
+                    { color: SEGMENT_COLORS.existing, label: "Existing Customers" },
+                  ].map((s) => (
+                    <div key={s.label} className="flex items-center gap-1.5">
+                      <div className="h-2 w-2 rounded-full" style={{ background: s.color }} />
+                      <span className="text-xs text-slate-500">{s.label}</span>
+                    </div>
+                  ))}
+                </div>
+                {isInitialLoad ? (
+                  <ChartSkeleton />
+                ) : (
+                  <HorizontalBar
+                    data={chartData}
+                    categoryKey="name"
+                    stacked
+                    valueFormat="percent"
+                    series={[
+                      { key: "New", label: "New Audience", color: SEGMENT_COLORS.prospecting },
+                      { key: "Engaged", label: "Engaged", color: SEGMENT_COLORS.engaged },
+                      { key: "Existing", label: "Existing Customers", color: SEGMENT_COLORS.existing },
+                    ]}
+                  />
+                )}
+              </div>
+            )}
+
+            <div className="mt-6">
+              <DataTable
+                columns={columns}
+                rows={entities}
+                loading={isInitialLoad}
+                filename={`${level}-segments`}
+                defaultSortKey="prospectingReachPct"
+                defaultSortDir="desc"
+              />
+            </div>
+
+            {/* [PM ENHANCEMENT] — cross-link instead of duplicating overlap analysis on this report */}
+            <p className="mt-3 text-xs text-slate-400">
+              Want to see how much unique reach each campaign contributes?{" "}
+              <Link href="/reports/campaign-overlap" className="text-brand-600 underline-offset-2 hover:underline">
+                Check the Campaign Overlap report →
+              </Link>
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

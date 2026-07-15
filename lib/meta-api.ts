@@ -1,1 +1,169 @@
-{"data":"aW1wb3J0IHsgTUVUQV9HUkFQSF9CQVNFIH0gZnJvbSAiLi9jb25zdGFudHMiOwppbXBvcnQgdHlwZSB7IEFwaUZpbHRlcmluZyB9IGZyb20gIi4vdHlwZXMiOwoKZXhwb3J0IGNsYXNzIE1ldGFBcGlFcnJvciBleHRlbmRzIEVycm9yIHsKICBjb2RlPzogbnVtYmVyOwogIGZidHJhY2VJZD86IHN0cmluZzsKICBpc0F1dGhFcnJvcjogYm9vbGVhbjsKCiAgY29uc3RydWN0b3IobWVzc2FnZTogc3RyaW5nLCBjb2RlPzogbnVtYmVyLCBmYnRyYWNlSWQ/OiBzdHJpbmcpIHsKICAgIHN1cGVyKG1lc3NhZ2UpOwogICAgdGhpcy5uYW1lID0gIk1ldGFBcGlFcnJvciI7CiAgICB0aGlzLmNvZGUgPSBjb2RlOwogICAgdGhpcy5mYnRyYWNlSWQgPSBmYnRyYWNlSWQ7CiAgICAvLyAxOTAgPSBPQXV0aEV4Y2VwdGlvbiAoZXhwaXJlZC9pbnZhbGlkIHRva2VuKQogICAgdGhpcy5pc0F1dGhFcnJvciA9IGNvZGUgPT09IDE5MDsKICB9Cn0KCmNvbnN0IFJFVFJZQUJMRV9FUlJPUl9DT0RFUyA9IG5ldyBTZXQoWzQsIDE3XSk7CmNvbnN0IE1BWF9SRVRSSUVTID0gMzsKY29uc3QgVEhST1RUTEVfUEFVU0VfTVMgPSAyMDAwOwoKZnVuY3Rpb24gc2xlZXAobXM6IG51bWJlcik6IFByb21pc2U8dm9pZD4gewogIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSkgPT4gc2V0VGltZW91dChyZXNvbHZlLCBtcykpOwp9CgpmdW5jdGlvbiByZWFkVGhyb3R0bGVIZWFkZXIoaGVhZGVyczogSGVhZGVycyk6IHsgYXBwX2lkX3V0aWxfcGN0PzogbnVtYmVyOyBhY2NfaWRfdXRpbF9wY3Q/OiBudW1iZXIgfSB8IG51bGwgewogIGNvbnN0IHJhdyA9IGhlYWRlcnMuZ2V0KCJ4LWZiLWFkcy1pbnNpZ2h0cy10aHJvdHRsZSIpIHx8IGhlYWRlcnMuZ2V0KCJ4LWJ1c2luZXNzLXVzZS1jYXNlLXVzYWdlIik7CiAgaWYgKCFyYXcpIHJldHVybiBudWxsOwogIHRyeSB7CiAgICByZXR1cm4gSlNPTi5wYXJzZShyYXcpOwogIH0gY2F0Y2ggewogICAgcmV0dXJuIG51bGw7CiAgfQp9Cgphc3luYyBmdW5jdGlvbiBmZXRjaEpzb24odXJsOiBzdHJpbmcsIGF0dGVtcHQgPSAwKTogUHJvbWlzZTxhbnk+IHsKICBjb25zdCByZXMgPSBhd2FpdCBmZXRjaCh1cmwsIHsgY2FjaGU6ICJuby1zdG9yZSIgfSk7CiAgY29uc3QgdGhyb3R0bGUgPSByZWFkVGhyb3R0bGVIZWFkZXIocmVzLmhlYWRlcnMpOwogIGlmICh0aHJvdHRsZSkgewogICAgY29uc3QgbWF4UGN0ID0gTWF0aC5tYXgodGhyb3R0bGUuYXBwX2lkX3V0aWxfcGN0ID8/IDAsIHRocm90dGxlLmFjY19pZF91dGlsX3BjdCA/PyAwKTsKICAgIGlmIChtYXhQY3QgPiA3NSkgYXdhaXQgc2xlZXAoVEhST1RUTEVfUEFVU0VfTVMpOwogIH0KCiAgbGV0IGpzb246IGFueTsKICB0cnkgewogICAganNvbiA9IGF3YWl0IHJlcy5qc29uKCk7CiAgfSBjYXRjaCB7CiAgICB0aHJvdyBuZXcgTWV0YUFwaUVycm9yKGBNZXRhIEFQSSByZXR1cm5lZCBhIG5vbi1KU09OIHJlc3BvbnNlIChIVFRQICR7cmVzLnN0YXR1c30pYCk7CiAgfQoKICBpZiAoIXJlcy5vayB8fCBqc29uLmVycm9yKSB7CiAgICBjb25zdCBlcnIgPSBqc29uLmVycm9yIHx8IHt9OwogICAgaWYgKFJFVFJZQUJMRV9FUlJPUl9DT0RFUy5oYXMoZXJyLmNvZGUpICYmIGF0dGVtcHQgPCBNQVhfUkVUUklFUykgewogICAgICBhd2FpdCBzbGVlcCgxMDAwICogMiAqKiBhdHRlbXB0KTsKICAgICAgcmV0dXJuIGZldGNoSnNvbih1cmwsIGF0dGVtcHQgKyAxKTsKICAgIH0KICAgIHRocm93IG5ldyBNZXRhQXBpRXJyb3IoZXJyLm1lc3NhZ2UgfHwgYE1ldGEgQVBJIGVycm9yIChIVFRQICR7cmVzLnN0YXR1c30pYCwgZXJyLmNvZGUsIGVyci5mYnRyYWNlX2lkKTsKICB9CgogIHJldHVybiBqc29uOwp9CgpmdW5jdGlvbiBidWlsZFVybChwYXRoOiBzdHJpbmcsIHRva2VuOiBzdHJpbmcsIHBhcmFtczogUmVjb3JkPHN0cmluZywgc3RyaW5nPik6IHN0cmluZyB7CiAgY29uc3QgdXJsID0gbmV3IFVSTChwYXRoLnN0YXJ0c1dpdGgoImh0dHAiKSA/IHBhdGggOiBgJHtNRVRBX0dSQVBIX0JBU0V9JHtwYXRofWApOwogIHVybC5zZWFyY2hQYXJhbXMuc2V0KCJhY2Nlc3NfdG9rZW4iLCB0b2tlbik7CiAgZm9yIChjb25zdCBba2V5LCB2YWx1ZV0gb2YgT2JqZWN0LmVudHJpZXMocGFyYW1zKSkgewogICAgaWYgKHZhbHVlICE9PSB1bmRlZmluZWQpIHVybC5zZWFyY2hQYXJhbXMuc2V0KGtleSwgdmFsdWUpOwogIH0KICByZXR1cm4gdXJsLnRvU3RyaW5nKCk7Cn0KCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBtZXRhR2V0KHBhdGg6IHN0cmluZywgdG9rZW46IHN0cmluZywgcGFyYW1zOiBSZWNvcmQ8c3RyaW5nLCBzdHJpbmc+ID0ge30pOiBQcm9taXNlPGFueT4gewogIHJldHVybiBmZXRjaEpzb24oYnVpbGRVcmwocGF0aCwgdG9rZW4sIHBhcmFtcykpOwp9CgovKiogRm9sbG93cyBwYWdpbmcubmV4dCB1bnRpbCBleGhhdXN0ZWQ7IHJldHVybnMgdGhlIGNvbmNhdGVuYXRlZCBgZGF0YWAgYXJyYXkuICovCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBtZXRhR2V0QWxsUGFnZXMoCiAgcGF0aDogc3RyaW5nLAogIHRva2VuOiBzdHJpbmcsCiAgcGFyYW1zOiBSZWNvcmQ8c3RyaW5nLCBzdHJpbmc+ID0ge30KKTogUHJvbWlzZTxhbnlbXT4gewogIGNvbnN0IHJlc3VsdHM6IGFueVtdID0gW107CiAgbGV0IGpzb24gPSBhd2FpdCBtZXRhR2V0KHBhdGgsIHRva2VuLCBwYXJhbXMpOwogIHJlc3VsdHMucHVzaCguLi4oanNvbi5kYXRhIHx8IFtdKSk7CiAgbGV0IG5leHQgPSBqc29uLnBhZ2luZz8ubmV4dDsKICB3aGlsZSAobmV4dCkgewogICAganNvbiA9IGF3YWl0IGZldGNoSnNvbihuZXh0KTsKICAgIHJlc3VsdHMucHVzaCguLi4oanNvbi5kYXRhIHx8IFtdKSk7CiAgICBuZXh0ID0ganNvbi5wYWdpbmc/Lm5leHQ7CiAgfQogIHJldHVybiByZXN1bHRzOwp9CgpleHBvcnQgaW50ZXJmYWNlIE1ldGFJbnNpZ2h0c1BhcmFtcyB7CiAgdG9rZW46IHN0cmluZzsKICAvKiogYWN0X1hYWFhYWFhYWCBmb3IgYWNjb3VudC1sZXZlbCBxdWVyaWVzLCBvciBhIGNhbXBhaWduL2Fkc2V0L2FkIElEIGZvciBlbnRpdHktbGV2ZWwgcXVlcmllcy4gKi8KICBvYmplY3RJZDogc3RyaW5nOwogIGZpZWxkczogc3RyaW5nW107CiAgdGltZVJhbmdlPzogeyBzaW5jZTogc3RyaW5nOyB1bnRpbDogc3RyaW5nIH07CiAgbGV2ZWw/OiAiY2FtcGFpZ24iIHwgImFkc2V0IiB8ICJhZCI7CiAgYnJlYWtkb3ducz86IHN0cmluZzsKICBmaWx0ZXJpbmc/OiBBcGlGaWx0ZXJpbmdbXTsKICB0aW1lSW5jcmVtZW50PzogbnVtYmVyIHwgIm1vbnRobHkiOwogIGxpbWl0PzogbnVtYmVyOwogIGFjdGlvbkF0dHJpYnV0aW9uV2luZG93cz86IHN0cmluZ1tdOwp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gbWV0YUluc2lnaHRzKHBhcmFtczogTWV0YUluc2lnaHRzUGFyYW1zKTogUHJvbWlzZTxhbnlbXT4gewogIGNvbnN0IHsKICAgIHRva2VuLAogICAgb2JqZWN0SWQsCiAgICBmaWVsZHMsCiAgICB0aW1lUmFuZ2UsCiAgICBsZXZlbCwKICAgIGJyZWFrZG93bnMsCiAgICBmaWx0ZXJpbmcsCiAgICB0aW1lSW5jcmVtZW50LAogICAgbGltaXQgPSA1MDAsCiAgICBhY3Rpb25BdHRyaWJ1dGlvbldpbmRvd3MsCiAgfSA9IHBhcmFtczsKCiAgY29uc3QgcXVlcnk6IFJlY29yZDxzdHJpbmcsIHN0cmluZz4gPSB7CiAgICBmaWVsZHM6IGZpZWxkcy5qb2luKCIsIiksCiAgICBsaW1pdDogU3RyaW5nKGxpbWl0KSwKICB9OwogIGlmICh0aW1lUmFuZ2UpIHF1ZXJ5LnRpbWVfcmFuZ2UgPSBKU09OLnN0cmluZ2lmeSh0aW1lUmFuZ2UpOwogIGlmIChsZXZlbCkgcXVlcnkubGV2ZWwgPSBsZXZlbDsKICBpZiAoYnJlYWtkb3ducykgcXVlcnkuYnJlYWtkb3ducyA9IGJyZWFrZG93bnM7CiAgaWYgKGZpbHRlcmluZykgcXVlcnkuZmlsdGVyaW5nID0gSlNPTi5zdHJpbmdpZnkoZmlsdGVyaW5nKTsKICBpZiAodGltZUluY3JlbWVudCkgcXVlcnkudGltZV9pbmNyZW1lbnQgPSBTdHJpbmcodGltZUluY3JlbWVudCk7CiAgaWYgKGFjdGlvbkF0dHJpYnV0aW9uV2luZG93cykgcXVlcnkuYWN0aW9uX2F0dHJpYnV0aW9uX3dpbmRvd3MgPSBKU09OLnN0cmluZ2lmeShhY3Rpb25BdHRyaWJ1dGlvbldpbmRvd3MpOwoKICByZXR1cm4gbWV0YUdldEFsbFBhZ2VzKGAvJHtvYmplY3RJZH0vaW5zaWdodHNgLCB0b2tlbiwgcXVlcnkpOwp9CgpleHBvcnQgaW50ZXJmYWNlIFRva2VuUmVzcG9uc2UgewogIGFjY2Vzc190b2tlbjogc3RyaW5nOwogIHRva2VuX3R5cGU/OiBzdHJpbmc7CiAgZXhwaXJlc19pbj86IG51bWJlcjsKfQoKZnVuY3Rpb24gYnVpbGRPQXV0aFVybChwYXJhbXM6IFJlY29yZDxzdHJpbmcsIHN0cmluZz4pOiBzdHJpbmcgewogIGNvbnN0IHVybCA9IG5ldyBVUkwoYCR7TUVUQV9HUkFQSF9CQVNFfS9vYXV0aC9hY2Nlc3NfdG9rZW5gKTsKICBmb3IgKGNvbnN0IFtrZXksIHZhbHVlXSBvZiBPYmplY3QuZW50cmllcyhwYXJhbXMpKSB1cmwuc2VhcmNoUGFyYW1zLnNldChrZXksIHZhbHVlKTsKICByZXR1cm4gdXJsLnRvU3RyaW5nKCk7Cn0KCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBleGNoYW5nZUNvZGVGb3JUb2tlbihjb2RlOiBzdHJpbmcsIHJlZGlyZWN0VXJpOiBzdHJpbmcpOiBQcm9taXNlPFRva2VuUmVzcG9uc2U+IHsKICByZXR1cm4gZmV0Y2hKc29uKAogICAgYnVpbGRPQXV0aFVybCh7CiAgICAgIGNsaWVudF9pZDogcHJvY2Vzcy5lbnYuTUVUQV9BUFBfSUQhLAogICAgICBjbGllbnRfc2VjcmV0OiBwcm9jZXNzLmVudi5NRVRBX0FQUF9TRUNSRVQhLAogICAgICByZWRpcmVjdF91cmk6IHJlZGlyZWN0VXJpLAogICAgICBjb2RlLAogICAgfSkKICApOwp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gZXhjaGFuZ2VGb3JMb25nTGl2ZWRUb2tlbihzaG9ydExpdmVkVG9rZW46IHN0cmluZyk6IFByb21pc2U8VG9rZW5SZXNwb25zZT4gewogIHJldHVybiBmZXRjaEpzb24oCiAgICBidWlsZE9BdXRoVXJsKHsKICAgICAgZ3JhbnRfdHlwZTogImZiX2V4Y2hhbmdlX3Rva2VuIiwKICAgICAgY2xpZW50X2lkOiBwcm9jZXNzLmVudi5NRVRBX0FQUF9JRCEsCiAgICAgIGNsaWVudF9zZWNyZXQ6IHByb2Nlc3MuZW52Lk1FVEFfQVBQX1NFQ1JFVCEsCiAgICAgIGZiX2V4Y2hhbmdlX3Rva2VuOiBzaG9ydExpdmVkVG9rZW4sCiAgICB9KQogICk7Cn0K"}
+import { META_GRAPH_BASE } from "./constants";
+import type { ApiFiltering } from "./types";
+
+export class MetaApiError extends Error {
+  code?: number;
+  fbtraceId?: string;
+  isAuthError: boolean;
+
+  constructor(message: string, code?: number, fbtraceId?: string) {
+    super(message);
+    this.name = "MetaApiError";
+    this.code = code;
+    this.fbtraceId = fbtraceId;
+    // 190 = OAuthException (expired/invalid token)
+    this.isAuthError = code === 190;
+  }
+}
+
+const RETRYABLE_ERROR_CODES = new Set([4, 17]);
+const MAX_RETRIES = 3;
+const THROTTLE_PAUSE_MS = 2000;
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function readThrottleHeader(headers: Headers): { app_id_util_pct?: number; acc_id_util_pct?: number } | null {
+  const raw = headers.get("x-fb-ads-insights-throttle") || headers.get("x-business-use-case-usage");
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+async function fetchJson(url: string, attempt = 0): Promise<any> {
+  const res = await fetch(url, { cache: "no-store" });
+  const throttle = readThrottleHeader(res.headers);
+  if (throttle) {
+    const maxPct = Math.max(throttle.app_id_util_pct ?? 0, throttle.acc_id_util_pct ?? 0);
+    if (maxPct > 75) await sleep(THROTTLE_PAUSE_MS);
+  }
+
+  let json: any;
+  try {
+    json = await res.json();
+  } catch {
+    throw new MetaApiError(`Meta API returned a non-JSON response (HTTP ${res.status})`);
+  }
+
+  if (!res.ok || json.error) {
+    const err = json.error || {};
+    if (RETRYABLE_ERROR_CODES.has(err.code) && attempt < MAX_RETRIES) {
+      await sleep(1000 * 2 ** attempt);
+      return fetchJson(url, attempt + 1);
+    }
+    throw new MetaApiError(err.message || `Meta API error (HTTP ${res.status})`, err.code, err.fbtrace_id);
+  }
+
+  return json;
+}
+
+function buildUrl(path: string, token: string, params: Record<string, string>): string {
+  const url = new URL(path.startsWith("http") ? path : `${META_GRAPH_BASE}${path}`);
+  url.searchParams.set("access_token", token);
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined) url.searchParams.set(key, value);
+  }
+  return url.toString();
+}
+
+export async function metaGet(path: string, token: string, params: Record<string, string> = {}): Promise<any> {
+  return fetchJson(buildUrl(path, token, params));
+}
+
+/** Follows paging.next until exhausted; returns the concatenated `data` array. */
+export async function metaGetAllPages(
+  path: string,
+  token: string,
+  params: Record<string, string> = {}
+): Promise<any[]> {
+  const results: any[] = [];
+  let json = await metaGet(path, token, params);
+  results.push(...(json.data || []));
+  let next = json.paging?.next;
+  while (next) {
+    json = await fetchJson(next);
+    results.push(...(json.data || []));
+    next = json.paging?.next;
+  }
+  return results;
+}
+
+export interface MetaInsightsParams {
+  token: string;
+  /** act_XXXXXXXXX for account-level queries, or a campaign/adset/ad ID for entity-level queries. */
+  objectId: string;
+  fields: string[];
+  timeRange?: { since: string; until: string };
+  level?: "campaign" | "adset" | "ad";
+  breakdowns?: string;
+  filtering?: ApiFiltering[];
+  timeIncrement?: number | "monthly";
+  limit?: number;
+  actionAttributionWindows?: string[];
+}
+
+export async function metaInsights(params: MetaInsightsParams): Promise<any[]> {
+  const {
+    token,
+    objectId,
+    fields,
+    timeRange,
+    level,
+    breakdowns,
+    filtering,
+    timeIncrement,
+    limit = 500,
+    actionAttributionWindows,
+  } = params;
+
+  const query: Record<string, string> = {
+    fields: fields.join(","),
+    limit: String(limit),
+  };
+  if (timeRange) query.time_range = JSON.stringify(timeRange);
+  if (level) query.level = level;
+  if (breakdowns) query.breakdowns = breakdowns;
+  if (filtering) query.filtering = JSON.stringify(filtering);
+  if (timeIncrement) query.time_increment = String(timeIncrement);
+  if (actionAttributionWindows) query.action_attribution_windows = JSON.stringify(actionAttributionWindows);
+
+  return metaGetAllPages(`/${objectId}/insights`, token, query);
+}
+
+export interface TokenResponse {
+  access_token: string;
+  token_type?: string;
+  expires_in?: number;
+}
+
+function buildOAuthUrl(params: Record<string, string>): string {
+  const url = new URL(`${META_GRAPH_BASE}/oauth/access_token`);
+  for (const [key, value] of Object.entries(params)) url.searchParams.set(key, value);
+  return url.toString();
+}
+
+export async function exchangeCodeForToken(code: string, redirectUri: string): Promise<TokenResponse> {
+  return fetchJson(
+    buildOAuthUrl({
+      client_id: process.env.META_APP_ID!,
+      client_secret: process.env.META_APP_SECRET!,
+      redirect_uri: redirectUri,
+      code,
+    })
+  );
+}
+
+export async function exchangeForLongLivedToken(shortLivedToken: string): Promise<TokenResponse> {
+  return fetchJson(
+    buildOAuthUrl({
+      grant_type: "fb_exchange_token",
+      client_id: process.env.META_APP_ID!,
+      client_secret: process.env.META_APP_SECRET!,
+      fb_exchange_token: shortLivedToken,
+    })
+  );
+}

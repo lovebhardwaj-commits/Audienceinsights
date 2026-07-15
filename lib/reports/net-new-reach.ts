@@ -1,1 +1,76 @@
-{"data":"aW1wb3J0IHsgY3BtciwgY29zdFBlcjFrLCBuZXROZXcsIHBlcmNlbnQgfSBmcm9tICJAL2xpYi9jYWxjdWxhdGlvbnMiOwppbXBvcnQgeyBtb250aFdpbmRvd3MsIGFkZERheXMgfSBmcm9tICJAL2xpYi9kYXRlcyI7CmltcG9ydCB7IGZldGNoQWNjb3VudFRvdGFscyB9IGZyb20gIi4vc2hhcmVkIjsKaW1wb3J0IHR5cGUgeyBEYXRlUmFuZ2UgfSBmcm9tICJAL2xpYi90eXBlcyI7CmltcG9ydCB0eXBlIHsgUHJvZ3Jlc3NFbWl0IH0gZnJvbSAiQC9saWIvc3RyZWFtIjsKCmV4cG9ydCBpbnRlcmZhY2UgTmV0TmV3UmVhY2hNb250aFJvdyB7CiAgbGFiZWw6IHN0cmluZzsKICBtb250aFN0YXJ0OiBzdHJpbmc7CiAgbW9udGhFbmQ6IHN0cmluZzsKICBpc29sYXRlZFJlYWNoOiBudW1iZXI7CiAgZnJlcXVlbmN5OiBudW1iZXI7CiAgd2luZG93UmVhY2g6IG51bWJlcjsKICBuZXROZXdSZWFjaDogbnVtYmVyOwogIG5ldE5ld1BjdDogbnVtYmVyOwogIHNwZW5kOiBudW1iZXI7CiAgY3BtcjogbnVtYmVyOwogIGNvc3RQZXIxa05ldE5ldzogbnVtYmVyOwp9CgpleHBvcnQgaW50ZXJmYWNlIE5ldE5ld1JlYWNoUmVwb3J0IHsKICBtb250aHM6IE5ldE5ld1JlYWNoTW9udGhSb3dbXTsKICB0b3RhbFNwZW5kOiBudW1iZXI7CiAgbGF0ZXN0TmV0TmV3UGN0OiBudW1iZXI7CiAgbG9va2JhY2tEYXlzOiBudW1iZXI7Cn0KCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBnZXROZXROZXdSZWFjaFJlcG9ydCgKICB0b2tlbjogc3RyaW5nLAogIGFjY291bnRJZDogc3RyaW5nLAogIHJhbmdlOiBEYXRlUmFuZ2UsCiAgbG9va2JhY2tEYXlzOiBudW1iZXIsCiAgZW1pdDogUHJvZ3Jlc3NFbWl0Cik6IFByb21pc2U8TmV0TmV3UmVhY2hSZXBvcnQ+IHsKICBjb25zdCB3aW5kb3dzID0gbW9udGhXaW5kb3dzKHJhbmdlLnNpbmNlLCByYW5nZS51bnRpbCk7CiAgY29uc3QgbW9udGhzOiBOZXROZXdSZWFjaE1vbnRoUm93W10gPSBbXTsKCiAgZm9yIChsZXQgaSA9IDA7IGkgPCB3aW5kb3dzLmxlbmd0aDsgaSsrKSB7CiAgICBjb25zdCB3ID0gd2luZG93c1tpXTsKICAgIGVtaXQoeyBjdXJyZW50OiBpICsgMSwgdG90YWw6IHdpbmRvd3MubGVuZ3RoLCBsYWJlbDogYEZldGNoaW5nIG1vbnRoICR7aSArIDF9IG9mICR7d2luZG93cy5sZW5ndGh94oCmYCB9KTsKCiAgICAvLyBCb3RoIGJhc2VsaW5lIGFuZCBjb21iaW5lZCBzaGFyZSB0aGUgc2FtZSB3aW5kb3cgc3RhcnQsIHNvIHRoZWlyIHJlYWNoCiAgICAvLyBkaWZmZXJlbmNlIGlzIGV4YWN0bHkgInBlb3BsZSByZWFjaGVkIHRoaXMgbW9udGggd2hvIHdlcmUgTk9UIHJlYWNoZWQgaW4KICAgIC8vIHRoZSBwcmlvciBsb29rYmFjayBwZXJpb2QiIOKAlCBhbHdheXMgd2l0aGluIFswLCBpc29sYXRlZFJlYWNoXS4gQ29tcGFyaW5nCiAgICAvLyB0d28gKnNsaWRpbmcqIHdpbmRvd3MgaW5zdGVhZCAodGhlIG9sZCBhcHByb2FjaCkgY2FuIGdvIG5lZ2F0aXZlIHdoZW4KICAgIC8vIHBlb3BsZSBhZ2Ugb3V0IG9mIHRoZSB3aW5kb3csIGFuZCB0aGUgZmlyc3QgbW9udGggaGFzIG5vIGJhc2VsaW5lIGF0IGFsbC4KICAgIGNvbnN0IHdpbmRvd1N0YXJ0ID0gYWRkRGF5cyh3Lm1vbnRoU3RhcnQsIC1sb29rYmFja0RheXMpOwogICAgY29uc3QgW2lzb2xhdGVkLCBiYXNlbGluZSwgY29tYmluZWRdID0gYXdhaXQgUHJvbWlzZS5hbGwoWwogICAgICBmZXRjaEFjY291bnRUb3RhbHModG9rZW4sIGFjY291bnRJZCwgeyBzaW5jZTogdy5tb250aFN0YXJ0LCB1bnRpbDogdy5tb250aEVuZCB9KSwKICAgICAgZmV0Y2hBY2NvdW50VG90YWxzKHRva2VuLCBhY2NvdW50SWQsIHsgc2luY2U6IHdpbmRvd1N0YXJ0LCB1bnRpbDogYWRkRGF5cyh3Lm1vbnRoU3RhcnQsIC0xKSB9KSwKICAgICAgZmV0Y2hBY2NvdW50VG90YWxzKHRva2VuLCBhY2NvdW50SWQsIHsgc2luY2U6IHdpbmRvd1N0YXJ0LCB1bnRpbDogdy5tb250aEVuZCB9KSwKICAgIF0pOwoKICAgIGNvbnN0IG1vbnRoTmV0TmV3ID0gTWF0aC5taW4obmV0TmV3KGNvbWJpbmVkLnJlYWNoLCBiYXNlbGluZS5yZWFjaCksIGlzb2xhdGVkLnJlYWNoKTsKICAgIG1vbnRocy5wdXNoKHsKICAgICAgbGFiZWw6IHcubGFiZWwsCiAgICAgIG1vbnRoU3RhcnQ6IHcubW9udGhTdGFydCwKICAgICAgbW9udGhFbmQ6IHcubW9udGhFbmQsCiAgICAgIGlzb2xhdGVkUmVhY2g6IGlzb2xhdGVkLnJlYWNoLAogICAgICBmcmVxdWVuY3k6IGlzb2xhdGVkLmZyZXF1ZW5jeSwKICAgICAgd2luZG93UmVhY2g6IGNvbWJpbmVkLnJlYWNoLAogICAgICBuZXROZXdSZWFjaDogbW9udGhOZXROZXcsCiAgICAgIG5ldE5ld1BjdDogcGVyY2VudChtb250aE5ldE5ldywgaXNvbGF0ZWQucmVhY2gpLAogICAgICBzcGVuZDogaXNvbGF0ZWQuc3BlbmQsCiAgICAgIGNwbXI6IGNwbXIoaXNvbGF0ZWQuc3BlbmQsIGlzb2xhdGVkLnJlYWNoKSwKICAgICAgY29zdFBlcjFrTmV0TmV3OiBjb3N0UGVyMWsoaXNvbGF0ZWQuc3BlbmQsIG1vbnRoTmV0TmV3KSwKICAgIH0pOwogIH0KCiAgcmV0dXJuIHsKICAgIG1vbnRocywKICAgIHRvdGFsU3BlbmQ6IG1vbnRocy5yZWR1Y2UoKHN1bSwgbSkgPT4gc3VtICsgbS5zcGVuZCwgMCksCiAgICBsYXRlc3ROZXROZXdQY3Q6IG1vbnRoc1ttb250aHMubGVuZ3RoIC0gMV0/Lm5ldE5ld1BjdCA/PyAwLAogICAgbG9va2JhY2tEYXlzLAogIH07Cn0K"}
+import { cpmr, costPer1k, netNew, percent } from "@/lib/calculations";
+import { monthWindows, addDays } from "@/lib/dates";
+import { fetchAccountTotals } from "./shared";
+import type { DateRange } from "@/lib/types";
+import type { ProgressEmit } from "@/lib/stream";
+
+export interface NetNewReachMonthRow {
+  label: string;
+  monthStart: string;
+  monthEnd: string;
+  isolatedReach: number;
+  frequency: number;
+  windowReach: number;
+  netNewReach: number;
+  netNewPct: number;
+  spend: number;
+  cpmr: number;
+  costPer1kNetNew: number;
+}
+
+export interface NetNewReachReport {
+  months: NetNewReachMonthRow[];
+  totalSpend: number;
+  latestNetNewPct: number;
+  lookbackDays: number;
+}
+
+export async function getNetNewReachReport(
+  token: string,
+  accountId: string,
+  range: DateRange,
+  lookbackDays: number,
+  emit: ProgressEmit
+): Promise<NetNewReachReport> {
+  const windows = monthWindows(range.since, range.until);
+  const months: NetNewReachMonthRow[] = [];
+
+  for (let i = 0; i < windows.length; i++) {
+    const w = windows[i];
+    emit({ current: i + 1, total: windows.length, label: `Fetching month ${i + 1} of ${windows.length}…` });
+
+    // Both baseline and combined share the same window start, so their reach
+    // difference is exactly "people reached this month who were NOT reached in
+    // the prior lookback period" — always within [0, isolatedReach]. Comparing
+    // two *sliding* windows instead (the old approach) can go negative when
+    // people age out of the window, and the first month has no baseline at all.
+    const windowStart = addDays(w.monthStart, -lookbackDays);
+    const [isolated, baseline, combined] = await Promise.all([
+      fetchAccountTotals(token, accountId, { since: w.monthStart, until: w.monthEnd }),
+      fetchAccountTotals(token, accountId, { since: windowStart, until: addDays(w.monthStart, -1) }),
+      fetchAccountTotals(token, accountId, { since: windowStart, until: w.monthEnd }),
+    ]);
+
+    const monthNetNew = Math.min(netNew(combined.reach, baseline.reach), isolated.reach);
+    months.push({
+      label: w.label,
+      monthStart: w.monthStart,
+      monthEnd: w.monthEnd,
+      isolatedReach: isolated.reach,
+      frequency: isolated.frequency,
+      windowReach: combined.reach,
+      netNewReach: monthNetNew,
+      netNewPct: percent(monthNetNew, isolated.reach),
+      spend: isolated.spend,
+      cpmr: cpmr(isolated.spend, isolated.reach),
+      costPer1kNetNew: costPer1k(isolated.spend, monthNetNew),
+    });
+  }
+
+  return {
+    months,
+    totalSpend: months.reduce((sum, m) => sum + m.spend, 0),
+    latestNetNewPct: months[months.length - 1]?.netNewPct ?? 0,
+    lookbackDays,
+  };
+}

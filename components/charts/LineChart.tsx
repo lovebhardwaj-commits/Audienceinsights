@@ -1,1 +1,60 @@
-{"data":"InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgQmFyLCBDYXJ0ZXNpYW5HcmlkLCBDb21wb3NlZENoYXJ0LCBMZWdlbmQsIExpbmUsIFJlc3BvbnNpdmVDb250YWluZXIsIFRvb2x0aXAsIFhBeGlzLCBZQXhpcyB9IGZyb20gInJlY2hhcnRzIjsKaW1wb3J0IHsgQ0hBUlRfQ0hST01FLCBDSEFSVF9JTksgfSBmcm9tICJAL2xpYi9jaGFydC10aGVtZSI7CmltcG9ydCB7IHVzZVJlZHVjZWRNb3Rpb24gfSBmcm9tICJAL2xpYi9ob29rcy91c2VSZWR1Y2VkTW90aW9uIjsKaW1wb3J0IHsgQ2hhcnRUb29sdGlwQ29udGVudCwgY29tcGFjdFRpY2tGb3JtYXR0ZXIsIHR5cGUgVmFsdWVGb3JtYXQgfSBmcm9tICIuL0NoYXJ0VG9vbHRpcCI7CgpleHBvcnQgaW50ZXJmYWNlIFNlcmllc0NvbmZpZyB7CiAga2V5OiBzdHJpbmc7CiAgbGFiZWw6IHN0cmluZzsKICBjb2xvcjogc3RyaW5nOwp9CgppbnRlcmZhY2UgTGluZUNoYXJ0UHJvcHMgewogIGRhdGE6IEFycmF5PFJlY29yZDxzdHJpbmcsIHN0cmluZyB8IG51bWJlcj4+OwogIHhLZXk6IHN0cmluZzsKICBsaW5lcz86IFNlcmllc0NvbmZpZ1tdOwogIGJhcnM/OiBTZXJpZXNDb25maWdbXTsKICBoZWlnaHQ/OiBudW1iZXI7CiAgdmFsdWVGb3JtYXQ/OiBWYWx1ZUZvcm1hdDsKfQoKY29uc3QgdGlja1N0eWxlID0geyBmb250U2l6ZTogMTIsIGZpbGw6IENIQVJUX0lOSy5tdXRlZCB9OwoKZXhwb3J0IGZ1bmN0aW9uIExpbmVDaGFydCh7IGRhdGEsIHhLZXksIGxpbmVzID0gW10sIGJhcnMgPSBbXSwgaGVpZ2h0ID0gMzYwLCB2YWx1ZUZvcm1hdCA9ICJjb21wYWN0IiB9OiBMaW5lQ2hhcnRQcm9wcykgewogIC8vIFtQTSBFTkhBTkNFTUVOVF0g4oCUIGNoYXJ0IGFuaW1hdGlvbnMgcmVzcGVjdCB0aGUgT1MgcmVkdWNlZC1tb3Rpb24gc2V0dGluZwogIGNvbnN0IGFuaW1hdGUgPSAhdXNlUmVkdWNlZE1vdGlvbigpOwogIGNvbnN0IHNlcmllc0NvdW50ID0gbGluZXMubGVuZ3RoICsgYmFycy5sZW5ndGg7CiAgcmV0dXJuICgKICAgIDxkaXYgc3R5bGU9e3sgd2lkdGg6ICIxMDAlIiwgaGVpZ2h0IH19PgogICAgICA8UmVzcG9uc2l2ZUNvbnRhaW5lcj4KICAgICAgICA8Q29tcG9zZWRDaGFydCBkYXRhPXtkYXRhfSBtYXJnaW49e3sgdG9wOiA4LCByaWdodDogMTYsIGxlZnQ6IDAsIGJvdHRvbTogMCB9fT4KICAgICAgICAgIDxDYXJ0ZXNpYW5HcmlkIHZlcnRpY2FsPXtmYWxzZX0gc3Ryb2tlPXtDSEFSVF9DSFJPTUUuZ3JpZGxpbmV9IC8+CiAgICAgICAgICA8WEF4aXMgZGF0YUtleT17eEtleX0gdGljaz17dGlja1N0eWxlfSBheGlzTGluZT17eyBzdHJva2U6IENIQVJUX0NIUk9NRS5heGlzIH19IHRpY2tMaW5lPXtmYWxzZX0gLz4KICAgICAgICAgIDxZQXhpcyB0aWNrPXt0aWNrU3R5bGV9IGF4aXNMaW5lPXtmYWxzZX0gdGlja0xpbmU9e2ZhbHNlfSB3aWR0aD17NTZ9IHRpY2tGb3JtYXR0ZXI9e2NvbXBhY3RUaWNrRm9ybWF0dGVyfSAvPgogICAgICAgICAgPFRvb2x0aXAgY29udGVudD17PENoYXJ0VG9vbHRpcENvbnRlbnQgZGVmYXVsdEZvcm1hdD17dmFsdWVGb3JtYXR9IC8+fSAvPgogICAgICAgICAge3Nlcmllc0NvdW50ID4gMSAmJiA8TGVnZW5kIHdyYXBwZXJTdHlsZT17eyBmb250U2l6ZTogMTIsIHBhZGRpbmdUb3A6IDggfX0gaWNvblR5cGU9ImNpcmNsZSIgaWNvblNpemU9ezh9IC8+fQogICAgICAgICAge2JhcnMubWFwKChzKSA9PiAoCiAgICAgICAgICAgIDxCYXIga2V5PXtzLmtleX0gZGF0YUtleT17cy5rZXl9IG5hbWU9e3MubGFiZWx9IGZpbGw9e3MuY29sb3J9IHJhZGl1cz17WzQsIDQsIDAsIDBdfSBtYXhCYXJTaXplPXs0MH0gaXNBbmltYXRpb25BY3RpdmU9e2FuaW1hdGV9IGFuaW1hdGlvbkR1cmF0aW9uPXs0MDB9IGFuaW1hdGlvbkVhc2luZz0iZWFzZS1vdXQiIC8+CiAgICAgICAgICApKX0KICAgICAgICAgIHtsaW5lcy5tYXAoKHMpID0+ICgKICAgICAgICAgICAgPExpbmUKICAgICAgICAgICAgICBrZXk9e3Mua2V5fQogICAgICAgICAgICAgIHR5cGU9Im1vbm90b25lIgogICAgICAgICAgICAgIGRhdGFLZXk9e3Mua2V5fQogICAgICAgICAgICAgIG5hbWU9e3MubGFiZWx9CiAgICAgICAgICAgICAgc3Ryb2tlPXtzLmNvbG9yfQogICAgICAgICAgICAgIHN0cm9rZVdpZHRoPXsyfQogICAgICAgICAgICAgIGRvdD17ZmFsc2V9CiAgICAgICAgICAgICAgYWN0aXZlRG90PXt7IHI6IDUsIHN0cm9rZVdpZHRoOiAyLCBzdHJva2U6ICIjZmZmIiB9fQogICAgICAgICAgICAgIGlzQW5pbWF0aW9uQWN0aXZlPXthbmltYXRlfQogICAgICAgICAgICAgIGFuaW1hdGlvbkR1cmF0aW9uPXs2MDB9CiAgICAgICAgICAgICAgYW5pbWF0aW9uRWFzaW5nPSJlYXNlLW91dCIKICAgICAgICAgICAgLz4KICAgICAgICAgICkpfQogICAgICAgIDwvQ29tcG9zZWRDaGFydD4KICAgICAgPC9SZXNwb25zaXZlQ29udGFpbmVyPgogICAgPC9kaXY+CiAgKTsKfQo="}
+"use client";
+
+import { Bar, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
+import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+import { ChartTooltipContent, compactTickFormatter, type ValueFormat } from "./ChartTooltip";
+
+export interface SeriesConfig {
+  key: string;
+  label: string;
+  color: string;
+}
+
+interface LineChartProps {
+  data: Array<Record<string, string | number>>;
+  xKey: string;
+  lines?: SeriesConfig[];
+  bars?: SeriesConfig[];
+  height?: number;
+  valueFormat?: ValueFormat;
+}
+
+const tickStyle = { fontSize: 12, fill: CHART_INK.muted };
+
+export function LineChart({ data, xKey, lines = [], bars = [], height = 360, valueFormat = "compact" }: LineChartProps) {
+  // [PM ENHANCEMENT] — chart animations respect the OS reduced-motion setting
+  const animate = !useReducedMotion();
+  const seriesCount = lines.length + bars.length;
+  return (
+    <div style={{ width: "100%", height }}>
+      <ResponsiveContainer>
+        <ComposedChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+          <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
+          <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
+          <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={56} tickFormatter={compactTickFormatter} />
+          <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} />} />
+          {seriesCount > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
+          {bars.map((s) => (
+            <Bar key={s.key} dataKey={s.key} name={s.label} fill={s.color} radius={[4, 4, 0, 0]} maxBarSize={40} isAnimationActive={animate} animationDuration={400} animationEasing="ease-out" />
+          ))}
+          {lines.map((s) => (
+            <Line
+              key={s.key}
+              type="monotone"
+              dataKey={s.key}
+              name={s.label}
+              stroke={s.color}
+              strokeWidth={2}
+              dot={false}
+              activeDot={{ r: 5, strokeWidth: 2, stroke: "#fff" }}
+              isAnimationActive={animate}
+              animationDuration={600}
+              animationEasing="ease-out"
+            />
+          ))}
+        </ComposedChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}

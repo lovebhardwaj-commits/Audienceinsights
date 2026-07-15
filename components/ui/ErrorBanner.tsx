@@ -1,1 +1,76 @@
-{"data":"InVzZSBjbGllbnQiOwoKLy8gW1BNIEVOSEFOQ0VNRU5UXSDigJQgUmVwbGFjZXMgcmF3IGVycm9yIHN0cmluZ3Mgd2l0aCBhIGh1bWFuIGV4cGxhbmF0aW9uIG9mIHdoYXQKLy8gd2VudCB3cm9uZyBhbmQgd2hhdCB0byBkbyBuZXh0LCBwbHVzIGEgb25lLWNsaWNrIHJldHJ5LiBSYXcgQVBJIHRleHQgc3RheXMKLy8gdmlzaWJsZSBhcyBzZWNvbmRhcnkgZGV0YWlsIHNvIG5vdGhpbmcgaXMgaGlkZGVuIGZyb20gcG93ZXIgdXNlcnMuCgppbnRlcmZhY2UgRXJyb3JCYW5uZXJQcm9wcyB7CiAgbWVzc2FnZTogc3RyaW5nOwogIG9uUmV0cnk/OiAoKSA9PiB2b2lkOwp9CgpmdW5jdGlvbiBpbnRlcnByZXQobWVzc2FnZTogc3RyaW5nKTogeyB0aXRsZTogc3RyaW5nOyBoaW50OiBzdHJpbmc7IGlzQXV0aDogYm9vbGVhbjsgc2hvd1JhdzogYm9vbGVhbiB9IHsKICBjb25zdCBtID0gbWVzc2FnZS50b0xvd2VyQ2FzZSgpOwogIGlmIChtLmluY2x1ZGVzKCJyYXRlIGxpbWl0IikgfHwgbS5pbmNsdWRlcygidG9vIG1hbnkgY2FsbHMiKSB8fCBtLmluY2x1ZGVzKCJyZXF1ZXN0IGxpbWl0IikpIHsKICAgIHJldHVybiB7CiAgICAgIHRpdGxlOiAiTWV0YSdzIEFQSSBuZWVkcyBhIHNob3J0IGJyZWF0aGVyIiwKICAgICAgaGludDogIllvdSd2ZSBoaXQgYSB0ZW1wb3JhcnkgcmF0ZSBsaW1pdC4gV2FpdCBhIG1pbnV0ZSwgdGhlbiB0cnkgYWdhaW4g4oCUIHlvdXIgZGF0YSBpcyBzYWZlLiIsCiAgICAgIGlzQXV0aDogZmFsc2UsCiAgICAgIHNob3dSYXc6IGZhbHNlLAogICAgfTsKICB9CiAgaWYgKG0uaW5jbHVkZXMoInNlc3Npb24iKSB8fCBtLmluY2x1ZGVzKCJ0b2tlbiIpIHx8IG0uaW5jbHVkZXMoImV4cGlyZWQiKSB8fCBtLmluY2x1ZGVzKCJvYXV0aCIpIHx8IG0uaW5jbHVkZXMoIm5vdCBhdXRoZW50aWNhdGVkIikpIHsKICAgIHJldHVybiB7CiAgICAgIHRpdGxlOiAiWW91ciBzZXNzaW9uIGhhcyBleHBpcmVkIiwKICAgICAgaGludDogIkxvZyBpbiBhZ2FpbiB0byByZWNvbm5lY3QgeW91ciBhZCBhY2NvdW50IOKAlCBpdCB0YWtlcyBhIGZldyBzZWNvbmRzLiIsCiAgICAgIGlzQXV0aDogdHJ1ZSwKICAgICAgc2hvd1JhdzogZmFsc2UsCiAgICB9OwogIH0KICByZXR1cm4gewogICAgdGl0bGU6ICJXZSBjb3VsZG4ndCBsb2FkIHRoaXMgcmVwb3J0IiwKICAgIGhpbnQ6ICJUaGlzIGlzIHVzdWFsbHkgdGVtcG9yYXJ5LiBUcnkgYWdhaW4g4oCUIGlmIGl0IGtlZXBzIGhhcHBlbmluZywgdGhlIGRldGFpbCBiZWxvdyBjYW4gaGVscCBwaW5wb2ludCBpdC4iLAogICAgaXNBdXRoOiBmYWxzZSwKICAgIHNob3dSYXc6IHRydWUsCiAgfTsKfQoKZXhwb3J0IGZ1bmN0aW9uIEVycm9yQmFubmVyKHsgbWVzc2FnZSwgb25SZXRyeSB9OiBFcnJvckJhbm5lclByb3BzKSB7CiAgY29uc3QgeyB0aXRsZSwgaGludCwgaXNBdXRoLCBzaG93UmF3IH0gPSBpbnRlcnByZXQobWVzc2FnZSk7CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtNCByb3VuZGVkLXhsIGJvcmRlciBib3JkZXItcmVkLTEwMCBiZy1yZWQtNTAgcHgtNSBweS00Ij4KICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtc3RhcnQgZ2FwLTMiPgogICAgICAgIDxzdmcgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2RjMjYyNiIgc3Ryb2tlV2lkdGg9IjIiIHN0cm9rZUxpbmVjYXA9InJvdW5kIiBzdHJva2VMaW5lam9pbj0icm91bmQiIGNsYXNzTmFtZT0ibXQtMC41IHNocmluay0wIj4KICAgICAgICAgIDxwYXRoIGQ9Ik0xMC4yOSAzLjg2IDEuODIgMThhMiAyIDAgMCAwIDEuNzEgM2gxNi45NGEyIDIgMCAwIDAgMS43MS0zTDEzLjcxIDMuODZhMiAyIDAgMCAwLTMuNDIgMHoiIC8+CiAgICAgICAgICA8bGluZSB4MT0iMTIiIHkxPSI5IiB4Mj0iMTIiIHkyPSIxMyIgLz4KICAgICAgICAgIDxsaW5lIHgxPSIxMiIgeTE9IjE3IiB4Mj0iMTIuMDEiIHkyPSIxNyIgLz4KICAgICAgICA8L3N2Zz4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibWluLXctMCBmbGV4LTEiPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9InRleHQtc20gZm9udC1zZW1pYm9sZCB0ZXh0LXJlZC04MDAiPnt0aXRsZX08L2Rpdj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC0wLjUgdGV4dC14cyBsZWFkaW5nLXJlbGF4ZWQgdGV4dC1yZWQtNzAwLzgwIj57aGludH08L2Rpdj4KICAgICAgICAgIHtzaG93UmF3ICYmIDxkaXYgY2xhc3NOYW1lPSJtdC0xLjUgdHJ1bmNhdGUgZm9udC1tb25vIHRleHQtWzExcHhdIHRleHQtcmVkLTQwMCIgdGl0bGU9e21lc3NhZ2V9PnttZXNzYWdlfTwvZGl2Pn0KICAgICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBzaHJpbmstMCBpdGVtcy1jZW50ZXIgZ2FwLTIiPgogICAgICAgICAge2lzQXV0aCA/ICgKICAgICAgICAgICAgPGEKICAgICAgICAgICAgICBocmVmPSIvYXBpL2F1dGgvbG9naW4iCiAgICAgICAgICAgICAgY2xhc3NOYW1lPSJyb3VuZGVkLWxnIGJnLXJlZC02MDAgcHgtMy41IHB5LTEuNSB0ZXh0LXhzIGZvbnQtc2VtaWJvbGQgdGV4dC13aGl0ZSB0cmFuc2l0aW9uLWNvbG9ycyBob3ZlcjpiZy1yZWQtNzAwIgogICAgICAgICAgICA+CiAgICAgICAgICAgICAgTG9nIGluIGFnYWluCiAgICAgICAgICAgIDwvYT4KICAgICAgICAgICkgOiAoCiAgICAgICAgICAgIG9uUmV0cnkgJiYgKAogICAgICAgICAgICAgIDxidXR0b24KICAgICAgICAgICAgICAgIG9uQ2xpY2s9e29uUmV0cnl9CiAgICAgICAgICAgICAgICBjbGFzc05hbWU9InJvdW5kZWQtbGcgYm9yZGVyIGJvcmRlci1yZWQtMjAwIGJnLXdoaXRlIHB4LTMuNSBweS0xLjUgdGV4dC14cyBmb250LXNlbWlib2xkIHRleHQtcmVkLTYwMCB0cmFuc2l0aW9uLWNvbG9ycyBob3ZlcjpiZy1yZWQtNjAwIGhvdmVyOnRleHQtd2hpdGUiCiAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgVHJ5IGFnYWluCiAgICAgICAgICAgICAgPC9idXR0b24+CiAgICAgICAgICAgICkKICAgICAgICAgICl9CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKTsKfQo="}
+"use client";
+
+// [PM ENHANCEMENT] — Replaces raw error strings with a human explanation of what
+// went wrong and what to do next, plus a one-click retry. Raw API text stays
+// visible as secondary detail so nothing is hidden from power users.
+
+interface ErrorBannerProps {
+  message: string;
+  onRetry?: () => void;
+}
+
+function interpret(message: string): { title: string; hint: string; isAuth: boolean; showRaw: boolean } {
+  const m = message.toLowerCase();
+  if (m.includes("rate limit") || m.includes("too many calls") || m.includes("request limit")) {
+    return {
+      title: "Meta's API needs a short breather",
+      hint: "You've hit a temporary rate limit. Wait a minute, then try again — your data is safe.",
+      isAuth: false,
+      showRaw: false,
+    };
+  }
+  if (m.includes("session") || m.includes("token") || m.includes("expired") || m.includes("oauth") || m.includes("not authenticated")) {
+    return {
+      title: "Your session has expired",
+      hint: "Log in again to reconnect your ad account — it takes a few seconds.",
+      isAuth: true,
+      showRaw: false,
+    };
+  }
+  return {
+    title: "We couldn't load this report",
+    hint: "This is usually temporary. Try again — if it keeps happening, the detail below can help pinpoint it.",
+    isAuth: false,
+    showRaw: true,
+  };
+}
+
+export function ErrorBanner({ message, onRetry }: ErrorBannerProps) {
+  const { title, hint, isAuth, showRaw } = interpret(message);
+
+  return (
+    <div className="mt-4 rounded-xl border border-red-100 bg-red-50 px-5 py-4">
+      <div className="flex items-start gap-3">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0">
+          <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+          <line x1="12" y1="9" x2="12" y2="13" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
+        </svg>
+        <div className="min-w-0 flex-1">
+          <div className="text-sm font-semibold text-red-800">{title}</div>
+          <div className="mt-0.5 text-xs leading-relaxed text-red-700/80">{hint}</div>
+          {showRaw && <div className="mt-1.5 truncate font-mono text-[11px] text-red-400" title={message}>{message}</div>}
+        </div>
+        <div className="flex shrink-0 items-center gap-2">
+          {isAuth ? (
+            <a
+              href="/api/auth/login"
+              className="rounded-lg bg-red-600 px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-red-700"
+            >
+              Log in again
+            </a>
+          ) : (
+            onRetry && (
+              <button
+                onClick={onRetry}
+                className="rounded-lg border border-red-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-red-600 transition-colors hover:bg-red-600 hover:text-white"
+              >
+                Try again
+              </button>
+            )
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

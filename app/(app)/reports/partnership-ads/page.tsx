@@ -34,6 +34,7 @@ function newPurchaseCellClass(pct: number): string {
 
 interface GroupCardAccent {
   headerGradient: string;
+  headerText: string;
   tileBg: string;
 }
 
@@ -66,7 +67,7 @@ function GroupCard({ title, group, loading, accent }: {
   return (
     <div className="overflow-hidden rounded-xl border border-slate-200/80 shadow-[0_1px_4px_0_rgb(0,0,0,0.07)]">
       <div className={`px-5 py-3.5 ${accent.headerGradient}`}>
-        <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-white/90">{title}</span>
+        <span className={`text-[11px] font-bold uppercase tracking-[0.1em] ${accent.headerText}`}>{title}</span>
       </div>
       <div className="bg-white p-5">
         <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
@@ -416,13 +417,13 @@ export default function PartnershipAdsPage() {
               title="Partnership Ads"
               group={p}
               loading={isInitialLoad}
-              accent={{ headerGradient: "bg-gradient-to-r from-blue-600 to-blue-500", tileBg: "bg-blue-50/50" }}
+              accent={{ headerGradient: "bg-blue-50 border-b border-blue-100", headerText: "text-blue-700", tileBg: "bg-blue-50/50" }}
             />
             <GroupCard
               title="Normal Ads"
               group={n}
               loading={isInitialLoad}
-              accent={{ headerGradient: "bg-gradient-to-r from-slate-600 to-slate-500", tileBg: "bg-slate-50" }}
+              accent={{ headerGradient: "bg-slate-50 border-b border-slate-200", headerText: "text-slate-500", tileBg: "bg-slate-50" }}
             />
           </div>
 

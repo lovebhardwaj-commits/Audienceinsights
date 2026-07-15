@@ -100,8 +100,6 @@ export default function AudienceSegmentsPage() {
 
   const report = accountReport.data?.data;
 
-  const report = accountReport.data?.data;
-
   const insights = useMemo(() => report ? audienceSegmentInsights(report) : [], [report]);
 
   const tableRows: WeekTableRow[] = useMemo(() => {

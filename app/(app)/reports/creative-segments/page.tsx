@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
+import { useDateRange } from "@/components/providers/DateRangeProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
@@ -36,7 +37,7 @@ const LEVELS: { key: EntityLevel; label: string }[] = [
 
 export default function CreativeSegmentsPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useState<DateRange | null>(null);
+  const { range, setRange } = useDateRange();
   const [level, setLevel] = useState<EntityLevel>("ad");
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);

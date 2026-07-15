@@ -94,6 +94,17 @@ export function HandshakeIcon({ className }: IconProps) {
   );
 }
 
+export function GridIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
+    </svg>
+  );
+}
+
 export const REPORT_ICONS: Record<string, (props: IconProps) => React.ReactElement> = {
   "net-new-reach": TrendingUpIcon,
   "audience-segments": UsersIcon,
@@ -102,4 +113,5 @@ export const REPORT_ICONS: Record<string, (props: IconProps) => React.ReactEleme
   "campaign-overlap": VennIcon,
   "conversion-windows": ClockIcon,
   "partnership-ads": HandshakeIcon,
+  "frequency": GridIcon,
 };

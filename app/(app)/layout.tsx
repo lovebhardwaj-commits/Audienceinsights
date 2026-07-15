@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/session";
 import { AccountProvider } from "@/components/providers/AccountProvider";
+import { DateRangeProvider } from "@/components/providers/DateRangeProvider";
 import { AppShell } from "@/components/layout/AppShell";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
@@ -11,7 +12,9 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <AccountProvider>
-      <AppShell>{children}</AppShell>
+      <DateRangeProvider>
+        <AppShell>{children}</AppShell>
+      </DateRangeProvider>
     </AccountProvider>
   );
 }

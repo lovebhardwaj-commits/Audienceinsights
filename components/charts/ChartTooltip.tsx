@@ -54,7 +54,7 @@ export function ChartTooltipContent({ active, label, payload, formats, defaultFo
 
   return (
     <div className="min-w-[190px] rounded-xl border border-white/10 bg-[#1E293B] px-3.5 py-2.5 shadow-2xl shadow-black/30">
-      <div className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">{label}</div>
+      <div className="max-w-[260px] break-words text-[11px] font-semibold uppercase tracking-wide text-slate-400">{label}</div>
       <div className="mt-1.5 space-y-1">
         {payload.map((entry, i) => {
           const key = String(entry.dataKey ?? i);

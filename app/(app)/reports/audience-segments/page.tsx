@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
+import { useDateRange } from "@/components/providers/DateRangeProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
@@ -9,6 +10,7 @@ import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { StackedBar } from "@/components/charts/StackedBar";
 import { LineChart } from "@/components/charts/LineChart";
+import { HorizontalBar } from "@/components/charts/HorizontalBar";
 import { ReportSummary } from "@/components/ui/ReportSummary";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
@@ -17,10 +19,11 @@ import { HowToRead } from "@/components/ui/HowToRead";
 import { SEGMENT_COLORS, SEGMENT_LABELS } from "@/lib/constants";
 import { ReachIcon, SpendIcon, TrendUpIcon, PercentIcon } from "@/components/ui/KpiIcons";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
-import { audienceSegmentInsights } from "@/lib/insights";
+import { audienceSegmentInsights, creativeSegmentInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
 import type { DateRange } from "@/lib/types";
 import type { AudienceSegmentsReport } from "@/lib/reports/audience-segments";
+import type { CreativeSegmentsReport, EntityLevel, EntitySegmentRow } from "@/lib/reports/creative-segments";
 
 interface WeekTableRow {
   weekStart: string;
@@ -55,18 +58,47 @@ const columns: DataTableColumn<WeekTableRow>[] = [
   { key: "existingPurchases", header: "Existing Purchases", accessor: (r) => r.existingPurchases, align: "right", render: (r) => formatNumber(r.existingPurchases) },
 ];
 
+type ViewLevel = "account" | EntityLevel;
+const VIEW_LEVELS: { key: ViewLevel; label: string }[] = [
+  { key: "account", label: "Account" },
+  { key: "campaign", label: "Campaign" },
+  { key: "adset", label: "Adset" },
+  { key: "ad", label: "Ad" },
+];
+
+function newPctCellClass(row: EntitySegmentRow): string {
+  if (row.prospectingReachPct >= 70) return "text-green-700 font-semibold";
+  if (row.prospectingReachPct < 40) return "text-red-600";
+  return "text-amber-600";
+}
+
 export default function AudienceSegmentsPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useState<DateRange | null>(null);
+  const { range, setRange } = useDateRange();
+  const [viewLevel, setViewLevel] = useState<ViewLevel>("account");
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
-  const { loading, isInitialLoad, data, error, run } = useJsonReport<{ data: AudienceSegmentsReport }>();
+  const accountReport = useJsonReport<{ data: AudienceSegmentsReport }>();
+  const entityReport = useJsonReport<{ data: CreativeSegmentsReport }>();
+
+  const isEntityView = viewLevel !== "account";
+  const loading = isEntityView ? entityReport.loading : accountReport.loading;
+  const isInitialLoad = isEntityView ? entityReport.isInitialLoad : accountReport.isInitialLoad;
+  const error = isEntityView ? entityReport.error : accountReport.error;
 
   useEffect(() => {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
-    run(`/api/reports/audience-segments?${params}`);
-  }, [selectedAccountId, range, run, retryKey]);
+    if (viewLevel === "account") {
+      accountReport.run(`/api/reports/audience-segments?${params}`);
+    } else {
+      params.set("level", viewLevel);
+      entityReport.run(`/api/reports/creative-segments?${params}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedAccountId, range, viewLevel, retryKey]);
+
+  const report = accountReport.data?.data;
 
   const report = data?.data;
 
@@ -113,6 +145,40 @@ export default function AudienceSegmentsPage() {
     }));
   }, [report]);
 
+  const entities = entityReport.data?.data.entities ?? [];
+  const entityLabel = viewLevel === "campaign" ? "Campaign" : viewLevel === "adset" ? "Adset" : "Ad";
+
+  const entitySorted = useMemo(
+    () => [...entities].sort((a, b) => b.prospectingReachPct - a.prospectingReachPct),
+    [entities]
+  );
+  const entityBest = entitySorted[0];
+  const entityWorst = entitySorted[entitySorted.length - 1];
+  const entityHighNewCount = entities.filter((e) => e.prospectingReachPct >= 70).length;
+
+  const entityChartData = useMemo(
+    () =>
+      [...entities]
+        .sort((a, b) => b.prospectingReachPct - a.prospectingReachPct)
+        .slice(0, 25)
+        .map((e) => ({ name: e.name, New: e.prospectingReachPct, Engaged: e.engagedReachPct, Existing: e.existingReachPct })),
+    [entities]
+  );
+
+  const entityInsights = useMemo(() => creativeSegmentInsights(entities, entityLabel), [entities, entityLabel]);
+
+  const entityColumns: DataTableColumn<EntitySegmentRow>[] = useMemo(() => [
+    { key: "name", header: entityLabel, accessor: (r) => r.name },
+    { key: "totalReach", header: "Total Reach", help: GLOSSARY.reach, accessor: (r) => r.totalReach, align: "right", render: (r) => formatCompactNumber(r.totalReach) },
+    { key: "totalSpend", header: "Total Spend", help: GLOSSARY.spend, accessor: (r) => r.totalSpend, align: "right", render: (r) => formatCurrency(r.totalSpend) },
+    { key: "totalPurchases", header: "Purchases", help: GLOSSARY.cpp, accessor: (r) => r.totalPurchases, align: "right", render: (r) => formatNumber(r.totalPurchases) },
+    { key: "prospectingReachPct", header: "New Reach %", help: GLOSSARY.newPct, accessor: (r) => r.prospectingReachPct, align: "right", cellClass: newPctCellClass, render: (r) => formatPercent(r.prospectingReachPct) },
+    { key: "prospectingPurchases", header: "New Purchases", accessor: (r) => r.prospectingPurchases, align: "right", render: (r) => formatNumber(r.prospectingPurchases) },
+    { key: "prospectingCpa", header: "New CPA", help: GLOSSARY.cpp, accessor: (r) => r.prospectingCpa, align: "right", render: (r) => (r.prospectingCpa > 0 ? formatCurrency(r.prospectingCpa) : "—") },
+    { key: "engagedReach", header: "Engaged Reach", accessor: (r) => r.engagedReach, align: "right", render: (r) => formatCompactNumber(r.engagedReach) },
+    { key: "existingReach", header: "Existing Reach", accessor: (r) => r.existingReach, align: "right", render: (r) => formatCompactNumber(r.existingReach) },
+  ], [entityLabel]);
+
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -134,12 +200,55 @@ export default function AudienceSegmentsPage() {
         ]}
       />
 
+      <div className="mt-3 flex rounded-md border border-slate-200 bg-white p-0.5 w-fit">
+        {VIEW_LEVELS.map((l) => (
+          <button
+            key={l.key}
+            onClick={() => setViewLevel(l.key)}
+            className={`rounded px-3 py-1 text-sm font-medium transition-colors ${
+              viewLevel === l.key ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+            }`}
+          >
+            {l.label}
+          </button>
+        ))}
+      </div>
+
       {error && <ErrorBanner message={error} onRetry={() => setRetryKey((k) => k + 1)} />}
       {loading && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 
-      {range && (
+      {range && isEntityView && (
+        <div className="animate-fade-in">
+          <div className={`mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+            <SummaryCard label={`Best Prospecting ${entityLabel}`} value={entityBest ? formatPercent(entityBest.prospectingReachPct) : "—"} sublabel={entityBest?.name?.slice(0, 36)} loading={isInitialLoad} iconColor="bg-blue-50 text-blue-600" accentColor="border-l-blue-500" />
+            <SummaryCard label={`Worst Prospecting ${entityLabel}`} value={entityWorst && entityWorst !== entityBest ? formatPercent(entityWorst.prospectingReachPct) : "—"} sublabel={entityWorst && entityWorst !== entityBest ? entityWorst.name.slice(0, 36) : undefined} loading={isInitialLoad} iconColor="bg-red-50 text-red-500" accentColor="border-l-red-400" />
+            <SummaryCard label={`${entityLabel}s with >70% New`} value={entityReport.data ? `${entityHighNewCount} of ${entities.length}` : "—"} sublabel={entityHighNewCount === 0 ? "none are strong prospectors" : "strong prospectors"} loading={isInitialLoad} iconColor="bg-emerald-50 text-emerald-600" accentColor="border-l-emerald-500" />
+          </div>
+          <div className={`transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+            <ReportSummary insights={entityInsights} loading={isInitialLoad} />
+            {(isInitialLoad || entityChartData.length > 0) && (
+              <div className="mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm">
+                <h2 className="text-sm font-semibold text-slate-800">Audience segment composition by {entityLabel.toLowerCase()}</h2>
+                <p className="mb-4 mt-0.5 text-xs text-slate-400">Each bar = 100% of that {entityLabel.toLowerCase()}&apos;s reach. Sorted by new % descending.</p>
+                {isInitialLoad ? <ChartSkeleton /> : (
+                  <HorizontalBar data={entityChartData} categoryKey="name" stacked valueFormat="percent" series={[
+                    { key: "New", label: "New Audience", color: SEGMENT_COLORS.prospecting },
+                    { key: "Engaged", label: "Engaged", color: SEGMENT_COLORS.engaged },
+                    { key: "Existing", label: "Existing Customers", color: SEGMENT_COLORS.existing },
+                  ]} />
+                )}
+              </div>
+            )}
+            <div className="mt-6">
+              <DataTable columns={entityColumns} rows={entities} loading={isInitialLoad} filename={`${viewLevel}-segments`} defaultSortKey="prospectingReachPct" defaultSortDir="desc" />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {range && !isEntityView && (
       <div className="animate-fade-in">
       <div className={`mt-4 grid grid-cols-2 gap-3 transition-opacity duration-200 sm:grid-cols-4 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
         <SummaryCard
@@ -236,3 +345,4 @@ export default function AudienceSegmentsPage() {
     </div>
   );
 }
+

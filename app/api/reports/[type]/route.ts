@@ -7,6 +7,7 @@ import { getCreativeChurnReport } from "@/lib/reports/creative-churn";
 import { getCreativeSegmentsReport, type EntityLevel } from "@/lib/reports/creative-segments";
 import { getConversionWindowsReport } from "@/lib/reports/conversion-windows";
 import { getPartnershipAdsReport } from "@/lib/reports/partnership-ads";
+import { getFrequencyReport } from "@/lib/reports/frequency";
 import { getRollingReachReport } from "@/lib/reports/rolling-reach";
 import { getNetNewReachReport } from "@/lib/reports/net-new-reach";
 import { getCampaignOverlapReport, type OverlapLevel } from "@/lib/reports/campaign-overlap";
@@ -90,6 +91,10 @@ async function runJsonReport(
     case "partnership-ads": {
       requireRange(range);
       return getPartnershipAdsReport(token, accountId, range);
+    }
+    case "frequency": {
+      requireRange(range);
+      return getFrequencyReport(token, accountId, range);
     }
     default:
       throw new NotFoundError(`Unknown report type: ${type}`);

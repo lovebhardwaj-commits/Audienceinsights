@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, CartesianGrid, ComposedChart, Legend, Line, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import {
@@ -32,6 +32,8 @@ interface DualAxisChartProps {
   /** Override the right (line) axis domain — defaults to [0, 100] when lineFormat is "percent",
    *  but ratios like uplift % aren't bounded at 100, so pass e.g. [0, "auto"] to let it scale up. */
   lineDomain?: [number | string, number | string];
+  /** Horizontal reference lines, e.g. industry benchmarks. */
+  referenceLines?: Array<{ yAxisId: "left" | "right"; y: number; label?: string; color?: string }>;
 }
 
 const tickStyle = { fontSize: 12, fill: CHART_INK.muted };
@@ -54,6 +56,7 @@ export function DualAxisChart({
   height = 360,
   barDomain,
   lineDomain,
+  referenceLines,
 }: DualAxisChartProps) {
   // [PM ENHANCEMENT] — chart animations respect the OS reduced-motion setting
   const animate = !useReducedMotion();
@@ -118,6 +121,17 @@ export function DualAxisChart({
               isAnimationActive={animate}
               animationDuration={600}
               animationEasing="ease-out"
+            />
+          ))}
+          {referenceLines?.map((rl, i) => (
+            <ReferenceLine
+              key={i}
+              yAxisId={rl.yAxisId}
+              y={rl.y}
+              stroke={rl.color ?? "#94a3b8"}
+              strokeDasharray="5 3"
+              strokeWidth={1.5}
+              label={rl.label ? { value: rl.label, position: "insideTopRight", fontSize: 11, fill: rl.color ?? "#94a3b8" } : undefined}
             />
           ))}
         </ComposedChart>

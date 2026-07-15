@@ -50,7 +50,7 @@ export const REPORTS: ReportMeta[] = [
   { slug: "net-new-reach",      title: "New Reach",          description: "How many genuinely new people you reach each month" },
   { slug: "campaign-overlap",   title: "Overlap",            description: "Which campaigns compete for the same audience" },
   { slug: "conversion-windows", title: "Conversion Windows", description: "1d vs. 7d vs. 28d attribution windows compared" },
-  { slug: "audience-segments",  title: "User Segments",      description: "New vs. engaged vs. existing audiences at account level" },
-  { slug: "creative-segments",  title: "Segments by Entity", description: "Which campaigns, adsets, and ads reach new audiences" },
+  { slug: "audience-segments",  title: "User Segments",      description: "New vs. engaged vs. existing — by account, campaign, adset, or ad" },
+  { slug: "frequency",          title: "Frequency Heatmap",  description: "Campaign overexposure at a glance — week by week" },
   { slug: "partnership-ads",    title: "Partnership Ads",    description: "Creator vs. normal ad performance" },
 ];

@@ -232,6 +232,7 @@ export default function CampaignOverlapPage() {
                     data={chartData}
                     categoryKey="name"
                     stacked
+                    percentOfTotal
                     series={[
                       { key: "unique", label: "Unique", color: "#2563EB" },
                       { key: "overlap", label: "Overlap", color: "#F97316" },

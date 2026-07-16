@@ -12,7 +12,6 @@ const NAV_SLUGS = [
   "campaign-overlap",
   "conversion-windows",
   "audience-segments",
-  "frequency",
   "partnership-ads",
 ];
 

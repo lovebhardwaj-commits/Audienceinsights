@@ -178,10 +178,13 @@ export function DataTable<T>({
                 <th
                   key={col.key}
                   onClick={() => handleSort(col.key)}
-                  className={`cursor-pointer select-none whitespace-nowrap px-5 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 transition-colors hover:text-slate-600 ${
+                  className={`cursor-pointer select-none whitespace-nowrap px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 transition-colors hover:text-slate-600 ${
                     col.align === "right" ? "text-right" : "text-left"
                   } ${colIdx === 0 ? "sticky left-0 z-10 bg-white shadow-[4px_0_6px_-4px_rgba(15,23,42,0.15)]" : ""}`}
-                  style={colIdx === 0 ? { maxWidth: "220px", backgroundColor: "#ffffff", willChange: "transform" } : undefined}
+                  style={colIdx === 0
+                    ? { backgroundColor: "#ffffff", willChange: "transform" }
+                    : { width: "1%", whiteSpace: "nowrap" }
+                  }
                 >
                   <span className="inline-flex items-center gap-0.5">
                     {col.header}
@@ -230,12 +233,12 @@ export function DataTable<T>({
                     {columns.map((col, colIdx) => (
                       <td
                         key={col.key}
-                        className={`px-5 py-3 ${
+                        className={`px-4 py-3 whitespace-nowrap ${
                           col.cellClass ? col.cellClass(row) : "text-slate-700"
                         } ${
-                          col.align === "right" ? "text-right tabular-nums whitespace-nowrap" : "text-left"
-                        } ${colIdx === 0 ? "sticky left-0 z-10 font-medium text-slate-700 shadow-[4px_0_6px_-4px_rgba(15,23,42,0.15)]" : "whitespace-nowrap"}`}
-                        style={colIdx === 0 ? { backgroundColor: stickyBg, maxWidth: "260px", willChange: "transform" } : undefined}
+                          col.align === "right" ? "text-right tabular-nums" : "text-left"
+                        } ${colIdx === 0 ? "sticky left-0 z-10 font-medium text-slate-700 shadow-[4px_0_6px_-4px_rgba(15,23,42,0.15)]" : ""}`}
+                        style={colIdx === 0 ? { backgroundColor: stickyBg, maxWidth: "320px", willChange: "transform" } : undefined}
                       >
                         {colIdx === 0 ? (
                           <CopyableCell value={String(col.accessor(row))}>

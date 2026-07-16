@@ -118,7 +118,7 @@ Scopes: `ads_read, pages_show_list, pages_read_engagement`
 
 ## Reports
 
-### Active (in sidebar)
+### Active (in sidebar + dashboard)
 
 | Report | Slug | Data Source | Streaming |
 |--------|------|-------------|-----------|
@@ -126,15 +126,15 @@ Scopes: `ads_read, pages_show_list, pages_read_engagement`
 | Overlap | `campaign-overlap` | NOT_IN filtering per entity | Yes (NDJSON) |
 | Conversion Windows | `conversion-windows` | `action_attribution_windows: [1d_click, 7d_click, 28d_click]` | No |
 | User Segments | `audience-segments` | `breakdowns=user_segment_key` | No |
-| Frequency Heatmap | `frequency` | `frequency` field, `time_increment=7` | No |
 | Partnership Ads | `partnership-ads` | `facebook_branded_content` / `instagram_branded_content` | No |
 
-### Hidden
+### Hidden (accessible via direct URL only)
 
 | Report | Slug | Why Hidden |
 |--------|------|------------|
+| Frequency Heatmap | `frequency` | Removed from sidebar + dashboard; has actionable overexposure alerts when campaigns hit 5×+ |
 | Creative Churn | `creative-churn` | Timeouts on 5-6 month ranges (daily granularity, full ad list) |
-| Creative Segments | `creative-segments` | Accessible via URL, not in sidebar |
+| Creative Segments | `creative-segments` | Not in sidebar |
 
 ## Meta API Patterns
 
@@ -165,12 +165,15 @@ Brand colors (Tailwind theme in globals.css): blue-50 through blue-900.
 
 ### UI Conventions
 
-- Every report page follows the same structure: header + DateRangePicker → HowToRead accordion → KPI SummaryCards → chart → DataTable
+- Every report page follows the same structure: header + DateRangePicker → HowToRead accordion → KPI SummaryCards → ReportSummary insights → chart → DataTable
 - `SummaryCard` has left accent border color + icon
+- `ReportSummary` has built-in `mt-4` spacing — no wrapper needed
 - `ErrorBanner` interprets error strings (rate limit, auth, generic) and shows contextual hints
 - `FetchingState` shows rotating messages while loading
 - All charts gate `isAnimationActive` on `useReducedMotion()`
-- `DataTable` has sticky first column, zebra striping, CSV export, search, pagination (50/page)
+- `DataTable`: sticky first column, zebra striping, CSV export, search, pagination (50/page). Numeric columns use `width: 1%` + `nowrap` to shrink-to-fit; first column expands to fill. First column intercepts `onCopy` to write full (untruncated) name to clipboard.
+- `HorizontalBar`: supports `percentOfTotal` prop to show % labels at bar ends (used in overlap chart)
+- Frequency heatmap has actionable overexposure alerts: lists which campaigns are at 5×+, how many weeks, and concrete recommendations (frequency caps, audience broadening, creative rotation)
 
 ## Key Constraints
 
@@ -193,9 +196,9 @@ Brand colors (Tailwind theme in globals.css): blue-50 through blue-900.
 5. Add slug to `NAV_SLUGS` in `components/layout/Sidebar.tsx`
 6. Add icon to `REPORT_ICONS` in `components/layout/icons.tsx`
 
-### Hiding a report from nav
+### Hiding a report from nav + dashboard
 
-Remove its slug from `NAV_SLUGS` in `Sidebar.tsx`. The page remains accessible via direct URL.
+Remove its slug from `NAV_SLUGS` in `Sidebar.tsx` AND from the `REPORTS` array in `lib/constants.ts`. The page remains accessible via direct URL.
 
 ### Changing default date range
 

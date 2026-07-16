@@ -116,6 +116,32 @@ lib/
 
 Scopes: `ads_read, pages_show_list, pages_read_engagement`
 
+## Screenshots
+
+### Dashboard
+![Dashboard](docs/screenshots/dashboard.png)
+Report card grid with 5 active reports. Shows connected ad account, currency, and account ID.
+
+### New Reach
+![New Reach](docs/screenshots/net-new-reach.png)
+Two modes: Expanding Window (cumulative) and Sliding Window (configurable lookback). KPI cards: Latest Window Reach, Total Spend, Latest Net New %, Avg Cost/1K Net New. DualAxisChart with stacked bars (net new vs reached previously) + % net new line. DataTable with monthly breakdown.
+
+### Campaign Overlap
+![Campaign Overlap](docs/screenshots/campaign-overlap.png)
+Level selector (Campaign/Adset/Ad), Top N input. KPI cards: Total Account Reach, Sum of All Reaches (with overlap gap %), Total Spend, Entity Count. HorizontalBar chart (blue = unique, orange = overlap) with % labels at bar ends. Sorted by total reach. DataTable with Unique % color-coded (green >60%, amber, red <10%).
+
+### Conversion Windows
+![Conversion Windows](docs/screenshots/conversion-windows.png)
+KPI cards: 28DC Purchases, 1DC Purchases, Uplift Ratio. StackedBar chart showing purchase share by attribution window (within 1 day / day 2-7 / day 8-28) with uplift ratio chips above each bar. DataTable with weekly breakdown.
+
+### User Segments
+![User Segments](docs/screenshots/audience-segments.png)
+View level tabs: Account / Campaign / Adset / Ad. At account level: KPI cards (Total Reach, Spend, Purchases, New Audience %), StackedBar (spend by segment), LineChart (CPMR trend). At entity level: best/worst prospecting cards, HorizontalBar (100% stacked by segment), DataTable with New Reach % color coding.
+
+### Partnership Ads
+![Partnership Ads](docs/screenshots/partnership-ads.png)
+Head-to-head comparison cards (Partnership vs Normal). Sections: insight banner, incremental reach card, audience composition bars (reach + purchases), weekly trend chart (partnership vs normal new %), creator leaderboard table, expandable all-ads table.
+
 ## Reports
 
 ### Active (in sidebar + dashboard)

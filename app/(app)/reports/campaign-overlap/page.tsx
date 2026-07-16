@@ -66,10 +66,10 @@ export default function CampaignOverlapPage() {
     { key: "reach", header: "Reach", help: GLOSSARY.reach, accessor: (r) => r.reach, align: "right", render: (r) => formatCompactNumber(r.reach) },
     { key: "spend", header: "Spend", help: GLOSSARY.spend, accessor: (r) => r.spend, align: "right", render: (r) => formatCurrency(r.spend) },
     { key: "cpmr", header: "CPMR", help: GLOSSARY.cpmr, accessor: (r) => r.cpmr, align: "right", render: (r) => formatCurrency(r.cpmr) },
-    { key: "uniqueContribution", header: "Incremental Reach", help: GLOSSARY.uniqueContribution, accessor: (r) => r.uniqueContribution, align: "right", render: (r) => formatCompactNumber(r.uniqueContribution) },
+    { key: "uniqueContribution", header: "Unique Reach", help: GLOSSARY.uniqueContribution, accessor: (r) => r.uniqueContribution, align: "right", render: (r) => formatCompactNumber(r.uniqueContribution) },
     {
       key: "incrementalPct",
-      header: "Incremental Reach %",
+      header: "Unique %",
       help: "What % of this entity's reach is truly unique — reached by no other campaign. Higher is better.",
       accessor: (r) => 100 - r.overlapPct,
       align: "right",

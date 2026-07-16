@@ -51,6 +51,5 @@ export const REPORTS: ReportMeta[] = [
   { slug: "campaign-overlap",   title: "Overlap",            description: "Which campaigns compete for the same audience" },
   { slug: "conversion-windows", title: "Conversion Windows", description: "1d vs. 7d vs. 28d attribution windows compared" },
   { slug: "audience-segments",  title: "User Segments",      description: "New vs. engaged vs. existing — by account, campaign, adset, or ad" },
-  { slug: "frequency",          title: "Frequency Heatmap",  description: "Campaign overexposure at a glance — week by week" },
   { slug: "partnership-ads",    title: "Partnership Ads",    description: "Creator vs. normal ad performance" },
 ];

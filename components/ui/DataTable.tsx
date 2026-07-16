@@ -32,6 +32,22 @@ function toCsvValue(value: string | number): string {
 
 const PAGE_SIZE = 50;
 
+function CopyableCell({ value, children }: { value: string; children: React.ReactNode }) {
+  function handleCopy(e: React.ClipboardEvent) {
+    e.preventDefault();
+    e.clipboardData.setData("text/plain", value);
+  }
+  return (
+    <div
+      className="overflow-hidden text-ellipsis whitespace-nowrap"
+      title={value}
+      onCopy={handleCopy}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function DataTable<T>({
   columns,
   rows,
@@ -214,15 +230,20 @@ export function DataTable<T>({
                     {columns.map((col, colIdx) => (
                       <td
                         key={col.key}
-                        title={colIdx === 0 ? String(col.accessor(row)) : undefined}
                         className={`px-5 py-3 ${
                           col.cellClass ? col.cellClass(row) : "text-slate-700"
                         } ${
                           col.align === "right" ? "text-right tabular-nums whitespace-nowrap" : "text-left"
                         } ${colIdx === 0 ? "sticky left-0 z-10 font-medium text-slate-700 shadow-[4px_0_6px_-4px_rgba(15,23,42,0.15)]" : "whitespace-nowrap"}`}
-                        style={colIdx === 0 ? { backgroundColor: stickyBg, maxWidth: "220px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", willChange: "transform" } : undefined}
+                        style={colIdx === 0 ? { backgroundColor: stickyBg, maxWidth: "260px", willChange: "transform" } : undefined}
                       >
-                        {col.render ? col.render(row) : col.accessor(row)}
+                        {colIdx === 0 ? (
+                          <CopyableCell value={String(col.accessor(row))}>
+                            {col.render ? col.render(row) : col.accessor(row)}
+                          </CopyableCell>
+                        ) : (
+                          col.render ? col.render(row) : col.accessor(row)
+                        )}
                       </td>
                     ))}
                   </tr>

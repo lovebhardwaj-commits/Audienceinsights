@@ -140,6 +140,7 @@ View level tabs: Account / Campaign / Adset / Ad. At account level: KPI cards (T
 
 ### Partnership Ads
 ![Partnership Ads](docs/screenshots/partnership-ads.png)
+![Partnership Ads - continued](docs/screenshots/partnership-ads2.png)
 Head-to-head comparison cards (Partnership vs Normal). Sections: insight banner, incremental reach card, audience composition bars (reach + purchases), weekly trend chart (partnership vs normal new %), creator leaderboard table, expandable all-ads table.
 
 ## Reports

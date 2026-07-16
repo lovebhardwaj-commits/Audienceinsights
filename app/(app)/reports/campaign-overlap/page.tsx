@@ -19,7 +19,6 @@ import { overlapInsights } from "@/lib/insights";
 import { ReachIcon, SpendIcon, CountIcon } from "@/components/ui/KpiIcons";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
-import { lastNDays } from "@/lib/dates";
 import type { DateRange } from "@/lib/types";
 import type { CampaignOverlapReport, OverlapEntityRow, OverlapLevel } from "@/lib/reports/campaign-overlap";
 
@@ -67,15 +66,6 @@ export default function CampaignOverlapPage() {
     { key: "reach", header: "Reach", help: GLOSSARY.reach, accessor: (r) => r.reach, align: "right", render: (r) => formatCompactNumber(r.reach) },
     { key: "spend", header: "Spend", help: GLOSSARY.spend, accessor: (r) => r.spend, align: "right", render: (r) => formatCurrency(r.spend) },
     { key: "cpmr", header: "CPMR", help: GLOSSARY.cpmr, accessor: (r) => r.cpmr, align: "right", render: (r) => formatCurrency(r.cpmr) },
-    {
-      key: "totalAccountReach",
-      header: "Total Acct Reach",
-      help: "Total deduplicated unique people reached by all campaigns in this period.",
-      accessor: () => data?.totalAccountReach ?? 0,
-      align: "right",
-      render: () => formatCompactNumber(data?.totalAccountReach ?? 0),
-    },
-    { key: "reachWithoutEntity", header: `Acct Reach W/O ${entityLabel}`, help: `What total account reach would be if this ${entityLabel.toLowerCase()} didn't exist.`, accessor: (r) => r.reachWithoutEntity, align: "right", render: (r) => formatCompactNumber(r.reachWithoutEntity) },
     { key: "uniqueContribution", header: "Incremental Reach", help: GLOSSARY.uniqueContribution, accessor: (r) => r.uniqueContribution, align: "right", render: (r) => formatCompactNumber(r.uniqueContribution) },
     {
       key: "incrementalPct",
@@ -86,28 +76,31 @@ export default function CampaignOverlapPage() {
       cellClass: (r) => incrementalCellClass(100 - r.overlapPct),
       render: (r) => formatPercent(100 - r.overlapPct),
     },
-  ], [entityLabel, data?.totalAccountReach]);
+  ], [entityLabel]);
 
   const chartData = useMemo(() => {
     const entities = data?.entities ?? [];
     const names = entities.map((e) => e.name);
-    // Strip the longest common prefix so Y-axis labels show the differentiating suffix
-    let prefix = names[0] ?? "";
-    for (const n of names) {
-      while (prefix && !n.startsWith(prefix)) prefix = prefix.slice(0, -1);
+    const lowerNames = names.map((n) => n.toLowerCase());
+    let prefixLen = (lowerNames[0] ?? "").length;
+    for (const n of lowerNames) {
+      let i = 0;
+      const max = Math.min(prefixLen, n.length);
+      while (i < max && n[i] === lowerNames[0][i]) i++;
+      prefixLen = i;
+      if (prefixLen === 0) break;
     }
-    const strip = prefix.length > 8 ? prefix : "";
+    const shouldStrip = prefixLen > 8;
     return entities
-      .map((e) => ({
-        name: strip ? e.name.slice(strip.length).replace(/^[_\s]+/, "") : e.name,
-        unique: e.uniqueContribution,
-        overlap: Math.max(0, e.reach - e.uniqueContribution),
-      }))
-      .sort((a, b) => {
-        const aPct = a.overlap / (a.unique + a.overlap || 1);
-        const bPct = b.overlap / (b.unique + b.overlap || 1);
-        return bPct - aPct; // worst overlap first
-      });
+      .map((e) => {
+        const stripped = shouldStrip ? e.name.slice(prefixLen).replace(/^[_\s\-]+/, "") : e.name;
+        return {
+          name: stripped.length >= 3 ? stripped : e.name,
+          unique: e.uniqueContribution,
+          overlap: Math.max(0, e.reach - e.uniqueContribution),
+        };
+      })
+      .sort((a, b) => (b.unique + b.overlap) - (a.unique + a.overlap));
   }, [data]);
 
   const insights = useMemo(() => {

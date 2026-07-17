@@ -190,11 +190,11 @@ export default function NetNewReachPage() {
         )}
       </div>
 
-      {active.loading && <FetchingState />}
+      {range && (active.loading || !active.data) && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 
-      {range && !active.loading && (
+      {range && !active.loading && active.data && (
       <div className="animate-fade-in">
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <SummaryCard

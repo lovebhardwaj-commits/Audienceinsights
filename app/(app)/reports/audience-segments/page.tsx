@@ -20,6 +20,7 @@ import { ReachIcon, SpendIcon, TrendUpIcon, PercentIcon } from "@/components/ui/
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { audienceSegmentInsights, creativeSegmentInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
+import { HowToRead } from "@/components/ui/HowToRead";
 import { lastNMonths, isPartialWeek } from "@/lib/dates";
 import type { DateRange } from "@/lib/types";
 import type { AudienceSegmentsReport } from "@/lib/reports/audience-segments";
@@ -197,8 +198,17 @@ export default function AudienceSegmentsPage() {
         <DateRangePicker value={range} onChange={setRange} />
       </div>
 
-      {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
-<div className="mt-3 flex rounded-md border border-slate-200 bg-white p-0.5 w-fit">
+      <HowToRead
+        items={[
+          { label: "New Audience", text: "people who've never interacted with your brand — pure prospecting." },
+          { label: "Engaged", text: "people who interacted (visited your site, watched a video) but haven't bought yet." },
+          { label: "Existing Customers", text: "people already on your customer list or who have purchased." },
+          { label: "CPMR", text: "cost to reach 1,000 people in a segment. A rising New CPMR means prospecting is getting more expensive." },
+          { label: "The charts", text: "the stacked bars show where each week's budget actually went; the lines below track what reaching each segment costs over time." },
+        ]}
+      />
+
+      <div className="mt-3 flex rounded-md border border-slate-200 bg-white p-0.5 w-fit">
         {VIEW_LEVELS.map((l) => (
           <button
             key={l.key}

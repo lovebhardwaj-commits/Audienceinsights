@@ -8,6 +8,7 @@ import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
+import { HowToRead } from "@/components/ui/HowToRead";
 import { SummaryCard } from "@/components/ui/SummaryCard";
 import { FindingsStrip } from "@/components/ui/FindingsStrip";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
@@ -86,8 +87,16 @@ export default function ConversionWindowsPage() {
         <DateRangePicker value={range} onChange={setRange} />
       </div>
 
-      {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
-{loading && <FetchingState />}
+      <HowToRead
+        items={[
+          { label: "1DC / 7DC / 28DC", text: "purchases Meta credits to an ad within 1, 7, or 28 days of someone clicking it." },
+          { label: "Uplift Ratio", text: "how many extra purchases the 28-day view adds vs the 1-day view. High = customers take days to decide; low = they buy fast." },
+          { label: "% Same-Day", text: "the share of all attributed purchases that happened within a day of the click — your impulse-purchase rate." },
+          { label: "The chart", text: "each bar splits a week's purchases by how long they took; the pink line tracks the uplift ratio on the right axis." },
+        ]}
+      />
+
+      {loading && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 

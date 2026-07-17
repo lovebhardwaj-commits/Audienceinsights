@@ -17,6 +17,7 @@ import { formatCompactNumber, formatCurrency, formatNumber, formatPercent } from
 import { creativeSegmentInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
 import { SEGMENT_COLORS } from "@/lib/constants";
+import { HowToRead } from "@/components/ui/HowToRead";
 import { lastNDays, lastNMonths } from "@/lib/dates";
 import type { DateRange } from "@/lib/types";
 import type { EntitySegmentRow, CreativeSegmentsReport, EntityLevel } from "@/lib/reports/creative-segments";
@@ -110,8 +111,17 @@ export default function CreativeSegmentsPage() {
         <DateRangePicker value={range} onChange={setRange} />
       </div>
 
-      {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
-<div className="mt-3">
+      <HowToRead
+        items={[
+          { label: "The tabs", text: "the same analysis at three zoom levels — whole campaigns, individual adsets, or single ads." },
+          { label: "New Reach %", text: "how much of this entity's audience is genuinely new people. Above 70% = a true prospecting workhorse." },
+          { label: "New Purchase %", text: "of all purchases this entity drove, the share that came from brand-new customers rather than repeat buyers." },
+          { label: "New CPA", text: "what one new customer costs from this entity — compare it against your product margin." },
+          { label: "The chart", text: "each bar is 100% of one entity's reach, split into new (blue), engaged (amber), and existing (green), sorted best prospectors first." },
+        ]}
+      />
+
+      <div className="mt-3">
         <div className="flex rounded-md border border-slate-200 bg-white p-0.5 w-fit">
           {LEVELS.map((l) => (
             <button

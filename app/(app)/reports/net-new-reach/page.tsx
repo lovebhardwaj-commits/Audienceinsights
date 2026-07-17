@@ -14,6 +14,8 @@ import { netNewFindings } from "@/lib/findings";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
+import { HowToRead } from "@/components/ui/HowToRead";
+import { LineChart } from "@/components/charts/LineChart";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatPercent } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNMonths } from "@/lib/dates";
@@ -44,7 +46,7 @@ export default function NetNewReachPage() {
   const { range, setRange, applyInitialMonths } = useDateRange();
   const [mode, setMode] = useState<WindowMode>("sliding");
   useEffect(() => {
-    applyInitialMonths(1);
+    applyInitialMonths(3);
   }, [applyInitialMonths]);
   const [lookbackDays, setLookbackDays] = useState(90);
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
@@ -149,7 +151,18 @@ export default function NetNewReachPage() {
         <DateRangePicker value={range} onChange={setRange} />
       </div>
 
-<div className="mt-3 flex flex-wrap items-center gap-3">
+      <HowToRead
+        items={[
+          { label: "Net New Reach", text: "people who saw your ads this month but hadn't seen them before." },
+          { label: "Expanding Window", text: "compares each month against everyone reached since the start of your selected period — answers \"how much fresh audience is left overall?\"" },
+          { label: "Sliding Window", text: "compares each month against only the last 90/180/365 days — answers \"am I still finding fresh people lately?\"" },
+          { label: "Monthly Reach", text: "unique people reached within that month alone." },
+          { label: "Frequency", text: "average number of times each person saw your ads that month. Above ~3–4, you're paying to repeat yourself." },
+          { label: "Cost / 1K Net New", text: "what you pay to put ads in front of 1,000 brand-new people. A rising line means audience fatigue." },
+        ]}
+      />
+
+      <div className="mt-3 flex flex-wrap items-center gap-3">
         <div className="flex rounded-md border border-slate-200 bg-white p-0.5">
           {(["expanding", "sliding"] as WindowMode[]).map((m) => (
             <button
@@ -246,17 +259,14 @@ export default function NetNewReachPage() {
 
       <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
         <h2 className="text-sm font-semibold text-slate-800">Cost per 1K net new reach</h2>
-        <p className="mb-4 mt-0.5 text-xs text-slate-400">Monthly spend vs. cost per thousand new people reached — a rising line means you&apos;re paying more for fresh audience.</p>
-        <DualAxisChart
+        <p className="mb-4 mt-0.5 text-xs text-slate-400">Cost per thousand new people reached each month — a rising trend means audience fatigue.</p>
+        <LineChart
           data={costData}
           xKey="month"
-          bars={[{ key: "spend", label: "Spend", color: "#94a3b8" }]}
           lines={[{ key: "costPer1kNetNew", label: "Cost / 1K Net New", color: "#4a3aa7" }]}
-          barFormat="currencyCompact"
-          lineFormat="currency"
+          valueFormat="currency"
           xTitle="Month"
-          yTitle="Spend (₹)"
-          yRightTitle="Cost / 1K (₹)"
+          yTitle="Cost (₹)"
         />
       </div>
 

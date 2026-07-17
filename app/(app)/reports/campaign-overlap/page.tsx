@@ -12,6 +12,7 @@ import { HorizontalBar } from "@/components/charts/HorizontalBar";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
+import { HowToRead } from "@/components/ui/HowToRead";
 import { FindingsStrip } from "@/components/ui/FindingsStrip";
 import { overlapFindings } from "@/lib/findings";
 import { ReachIcon, SpendIcon, CountIcon } from "@/components/ui/KpiIcons";
@@ -157,7 +158,17 @@ export default function CampaignOverlapPage() {
         <DateRangePicker value={range} onChange={setRange} />
       </div>
 
-<div className="mt-3 flex flex-wrap items-center gap-3">
+      <HowToRead
+        items={[
+          { label: "Incremental Reach", text: "people only this campaign reaches — pause it and they're gone from your funnel." },
+          { label: "Incremental Reach %", text: "what share of this campaign's audience is truly unique. High = reaching its own audience; low = mostly competing with your other campaigns for the same people." },
+          { label: "Acct Reach W/O Campaign", text: "what your total account reach would be if this campaign didn't exist." },
+          { label: "Sum of All Reaches vs Total Account Reach", text: "the gap between them is audience counted twice across campaigns — your overlap, made visible." },
+          { label: "The chart", text: "blue is audience unique to that campaign; orange is audience it shares with the rest of the account." },
+        ]}
+      />
+
+      <div className="mt-3 flex flex-wrap items-center gap-3">
         <div className="flex rounded-md border border-slate-200 bg-white p-0.5">
           {LEVELS.map((l) => (
             <button
@@ -184,12 +195,9 @@ export default function CampaignOverlapPage() {
         </label>
       </div>
 
-      {/* Cost preview (Part 8) — this report is O(N) in Graph calls, one per entity. */}
-      {!loading && (
-        <p className="mt-2 text-[11px] text-ink-tertiary">
-          This runs ≈{topN + 2} Meta API calls (one per {entityLabel.toLowerCase()}), roughly {Math.max(1, Math.ceil(((topN + 2) * 1.3) / 60))}–{Math.ceil(((topN + 2) * 1.3) / 60) + 1} min on a cold load.
-        </p>
-      )}
+      <p className="mt-2 text-[11px] text-ink-tertiary">
+        This runs ≈{topN + 2} Meta API calls (one per {entityLabel.toLowerCase()}), roughly {Math.max(1, Math.ceil(((topN + 2) * 1.3) / 60))}–{Math.ceil(((topN + 2) * 1.3) / 60) + 1} min on a cold load.
+      </p>
 
       {loading && <FetchingState reportWeight="heavy" />}
 

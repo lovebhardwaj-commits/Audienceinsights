@@ -44,7 +44,7 @@ export function HorizontalBar({ data, categoryKey, series, stacked = false, heig
   return (
     <div style={{ width: "100%", height: h }}>
       <ResponsiveContainer>
-        <BarChart data={dataWithPct} layout="vertical" margin={{ top: 8, right: percentOfTotal ? 64 : 16, left: 8, bottom: 0 }}>
+        <BarChart data={dataWithPct} layout="vertical" margin={{ top: 8, right: percentOfTotal ? 80 : 32, left: 8, bottom: 0 }}>
           <CartesianGrid horizontal={false} stroke={CHART_CHROME.gridline} />
           <XAxis
             type="number"
@@ -64,7 +64,7 @@ export function HorizontalBar({ data, categoryKey, series, stacked = false, heig
             tickLine={false}
             tickFormatter={(v: string) => truncate(v, 28)}
           />
-          <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} showTotal={stacked} shareOfTotal={stacked} fullLabels={fullLabels} />} cursor={{ fill: "rgba(148,163,184,0.08)" }} />
+          <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} showTotal={stacked} shareOfTotal={stacked} fullLabels={fullLabels} />} cursor={{ fill: "rgba(148,163,184,0.08)" }} wrapperStyle={{ zIndex: 9999 }} />
           {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
           {series.map((s, sIdx) => {
             const isLast = sIdx === series.length - 1;

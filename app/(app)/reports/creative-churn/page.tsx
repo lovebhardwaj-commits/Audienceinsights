@@ -237,17 +237,9 @@ export default function CreativeChurnPage() {
                     onRangeChange={(start, end) => setVisibleRange([start, end])}
                   />
                 </div>
-                <p className="mt-1 text-center text-[11px] text-slate-400">Drag handles to zoom</p>
-
-                {/* Legend — all cohorts, stack order */}
-                <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5">
-                  {chartSeries.map((s) => (
-                    <span key={s.key} className="flex items-center gap-1.5 text-xs text-slate-500">
-                      <span className="h-2.5 w-2.5 rounded-full" style={{ background: s.color }} />
-                      {s.label}
-                    </span>
-                  ))}
-                </div>
+                <p className="mt-1 text-center text-[11px] text-slate-400">
+                  Click a cohort to highlight it · Drag handles to zoom
+                </p>
 
                 {/* How to read */}
                 <div className="mt-4 border-t border-slate-100 pt-3">

@@ -77,13 +77,17 @@ export function DualAxisChart({
   const leftTitleColor = bars[0]?.color ?? CHART_INK.secondary;
   const rightTitleColor = lines[0]?.color ?? CHART_INK.secondary;
 
+  // When both xTitle and brush are present, bump the bottom margin so the title
+  // doesn't sit on top of the x-axis tick labels (they share the same margin space).
+  const bottomMargin = showBrush && xTitle ? 44 : xTitle ? 36 : 4;
+
   return (
     <div style={{ width: "100%", height: showBrush ? height + 40 : height }}>
       <ResponsiveContainer>
-        <ComposedChart data={data} margin={{ top: 16, right: 12, left: 8, bottom: xTitle ? 20 : 4 }}>
+        <ComposedChart data={data} margin={{ top: 16, right: 20, left: 8, bottom: bottomMargin }}>
           <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
           <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false}>
-            {xTitle && <Label value={xTitle} position="insideBottom" offset={-12} style={{ ...axisTitleStyle, fill: CHART_INK.muted }} />}
+            {xTitle && <Label value={xTitle} position="insideBottom" offset={-28} style={{ ...axisTitleStyle, fill: CHART_INK.muted }} />}
           </XAxis>
           <YAxis
             yAxisId="left"
@@ -102,13 +106,16 @@ export function DualAxisChart({
             tick={tickStyle}
             axisLine={false}
             tickLine={false}
-            width={56}
+            width={64}
             tickFormatter={tickFormatterFor(lineFormat)}
             domain={lineDomain ?? (lineFormat === "percent" ? [0, 100] : undefined)}
           >
             {yRightTitle && <Label value={yRightTitle} angle={90} position="insideRight" style={{ ...axisTitleStyle, fill: rightTitleColor, textAnchor: "middle" }} />}
           </YAxis>
-          <Tooltip content={<ChartTooltipContent formats={formats} showTotal shareOfTotal />} />
+          <Tooltip
+            content={<ChartTooltipContent formats={formats} showTotal shareOfTotal />}
+            wrapperStyle={{ zIndex: 9999 }}
+          />
           <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />
           {bars.map((s) => (
             <Bar
@@ -168,7 +175,7 @@ export function DualAxisChart({
               label={{ value: annotation.text, position: "top", fontSize: 11, fontWeight: 600, fill: CHART_INK.primary }}
             />
           )}
-          {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} y={height - 4} />}
+          {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
         </ComposedChart>
       </ResponsiveContainer>
     </div>

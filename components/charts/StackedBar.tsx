@@ -49,7 +49,8 @@ export function StackedBar({
   const wrapH = showBrush ? height + 40 : height;
   // % stacks aren't summable to a meaningful total; raw stacks are.
   const tooltip = <ChartTooltipContent defaultFormat={fmt} showTotal={!isPercent} shareOfTotal />;
-  const xAxisTitle = xTitle && <Label value={xTitle} position="insideBottom" offset={-12} style={{ ...axisTitleStyle, fill: CHART_INK.muted }} />;
+  const bottomMargin = showBrush && xTitle ? 44 : xTitle ? 36 : 4;
+  const xAxisTitle = xTitle && <Label value={xTitle} position="insideBottom" offset={-28} style={{ ...axisTitleStyle, fill: CHART_INK.muted }} />;
   const yAxisTitle = yTitle && <Label value={yTitle} angle={-90} position="insideLeft" style={{ ...axisTitleStyle, fill: titleColor, textAnchor: "middle" }} />;
   const refs = referenceLines?.map((rl, i) => (
     <ReferenceLine
@@ -66,28 +67,28 @@ export function StackedBar({
     <div style={{ width: "100%", height: wrapH }}>
       <ResponsiveContainer>
         {variant === "area" ? (
-          <AreaChart data={data} margin={{ top: 16, right: 16, left: 8, bottom: xTitle ? 20 : 0 }}>
+          <AreaChart data={data} margin={{ top: 16, right: 20, left: 8, bottom: bottomMargin }}>
             <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
             <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false}>{xAxisTitle}</XAxis>
             <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={yTickFormatter} domain={isPercent ? [0, 100] : undefined}>
               {yAxisTitle}
             </YAxis>
-            <Tooltip content={tooltip} />
+            <Tooltip content={tooltip} wrapperStyle={{ zIndex: 9999 }} />
             {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
             {series.map((s) => (
               <Area key={s.key} type="monotone" dataKey={s.key} name={s.label} stackId="1" stroke={s.color} fill={s.color} fillOpacity={0.75} isAnimationActive={animate} animationDuration={600} animationEasing="ease-out" />
             ))}
             {refs}
-            {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} y={height - 4} />}
+            {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
           </AreaChart>
         ) : (
-          <BarChart data={data} margin={{ top: 16, right: 16, left: 8, bottom: xTitle ? 20 : 0 }}>
+          <BarChart data={data} margin={{ top: 16, right: 20, left: 8, bottom: bottomMargin }}>
             <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
             <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false}>{xAxisTitle}</XAxis>
             <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={yTickFormatter} domain={isPercent ? [0, 100] : undefined}>
               {yAxisTitle}
             </YAxis>
-            <Tooltip content={tooltip} />
+            <Tooltip content={tooltip} wrapperStyle={{ zIndex: 9999 }} />
             {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
             {series.map((s) => (
               <Bar key={s.key} dataKey={s.key} name={s.label} stackId="1" fill={s.color} stroke={CHART_CHROME.surface} strokeWidth={2} maxBarSize={48} isAnimationActive={animate} animationDuration={400} animationEasing="ease-out">
@@ -96,7 +97,7 @@ export function StackedBar({
               </Bar>
             ))}
             {refs}
-            {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} y={height - 4} />}
+            {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
           </BarChart>
         )}
       </ResponsiveContainer>

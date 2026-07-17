@@ -38,18 +38,19 @@ export function LineChart({ data, xKey, lines = [], bars = [], height = 360, val
   const seriesCount = lines.length + bars.length;
   const showBrush = brush ?? data.length > 12;
   const titleColor = (lines[0] ?? bars[0])?.color ?? CHART_INK.secondary;
+  const bottomMargin = showBrush && xTitle ? 44 : xTitle ? 36 : 4;
   return (
     <div style={{ width: "100%", height: showBrush ? height + 40 : height }}>
       <ResponsiveContainer>
-        <ComposedChart data={data} margin={{ top: 16, right: 16, left: 8, bottom: xTitle ? 20 : 0 }}>
+        <ComposedChart data={data} margin={{ top: 16, right: 24, left: 8, bottom: bottomMargin }}>
           <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
           <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false}>
-            {xTitle && <Label value={xTitle} position="insideBottom" offset={-12} style={{ ...axisTitleStyle, fill: CHART_INK.muted }} />}
+            {xTitle && <Label value={xTitle} position="insideBottom" offset={-28} style={{ ...axisTitleStyle, fill: CHART_INK.muted }} />}
           </XAxis>
           <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={tickFormatterFor(valueFormat)}>
             {yTitle && <Label value={yTitle} angle={-90} position="insideLeft" style={{ ...axisTitleStyle, fill: titleColor, textAnchor: "middle" }} />}
           </YAxis>
-          <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} />} />
+          <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} />} wrapperStyle={{ zIndex: 9999 }} />
           {seriesCount > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
           {bars.map((s) => (
             <Bar key={s.key} dataKey={s.key} name={s.label} fill={s.color} radius={[4, 4, 0, 0]} maxBarSize={40} isAnimationActive={animate} animationDuration={400} animationEasing="ease-out" />
@@ -79,7 +80,7 @@ export function LineChart({ data, xKey, lines = [], bars = [], height = 360, val
               label={rl.label ? { value: rl.label, position: "insideTopRight", fontSize: 11, fill: rl.color ?? "#94a3b8" } : undefined}
             />
           ))}
-          {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} y={height - 4} />}
+          {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
         </ComposedChart>
       </ResponsiveContainer>
     </div>

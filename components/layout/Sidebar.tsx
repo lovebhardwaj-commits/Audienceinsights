@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { REPORTS } from "@/lib/constants";
 import { HomeIcon, REPORT_ICONS } from "./icons";
 
-// Frequency (D7/7.6) and Creative Churn (7.7) are both back in nav after their fixes.
+// Frequency (D7/7.6) is back in nav after its fix.
 const NAV_SLUGS = [
   "net-new-reach",
   "campaign-overlap",
@@ -13,7 +13,6 @@ const NAV_SLUGS = [
   "audience-segments",
   "partnership-ads",
   "frequency",
-  "creative-churn",
 ];
 
 interface SidebarProps {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, Brush, CartesianGrid, ComposedChart, Label, Legend, Line, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, Brush, CartesianGrid, ComposedChart, Legend, Line, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import { ChartTooltipContent, compactTickFormatter, currencyTickFormatter, percentTickFormatter, type ValueFormat } from "./ChartTooltip";
@@ -45,9 +45,7 @@ export function LineChart({ data, xKey, lines = [], bars = [], height = 360, val
         <ComposedChart data={data} margin={{ top: 16, right: 24, left: 8, bottom: 4 }}>
           <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
           <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
-          <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={tickFormatterFor(valueFormat)}>
-            {yTitle && <Label value={yTitle} angle={-90} position="insideLeft" style={{ ...axisTitleStyle, fill: titleColor, textAnchor: "middle" }} />}
-          </YAxis>
+          <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={tickFormatterFor(valueFormat)} />
           <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} />} wrapperStyle={{ zIndex: 9999 }} />
           {seriesCount > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
           {bars.map((s) => (

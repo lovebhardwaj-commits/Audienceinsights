@@ -11,7 +11,6 @@ import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { FindingsStrip } from "@/components/ui/FindingsStrip";
 import { frequencyFindings } from "@/lib/findings";
-import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { formatShortDate, formatEntityLabels } from "@/lib/format";
@@ -140,9 +139,6 @@ export default function FrequencyPage() {
         ]}
       />
 
-      {error && (
-        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
-      )}
       {loading && <FetchingState />}
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 

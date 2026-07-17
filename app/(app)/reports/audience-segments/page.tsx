@@ -14,7 +14,6 @@ import { HorizontalBar } from "@/components/charts/HorizontalBar";
 import { ReportSummary } from "@/components/ui/ReportSummary";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
-import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { SEGMENT_COLORS, SEGMENT_LABELS, MIN_USEFUL_MONTHS } from "@/lib/constants";
@@ -224,9 +223,6 @@ export default function AudienceSegmentsPage() {
         ))}
       </div>
 
-      {error && (
-        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
-      )}
       {loading && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}

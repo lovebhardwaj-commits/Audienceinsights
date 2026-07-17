@@ -47,8 +47,6 @@ export interface ReportMeta {
   minUsefulMonths: number;
 }
 
-// Reports in scope — order matches sidebar. creative-churn is back in nav now that its
-// weekly-streaming rescue (Part 7.7) survives long ranges.
 export const REPORTS: ReportMeta[] = [
   { slug: "net-new-reach",      title: "New Reach",          description: "Genuinely new people reached",   minUsefulMonths: 4 },
   { slug: "campaign-overlap",   title: "Overlap",            description: "Who competes for one audience",  minUsefulMonths: 1 },
@@ -56,7 +54,6 @@ export const REPORTS: ReportMeta[] = [
   { slug: "audience-segments",  title: "User Segments",      description: "New vs engaged vs existing",     minUsefulMonths: 2 },
   { slug: "partnership-ads",    title: "Partnership Ads",    description: "Creator vs normal ads",          minUsefulMonths: 1 },
   { slug: "frequency",          title: "Frequency",          description: "Who sees your ads too often",    minUsefulMonths: 2 },
-  { slug: "creative-churn",     title: "Creative Churn",     description: "How long creatives keep earning", minUsefulMonths: 3 },
 ];
 
 /** Per-report minimum months for the initial fetch, keyed by slug (D3/7.1). */

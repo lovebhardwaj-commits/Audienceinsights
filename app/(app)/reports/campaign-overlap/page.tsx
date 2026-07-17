@@ -13,7 +13,6 @@ import { HorizontalBar } from "@/components/charts/HorizontalBar";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
-import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { FindingsStrip } from "@/components/ui/FindingsStrip";
 import { overlapFindings } from "@/lib/findings";
@@ -207,9 +206,6 @@ export default function CampaignOverlapPage() {
         </p>
       )}
 
-      {error && (
-        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
-      )}
       {loading && !progress && <FetchingState reportWeight="heavy" />}
       {loading && progress && (
         <div className="mt-4">

@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, Brush, CartesianGrid, Cell, ComposedChart, Label, Legend, Line, ReferenceDot, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, Brush, CartesianGrid, Cell, ComposedChart, Legend, Line, ReferenceDot, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import {
@@ -92,9 +92,7 @@ export function DualAxisChart({
             width={64}
             tickFormatter={tickFormatterFor(barFormat)}
             domain={barDomain ?? (barFormat === "percent" ? [0, 100] : undefined)}
-          >
-            {yTitle && <Label value={yTitle} angle={-90} position="insideLeft" style={{ ...axisTitleStyle, fill: leftTitleColor, textAnchor: "middle" }} />}
-          </YAxis>
+          />
           <YAxis
             yAxisId="right"
             orientation="right"
@@ -104,9 +102,7 @@ export function DualAxisChart({
             width={64}
             tickFormatter={tickFormatterFor(lineFormat)}
             domain={lineDomain ?? (lineFormat === "percent" ? [0, 100] : undefined)}
-          >
-            {yRightTitle && <Label value={yRightTitle} angle={90} position="insideRight" style={{ ...axisTitleStyle, fill: rightTitleColor, textAnchor: "middle" }} />}
-          </YAxis>
+          />
           <Tooltip
             content={<ChartTooltipContent formats={formats} showTotal shareOfTotal />}
             wrapperStyle={{ zIndex: 9999 }}

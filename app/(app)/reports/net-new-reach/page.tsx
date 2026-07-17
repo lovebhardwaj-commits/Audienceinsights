@@ -15,13 +15,11 @@ import { netNewFindings } from "@/lib/findings";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
-import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatPercent } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNMonths } from "@/lib/dates";
 import { MIN_USEFUL_MONTHS } from "@/lib/constants";
-import { notablePoint } from "@/lib/chart-annotations";
 import type { DateRange } from "@/lib/types";
 import type { RollingReachReport } from "@/lib/reports/rolling-reach";
 import type { NetNewReachReport } from "@/lib/reports/net-new-reach";
@@ -129,11 +127,6 @@ export default function NetNewReachPage() {
     repeatReach: Math.max(0, r.isolatedReach - r.netNewReach),
     netNewPct: r.netNewPct,
   }));
-  // Auto-annotation (§3.4) — mark the strongest net-new month.
-  const netNewAnnotation = useMemo(
-    () => notablePoint(compositionData.map((d) => d.netNewPct), "netNewPct", { kind: "max", label: () => "Best month" }),
-    [compositionData]
-  );
   const costData = rows.map((r) => ({ month: r.label, spend: r.spend, costPer1kNetNew: r.costPer1kNetNew }));
   const latestNetNewPct = mode === "expanding" ? expanding.data?.latestNetNewPct : sliding.data?.latestNetNewPct;
   const totalSpend = mode === "expanding" ? expanding.data?.totalSpend : sliding.data?.totalSpend;
@@ -202,14 +195,6 @@ export default function NetNewReachPage() {
         )}
       </div>
 
-      {active.error && (
-        <ErrorBanner
-          message={active.error}
-          code={active.errorCode}
-          onRetry={() => setRetryKey((k) => k + 1)}
-          onRetryShorter={() => setRange(lastNMonths(1))}
-        />
-      )}
       {active.loading && !active.progress && <FetchingState reportWeight="heavy" />}
       {active.loading && active.progress && (
         <div className="mt-4">
@@ -285,8 +270,6 @@ export default function NetNewReachPage() {
             xTitle="Month"
             yTitle="Reach (people)"
             yRightTitle="% Net New"
-            referenceLines={[{ yAxisId: "right", y: 60, label: "60% benchmark", color: "#64748b" }]}
-            annotation={netNewAnnotation}
           />
         )}
       </div>

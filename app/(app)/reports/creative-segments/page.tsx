@@ -12,7 +12,6 @@ import { SummaryCard } from "@/components/ui/SummaryCard";
 import { ReportSummary } from "@/components/ui/ReportSummary";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
-import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HowToRead } from "@/components/ui/HowToRead";
 import Link from "next/link";
 import { formatCompactNumber, formatCurrency, formatNumber, formatPercent } from "@/lib/format";
@@ -139,9 +138,6 @@ export default function CreativeSegmentsPage() {
         </div>
       </div>
 
-      {error && (
-        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
-      )}
       {loading && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}

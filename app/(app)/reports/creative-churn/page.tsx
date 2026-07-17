@@ -13,7 +13,6 @@ import { ReportSummary } from "@/components/ui/ReportSummary";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { ProgressIndicator } from "@/components/ui/ProgressIndicator";
-import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { creativeChurnInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
@@ -185,9 +184,6 @@ export default function CreativeChurnPage() {
         {!dailyAllowed && <span className="text-[11px] text-ink-tertiary">Daily unlocks on ranges ≤ 2 months</span>}
       </div>
 
-      {error && (
-        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
-      )}
       {loading && !progress && <FetchingState reportWeight="heavy" />}
       {loading && progress && (
         <div className="mt-4"><ProgressIndicator current={progress.current} total={progress.total} label={progress.label} onCancel={cancel} /></div>

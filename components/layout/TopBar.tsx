@@ -34,10 +34,6 @@ export function TopBar() {
       )}
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-3">
-          {/* Connection dot — the app is live from Meta with no database (Part 1). */}
-          <span className="flex items-center gap-1.5 text-[11px] font-medium text-ink-tertiary" title="Connected to Meta">
-            <span className="h-1.5 w-1.5 rounded-full bg-sev-good" />
-          </span>
           <AccountSelector />
         </div>
         {/* [PM ENHANCEMENT] — destructive action signals red on hover, not neutral gray */}

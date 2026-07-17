@@ -8,7 +8,6 @@ import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
-import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { SummaryCard } from "@/components/ui/SummaryCard";
 import { FindingsStrip } from "@/components/ui/FindingsStrip";
@@ -98,9 +97,6 @@ export default function ConversionWindowsPage() {
         ]}
       />
 
-      {error && (
-        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
-      )}
       {loading && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
@@ -154,6 +150,7 @@ export default function ConversionWindowsPage() {
                 yTitle="% of purchases"
                 yRightTitle="Uplift ratio (%)"
                 partialIndex={partialWeekIndex}
+                brush={false}
               />
             )}
           </div>

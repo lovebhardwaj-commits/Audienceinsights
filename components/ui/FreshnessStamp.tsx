@@ -8,7 +8,6 @@ export function FreshnessStamp({ fetchedAt }: { fetchedAt: number | null }) {
   const time = new Date(fetchedAt).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
   return (
     <span className="inline-flex items-center gap-1.5 text-[11px] text-ink-tertiary">
-      <span className="h-1.5 w-1.5 rounded-full bg-sev-good" />
       Live from Meta · fetched {time}
     </span>
   );

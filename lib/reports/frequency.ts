@@ -2,62 +2,78 @@ import { metaInsights } from "@/lib/meta-api";
 import { num } from "@/lib/calculations";
 import type { DateRange } from "@/lib/types";
 
-export interface FrequencyCampaign {
+export type FrequencyLevel = "campaign" | "adset" | "ad";
+
+export interface FrequencyEntity {
   id: string;
   name: string;
   totalReach: number;
 }
 
+/** @deprecated use FrequencyEntity */
+export type FrequencyCampaign = FrequencyEntity;
+
 export interface FrequencyReport {
+  level: FrequencyLevel;
   weeks: string[];
-  campaigns: FrequencyCampaign[];
-  /** matrix[campaignId][weekStart] = { frequency, reach } */
+  /** Top 25 entities by total reach, sorted descending. Field kept as `campaigns` for compat. */
+  campaigns: FrequencyEntity[];
+  /** matrix[entityId][weekStart] = { frequency, reach } */
   matrix: Record<string, Record<string, { frequency: number; reach: number }>>;
 }
+
+const LEVEL_FIELDS: Record<FrequencyLevel, { id: string; name: string }> = {
+  campaign: { id: "campaign_id", name: "campaign_name" },
+  adset:    { id: "adset_id",   name: "adset_name"   },
+  ad:       { id: "ad_id",      name: "ad_name"      },
+};
 
 export async function getFrequencyReport(
   token: string,
   accountId: string,
-  range: DateRange
+  range: DateRange,
+  level: FrequencyLevel = "campaign"
 ): Promise<FrequencyReport> {
+  const { id: idField, name: nameField } = LEVEL_FIELDS[level];
+
   const rows = await metaInsights({
     token,
     objectId: accountId,
-    fields: ["campaign_id", "campaign_name", "reach", "impressions", "frequency"],
+    fields: [idField, nameField, "reach", "impressions", "frequency"],
     timeRange: range,
-    level: "campaign",
+    level,
     timeIncrement: 7,
     limit: 2000,
   });
 
   const weekSet = new Set<string>();
-  const campaignMap = new Map<string, string>();
+  const entityMap = new Map<string, string>();
   const matrix: Record<string, Record<string, { frequency: number; reach: number }>> = {};
   const totalReachMap = new Map<string, number>();
 
   for (const row of rows) {
-    const campaignId = row.campaign_id as string;
-    const campaignName = (row.campaign_name as string) ?? campaignId;
-    const weekStart = row.date_start as string;
-    const frequency = num(row.frequency);
-    const reach = num(row.reach);
+    const entityId   = row[idField]   as string;
+    const entityName = (row[nameField] as string) ?? entityId;
+    const weekStart  = row.date_start  as string;
+    const frequency  = num(row.frequency);
+    const reach      = num(row.reach);
 
-    if (!campaignId || !weekStart) continue;
+    if (!entityId || !weekStart) continue;
 
     weekSet.add(weekStart);
-    campaignMap.set(campaignId, campaignName);
-    totalReachMap.set(campaignId, (totalReachMap.get(campaignId) ?? 0) + reach);
+    entityMap.set(entityId, entityName);
+    totalReachMap.set(entityId, (totalReachMap.get(entityId) ?? 0) + reach);
 
-    if (!matrix[campaignId]) matrix[campaignId] = {};
-    matrix[campaignId][weekStart] = { frequency, reach };
+    if (!matrix[entityId]) matrix[entityId] = {};
+    matrix[entityId][weekStart] = { frequency, reach };
   }
 
   const weeks = Array.from(weekSet).sort();
 
-  const campaigns: FrequencyCampaign[] = Array.from(campaignMap.entries())
+  const campaigns: FrequencyEntity[] = Array.from(entityMap.entries())
     .map(([id, name]) => ({ id, name, totalReach: totalReachMap.get(id) ?? 0 }))
     .sort((a, b) => b.totalReach - a.totalReach)
     .slice(0, 25);
 
-  return { weeks, campaigns, matrix };
+  return { level, weeks, campaigns, matrix };
 }

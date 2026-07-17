@@ -17,7 +17,8 @@ import { formatShortDate, formatEntityLabels } from "@/lib/format";
 import { lastNMonths } from "@/lib/dates";
 import { freqSeverity } from "@/lib/severity";
 import { MIN_USEFUL_MONTHS } from "@/lib/constants";
-import type { FrequencyReport } from "@/lib/reports/frequency";
+import type { FrequencyReport, FrequencyLevel } from "@/lib/reports/frequency";
+import type { DateRange } from "@/lib/types";
 
 const FREQ_COLORS = [
   "#dbeafe", // 1–1.5 — very light blue
@@ -42,7 +43,6 @@ function freqTextColor(freq: number): string {
   return freq > 3 ? "#fff" : "#1e293b";
 }
 
-// Shows the prefix-stripped, middle-ellipsized label but copies/titles the FULL name (D5).
 function CopyableTruncatedName({ display, full }: { display: string; full: string }) {
   function handleCopy(e: React.ClipboardEvent) {
     e.preventDefault();
@@ -59,22 +59,29 @@ function CopyableTruncatedName({ display, full }: { display: string; full: strin
   );
 }
 
+const LEVELS: { key: FrequencyLevel; label: string }[] = [
+  { key: "campaign", label: "Campaign" },
+  { key: "adset",    label: "Adset"    },
+  { key: "ad",       label: "Ad"       },
+];
+
 export default function FrequencyPage() {
   const { selectedAccountId } = useAccount();
   const { range, setRange, applyInitialMonths } = useDateRange();
   useEffect(() => { applyInitialMonths(MIN_USEFUL_MONTHS["frequency"]); }, [applyInitialMonths]);
+  const [level, setLevel] = useState<FrequencyLevel>("campaign");
   const [retryKey, setRetryKey] = useState(0);
   const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: FrequencyReport }>();
 
   useEffect(() => {
     if (!selectedAccountId || !range) return;
-    const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
+    const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until, level });
     run(`/api/reports/frequency?${params}`);
-  }, [selectedAccountId, range, run, retryKey]);
+  }, [selectedAccountId, range, level, run, retryKey]);
 
   const report = data?.data;
+  const entityLabel = level === "campaign" ? "Campaign" : level === "adset" ? "Adset" : "Ad";
 
-  // Label engine (D5) — strip the shared campaign-name prefix once, distinguish the rest.
   const entityLabels = useMemo(
     () => formatEntityLabels(report?.campaigns.map((c) => c.name) ?? [], 34),
     [report]
@@ -84,8 +91,7 @@ export default function FrequencyPage() {
     (report?.campaigns ?? []).forEach((c, i) => { m[c.id] = entityLabels.labels[i] ?? c.name; });
     return m;
   }, [report, entityLabels]);
-  const stripPrefix = (name: string) =>
-    entityLabels.prefix && name.startsWith(entityLabels.prefix) ? name.slice(entityLabels.prefix.length) || name : name;
+
   const findingsList = useMemo(
     () => (report ? frequencyFindings(report, entityLabels.prefix) : []),
     [report, entityLabels.prefix]
@@ -93,29 +99,22 @@ export default function FrequencyPage() {
 
   const { avgFreq, maxFreq, hotCampaigns, overexposedCampaigns } = useMemo(() => {
     if (!report) return { avgFreq: 0, maxFreq: 0, hotCampaigns: 0, overexposedCampaigns: [] as { name: string; peakFreq: number; hotWeeks: number }[] };
-    let total = 0;
-    let count = 0;
-    let max = 0;
-    let hot = 0;
-    const campaignHeat: Record<string, { name: string; peakFreq: number; hotWeeks: number }> = {};
+    let total = 0, count = 0, max = 0, hot = 0;
+    const entityHeat: Record<string, { name: string; peakFreq: number; hotWeeks: number }> = {};
     for (const c of report.campaigns) {
-      let peakFreq = 0;
-      let hotWeeks = 0;
+      let peakFreq = 0, hotWeeks = 0;
       for (const w of report.weeks) {
         const cell = report.matrix[c.id]?.[w];
         if (cell && cell.frequency > 0) {
-          total += cell.frequency;
-          count++;
+          total += cell.frequency; count++;
           if (cell.frequency > max) max = cell.frequency;
           if (cell.frequency > 5) { hot++; hotWeeks++; }
           if (cell.frequency > peakFreq) peakFreq = cell.frequency;
         }
       }
-      if (hotWeeks > 0) {
-        campaignHeat[c.id] = { name: c.name, peakFreq, hotWeeks };
-      }
+      if (hotWeeks > 0) entityHeat[c.id] = { name: c.name, peakFreq, hotWeeks };
     }
-    const overexposed = Object.values(campaignHeat).sort((a, b) => b.hotWeeks - a.hotWeeks);
+    const overexposed = Object.values(entityHeat).sort((a, b) => b.hotWeeks - a.hotWeeks);
     return { avgFreq: count > 0 ? total / count : 0, maxFreq: max, hotCampaigns: hot, overexposedCampaigns: overexposed };
   }, [report]);
 
@@ -124,7 +123,7 @@ export default function FrequencyPage() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-lg font-bold text-slate-900">Frequency Heatmap</h1>
-          <p className="mt-1 text-sm text-slate-500">How often each campaign exposes the same people, week by week.</p>
+          <p className="mt-1 text-sm text-slate-500">How often each {entityLabel.toLowerCase()} exposes the same people, week by week.</p>
           <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
         </div>
         <DateRangePicker value={range} onChange={setRange} />
@@ -132,12 +131,26 @@ export default function FrequencyPage() {
 
       <HowToRead
         items={[
-          { label: "Frequency", text: "average times a person saw a campaign's ads in that week. Above 3 means you're paying to repeat yourself." },
+          { label: "Frequency", text: "average times a person saw ads from this entity in that week. Above 3 means you're paying to repeat yourself." },
           { label: "Color scale", text: "blue = healthy (≤2×), amber = caution (3–4×), red = overexposed (5×+)." },
-          { label: "Empty cell", text: "campaign wasn't running that week." },
-          { label: "Reading the grid", text: "scan across a row to spot campaigns that stay red week after week — those are your fatigue risks." },
+          { label: "Empty cell", text: "entity wasn't running that week." },
+          { label: "Reading the grid", text: "scan across a row to spot entities that stay red week after week — those are your fatigue risks." },
         ]}
       />
+
+      <div className="mt-3 flex rounded-md border border-slate-200 bg-white p-0.5 w-fit">
+        {LEVELS.map((l) => (
+          <button
+            key={l.key}
+            onClick={() => setLevel(l.key)}
+            className={`rounded px-3 py-1 text-sm font-medium transition-colors ${
+              level === l.key ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+            }`}
+          >
+            {l.label}
+          </button>
+        ))}
+      </div>
 
       {(loading || (range && !data)) && <FetchingState />}
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
@@ -148,7 +161,7 @@ export default function FrequencyPage() {
             <SummaryCard
               label="Avg Frequency"
               value={report ? avgFreq.toFixed(2) + "×" : "—"}
-              sublabel="across all campaigns × weeks"
+              sublabel={`across all ${entityLabel.toLowerCase()}s × weeks`}
               loading={isInitialLoad}
               severity={freqSeverity(avgFreq)}
             />
@@ -162,24 +175,22 @@ export default function FrequencyPage() {
             <SummaryCard
               label="Overexposure Alerts"
               value={report ? String(hotCampaigns) : "—"}
-              sublabel="campaign–week combos at 5×+"
+              sublabel={`${entityLabel.toLowerCase()}–week combos at 5×+`}
               loading={isInitialLoad}
               severity={hotCampaigns > 0 ? "critical" : "good"}
             />
           </div>
 
-          {/* 7.6 — the overexposure alert is now the canonical FindingsStrip. */}
           <FindingsStrip findings={findingsList} loading={isInitialLoad} />
 
-          {/* The concrete remediation checklist stays — it's the app's best actionable content. */}
           {!isInitialLoad && report && overexposedCampaigns.length > 0 && (
             <div className="mt-3 rounded-[10px] border border-hairline bg-surface-card px-4 py-3 text-xs text-ink-secondary">
               <p className="font-semibold text-ink">What to do about overexposure</p>
               <ul className="mt-1 list-disc space-y-0.5 pl-4">
                 <li>Set a frequency cap of 3–4× per week in campaign settings</li>
                 <li>Broaden your audience targeting to reduce repeat exposure</li>
-                <li>Rotate fresh creatives into campaigns that stay red week after week</li>
-                <li>Consider pausing campaigns overexposed for 3+ consecutive weeks</li>
+                <li>Rotate fresh creatives into {entityLabel.toLowerCase()}s that stay red week after week</li>
+                <li>Consider pausing {entityLabel.toLowerCase()}s overexposed for 3+ consecutive weeks</li>
               </ul>
             </div>
           )}
@@ -187,8 +198,8 @@ export default function FrequencyPage() {
           <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
             <div className="mb-4 flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-sm font-semibold text-slate-800">Frequency by campaign × week</h2>
-                <p className="mt-0.5 text-xs text-slate-400">Top 25 campaigns by total reach. Cell = avg frequency for that week.</p>
+                <h2 className="text-sm font-semibold text-slate-800">Frequency by {entityLabel.toLowerCase()} × week</h2>
+                <p className="mt-0.5 text-xs text-slate-400">Top 25 {entityLabel.toLowerCase()}s by total reach. Cell = avg frequency for that week.</p>
                 {entityLabels.prefix && (
                   <p className="mt-1 text-[11px] text-slate-400">
                     All names begin with <span className="font-mono font-medium text-slate-500">{entityLabels.prefix}</span>
@@ -207,14 +218,14 @@ export default function FrequencyPage() {
             {isInitialLoad ? (
               <ChartSkeleton height={400} />
             ) : !report || report.campaigns.length === 0 ? (
-              <EmptyState title="No campaign data" description="No campaigns ran in this period." />
+              <EmptyState title={`No ${entityLabel.toLowerCase()} data`} description={`No ${entityLabel.toLowerCase()}s ran in this period.`} />
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-[12px]">
                   <thead>
                     <tr>
                       <th className="sticky left-0 z-10 bg-white py-2 pr-3 text-left text-[11px] font-medium text-slate-500 whitespace-nowrap min-w-[180px]">
-                        Campaign
+                        {entityLabel}
                       </th>
                       {report.weeks.map((w) => (
                         <th key={w} className="px-1 py-2 text-center text-[10px] font-medium text-slate-400 whitespace-nowrap">
@@ -224,25 +235,20 @@ export default function FrequencyPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {report.campaigns.map((campaign) => (
-                      <tr key={campaign.id} className="group">
-                        <td
-                          className="sticky left-0 z-10 bg-white py-1.5 pr-3 font-medium text-slate-700 group-hover:bg-slate-50"
-                        >
-                          <CopyableTruncatedName display={labelById[campaign.id] ?? campaign.name} full={campaign.name} />
+                    {report.campaigns.map((entity) => (
+                      <tr key={entity.id} className="group">
+                        <td className="sticky left-0 z-10 bg-white py-1.5 pr-3 font-medium text-slate-700 group-hover:bg-slate-50">
+                          <CopyableTruncatedName display={labelById[entity.id] ?? entity.name} full={entity.name} />
                         </td>
                         {report.weeks.map((w) => {
-                          const cell = report.matrix[campaign.id]?.[w];
+                          const cell = report.matrix[entity.id]?.[w];
                           const freq = cell?.frequency ?? 0;
                           return (
                             <td key={w} className="px-0.5 py-1.5">
                               <div
                                 className="mx-auto flex h-8 min-w-[40px] items-center justify-center rounded text-center font-semibold tabular-nums"
-                                style={{
-                                  background: freqColor(freq),
-                                  color: freqTextColor(freq),
-                                }}
-                                title={freq > 0 ? `${campaign.name} — week of ${formatShortDate(w)}: ${freq.toFixed(2)}× frequency` : "No data"}
+                                style={{ background: freqColor(freq), color: freqTextColor(freq) }}
+                                title={freq > 0 ? `${entity.name} — week of ${formatShortDate(w)}: ${freq.toFixed(2)}× frequency` : "No data"}
                               >
                                 {freq > 0 ? freq.toFixed(1) : ""}
                               </div>

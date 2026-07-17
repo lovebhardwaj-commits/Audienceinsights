@@ -7,7 +7,7 @@ import { getCreativeChurnReport, type ChurnGranularity } from "@/lib/reports/cre
 import { getCreativeSegmentsReport, type EntityLevel } from "@/lib/reports/creative-segments";
 import { getConversionWindowsReport } from "@/lib/reports/conversion-windows";
 import { getPartnershipAdsReport } from "@/lib/reports/partnership-ads";
-import { getFrequencyReport } from "@/lib/reports/frequency";
+import { getFrequencyReport, type FrequencyLevel } from "@/lib/reports/frequency";
 import { getRollingReachReport } from "@/lib/reports/rolling-reach";
 import { getNetNewReachReport } from "@/lib/reports/net-new-reach";
 import { getPulseReport } from "@/lib/reports/pulse";
@@ -134,7 +134,8 @@ async function runJsonReport(
     }
     case "frequency": {
       requireRange(range);
-      return getFrequencyReport(token, accountId, range);
+      const level = (searchParams.get("level") ?? "campaign") as FrequencyLevel;
+      return getFrequencyReport(token, accountId, range, level);
     }
     case "pulse": {
       requireRange(range);

@@ -77,18 +77,13 @@ export function DualAxisChart({
   const leftTitleColor = bars[0]?.color ?? CHART_INK.secondary;
   const rightTitleColor = lines[0]?.color ?? CHART_INK.secondary;
 
-  // When both xTitle and brush are present, bump the bottom margin so the title
-  // doesn't sit on top of the x-axis tick labels (they share the same margin space).
-  const bottomMargin = showBrush && xTitle ? 44 : xTitle ? 36 : 4;
-
   return (
+    <div>
     <div style={{ width: "100%", height: showBrush ? height + 40 : height }}>
       <ResponsiveContainer>
-        <ComposedChart data={data} margin={{ top: 16, right: 20, left: 8, bottom: bottomMargin }}>
+        <ComposedChart data={data} margin={{ top: 16, right: 20, left: 8, bottom: 4 }}>
           <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
-          <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false}>
-            {xTitle && <Label value={xTitle} position="insideBottom" offset={-28} style={{ ...axisTitleStyle, fill: CHART_INK.muted }} />}
-          </XAxis>
+          <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
           <YAxis
             yAxisId="left"
             tick={tickStyle}
@@ -178,6 +173,12 @@ export function DualAxisChart({
           {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
         </ComposedChart>
       </ResponsiveContainer>
+    </div>
+    {xTitle && (
+      <p style={{ fontSize: 12, fontWeight: 600, color: CHART_INK.muted, textAlign: "center", marginTop: 2 }}>
+        {xTitle}
+      </p>
+    )}
     </div>
   );
 }

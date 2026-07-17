@@ -47,9 +47,9 @@ const LOOKBACK_OPTIONS = [90, 180, 365];
 export default function NetNewReachPage() {
   const { selectedAccountId } = useAccount();
   const { range, setRange, applyInitialMonths } = useDateRange();
-  const [mode, setMode] = useState<WindowMode>("sliding");
-  // Expanding window is trend-heavy — open at 3 months so the chart has shape.
-  // Sliding window matches other reports at 1 month; the user asked for this split.
+  // Expanding window is trend-heavy; defaults to 3 months so the chart has enough shape.
+  // Sliding window defaults to 1 month matching other reports.
+  const [mode, setMode] = useState<WindowMode>("expanding");
   useEffect(() => {
     applyInitialMonths(mode === "expanding" ? 3 : 1);
   }, [applyInitialMonths, mode]);

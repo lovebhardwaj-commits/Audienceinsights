@@ -38,15 +38,13 @@ export function LineChart({ data, xKey, lines = [], bars = [], height = 360, val
   const seriesCount = lines.length + bars.length;
   const showBrush = brush ?? data.length > 12;
   const titleColor = (lines[0] ?? bars[0])?.color ?? CHART_INK.secondary;
-  const bottomMargin = showBrush && xTitle ? 44 : xTitle ? 36 : 4;
   return (
+    <div>
     <div style={{ width: "100%", height: showBrush ? height + 40 : height }}>
       <ResponsiveContainer>
-        <ComposedChart data={data} margin={{ top: 16, right: 24, left: 8, bottom: bottomMargin }}>
+        <ComposedChart data={data} margin={{ top: 16, right: 24, left: 8, bottom: 4 }}>
           <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
-          <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false}>
-            {xTitle && <Label value={xTitle} position="insideBottom" offset={-28} style={{ ...axisTitleStyle, fill: CHART_INK.muted }} />}
-          </XAxis>
+          <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
           <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={tickFormatterFor(valueFormat)}>
             {yTitle && <Label value={yTitle} angle={-90} position="insideLeft" style={{ ...axisTitleStyle, fill: titleColor, textAnchor: "middle" }} />}
           </YAxis>
@@ -83,6 +81,12 @@ export function LineChart({ data, xKey, lines = [], bars = [], height = 360, val
           {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
         </ComposedChart>
       </ResponsiveContainer>
+    </div>
+    {xTitle && (
+      <p style={{ fontSize: 12, fontWeight: 600, color: CHART_INK.muted, textAlign: "center", marginTop: 2 }}>
+        {xTitle}
+      </p>
+    )}
     </div>
   );
 }

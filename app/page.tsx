@@ -55,10 +55,6 @@ export default async function Home({
             Continue with Facebook
           </a>
 
-          <a href="/api/auth/demo" className="mt-3 flex w-full items-center justify-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600">
-            View live demo — no login
-          </a>
-
           <p className="mt-4 text-center text-[11px] text-slate-400">
             We only request read-only access to your ad data. Nothing is stored permanently.
           </p>

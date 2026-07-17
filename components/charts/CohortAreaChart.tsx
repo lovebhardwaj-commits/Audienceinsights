@@ -146,8 +146,8 @@ export function CohortAreaChart({
                 const safeId = `cg-${s.key.replace(/[^a-zA-Z0-9]/g, "_")}`;
                 return (
                   <linearGradient key={s.key} id={safeId} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={s.color} stopOpacity={0.72} />
-                    <stop offset="95%" stopColor={s.color} stopOpacity={0.42} />
+                    <stop offset="5%" stopColor={s.color} stopOpacity={0.9} />
+                    <stop offset="95%" stopColor={s.color} stopOpacity={0.65} />
                   </linearGradient>
                 );
               })}

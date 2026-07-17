@@ -61,46 +61,55 @@ export function StackedBar({
   ));
 
   return (
-    <div>
-    <div style={{ width: "100%", height: wrapH }}>
-      <ResponsiveContainer>
-        {variant === "area" ? (
-          <AreaChart data={data} margin={{ top: 16, right: 20, left: 8, bottom: 4 }}>
-            <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
-            <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
-            <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={yTickFormatter} domain={isPercent ? [0, 100] : undefined} />
-            <Tooltip content={tooltip} wrapperStyle={{ zIndex: 9999 }} />
-            {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
-            {series.map((s) => (
-              <Area key={s.key} type="monotone" dataKey={s.key} name={s.label} stackId="1" stroke={s.color} fill={s.color} fillOpacity={0.75} isAnimationActive={animate} animationDuration={600} animationEasing="ease-out" />
-            ))}
-            {refs}
-            {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
-          </AreaChart>
-        ) : (
-          <BarChart data={data} margin={{ top: 16, right: 20, left: 8, bottom: 4 }}>
-            <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
-            <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
-            <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={yTickFormatter} domain={isPercent ? [0, 100] : undefined} />
-            <Tooltip content={tooltip} wrapperStyle={{ zIndex: 9999 }} />
-            {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
-            {series.map((s) => (
-              <Bar key={s.key} dataKey={s.key} name={s.label} stackId="1" fill={s.color} stroke={CHART_CHROME.surface} strokeWidth={2} maxBarSize={48} isAnimationActive={animate} animationDuration={400} animationEasing="ease-out">
-                {partialIndex !== undefined &&
-                  data.map((_, i) => <Cell key={i} fillOpacity={i === partialIndex ? 0.4 : 1} />)}
-              </Bar>
-            ))}
-            {refs}
-            {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
-          </BarChart>
+    <div style={{ display: "flex", alignItems: "stretch" }}>
+      {yTitle && (
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 18, flexShrink: 0 }}>
+          <p style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontSize: 11, fontWeight: 600, color: titleColor, whiteSpace: "nowrap", margin: 0 }}>
+            {yTitle}
+          </p>
+        </div>
+      )}
+      <div style={{ flex: 1 }}>
+        <div style={{ width: "100%", height: wrapH }}>
+          <ResponsiveContainer>
+            {variant === "area" ? (
+              <AreaChart data={data} margin={{ top: 16, right: 20, left: 8, bottom: 4 }}>
+                <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
+                <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
+                <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={yTickFormatter} domain={isPercent ? [0, 100] : undefined} />
+                <Tooltip content={tooltip} wrapperStyle={{ zIndex: 9999 }} />
+                {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
+                {series.map((s) => (
+                  <Area key={s.key} type="monotone" dataKey={s.key} name={s.label} stackId="1" stroke={s.color} fill={s.color} fillOpacity={0.75} isAnimationActive={animate} animationDuration={600} animationEasing="ease-out" />
+                ))}
+                {refs}
+                {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
+              </AreaChart>
+            ) : (
+              <BarChart data={data} margin={{ top: 16, right: 20, left: 8, bottom: 4 }}>
+                <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
+                <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
+                <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={yTickFormatter} domain={isPercent ? [0, 100] : undefined} />
+                <Tooltip content={tooltip} wrapperStyle={{ zIndex: 9999 }} />
+                {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
+                {series.map((s) => (
+                  <Bar key={s.key} dataKey={s.key} name={s.label} stackId="1" fill={s.color} stroke={CHART_CHROME.surface} strokeWidth={2} maxBarSize={48} isAnimationActive={animate} animationDuration={400} animationEasing="ease-out">
+                    {partialIndex !== undefined &&
+                      data.map((_, i) => <Cell key={i} fillOpacity={i === partialIndex ? 0.4 : 1} />)}
+                  </Bar>
+                ))}
+                {refs}
+                {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
+              </BarChart>
+            )}
+          </ResponsiveContainer>
+        </div>
+        {xTitle && (
+          <p style={{ fontSize: 12, fontWeight: 600, color: CHART_INK.muted, textAlign: "center", marginTop: 2 }}>
+            {xTitle}
+          </p>
         )}
-      </ResponsiveContainer>
-    </div>
-    {xTitle && (
-      <p style={{ fontSize: 12, fontWeight: 600, color: CHART_INK.muted, textAlign: "center", marginTop: 2 }}>
-        {xTitle}
-      </p>
-    )}
+      </div>
     </div>
   );
 }

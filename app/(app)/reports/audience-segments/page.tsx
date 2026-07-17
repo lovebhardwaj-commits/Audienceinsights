@@ -15,7 +15,6 @@ import { ReportSummary } from "@/components/ui/ReportSummary";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
-import { HowToRead } from "@/components/ui/HowToRead";
 import { SEGMENT_COLORS, SEGMENT_LABELS, MIN_USEFUL_MONTHS } from "@/lib/constants";
 import { ReachIcon, SpendIcon, TrendUpIcon, PercentIcon } from "@/components/ui/KpiIcons";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
@@ -199,17 +198,7 @@ export default function AudienceSegmentsPage() {
       </div>
 
       {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
-      <HowToRead
-        items={[
-          { label: "New Audience", text: "people who've never interacted with your brand — pure prospecting." },
-          { label: "Engaged", text: "people who interacted (visited your site, watched a video) but haven't bought yet." },
-          { label: "Existing Customers", text: "people already on your customer list or who have purchased." },
-          { label: "CPMR", text: "cost to reach 1,000 people in a segment. A rising New CPMR means prospecting is getting more expensive." },
-          { label: "The charts", text: "the stacked bars show where each week's budget actually went; the lines below track what reaching each segment costs over time." },
-        ]}
-      />
-
-      <div className="mt-3 flex rounded-md border border-slate-200 bg-white p-0.5 w-fit">
+<div className="mt-3 flex rounded-md border border-slate-200 bg-white p-0.5 w-fit">
         {VIEW_LEVELS.map((l) => (
           <button
             key={l.key}

@@ -11,7 +11,6 @@ import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { FindingsStrip } from "@/components/ui/FindingsStrip";
 import { frequencyFindings } from "@/lib/findings";
-import { HowToRead } from "@/components/ui/HowToRead";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { formatShortDate, formatEntityLabels } from "@/lib/format";
 import { lastNMonths } from "@/lib/dates";
@@ -130,16 +129,7 @@ export default function FrequencyPage() {
         <DateRangePicker value={range} onChange={setRange} />
       </div>
 
-      <HowToRead
-        items={[
-          { label: "Frequency", text: "average times a person saw a campaign's ads in that week. Above 3 means you're paying to repeat yourself." },
-          { label: "Color scale", text: "blue = healthy (≤2×), amber = caution (3–4×), red = overexposed (5×+)." },
-          { label: "Empty cell", text: "campaign wasn't running that week." },
-          { label: "Reading the grid", text: "scan across a row to spot campaigns that stay red week after week — those are your fatigue risks." },
-        ]}
-      />
-
-      {loading && <FetchingState />}
+{loading && <FetchingState />}
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 
       {range && (

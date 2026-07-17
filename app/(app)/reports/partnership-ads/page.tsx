@@ -12,7 +12,6 @@ import { HorizontalBar } from "@/components/charts/HorizontalBar";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
-import { HowToRead } from "@/components/ui/HowToRead";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import { SEGMENT_COLORS } from "@/lib/constants";
@@ -373,19 +372,7 @@ export default function PartnershipAdsPage() {
       </div>
 
       {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
-      <HowToRead
-        items={[
-          { label: "Partnership ad", text: "an ad run through Meta's branded content tools with a creator — detected automatically from the ad's creative." },
-          { label: "Creator", text: "parsed from your ad naming convention (ifs_creator_ife). Ads that don't match show as \"Unknown\"." },
-          { label: "New Purchase %", text: "of the purchases a creator drove, the share that came from brand-new customers — the leaderboard's ranking metric." },
-          { label: "New CPA", text: "what one new customer costs via this creator. Green = cheaper than your creator average, red = 1.5× above it." },
-          { label: "Incremental Reach", text: "people this group reaches that no other campaign in the account touches — the truest measure of audience expansion, since high New Audience % can still mean your normal ads already reach those same people." },
-          { label: "Audience Overlap", text: "people seeing both partnership and normal ads — high overlap means you may be paying twice to reach the same person." },
-          { label: "The trend chart", text: "solid blue = partnership ads' new-audience share each week; dashed gray = normal ads. A persistent gap means creators genuinely expand your audience." },
-        ]}
-      />
-
-      {loading && <FetchingState reportWeight="heavy" />}
+{loading && <FetchingState reportWeight="heavy" />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 

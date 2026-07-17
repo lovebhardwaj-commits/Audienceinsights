@@ -38,11 +38,9 @@ export function FindingsStrip({ findings, loading = false }: { findings: Finding
             </div>
             <div className="mt-1.5 text-sm font-semibold text-ink">{f.headline}</div>
             <div className="mt-1 text-xs leading-relaxed text-ink-secondary">{f.detail}</div>
-            <div className="mt-2 flex items-start gap-1.5 text-xs font-medium text-ink">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-ink-tertiary">
-                <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-              </svg>
-              <span>{f.action}</span>
+            <div className="mt-2 text-xs text-ink-secondary leading-relaxed">
+              <span className="font-medium text-ink-tertiary mr-1">→</span>
+              {f.action}
             </div>
           </div>
         );

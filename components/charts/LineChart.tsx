@@ -39,52 +39,61 @@ export function LineChart({ data, xKey, lines = [], bars = [], height = 360, val
   const showBrush = brush ?? data.length > 12;
   const titleColor = (lines[0] ?? bars[0])?.color ?? CHART_INK.secondary;
   return (
-    <div>
-    <div style={{ width: "100%", height: showBrush ? height + 40 : height }}>
-      <ResponsiveContainer>
-        <ComposedChart data={data} margin={{ top: 16, right: 24, left: 8, bottom: 4 }}>
-          <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
-          <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
-          <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={tickFormatterFor(valueFormat)} />
-          <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} />} wrapperStyle={{ zIndex: 9999 }} />
-          {seriesCount > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
-          {bars.map((s) => (
-            <Bar key={s.key} dataKey={s.key} name={s.label} fill={s.color} radius={[4, 4, 0, 0]} maxBarSize={40} isAnimationActive={animate} animationDuration={400} animationEasing="ease-out" />
-          ))}
-          {lines.map((s) => (
-            <Line
-              key={s.key}
-              type="monotone"
-              dataKey={s.key}
-              name={s.label}
-              stroke={s.color}
-              strokeWidth={2}
-              dot={false}
-              activeDot={{ r: 5, strokeWidth: 2, stroke: "#fff" }}
-              isAnimationActive={animate}
-              animationDuration={600}
-              animationEasing="ease-out"
-            />
-          ))}
-          {referenceLines?.map((rl, i) => (
-            <ReferenceLine
-              key={i}
-              y={rl.y}
-              stroke={rl.color ?? "#94a3b8"}
-              strokeDasharray="5 3"
-              strokeWidth={1.5}
-              label={rl.label ? { value: rl.label, position: "insideTopRight", fontSize: 11, fill: rl.color ?? "#94a3b8" } : undefined}
-            />
-          ))}
-          {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
-        </ComposedChart>
-      </ResponsiveContainer>
-    </div>
-    {xTitle && (
-      <p style={{ fontSize: 12, fontWeight: 600, color: CHART_INK.muted, textAlign: "center", marginTop: 2 }}>
-        {xTitle}
-      </p>
-    )}
+    <div style={{ display: "flex", alignItems: "stretch" }}>
+      {yTitle && (
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 18, flexShrink: 0 }}>
+          <p style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontSize: 11, fontWeight: 600, color: titleColor, whiteSpace: "nowrap", margin: 0 }}>
+            {yTitle}
+          </p>
+        </div>
+      )}
+      <div style={{ flex: 1 }}>
+        <div style={{ width: "100%", height: showBrush ? height + 40 : height }}>
+          <ResponsiveContainer>
+            <ComposedChart data={data} margin={{ top: 16, right: 24, left: 8, bottom: 4 }}>
+              <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
+              <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
+              <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={tickFormatterFor(valueFormat)} />
+              <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} />} wrapperStyle={{ zIndex: 9999 }} />
+              {seriesCount > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
+              {bars.map((s) => (
+                <Bar key={s.key} dataKey={s.key} name={s.label} fill={s.color} radius={[4, 4, 0, 0]} maxBarSize={40} isAnimationActive={animate} animationDuration={400} animationEasing="ease-out" />
+              ))}
+              {lines.map((s) => (
+                <Line
+                  key={s.key}
+                  type="monotone"
+                  dataKey={s.key}
+                  name={s.label}
+                  stroke={s.color}
+                  strokeWidth={2}
+                  dot={false}
+                  activeDot={{ r: 5, strokeWidth: 2, stroke: "#fff" }}
+                  isAnimationActive={animate}
+                  animationDuration={600}
+                  animationEasing="ease-out"
+                />
+              ))}
+              {referenceLines?.map((rl, i) => (
+                <ReferenceLine
+                  key={i}
+                  y={rl.y}
+                  stroke={rl.color ?? "#94a3b8"}
+                  strokeDasharray="5 3"
+                  strokeWidth={1.5}
+                  label={rl.label ? { value: rl.label, position: "insideTopRight", fontSize: 11, fill: rl.color ?? "#94a3b8" } : undefined}
+                />
+              ))}
+              {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />}
+            </ComposedChart>
+          </ResponsiveContainer>
+        </div>
+        {xTitle && (
+          <p style={{ fontSize: 12, fontWeight: 600, color: CHART_INK.muted, textAlign: "center", marginTop: 2 }}>
+            {xTitle}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

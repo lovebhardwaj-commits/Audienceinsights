@@ -12,7 +12,6 @@ import { SummaryCard } from "@/components/ui/SummaryCard";
 import { ReportSummary } from "@/components/ui/ReportSummary";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
-import { HowToRead } from "@/components/ui/HowToRead";
 import Link from "next/link";
 import { formatCompactNumber, formatCurrency, formatNumber, formatPercent } from "@/lib/format";
 import { creativeSegmentInsights } from "@/lib/insights";
@@ -112,17 +111,7 @@ export default function CreativeSegmentsPage() {
       </div>
 
       {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
-      <HowToRead
-        items={[
-          { label: "The tabs", text: "the same analysis at three zoom levels — whole campaigns, individual adsets, or single ads." },
-          { label: "New Reach %", text: "how much of this entity's audience is genuinely new people. Above 70% = a true prospecting workhorse." },
-          { label: "New Purchase %", text: "of all purchases this entity drove, the share that came from brand-new customers rather than repeat buyers." },
-          { label: "New CPA", text: "what one new customer costs from this entity — compare it against your product margin." },
-          { label: "The chart", text: "each bar is 100% of one entity's reach, split into new (blue), engaged (amber), and existing (green), sorted best prospectors first." },
-        ]}
-      />
-
-      <div className="mt-3">
+<div className="mt-3">
         <div className="flex rounded-md border border-slate-200 bg-white p-0.5 w-fit">
           {LEVELS.map((l) => (
             <button

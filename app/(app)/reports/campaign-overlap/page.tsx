@@ -6,14 +6,12 @@ import { useDateRange } from "@/components/providers/DateRangeProvider";
 import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
-import { ProgressIndicator } from "@/components/ui/ProgressIndicator";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { HorizontalBar } from "@/components/charts/HorizontalBar";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
-import { HowToRead } from "@/components/ui/HowToRead";
 import { FindingsStrip } from "@/components/ui/FindingsStrip";
 import { overlapFindings } from "@/lib/findings";
 import { ReachIcon, SpendIcon, CountIcon } from "@/components/ui/KpiIcons";
@@ -61,13 +59,11 @@ export default function CampaignOverlapPage() {
   const [topN, setTopN] = useState(15);
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
-  const { loading, isInitialLoad, progress, data, error, errorCode, partials, fetchedAt, run, cancel } = useStreamingReport<CampaignOverlapReport>();
+  const { loading, isInitialLoad, data, fetchedAt, run } = useStreamingReport<CampaignOverlapReport>();
 
-  // D2 — render entities as they stream in. Until "done" arrives, `data` is null and we
-  // read the accumulated partials; after done, the full sorted list wins.
   const liveEntities: OverlapEntityRow[] = useMemo(
-    () => data?.entities ?? (partials as OverlapEntityRow[]),
-    [data, partials]
+    () => data?.entities ?? [],
+    [data]
   );
   const hasRows = liveEntities.length > 0;
 
@@ -161,18 +157,7 @@ export default function CampaignOverlapPage() {
         <DateRangePicker value={range} onChange={setRange} />
       </div>
 
-      {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
-      <HowToRead
-        items={[
-          { label: "Incremental Reach", text: "people only this campaign reaches — pause it and they're gone from your funnel." },
-          { label: "Incremental Reach %", text: "what share of this campaign's audience is truly unique. High = reaching its own audience; low = mostly competing with your other campaigns for the same people." },
-          { label: "Acct Reach W/O Campaign", text: "what your total account reach would be if this campaign didn't exist." },
-          { label: "Sum of All Reaches vs Total Account Reach", text: "the gap between them is audience counted twice across campaigns — your overlap, made visible." },
-          { label: "The chart", text: "blue is audience unique to that campaign; orange is audience it shares with the rest of the account." },
-        ]}
-      />
-
-      <div className="mt-3 flex flex-wrap items-center gap-3">
+<div className="mt-3 flex flex-wrap items-center gap-3">
         <div className="flex rounded-md border border-slate-200 bg-white p-0.5">
           {LEVELS.map((l) => (
             <button
@@ -206,12 +191,7 @@ export default function CampaignOverlapPage() {
         </p>
       )}
 
-      {loading && !progress && <FetchingState reportWeight="heavy" />}
-      {loading && progress && (
-        <div className="mt-4">
-          <ProgressIndicator current={progress.current} total={progress.total} label={progress.label} onCancel={cancel} />
-        </div>
-      )}
+      {loading && <FetchingState reportWeight="heavy" />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 

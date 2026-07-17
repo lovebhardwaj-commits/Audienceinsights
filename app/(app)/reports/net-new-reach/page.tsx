@@ -6,7 +6,6 @@ import { useDateRange } from "@/components/providers/DateRangeProvider";
 import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
-import { ProgressIndicator } from "@/components/ui/ProgressIndicator";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { DualAxisChart } from "@/components/charts/DualAxisChart";
@@ -15,11 +14,9 @@ import { netNewFindings } from "@/lib/findings";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
-import { HowToRead } from "@/components/ui/HowToRead";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatPercent } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNMonths } from "@/lib/dates";
-import { MIN_USEFUL_MONTHS } from "@/lib/constants";
 import type { DateRange } from "@/lib/types";
 import type { RollingReachReport } from "@/lib/reports/rolling-reach";
 import type { NetNewReachReport } from "@/lib/reports/net-new-reach";
@@ -45,13 +42,11 @@ const LOOKBACK_OPTIONS = [90, 180, 365];
 export default function NetNewReachPage() {
   const { selectedAccountId } = useAccount();
   const { range, setRange, applyInitialMonths } = useDateRange();
-  // Expanding window is trend-heavy; defaults to 3 months so the chart has enough shape.
-  // Sliding window defaults to 1 month matching other reports.
-  const [mode, setMode] = useState<WindowMode>("expanding");
+  const [mode, setMode] = useState<WindowMode>("sliding");
   useEffect(() => {
-    applyInitialMonths(mode === "expanding" ? 3 : 1);
-  }, [applyInitialMonths, mode]);
-  const [lookbackDays, setLookbackDays] = useState(180);
+    applyInitialMonths(1);
+  }, [applyInitialMonths]);
+  const [lookbackDays, setLookbackDays] = useState(90);
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
 
@@ -154,19 +149,7 @@ export default function NetNewReachPage() {
         <DateRangePicker value={range} onChange={setRange} />
       </div>
 
-      {/* [PM ENHANCEMENT] — plain-language explainer so every metric is understandable */}
-      <HowToRead
-        items={[
-          { label: "Net New Reach", text: "people who saw your ads this month but hadn't seen them before." },
-          { label: "Expanding Window", text: "compares each month against everyone reached since the start of your selected period — answers \"how much fresh audience is left overall?\"" },
-          { label: "Sliding Window", text: "compares each month against only the last 90/180/365 days — answers \"am I still finding fresh people lately?\"" },
-          { label: "Monthly Reach", text: "unique people reached within that month alone." },
-          { label: "Frequency", text: "average number of times each person saw your ads that month. Above ~3–4, you're paying to repeat yourself." },
-          { label: "Cost / 1K Net New", text: "what you pay to put ads in front of 1,000 brand-new people. A rising line means audience fatigue." },
-        ]}
-      />
-
-      <div className="mt-3 flex flex-wrap items-center gap-3">
+<div className="mt-3 flex flex-wrap items-center gap-3">
         <div className="flex rounded-md border border-slate-200 bg-white p-0.5">
           {(["expanding", "sliding"] as WindowMode[]).map((m) => (
             <button
@@ -195,24 +178,18 @@ export default function NetNewReachPage() {
         )}
       </div>
 
-      {active.loading && !active.progress && <FetchingState reportWeight="heavy" />}
-      {active.loading && active.progress && (
-        <div className="mt-4">
-          <ProgressIndicator current={active.progress.current} total={active.progress.total} label={active.progress.label} />
-        </div>
-      )}
+      {active.loading && <FetchingState reportWeight="heavy" />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 
-      {range && (
+      {range && !active.loading && (
       <div className="animate-fade-in">
-      <div className={`mt-4 grid grid-cols-1 gap-3 transition-opacity duration-200 sm:grid-cols-2 lg:grid-cols-4 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <SummaryCard
           label={mode === "expanding" ? "Total Rolling Reach" : "Latest Window Reach"}
           value={totalReach !== undefined ? formatCompactNumber(totalReach) : "—"}
           title={totalReach !== undefined ? String(totalReach.toLocaleString()) : undefined}
           help={mode === "expanding" ? GLOSSARY.cumulativeReach : GLOSSARY.reach}
-          loading={active.isInitialLoad}
           sparkline={rows.map((r) => r.windowReach)}
           sparklineColor="var(--color-metric-new)"
         />
@@ -221,14 +198,12 @@ export default function NetNewReachPage() {
           value={totalSpend !== undefined ? formatCurrencyCompact(totalSpend) : "—"}
           title={totalSpend !== undefined ? formatCurrency(totalSpend) : undefined}
           help={GLOSSARY.spend}
-          loading={active.isInitialLoad}
           sparkline={rows.map((r) => r.spend)}
         />
         <SummaryCard
           label="Latest Net New %"
           value={latestNetNewPct !== undefined ? formatPercent(latestNetNewPct) : "—"}
           help={GLOSSARY.netNewPct}
-          loading={active.isInitialLoad}
           sparkline={rows.map((r) => r.netNewPct)}
           sparklineColor="var(--color-metric-new)"
         />
@@ -237,65 +212,56 @@ export default function NetNewReachPage() {
           value={avgCostPer1kNetNew !== undefined ? formatCurrencyCompact(avgCostPer1kNetNew) : "—"}
           title={avgCostPer1kNetNew !== undefined ? formatCurrency(avgCostPer1kNetNew) : undefined}
           help={GLOSSARY.costPer1kNetNew}
-          loading={active.isInitialLoad}
           sparkline={rows.map((r) => r.costPer1kNetNew)}
           sparklineColor="var(--color-metric-repeat)"
         />
       </div>
 
-      <div className={`mt-4 transition-opacity duration-200 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
-        <FindingsStrip findings={findingsList} loading={active.isInitialLoad} />
+      <div className="mt-4">
+        <FindingsStrip findings={findingsList} />
       </div>
 
-      <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+      <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
         <h2 className="text-sm font-semibold text-slate-800">Reach composition analysis</h2>
         <p className="mb-4 mt-0.5 text-xs text-slate-400">
           {mode === "expanding"
             ? "Each month's reach split into net new people vs. people already reached before — the line tracks % net new."
             : `Each month's reach split into people new vs. anyone reached in the prior ${lookbackDays} days — the line tracks % net new.`}
         </p>
-        {active.isInitialLoad ? (
-          <ChartSkeleton />
-        ) : (
-          <DualAxisChart
-            data={compositionData}
-            xKey="month"
-            bars={[
-              { key: "repeatReach", label: "Reached Previously", color: "var(--color-metric-repeat)" },
-              { key: "netNewReach", label: "Net New Reach", color: "var(--color-metric-new)" },
-            ]}
-            lines={[{ key: "netNewPct", label: "% Net New", color: "#eda100" }]}
-            barFormat="compact"
-            lineFormat="percent"
-            xTitle="Month"
-            yTitle="Reach (people)"
-            yRightTitle="% Net New"
-          />
-        )}
+        <DualAxisChart
+          data={compositionData}
+          xKey="month"
+          bars={[
+            { key: "repeatReach", label: "Reached Previously", color: "var(--color-metric-repeat)" },
+            { key: "netNewReach", label: "Net New Reach", color: "var(--color-metric-new)" },
+          ]}
+          lines={[{ key: "netNewPct", label: "% Net New", color: "#eda100" }]}
+          barFormat="compact"
+          lineFormat="percent"
+          xTitle="Month"
+          yTitle="Reach (people)"
+          yRightTitle="% Net New"
+        />
       </div>
 
-      <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+      <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
         <h2 className="text-sm font-semibold text-slate-800">Cost per 1K net new reach</h2>
         <p className="mb-4 mt-0.5 text-xs text-slate-400">Monthly spend vs. cost per thousand new people reached — a rising line means you&apos;re paying more for fresh audience.</p>
-        {active.isInitialLoad ? (
-          <ChartSkeleton />
-        ) : (
-          <DualAxisChart
-            data={costData}
-            xKey="month"
-            bars={[{ key: "spend", label: "Spend", color: "#94a3b8" }]}
-            lines={[{ key: "costPer1kNetNew", label: "Cost / 1K Net New", color: "#4a3aa7" }]}
-            barFormat="currencyCompact"
-            lineFormat="currency"
-            xTitle="Month"
-            yTitle="Spend (₹)"
-            yRightTitle="Cost / 1K (₹)"
-          />
-        )}
+        <DualAxisChart
+          data={costData}
+          xKey="month"
+          bars={[{ key: "spend", label: "Spend", color: "#94a3b8" }]}
+          lines={[{ key: "costPer1kNetNew", label: "Cost / 1K Net New", color: "#4a3aa7" }]}
+          barFormat="currencyCompact"
+          lineFormat="currency"
+          xTitle="Month"
+          yTitle="Spend (₹)"
+          yRightTitle="Cost / 1K (₹)"
+        />
       </div>
 
       <div className="mt-6">
-        <DataTable columns={columns} rows={rows} loading={active.isInitialLoad} filename="net-new-reach" defaultSortKey="label" defaultSortDir="asc" />
+        <DataTable columns={columns} rows={rows} filename="net-new-reach" defaultSortKey="label" defaultSortDir="asc" />
       </div>
       </div>
       )}

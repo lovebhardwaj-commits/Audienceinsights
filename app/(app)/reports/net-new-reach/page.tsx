@@ -15,7 +15,6 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { HowToRead } from "@/components/ui/HowToRead";
-import { LineChart } from "@/components/charts/LineChart";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatPercent } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNMonths } from "@/lib/dates";
@@ -191,7 +190,7 @@ export default function NetNewReachPage() {
         )}
       </div>
 
-      {active.loading && <FetchingState reportWeight="heavy" />}
+      {active.loading && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 
@@ -259,14 +258,17 @@ export default function NetNewReachPage() {
 
       <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
         <h2 className="text-sm font-semibold text-slate-800">Cost per 1K net new reach</h2>
-        <p className="mb-4 mt-0.5 text-xs text-slate-400">Cost per thousand new people reached each month — a rising trend means audience fatigue.</p>
-        <LineChart
+        <p className="mb-4 mt-0.5 text-xs text-slate-400">Monthly spend vs. cost per thousand new people reached — a rising line means you&apos;re paying more for fresh audience.</p>
+        <DualAxisChart
           data={costData}
           xKey="month"
+          bars={[{ key: "spend", label: "Spend", color: "#94a3b8" }]}
           lines={[{ key: "costPer1kNetNew", label: "Cost / 1K Net New", color: "#4a3aa7" }]}
-          valueFormat="currency"
+          barFormat="currencyCompact"
+          lineFormat="currency"
           xTitle="Month"
-          yTitle="Cost (₹)"
+          yTitle="Spend (₹)"
+          yRightTitle="Cost / 1K (₹)"
         />
       </div>
 

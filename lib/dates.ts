@@ -85,6 +85,22 @@ export function expandingWeeklyWindows(since: string, until: string): WeekWindow
   return windows;
 }
 
+/** Inclusive day count between two ISO dates. */
+export function daysInclusive(since: string, until: string): number {
+  return Math.round((parseISODate(until).getTime() - parseISODate(since).getTime()) / 86_400_000) + 1;
+}
+
+/** A weekly bucket is partial when it spans fewer than 7 days — the trailing bucket
+ *  of a time_increment=7 series when the range end lands mid-week (D6). */
+export function isPartialWeek(since: string, until: string): boolean {
+  return daysInclusive(since, until) < 7;
+}
+
+/** True when `until` falls inside the calendar month it names (month still in flight). */
+export function isPartialMonth(monthStart: string, monthEnd: string): boolean {
+  return monthEnd !== endOfMonth(monthStart);
+}
+
 export function lastNDays(n: number): DateRange {
   const until = toISODate(new Date());
   const since = addDays(until, -n);

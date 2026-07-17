@@ -4,12 +4,7 @@ import { useRouter } from "next/navigation";
 import { AccountSelector } from "./AccountSelector";
 import { useAccount } from "@/components/providers/AccountProvider";
 
-interface TopBarProps {
-  onToggleSidebar?: () => void;
-  sidebarCollapsed?: boolean;
-}
-
-export function TopBar({ onToggleSidebar, sidebarCollapsed }: TopBarProps) {
+export function TopBar() {
   const router = useRouter();
   const { tokenExpiringSoon } = useAccount();
 
@@ -20,7 +15,8 @@ export function TopBar({ onToggleSidebar, sidebarCollapsed }: TopBarProps) {
   }
 
   return (
-    <div className="border-b border-slate-200/80 bg-white">
+    // Sticky so it never scrolls away (Part 1).
+    <div className="sticky top-0 z-20 border-b border-hairline bg-surface-card">
       {tokenExpiringSoon && (
         <div className="flex items-center justify-center gap-3 bg-amber-50 px-4 py-2 text-sm">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b45309" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -29,7 +25,7 @@ export function TopBar({ onToggleSidebar, sidebarCollapsed }: TopBarProps) {
           </svg>
           <span className="font-medium text-amber-800">Your session expires soon.</span>
           <a
-            href="/api/auth/login"
+            href={`/api/auth/login?returnTo=${encodeURIComponent(typeof window !== "undefined" ? window.location.pathname + window.location.search : "/dashboard")}`}
             className="rounded-md bg-amber-600 px-3 py-1 text-xs font-semibold text-white transition-colors hover:bg-amber-700"
           >
             Re-authenticate
@@ -38,30 +34,16 @@ export function TopBar({ onToggleSidebar, sidebarCollapsed }: TopBarProps) {
       )}
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-3">
-          {/* Sidebar toggle — always visible, prominent */}
-          {onToggleSidebar && (
-            <button
-              onClick={onToggleSidebar}
-              title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 shadow-sm transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600"
-            >
-              {sidebarCollapsed ? (
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/>
-                </svg>
-              ) : (
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/>
-                </svg>
-              )}
-            </button>
-          )}
+          {/* Connection dot — the app is live from Meta with no database (Part 1). */}
+          <span className="flex items-center gap-1.5 text-[11px] font-medium text-ink-tertiary" title="Connected to Meta">
+            <span className="h-1.5 w-1.5 rounded-full bg-sev-good" />
+          </span>
           <AccountSelector />
         </div>
         {/* [PM ENHANCEMENT] — destructive action signals red on hover, not neutral gray */}
         <button
           onClick={handleLogout}
-          className="rounded-lg border border-slate-200 px-3.5 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+          className="rounded-lg border border-hairline px-3.5 py-1.5 text-sm font-medium text-ink-secondary transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600"
         >
           Log out
         </button>

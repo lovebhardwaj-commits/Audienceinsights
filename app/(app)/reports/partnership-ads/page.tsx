@@ -12,12 +12,14 @@ import { HorizontalBar } from "@/components/charts/HorizontalBar";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { ErrorBanner } from "@/components/ui/ErrorBanner";
+import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import { SEGMENT_COLORS } from "@/lib/constants";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
+import { lastNMonths } from "@/lib/dates";
 import type { DateRange } from "@/lib/types";
 import type { CreatorRow, GroupMetrics, PartnershipAdRow, PartnershipReport } from "@/lib/reports/partnership-ads";
 
@@ -115,7 +117,7 @@ function GroupCard({ title, group, loading, accent }: {
 function IncrementalReachCard({ report, loading }: { report: PartnershipReport | undefined; loading: boolean }) {
   if (loading || !report) {
     return (
-      <div className="mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm">
+      <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
         <Skeleton className="h-4 w-48" />
         <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Skeleton className="h-32 w-full" />
@@ -132,7 +134,7 @@ function IncrementalReachCard({ report, loading }: { report: PartnershipReport |
   ];
 
   return (
-    <div className="mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm">
+    <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
       <h2 className="text-sm font-semibold text-slate-800">Incremental Reach Comparison</h2>
       <p className="mt-1 text-[13px] text-slate-500">
         Total Account Reach: <span className="font-bold text-slate-900">{formatCompactNumber(report.totalAccountReach)}</span>
@@ -223,7 +225,7 @@ export default function PartnershipAdsPage() {
   const [retryKey, setRetryKey] = useState(0);
   // [PM ENHANCEMENT] — chart animations respect the OS reduced-motion setting
   const animate = !useReducedMotion();
-  const { loading, isInitialLoad, data, error, run } = useJsonReport<{ data: PartnershipReport }>();
+  const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: PartnershipReport }>();
 
   useEffect(() => {
     if (!selectedAccountId || !range) return;
@@ -366,6 +368,7 @@ export default function PartnershipAdsPage() {
         <div>
           <h1 className="text-lg font-bold text-slate-900">Partnership Ads</h1>
           <p className="mt-1 text-sm text-slate-500">Compare creator partnership ads vs normal ads on new audience reach and customer acquisition.</p>
+          <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
         </div>
         <DateRangePicker value={range} onChange={setRange} />
       </div>
@@ -383,8 +386,10 @@ export default function PartnershipAdsPage() {
         ]}
       />
 
-      {error && <ErrorBanner message={error} onRetry={() => setRetryKey((k) => k + 1)} />}
-      {loading && <FetchingState />}
+      {error && (
+        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
+      )}
+      {loading && <FetchingState reportWeight="heavy" />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 
@@ -447,7 +452,7 @@ export default function PartnershipAdsPage() {
 
           {/* Section 3 — Audience composition */}
           {!noPartnershipAds && (
-            <div className="mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm">
+            <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
               <h2 className="text-sm font-semibold text-slate-800">Audience Composition</h2>
               <p className="mt-0.5 text-xs text-slate-400">How reach and purchases split across audience segments.</p>
               {isInitialLoad ? (
@@ -483,7 +488,7 @@ export default function PartnershipAdsPage() {
 
           {/* Section 4 — Weekly trend */}
           {!noPartnershipAds && (
-            <div className="mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm">
+            <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
               <h2 className="text-sm font-semibold text-slate-800">New Audience % — Weekly Trend</h2>
               <p className="mb-4 mt-0.5 text-xs text-slate-400">Partnership vs normal ads: what share of weekly reach is new people.</p>
               {isInitialLoad ? (

@@ -11,17 +11,54 @@
   --color-brand-600: #2563eb;
   --color-brand-700: #1d4ed8;
   --color-brand-900: #1e3a5f;
+
+  /* Editorial-analytics surface + ink scale (Part 2.1) — expose the tokens as
+     Tailwind colors so components use bg-surface-*, border-hairline, text-ink-*. */
+  --color-surface-app: var(--surface-app);
+  --color-surface-card: var(--surface-card);
+  --color-hairline: var(--border-hairline);
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-tertiary: var(--ink-tertiary);
+
+  /* Severity scale (Part 2.2) — foreground + tinted background pairs. */
+  --color-sev-good: #0ca30c;
+  --color-sev-good-bg: #f0faf0;
+  --color-sev-warning: #fab219;
+  --color-sev-warning-bg: #fdf6e3;
+  --color-sev-serious: #ec835a;
+  --color-sev-serious-bg: #fdf0ea;
+  --color-sev-critical: #d03b3b;
+  --color-sev-critical-bg: #fbebeb;
+
+  /* The two recurring metric identities (Part 2.2). */
+  --color-metric-new: #2563eb;    /* New / Unique / Incremental */
+  --color-metric-repeat: #ea580c; /* Repeat / Overlap / Known */
 }
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --surface-app: #fafaf8;
+  --surface-card: #ffffff;
+  --border-hairline: #e7e5e0;
+  --ink: #1c1b18;
+  --ink-secondary: #6e6a61;
+  --ink-tertiary: #9c978c;
+
+  --background: var(--surface-app);
+  --foreground: var(--ink);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Instrument, not brochure (Part 2.3): every numeral in the product renders with
+   tabular figures. Mono is applied per-element via .font-mono where the spec calls
+   for it (KPI values, axis ticks); tabular alignment is global. */
+:root {
+  font-variant-numeric: tabular-nums;
 }
 
 ::selection {

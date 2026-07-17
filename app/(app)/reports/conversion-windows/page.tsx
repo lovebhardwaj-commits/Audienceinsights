@@ -7,28 +7,30 @@ import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
+import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { SummaryCard } from "@/components/ui/SummaryCard";
-import { ReportSummary } from "@/components/ui/ReportSummary";
+import { FindingsStrip } from "@/components/ui/FindingsStrip";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
 import { DualAxisChart } from "@/components/charts/DualAxisChart";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
-import { ChartBarIcon, ClockSmallIcon, TrendUpIcon } from "@/components/ui/KpiIcons";
 import { formatCurrency, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { percent } from "@/lib/calculations";
-import { conversionWindowInsights } from "@/lib/insights";
+import { conversionFindings } from "@/lib/findings";
 import { GLOSSARY } from "@/lib/glossary";
-import { lastNDays } from "@/lib/dates";
+import { lastNDays, lastNMonths } from "@/lib/dates";
+import { MIN_USEFUL_MONTHS } from "@/lib/constants";
 import type { DateRange } from "@/lib/types";
 import type { ConversionWindowWeekRow, ConversionWindowsReport } from "@/lib/reports/conversion-windows";
 
 export default function ConversionWindowsPage() {
   const { selectedAccountId } = useAccount();
-  const { range, setRange } = useDateRange();
+  const { range, setRange, applyInitialMonths } = useDateRange();
+  useEffect(() => { applyInitialMonths(MIN_USEFUL_MONTHS["conversion-windows"]); }, [applyInitialMonths]);
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
-  const { loading, isInitialLoad, data, error, run } = useJsonReport<{ data: ConversionWindowsReport }>();
+  const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: ConversionWindowsReport }>();
 
   useEffect(() => {
     if (!selectedAccountId || !range) return;
@@ -39,7 +41,7 @@ export default function ConversionWindowsPage() {
   const report = data?.data;
 
   const columns: DataTableColumn<ConversionWindowWeekRow>[] = [
-    { key: "weekStart", header: "Week", accessor: (r) => r.weekStart, render: (r) => formatShortDate(r.weekStart) },
+    { key: "weekStart", header: "Week", accessor: (r) => r.weekStart, render: (r) => r.isPartial ? `${formatShortDate(r.weekStart)} (partial)` : formatShortDate(r.weekStart) },
     { key: "purchases1dc", header: "1DC Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchases1dc, align: "right", render: (r) => formatNumber(r.purchases1dc) },
     { key: "purchases7dc", header: "7DC Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchases7dc, align: "right", render: (r) => formatNumber(r.purchases7dc) },
     { key: "purchases28dc", header: "28DC Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchases28dc, align: "right", render: (r) => formatNumber(r.purchases28dc) },
@@ -49,7 +51,7 @@ export default function ConversionWindowsPage() {
       help: GLOSSARY.upliftRatio,
       accessor: (r) => r.upliftRatio,
       align: "right",
-      cellClass: (r) => r.upliftRatio > 15 ? "text-red-600 font-semibold" : r.upliftRatio > 5 ? "text-amber-600" : "text-green-700",
+      cellClass: (r) => r.isPartial ? "text-slate-400" : r.upliftRatio > 15 ? "text-red-600 font-semibold" : r.upliftRatio > 5 ? "text-amber-600" : "text-green-700",
       render: (r) => formatPercent(r.upliftRatio),
     },
     { key: "sameDayPct", header: "% Same-Day", help: GLOSSARY.sameDayPct, accessor: (r) => r.sameDayPct, align: "right", render: (r) => formatPercent(r.sameDayPct) },
@@ -59,7 +61,7 @@ export default function ConversionWindowsPage() {
   const chartData = useMemo(() => {
     if (!report) return [];
     return report.weeks.map((w) => ({
-      week: formatShortDate(w.weekStart),
+      week: w.isPartial ? `${formatShortDate(w.weekStart)} (partial)` : formatShortDate(w.weekStart),
       within1Day: percent(w.purchases1dc, w.purchases28dc),
       day2to7: percent(w.purchases7dc - w.purchases1dc, w.purchases28dc),
       day8to28: percent(w.purchases28dc - w.purchases7dc, w.purchases28dc),
@@ -67,7 +69,13 @@ export default function ConversionWindowsPage() {
     }));
   }, [report]);
 
-  const insights = useMemo(() => (report ? conversionWindowInsights(report) : []), [report]);
+  const findingsList = useMemo(() => (report ? conversionFindings(report) : []), [report]);
+  // Trailing partial week gets faded in the chart (D6).
+  const partialWeekIndex = useMemo(() => {
+    const weeks = report?.weeks ?? [];
+    const i = weeks.findIndex((w) => w.isPartial);
+    return i >= 0 ? i : undefined;
+  }, [report]);
 
   return (
     <div>
@@ -75,6 +83,7 @@ export default function ConversionWindowsPage() {
         <div>
           <h1 className="text-lg font-bold text-slate-900">Conversion Windows</h1>
           <p className="mt-1 text-sm text-slate-500">Compare 1-day, 7-day, and 28-day attribution to understand how long conversions take.</p>
+          <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
         </div>
         <DateRangePicker value={range} onChange={setRange} />
       </div>
@@ -89,7 +98,9 @@ export default function ConversionWindowsPage() {
         ]}
       />
 
-      {error && <ErrorBanner message={error} onRetry={() => setRetryKey((k) => k + 1)} />}
+      {error && (
+        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
+      )}
       {loading && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
@@ -102,18 +113,12 @@ export default function ConversionWindowsPage() {
               value={report ? formatNumber(report.totalPurchases28dc) : "—"}
               sublabel="within 28 days of click"
               loading={isInitialLoad}
-              icon={<ChartBarIcon />}
-              iconColor="bg-blue-50 text-blue-600"
-              accentColor="border-l-blue-500"
             />
             <SummaryCard
               label="1DC Purchases"
               value={report ? formatNumber(report.totalPurchases1dc) : "—"}
               sublabel="same-day conversions"
               loading={isInitialLoad}
-              icon={<ClockSmallIcon />}
-              iconColor="bg-emerald-50 text-emerald-600"
-              accentColor="border-l-emerald-500"
             />
             <SummaryCard
               label="Uplift Ratio"
@@ -121,15 +126,12 @@ export default function ConversionWindowsPage() {
               sublabel="28DC vs 1DC"
               help={GLOSSARY.upliftRatio}
               loading={isInitialLoad}
-              icon={<TrendUpIcon />}
-              iconColor="bg-violet-50 text-violet-600"
-              accentColor="border-l-violet-500"
             />
           </div>
 
-          <ReportSummary insights={insights} loading={isInitialLoad} />
+          <FindingsStrip findings={findingsList} loading={isInitialLoad} />
 
-          <div className={`mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+          <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
             <h2 className="text-sm font-semibold text-slate-800">Purchases by attribution window</h2>
             <p className="mb-4 mt-0.5 text-xs text-slate-400">Weekly purchase share by how long after the ad click they happened, with the uplift ratio (28DC vs 1DC) overlaid.</p>
             {isInitialLoad ? (
@@ -148,6 +150,10 @@ export default function ConversionWindowsPage() {
                 lineFormat="percent"
                 barDomain={[70, 100]}
                 lineDomain={[0, "auto"]}
+                xTitle="Week starting"
+                yTitle="% of purchases"
+                yRightTitle="Uplift ratio (%)"
+                partialIndex={partialWeekIndex}
               />
             )}
           </div>

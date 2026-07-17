@@ -12,6 +12,10 @@ export async function GET(request: Request) {
   const cookieStore = await cookies();
   const expectedState = cookieStore.get("oauth_state")?.value;
   cookieStore.delete("oauth_state");
+  const returnToRaw = cookieStore.get("oauth_return_to")?.value;
+  cookieStore.delete("oauth_return_to");
+  // Re-validate the stored path (defense in depth against open-redirect).
+  const returnTo = returnToRaw && returnToRaw.startsWith("/") && !returnToRaw.startsWith("//") ? returnToRaw : "/dashboard";
 
   if (errorDescription) {
     return NextResponse.redirect(new URL(`/?error=${encodeURIComponent(errorDescription)}`, request.url));
@@ -30,7 +34,7 @@ export async function GET(request: Request) {
     session.tokenExpiresAt = Date.now() + (longLived.expires_in ?? 60 * 24 * 60 * 60) * 1000;
     await session.save();
 
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+    return NextResponse.redirect(new URL(returnTo, request.url));
   } catch (err) {
     const message = err instanceof Error ? err.message : "Login failed";
     return NextResponse.redirect(new URL(`/?error=${encodeURIComponent(message)}`, request.url));

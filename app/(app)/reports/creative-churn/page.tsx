@@ -2,26 +2,29 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
-import { useJsonReport } from "@/lib/hooks/useJsonReport";
+import { useDateRange } from "@/components/providers/DateRangeProvider";
+import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { SummaryCard } from "@/components/ui/SummaryCard";
-import { SpendIcon, ChartBarIcon, ClockSmallIcon } from "@/components/ui/KpiIcons";
 import { CohortAreaChart } from "@/components/charts/CohortAreaChart";
 import { ReportSummary } from "@/components/ui/ReportSummary";
-import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
+import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
+import { ProgressIndicator } from "@/components/ui/ProgressIndicator";
 import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { creativeChurnInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
-import type { DateRange } from "@/lib/types";
-import { PRE_COHORT_KEY, type CreativeChurnReport } from "@/lib/reports/creative-churn";
+import { lastNMonths, daysInclusive } from "@/lib/dates";
+import { MIN_USEFUL_MONTHS } from "@/lib/constants";
+import { PRE_COHORT_KEY, OTHER_COHORT_KEY, type ChurnGranularity, type CreativeChurnReport } from "@/lib/reports/creative-churn";
 
 // Muted/pastel qualitative palette from the design spec — the gray base layer is
-// reserved for the "Pre-{month}" legacy cohort, monthly cohorts cycle the rest.
+// reserved for the "Pre-{month}" legacy cohort and the folded "Other" bucket.
 const PRE_COHORT_COLOR = "#9CA3A8";
+const OTHER_COHORT_COLOR = "#C4C2BC";
 const COHORT_PALETTE = [
   "#DE7C75", // muted coral
   "#5EB0AC", // teal
@@ -45,21 +48,35 @@ interface CohortTableRow {
 
 export default function CreativeChurnPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useState<DateRange | null>(null);
+  const { range, setRange, applyInitialMonths } = useDateRange();
+  // Auto-load at a weekly 3-month default — the rescue that makes this viable in nav (7.7).
+  useEffect(() => { applyInitialMonths(MIN_USEFUL_MONTHS["creative-churn"]); }, [applyInitialMonths]);
+  const [granularity, setGranularity] = useState<ChurnGranularity>("weekly");
   const [visibleRange, setVisibleRange] = useState<[number, number] | null>(null);
   const [howToOpen, setHowToOpen] = useState(false);
-  // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
-  const { loading, isInitialLoad, data, error, run } = useJsonReport<{ data: CreativeChurnReport }>();
+  const { loading, isInitialLoad, data, error, errorCode, progress, fetchedAt, run, cancel } = useStreamingReport<CreativeChurnReport>();
+
+  // Daily granularity is only safe on short ranges — force weekly beyond ~2 months.
+  const rangeDays = range ? daysInclusive(range.since, range.until) : 0;
+  const dailyAllowed = rangeDays > 0 && rangeDays <= 62;
+  const effectiveGranularity: ChurnGranularity = granularity === "daily" && dailyAllowed ? "daily" : "weekly";
 
   useEffect(() => {
     if (!selectedAccountId || !range) return;
     setVisibleRange(null); // new fetch resets the brush window
-    const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
+    const params = new URLSearchParams({
+      accountId: selectedAccountId,
+      since: range.since,
+      until: range.until,
+      granularity: effectiveGranularity,
+      topN: "8",
+    });
     run(`/api/reports/creative-churn?${params}`);
-  }, [selectedAccountId, range, run, retryKey]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedAccountId, range, effectiveGranularity, retryKey]);
 
-  const report = data?.data;
+  const report = data ?? undefined;
   const insights = useMemo(() => (report ? creativeChurnInsights(report) : []), [report]);
 
   const chartSeries = useMemo(() => {
@@ -68,7 +85,8 @@ export default function CreativeChurnPage() {
     return report.cohorts.map((c) => ({
       key: c.key,
       label: c.label,
-      color: c.key === PRE_COHORT_KEY ? PRE_COHORT_COLOR : COHORT_PALETTE[colorIdx++ % COHORT_PALETTE.length],
+      color:
+        c.key === PRE_COHORT_KEY ? PRE_COHORT_COLOR : c.key === OTHER_COHORT_KEY ? OTHER_COHORT_COLOR : COHORT_PALETTE[colorIdx++ % COHORT_PALETTE.length],
     }));
   }, [report]);
 
@@ -139,14 +157,41 @@ export default function CreativeChurnPage() {
         <div>
           <h1 className="text-lg font-bold text-slate-900">Creative Churn</h1>
           <p className="mt-1 text-sm text-slate-500">How fast new creatives replace old ones in your ad spend.</p>
+          <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
         </div>
         <DateRangePicker value={range} onChange={setRange} />
       </div>
 
-      {error && <ErrorBanner message={error} onRetry={() => setRetryKey((k) => k + 1)} />}
-      {loading && <FetchingState />}
+      {/* Weekly is the safe default; daily unlocks only on ≤2-month ranges (7.7). */}
+      <div className="mt-3 flex items-center gap-2">
+        <div className="flex rounded-md border border-hairline bg-surface-card p-0.5">
+          {(["weekly", "daily"] as ChurnGranularity[]).map((g) => {
+            const disabled = g === "daily" && !dailyAllowed;
+            return (
+              <button
+                key={g}
+                onClick={() => !disabled && setGranularity(g)}
+                disabled={disabled}
+                title={disabled ? "Daily is available on ranges up to 2 months" : undefined}
+                className={`rounded px-3 py-1 text-sm font-medium capitalize transition-colors ${
+                  effectiveGranularity === g ? "bg-slate-900 text-white" : disabled ? "cursor-not-allowed text-ink-tertiary/50" : "text-ink-secondary hover:bg-surface-app"
+                }`}
+              >
+                {g}
+              </button>
+            );
+          })}
+        </div>
+        {!dailyAllowed && <span className="text-[11px] text-ink-tertiary">Daily unlocks on ranges ≤ 2 months</span>}
+      </div>
 
-      {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
+      {error && (
+        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
+      )}
+      {loading && !progress && <FetchingState reportWeight="heavy" />}
+      {loading && progress && (
+        <div className="mt-4"><ProgressIndicator current={progress.current} total={progress.total} label={progress.label} onCancel={cancel} /></div>
+      )}
 
       {range && (
         <div className="animate-fade-in">
@@ -157,27 +202,18 @@ export default function CreativeChurnPage() {
               value={report ? formatCurrencyCompact(report.totalSpend) : "—"}
               title={report ? formatCurrency(report.totalSpend) : undefined}
               loading={isInitialLoad}
-              icon={<SpendIcon />}
-              iconColor="bg-emerald-50 text-emerald-600"
-              accentColor="border-l-emerald-500"
             />
             <SummaryCard
               label="Active Cohorts"
               value={report ? formatNumber(report.cohorts.length) : "—"}
               sublabel="launch months with spend"
               loading={isInitialLoad}
-              icon={<ChartBarIcon />}
-              iconColor="bg-blue-50 text-blue-600"
-              accentColor="border-l-blue-500"
             />
             <SummaryCard
               label="Visible Range"
               value={visibleRangeLabel}
               sublabel="drag the slider to zoom"
               loading={isInitialLoad}
-              icon={<ClockSmallIcon />}
-              iconColor="bg-violet-50 text-violet-600"
-              accentColor="border-l-violet-500"
             />
           </div>
 
@@ -186,7 +222,7 @@ export default function CreativeChurnPage() {
           </div>
 
           {/* Chart card */}
-          <div className={`mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+          <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
             <h2 className="text-base font-bold text-slate-800">Spend by Creative Cohort</h2>
             <p className="mt-0.5 text-xs text-slate-400">Each color represents spend from ads that launched in that month</p>
             {isInitialLoad ? (

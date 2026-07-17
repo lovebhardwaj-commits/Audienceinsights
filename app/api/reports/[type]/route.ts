@@ -1,15 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession, isTokenExpiringSoon } from "@/lib/session";
-import { MetaApiError } from "@/lib/meta-api";
+import { MetaApiError, type MetaErrorCode } from "@/lib/meta-api";
 import { ndjsonResponse } from "@/lib/stream";
 import { getAudienceSegmentsReport } from "@/lib/reports/audience-segments";
-import { getCreativeChurnReport } from "@/lib/reports/creative-churn";
+import { getCreativeChurnReport, type ChurnGranularity } from "@/lib/reports/creative-churn";
 import { getCreativeSegmentsReport, type EntityLevel } from "@/lib/reports/creative-segments";
 import { getConversionWindowsReport } from "@/lib/reports/conversion-windows";
 import { getPartnershipAdsReport } from "@/lib/reports/partnership-ads";
 import { getFrequencyReport } from "@/lib/reports/frequency";
 import { getRollingReachReport } from "@/lib/reports/rolling-reach";
 import { getNetNewReachReport } from "@/lib/reports/net-new-reach";
+import { getPulseReport } from "@/lib/reports/pulse";
+import { demoFixture } from "@/lib/demo-fixtures";
 import { getCampaignOverlapReport, type OverlapLevel } from "@/lib/reports/campaign-overlap";
 import { fetchCampaignList } from "@/lib/reports/shared";
 
@@ -21,13 +23,32 @@ const STREAMING_TYPES = new Set([
   "rolling-reach",
   "net-new-reach",
   "campaign-overlap",
+  "creative-churn",
 ]);
 
 export async function GET(request: NextRequest, context: RouteContext) {
   const { type } = await context.params;
   const session = await getSession();
+
+  // Demo mode (Part 8): serve recorded fixtures through this same route, no token.
+  if (session.demo) {
+    const fixture = demoFixture(type);
+    if (fixture === null) return NextResponse.json({ error: `No demo fixture for ${type}`, code: "UNKNOWN" }, { status: 404 });
+    if (STREAMING_TYPES.has(type)) {
+      return ndjsonResponse(async (emit, emitPartial) => {
+        // Replay per-entity partials so progressive streaming still demos (D2).
+        const entities = (fixture as { entities?: unknown[] }).entities;
+        if (Array.isArray(entities)) {
+          entities.forEach((e, i) => { emit({ current: i + 1, total: entities.length, label: `Loading demo entity ${i + 1}…` }); emitPartial(e); });
+        }
+        return fixture;
+      });
+    }
+    return NextResponse.json({ data: fixture, tokenExpiringSoon: false });
+  }
+
   if (!session.accessToken) {
-    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+    return NextResponse.json({ error: "Not authenticated", code: "META_AUTH" }, { status: 401 });
   }
   const token = session.accessToken;
 
@@ -41,23 +62,46 @@ export async function GET(request: NextRequest, context: RouteContext) {
   const range = since && until ? { since, until } : null;
 
   if (STREAMING_TYPES.has(type)) {
-    if (!range) return NextResponse.json({ error: "since and until are required" }, { status: 400 });
-    return ndjsonResponse((emit) => runStreamingReport(type, token, accountId, range, searchParams, emit));
+    if (!range) return NextResponse.json({ error: "since and until are required", code: "UNKNOWN" }, { status: 400 });
+    return ndjsonResponse((emit, emitPartial) => runStreamingReport(type, token, accountId, range, searchParams, emit, emitPartial));
   }
 
   try {
     const data = await runJsonReport(type, token, accountId, range, searchParams);
     return NextResponse.json({ data, tokenExpiringSoon: isTokenExpiringSoon(session.tokenExpiresAt) });
   } catch (err) {
-    if (err instanceof MetaApiError && err.isAuthError) {
-      return NextResponse.json({ error: err.message }, { status: 401 });
-    }
     if (err instanceof NotFoundError) {
-      return NextResponse.json({ error: err.message }, { status: 404 });
+      return NextResponse.json({ error: err.message, code: "UNKNOWN" }, { status: 404 });
     }
-    console.error(`Report "${type}" failed:`, err);
-    const message = err instanceof Error ? err.message : "Report failed";
-    return NextResponse.json({ error: message }, { status: 502 });
+    const { code, message } = classifyError(err);
+    if (code !== "META_AUTH") console.error(`Report "${type}" failed [${code}]:`, err);
+    return NextResponse.json({ error: message, code }, { status: httpStatusForCode(code) });
+  }
+}
+
+/** Maps any thrown error to the structured taxonomy the client understands (D1).
+ *  Only genuine OAuth failures become META_AUTH — timeouts and rate limits never do. */
+export function classifyError(err: unknown): { code: MetaErrorCode; message: string } {
+  if (err instanceof MetaApiError) {
+    return { code: err.errorCode, message: err.message };
+  }
+  if (err instanceof DOMException && (err.name === "TimeoutError" || err.name === "AbortError")) {
+    return { code: "TIMEOUT", message: "This report took too long to compute." };
+  }
+  const message = err instanceof Error ? err.message : "Report failed";
+  return { code: "UNKNOWN", message };
+}
+
+function httpStatusForCode(code: MetaErrorCode): number {
+  switch (code) {
+    case "META_AUTH":
+      return 401;
+    case "META_RATE_LIMIT":
+      return 429;
+    case "TIMEOUT":
+      return 504;
+    default:
+      return 502;
   }
 }
 
@@ -74,10 +118,6 @@ async function runJsonReport(
     case "audience-segments": {
       requireRange(range);
       return getAudienceSegmentsReport(token, accountId, range);
-    }
-    case "creative-churn": {
-      requireRange(range);
-      return getCreativeChurnReport(token, accountId, range);
     }
     case "creative-segments": {
       requireRange(range);
@@ -96,6 +136,10 @@ async function runJsonReport(
       requireRange(range);
       return getFrequencyReport(token, accountId, range);
     }
+    case "pulse": {
+      requireRange(range);
+      return getPulseReport(token, accountId, range);
+    }
     default:
       throw new NotFoundError(`Unknown report type: ${type}`);
   }
@@ -107,7 +151,8 @@ async function runStreamingReport(
   accountId: string,
   range: { since: string; until: string },
   searchParams: URLSearchParams,
-  emit: (progress: { current: number; total: number; label: string }) => void
+  emit: (progress: { current: number; total: number; label: string }) => void,
+  emitPartial: (item: unknown) => void
 ): Promise<unknown> {
   switch (type) {
     case "rolling-reach":
@@ -119,7 +164,12 @@ async function runStreamingReport(
     case "campaign-overlap": {
       const level = (searchParams.get("level") as OverlapLevel) ?? "campaign";
       const topN = Number(searchParams.get("topN") ?? 15);
-      return getCampaignOverlapReport(token, accountId, range, { level, topN, minReach: 1000 }, emit);
+      return getCampaignOverlapReport(token, accountId, range, { level, topN, minReach: 1000 }, emit, emitPartial);
+    }
+    case "creative-churn": {
+      const granularity = (searchParams.get("granularity") as ChurnGranularity) ?? "weekly";
+      const topN = Number(searchParams.get("topN") ?? 8);
+      return getCreativeChurnReport(token, accountId, range, { granularity, topN }, emit);
     }
     default:
       throw new NotFoundError(`Unknown streaming report type: ${type}`);

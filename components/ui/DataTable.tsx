@@ -118,7 +118,7 @@ export function DataTable<T>({
   }
 
   return (
-    <div className="rounded-xl border border-slate-200/80 bg-white shadow-sm">
+    <div className="rounded-xl border border-hairline bg-surface-card">
       <div className="flex items-center justify-between gap-3 border-b border-slate-100 px-5 py-2.5">
         <div className="flex items-center gap-3">
           {searchable && (

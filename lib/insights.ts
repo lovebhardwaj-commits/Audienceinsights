@@ -120,7 +120,9 @@ export function conversionWindowInsights(report: ConversionWindowsReport): strin
   else
     insights.push(`${formatPercent(report.overallUpliftRatio)} uplift from extending to 28-day window — moderate consideration cycle.`);
 
-  const sameDayAvg = report.weeks.reduce((s, w) => s + w.sameDayPct, 0) / (report.weeks.length || 1);
+  // Exclude the trailing partial week — its half-formed numbers skew the average (D6).
+  const fullWeeks = report.weeks.filter((w) => !w.isPartial);
+  const sameDayAvg = fullWeeks.reduce((s, w) => s + w.sameDayPct, 0) / (fullWeeks.length || 1);
   insights.push(`On average, ${sameDayAvg.toFixed(0)}% of conversions happen within 1 day of ad exposure.`);
 
   const purchases1dc = report.totalPurchases1dc;

@@ -2,21 +2,24 @@ import { metaGetAllPages, metaInsights } from "@/lib/meta-api";
 import { num } from "@/lib/calculations";
 import { monthLabel, startOfMonth } from "@/lib/dates";
 import type { DateRange, MetaAd } from "@/lib/types";
+import type { ProgressEmit } from "@/lib/stream";
 
 /** Sentinel cohort key for ads launched before the report window. */
 export const PRE_COHORT_KEY = "__pre__";
+/** Sentinel cohort key for the folded "Other" bucket beyond the top-N. */
+export const OTHER_COHORT_KEY = "__other__";
+
+export type ChurnGranularity = "daily" | "weekly";
 
 export interface CreativeChurnCohort {
-  /** "2026-03" month key, or PRE_COHORT_KEY for the legacy bucket. */
   key: string;
-  /** "Mar 2026", or "Pre-Feb 2026" for the legacy bucket. */
   label: string;
   adCount: number;
   totalSpend: number;
 }
 
 export interface CreativeChurnDayRow {
-  date: string; // "2026-03-07"
+  date: string;
   totalSpend: number;
   cohortSpend: Record<string, number>;
 }
@@ -25,37 +28,47 @@ export interface CreativeChurnReport {
   cohorts: CreativeChurnCohort[];
   days: CreativeChurnDayRow[];
   totalSpend: number;
+  granularity: ChurnGranularity;
+}
+
+export interface CreativeChurnOptions {
+  granularity: ChurnGranularity;
+  /** Keep the top-N launch-month cohorts by spend; fold the rest into "Other" (7.7). */
+  topN: number;
 }
 
 /**
- * Daily spend split by the month each ad first launched (cohort-stacked area data).
- * Ads created before the report window collapse into a single "Pre-{month}" bucket
- * so the chart's base layer is legacy creative spend, per the design spec.
+ * Spend split by the month each ad first launched (cohort-stacked area data). Defaults to
+ * weekly granularity so it survives long ranges without timing out (7.7); a daily toggle is
+ * available for ≤2-month ranges. Runs as a streaming report so the client sees progress and
+ * the response never hangs to Vercel's kill.
  */
 export async function getCreativeChurnReport(
   token: string,
   accountId: string,
-  range: DateRange
+  range: DateRange,
+  opts: CreativeChurnOptions,
+  emit?: ProgressEmit
 ): Promise<CreativeChurnReport> {
-  const [ads, spendRows] = await Promise.all([
-    // No status filter: an ad that spent money during `range` but has since been paused/archived
-    // still needs its created_time mapped to a cohort, or its spend falls into "Unknown".
-    metaGetAllPages(`/${accountId}/ads`, token, {
-      fields: "id,name,created_time,status,campaign_id",
-      limit: "200",
-    }),
-    metaInsights({
-      token,
-      objectId: accountId,
-      fields: ["ad_id", "spend"],
-      timeRange: range,
-      level: "ad",
-      timeIncrement: 1,
-      limit: 500,
-    }),
-  ]);
+  emit?.({ current: 0, total: 2, label: "Fetching your ad list…" });
+  const ads = await metaGetAllPages(`/${accountId}/ads`, token, {
+    fields: "id,name,created_time,status,campaign_id",
+    limit: "200",
+  });
 
-  const windowStartMonth = startOfMonth(range.since); // "2026-02-01"
+  emit?.({ current: 1, total: 2, label: `Fetching ${opts.granularity} spend by ad…` });
+  const spendRows = await metaInsights({
+    token,
+    objectId: accountId,
+    fields: ["ad_id", "spend"],
+    timeRange: range,
+    level: "ad",
+    timeIncrement: opts.granularity === "daily" ? 1 : 7,
+    limit: 500,
+  });
+  emit?.({ current: 2, total: 2, label: "Grouping into launch cohorts…" });
+
+  const windowStartMonth = startOfMonth(range.since);
   const preLabel = `Pre-${monthLabel(windowStartMonth)}`;
 
   const cohortByAdId = new Map<string, string>();
@@ -67,56 +80,58 @@ export async function getCreativeChurnReport(
     cohortAdCount.set(key, (cohortAdCount.get(key) ?? 0) + 1);
   }
 
+  // First pass: raw cohort totals to decide the top-N.
+  const rawTotals = new Map<string, number>();
+  for (const row of spendRows) {
+    const cohort = cohortByAdId.get(row.ad_id as string) ?? PRE_COHORT_KEY;
+    rawTotals.set(cohort, (rawTotals.get(cohort) ?? 0) + num(row.spend));
+  }
+
+  // Keep the top-N month cohorts by spend; everything else folds into "Other".
+  const monthCohorts = Array.from(rawTotals.keys())
+    .filter((k) => k !== PRE_COHORT_KEY && (rawTotals.get(k) ?? 0) > 0)
+    .sort((a, b) => (rawTotals.get(b) ?? 0) - (rawTotals.get(a) ?? 0));
+  const kept = new Set(monthCohorts.slice(0, opts.topN));
+  const displayKey = (cohort: string) => {
+    if (cohort === PRE_COHORT_KEY) return PRE_COHORT_KEY;
+    return kept.has(cohort) ? cohort : OTHER_COHORT_KEY;
+  };
+
   const dayBuckets = new Map<string, { totalSpend: number; cohortSpend: Map<string, number> }>();
   const cohortTotals = new Map<string, number>();
+  const cohortAdCountFolded = new Map<string, number>();
+  for (const [key, count] of cohortAdCount) {
+    const d = displayKey(key);
+    cohortAdCountFolded.set(d, (cohortAdCountFolded.get(d) ?? 0) + count);
+  }
 
   for (const row of spendRows) {
     const date = (row.date_start as string) ?? "";
     if (!date) continue;
     if (!dayBuckets.has(date)) dayBuckets.set(date, { totalSpend: 0, cohortSpend: new Map() });
     const bucket = dayBuckets.get(date)!;
-    const cohort = cohortByAdId.get(row.ad_id as string) ?? PRE_COHORT_KEY;
+    const cohort = displayKey(cohortByAdId.get(row.ad_id as string) ?? PRE_COHORT_KEY);
     const spend = num(row.spend);
     bucket.cohortSpend.set(cohort, (bucket.cohortSpend.get(cohort) ?? 0) + spend);
     bucket.totalSpend += spend;
     cohortTotals.set(cohort, (cohortTotals.get(cohort) ?? 0) + spend);
   }
 
-  // Only cohorts that actually spent in the window get a layer — stack order is
-  // chronological with the legacy bucket at the bottom.
-  const monthKeys = Array.from(cohortTotals.keys())
-    .filter((k) => k !== PRE_COHORT_KEY && (cohortTotals.get(k) ?? 0) > 0)
-    .sort();
-
   const cohorts: CreativeChurnCohort[] = [];
   if ((cohortTotals.get(PRE_COHORT_KEY) ?? 0) > 0) {
-    cohorts.push({
-      key: PRE_COHORT_KEY,
-      label: preLabel,
-      adCount: cohortAdCount.get(PRE_COHORT_KEY) ?? 0,
-      totalSpend: cohortTotals.get(PRE_COHORT_KEY) ?? 0,
-    });
+    cohorts.push({ key: PRE_COHORT_KEY, label: preLabel, adCount: cohortAdCountFolded.get(PRE_COHORT_KEY) ?? 0, totalSpend: cohortTotals.get(PRE_COHORT_KEY) ?? 0 });
   }
-  for (const key of monthKeys) {
-    cohorts.push({
-      key,
-      label: monthLabel(`${key}-01`),
-      adCount: cohortAdCount.get(key) ?? 0,
-      totalSpend: cohortTotals.get(key) ?? 0,
-    });
+  for (const key of monthCohorts.filter((k) => kept.has(k)).sort()) {
+    cohorts.push({ key, label: monthLabel(`${key}-01`), adCount: cohortAdCountFolded.get(key) ?? 0, totalSpend: cohortTotals.get(key) ?? 0 });
+  }
+  if ((cohortTotals.get(OTHER_COHORT_KEY) ?? 0) > 0) {
+    const foldedCount = monthCohorts.length - kept.size;
+    cohorts.push({ key: OTHER_COHORT_KEY, label: `Other (${foldedCount} month${foldedCount === 1 ? "" : "s"})`, adCount: cohortAdCountFolded.get(OTHER_COHORT_KEY) ?? 0, totalSpend: cohortTotals.get(OTHER_COHORT_KEY) ?? 0 });
   }
 
   const days: CreativeChurnDayRow[] = Array.from(dayBuckets.entries())
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([date, bucket]) => ({
-      date,
-      totalSpend: bucket.totalSpend,
-      cohortSpend: Object.fromEntries(bucket.cohortSpend),
-    }));
+    .map(([date, bucket]) => ({ date, totalSpend: bucket.totalSpend, cohortSpend: Object.fromEntries(bucket.cohortSpend) }));
 
-  return {
-    cohorts,
-    days,
-    totalSpend: days.reduce((sum, d) => sum + d.totalSpend, 0),
-  };
+  return { cohorts, days, totalSpend: days.reduce((sum, d) => sum + d.totalSpend, 0), granularity: opts.granularity };
 }

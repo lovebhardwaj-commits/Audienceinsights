@@ -1,9 +1,9 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, Cell, LabelList, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Cell, Label, LabelList, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
-import { ChartTooltipContent, compactTickFormatter, type ValueFormat } from "./ChartTooltip";
+import { ChartTooltipContent, compactTickFormatter, currencyTickFormatter, type ValueFormat } from "./ChartTooltip";
 import type { SeriesConfig } from "./LineChart";
 
 interface HorizontalBarProps {
@@ -15,15 +15,19 @@ interface HorizontalBarProps {
   categoryColors?: Record<string, string>;
   valueFormat?: ValueFormat;
   percentOfTotal?: boolean;
+  xTitle?: string;
+  /** Map displayed (truncated/stripped) category → full entity name for the tooltip (§3.3). */
+  fullLabels?: Record<string, string>;
 }
 
-const tickStyle = { fontSize: 12, fill: CHART_INK.muted };
+const tickStyle = { fontSize: 12, fill: CHART_INK.muted, fontFamily: "var(--font-mono)" };
+const axisTitleStyle = { fontSize: 12, fontWeight: 600, fill: CHART_INK.muted };
 
 function truncate(s: string, max: number): string {
   return s.length > max ? s.slice(0, max - 1) + "…" : s;
 }
 
-export function HorizontalBar({ data, categoryKey, series, stacked = false, height, categoryColors, valueFormat = "compact", percentOfTotal = false }: HorizontalBarProps) {
+export function HorizontalBar({ data, categoryKey, series, stacked = false, height, categoryColors, valueFormat = "compact", percentOfTotal = false, xTitle, fullLabels }: HorizontalBarProps) {
   const animate = !useReducedMotion();
   const barHeight = Math.max(320, data.length * 36);
   const h = height ?? barHeight;
@@ -47,8 +51,10 @@ export function HorizontalBar({ data, categoryKey, series, stacked = false, heig
             tick={tickStyle}
             axisLine={{ stroke: CHART_CHROME.axis }}
             tickLine={false}
-            tickFormatter={compactTickFormatter}
-          />
+            tickFormatter={valueFormat === "currency" || valueFormat === "currencyCompact" ? currencyTickFormatter : compactTickFormatter}
+          >
+            {xTitle && <Label value={xTitle} position="insideBottom" offset={-4} style={axisTitleStyle} />}
+          </XAxis>
           <YAxis
             type="category"
             dataKey={categoryKey}
@@ -58,7 +64,7 @@ export function HorizontalBar({ data, categoryKey, series, stacked = false, heig
             tickLine={false}
             tickFormatter={(v: string) => truncate(v, 28)}
           />
-          <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} />} cursor={{ fill: "rgba(148,163,184,0.08)" }} />
+          <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} showTotal={stacked} shareOfTotal={stacked} fullLabels={fullLabels} />} cursor={{ fill: "rgba(148,163,184,0.08)" }} />
           {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
           {series.map((s, sIdx) => {
             const isLast = sIdx === series.length - 1;

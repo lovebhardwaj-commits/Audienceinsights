@@ -54,3 +54,61 @@ export function formatShortDate(iso: string): string {
   if (isNaN(d.getTime())) return iso;
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 }
+
+// ── Entity label engine (Part 5, fixes D5) ─────────────────────────────────────
+// Merchant campaign names share long boilerplate prefixes ("SR1503_Shesha_All
+// Products_…"), so naive tail-ellipsis collapses 14 rows to identical strings.
+// This strips the shared prefix once (shown as a caption) and middle-ellipsizes
+// the distinguishing remainder so every row stays identifiable at a glance.
+
+const MIN_PREFIX_LEN = 8;
+
+export interface EntityLabels {
+  /** The stripped common prefix (≥8 chars) shown once as a caption, or null. */
+  prefix: string | null;
+  /** Display labels: prefix removed, middle-ellipsized. Order matches input. */
+  labels: string[];
+  /** Original untruncated names, for tooltips/copy. Order matches input. */
+  full: string[];
+}
+
+/** Longest common prefix across a set of strings. */
+function longestCommonPrefix(strings: string[]): string {
+  if (strings.length === 0) return "";
+  let prefix = strings[0];
+  for (const s of strings) {
+    while (!s.startsWith(prefix)) {
+      prefix = prefix.slice(0, -1);
+      if (!prefix) return "";
+    }
+  }
+  return prefix;
+}
+
+/** Keep head + tail, drop the middle: "Sales_AO_India_CPP…Product Specific". */
+export function middleEllipsis(s: string, maxLen = 32): string {
+  if (s.length <= maxLen) return s;
+  const keep = maxLen - 1; // room for the ellipsis
+  const head = Math.ceil(keep * 0.6);
+  const tail = Math.floor(keep * 0.4);
+  return `${s.slice(0, head)}…${s.slice(s.length - tail)}`;
+}
+
+export function formatEntityLabels(names: string[], maxLen = 32): EntityLabels {
+  const full = [...names];
+  if (names.length < 2) {
+    return { prefix: null, labels: names.map((n) => middleEllipsis(n, maxLen)), full };
+  }
+  let prefix = longestCommonPrefix(names);
+  // Only strip at a word/separator boundary so we don't cut mid-token.
+  if (prefix.length >= MIN_PREFIX_LEN) {
+    const boundary = Math.max(prefix.lastIndexOf("_"), prefix.lastIndexOf(" "), prefix.lastIndexOf("-"), prefix.lastIndexOf("|"));
+    if (boundary >= MIN_PREFIX_LEN - 1) prefix = prefix.slice(0, boundary + 1);
+  }
+  const stripping = prefix.length >= MIN_PREFIX_LEN;
+  const labels = names.map((n) => {
+    const remainder = stripping ? n.slice(prefix.length) || n : n;
+    return middleEllipsis(remainder, maxLen);
+  });
+  return { prefix: stripping ? prefix : null, labels, full };
+}

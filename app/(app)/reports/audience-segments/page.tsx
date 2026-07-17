@@ -15,12 +15,14 @@ import { ReportSummary } from "@/components/ui/ReportSummary";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { ErrorBanner } from "@/components/ui/ErrorBanner";
+import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { HowToRead } from "@/components/ui/HowToRead";
-import { SEGMENT_COLORS, SEGMENT_LABELS } from "@/lib/constants";
+import { SEGMENT_COLORS, SEGMENT_LABELS, MIN_USEFUL_MONTHS } from "@/lib/constants";
 import { ReachIcon, SpendIcon, TrendUpIcon, PercentIcon } from "@/components/ui/KpiIcons";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { audienceSegmentInsights, creativeSegmentInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
+import { lastNMonths, isPartialWeek } from "@/lib/dates";
 import type { DateRange } from "@/lib/types";
 import type { AudienceSegmentsReport } from "@/lib/reports/audience-segments";
 import type { CreativeSegmentsReport, EntityLevel, EntitySegmentRow } from "@/lib/reports/creative-segments";
@@ -74,7 +76,8 @@ function newPctCellClass(row: EntitySegmentRow): string {
 
 export default function AudienceSegmentsPage() {
   const { selectedAccountId } = useAccount();
-  const { range, setRange } = useDateRange();
+  const { range, setRange, applyInitialMonths } = useDateRange();
+  useEffect(() => { applyInitialMonths(MIN_USEFUL_MONTHS["audience-segments"]); }, [applyInitialMonths]);
   const [viewLevel, setViewLevel] = useState<ViewLevel>("account");
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
@@ -85,6 +88,8 @@ export default function AudienceSegmentsPage() {
   const loading = isEntityView ? entityReport.loading : accountReport.loading;
   const isInitialLoad = isEntityView ? entityReport.isInitialLoad : accountReport.isInitialLoad;
   const error = isEntityView ? entityReport.error : accountReport.error;
+  const errorCode = isEntityView ? entityReport.errorCode : accountReport.errorCode;
+  const fetchedAt = isEntityView ? entityReport.fetchedAt : accountReport.fetchedAt;
 
   useEffect(() => {
     if (!selectedAccountId || !range) return;
@@ -122,10 +127,16 @@ export default function AudienceSegmentsPage() {
     }));
   }, [report]);
 
+  // Trailing partial week (D6) — faded in the spend chart, labeled everywhere.
+  const partialWeekIndex = useMemo(() => {
+    const i = (report?.weeks ?? []).findIndex((w) => isPartialWeek(w.weekStart, w.weekEnd));
+    return i >= 0 ? i : undefined;
+  }, [report]);
+
   const chartData = useMemo(() => {
     if (!report) return [];
     return report.weeks.map((week) => ({
-      week: formatShortDate(week.weekStart),
+      week: isPartialWeek(week.weekStart, week.weekEnd) ? `${formatShortDate(week.weekStart)} (partial)` : formatShortDate(week.weekStart),
       prospecting: week.segments.prospecting.spendPct,
       engaged: week.segments.engaged.spendPct,
       existing: week.segments.existing.spendPct,
@@ -136,7 +147,7 @@ export default function AudienceSegmentsPage() {
   const cpmrTrendData = useMemo(() => {
     if (!report) return [];
     return report.weeks.map((week) => ({
-      week: formatShortDate(week.weekStart),
+      week: isPartialWeek(week.weekStart, week.weekEnd) ? `${formatShortDate(week.weekStart)} (partial)` : formatShortDate(week.weekStart),
       prospectingCpmr: week.segments.prospecting.cpmr,
       engagedCpmr: week.segments.engaged.cpmr,
       existingCpmr: week.segments.existing.cpmr,
@@ -183,6 +194,7 @@ export default function AudienceSegmentsPage() {
         <div>
           <h1 className="text-lg font-bold text-slate-900">User Segments</h1>
           <p className="mt-1 text-sm text-slate-500">Weekly breakdown of who you're reaching — new vs. engaged vs. existing customers.</p>
+          <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
         </div>
         <DateRangePicker value={range} onChange={setRange} />
       </div>
@@ -212,7 +224,9 @@ export default function AudienceSegmentsPage() {
         ))}
       </div>
 
-      {error && <ErrorBanner message={error} onRetry={() => setRetryKey((k) => k + 1)} />}
+      {error && (
+        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
+      )}
       {loading && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
@@ -227,11 +241,11 @@ export default function AudienceSegmentsPage() {
           <div className={`transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
             <ReportSummary insights={entityInsights} loading={isInitialLoad} />
             {(isInitialLoad || entityChartData.length > 0) && (
-              <div className="mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm">
+              <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
                 <h2 className="text-sm font-semibold text-slate-800">Audience segment composition by {entityLabel.toLowerCase()}</h2>
                 <p className="mb-4 mt-0.5 text-xs text-slate-400">Each bar = 100% of that {entityLabel.toLowerCase()}&apos;s reach. Sorted by new % descending.</p>
                 {isInitialLoad ? <ChartSkeleton /> : (
-                  <HorizontalBar data={entityChartData} categoryKey="name" stacked valueFormat="percent" series={[
+                  <HorizontalBar data={entityChartData} categoryKey="name" stacked valueFormat="percent" xTitle="% of reach" series={[
                     { key: "New", label: "New Audience", color: SEGMENT_COLORS.prospecting },
                     { key: "Engaged", label: "Engaged", color: SEGMENT_COLORS.engaged },
                     { key: "Existing", label: "Existing Customers", color: SEGMENT_COLORS.existing },
@@ -294,7 +308,7 @@ export default function AudienceSegmentsPage() {
         <ReportSummary insights={insights} loading={isInitialLoad} />
       </div>
 
-      <div className={`mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+      <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
         <h2 className="text-sm font-semibold text-slate-800">Spend distribution by audience segment</h2>
         <p className="mb-4 mt-0.5 text-xs text-slate-400">Weekly share of budget going to new vs. engaged vs. existing audiences.</p>
         {isInitialLoad ? (
@@ -305,6 +319,10 @@ export default function AudienceSegmentsPage() {
             xKey="week"
             unit="%"
             height={360}
+            xTitle="Week starting"
+            yTitle="% of spend"
+            partialIndex={partialWeekIndex}
+            referenceLines={[{ y: 30, label: "30% new-audience target", color: "#64748b" }]}
             series={[
               { key: "prospecting", label: SEGMENT_LABELS.prospecting, color: SEGMENT_COLORS.prospecting },
               { key: "engaged", label: SEGMENT_LABELS.engaged, color: SEGMENT_COLORS.engaged },
@@ -315,7 +333,7 @@ export default function AudienceSegmentsPage() {
         )}
       </div>
 
-      <div className={`mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+      <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
         <h2 className="text-sm font-semibold text-slate-800">CPMR trend by segment</h2>
         <p className="mb-4 mt-0.5 text-xs text-slate-400">Cost per 1,000 people reached, week over week — a rising New line means prospecting is getting more expensive.</p>
         {isInitialLoad ? (
@@ -326,6 +344,8 @@ export default function AudienceSegmentsPage() {
             xKey="week"
             height={360}
             valueFormat="currency"
+            xTitle="Week starting"
+            yTitle="CPMR (₹)"
             lines={[
               { key: "prospectingCpmr", label: "New CPMR", color: SEGMENT_COLORS.prospecting },
               { key: "engagedCpmr", label: "Engaged CPMR", color: SEGMENT_COLORS.engaged },

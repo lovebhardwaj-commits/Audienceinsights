@@ -150,18 +150,31 @@ Head-to-head comparison cards (Partnership vs Normal). Sections: insight banner,
 | Report | Slug | Data Source | Streaming |
 |--------|------|-------------|-----------|
 | New Reach | `net-new-reach` | Sliding/expanding window reach comparison | Yes (NDJSON) |
-| Overlap | `campaign-overlap` | NOT_IN filtering per entity | Yes (NDJSON) |
+| Overlap | `campaign-overlap` | NOT_IN filtering per entity (streams bar-by-bar via `partial` events) | Yes (NDJSON) |
 | Conversion Windows | `conversion-windows` | `action_attribution_windows: [1d_click, 7d_click, 28d_click]` | No |
 | User Segments | `audience-segments` | `breakdowns=user_segment_key` | No |
 | Partnership Ads | `partnership-ads` | `facebook_branded_content` / `instagram_branded_content` | No |
+| Frequency | `frequency` | Campaign × week matrix (`time_increment=7`) | No |
+| Creative Churn | `creative-churn` | Launch-cohort spend, weekly default | Yes (NDJSON) |
+
+Frequency and Creative Churn are now **active in nav** (7 reports total). Frequency was un-hidden in Phase 0 (7.6); Creative Churn was rescued in Phase 5 (7.7) — it now defaults to weekly (`time_increment=7`) NDJSON streaming with a Daily toggle capped at ≤2-month ranges, top-N cohorts + an "Other" bucket, and auto-loads at a 3-month weekly default.
 
 ### Hidden (accessible via direct URL only)
 
 | Report | Slug | Why Hidden |
 |--------|------|------------|
-| Frequency Heatmap | `frequency` | Removed from sidebar + dashboard; has actionable overexposure alerts when campaigns hit 5×+ |
-| Creative Churn | `creative-churn` | Timeouts on 5-6 month ranges (daily granularity, full ad list) |
-| Creative Segments | `creative-segments` | Not in sidebar |
+| Creative Segments | `creative-segments` | Not in sidebar (drill-down target for User Segments) |
+
+### Post-overhaul systems (added across Phases 0–5)
+
+- **Error taxonomy** (`lib/meta-api.ts` `MetaErrorCode`): every failure is `META_AUTH | META_RATE_LIMIT | TIMEOUT | UNKNOWN`, carried through routes → `stream.ts` → hooks → `ErrorBanner`. Only Meta code 190 is auth; 504/timeout/AbortError → TIMEOUT with a "Retry with 1 month" action. 90s per-request server timeout + 110s client abort.
+- **Findings engine** (`lib/findings.ts`): structured verdicts (`severity`, `headline`, `detail`, `action`, `moneyAtStake`) per report, ranked by money. Rendered by `components/ui/FindingsStrip.tsx` above each report chart and as the Overview findings feed.
+- **Design tokens** (`globals.css`): warm `--surface-app #FAFAF8`, `--border-hairline`, ink scale, severity + metric-identity palettes exposed as Tailwind colors (`bg-surface-card`, `border-hairline`, `text-ink`, `bg-sev-*`). Cards are hairline + zero shadow; KPI values are Geist Mono; severity is the only source of card borders.
+- **Label engine** (`lib/format.ts` `formatEntityLabels`): strips the common name prefix once, middle-ellipsizes the rest (D5). Used by Frequency + Overlap.
+- **Chart system** (`components/charts/*`): axis titles with units, shared `ChartTooltipContent` (totals, share-of-total, partial tag), auto-brush > 12 points, reference lines, partial-period fade, auto-annotation (`lib/chart-annotations.ts`).
+- **D-cache** (`lib/report-cache.ts`): client-side 10-min stale-while-revalidate keyed by URL; `lib/meta-api.ts` dedupes concurrent identical GETs. Freshness stamp on every report.
+- **Per-report minimum ranges**: `MIN_USEFUL_MONTHS` in `constants.ts`; `DateRangeProvider.applyInitialMonths()` clamps the initial fetch (New Reach opens at 4 months) until the user picks a range.
+- **Demo mode**: `GET /api/auth/demo` sets `session.demo`; report/accounts routes serve `lib/demo-fixtures.ts` with no Meta token. Landing page has a "View live demo" link.
 
 ## Meta API Patterns
 

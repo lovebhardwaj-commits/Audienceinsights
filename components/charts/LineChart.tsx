@@ -1,9 +1,9 @@
 "use client";
 
-import { Bar, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, Brush, CartesianGrid, ComposedChart, Label, Legend, Line, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
-import { ChartTooltipContent, compactTickFormatter, type ValueFormat } from "./ChartTooltip";
+import { ChartTooltipContent, compactTickFormatter, currencyTickFormatter, percentTickFormatter, type ValueFormat } from "./ChartTooltip";
 
 export interface SeriesConfig {
   key: string;
@@ -18,21 +18,37 @@ interface LineChartProps {
   bars?: SeriesConfig[];
   height?: number;
   valueFormat?: ValueFormat;
+  xTitle?: string;
+  yTitle?: string;
+  referenceLines?: Array<{ y: number; label?: string; color?: string }>;
+  brush?: boolean;
 }
 
-const tickStyle = { fontSize: 12, fill: CHART_INK.muted };
+const tickStyle = { fontSize: 12, fill: CHART_INK.muted, fontFamily: "var(--font-mono)" };
+const axisTitleStyle = { fontSize: 12, fontWeight: 600 };
 
-export function LineChart({ data, xKey, lines = [], bars = [], height = 360, valueFormat = "compact" }: LineChartProps) {
-  // [PM ENHANCEMENT] — chart animations respect the OS reduced-motion setting
+function tickFormatterFor(fmt: ValueFormat): (v: number) => string {
+  if (fmt === "percent") return percentTickFormatter;
+  if (fmt === "currency" || fmt === "currencyCompact") return currencyTickFormatter;
+  return compactTickFormatter;
+}
+
+export function LineChart({ data, xKey, lines = [], bars = [], height = 360, valueFormat = "compact", xTitle, yTitle, referenceLines, brush }: LineChartProps) {
   const animate = !useReducedMotion();
   const seriesCount = lines.length + bars.length;
+  const showBrush = brush ?? data.length > 12;
+  const titleColor = (lines[0] ?? bars[0])?.color ?? CHART_INK.secondary;
   return (
-    <div style={{ width: "100%", height }}>
+    <div style={{ width: "100%", height: showBrush ? height + 40 : height }}>
       <ResponsiveContainer>
-        <ComposedChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+        <ComposedChart data={data} margin={{ top: 16, right: 16, left: 8, bottom: xTitle ? 20 : 0 }}>
           <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
-          <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
-          <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={56} tickFormatter={compactTickFormatter} />
+          <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false}>
+            {xTitle && <Label value={xTitle} position="insideBottom" offset={-12} style={{ ...axisTitleStyle, fill: CHART_INK.muted }} />}
+          </XAxis>
+          <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={tickFormatterFor(valueFormat)}>
+            {yTitle && <Label value={yTitle} angle={-90} position="insideLeft" style={{ ...axisTitleStyle, fill: titleColor, textAnchor: "middle" }} />}
+          </YAxis>
           <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} />} />
           {seriesCount > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
           {bars.map((s) => (
@@ -53,6 +69,17 @@ export function LineChart({ data, xKey, lines = [], bars = [], height = 360, val
               animationEasing="ease-out"
             />
           ))}
+          {referenceLines?.map((rl, i) => (
+            <ReferenceLine
+              key={i}
+              y={rl.y}
+              stroke={rl.color ?? "#94a3b8"}
+              strokeDasharray="5 3"
+              strokeWidth={1.5}
+              label={rl.label ? { value: rl.label, position: "insideTopRight", fontSize: 11, fill: rl.color ?? "#94a3b8" } : undefined}
+            />
+          ))}
+          {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} y={height - 4} />}
         </ComposedChart>
       </ResponsiveContainer>
     </div>

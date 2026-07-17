@@ -19,7 +19,7 @@ import { formatCompactNumber, formatCurrency, formatNumber, formatPercent } from
 import { creativeSegmentInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
 import { SEGMENT_COLORS } from "@/lib/constants";
-import { lastNDays } from "@/lib/dates";
+import { lastNDays, lastNMonths } from "@/lib/dates";
 import type { DateRange } from "@/lib/types";
 import type { EntitySegmentRow, CreativeSegmentsReport, EntityLevel } from "@/lib/reports/creative-segments";
 
@@ -41,7 +41,7 @@ export default function CreativeSegmentsPage() {
   const [level, setLevel] = useState<EntityLevel>("ad");
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
-  const { loading, isInitialLoad, data, error, run } = useJsonReport<{ data: CreativeSegmentsReport }>();
+  const { loading, isInitialLoad, data, error, errorCode, run } = useJsonReport<{ data: CreativeSegmentsReport }>();
 
   useEffect(() => {
     if (!selectedAccountId || !range) return;
@@ -139,7 +139,9 @@ export default function CreativeSegmentsPage() {
         </div>
       </div>
 
-      {error && <ErrorBanner message={error} onRetry={() => setRetryKey((k) => k + 1)} />}
+      {error && (
+        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
+      )}
       {loading && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
@@ -177,7 +179,7 @@ export default function CreativeSegmentsPage() {
             <ReportSummary insights={insights} loading={isInitialLoad} />
 
             {(isInitialLoad || chartData.length > 0) && (
-              <div className="mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm">
+              <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
                 <h2 className="text-sm font-semibold text-slate-800">
                   Audience segment composition by {entityLabel.toLowerCase()}
                 </h2>

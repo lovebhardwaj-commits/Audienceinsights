@@ -40,16 +40,27 @@ export const TOKEN_EXPIRY_WARNING_DAYS = 7;
 export interface ReportMeta {
   slug: string;
   title: string;
+  /** Sidebar/dashboard subtitle — kept ≤30 chars so it never truncates mid-word (D13). */
   description: string;
+  /** Minimum months the *initial* auto-fetch should span so charts have enough points
+   *  to be legible (D3/7.1). A user's explicit range pick always overrides this. */
+  minUsefulMonths: number;
 }
 
-// Reports in scope — order matches sidebar.
-// creative-churn temporarily hidden — timing out on 5-6 month ranges (heaviest
-// report: full ad list + daily-granularity insights). Re-add once fixed.
+// Reports in scope — order matches sidebar. creative-churn is back in nav now that its
+// weekly-streaming rescue (Part 7.7) survives long ranges.
 export const REPORTS: ReportMeta[] = [
-  { slug: "net-new-reach",      title: "New Reach",          description: "How many genuinely new people you reach each month" },
-  { slug: "campaign-overlap",   title: "Overlap",            description: "Which campaigns compete for the same audience" },
-  { slug: "conversion-windows", title: "Conversion Windows", description: "1d vs. 7d vs. 28d attribution windows compared" },
-  { slug: "audience-segments",  title: "User Segments",      description: "New vs. engaged vs. existing — by account, campaign, adset, or ad" },
-  { slug: "partnership-ads",    title: "Partnership Ads",    description: "Creator vs. normal ad performance" },
+  { slug: "net-new-reach",      title: "New Reach",          description: "Genuinely new people reached",   minUsefulMonths: 4 },
+  { slug: "campaign-overlap",   title: "Overlap",            description: "Who competes for one audience",  minUsefulMonths: 1 },
+  { slug: "conversion-windows", title: "Conversion Windows", description: "1d vs 7d vs 28d attribution",    minUsefulMonths: 2 },
+  { slug: "audience-segments",  title: "User Segments",      description: "New vs engaged vs existing",     minUsefulMonths: 2 },
+  { slug: "partnership-ads",    title: "Partnership Ads",    description: "Creator vs normal ads",          minUsefulMonths: 1 },
+  { slug: "frequency",          title: "Frequency",          description: "Who sees your ads too often",    minUsefulMonths: 2 },
+  { slug: "creative-churn",     title: "Creative Churn",     description: "How long creatives keep earning", minUsefulMonths: 3 },
 ];
+
+/** Per-report minimum months for the initial fetch, keyed by slug (D3/7.1). */
+export const MIN_USEFUL_MONTHS: Record<string, number> = {
+  ...Object.fromEntries(REPORTS.map((r) => [r.slug, r.minUsefulMonths])),
+  "creative-segments": 2,
+};

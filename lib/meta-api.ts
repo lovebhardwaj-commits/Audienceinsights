@@ -1,24 +1,46 @@
 import { META_GRAPH_BASE } from "./constants";
 import type { ApiFiltering } from "./types";
 
+/** Structured error taxonomy consumed end-to-end (route → hook → ErrorBanner).
+ *  The UI decides what to render off this code, never off substring matching. */
+export type MetaErrorCode = "META_AUTH" | "META_RATE_LIMIT" | "TIMEOUT" | "UNKNOWN";
+
+// Meta code sets → taxonomy. 190 = OAuthException (expired/invalid token).
+// 4 = app-level rate limit, 17 = user request limit, 613 = custom-rate-limit, 80000+ = business-use-case throttles.
+const AUTH_CODES = new Set([190, 102, 10, 200, 300]);
+const RATE_LIMIT_CODES = new Set([4, 17, 613, 80000, 80001, 80002, 80003, 80004, 80005, 80006, 80008, 80014]);
+
 export class MetaApiError extends Error {
   code?: number;
   fbtraceId?: string;
   isAuthError: boolean;
+  /** Coarse classification for the UI. TIMEOUT is set explicitly by the fetch layer. */
+  errorCode: MetaErrorCode;
 
-  constructor(message: string, code?: number, fbtraceId?: string) {
+  constructor(message: string, code?: number, fbtraceId?: string, errorCode?: MetaErrorCode) {
     super(message);
     this.name = "MetaApiError";
     this.code = code;
     this.fbtraceId = fbtraceId;
-    // 190 = OAuthException (expired/invalid token)
-    this.isAuthError = code === 190;
+    this.errorCode = errorCode ?? classifyMetaCode(code);
+    // Kept for existing call sites; only true OAuth failures are auth errors.
+    this.isAuthError = this.errorCode === "META_AUTH";
   }
+}
+
+function classifyMetaCode(code?: number): MetaErrorCode {
+  if (code === undefined) return "UNKNOWN";
+  if (AUTH_CODES.has(code)) return "META_AUTH";
+  if (RATE_LIMIT_CODES.has(code)) return "META_RATE_LIMIT";
+  return "UNKNOWN";
 }
 
 const RETRYABLE_ERROR_CODES = new Set([4, 17]);
 const MAX_RETRIES = 3;
 const THROTTLE_PAUSE_MS = 2000;
+// A single Graph call should never hang the whole request budget. If Meta stalls
+// past this, surface it as a TIMEOUT (never a false auth error) — D1.
+const PER_REQUEST_TIMEOUT_MS = 90_000;
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -34,8 +56,41 @@ function readThrottleHeader(headers: Headers): { app_id_util_pct?: number; acc_i
   }
 }
 
-async function fetchJson(url: string, attempt = 0): Promise<any> {
-  const res = await fetch(url, { cache: "no-store" });
+// Dedupe identical in-flight GETs (Part 8) — the Overview's background findings would
+// otherwise re-issue the same account queries several reports are already fetching.
+const inflight = new Map<string, Promise<any>>();
+
+function fetchJson(url: string, attempt = 0): Promise<any> {
+  // Only the initial attempt is deduped; retries re-enter with the same url but must
+  // not collide with a fresh caller's promise, so they bypass the map.
+  if (attempt === 0) {
+    const existing = inflight.get(url);
+    if (existing) return existing;
+    const p = fetchJsonInner(url, attempt).finally(() => inflight.delete(url));
+    inflight.set(url, p);
+    return p;
+  }
+  return fetchJsonInner(url, attempt);
+}
+
+async function fetchJsonInner(url: string, attempt = 0): Promise<any> {
+  let res: Response;
+  try {
+    res = await fetch(url, { cache: "no-store", signal: AbortSignal.timeout(PER_REQUEST_TIMEOUT_MS) });
+  } catch (err) {
+    // AbortError (our timeout) or a network-level failure — never an auth error.
+    const isTimeout =
+      err instanceof DOMException && (err.name === "TimeoutError" || err.name === "AbortError");
+    throw new MetaApiError(
+      isTimeout
+        ? "Meta's API did not respond in time for this request."
+        : `Network error reaching Meta's API: ${err instanceof Error ? err.message : "unknown"}`,
+      undefined,
+      undefined,
+      isTimeout ? "TIMEOUT" : "UNKNOWN"
+    );
+  }
+
   const throttle = readThrottleHeader(res.headers);
   if (throttle) {
     const maxPct = Math.max(throttle.app_id_util_pct ?? 0, throttle.acc_id_util_pct ?? 0);
@@ -46,7 +101,10 @@ async function fetchJson(url: string, attempt = 0): Promise<any> {
   try {
     json = await res.json();
   } catch {
-    throw new MetaApiError(`Meta API returned a non-JSON response (HTTP ${res.status})`);
+    // 5xx gateway pages (e.g. Vercel/Meta 504) come back as non-JSON — classify as timeout,
+    // not a generic error, so the UI can offer "retry with a shorter range" (D1).
+    const errorCode: MetaErrorCode = res.status === 504 || res.status === 408 || res.status === 524 ? "TIMEOUT" : "UNKNOWN";
+    throw new MetaApiError(`Meta API returned a non-JSON response (HTTP ${res.status})`, undefined, undefined, errorCode);
   }
 
   if (!res.ok || json.error) {

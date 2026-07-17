@@ -7,7 +7,7 @@ export default async function Home({
   searchParams: Promise<{ error?: string }>;
 }) {
   const session = await getSession();
-  if (session.accessToken) {
+  if (session.accessToken || session.demo) {
     redirect("/dashboard");
   }
 
@@ -35,7 +35,7 @@ export default async function Home({
             </div>
             <div className="flex items-start gap-3 rounded-lg bg-slate-50 px-4 py-3">
               <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold text-brand-600">2</div>
-              <div className="text-sm text-slate-600">Get 6 reach and audience intelligence reports instantly</div>
+              <div className="text-sm text-slate-600">Get 7 reach and audience intelligence reports instantly</div>
             </div>
             <div className="flex items-start gap-3 rounded-lg bg-slate-50 px-4 py-3">
               <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold text-brand-600">3</div>
@@ -53,6 +53,10 @@ export default async function Home({
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             Continue with Facebook
+          </a>
+
+          <a href="/api/auth/demo" className="mt-3 flex w-full items-center justify-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600">
+            View live demo — no login
           </a>
 
           <p className="mt-4 text-center text-[11px] text-slate-400">

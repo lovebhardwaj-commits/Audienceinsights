@@ -6,6 +6,8 @@ export interface SessionData {
   accessToken?: string;
   tokenExpiresAt?: number; // unix ms
   userName?: string;
+  /** Demo mode (Part 8) — serves recorded fixtures through the real routes, no Meta token. */
+  demo?: boolean;
 }
 
 export const sessionOptions: SessionOptions = {

@@ -1,5 +1,6 @@
 import { metaInsights } from "@/lib/meta-api";
 import { num, findAction, upliftRatio, percent } from "@/lib/calculations";
+import { isPartialWeek } from "@/lib/dates";
 import type { DateRange } from "@/lib/types";
 
 export interface ConversionWindowWeekRow {
@@ -11,6 +12,8 @@ export interface ConversionWindowWeekRow {
   spend: number;
   upliftRatio: number;
   sameDayPct: number;
+  /** Trailing bucket that spans <7 days — excluded from insights/severity, dashed in charts (D6). */
+  isPartial: boolean;
 }
 
 export interface ConversionWindowsReport {
@@ -49,6 +52,7 @@ export async function getConversionWindowsReport(
         spend: num(row.spend),
         upliftRatio: upliftRatio(purchases1dc, purchases28dc),
         sameDayPct: percent(purchases1dc, purchases28dc),
+        isPartial: isPartialWeek(row.date_start as string, row.date_stop as string),
       };
     })
     .sort((a, b) => a.weekStart.localeCompare(b.weekStart));

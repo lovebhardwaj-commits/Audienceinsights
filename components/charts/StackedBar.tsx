@@ -1,9 +1,9 @@
 "use client";
 
-import { Area, AreaChart, Bar, BarChart, Brush, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, Bar, BarChart, Brush, CartesianGrid, Cell, Label, Legend, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
-import { ChartTooltipContent, compactTickFormatter, percentTickFormatter, type ValueFormat } from "./ChartTooltip";
+import { ChartTooltipContent, compactTickFormatter, currencyTickFormatter, percentTickFormatter, type ValueFormat } from "./ChartTooltip";
 import type { SeriesConfig } from "./LineChart";
 
 interface StackedBarProps {
@@ -14,87 +14,89 @@ interface StackedBarProps {
   height?: number;
   unit?: string;
   valueFormat?: ValueFormat;
-  /** Adds a draggable zoom/brush slider below the chart — useful for long time series. */
   brush?: boolean;
+  xTitle?: string;
+  yTitle?: string;
+  referenceLines?: Array<{ y: number; label?: string; color?: string }>;
+  /** Index of a trailing partial datum — its bar renders faded (§3.4 / D6). */
+  partialIndex?: number;
 }
 
-const tickStyle = { fontSize: 12, fill: CHART_INK.muted };
+const tickStyle = { fontSize: 12, fill: CHART_INK.muted, fontFamily: "var(--font-mono)" };
+const axisTitleStyle = { fontSize: 12, fontWeight: 600 };
 
-export function StackedBar({ data, xKey, series, variant = "bar", height = 360, unit = "", valueFormat, brush = false }: StackedBarProps) {
-  // [PM ENHANCEMENT] — chart animations respect the OS reduced-motion setting
+export function StackedBar({
+  data,
+  xKey,
+  series,
+  variant = "bar",
+  height = 360,
+  unit = "",
+  valueFormat,
+  brush,
+  xTitle,
+  yTitle,
+  referenceLines,
+  partialIndex,
+}: StackedBarProps) {
   const animate = !useReducedMotion();
   const isPercent = unit === "%";
   const fmt: ValueFormat = valueFormat ?? (isPercent ? "percent" : "compact");
-  const yTickFormatter = isPercent ? percentTickFormatter : compactTickFormatter;
+  const yTickFormatter =
+    fmt === "percent" ? percentTickFormatter : fmt === "currency" || fmt === "currencyCompact" ? currencyTickFormatter : compactTickFormatter;
+  const showBrush = brush ?? data.length > 12;
+  const titleColor = series[0]?.color ?? CHART_INK.secondary;
+  const wrapH = showBrush ? height + 40 : height;
+  // % stacks aren't summable to a meaningful total; raw stacks are.
+  const tooltip = <ChartTooltipContent defaultFormat={fmt} showTotal={!isPercent} shareOfTotal />;
+  const xAxisTitle = xTitle && <Label value={xTitle} position="insideBottom" offset={-12} style={{ ...axisTitleStyle, fill: CHART_INK.muted }} />;
+  const yAxisTitle = yTitle && <Label value={yTitle} angle={-90} position="insideLeft" style={{ ...axisTitleStyle, fill: titleColor, textAnchor: "middle" }} />;
+  const refs = referenceLines?.map((rl, i) => (
+    <ReferenceLine
+      key={i}
+      y={rl.y}
+      stroke={rl.color ?? "#94a3b8"}
+      strokeDasharray="5 3"
+      strokeWidth={1.5}
+      label={rl.label ? { value: rl.label, position: "insideTopRight", fontSize: 11, fill: rl.color ?? "#94a3b8" } : undefined}
+    />
+  ));
 
   return (
-    <div style={{ width: "100%", height: brush ? height + 44 : height }}>
+    <div style={{ width: "100%", height: wrapH }}>
       <ResponsiveContainer>
         {variant === "area" ? (
-          <AreaChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+          <AreaChart data={data} margin={{ top: 16, right: 16, left: 8, bottom: xTitle ? 20 : 0 }}>
             <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
-            <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
-            <YAxis
-              tick={tickStyle}
-              axisLine={false}
-              tickLine={false}
-              width={48}
-              tickFormatter={yTickFormatter}
-              domain={isPercent ? [0, 100] : undefined}
-            />
-            <Tooltip content={<ChartTooltipContent defaultFormat={fmt} />} />
+            <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false}>{xAxisTitle}</XAxis>
+            <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={yTickFormatter} domain={isPercent ? [0, 100] : undefined}>
+              {yAxisTitle}
+            </YAxis>
+            <Tooltip content={tooltip} />
             {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
             {series.map((s) => (
-              <Area
-                key={s.key}
-                type="monotone"
-                dataKey={s.key}
-                name={s.label}
-                stackId="1"
-                stroke={s.color}
-                fill={s.color}
-                fillOpacity={0.75}
-                isAnimationActive={animate}
-                animationDuration={600}
-                animationEasing="ease-out"
-              />
+              <Area key={s.key} type="monotone" dataKey={s.key} name={s.label} stackId="1" stroke={s.color} fill={s.color} fillOpacity={0.75} isAnimationActive={animate} animationDuration={600} animationEasing="ease-out" />
             ))}
-            {brush && (
-              <Brush dataKey={xKey} height={30} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />
-            )}
+            {refs}
+            {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} y={height - 4} />}
           </AreaChart>
         ) : (
-          <BarChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+          <BarChart data={data} margin={{ top: 16, right: 16, left: 8, bottom: xTitle ? 20 : 0 }}>
             <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
-            <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} />
-            <YAxis
-              tick={tickStyle}
-              axisLine={false}
-              tickLine={false}
-              width={48}
-              tickFormatter={yTickFormatter}
-              domain={isPercent ? [0, 100] : undefined}
-            />
-            <Tooltip content={<ChartTooltipContent defaultFormat={fmt} />} />
+            <XAxis dataKey={xKey} tick={tickStyle} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false}>{xAxisTitle}</XAxis>
+            <YAxis tick={tickStyle} axisLine={false} tickLine={false} width={64} tickFormatter={yTickFormatter} domain={isPercent ? [0, 100] : undefined}>
+              {yAxisTitle}
+            </YAxis>
+            <Tooltip content={tooltip} />
             {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
             {series.map((s) => (
-              <Bar
-                key={s.key}
-                dataKey={s.key}
-                name={s.label}
-                stackId="1"
-                fill={s.color}
-                stroke={CHART_CHROME.surface}
-                strokeWidth={2}
-                maxBarSize={48}
-                isAnimationActive={animate}
-                animationDuration={400}
-                animationEasing="ease-out"
-              />
+              <Bar key={s.key} dataKey={s.key} name={s.label} stackId="1" fill={s.color} stroke={CHART_CHROME.surface} strokeWidth={2} maxBarSize={48} isAnimationActive={animate} animationDuration={400} animationEasing="ease-out">
+                {partialIndex !== undefined &&
+                  data.map((_, i) => <Cell key={i} fillOpacity={i === partialIndex ? 0.4 : 1} />)}
+              </Bar>
             ))}
-            {brush && (
-              <Brush dataKey={xKey} height={30} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} />
-            )}
+            {refs}
+            {showBrush && <Brush dataKey={xKey} height={26} stroke="#2563EB" fill="#F8FAFC" travellerWidth={10} y={height - 4} />}
           </BarChart>
         )}
       </ResponsiveContainer>

@@ -2,7 +2,7 @@ import { metaInsights } from "@/lib/meta-api";
 import { num, cpmr, overlapPercent, uniqueContribution } from "@/lib/calculations";
 import { fetchAccountTotals } from "./shared";
 import type { DateRange } from "@/lib/types";
-import type { ProgressEmit } from "@/lib/stream";
+import type { ProgressEmit, PartialEmit } from "@/lib/stream";
 
 export type OverlapLevel = "campaign" | "adset" | "ad";
 
@@ -40,7 +40,8 @@ export async function getCampaignOverlapReport(
   accountId: string,
   range: DateRange,
   opts: CampaignOverlapOptions,
-  emit: ProgressEmit
+  emit: ProgressEmit,
+  emitPartial?: PartialEmit
 ): Promise<CampaignOverlapReport> {
   emit({ current: 0, total: 1, label: "Fetching total account reach…" });
   const total = await fetchAccountTotals(token, accountId, range);
@@ -84,7 +85,7 @@ export async function getCampaignOverlapReport(
     ]);
     const unique = uniqueContribution(total.reach, withoutEntity.reach);
 
-    entities.push({
+    const entity: OverlapEntityRow = {
       id: candidate.id,
       name: candidate.name,
       reach: candidate.reach,
@@ -93,7 +94,11 @@ export async function getCampaignOverlapReport(
       reachWithoutEntity: withoutEntity.reach,
       uniqueContribution: unique,
       overlapPct: overlapPercent(candidate.reach, unique),
-    });
+    };
+    entities.push(entity);
+    // Stream each entity the moment it resolves so the page renders its bar/row
+    // immediately instead of waiting ~40s for the whole run (D2).
+    emitPartial?.(entity);
 
     if (i < candidates.length - 1) await sleep(1200);
   }

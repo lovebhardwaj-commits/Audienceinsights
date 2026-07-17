@@ -10,16 +10,18 @@ import { ProgressIndicator } from "@/components/ui/ProgressIndicator";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { DualAxisChart } from "@/components/charts/DualAxisChart";
-import { ReportSummary } from "@/components/ui/ReportSummary";
+import { FindingsStrip } from "@/components/ui/FindingsStrip";
+import { netNewFindings } from "@/lib/findings";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
+import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HowToRead } from "@/components/ui/HowToRead";
-import { SpendIcon, PercentIcon, ReachIcon, CountIcon } from "@/components/ui/KpiIcons";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatPercent } from "@/lib/format";
-import { rollingReachInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNMonths } from "@/lib/dates";
+import { MIN_USEFUL_MONTHS } from "@/lib/constants";
+import { notablePoint } from "@/lib/chart-annotations";
 import type { DateRange } from "@/lib/types";
 import type { RollingReachReport } from "@/lib/reports/rolling-reach";
 import type { NetNewReachReport } from "@/lib/reports/net-new-reach";
@@ -44,7 +46,9 @@ const LOOKBACK_OPTIONS = [90, 180, 365];
 
 export default function NetNewReachPage() {
   const { selectedAccountId } = useAccount();
-  const { range, setRange } = useDateRange();
+  const { range, setRange, applyInitialMonths } = useDateRange();
+  // Open at ≥4 months so the trend charts aren't a single bar (D3/7.1).
+  useEffect(() => { applyInitialMonths(MIN_USEFUL_MONTHS["net-new-reach"]); }, [applyInitialMonths]);
   const [mode, setMode] = useState<WindowMode>("sliding");
   const [lookbackDays, setLookbackDays] = useState(180);
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
@@ -122,6 +126,11 @@ export default function NetNewReachPage() {
     repeatReach: Math.max(0, r.isolatedReach - r.netNewReach),
     netNewPct: r.netNewPct,
   }));
+  // Auto-annotation (§3.4) — mark the strongest net-new month.
+  const netNewAnnotation = useMemo(
+    () => notablePoint(compositionData.map((d) => d.netNewPct), "netNewPct", { kind: "max", label: () => "Best month" }),
+    [compositionData]
+  );
   const costData = rows.map((r) => ({ month: r.label, spend: r.spend, costPer1kNetNew: r.costPer1kNetNew }));
   const latestNetNewPct = mode === "expanding" ? expanding.data?.latestNetNewPct : sliding.data?.latestNetNewPct;
   const totalSpend = mode === "expanding" ? expanding.data?.totalSpend : sliding.data?.totalSpend;
@@ -133,10 +142,9 @@ export default function NetNewReachPage() {
       Math.max(1, rows.filter((r) => r.costPer1kNetNew > 0).length)
     : undefined;
 
-  const insights = useMemo(() => {
-    if (mode === "expanding" && expanding.data) return rollingReachInsights(expanding.data.months, expanding.data.totalRollingReach);
-    if (mode === "sliding" && sliding.data) return rollingReachInsights(sliding.data.months, sliding.data.months[sliding.data.months.length - 1]?.windowReach ?? 0);
-    return [];
+  const findingsList = useMemo(() => {
+    const d = mode === "expanding" ? expanding.data : sliding.data;
+    return d ? netNewFindings(d) : [];
   }, [mode, expanding.data, sliding.data]);
 
   return (
@@ -145,6 +153,7 @@ export default function NetNewReachPage() {
         <div>
           <h1 className="text-lg font-bold text-slate-900">Net New Reach</h1>
           <p className="mt-1 text-sm text-slate-500">How much of your monthly reach is genuinely new people vs. repeat exposure.</p>
+          <div className="mt-1"><FreshnessStamp fetchedAt={active.fetchedAt} /></div>
         </div>
         <DateRangePicker value={range} onChange={setRange} />
       </div>
@@ -190,8 +199,15 @@ export default function NetNewReachPage() {
         )}
       </div>
 
-      {active.error && <ErrorBanner message={active.error} onRetry={() => setRetryKey((k) => k + 1)} />}
-      {active.loading && !active.progress && <FetchingState />}
+      {active.error && (
+        <ErrorBanner
+          message={active.error}
+          code={active.errorCode}
+          onRetry={() => setRetryKey((k) => k + 1)}
+          onRetryShorter={() => setRange(lastNMonths(1))}
+        />
+      )}
+      {active.loading && !active.progress && <FetchingState reportWeight="heavy" />}
       {active.loading && active.progress && (
         <div className="mt-4">
           <ProgressIndicator current={active.progress.current} total={active.progress.total} label={active.progress.label} />
@@ -209,9 +225,8 @@ export default function NetNewReachPage() {
           title={totalReach !== undefined ? String(totalReach.toLocaleString()) : undefined}
           help={mode === "expanding" ? GLOSSARY.cumulativeReach : GLOSSARY.reach}
           loading={active.isInitialLoad}
-          icon={<ReachIcon />}
-          iconColor="bg-blue-50 text-blue-600"
-          accentColor="border-l-blue-500"
+          sparkline={rows.map((r) => r.windowReach)}
+          sparklineColor="var(--color-metric-new)"
         />
         <SummaryCard
           label="Total Spend"
@@ -219,18 +234,15 @@ export default function NetNewReachPage() {
           title={totalSpend !== undefined ? formatCurrency(totalSpend) : undefined}
           help={GLOSSARY.spend}
           loading={active.isInitialLoad}
-          icon={<SpendIcon />}
-          iconColor="bg-emerald-50 text-emerald-600"
-          accentColor="border-l-emerald-500"
+          sparkline={rows.map((r) => r.spend)}
         />
         <SummaryCard
           label="Latest Net New %"
           value={latestNetNewPct !== undefined ? formatPercent(latestNetNewPct) : "—"}
           help={GLOSSARY.netNewPct}
           loading={active.isInitialLoad}
-          icon={<PercentIcon />}
-          iconColor="bg-violet-50 text-violet-600"
-          accentColor="border-l-violet-500"
+          sparkline={rows.map((r) => r.netNewPct)}
+          sparklineColor="var(--color-metric-new)"
         />
         <SummaryCard
           label="Avg Cost / 1K Net New"
@@ -238,17 +250,16 @@ export default function NetNewReachPage() {
           title={avgCostPer1kNetNew !== undefined ? formatCurrency(avgCostPer1kNetNew) : undefined}
           help={GLOSSARY.costPer1kNetNew}
           loading={active.isInitialLoad}
-          icon={<CountIcon />}
-          iconColor="bg-amber-50 text-amber-600"
-          accentColor="border-l-amber-500"
+          sparkline={rows.map((r) => r.costPer1kNetNew)}
+          sparklineColor="var(--color-metric-repeat)"
         />
       </div>
 
       <div className={`mt-4 transition-opacity duration-200 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
-        <ReportSummary insights={insights} loading={active.isInitialLoad} />
+        <FindingsStrip findings={findingsList} loading={active.isInitialLoad} />
       </div>
 
-      <div className={`mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm transition-opacity duration-200 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+      <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
         <h2 className="text-sm font-semibold text-slate-800">Reach composition analysis</h2>
         <p className="mb-4 mt-0.5 text-xs text-slate-400">
           {mode === "expanding"
@@ -262,18 +273,22 @@ export default function NetNewReachPage() {
             data={compositionData}
             xKey="month"
             bars={[
-              { key: "repeatReach", label: "Reached Previously", color: "#d97706" },
-              { key: "netNewReach", label: "Net New Reach", color: "#2a78d6" },
+              { key: "repeatReach", label: "Reached Previously", color: "var(--color-metric-repeat)" },
+              { key: "netNewReach", label: "Net New Reach", color: "var(--color-metric-new)" },
             ]}
             lines={[{ key: "netNewPct", label: "% Net New", color: "#eda100" }]}
             barFormat="compact"
             lineFormat="percent"
+            xTitle="Month"
+            yTitle="Reach (people)"
+            yRightTitle="% Net New"
             referenceLines={[{ yAxisId: "right", y: 60, label: "60% benchmark", color: "#64748b" }]}
+            annotation={netNewAnnotation}
           />
         )}
       </div>
 
-      <div className={`mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm transition-opacity duration-200 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+      <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${active.loading && !active.isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
         <h2 className="text-sm font-semibold text-slate-800">Cost per 1K net new reach</h2>
         <p className="mb-4 mt-0.5 text-xs text-slate-400">Monthly spend vs. cost per thousand new people reached — a rising line means you&apos;re paying more for fresh audience.</p>
         {active.isInitialLoad ? (
@@ -286,6 +301,9 @@ export default function NetNewReachPage() {
             lines={[{ key: "costPer1kNetNew", label: "Cost / 1K Net New", color: "#4a3aa7" }]}
             barFormat="currencyCompact"
             lineFormat="currency"
+            xTitle="Month"
+            yTitle="Spend (₹)"
+            yRightTitle="Cost / 1K (₹)"
           />
         )}
       </div>

@@ -12,13 +12,15 @@ import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { HorizontalBar } from "@/components/charts/HorizontalBar";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
+import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HowToRead } from "@/components/ui/HowToRead";
-import { ReportSummary } from "@/components/ui/ReportSummary";
-import { overlapInsights } from "@/lib/insights";
+import { FindingsStrip } from "@/components/ui/FindingsStrip";
+import { overlapFindings } from "@/lib/findings";
 import { ReachIcon, SpendIcon, CountIcon } from "@/components/ui/KpiIcons";
-import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent } from "@/lib/format";
+import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatEntityLabels } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
+import { lastNMonths } from "@/lib/dates";
 import type { DateRange } from "@/lib/types";
 import type { CampaignOverlapReport, OverlapEntityRow, OverlapLevel } from "@/lib/reports/campaign-overlap";
 
@@ -37,6 +39,22 @@ const LEVELS: { key: OverlapLevel; label: string }[] = [
   { key: "ad", label: "Ad" },
 ];
 
+// Single source of truth for the overlap chart's series — the subtitle words and the
+// rendered bars both read from this, so they can never contradict again (D8).
+// Colors follow the metric-identity law: Unique/New = blue, Overlap/Repeat = orange.
+const OVERLAP_SERIES: { key: string; label: string; color: string }[] = [
+  { key: "unique", label: "Unique", color: "#2563EB" },
+  { key: "overlap", label: "Overlap", color: "#EA580C" },
+];
+
+/** Maps a series hex to the plain color word used in prose, so copy stays truthful. */
+function colorWord(hex: string): string {
+  const h = hex.toLowerCase();
+  if (h === "#2563eb") return "Blue";
+  if (h === "#ea580c" || h === "#f97316") return "Orange";
+  return "This color";
+}
+
 export default function CampaignOverlapPage() {
   const { selectedAccountId } = useAccount();
   const { range, setRange } = useDateRange();
@@ -44,7 +62,15 @@ export default function CampaignOverlapPage() {
   const [topN, setTopN] = useState(15);
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
-  const { loading, isInitialLoad, progress, data, error, run, cancel } = useStreamingReport<CampaignOverlapReport>();
+  const { loading, isInitialLoad, progress, data, error, errorCode, partials, fetchedAt, run, cancel } = useStreamingReport<CampaignOverlapReport>();
+
+  // D2 — render entities as they stream in. Until "done" arrives, `data` is null and we
+  // read the accumulated partials; after done, the full sorted list wins.
+  const liveEntities: OverlapEntityRow[] = useMemo(
+    () => data?.entities ?? (partials as OverlapEntityRow[]),
+    [data, partials]
+  );
+  const hasRows = liveEntities.length > 0;
 
   useEffect(() => {
     if (!selectedAccountId || !range) return;
@@ -61,10 +87,37 @@ export default function CampaignOverlapPage() {
 
   const entityLabel = level === "campaign" ? "Campaign" : level === "adset" ? "Adset" : "Ad";
 
+  // Shared label engine (Part 5 / 7.2) — strip the common prefix once, middle-ellipsize the rest.
+  const entityLabels = useMemo(
+    () => formatEntityLabels(liveEntities.map((e) => e.name), 30),
+    [liveEntities]
+  );
+  const labelByName = useMemo(() => {
+    const m: Record<string, string> = {};
+    liveEntities.forEach((e, i) => { m[e.name] = entityLabels.labels[i] ?? e.name; });
+    return m;
+  }, [liveEntities, entityLabels]);
+  // Reverse map so the chart tooltip can show the full name behind a stripped label (§3.3).
+  const fullLabelByDisplay = useMemo(() => {
+    const m: Record<string, string> = {};
+    liveEntities.forEach((e, i) => { m[entityLabels.labels[i] ?? e.name] = e.name; });
+    return m;
+  }, [liveEntities, entityLabels]);
+
   const columns: DataTableColumn<OverlapEntityRow>[] = useMemo(() => [
-    { key: "name", header: entityLabel, accessor: (r) => r.name },
+    { key: "name", header: entityLabel, accessor: (r) => r.name, render: (r) => labelByName[r.name] ?? r.name },
     { key: "reach", header: "Reach", help: GLOSSARY.reach, accessor: (r) => r.reach, align: "right", render: (r) => formatCompactNumber(r.reach) },
     { key: "spend", header: "Spend", help: GLOSSARY.spend, accessor: (r) => r.spend, align: "right", render: (r) => formatCurrency(r.spend) },
+    {
+      // 7.2 — money wasted on overlap = spend × overlap%. Default sort so the biggest ₹ waste is on top.
+      key: "moneyOnOverlap",
+      header: "₹ on Overlap",
+      help: "Spend that went to people this entity shares with others — spend × overlap %. Rank by this to find the biggest waste.",
+      accessor: (r) => r.spend * (r.overlapPct / 100),
+      align: "right",
+      cellClass: (r) => (r.overlapPct > 75 ? "text-red-600 font-semibold" : r.overlapPct > 50 ? "text-amber-600" : ""),
+      render: (r) => formatCurrencyCompact(r.spend * (r.overlapPct / 100)),
+    },
     { key: "cpmr", header: "CPMR", help: GLOSSARY.cpmr, accessor: (r) => r.cpmr, align: "right", render: (r) => formatCurrency(r.cpmr) },
     { key: "uniqueContribution", header: "Unique Reach", help: GLOSSARY.uniqueContribution, accessor: (r) => r.uniqueContribution, align: "right", render: (r) => formatCompactNumber(r.uniqueContribution) },
     {
@@ -76,41 +129,26 @@ export default function CampaignOverlapPage() {
       cellClass: (r) => incrementalCellClass(100 - r.overlapPct),
       render: (r) => formatPercent(100 - r.overlapPct),
     },
-  ], [entityLabel]);
+  ], [entityLabel, labelByName]);
 
   const chartData = useMemo(() => {
-    const entities = data?.entities ?? [];
-    const names = entities.map((e) => e.name);
-    const lowerNames = names.map((n) => n.toLowerCase());
-    let prefixLen = (lowerNames[0] ?? "").length;
-    for (const n of lowerNames) {
-      let i = 0;
-      const max = Math.min(prefixLen, n.length);
-      while (i < max && n[i] === lowerNames[0][i]) i++;
-      prefixLen = i;
-      if (prefixLen === 0) break;
-    }
-    const shouldStrip = prefixLen > 8;
-    return entities
-      .map((e) => {
-        const stripped = shouldStrip ? e.name.slice(prefixLen).replace(/^[_\s\-]+/, "") : e.name;
-        return {
-          name: stripped.length >= 3 ? stripped : e.name,
-          unique: e.uniqueContribution,
-          overlap: Math.max(0, e.reach - e.uniqueContribution),
-        };
-      })
+    return liveEntities
+      .map((e) => ({
+        name: labelByName[e.name] ?? e.name,
+        unique: e.uniqueContribution,
+        overlap: Math.max(0, e.reach - e.uniqueContribution),
+      }))
       .sort((a, b) => (b.unique + b.overlap) - (a.unique + a.overlap));
-  }, [data]);
+  }, [liveEntities, labelByName]);
 
-  const insights = useMemo(() => {
-    if (!data) return [];
-    return overlapInsights(data.totalAccountReach, data.entities, level);
-  }, [data, level]);
+  const findingsList = useMemo(
+    () => (data ? overlapFindings(data, entityLabels.prefix) : []),
+    [data, entityLabels.prefix]
+  );
 
   const sumOfReaches = useMemo(
-    () => (data?.entities ?? []).reduce((sum, e) => sum + e.reach, 0),
-    [data]
+    () => liveEntities.reduce((sum, e) => sum + e.reach, 0),
+    [liveEntities]
   );
 
   return (
@@ -119,6 +157,7 @@ export default function CampaignOverlapPage() {
         <div>
           <h1 className="text-lg font-bold text-slate-900">Campaign & Adset Overlap</h1>
           <p className="mt-1 text-sm text-slate-500">Discover which campaigns compete for the same audience vs. reaching unique people.</p>
+          <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
         </div>
         <DateRangePicker value={range} onChange={setRange} />
       </div>
@@ -161,8 +200,17 @@ export default function CampaignOverlapPage() {
         </label>
       </div>
 
-      {error && <ErrorBanner message={error} onRetry={() => setRetryKey((k) => k + 1)} />}
-      {loading && !progress && <FetchingState />}
+      {/* Cost preview (Part 8) — this report is O(N) in Graph calls, one per entity. */}
+      {!loading && (
+        <p className="mt-2 text-[11px] text-ink-tertiary">
+          This runs ≈{topN + 2} Meta API calls (one per {entityLabel.toLowerCase()}), roughly {Math.max(1, Math.ceil(((topN + 2) * 1.3) / 60))}–{Math.ceil(((topN + 2) * 1.3) / 60) + 1} min on a cold load.
+        </p>
+      )}
+
+      {error && (
+        <ErrorBanner message={error} code={errorCode} onRetry={() => setRetryKey((k) => k + 1)} onRetryShorter={() => setRange(lastNMonths(1))} />
+      )}
+      {loading && !progress && <FetchingState reportWeight="heavy" />}
       {loading && progress && (
         <div className="mt-4">
           <ProgressIndicator current={progress.current} total={progress.total} label={progress.label} onCancel={cancel} />
@@ -188,9 +236,9 @@ export default function CampaignOverlapPage() {
               />
               <SummaryCard
                 label="Sum of All Reaches"
-                value={data ? formatCompactNumber(sumOfReaches) : "—"}
-                title={data ? formatNumber(sumOfReaches) : undefined}
-                sublabel={data ? `${formatPercent((sumOfReaches / (data.totalAccountReach || 1) - 1) * 100)} overlap gap` : "non-deduplicated"}
+                value={hasRows ? formatCompactNumber(sumOfReaches) : "—"}
+                title={hasRows ? formatNumber(sumOfReaches) : undefined}
+                sublabel={data ? `${formatPercent((sumOfReaches / (data.totalAccountReach || 1) - 1) * 100)} overlap gap` : hasRows ? "running total…" : "non-deduplicated"}
                 help="Adding up every entity's reach without deduplication — the gap vs. Total Account Reach is audience double-counted across entities."
                 loading={isInitialLoad}
                 icon={<CountIcon />}
@@ -217,15 +265,25 @@ export default function CampaignOverlapPage() {
               />
             </div>
 
-            <ReportSummary insights={insights} loading={isInitialLoad} />
+            <FindingsStrip findings={findingsList} loading={loading && !hasRows} />
 
-            {(isInitialLoad || chartData.length > 0) && (
-              <div className="mt-6 rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm">
+            {(loading || hasRows) && (
+              <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
                 <h2 className="text-sm font-semibold text-slate-800">Unique vs. overlapping reach</h2>
+                {/* D8 — subtitle is generated FROM the series config, so its color words can
+                    never drift from the rendered bars again. */}
                 <p className="mb-4 mt-0.5 text-xs text-slate-400">
-                  Blue = audience only this {entityLabel.toLowerCase()} reached; grey = audience it shares with the rest of the account.
+                  <span style={{ color: OVERLAP_SERIES[0].color }} className="font-semibold">{colorWord(OVERLAP_SERIES[0].color)}</span>
+                  {` = audience only this ${entityLabel.toLowerCase()} reached; `}
+                  <span style={{ color: OVERLAP_SERIES[1].color }} className="font-semibold">{colorWord(OVERLAP_SERIES[1].color)}</span>
+                  {` = audience it shares with the rest of the account.`}
                 </p>
-                {isInitialLoad ? (
+                {entityLabels.prefix && (
+                  <p className="mb-3 text-[11px] text-slate-400">
+                    All names begin with <span className="font-mono font-medium text-slate-500">{entityLabels.prefix}</span>
+                  </p>
+                )}
+                {!hasRows ? (
                   <ChartSkeleton />
                 ) : (
                   <HorizontalBar
@@ -233,10 +291,9 @@ export default function CampaignOverlapPage() {
                     categoryKey="name"
                     stacked
                     percentOfTotal
-                    series={[
-                      { key: "unique", label: "Unique", color: "#2563EB" },
-                      { key: "overlap", label: "Overlap", color: "#F97316" },
-                    ]}
+                    series={OVERLAP_SERIES}
+                    xTitle="Reach (people)"
+                    fullLabels={fullLabelByDisplay}
                   />
                 )}
               </div>
@@ -245,10 +302,10 @@ export default function CampaignOverlapPage() {
             <div className="mt-6">
               <DataTable
                 columns={columns}
-                rows={data?.entities ?? []}
-                loading={isInitialLoad}
+                rows={liveEntities}
+                loading={loading && !hasRows}
                 filename={`${level}-overlap`}
-                defaultSortKey="incrementalPct"
+                defaultSortKey="moneyOnOverlap"
                 defaultSortDir="desc"
               />
             </div>

@@ -2,22 +2,52 @@
 
 import { useEffect, useState } from "react";
 
-const MESSAGES = [
+// [PM ENHANCEMENT] — loading copy never promises a duration it can't keep (D9).
+// It states WHAT is happening and WHY it's slow, and escalates honestly past 30s.
+
+const LIGHT_MESSAGES = [
   "Fetching your data…",
   "Talking to Meta's Ads API…",
   "Crunching the numbers…",
-  "Almost there…",
 ];
 
-/** Prominent loading banner shown while a report's first fetch is in flight —
- *  rotates through friendly messages so long pulls never look frozen. */
-export function FetchingState({ label }: { label?: string }) {
+const HEAVY_MESSAGES = [
+  "Querying Meta one entity at a time…",
+  "This is a heavy report — hang tight…",
+  "Still gathering results from Meta…",
+];
+
+export type ReportWeight = "light" | "heavy";
+
+interface FetchingStateProps {
+  label?: string;
+  /** Heavy reports (overlap, partnership, churn) run one query per entity — copy says so. */
+  reportWeight?: ReportWeight;
+  /** Optional override for the secondary line; otherwise generated from weight + elapsed. */
+  detail?: string;
+}
+
+export function FetchingState({ label, reportWeight = "light", detail }: FetchingStateProps) {
+  const messages = reportWeight === "heavy" ? HEAVY_MESSAGES : LIGHT_MESSAGES;
   const [msgIndex, setMsgIndex] = useState(0);
+  const [elapsed, setElapsed] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setMsgIndex((i) => Math.min(i + 1, MESSAGES.length - 1)), 4000);
-    return () => clearInterval(id);
-  }, []);
+    const rotator = setInterval(() => setMsgIndex((i) => Math.min(i + 1, messages.length - 1)), 4000);
+    const ticker = setInterval(() => setElapsed((s) => s + 1), 1000);
+    return () => {
+      clearInterval(rotator);
+      clearInterval(ticker);
+    };
+  }, [messages.length]);
+
+  const secondary =
+    detail ??
+    (elapsed > 30
+      ? "Still working — Meta rate-limits heavy reports, so this can take a little longer."
+      : reportWeight === "heavy"
+        ? "Heavy report: one query per entity to stay within Meta's limits."
+        : "Pulling live data from your ad account.");
 
   return (
     <div className="mt-4 flex items-center gap-4 rounded-xl border border-blue-100 bg-blue-50/60 px-5 py-4">
@@ -29,9 +59,10 @@ export function FetchingState({ label }: { label?: string }) {
         </svg>
       </div>
       <div>
-        <div className="text-sm font-semibold text-slate-800">{label ?? MESSAGES[msgIndex]}</div>
+        <div className="text-sm font-semibold text-slate-800">{label ?? messages[msgIndex]}</div>
         <div className="mt-0.5 text-xs text-slate-500">
-          Pulling live data from your ad account — this usually takes a few seconds.
+          {secondary}
+          {elapsed > 5 && <span className="ml-1.5 tabular-nums text-slate-400">· {elapsed}s</span>}
         </div>
       </div>
     </div>

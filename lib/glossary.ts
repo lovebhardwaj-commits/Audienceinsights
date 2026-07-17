@@ -1,7 +1,7 @@
 export const GLOSSARY = {
   reach: "The number of unique people who saw your ads at least once in this period.",
   spend: "Total amount spent on ads in this period.",
-  cpmr: "Cost Per Thousand Reached — spend divided by reach, times 1,000. Lower is cheaper reach.",
+  cpmr: "Cost Per Thousand Reached — how much you pay to get your ad in front of 1,000 unique people. Unlike CPM (which counts impressions), CPMR counts distinct individuals, so it tells you the real cost of expanding your audience. A rising CPMR means you're paying more per new person reached — your audience pool is shrinking or getting more competitive.",
   cpp: "Cost Per Purchase — spend divided by number of purchases.",
   frequency: "Average number of times each person saw your ads (impressions ÷ reach).",
   netNew: "Reach this period that wasn't part of the cumulative reach up to the previous period — i.e. genuinely new people.",

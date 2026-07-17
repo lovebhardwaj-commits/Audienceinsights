@@ -112,7 +112,7 @@ export function DualAxisChart({
                 domain={lineDomain ?? (lineFormat === "percent" ? [0, 100] : undefined)}
               />
               <Tooltip
-                content={<ChartTooltipContent formats={formats} showTotal shareOfTotal />}
+                content={<ChartTooltipContent formats={formats} showTotal={lines.length === 0} shareOfTotal />}
                 wrapperStyle={{ zIndex: 9999 }}
               />
               <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />

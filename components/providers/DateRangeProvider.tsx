@@ -1,15 +1,15 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { lastNMonths } from "@/lib/dates";
 import type { DateRange } from "@/lib/types";
 
 interface DateRangeContextValue {
   range: DateRange | null;
   setRange: (range: DateRange | null) => void;
-  /** Report pages call this on mount with their `minUsefulMonths` (D3/7.1). Until the
-   *  user explicitly picks a range, each report opens at its own sensible minimum so
-   *  New Reach never renders a one-bar "trend". An explicit pick always wins after. */
+  /** Report pages call this on mount to set their own default range. Fires once per
+   *  page mount (stable callback + single-dep effect), so navigating to a new report
+   *  always resets to that report's sensible default. */
   applyInitialMonths: (months: number) => void;
 }
 
@@ -17,20 +17,12 @@ const DateRangeContext = createContext<DateRangeContextValue | null>(null);
 
 export function DateRangeProvider({ children }: { children: React.ReactNode }) {
   const [range, setRangeState] = useState<DateRange | null>(null);
-  // Once the user picks a range, we stop auto-adjusting it on report navigation.
-  const userSetRef = useRef(false);
-
-  useEffect(() => {
-    setRangeState(lastNMonths(1));
-  }, []);
 
   const setRange = useCallback((r: DateRange | null) => {
-    userSetRef.current = true;
     setRangeState(r);
   }, []);
 
   const applyInitialMonths = useCallback((months: number) => {
-    if (userSetRef.current) return;
     setRangeState(lastNMonths(Math.max(1, months)));
   }, []);
 

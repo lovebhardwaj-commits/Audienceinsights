@@ -116,14 +116,15 @@ function creativeChurn() {
   const days = Array.from({ length: 24 }, (_, w) => {
     const date = new Date(startMs + w * weekMs).toISOString().slice(0, 10);
 
-    // Each cohort has a lifecycle: ramps up over a few weeks then fades
+    // Each cohort has a lifecycle: ramps up over a few weeks then fades.
+    // When startWeek === peakWeek the cohort is already at peak (e.g. pre-existing ads).
     function cohortSpendAt(startWeek: number, peakWeek: number, peakSpend: number): number {
       if (w < startWeek) return 0;
       const age = w - startWeek;
       const rampWeeks = peakWeek - startWeek;
+      if (rampWeeks === 0) return Math.max(0, Math.round(peakSpend * Math.pow(0.88, age)));
       if (age <= rampWeeks) return Math.round(peakSpend * (age / rampWeeks));
-      const decayAge = age - rampWeeks;
-      return Math.max(0, Math.round(peakSpend * Math.pow(0.88, decayAge)));
+      return Math.max(0, Math.round(peakSpend * Math.pow(0.88, age - rampWeeks)));
     }
 
     const cohortSpend: Record<string, number> = {

@@ -17,7 +17,7 @@ export const GLOSSARY = {
   incrementalReach: "New reach added by extending the window one more week — dropping incremental reach signals audience/creative fatigue.",
   cohortSpendPct: "% of that week's total spend going to ads created in this specific week (cohort).",
   attributionWindow: "How long after a click/view Meta still credits a conversion to that ad. 1DC = within 1 day of click, 28DC = within 28 days.",
-  upliftRatio: "How much more credit 28-day attribution gives vs 1-day — a high ratio means most conversions take longer than a day.",
+  upliftRatio: "How much bigger your 28-day purchase count is compared to your 1-day purchase count, as a percentage. Example: 1DC = 10 purchases, 28DC = 30 purchases → uplift = 200%, meaning two-thirds of buyers took more than a day to convert after seeing the ad. Low uplift (under ~20%) = fast buyers, 1-day numbers are reliable. High uplift = buyers take days or weeks, so 1-day numbers are heavily understating real performance.",
   sameDayPct: "% of 28-day attributed purchases that converted within 1 day of the ad click. High = clean same-day conversion signal.",
   saturation: "Share of reach that's Engaged + Existing rather than New — a high number suggests you're mostly re-reaching the same people.",
   // [PM ENHANCEMENT] — Definitions for every purchase/cohort/creator metric so no

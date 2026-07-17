@@ -90,7 +90,7 @@ export default function ConversionWindowsPage() {
       <HowToRead
         items={[
           { label: "1DC / 7DC / 28DC", text: "purchases Meta credits to an ad within 1, 7, or 28 days of someone clicking it." },
-          { label: "Uplift Ratio", text: "how many extra purchases the 28-day view adds vs the 1-day view. High = customers take days to decide; low = they buy fast." },
+          { label: "Uplift Ratio", text: "how much bigger your 28-day purchase count is vs your 1-day count, as a %. E.g. 1DC = 10, 28DC = 30 → 200% uplift — two-thirds of buyers took more than a day. Low uplift (under ~20%) means 1-day numbers are reliable; high uplift means 1-day is heavily understating real performance and you need the longer window." },
           { label: "% Same-Day", text: "the share of all attributed purchases that happened within a day of the click — your impulse-purchase rate." },
           { label: "The chart", text: "each bar splits a week's purchases by how long they took; the pink line tracks the uplift ratio on the right axis." },
         ]}

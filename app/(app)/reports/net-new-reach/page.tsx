@@ -47,9 +47,12 @@ const LOOKBACK_OPTIONS = [90, 180, 365];
 export default function NetNewReachPage() {
   const { selectedAccountId } = useAccount();
   const { range, setRange, applyInitialMonths } = useDateRange();
-  // Open at ≥4 months so the trend charts aren't a single bar (D3/7.1).
-  useEffect(() => { applyInitialMonths(MIN_USEFUL_MONTHS["net-new-reach"]); }, [applyInitialMonths]);
   const [mode, setMode] = useState<WindowMode>("sliding");
+  // Expanding window is trend-heavy — open at 3 months so the chart has shape.
+  // Sliding window matches other reports at 1 month; the user asked for this split.
+  useEffect(() => {
+    applyInitialMonths(mode === "expanding" ? 3 : 1);
+  }, [applyInitialMonths, mode]);
   const [lookbackDays, setLookbackDays] = useState(180);
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);

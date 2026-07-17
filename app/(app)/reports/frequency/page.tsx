@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
-import { useDateRange } from "@/components/providers/DateRangeProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
@@ -16,7 +15,6 @@ import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { formatShortDate, formatEntityLabels } from "@/lib/format";
 import { lastNMonths } from "@/lib/dates";
 import { freqSeverity } from "@/lib/severity";
-import { MIN_USEFUL_MONTHS } from "@/lib/constants";
 import type { FrequencyReport, FrequencyLevel } from "@/lib/reports/frequency";
 import type { DateRange } from "@/lib/types";
 
@@ -67,8 +65,8 @@ const LEVELS: { key: FrequencyLevel; label: string }[] = [
 
 export default function FrequencyPage() {
   const { selectedAccountId } = useAccount();
-  const { range, setRange, applyInitialMonths } = useDateRange();
-  useEffect(() => { applyInitialMonths(MIN_USEFUL_MONTHS["frequency"]); }, [applyInitialMonths]);
+  const [range, setRange] = useState<DateRange | null>(null);
+  useEffect(() => { setRange(lastNMonths(2)); }, []);
   const [level, setLevel] = useState<FrequencyLevel>("campaign");
   const [retryKey, setRetryKey] = useState(0);
   const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: FrequencyReport }>();

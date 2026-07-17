@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
-import { useDateRange } from "@/components/providers/DateRangeProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -19,14 +18,13 @@ import { percent } from "@/lib/calculations";
 import { conversionFindings } from "@/lib/findings";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNDays, lastNMonths } from "@/lib/dates";
-import { MIN_USEFUL_MONTHS } from "@/lib/constants";
 import type { DateRange } from "@/lib/types";
 import type { ConversionWindowWeekRow, ConversionWindowsReport } from "@/lib/reports/conversion-windows";
 
 export default function ConversionWindowsPage() {
   const { selectedAccountId } = useAccount();
-  const { range, setRange, applyInitialMonths } = useDateRange();
-  useEffect(() => { applyInitialMonths(MIN_USEFUL_MONTHS["conversion-windows"]); }, [applyInitialMonths]);
+  const [range, setRange] = useState<DateRange | null>(null);
+  useEffect(() => { setRange(lastNMonths(2)); }, []);
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
   const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: ConversionWindowsReport }>();

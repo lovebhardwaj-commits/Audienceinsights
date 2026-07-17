@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
-import { useDateRange } from "@/components/providers/DateRangeProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
@@ -15,7 +14,7 @@ import { ReportSummary } from "@/components/ui/ReportSummary";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
-import { SEGMENT_COLORS, SEGMENT_LABELS, MIN_USEFUL_MONTHS } from "@/lib/constants";
+import { SEGMENT_COLORS, SEGMENT_LABELS } from "@/lib/constants";
 import { ReachIcon, SpendIcon, TrendUpIcon, PercentIcon } from "@/components/ui/KpiIcons";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { audienceSegmentInsights, creativeSegmentInsights } from "@/lib/insights";
@@ -75,8 +74,8 @@ function newPctCellClass(row: EntitySegmentRow): string {
 
 export default function AudienceSegmentsPage() {
   const { selectedAccountId } = useAccount();
-  const { range, setRange, applyInitialMonths } = useDateRange();
-  useEffect(() => { applyInitialMonths(MIN_USEFUL_MONTHS["audience-segments"]); }, [applyInitialMonths]);
+  const [range, setRange] = useState<DateRange | null>(null);
+  useEffect(() => { setRange(lastNMonths(2)); }, []);
   const [viewLevel, setViewLevel] = useState<ViewLevel>("account");
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);

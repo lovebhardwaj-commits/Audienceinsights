@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
-import { useDateRange } from "@/components/providers/DateRangeProvider";
 import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
@@ -55,7 +54,8 @@ function colorWord(hex: string): string {
 
 export default function CampaignOverlapPage() {
   const { selectedAccountId } = useAccount();
-  const { range, setRange } = useDateRange();
+  const [range, setRange] = useState<DateRange | null>(null);
+  useEffect(() => { setRange(lastNMonths(1)); }, []);
   const [level, setLevel] = useState<OverlapLevel>("campaign");
   const [topN, setTopN] = useState(15);
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"

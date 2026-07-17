@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
-import { useDateRange } from "@/components/providers/DateRangeProvider";
 import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
@@ -42,11 +41,9 @@ const LOOKBACK_OPTIONS = [90, 180, 365];
 
 export default function NetNewReachPage() {
   const { selectedAccountId } = useAccount();
-  const { range, setRange, applyInitialMonths } = useDateRange();
+  const [range, setRange] = useState<DateRange | null>(null);
   const [mode, setMode] = useState<WindowMode>("sliding");
-  useEffect(() => {
-    applyInitialMonths(3);
-  }, [applyInitialMonths]);
+  useEffect(() => { setRange(lastNMonths(3)); }, []);
   const [lookbackDays, setLookbackDays] = useState(90);
   // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);

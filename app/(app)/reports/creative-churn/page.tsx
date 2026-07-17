@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
-import { useDateRange } from "@/components/providers/DateRangeProvider";
 import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
@@ -17,8 +16,8 @@ import { formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, for
 import { creativeChurnInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNMonths, daysInclusive } from "@/lib/dates";
-import { MIN_USEFUL_MONTHS } from "@/lib/constants";
 import { PRE_COHORT_KEY, OTHER_COHORT_KEY, type ChurnGranularity, type CreativeChurnReport } from "@/lib/reports/creative-churn";
+import type { DateRange } from "@/lib/types";
 
 // Muted/pastel qualitative palette from the design spec — the gray base layer is
 // reserved for the "Pre-{month}" legacy cohort and the folded "Other" bucket.
@@ -47,9 +46,9 @@ interface CohortTableRow {
 
 export default function CreativeChurnPage() {
   const { selectedAccountId } = useAccount();
-  const { range, setRange, applyInitialMonths } = useDateRange();
+  const [range, setRange] = useState<DateRange | null>(null);
   // Auto-load at a weekly 3-month default — the rescue that makes this viable in nav (7.7).
-  useEffect(() => { applyInitialMonths(MIN_USEFUL_MONTHS["creative-churn"]); }, [applyInitialMonths]);
+  useEffect(() => { setRange(lastNMonths(3)); }, []);
   const [granularity, setGranularity] = useState<ChurnGranularity>("weekly");
   const [visibleRange, setVisibleRange] = useState<[number, number] | null>(null);
   const [howToOpen, setHowToOpen] = useState(false);

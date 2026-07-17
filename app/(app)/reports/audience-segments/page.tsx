@@ -222,7 +222,7 @@ export default function AudienceSegmentsPage() {
         ))}
       </div>
 
-      {loading && <FetchingState />}
+      {(loading || (range && !(isEntityView ? entityReport.data : accountReport.data))) && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 

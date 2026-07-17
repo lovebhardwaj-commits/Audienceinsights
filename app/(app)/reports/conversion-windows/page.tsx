@@ -96,7 +96,7 @@ export default function ConversionWindowsPage() {
         ]}
       />
 
-      {loading && <FetchingState />}
+      {(loading || (range && !data)) && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}
 

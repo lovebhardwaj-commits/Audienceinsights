@@ -184,7 +184,7 @@ export default function CreativeChurnPage() {
         {!dailyAllowed && <span className="text-[11px] text-ink-tertiary">Daily unlocks on ranges ≤ 2 months</span>}
       </div>
 
-      {loading && !progress && <FetchingState />}
+      {!progress && (loading || (range && !data)) && <FetchingState />}
       {loading && progress && (
         <div className="mt-4"><ProgressIndicator current={progress.current} total={progress.total} label={progress.label} onCancel={cancel} /></div>
       )}

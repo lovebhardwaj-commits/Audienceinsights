@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
+import { useReportRange } from "@/lib/hooks/useReportRange";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -13,10 +14,9 @@ import { frequencyFindings } from "@/lib/findings";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { formatShortDate, formatEntityLabels } from "@/lib/format";
-import { lastNMonths } from "@/lib/dates";
+import { evictCached } from "@/lib/report-cache";
 import { freqSeverity } from "@/lib/severity";
 import type { FrequencyReport, FrequencyLevel } from "@/lib/reports/frequency";
-import type { DateRange } from "@/lib/types";
 
 const FREQ_COLORS = [
   "#dbeafe", // 1–1.5 — very light blue
@@ -65,17 +65,24 @@ const LEVELS: { key: FrequencyLevel; label: string }[] = [
 
 export default function FrequencyPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useState<DateRange | null>(null);
-  useEffect(() => { setRange(lastNMonths(2)); }, []);
+  const [range, setRange] = useReportRange("frequency", 2);
   const [level, setLevel] = useState<FrequencyLevel>("campaign");
   const [retryKey, setRetryKey] = useState(0);
+  const currentUrlRef = useRef<string | null>(null);
   const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: FrequencyReport }>();
 
   useEffect(() => {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until, level });
-    run(`/api/reports/frequency?${params}`);
+    const url = `/api/reports/frequency?${params}`;
+    currentUrlRef.current = url;
+    run(url);
   }, [selectedAccountId, range, level, run, retryKey]);
+
+  function handleRefresh() {
+    if (currentUrlRef.current) evictCached(currentUrlRef.current);
+    setRetryKey((k) => k + 1);
+  }
 
   const report = data?.data;
   const entityLabel = level === "campaign" ? "Campaign" : level === "adset" ? "Adset" : "Ad";
@@ -124,7 +131,21 @@ export default function FrequencyPage() {
           <p className="mt-1 text-sm text-slate-500">How often each {entityLabel.toLowerCase()} exposes the same people, week by week.</p>
           <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
         </div>
-        <DateRangePicker value={range} onChange={setRange} />
+        <div className="flex items-center gap-2">
+          <DateRangePicker value={range} onChange={setRange} />
+          <button
+            onClick={handleRefresh}
+            title="Refresh report"
+            className="rounded-md border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+              <path d="M21 3v5h-5" />
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+              <path d="M8 16H3v5" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <HowToRead

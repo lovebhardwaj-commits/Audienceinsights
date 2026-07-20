@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Area, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
+import { useReportRange } from "@/lib/hooks/useReportRange";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
 import { ChartSkeleton, Skeleton } from "@/components/ui/Skeleton";
@@ -17,8 +18,7 @@ import { SEGMENT_COLORS } from "@/lib/constants";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
 import { HowToRead } from "@/components/ui/HowToRead";
-import { lastNMonths } from "@/lib/dates";
-import type { DateRange } from "@/lib/types";
+import { evictCached } from "@/lib/report-cache";
 import type { CreatorRow, GroupMetrics, PartnershipAdRow, PartnershipReport } from "@/lib/reports/partnership-ads";
 
 function newReachCellClass(pct: number): string {
@@ -217,20 +217,25 @@ const trendTickStyle = { fontSize: 12, fill: CHART_INK.muted };
 
 export default function PartnershipAdsPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useState<DateRange | null>(null);
-  useEffect(() => { setRange(lastNMonths(1)); }, []);
+  const [range, setRange] = useReportRange("partnership-ads", 1);
   const [adsExpanded, setAdsExpanded] = useState(false);
-  // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
-  // [PM ENHANCEMENT] — chart animations respect the OS reduced-motion setting
+  const currentUrlRef = useRef<string | null>(null);
   const animate = !useReducedMotion();
   const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: PartnershipReport }>();
 
   useEffect(() => {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
-    run(`/api/reports/partnership-ads?${params}`);
+    const url = `/api/reports/partnership-ads?${params}`;
+    currentUrlRef.current = url;
+    run(url);
   }, [selectedAccountId, range, run, retryKey]);
+
+  function handleRefresh() {
+    if (currentUrlRef.current) evictCached(currentUrlRef.current);
+    setRetryKey((k) => k + 1);
+  }
 
   const report = data?.data;
   const p = report?.partnership;
@@ -369,7 +374,21 @@ export default function PartnershipAdsPage() {
           <p className="mt-1 text-sm text-slate-500">Compare creator partnership ads vs normal ads on new audience reach and customer acquisition.</p>
           <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
         </div>
-        <DateRangePicker value={range} onChange={setRange} />
+        <div className="flex items-center gap-2">
+          <DateRangePicker value={range} onChange={setRange} />
+          <button
+            onClick={handleRefresh}
+            title="Refresh report"
+            className="rounded-md border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+              <path d="M21 3v5h-5" />
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+              <path d="M8 16H3v5" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <HowToRead

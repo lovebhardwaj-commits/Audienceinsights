@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
+import { useReportRange } from "@/lib/hooks/useReportRange";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
@@ -17,23 +18,29 @@ import { formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, for
 import { percent } from "@/lib/calculations";
 import { conversionFindings } from "@/lib/findings";
 import { GLOSSARY } from "@/lib/glossary";
-import { lastNDays, lastNMonths } from "@/lib/dates";
-import type { DateRange } from "@/lib/types";
+import { lastNDays } from "@/lib/dates";
+import { evictCached } from "@/lib/report-cache";
 import type { ConversionWindowWeekRow, ConversionWindowsReport } from "@/lib/reports/conversion-windows";
 
 export default function ConversionWindowsPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useState<DateRange | null>(null);
-  useEffect(() => { setRange(lastNMonths(2)); }, []);
-  // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
+  const [range, setRange] = useReportRange("conversion-windows", 2);
   const [retryKey, setRetryKey] = useState(0);
+  const currentUrlRef = useRef<string | null>(null);
   const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: ConversionWindowsReport }>();
 
   useEffect(() => {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
-    run(`/api/reports/conversion-windows?${params}`);
+    const url = `/api/reports/conversion-windows?${params}`;
+    currentUrlRef.current = url;
+    run(url);
   }, [selectedAccountId, range, run, retryKey]);
+
+  function handleRefresh() {
+    if (currentUrlRef.current) evictCached(currentUrlRef.current);
+    setRetryKey((k) => k + 1);
+  }
 
   const report = data?.data;
 
@@ -82,7 +89,21 @@ export default function ConversionWindowsPage() {
           <p className="mt-1 text-sm text-slate-500">Compare 1-day, 7-day, and 28-day attribution to understand how long conversions take.</p>
           <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
         </div>
-        <DateRangePicker value={range} onChange={setRange} />
+        <div className="flex items-center gap-2">
+          <DateRangePicker value={range} onChange={setRange} />
+          <button
+            onClick={handleRefresh}
+            title="Refresh report"
+            className="rounded-md border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+              <path d="M21 3v5h-5" />
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+              <path d="M8 16H3v5" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <HowToRead

@@ -21,7 +21,8 @@ import {
 } from "@/lib/format";
 import { creativeChurnInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
-import { lastNMonths, daysInclusive } from "@/lib/dates";
+import { daysInclusive } from "@/lib/dates";
+import { useReportRange } from "@/lib/hooks/useReportRange";
 import { evictCached } from "@/lib/report-cache";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
@@ -29,8 +30,6 @@ import {
   PRE_COHORT_KEY, OTHER_COHORT_KEY,
   type ChurnGranularity, type CreativeChurnReport, type CreativeAdSeries,
 } from "@/lib/reports/creative-churn";
-import type { DateRange } from "@/lib/types";
-
 // ─── Cohort chart palette ──────────────────────────────────────────────────
 const PRE_COHORT_COLOR = "#9CA3A8";
 const OTHER_COHORT_COLOR = "#C4C2BC";
@@ -145,8 +144,7 @@ function TreemapCell(props: TreemapCellProps) {
 // ─── Page ─────────────────────────────────────────────────────────────────
 export default function CreativeChurnPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useState<DateRange | null>(null);
-  useEffect(() => { setRange(lastNMonths(1)); }, []);
+  const [range, setRange] = useReportRange("creative-churn", 1);
   const [granularity, setGranularity] = useState<ChurnGranularity>("weekly");
   const [visibleRange, setVisibleRange] = useState<[number, number] | null>(null);
   const [howToOpen, setHowToOpen] = useState(false);
@@ -193,10 +191,18 @@ export default function CreativeChurnPage() {
   const insights = useMemo(() => (report ? creativeChurnInsights(report) : []), [report]);
 
   // ── Cohort chart ─────────────────────────────────────────────────────────
+  // Guarantee stacking order: PRE (bottom) → months oldest→newest → OTHER (top).
+  // CohortAreaChart stacks series[0] at the bottom; newest cohort must be last.
   const chartSeries = useMemo(() => {
     if (!report) return [];
+    const pre = report.cohorts.find((c) => c.key === PRE_COHORT_KEY);
+    const other = report.cohorts.find((c) => c.key === OTHER_COHORT_KEY);
+    const months = report.cohorts
+      .filter((c) => c.key !== PRE_COHORT_KEY && c.key !== OTHER_COHORT_KEY)
+      .sort((a, b) => a.key.localeCompare(b.key)); // YYYY-MM asc = oldest first
+    const ordered = [...(pre ? [pre] : []), ...months, ...(other ? [other] : [])];
     let colorIdx = 0;
-    return report.cohorts.map((c) => ({
+    return ordered.map((c) => ({
       key: c.key,
       label: c.label,
       color: c.key === PRE_COHORT_KEY ? PRE_COHORT_COLOR
@@ -209,10 +215,10 @@ export default function CreativeChurnPage() {
     if (!report) return [];
     return report.days.map((day) => {
       const point: Record<string, string | number> = { date: formatShortDate(day.date) };
-      for (const c of report.cohorts) point[c.key] = Math.round(day.cohortSpend[c.key] ?? 0);
+      for (const s of chartSeries) point[s.key] = Math.round(day.cohortSpend[s.key] ?? 0);
       return point;
     });
-  }, [report]);
+  }, [report, chartSeries]);
 
   // ── Ad status map ────────────────────────────────────────────────────────
   const adStatusMap = useMemo(() => {

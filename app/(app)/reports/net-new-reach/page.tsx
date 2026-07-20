@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
+import { useReportRange } from "@/lib/hooks/useReportRange";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
@@ -16,8 +17,7 @@ import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatPercent } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
-import { lastNMonths } from "@/lib/dates";
-import type { DateRange } from "@/lib/types";
+import { evictCached } from "@/lib/report-cache";
 import type { RollingReachReport } from "@/lib/reports/rolling-reach";
 import type { NetNewReachReport } from "@/lib/reports/net-new-reach";
 
@@ -41,12 +41,11 @@ const LOOKBACK_OPTIONS = [90, 180, 365];
 
 export default function NetNewReachPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useState<DateRange | null>(null);
+  const [range, setRange] = useReportRange("net-new-reach", 3);
   const [mode, setMode] = useState<WindowMode>("sliding");
-  useEffect(() => { setRange(lastNMonths(3)); }, []);
   const [lookbackDays, setLookbackDays] = useState(90);
-  // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
+  const currentUrlRef = useRef<string | null>(null);
 
   const expanding = useStreamingReport<RollingReachReport>();
   const sliding = useStreamingReport<NetNewReachReport>();
@@ -55,14 +54,24 @@ export default function NetNewReachPage() {
   useEffect(() => {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
+    let url: string;
     if (mode === "expanding") {
-      expanding.run(`/api/reports/rolling-reach?${params}`);
+      url = `/api/reports/rolling-reach?${params}`;
+      currentUrlRef.current = url;
+      expanding.run(url);
     } else {
       params.set("lookbackDays", String(lookbackDays));
-      sliding.run(`/api/reports/net-new-reach?${params}`);
+      url = `/api/reports/net-new-reach?${params}`;
+      currentUrlRef.current = url;
+      sliding.run(url);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedAccountId, range, mode, lookbackDays, retryKey]);
+
+  function handleRefresh() {
+    if (currentUrlRef.current) evictCached(currentUrlRef.current);
+    setRetryKey((k) => k + 1);
+  }
 
   const rows: DisplayRow[] = useMemo(() => {
     if (mode === "expanding") {
@@ -144,7 +153,21 @@ export default function NetNewReachPage() {
           <p className="mt-1 text-sm text-slate-500">How much of your monthly reach is genuinely new people vs. repeat exposure.</p>
           <div className="mt-1"><FreshnessStamp fetchedAt={active.fetchedAt} /></div>
         </div>
-        <DateRangePicker value={range} onChange={setRange} />
+        <div className="flex items-center gap-2">
+          <DateRangePicker value={range} onChange={setRange} />
+          <button
+            onClick={handleRefresh}
+            title="Refresh report"
+            className="rounded-md border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+              <path d="M21 3v5h-5" />
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+              <path d="M8 16H3v5" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <HowToRead

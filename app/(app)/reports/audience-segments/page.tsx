@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
+import { useReportRange } from "@/lib/hooks/useReportRange";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
@@ -20,8 +21,8 @@ import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumbe
 import { audienceSegmentInsights, creativeSegmentInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
 import { HowToRead } from "@/components/ui/HowToRead";
-import { lastNMonths, isPartialWeek } from "@/lib/dates";
-import type { DateRange } from "@/lib/types";
+import { isPartialWeek } from "@/lib/dates";
+import { evictCached } from "@/lib/report-cache";
 import type { AudienceSegmentsReport } from "@/lib/reports/audience-segments";
 import type { CreativeSegmentsReport, EntityLevel, EntitySegmentRow } from "@/lib/reports/creative-segments";
 
@@ -74,11 +75,10 @@ function newPctCellClass(row: EntitySegmentRow): string {
 
 export default function AudienceSegmentsPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useState<DateRange | null>(null);
-  useEffect(() => { setRange(lastNMonths(2)); }, []);
+  const [range, setRange] = useReportRange("audience-segments", 2);
   const [viewLevel, setViewLevel] = useState<ViewLevel>("account");
-  // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
+  const currentUrlRef = useRef<string | null>(null);
   const accountReport = useJsonReport<{ data: AudienceSegmentsReport }>();
   const entityReport = useJsonReport<{ data: CreativeSegmentsReport }>();
 
@@ -93,13 +93,22 @@ export default function AudienceSegmentsPage() {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
     if (viewLevel === "account") {
-      accountReport.run(`/api/reports/audience-segments?${params}`);
+      const url = `/api/reports/audience-segments?${params}`;
+      currentUrlRef.current = url;
+      accountReport.run(url);
     } else {
       params.set("level", viewLevel);
-      entityReport.run(`/api/reports/creative-segments?${params}`);
+      const url = `/api/reports/creative-segments?${params}`;
+      currentUrlRef.current = url;
+      entityReport.run(url);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedAccountId, range, viewLevel, retryKey]);
+
+  function handleRefresh() {
+    if (currentUrlRef.current) evictCached(currentUrlRef.current);
+    setRetryKey((k) => k + 1);
+  }
 
   const report = accountReport.data?.data;
 
@@ -194,7 +203,21 @@ export default function AudienceSegmentsPage() {
           <p className="mt-1 text-sm text-slate-500">Weekly breakdown of who you're reaching — new vs. engaged vs. existing customers.</p>
           <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
         </div>
-        <DateRangePicker value={range} onChange={setRange} />
+        <div className="flex items-center gap-2">
+          <DateRangePicker value={range} onChange={setRange} />
+          <button
+            onClick={handleRefresh}
+            title="Refresh report"
+            className="rounded-md border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+              <path d="M21 3v5h-5" />
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+              <path d="M8 16H3v5" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <HowToRead

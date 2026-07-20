@@ -17,9 +17,8 @@ import { overlapFindings } from "@/lib/findings";
 import { ReachIcon, SpendIcon, CountIcon } from "@/components/ui/KpiIcons";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatEntityLabels } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
-import { lastNMonths } from "@/lib/dates";
 import { evictCached } from "@/lib/report-cache";
-import type { DateRange } from "@/lib/types";
+import { useReportRange } from "@/lib/hooks/useReportRange";
 import type { CampaignOverlapReport, OverlapEntityRow, OverlapLevel } from "@/lib/reports/campaign-overlap";
 
 // Incremental Reach % is the positive framing of the same number (100 − Overlap %) —
@@ -55,8 +54,7 @@ function colorWord(hex: string): string {
 
 export default function CampaignOverlapPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useState<DateRange | null>(null);
-  useEffect(() => { setRange(lastNMonths(1)); }, []);
+  const [range, setRange] = useReportRange("campaign-overlap", 1);
   const [level, setLevel] = useState<OverlapLevel>("campaign");
   const [topN, setTopN] = useState(15);
   const [retryKey, setRetryKey] = useState(0);

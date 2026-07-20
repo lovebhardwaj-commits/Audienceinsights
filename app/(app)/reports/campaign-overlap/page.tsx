@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
@@ -18,6 +18,7 @@ import { ReachIcon, SpendIcon, CountIcon } from "@/components/ui/KpiIcons";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatEntityLabels } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNMonths } from "@/lib/dates";
+import { evictCached } from "@/lib/report-cache";
 import type { DateRange } from "@/lib/types";
 import type { CampaignOverlapReport, OverlapEntityRow, OverlapLevel } from "@/lib/reports/campaign-overlap";
 
@@ -58,9 +59,9 @@ export default function CampaignOverlapPage() {
   useEffect(() => { setRange(lastNMonths(1)); }, []);
   const [level, setLevel] = useState<OverlapLevel>("campaign");
   const [topN, setTopN] = useState(15);
-  // [PM ENHANCEMENT] — bump to re-run the fetch from the error banner's "Try again"
   const [retryKey, setRetryKey] = useState(0);
   const { loading, isInitialLoad, data, fetchedAt, run } = useStreamingReport<CampaignOverlapReport>();
+  const currentUrlRef = useRef<string | null>(null);
 
   const liveEntities: OverlapEntityRow[] = useMemo(
     () => data?.entities ?? [],
@@ -77,9 +78,16 @@ export default function CampaignOverlapPage() {
       level,
       topN: String(topN),
     });
-    run(`/api/reports/campaign-overlap?${params}`);
+    const url = `/api/reports/campaign-overlap?${params}`;
+    currentUrlRef.current = url;
+    run(url);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedAccountId, range, level, topN, retryKey]);
+
+  function handleRefresh() {
+    if (currentUrlRef.current) evictCached(currentUrlRef.current);
+    setRetryKey((k) => k + 1);
+  }
 
   const entityLabel = level === "campaign" ? "Campaign" : level === "adset" ? "Adset" : "Ad";
 
@@ -153,20 +161,35 @@ export default function CampaignOverlapPage() {
         <div>
           <h1 className="text-lg font-bold text-slate-900">Campaign & Adset Overlap</h1>
           <p className="mt-1 text-sm text-slate-500">Discover which campaigns compete for the same audience vs. reaching unique people.</p>
-          <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
+          <div className="mt-1 flex items-center gap-2">
+            <FreshnessStamp fetchedAt={fetchedAt} />
+            <button
+              onClick={handleRefresh}
+              disabled={loading}
+              title="Refresh — fetch fresh data from Meta"
+              className="rounded p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-brand-600 disabled:opacity-40"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={loading ? "animate-spin" : ""}>
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                <path d="M21 3v5h-5" />
+                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                <path d="M8 16H3v5" />
+              </svg>
+            </button>
+          </div>
         </div>
         <DateRangePicker value={range} onChange={setRange} />
       </div>
 
       <HowToRead
         items={[
-          { label: "Incremental Reach", text: "people ONLY this campaign reaches. No other campaign in your account touches them. If you pause this campaign, these people are gone from your funnel." },
-          { label: "Incremental Reach %", text: "what share of this campaign's total reach is truly unique. High % = reaching its own audience. Low % = mostly competing with your other campaigns for the same people." },
-          { label: "Acct Reach W/O Campaign", text: "what your total account reach would be if this campaign didn't exist. The closer this is to Total Account Reach, the less this campaign contributes." },
-          { label: "Total Account Reach vs Sum of All Reaches", text: "Total Account Reach is the deduplicated count of unique people. Sum of All Reaches counts people multiple times if they saw multiple campaigns. The gap between them is your overlap — audience you're paying to reach twice or more." },
-          { label: "CPMR", text: "Cost Per Mille Reached. How much it costs to reach 1,000 unique people in this campaign. Lower = more cost-efficient reach." },
-          { label: "The chart", text: "Blue is audience unique to that campaign (incremental). Orange is audience it shares with other campaigns (overlap). Sorted by incremental % — campaigns at the top contribute the most unique reach." },
-          { label: "Insight cards (red/amber)", text: "Campaigns flagged as CRITICAL have very low incremental reach (< 20%). Most of their spend goes toward people already reached by other campaigns. Consider adding exclusion audiences or consolidating with the overlapping campaign." },
+          { label: "Reach", text: "total unique people who saw this campaign's ads in the selected period." },
+          { label: "Spend", text: "total amount spent by this campaign in the period." },
+          { label: "₹ on Overlap", text: "estimated spend wasted on people already reached by your other campaigns — calculated as Spend × overlap %. Sorted by this column by default. Red = over 75% overlap, amber = over 50%." },
+          { label: "CPMR", text: "Cost Per 1,000 people Reached. How efficiently this campaign buys unique reach. Lower = cheaper per person. Compare across campaigns to spot the most cost-efficient ones." },
+          { label: "Unique Reach", text: "people ONLY this campaign reaches — no other campaign in your account touches them. Pause this campaign and these people drop out of your funnel entirely." },
+          { label: "Unique %", text: "Unique Reach as a % of total reach. High % = campaign has its own audience. Low % = mostly competing with your other campaigns for the same people. Green > 60%, red < 10%." },
+          { label: "The chart", text: "Blue bar = unique audience. Orange bar = audience shared with other campaigns. Sorted by total reach. Campaigns with a thin blue sliver are redundant — most of their spend overlaps." },
         ]}
       />
 

@@ -104,3 +104,11 @@ export function clearCache() {
   store.clear();
   arcKeys().forEach((k) => localStorage.removeItem(k));
 }
+
+/** Remove a single entry from both L1 and L2 so the next run() hits the network. */
+export function evictCached(key: string): void {
+  store.delete(key);
+  if (typeof localStorage !== "undefined") {
+    try { localStorage.removeItem(LS_PREFIX + key); } catch { /* ignore */ }
+  }
+}

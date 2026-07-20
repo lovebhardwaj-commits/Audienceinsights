@@ -23,7 +23,6 @@ import { creativeChurnInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
 import { daysInclusive } from "@/lib/dates";
 import { useReportRange } from "@/lib/hooks/useReportRange";
-import { evictCached } from "@/lib/report-cache";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import {
@@ -155,7 +154,6 @@ export default function CreativeChurnPage() {
   const { loading, isInitialLoad, data, error, errorCode, progress, fetchedAt, run, cancel } = useStreamingReport<CreativeChurnReport>();
 
   function handleRefresh() {
-    if (currentUrlRef.current) evictCached(currentUrlRef.current);
     setRetryKey((k) => k + 1);
   }
 

@@ -17,7 +17,7 @@ import { overlapFindings } from "@/lib/findings";
 import { ReachIcon, SpendIcon, CountIcon } from "@/components/ui/KpiIcons";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatEntityLabels } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
-import { evictCached } from "@/lib/report-cache";
+
 import { useReportRange } from "@/lib/hooks/useReportRange";
 import type { CampaignOverlapReport, OverlapEntityRow, OverlapLevel } from "@/lib/reports/campaign-overlap";
 
@@ -83,7 +83,6 @@ export default function CampaignOverlapPage() {
   }, [selectedAccountId, range, level, topN, retryKey]);
 
   function handleRefresh() {
-    if (currentUrlRef.current) evictCached(currentUrlRef.current);
     setRetryKey((k) => k + 1);
   }
 

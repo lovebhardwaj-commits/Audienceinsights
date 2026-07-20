@@ -22,7 +22,7 @@ import { audienceSegmentInsights, creativeSegmentInsights } from "@/lib/insights
 import { GLOSSARY } from "@/lib/glossary";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { isPartialWeek } from "@/lib/dates";
-import { evictCached } from "@/lib/report-cache";
+
 import type { AudienceSegmentsReport } from "@/lib/reports/audience-segments";
 import type { CreativeSegmentsReport, EntityLevel, EntitySegmentRow } from "@/lib/reports/creative-segments";
 
@@ -106,7 +106,6 @@ export default function AudienceSegmentsPage() {
   }, [selectedAccountId, range, viewLevel, retryKey]);
 
   function handleRefresh() {
-    if (currentUrlRef.current) evictCached(currentUrlRef.current);
     setRetryKey((k) => k + 1);
   }
 

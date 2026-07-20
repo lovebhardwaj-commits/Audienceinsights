@@ -322,41 +322,41 @@ export function CohortAreaChart({
 
   return (
     <div>
-      {/* Zoom controls */}
-      {canZoom && (
-        <div className="mb-1 flex items-center justify-end gap-1">
-          <button
-            onClick={zoomIn}
-            disabled={end - start <= MIN_SPAN}
-            title="Zoom in"
-            className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 bg-white text-[13px] font-bold text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700 disabled:opacity-30"
-          >+</button>
-          <button
-            onClick={zoomOut}
-            disabled={!zoomed}
-            title="Zoom out"
-            className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 bg-white text-[13px] font-bold text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700 disabled:opacity-30"
-          >−</button>
-          {zoomed && (
-            <button
-              onClick={resetZoom}
-              className="ml-1 flex items-center gap-1 rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
-            >
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" />
-                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" />
-              </svg>
-              Reset
-            </button>
-          )}
-        </div>
-      )}
-
-      {/* Main plot — drag-select to zoom, scroll/pinch to zoom at cursor */}
+      {/* Main plot with zoom controls overlaid inside */}
       <div
         ref={plotRef}
+        className="relative"
         style={{ width: "100%", height, cursor: draggingSel ? "ew-resize" : "crosshair" }}
       >
+        {/* Zoom controls — inside the chart, top-right */}
+        {canZoom && (
+          <div className="absolute right-2 top-1 z-10 flex items-center gap-1">
+            <button
+              onClick={zoomIn}
+              disabled={end - start <= MIN_SPAN}
+              title="Zoom in"
+              className="flex h-6 w-6 items-center justify-center rounded border border-slate-200/80 bg-white/90 text-[13px] font-bold text-slate-500 shadow-sm backdrop-blur-sm transition-colors hover:bg-white hover:text-slate-700 disabled:opacity-30"
+            >+</button>
+            <button
+              onClick={zoomOut}
+              disabled={!zoomed}
+              title="Zoom out"
+              className="flex h-6 w-6 items-center justify-center rounded border border-slate-200/80 bg-white/90 text-[13px] font-bold text-slate-500 shadow-sm backdrop-blur-sm transition-colors hover:bg-white hover:text-slate-700 disabled:opacity-30"
+            >−</button>
+            {zoomed && (
+              <button
+                onClick={resetZoom}
+                className="ml-0.5 flex items-center gap-1 rounded-md border border-slate-200/80 bg-white/90 px-2 py-1 text-[11px] font-medium text-slate-500 shadow-sm backdrop-blur-sm transition-colors hover:bg-white hover:text-slate-700"
+              >
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" />
+                  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" />
+                </svg>
+                Reset
+              </button>
+            )}
+          </div>
+        )}
         <ResponsiveContainer>
           <AreaChart
             data={visibleData}

@@ -17,7 +17,7 @@ import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatPercent } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
-import { evictCached } from "@/lib/report-cache";
+
 import type { RollingReachReport } from "@/lib/reports/rolling-reach";
 import type { NetNewReachReport } from "@/lib/reports/net-new-reach";
 
@@ -69,7 +69,6 @@ export default function NetNewReachPage() {
   }, [selectedAccountId, range, mode, lookbackDays, retryKey]);
 
   function handleRefresh() {
-    if (currentUrlRef.current) evictCached(currentUrlRef.current);
     setRetryKey((k) => k + 1);
   }
 

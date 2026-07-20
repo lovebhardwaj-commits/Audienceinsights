@@ -19,7 +19,7 @@ import { percent } from "@/lib/calculations";
 import { conversionFindings } from "@/lib/findings";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNDays } from "@/lib/dates";
-import { evictCached } from "@/lib/report-cache";
+
 import type { ConversionWindowWeekRow, ConversionWindowsReport } from "@/lib/reports/conversion-windows";
 
 export default function ConversionWindowsPage() {
@@ -38,7 +38,6 @@ export default function ConversionWindowsPage() {
   }, [selectedAccountId, range, run, retryKey]);
 
   function handleRefresh() {
-    if (currentUrlRef.current) evictCached(currentUrlRef.current);
     setRetryKey((k) => k + 1);
   }
 

@@ -18,7 +18,7 @@ import { SEGMENT_COLORS } from "@/lib/constants";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
 import { HowToRead } from "@/components/ui/HowToRead";
-import { evictCached } from "@/lib/report-cache";
+
 import type { CreatorRow, GroupMetrics, PartnershipAdRow, PartnershipReport } from "@/lib/reports/partnership-ads";
 
 function newReachCellClass(pct: number): string {
@@ -233,7 +233,6 @@ export default function PartnershipAdsPage() {
   }, [selectedAccountId, range, run, retryKey]);
 
   function handleRefresh() {
-    if (currentUrlRef.current) evictCached(currentUrlRef.current);
     setRetryKey((k) => k + 1);
   }
 

@@ -14,7 +14,7 @@ import { frequencyFindings } from "@/lib/findings";
 import { HowToRead } from "@/components/ui/HowToRead";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { formatShortDate, formatEntityLabels } from "@/lib/format";
-import { evictCached } from "@/lib/report-cache";
+
 import { freqSeverity } from "@/lib/severity";
 import type { FrequencyReport, FrequencyLevel } from "@/lib/reports/frequency";
 
@@ -80,7 +80,6 @@ export default function FrequencyPage() {
   }, [selectedAccountId, range, level, run, retryKey]);
 
   function handleRefresh() {
-    if (currentUrlRef.current) evictCached(currentUrlRef.current);
     setRetryKey((k) => k + 1);
   }
 

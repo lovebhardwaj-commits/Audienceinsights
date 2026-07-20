@@ -160,11 +160,13 @@ export default function CampaignOverlapPage() {
 
       <HowToRead
         items={[
-          { label: "Incremental Reach", text: "people only this campaign reaches — pause it and they're gone from your funnel." },
-          { label: "Incremental Reach %", text: "what share of this campaign's audience is truly unique. High = reaching its own audience; low = mostly competing with your other campaigns for the same people." },
-          { label: "Acct Reach W/O Campaign", text: "what your total account reach would be if this campaign didn't exist." },
-          { label: "Sum of All Reaches vs Total Account Reach", text: "the gap between them is audience counted twice across campaigns — your overlap, made visible." },
-          { label: "The chart", text: "blue is audience unique to that campaign; orange is audience it shares with the rest of the account." },
+          { label: "Incremental Reach", text: "people ONLY this campaign reaches. No other campaign in your account touches them. If you pause this campaign, these people are gone from your funnel." },
+          { label: "Incremental Reach %", text: "what share of this campaign's total reach is truly unique. High % = reaching its own audience. Low % = mostly competing with your other campaigns for the same people." },
+          { label: "Acct Reach W/O Campaign", text: "what your total account reach would be if this campaign didn't exist. The closer this is to Total Account Reach, the less this campaign contributes." },
+          { label: "Total Account Reach vs Sum of All Reaches", text: "Total Account Reach is the deduplicated count of unique people. Sum of All Reaches counts people multiple times if they saw multiple campaigns. The gap between them is your overlap — audience you're paying to reach twice or more." },
+          { label: "CPMR", text: "Cost Per Mille Reached. How much it costs to reach 1,000 unique people in this campaign. Lower = more cost-efficient reach." },
+          { label: "The chart", text: "Blue is audience unique to that campaign (incremental). Orange is audience it shares with other campaigns (overlap). Sorted by incremental % — campaigns at the top contribute the most unique reach." },
+          { label: "Insight cards (red/amber)", text: "Campaigns flagged as CRITICAL have very low incremental reach (< 20%). Most of their spend goes toward people already reached by other campaigns. Consider adding exclusion audiences or consolidating with the overlapping campaign." },
         ]}
       />
 

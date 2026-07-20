@@ -24,11 +24,21 @@ export interface CreativeChurnDayRow {
   cohortSpend: Record<string, number>;
 }
 
+export interface CreativeAdSeries {
+  adId: string;
+  adName: string;
+  totalSpend: number;
+  /** Period date string (ISO) → spend for that period. Absent key = no spend = chart gap. */
+  spendByPeriod: Record<string, number>;
+}
+
 export interface CreativeChurnReport {
   cohorts: CreativeChurnCohort[];
   days: CreativeChurnDayRow[];
   totalSpend: number;
   granularity: ChurnGranularity;
+  /** Top 50 individual ads by spend, for the per-creative line chart. */
+  adSeries: CreativeAdSeries[];
 }
 
 export interface CreativeChurnOptions {
@@ -133,5 +143,30 @@ export async function getCreativeChurnReport(
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([date, bucket]) => ({ date, totalSpend: bucket.totalSpend, cohortSpend: Object.fromEntries(bucket.cohortSpend) }));
 
-  return { cohorts, days, totalSpend: days.reduce((sum, d) => sum + d.totalSpend, 0), granularity: opts.granularity };
+  // Build per-ad spend series for the line chart (top 50 by total spend).
+  const adNameById = new Map<string, string>();
+  for (const ad of ads as MetaAd[]) adNameById.set(ad.id, ad.name);
+
+  const adTotals = new Map<string, number>();
+  const adPeriodSpend = new Map<string, Map<string, number>>();
+  for (const row of spendRows) {
+    const adId = row.ad_id as string;
+    const date = row.date_start as string;
+    const spend = num(row.spend);
+    if (!adId || !date || spend <= 0) continue;
+    adTotals.set(adId, (adTotals.get(adId) ?? 0) + spend);
+    if (!adPeriodSpend.has(adId)) adPeriodSpend.set(adId, new Map());
+    adPeriodSpend.get(adId)!.set(date, (adPeriodSpend.get(adId)!.get(date) ?? 0) + spend);
+  }
+  const adSeries: CreativeAdSeries[] = [...adTotals.entries()]
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 50)
+    .map(([adId, totalSpend]) => ({
+      adId,
+      adName: adNameById.get(adId) ?? adId,
+      totalSpend,
+      spendByPeriod: Object.fromEntries(adPeriodSpend.get(adId) ?? []),
+    }));
+
+  return { cohorts, days, totalSpend: days.reduce((sum, d) => sum + d.totalSpend, 0), granularity: opts.granularity, adSeries };
 }

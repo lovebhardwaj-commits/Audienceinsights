@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
@@ -16,7 +17,9 @@ import { formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, for
 import { creativeChurnInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNMonths, daysInclusive } from "@/lib/dates";
-import { PRE_COHORT_KEY, OTHER_COHORT_KEY, type ChurnGranularity, type CreativeChurnReport } from "@/lib/reports/creative-churn";
+import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
+import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+import { PRE_COHORT_KEY, OTHER_COHORT_KEY, type ChurnGranularity, type CreativeChurnReport, type CreativeAdSeries } from "@/lib/reports/creative-churn";
 import type { DateRange } from "@/lib/types";
 
 // Muted/pastel qualitative palette from the design spec — the gray base layer is
@@ -33,6 +36,23 @@ const COHORT_PALETTE = [
   "#93C8BC", // mint
   "#E8C15D", // gold
 ];
+
+const AD_LINE_COLORS = [
+  "#2563EB", "#EF4444", "#10B981", "#F59E0B", "#8B5CF6",
+  "#EC4899", "#06B6D4", "#F97316", "#14B8A6", "#84CC16",
+];
+const AD_LINE_GRAY = "#CBD5E1";
+const TOP_AD_COUNT = 10;
+
+function formatMonthYear(yyyyMm: string): string {
+  const [year, month] = yyyyMm.split("-");
+  return new Date(Number(year), Number(month) - 1, 1).toLocaleDateString("en-IN", { month: "short", year: "numeric", timeZone: "UTC" });
+}
+
+function truncateAdName(name: string, maxLen = 30): string {
+  if (name.length <= maxLen) return name;
+  return name.slice(0, maxLen - 1) + "…";
+}
 
 interface CohortTableRow {
   key: string;
@@ -74,6 +94,11 @@ export default function CreativeChurnPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedAccountId, range, effectiveGranularity, retryKey]);
 
+  const [lineView, setLineView] = useState<"weekly" | "monthly">("weekly");
+  const [hoveredAdId, setHoveredAdId] = useState<string | null>(null);
+  const [isolatedAds, setIsolatedAds] = useState<Set<string>>(new Set());
+  const animate = !useReducedMotion();
+
   const report = data ?? undefined;
   const insights = useMemo(() => (report ? creativeChurnInsights(report) : []), [report]);
 
@@ -95,6 +120,67 @@ export default function CreativeChurnPage() {
       for (const c of report.cohorts) point[c.key] = Math.round(day.cohortSpend[c.key] ?? 0);
       return point;
     });
+  }, [report]);
+
+  // Per-creative line chart data
+  const { lineData, lineAds } = useMemo(() => {
+    const ads = report?.adSeries ?? [];
+    if (!ads.length || !report) return { lineData: [], lineAds: [] };
+
+    if (lineView === "weekly") {
+      const data = report.days.map((day) => {
+        const point: Record<string, string | number | null> = { period: formatShortDate(day.date) };
+        for (const ad of ads) {
+          const s = ad.spendByPeriod[day.date];
+          point[ad.adId] = s && s > 0 ? s : null;
+        }
+        return point;
+      });
+      return { lineData: data, lineAds: ads };
+    } else {
+      // Aggregate by calendar month
+      const monthOrder: string[] = [];
+      const monthSpend: Record<string, Record<string, number>> = {};
+      for (const day of report.days) {
+        const key = day.date.slice(0, 7);
+        if (!monthSpend[key]) { monthSpend[key] = {}; monthOrder.push(key); }
+        for (const ad of ads) {
+          const s = ad.spendByPeriod[day.date];
+          if (s && s > 0) monthSpend[key][ad.adId] = (monthSpend[key][ad.adId] ?? 0) + s;
+        }
+      }
+      const data = monthOrder.map((key) => {
+        const point: Record<string, string | number | null> = { period: formatMonthYear(key) };
+        for (const ad of ads) {
+          const s = monthSpend[key]?.[ad.adId];
+          point[ad.adId] = s && s > 0 ? s : null;
+        }
+        return point;
+      });
+      return { lineData: data, lineAds: ads };
+    }
+  }, [report, lineView]);
+
+  // Trend classification
+  const trendGroups = useMemo(() => {
+    if (!report?.adSeries?.length) return null;
+    const scaling: string[] = [], fading: string[] = [], evergreen: string[] = [];
+    for (const ad of report.adSeries) {
+      const weekly = report.days.map((d) => ad.spendByPeriod[d.date] ?? 0);
+      const nonZero = weekly.filter((s) => s > 0).length;
+      if (nonZero < 3) continue;
+      const recent = weekly.slice(-3);
+      const oldest = recent[0], newest = recent[2];
+      if (oldest === 0) continue;
+      const change = (newest - oldest) / oldest;
+      const mean = recent.reduce((a, b) => a + b, 0) / 3;
+      const cv = mean > 0 ? Math.sqrt(recent.reduce((a, b) => a + (b - mean) ** 2, 0) / 3) / mean : 1;
+      if (change > 0.3) scaling.push(truncateAdName(ad.adName));
+      else if (change < -0.4) fading.push(truncateAdName(ad.adName));
+      else if (cv < 0.15 && nonZero >= 6) evergreen.push(truncateAdName(ad.adName));
+    }
+    if (!scaling.length && !fading.length && !evergreen.length) return null;
+    return { scaling, fading, evergreen };
   }, [report]);
 
   // "Visible Range" KPI follows the brush handles live.
@@ -262,6 +348,148 @@ export default function CreativeChurnPage() {
               </>
             )}
           </div>
+
+          {/* Per-creative spend line chart */}
+          {!isInitialLoad && lineAds.length > 0 && (
+            <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h2 className="text-base font-bold text-slate-800">Spend by Creative</h2>
+                  <p className="mt-0.5 text-xs text-slate-400">Individual ad spend over time — spot winners and decliners</p>
+                </div>
+                <div className="flex rounded-md border border-hairline bg-white p-0.5 shrink-0">
+                  {(["weekly", "monthly"] as const).map((v) => (
+                    <button
+                      key={v}
+                      onClick={() => setLineView(v)}
+                      className={`rounded px-3 py-1 text-sm font-medium capitalize transition-colors ${
+                        lineView === v ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+                      }`}
+                    >
+                      {v}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-4" style={{ height: 360 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={lineData} margin={{ top: 8, right: 16, left: 8, bottom: 4 }}>
+                    <CartesianGrid vertical={false} stroke={CHART_CHROME.gridline} />
+                    <XAxis dataKey="period" tick={{ fontSize: 11, fill: CHART_INK.muted, fontFamily: "var(--font-mono)" }} axisLine={{ stroke: CHART_CHROME.axis }} tickLine={false} interval="preserveStartEnd" />
+                    <YAxis tick={{ fontSize: 11, fill: CHART_INK.muted, fontFamily: "var(--font-mono)" }} axisLine={false} tickLine={false} width={60} tickFormatter={(v) => formatCurrencyCompact(v)} />
+                    <Tooltip
+                      content={({ active, payload, label }) => {
+                        if (!active || !payload?.length) return null;
+                        const ranked = [...payload].filter((p) => p.value != null).sort((a, b) => Number(b.value) - Number(a.value));
+                        return (
+                          <div style={{ background: "#1E293B", border: "none", borderRadius: 8, padding: "10px 14px", minWidth: 200 }}>
+                            <p style={{ color: "#94A3B8", fontSize: 11, marginBottom: 6 }}>{label}</p>
+                            {ranked.slice(0, 5).map((p) => (
+                              <div key={p.dataKey as string} style={{ display: "flex", justifyContent: "space-between", gap: 12, marginBottom: 3 }}>
+                                <span style={{ color: p.color as string, fontSize: 12, maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                                  {lineAds.find((a) => a.adId === p.dataKey)?.adName ?? (p.dataKey as string)}
+                                </span>
+                                <span style={{ color: "#F1F5F9", fontSize: 12, fontFamily: "var(--font-mono)", whiteSpace: "nowrap" }}>
+                                  {formatCurrencyCompact(Number(p.value))}
+                                </span>
+                              </div>
+                            ))}
+                            {ranked.length > 5 && <p style={{ color: "#64748B", fontSize: 11, marginTop: 4 }}>+{ranked.length - 5} more</p>}
+                          </div>
+                        );
+                      }}
+                      wrapperStyle={{ zIndex: 9999 }}
+                    />
+                    {lineAds.map((ad, i) => {
+                      const isTop = i < TOP_AD_COUNT;
+                      const color = isTop ? AD_LINE_COLORS[i] : AD_LINE_GRAY;
+                      let opacity = isTop ? 1 : 0.35;
+                      if (isolatedAds.size > 0) opacity = isolatedAds.has(ad.adId) ? 1 : 0;
+                      else if (hoveredAdId) opacity = hoveredAdId === ad.adId ? 1 : 0.12;
+                      return (
+                        <Line
+                          key={ad.adId}
+                          dataKey={ad.adId}
+                          stroke={color}
+                          strokeWidth={hoveredAdId === ad.adId ? 3 : isTop ? 1.5 : 1}
+                          strokeOpacity={opacity}
+                          dot={false}
+                          activeDot={opacity > 0 ? { r: 4, strokeWidth: 0, fill: color } : false}
+                          connectNulls={false}
+                          isAnimationActive={animate && lineAds.length <= 20}
+                          onMouseEnter={() => setHoveredAdId(ad.adId)}
+                          onMouseLeave={() => setHoveredAdId(null)}
+                        />
+                      );
+                    })}
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Custom legend — top 10 only */}
+              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+                {lineAds.slice(0, TOP_AD_COUNT).map((ad, i) => {
+                  const active = isolatedAds.size === 0 || isolatedAds.has(ad.adId);
+                  return (
+                    <button
+                      key={ad.adId}
+                      onClick={() => setIsolatedAds((prev) => {
+                        const next = new Set(prev);
+                        if (next.has(ad.adId)) { next.delete(ad.adId); } else { next.add(ad.adId); }
+                        return next;
+                      })}
+                      onMouseEnter={() => setHoveredAdId(ad.adId)}
+                      onMouseLeave={() => setHoveredAdId(null)}
+                      className="flex items-center gap-1.5 text-[11px] transition-opacity"
+                      style={{ opacity: active ? 1 : 0.35 }}
+                      title={ad.adName}
+                    >
+                      <span style={{ width: 8, height: 8, borderRadius: "50%", background: AD_LINE_COLORS[i], display: "inline-block", flexShrink: 0 }} />
+                      <span className="text-slate-600 max-w-[140px] overflow-hidden text-ellipsis whitespace-nowrap">{truncateAdName(ad.adName)}</span>
+                    </button>
+                  );
+                })}
+                {lineAds.length > TOP_AD_COUNT && (
+                  <span className="text-[11px] text-slate-400 self-center">+{lineAds.length - TOP_AD_COUNT} more (gray)</span>
+                )}
+                {isolatedAds.size > 0 && (
+                  <button onClick={() => setIsolatedAds(new Set())} className="text-[11px] text-brand-600 hover:underline self-center">
+                    Show all
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Trend indicators */}
+          {!isInitialLoad && trendGroups && (
+            <div className="mt-4 rounded-xl border border-hairline bg-surface-card p-4">
+              <div className="flex flex-wrap gap-4">
+                {trendGroups.scaling.length > 0 && (
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[13px] font-semibold" style={{ color: "#059669" }}>Scaling Up ({trendGroups.scaling.length})</p>
+                    <p className="mt-0.5 text-[12px] text-slate-600 leading-relaxed">{trendGroups.scaling.join(", ")}</p>
+                    <p className="mt-0.5 text-[11px] text-slate-400">Spend increased &gt;30% over last 3 periods</p>
+                  </div>
+                )}
+                {trendGroups.fading.length > 0 && (
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[13px] font-semibold" style={{ color: "#DC2626" }}>Fading Out ({trendGroups.fading.length})</p>
+                    <p className="mt-0.5 text-[12px] text-slate-600 leading-relaxed">{trendGroups.fading.join(", ")}</p>
+                    <p className="mt-0.5 text-[11px] text-slate-400">Spend decreased &gt;40% over last 3 periods</p>
+                  </div>
+                )}
+                {trendGroups.evergreen.length > 0 && (
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[13px] font-semibold" style={{ color: "#2563EB" }}>Evergreen ({trendGroups.evergreen.length})</p>
+                    <p className="mt-0.5 text-[12px] text-slate-600 leading-relaxed">{trendGroups.evergreen.join(", ")}</p>
+                    <p className="mt-0.5 text-[11px] text-slate-400">Consistent spend (&lt;15% variance) for 6+ periods</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           <div className="mt-6">
             <DataTable

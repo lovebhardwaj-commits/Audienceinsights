@@ -22,6 +22,7 @@ import {
 import { creativeChurnInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNMonths, daysInclusive } from "@/lib/dates";
+import { evictCached } from "@/lib/report-cache";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import {
@@ -150,7 +151,13 @@ export default function CreativeChurnPage() {
   const [visibleRange, setVisibleRange] = useState<[number, number] | null>(null);
   const [howToOpen, setHowToOpen] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
+  const currentUrlRef = useRef<string | null>(null);
   const { loading, isInitialLoad, data, error, errorCode, progress, fetchedAt, run, cancel } = useStreamingReport<CreativeChurnReport>();
+
+  function handleRefresh() {
+    if (currentUrlRef.current) evictCached(currentUrlRef.current);
+    setRetryKey((k) => k + 1);
+  }
 
   const rangeDays = range ? daysInclusive(range.since, range.until) : 0;
   const dailyAllowed = rangeDays > 0 && rangeDays <= 62;
@@ -166,7 +173,9 @@ export default function CreativeChurnPage() {
       granularity: effectiveGranularity,
       topN: "8",
     });
-    run(`/api/reports/creative-churn?${params}`);
+    const url = `/api/reports/creative-churn?${params}`;
+    currentUrlRef.current = url;
+    run(url);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedAccountId, range, effectiveGranularity, retryKey]);
 
@@ -405,7 +414,22 @@ export default function CreativeChurnPage() {
           <p className="mt-1 text-sm text-slate-500">How fast new creatives replace old ones in your ad spend.</p>
           <div className="mt-1"><FreshnessStamp fetchedAt={fetchedAt} /></div>
         </div>
-        <DateRangePicker value={range} onChange={setRange} />
+        <div className="flex items-center gap-2">
+          <DateRangePicker value={range} onChange={setRange} />
+          <button
+            onClick={handleRefresh}
+            disabled={loading}
+            title="Refresh — fetch fresh data from Meta"
+            className="rounded-md border border-slate-200 bg-white p-2 text-slate-400 transition-colors hover:bg-slate-50 hover:text-brand-600 disabled:opacity-40"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={loading ? "animate-spin" : ""}>
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+              <path d="M21 3v5h-5" />
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+              <path d="M8 16H3v5" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Granularity toggle */}

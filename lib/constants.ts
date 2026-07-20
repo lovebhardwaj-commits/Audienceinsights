@@ -54,6 +54,7 @@ export const REPORTS: ReportMeta[] = [
   { slug: "audience-segments",  title: "User Segments",      description: "New vs engaged vs existing",     minUsefulMonths: 2 },
   { slug: "partnership-ads",    title: "Partnership Ads",    description: "Creator vs normal ads",          minUsefulMonths: 1 },
   { slug: "frequency",          title: "Frequency",          description: "Who sees your ads too often",    minUsefulMonths: 2 },
+  { slug: "creative-churn",    title: "Creative Churn",     description: "Spend by creative launch cohort", minUsefulMonths: 3 },
 ];
 
 /** Per-report minimum months for the initial fetch, keyed by slug (D3/7.1). */

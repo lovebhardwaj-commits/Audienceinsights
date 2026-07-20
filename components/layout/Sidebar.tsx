@@ -13,6 +13,7 @@ const NAV_SLUGS = [
   "audience-segments",
   "partnership-ads",
   "frequency",
+  "creative-churn",
 ];
 
 interface SidebarProps {

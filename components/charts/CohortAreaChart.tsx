@@ -231,29 +231,7 @@ export function CohortAreaChart({
     setSelHi(null);
   }, [selLo, selHi, start, commitWin]);
 
-  // ── Scroll / trackpad-pinch zoom, centered on the cursor ───────────────────
   const plotRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = plotRef.current;
-    if (!el || N <= MIN_SPAN + 1) return;
-    function onWheel(ev: WheelEvent) {
-      if (Math.abs(ev.deltaY) < 1) return;
-      ev.preventDefault();
-      const rect = el!.getBoundingClientRect();
-      const frac = Math.max(0, Math.min(1, (ev.clientX - rect.left) / rect.width));
-      setWin(([s, e]) => {
-        const span = e - s;
-        const anchor = s + frac * span;
-        const factor = ev.deltaY > 0 ? 1.18 : 0.82; // out : in
-        const newSpan = Math.max(MIN_SPAN, Math.min(N - 1, Math.round(span * factor)));
-        let ns = Math.round(anchor - frac * newSpan);
-        ns = Math.max(0, Math.min(ns, N - 1 - newSpan));
-        return [ns, ns + newSpan];
-      });
-    }
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, [N]);
 
   // ── Mini-map drag (handles + pan) ──────────────────────────────────────────
   const miniRef = useRef<HTMLDivElement>(null);
@@ -320,28 +298,64 @@ export function CohortAreaChart({
   const selWidthPct = N > 1 ? ((end - start) / (N - 1)) * 100 : 100;
   const canZoom = N > MIN_SPAN + 1;
 
+  const zoomIn = useCallback(() => {
+    setWin(([s, e]) => {
+      const span = e - s;
+      const mid = (s + e) / 2;
+      const newSpan = Math.max(MIN_SPAN, Math.round(span * 0.6));
+      let ns = Math.round(mid - newSpan / 2);
+      ns = Math.max(0, Math.min(ns, N - 1 - newSpan));
+      return [ns, ns + newSpan];
+    });
+  }, [N]);
+
+  const zoomOut = useCallback(() => {
+    setWin(([s, e]) => {
+      const span = e - s;
+      const mid = (s + e) / 2;
+      const newSpan = Math.min(N - 1, Math.round(span * 1.6));
+      let ns = Math.round(mid - newSpan / 2);
+      ns = Math.max(0, Math.min(ns, N - 1 - newSpan));
+      return [ns, ns + newSpan];
+    });
+  }, [N]);
+
   return (
     <div>
-      {/* Header row — reset appears once zoomed */}
-      <div className="mb-1 flex h-6 items-center justify-end">
-        {zoomed && (
+      {/* Zoom controls */}
+      {canZoom && (
+        <div className="mb-1 flex items-center justify-end gap-1">
           <button
-            onClick={resetZoom}
-            className="flex items-center gap-1 rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
-          >
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" />
-              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" />
-            </svg>
-            Reset zoom
-          </button>
-        )}
-      </div>
+            onClick={zoomIn}
+            disabled={end - start <= MIN_SPAN}
+            title="Zoom in"
+            className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 bg-white text-[13px] font-bold text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700 disabled:opacity-30"
+          >+</button>
+          <button
+            onClick={zoomOut}
+            disabled={!zoomed}
+            title="Zoom out"
+            className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 bg-white text-[13px] font-bold text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700 disabled:opacity-30"
+          >−</button>
+          {zoomed && (
+            <button
+              onClick={resetZoom}
+              className="ml-1 flex items-center gap-1 rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
+            >
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" />
+                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" />
+              </svg>
+              Reset
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Main plot — drag-select to zoom, scroll/pinch to zoom at cursor */}
       <div
         ref={plotRef}
-        style={{ width: "100%", height, cursor: draggingSel ? "ew-resize" : "crosshair", touchAction: "none" }}
+        style={{ width: "100%", height, cursor: draggingSel ? "ew-resize" : "crosshair" }}
       >
         <ResponsiveContainer>
           <AreaChart
@@ -419,67 +433,70 @@ export function CohortAreaChart({
 
       {/* ── Mini-map / brush ─────────────────────────────────────────────── */}
       {canZoom && (
-        <div className="relative mt-2 select-none">
+        <div className="relative mt-2 select-none" style={{ paddingLeft: 8, paddingRight: 8 }}>
           {showHint && (
             <div className="pointer-events-none absolute -top-5 left-1/2 z-20 -translate-x-1/2 rounded-full bg-slate-800 px-2.5 py-0.5 text-[10px] font-medium text-white shadow-sm">
               Drag the handles to zoom
             </div>
           )}
-          <div
-            ref={miniRef}
-            className="relative h-14 w-full overflow-hidden rounded-lg border border-slate-200/80 bg-slate-50/60"
-          >
-            {/* Faint full-range preview */}
-            <div className="pointer-events-none absolute inset-0 opacity-60">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={data} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
-                  {series.map((s) => (
-                    <Area
-                      key={s.key}
-                      type={curveType}
-                      dataKey={s.key}
-                      stackId="1"
-                      stroke="none"
-                      fill={s.color}
-                      fillOpacity={0.55}
-                      isAnimationActive={false}
-                    />
-                  ))}
-                </AreaChart>
-              </ResponsiveContainer>
+          {/* Handles are OUTSIDE the overflow-hidden minimap so they're never clipped */}
+          <div className="relative">
+            <div
+              ref={miniRef}
+              className="h-14 w-full overflow-hidden rounded-lg border border-slate-200/80 bg-slate-50/60"
+            >
+              {/* Faint full-range preview */}
+              <div className="pointer-events-none absolute inset-0 opacity-60">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={data} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
+                    {series.map((s) => (
+                      <Area
+                        key={s.key}
+                        type={curveType}
+                        dataKey={s.key}
+                        stackId="1"
+                        stroke="none"
+                        fill={s.color}
+                        fillOpacity={0.55}
+                        isAnimationActive={false}
+                      />
+                    ))}
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Dimmed regions outside the selection */}
+              <div className="absolute inset-y-0 left-0 bg-white/60" style={{ width: `${selLeftPct}%` }} />
+              <div className="absolute inset-y-0 right-0 bg-white/60" style={{ width: `${Math.max(0, 100 - selLeftPct - selWidthPct)}%` }} />
+
+              {/* Selection window (draggable to pan) */}
+              <div
+                onPointerDown={beginMiniDrag("middle")}
+                className="absolute inset-y-0 cursor-grab active:cursor-grabbing"
+                style={{
+                  left: `${selLeftPct}%`,
+                  width: `${selWidthPct}%`,
+                  boxShadow: `inset 0 0 0 1.5px ${ACCENT}`,
+                  background: `${ACCENT}0d`,
+                }}
+              />
             </div>
 
-            {/* Dimmed regions outside the selection */}
-            <div className="absolute inset-y-0 left-0 bg-white/60" style={{ width: `${selLeftPct}%` }} />
-            <div className="absolute inset-y-0 right-0 bg-white/60" style={{ width: `${Math.max(0, 100 - selLeftPct - selWidthPct)}%` }} />
-
-            {/* Selection window (draggable to pan) */}
+            {/* Left handle — positioned relative to the minimap, outside overflow-hidden */}
             <div
-              onPointerDown={beginMiniDrag("middle")}
-              className="absolute inset-y-0 cursor-grab active:cursor-grabbing"
-              style={{
-                left: `${selLeftPct}%`,
-                width: `${selWidthPct}%`,
-                boxShadow: `inset 0 0 0 1.5px ${ACCENT}`,
-                background: `${ACCENT}0d`,
-              }}
+              onPointerDown={beginMiniDrag("left")}
+              className="absolute top-1/2 z-10 flex h-8 w-4 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full shadow-md"
+              style={{ left: `${selLeftPct}%`, marginLeft: -8, background: ACCENT }}
             >
-              {/* Left handle */}
-              <div
-                onPointerDown={beginMiniDrag("left")}
-                className="absolute -left-1.5 top-1/2 flex h-8 w-3 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full shadow"
-                style={{ background: ACCENT }}
-              >
-                <span className="h-3 w-px bg-white/80" />
-              </div>
-              {/* Right handle */}
-              <div
-                onPointerDown={beginMiniDrag("right")}
-                className="absolute -right-1.5 top-1/2 flex h-8 w-3 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full shadow"
-                style={{ background: ACCENT }}
-              >
-                <span className="h-3 w-px bg-white/80" />
-              </div>
+              <span className="h-3 w-px bg-white/80" />
+            </div>
+            {/* Right handle */}
+            <div
+              onPointerDown={beginMiniDrag("right")}
+              className="absolute top-1/2 z-10 flex h-8 w-4 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full shadow-md"
+              style={{ left: `${selLeftPct + selWidthPct}%`, marginLeft: -8, background: ACCENT }}
+            >
+              <span className="h-3 w-px bg-white/80" />
             </div>
           </div>
         </div>

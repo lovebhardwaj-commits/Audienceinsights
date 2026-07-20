@@ -519,7 +519,7 @@ export default function CreativeChurnPage() {
                   />
                 </div>
                 <p className="mt-1 text-center text-[11px] text-slate-400">
-                  Click a cohort to highlight · Scroll, drag-select, or use the mini-map below to zoom
+                  Click a cohort to highlight · Use +/− buttons or drag the mini-map handles to zoom
                 </p>
                 <div className="mt-4 border-t border-slate-100 pt-3">
                   <button

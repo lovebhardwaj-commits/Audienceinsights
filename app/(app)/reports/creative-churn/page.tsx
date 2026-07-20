@@ -513,11 +513,12 @@ export default function CreativeChurnPage() {
                     data={chartData}
                     xKey="date"
                     series={chartSeries}
+                    granularity={effectiveGranularity}
                     onRangeChange={(start, end) => setVisibleRange([start, end])}
                   />
                 </div>
                 <p className="mt-1 text-center text-[11px] text-slate-400">
-                  Click a cohort to highlight · Use +/− buttons or drag the mini-map handles to zoom
+                  Click a band to pin its highlight · drag the mini-map handles, scroll, or drag on the chart to zoom
                 </p>
                 <div className="mt-4 border-t border-slate-100 pt-3">
                   <button

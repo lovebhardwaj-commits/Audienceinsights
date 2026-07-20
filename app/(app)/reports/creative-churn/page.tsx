@@ -33,9 +33,11 @@ import {
 // ─── Cohort chart palette ──────────────────────────────────────────────────
 const PRE_COHORT_COLOR = "#9CA3A8";
 const OTHER_COHORT_COLOR = "#C4C2BC";
+// Saturation bumped on the muddy teal/green cluster + the two near-identical
+// yellows split apart, so adjacent cohort bands stay distinct when thin (fix #3).
 const COHORT_PALETTE = [
-  "#DE7C75", "#5EB0AC", "#5497AC", "#94B8A8",
-  "#F1D77E", "#CBA0CB", "#93C8BC", "#E8C15D",
+  "#DE7C75", "#3FA8A3", "#3E8CA8", "#7FB49E",
+  "#F2D46A", "#CBA0CB", "#7BC7B4", "#E0AE3E",
 ];
 
 // ─── Heatmap & compare palette ────────────────────────────────────────────
@@ -214,7 +216,9 @@ export default function CreativeChurnPage() {
   const chartData = useMemo(() => {
     if (!report) return [];
     return report.days.map((day) => {
-      const point: Record<string, string | number> = { date: formatShortDate(day.date) };
+      // __iso carries the raw date so the chart can infer daily-vs-weekly spacing
+      // (drives linear-vs-smooth interpolation) without a new prop.
+      const point: Record<string, string | number> = { date: formatShortDate(day.date), __iso: day.date };
       for (const s of chartSeries) point[s.key] = Math.round(day.cohortSpend[s.key] ?? 0);
       return point;
     });
@@ -515,7 +519,7 @@ export default function CreativeChurnPage() {
                   />
                 </div>
                 <p className="mt-1 text-center text-[11px] text-slate-400">
-                  Click a cohort to highlight · Drag handles to zoom
+                  Click a cohort to highlight · Scroll, drag-select, or use the mini-map below to zoom
                 </p>
                 <div className="mt-4 border-t border-slate-100 pt-3">
                   <button

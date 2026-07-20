@@ -143,11 +143,49 @@ function creativeChurn() {
     return { date, totalSpend, cohortSpend };
   });
 
+  const isoDates = days.map((d) => d.date);
+
+  // Per-ad spend series — several ads per cohort with distinct lifecycles so the
+  // heatmap / treemap / status classification have real material to render.
+  const AD_TEMPLATES: Array<{ cohort: string; name: string; start: number; peak: number; peakSpend: number }> = [
+    { cohort: "2026-05", name: "SR_Summer_Reel_A", start: 21, peak: 23, peakSpend: 140_000 },
+    { cohort: "2026-05", name: "SR_Summer_Static_B", start: 21, peak: 22, peakSpend: 100_000 },
+    { cohort: "2026-04", name: "SR_Spring_UGC_A", start: 18, peak: 21, peakSpend: 220_000 },
+    { cohort: "2026-04", name: "SR_Spring_Carousel_B", start: 18, peak: 20, peakSpend: 160_000 },
+    { cohort: "2026-03", name: "SR_MarSale_Reel_A", start: 15, peak: 18, peakSpend: 300_000 },
+    { cohort: "2026-03", name: "SR_MarSale_Static_B", start: 15, peak: 17, peakSpend: 200_000 },
+    { cohort: "2026-02", name: "SR_Feb_Bestseller_A", start: 12, peak: 15, peakSpend: 290_000 },
+    { cohort: "2026-01", name: "SR_NewYear_Launch_A", start: 9, peak: 12, peakSpend: 270_000 },
+    { cohort: "2025-12", name: "SR_Holiday_Gift_A", start: 6, peak: 9, peakSpend: 230_000 },
+    { cohort: "2025-11", name: "SR_Diwali_Evergreen_A", start: 2, peak: 5, peakSpend: 190_000 },
+    { cohort: "__pre__", name: "SR_Core_Prospecting_A", start: 0, peak: 0, peakSpend: 220_000 },
+    { cohort: "__pre__", name: "SR_Core_Retargeting_B", start: 0, peak: 0, peakSpend: 160_000 },
+  ];
+
+  const adSeries = AD_TEMPLATES.map((t, i) => {
+    const spendByPeriod: Record<string, number> = {};
+    let totalSpend = 0;
+    for (let w = 0; w < isoDates.length; w++) {
+      let spend: number;
+      if (w < t.start) { spend = 0; }
+      else {
+        const age = w - t.start;
+        const ramp = t.peak - t.start;
+        if (ramp === 0) spend = Math.round(t.peakSpend * Math.pow(0.86, age));
+        else if (age <= ramp) spend = Math.round(t.peakSpend * (age / ramp));
+        else spend = Math.round(t.peakSpend * Math.pow(0.86, age - ramp));
+      }
+      if (spend > 0) { spendByPeriod[isoDates[w]] = spend; totalSpend += spend; }
+    }
+    return { adId: `demo-ad-${i}`, adName: t.name, totalSpend, spendByPeriod };
+  }).sort((a, b) => b.totalSpend - a.totalSpend);
+
   return {
     cohorts,
     days,
     totalSpend: days.reduce((s, d) => s + d.totalSpend, 0),
     granularity: "weekly" as const,
+    adSeries,
   };
 }
 

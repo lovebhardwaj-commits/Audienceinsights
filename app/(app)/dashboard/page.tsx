@@ -9,7 +9,7 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import { SummaryCard } from "@/components/ui/SummaryCard";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { lastNMonths } from "@/lib/dates";
-import { formatCompactNumber, formatCurrencyCompact, formatNumber } from "@/lib/format";
+import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber } from "@/lib/format";
 import { freqSeverity } from "@/lib/severity";
 import { conversionFindings, frequencyFindings, rankFindings, type Finding } from "@/lib/findings";
 import type { PulseReport } from "@/lib/reports/pulse";
@@ -101,7 +101,7 @@ export default function DashboardPage() {
 
       {/* Pulse band — account trend at a glance (Part 6). */}
       {selectedAccount && (
-        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           <SummaryCard
             label="Monthly Reach"
             value={latest ? formatCompactNumber(latest.reach) : "—"}
@@ -117,6 +117,8 @@ export default function DashboardPage() {
             value={latest ? formatCurrencyCompact(latest.spend) : "—"}
             sublabel="last full month"
             loading={pulse.isInitialLoad}
+            trend={mom(months.map((m) => m.spend))}
+            trendLabel="MoM"
             sparkline={months.map((m) => m.spend)}
           />
           <SummaryCard
@@ -137,6 +139,17 @@ export default function DashboardPage() {
             trendLabel="MoM"
             sparkline={months.map((m) => m.purchases)}
             sparklineColor="var(--color-metric-new)"
+          />
+          <SummaryCard
+            label="CPMR"
+            value={latest && latest.reach > 0 ? formatCurrency((latest.spend / latest.reach) * 1000) : "—"}
+            sublabel="cost per 1K reached"
+            help="Cost Per 1,000 people Reached — spend ÷ reach × 1,000. Lower is more efficient. Watch this alongside frequency: rising CPMR often signals audience saturation."
+            loading={pulse.isInitialLoad}
+            trend={mom(months.filter((m) => m.reach > 0).map((m) => (m.spend / m.reach) * 1000))}
+            trendLabel="MoM"
+            invertTrend
+            sparkline={months.filter((m) => m.reach > 0).map((m) => (m.spend / m.reach) * 1000)}
           />
         </div>
       )}

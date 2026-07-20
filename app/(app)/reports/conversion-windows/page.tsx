@@ -13,7 +13,7 @@ import { FindingsStrip } from "@/components/ui/FindingsStrip";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
 import { DualAxisChart } from "@/components/charts/DualAxisChart";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
-import { formatCurrency, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
+import { formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { percent } from "@/lib/calculations";
 import { conversionFindings } from "@/lib/findings";
 import { GLOSSARY } from "@/lib/glossary";
@@ -100,7 +100,7 @@ export default function ConversionWindowsPage() {
 
       {range && (
         <div className="animate-fade-in">
-          <div className={`mt-4 grid grid-cols-1 gap-3 transition-opacity duration-200 sm:grid-cols-3 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+          <div className={`mt-4 grid grid-cols-1 gap-3 transition-opacity duration-200 sm:grid-cols-2 lg:grid-cols-4 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
             <SummaryCard
               label="28DC Purchases"
               value={report ? formatNumber(report.totalPurchases28dc) : "—"}
@@ -119,6 +119,18 @@ export default function ConversionWindowsPage() {
               sublabel="28DC vs 1DC"
               help={GLOSSARY.upliftRatio}
               loading={isInitialLoad}
+            />
+            <SummaryCard
+              label="Cost Per Purchase"
+              value={(() => {
+                if (!report) return "—";
+                const totalSpend = report.weeks.reduce((s, w) => s + w.spend, 0);
+                return report.totalPurchases28dc > 0 ? formatCurrencyCompact(totalSpend / report.totalPurchases28dc) : "—";
+              })()}
+              sublabel="spend ÷ 28DC purchases"
+              help="Total spend divided by total 28-day-click purchases. The full-funnel cost per attributed conversion — compare across periods to spot efficiency trends."
+              loading={isInitialLoad}
+              invertTrend
             />
           </div>
 

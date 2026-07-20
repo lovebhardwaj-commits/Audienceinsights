@@ -43,6 +43,8 @@ interface SummaryCardProps {
   /** % change vs previous equal-length period (positive = good). Renders a ▲/▼ delta chip. */
   trend?: number;
   trendLabel?: string;
+  /** When true, a negative trend is shown green (lower = better, e.g. CPMR, CPP). */
+  invertTrend?: boolean;
   /** Severity applies a left border + value color + a text chip. Chrome stays neutral otherwise (D12). */
   severity?: Severity;
   /** 30-ish point series for the sparkline; omitted → no sparkline. */
@@ -68,11 +70,12 @@ export function SummaryCard({
   loading = false,
   trend,
   trendLabel,
+  invertTrend = false,
   severity,
   sparkline,
   sparklineColor,
 }: SummaryCardProps) {
-  const trendPositive = trend !== undefined && trend >= 0;
+  const trendPositive = trend !== undefined && (invertTrend ? trend <= 0 : trend >= 0);
   const trendNeutral = trend !== undefined && Math.abs(trend) < 1;
 
   return (

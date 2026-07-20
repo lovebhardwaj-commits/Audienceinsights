@@ -1,18 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { REPORTS } from "@/lib/constants";
 import { REPORT_ICONS } from "@/components/layout/icons";
 import { Skeleton } from "@/components/ui/Skeleton";
-import { SummaryCard } from "@/components/ui/SummaryCard";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
-import { lastNMonths } from "@/lib/dates";
-import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber } from "@/lib/format";
-import { freqSeverity } from "@/lib/severity";
+import { lastNDays, lastNMonths } from "@/lib/dates";
+import { formatCompactNumber, formatCurrencyCompact, formatNumber } from "@/lib/format";
 import { conversionFindings, frequencyFindings, rankFindings, type Finding } from "@/lib/findings";
-import type { PulseReport } from "@/lib/reports/pulse";
+import type { AudienceSegmentsReport } from "@/lib/reports/audience-segments";
 import type { ConversionWindowsReport } from "@/lib/reports/conversion-windows";
 import type { FrequencyReport } from "@/lib/reports/frequency";
 
@@ -23,35 +21,39 @@ const FEED_TONE: Record<Finding["severity"], { border: string; bg: string; chip:
   info: { border: "border-l-brand-500", bg: "bg-brand-50", chip: "text-brand-700", label: "Note" },
 };
 
-function mom(series: number[]): number | undefined {
-  if (series.length < 2) return undefined;
-  const prev = series[series.length - 2];
-  const last = series[series.length - 1];
-  if (!prev) return undefined;
-  return ((last - prev) / prev) * 100;
-}
+type Period = "7d" | "30d";
+
+const PERIOD_LABELS: Record<Period, string> = { "7d": "Last 7 days", "30d": "Last 30 days" };
 
 export default function DashboardPage() {
   const { accounts, selectedAccountId, loading, error } = useAccount();
   const selectedAccount = accounts.find((a) => a.id === selectedAccountId);
+  const [period, setPeriod] = useState<Period>("7d");
 
-  const pulse = useJsonReport<{ data: PulseReport }>();
-  // Background feeds for the findings feed — cheap-ish account-level reports.
+  const segs = useJsonReport<{ data: AudienceSegmentsReport }>();
+  // Background feeds for the findings panel — longer range for better signal.
   const conv = useJsonReport<{ data: ConversionWindowsReport }>();
   const freq = useJsonReport<{ data: FrequencyReport }>();
 
   useEffect(() => {
     if (!selectedAccountId) return;
-    const r = lastNMonths(4);
+    const r = period === "7d" ? lastNDays(7) : lastNDays(30);
     const q = new URLSearchParams({ accountId: selectedAccountId, since: r.since, until: r.until });
-    pulse.run(`/api/reports/pulse?${q}`);
-    conv.run(`/api/reports/conversion-windows?${q}`);
-    freq.run(`/api/reports/frequency?${q}`);
+    segs.run(`/api/reports/audience-segments?${q}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedAccountId, period]);
+
+  useEffect(() => {
+    if (!selectedAccountId) return;
+    const rf = lastNMonths(4);
+    const qf = new URLSearchParams({ accountId: selectedAccountId, since: rf.since, until: rf.until });
+    conv.run(`/api/reports/conversion-windows?${qf}`);
+    freq.run(`/api/reports/frequency?${qf}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedAccountId]);
 
-  const months = pulse.data?.data.months ?? [];
-  const latest = months[months.length - 1];
+  const segData = segs.data?.data;
+  const prospecting = segData?.totals.prospecting;
 
   const findings = useMemo(() => {
     const all: Finding[] = [];
@@ -99,58 +101,83 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {/* Pulse band — account trend at a glance (Part 6). */}
+      {/* Weekly snapshot band */}
       {selectedAccount && (
-        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          <SummaryCard
-            label="Monthly Reach"
-            value={latest ? formatCompactNumber(latest.reach) : "—"}
-            sublabel="last full month"
-            loading={pulse.isInitialLoad}
-            trend={mom(months.map((m) => m.reach))}
-            trendLabel="MoM"
-            sparkline={months.map((m) => m.reach)}
-            sparklineColor="var(--color-metric-new)"
-          />
-          <SummaryCard
-            label="Monthly Spend"
-            value={latest ? formatCurrencyCompact(latest.spend) : "—"}
-            sublabel="last full month"
-            loading={pulse.isInitialLoad}
-            trend={mom(months.map((m) => m.spend))}
-            trendLabel="MoM"
-            sparkline={months.map((m) => m.spend)}
-          />
-          <SummaryCard
-            label="Avg Frequency"
-            value={latest ? `${latest.frequency.toFixed(2)}×` : "—"}
-            sublabel="last full month"
-            loading={pulse.isInitialLoad}
-            severity={latest ? freqSeverity(latest.frequency) : undefined}
-            sparkline={months.map((m) => m.frequency)}
-            sparklineColor="var(--color-metric-repeat)"
-          />
-          <SummaryCard
-            label="Purchases"
-            value={latest ? formatNumber(latest.purchases) : "—"}
-            sublabel="last full month"
-            loading={pulse.isInitialLoad}
-            trend={mom(months.map((m) => m.purchases))}
-            trendLabel="MoM"
-            sparkline={months.map((m) => m.purchases)}
-            sparklineColor="var(--color-metric-new)"
-          />
-          <SummaryCard
-            label="CPMR"
-            value={latest && latest.reach > 0 ? formatCurrency((latest.spend / latest.reach) * 1000) : "—"}
-            sublabel="cost per 1K reached"
-            help="Cost Per 1,000 people Reached — spend ÷ reach × 1,000. Lower is more efficient. Watch this alongside frequency: rising CPMR often signals audience saturation."
-            loading={pulse.isInitialLoad}
-            trend={mom(months.filter((m) => m.reach > 0).map((m) => (m.spend / m.reach) * 1000))}
-            trendLabel="MoM"
-            invertTrend
-            sparkline={months.filter((m) => m.reach > 0).map((m) => (m.spend / m.reach) * 1000)}
-          />
+        <div className="mt-6">
+          <div className="mb-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-semibold text-ink-tertiary uppercase tracking-wider">Snapshot</span>
+              <span className="rounded-full bg-surface-app border border-hairline px-2 py-0.5 text-[10px] font-medium text-ink-secondary">
+                {PERIOD_LABELS[period]}
+              </span>
+            </div>
+            <div className="flex rounded-md border border-hairline bg-surface-card overflow-hidden">
+              {(["7d", "30d"] as Period[]).map((p) => (
+                <button
+                  key={p}
+                  onClick={() => setPeriod(p)}
+                  className={`px-3 py-1 text-xs font-semibold transition-colors ${
+                    period === p
+                      ? "bg-slate-900 text-white"
+                      : "text-ink-tertiary hover:bg-surface-app"
+                  }`}
+                >
+                  {p.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
+            {[
+              {
+                label: "Spend",
+                value: segData ? formatCurrencyCompact(segData.totalSpend) : "—",
+                sublabel: "total ad spend",
+                color: "border-l-emerald-400",
+              },
+              {
+                label: "Reach",
+                value: segData ? formatCompactNumber(segData.totalReach) : "—",
+                sublabel: "unique people reached",
+                color: "border-l-blue-400",
+              },
+              {
+                label: "New Reach",
+                value: prospecting ? formatCompactNumber(prospecting.reach) : "—",
+                sublabel: `${prospecting && segData ? Math.round((prospecting.reach / (segData.totalReach || 1)) * 100) : "—"}% of total reach`,
+                color: "border-l-indigo-400",
+              },
+              {
+                label: "Purchases",
+                value: segData ? formatNumber(segData.totalPurchases) : "—",
+                sublabel: "28-day attributed",
+                color: "border-l-violet-400",
+              },
+              {
+                label: "New User Purchases",
+                value: prospecting ? formatNumber(prospecting.purchases) : "—",
+                sublabel: `${prospecting && segData ? Math.round((prospecting.purchases / (segData.totalPurchases || 1)) * 100) : "—"}% of total purchases`,
+                color: "border-l-fuchsia-400",
+              },
+            ].map(({ label, value, sublabel, color }) => (
+              <div
+                key={label}
+                className={`rounded-[10px] border border-hairline border-l-4 ${color} bg-surface-card px-3.5 py-3`}
+              >
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-ink-tertiary leading-none">
+                  {label}
+                </div>
+                {segs.isInitialLoad ? (
+                  <div className="mt-2 h-6 w-20 animate-pulse rounded bg-surface-app" />
+                ) : (
+                  <div className="mt-1.5 font-mono text-[22px] font-medium leading-none tabular-nums text-ink">
+                    {value}
+                  </div>
+                )}
+                <div className="mt-1 text-[10px] text-ink-tertiary leading-none">{sublabel}</div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 

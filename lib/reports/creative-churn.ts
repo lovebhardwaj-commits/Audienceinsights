@@ -1,6 +1,6 @@
 import { metaGetAllPages, metaInsights } from "@/lib/meta-api";
 import { num } from "@/lib/calculations";
-import { monthLabel, startOfMonth } from "@/lib/dates";
+import { monthLabel, monthWindows, startOfMonth } from "@/lib/dates";
 import type { DateRange, MetaAd } from "@/lib/types";
 import type { ProgressEmit } from "@/lib/stream";
 
@@ -48,10 +48,12 @@ export interface CreativeChurnOptions {
 }
 
 /**
- * Spend split by the month each ad first launched (cohort-stacked area data). Defaults to
- * weekly granularity so it survives long ranges without timing out (7.7); a daily toggle is
- * available for ≤2-month ranges. Runs as a streaming report so the client sees progress and
- * the response never hangs to Vercel's kill.
+ * Spend split by the month each ad first launched (cohort-stacked area data). Always
+ * fetches daily (time_increment=1) for the exact selected range — the request is
+ * chunked into one Meta API call per calendar month so wide ranges still return every
+ * day instead of Meta silently truncating to the most recent window. Runs as a
+ * streaming report so the client sees progress and the response never hangs to
+ * Vercel's kill.
  */
 export async function getCreativeChurnReport(
   token: string,
@@ -60,23 +62,37 @@ export async function getCreativeChurnReport(
   opts: CreativeChurnOptions,
   emit?: ProgressEmit
 ): Promise<CreativeChurnReport> {
-  emit?.({ current: 0, total: 2, label: "Fetching your ad list…" });
+  // Meta's Insights API does not reliably return the full time-series when a
+  // single time_increment=1/7 request spans several months — it can silently
+  // come back with only the most recent window. Chunk the request into
+  // calendar-month windows (same pattern as net-new-reach / rolling-reach) and
+  // concatenate, so a 6-month range actually returns 6 months of daily rows.
+  const windows = monthWindows(range.since, range.until);
+  const totalSteps = windows.length + 1;
+
+  emit?.({ current: 0, total: totalSteps, label: "Fetching your ad list…" });
   const ads = await metaGetAllPages(`/${accountId}/ads`, token, {
     fields: "id,name,created_time,status,campaign_id",
     limit: "200",
   });
 
-  emit?.({ current: 1, total: 2, label: `Fetching ${opts.granularity} spend by ad…` });
-  const spendRows = await metaInsights({
-    token,
-    objectId: accountId,
-    fields: ["ad_id", "spend"],
-    timeRange: range,
-    level: "ad",
-    timeIncrement: opts.granularity === "daily" ? 1 : 7,
-    limit: 500,
-  });
-  emit?.({ current: 2, total: 2, label: "Grouping into launch cohorts…" });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const spendRows: any[] = [];
+  for (let i = 0; i < windows.length; i++) {
+    const w = windows[i];
+    emit?.({ current: i + 1, total: totalSteps, label: `Fetching ${opts.granularity} spend — month ${i + 1} of ${windows.length}…` });
+    const rows = await metaInsights({
+      token,
+      objectId: accountId,
+      fields: ["ad_id", "spend"],
+      timeRange: { since: w.monthStart, until: w.monthEnd },
+      level: "ad",
+      timeIncrement: opts.granularity === "daily" ? 1 : 7,
+      limit: 500,
+    });
+    spendRows.push(...rows);
+  }
+  emit?.({ current: totalSteps, total: totalSteps, label: "Grouping into launch cohorts…" });
 
   const windowStartMonth = startOfMonth(range.since);
   const preLabel = `Pre-${monthLabel(windowStartMonth)}`;

@@ -30,9 +30,14 @@ export async function GET(request: NextRequest, context: RouteContext) {
   const { type } = await context.params;
   const session = await getSession();
 
+  const searchParams = request.nextUrl.searchParams;
+  const since = searchParams.get("since");
+  const until = searchParams.get("until");
+  const range = since && until ? { since, until } : null;
+
   // Demo mode (Part 8): serve recorded fixtures through this same route, no token.
   if (session.demo) {
-    const fixture = demoFixture(type);
+    const fixture = demoFixture(type, range ?? undefined);
     if (fixture === null) return NextResponse.json({ error: `No demo fixture for ${type}`, code: "UNKNOWN" }, { status: 404 });
     if (STREAMING_TYPES.has(type)) {
       return ndjsonResponse(async (emit, emitPartial) => {
@@ -52,14 +57,10 @@ export async function GET(request: NextRequest, context: RouteContext) {
   }
   const token = session.accessToken;
 
-  const searchParams = request.nextUrl.searchParams;
   const accountId = searchParams.get("accountId");
   if (!accountId) {
     return NextResponse.json({ error: "accountId is required" }, { status: 400 });
   }
-  const since = searchParams.get("since");
-  const until = searchParams.get("until");
-  const range = since && until ? { since, until } : null;
 
   if (STREAMING_TYPES.has(type)) {
     if (!range) return NextResponse.json({ error: "since and until are required", code: "UNKNOWN" }, { status: 400 });

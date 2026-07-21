@@ -34,13 +34,20 @@ import {
 // no silent clamping — a long range simply takes longer / risks a Meta timeout,
 // which the existing error banner + "Retry with 1 month" action already surface.
 // ─── Cohort chart palette ──────────────────────────────────────────────────
-const PRE_COHORT_COLOR = "#9CA3A8";
-const OTHER_COHORT_COLOR = "#C4C2BC";
-// Saturation bumped on the muddy teal/green cluster + the two near-identical
-// yellows split apart, so adjacent cohort bands stay distinct when thin (fix #3).
+// Toned-down/desaturated pastels (matches the reference implementation's
+// palette) — enough hue separation to stay distinguishable band-to-band, but
+// muted rather than saturated so the stack reads calm even when fully packed.
+const PRE_COHORT_COLOR = "#C2C6CE";
+const OTHER_COHORT_COLOR = "#D6D3CC";
 const COHORT_PALETTE = [
-  "#DE7C75", "#3FA8A3", "#3E8CA8", "#7FB49E",
-  "#F2D46A", "#CBA0CB", "#7BC7B4", "#E0AE3E",
+  "#E0AAA2", // dusty rose
+  "#87BEB8", // muted teal
+  "#9AB3D8", // muted blue
+  "#B7CBA0", // muted sage
+  "#E4CC8C", // muted gold
+  "#C0A6D0", // muted mauve
+  "#D9A98C", // muted terracotta
+  "#A8AFC0", // muted steel
 ];
 
 // ─── Heatmap & compare palette ────────────────────────────────────────────

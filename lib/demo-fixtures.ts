@@ -3,6 +3,8 @@
 // Numbers are INR-scaled and shaped to exercise every finding rule and chart state.
 
 import type { MetaAdAccount } from "@/lib/types";
+import { addDays, addMonths, daysInclusive, monthLabel, startOfMonth } from "@/lib/dates";
+import { PRE_COHORT_KEY } from "@/lib/reports/creative-churn";
 
 export const DEMO_ACCOUNT: MetaAdAccount = {
   id: "act_demo",
@@ -94,97 +96,136 @@ function frequency() {
   return { campaigns, weeks, matrix };
 }
 
-// 24 weekly data points so the Creative Churn chart has enough shape to be meaningful.
-// Cohorts launch progressively; each fades as newer ones take over — healthy churn pattern.
-function creativeChurn() {
-  const cohorts = [
-    { key: "__pre__",  label: "Pre-Oct 2025",  adCount: 38, totalSpend: 8_400_000 },
-    { key: "2025-10",  label: "Oct 2025",       adCount: 14, totalSpend: 5_100_000 },
-    { key: "2025-11",  label: "Nov 2025",       adCount: 18, totalSpend: 6_200_000 },
-    { key: "2025-12",  label: "Dec 2025",       adCount: 20, totalSpend: 7_800_000 },
-    { key: "2026-01",  label: "Jan 2026",       adCount: 22, totalSpend: 8_600_000 },
-    { key: "2026-02",  label: "Feb 2026",       adCount: 25, totalSpend: 9_200_000 },
-    { key: "2026-03",  label: "Mar 2026",       adCount: 28, totalSpend: 9_800_000 },
-    { key: "2026-04",  label: "Apr 2026",       adCount: 24, totalSpend: 7_400_000 },
-    { key: "2026-05",  label: "May 2026",       adCount: 20, totalSpend: 4_100_000 },
-  ];
+// Generates genuinely daily rows spanning the EXACT [since, until] the user picked —
+// no fixed window. Cohorts = the calendar months the range touches (oldest→newest),
+// plus a "Pre-<oldest month>" cohort for legacy spend already running when the window
+// opens. Each cohort ramps up over ~18 days then decays — newer cohorts steadily take
+// over the top of the stack, healthy churn. Per-day noise gives the daily/linear plot
+// real zigzag texture instead of a smooth curve.
+function creativeChurn(since?: string, until?: string) {
+  const rangeUntil = until ?? "2026-06-30";
+  const rangeSince = since ?? "2026-06-01";
+  const numDays = daysInclusive(rangeSince, rangeUntil);
+  const dayDates = Array.from({ length: numDays }, (_, i) => addDays(rangeSince, i));
 
-  // Generate weekly dates from 2025-11-09 for 24 weeks
-  const startMs = new Date("2025-11-09").getTime();
-  const weekMs = 7 * 24 * 60 * 60 * 1000;
-
-  const days = Array.from({ length: 24 }, (_, w) => {
-    const date = new Date(startMs + w * weekMs).toISOString().slice(0, 10);
-
-    // Each cohort has a lifecycle: ramps up over a few weeks then fades.
-    // When startWeek === peakWeek the cohort is already at peak (e.g. pre-existing ads).
-    function cohortSpendAt(startWeek: number, peakWeek: number, peakSpend: number): number {
-      if (w < startWeek) return 0;
-      const age = w - startWeek;
-      const rampWeeks = peakWeek - startWeek;
-      if (rampWeeks === 0) return Math.max(0, Math.round(peakSpend * Math.pow(0.88, age)));
-      if (age <= rampWeeks) return Math.round(peakSpend * (age / rampWeeks));
-      return Math.max(0, Math.round(peakSpend * Math.pow(0.88, age - rampWeeks)));
+  // Calendar months the window touches, oldest first — mirrors how the real report
+  // buckets ads by launch month relative to the selected range.
+  const monthKeys: string[] = [];
+  {
+    let cursor = startOfMonth(rangeSince);
+    const lastMonth = startOfMonth(rangeUntil);
+    while (cursor <= lastMonth) {
+      monthKeys.push(cursor.slice(0, 7));
+      cursor = addMonths(cursor, 1);
     }
+  }
+  // Cap at 8 month cohorts (matches the app's default topN) — keep the most recent.
+  const keptMonths = monthKeys.slice(-8);
+  const preLabel = `Pre-${monthLabel(`${keptMonths[0]}-01`)}`;
 
-    const cohortSpend: Record<string, number> = {
-      "__pre__":  cohortSpendAt(0,  0,  420_000),
-      "2025-10":  cohortSpendAt(0,  2,  310_000),
-      "2025-11":  cohortSpendAt(2,  5,  370_000),
-      "2025-12":  cohortSpendAt(6,  9,  440_000),
-      "2026-01":  cohortSpendAt(9,  12, 510_000),
-      "2026-02":  cohortSpendAt(12, 15, 560_000),
-      "2026-03":  cohortSpendAt(15, 18, 580_000),
-      "2026-04":  cohortSpendAt(18, 21, 440_000),
-      "2026-05":  cohortSpendAt(21, 23, 240_000),
-    };
+  // Peak spend per cohort (₹) — cycles through a realistic range so the stack has
+  // varied band thickness; newer cohorts trend a bit larger (growing spend story).
+  const PEAK_CYCLE = [5_100_000, 6_200_000, 7_800_000, 8_600_000, 9_200_000, 9_800_000, 7_400_000, 4_100_000];
+  const RAMP_DAYS = 18;
+  const TAU_DAYS = 55;
+  const PRE_DAILY_DECAY = 0.985; // slow fade for legacy spend already at peak on day 0
+
+  function lifecycle(age: number, peak: number): number {
+    if (age < 0) return 0;
+    const rise = age < RAMP_DAYS ? 0.4 + 0.6 * (age / RAMP_DAYS) : 1;
+    const decay = age < RAMP_DAYS ? 1 : Math.exp(-(age - RAMP_DAYS) / TAU_DAYS);
+    return peak * rise * decay;
+  }
+
+  const cohortStartDay = new Map<string, number>();
+  keptMonths.forEach((key) => {
+    const monthStart = `${key}-01`;
+    // Days before rangeSince count as negative — a cohort whose month started
+    // before the window opens is already mid-lifecycle on day 0.
+    cohortStartDay.set(key, Math.round((new Date(monthStart).getTime() - new Date(rangeSince).getTime()) / 86_400_000));
+  });
+
+  const days = dayDates.map((date, i) => {
+    const cohortSpend: Record<string, number> = {};
+
+    // Legacy/pre-window cohort — already running, gently decaying.
+    const preBase = 420_000;
+    cohortSpend[PRE_COHORT_KEY] = Math.round(preBase * Math.pow(PRE_DAILY_DECAY, i) * (0.9 + 0.2 * Math.random()));
+
+    keptMonths.forEach((key, idx) => {
+      const startDay = cohortStartDay.get(key)!;
+      const peak = PEAK_CYCLE[idx % PEAK_CYCLE.length] / 30; // monthly peak → daily peak
+      const age = i - startDay;
+      const raw = lifecycle(age, peak);
+      cohortSpend[key] = raw > 0 ? Math.round(raw * (0.82 + Math.random() * 0.36)) : 0;
+    });
 
     const totalSpend = Object.values(cohortSpend).reduce((s, v) => s + v, 0);
     return { date, totalSpend, cohortSpend };
   });
 
-  const isoDates = days.map((d) => d.date);
-
-  // Per-ad spend series — several ads per cohort with distinct lifecycles so the
-  // heatmap / treemap / status classification have real material to render.
-  const AD_TEMPLATES: Array<{ cohort: string; name: string; start: number; peak: number; peakSpend: number }> = [
-    { cohort: "2026-05", name: "SR_Summer_Reel_A", start: 21, peak: 23, peakSpend: 140_000 },
-    { cohort: "2026-05", name: "SR_Summer_Static_B", start: 21, peak: 22, peakSpend: 100_000 },
-    { cohort: "2026-04", name: "SR_Spring_UGC_A", start: 18, peak: 21, peakSpend: 220_000 },
-    { cohort: "2026-04", name: "SR_Spring_Carousel_B", start: 18, peak: 20, peakSpend: 160_000 },
-    { cohort: "2026-03", name: "SR_MarSale_Reel_A", start: 15, peak: 18, peakSpend: 300_000 },
-    { cohort: "2026-03", name: "SR_MarSale_Static_B", start: 15, peak: 17, peakSpend: 200_000 },
-    { cohort: "2026-02", name: "SR_Feb_Bestseller_A", start: 12, peak: 15, peakSpend: 290_000 },
-    { cohort: "2026-01", name: "SR_NewYear_Launch_A", start: 9, peak: 12, peakSpend: 270_000 },
-    { cohort: "2025-12", name: "SR_Holiday_Gift_A", start: 6, peak: 9, peakSpend: 230_000 },
-    { cohort: "2025-11", name: "SR_Diwali_Evergreen_A", start: 2, peak: 5, peakSpend: 190_000 },
-    { cohort: "__pre__", name: "SR_Core_Prospecting_A", start: 0, peak: 0, peakSpend: 220_000 },
-    { cohort: "__pre__", name: "SR_Core_Retargeting_B", start: 0, peak: 0, peakSpend: 160_000 },
+  const cohorts = [
+    { key: PRE_COHORT_KEY, label: preLabel, adCount: 38, totalSpend: days.reduce((s, d) => s + (d.cohortSpend[PRE_COHORT_KEY] ?? 0), 0) },
+    ...keptMonths.map((key) => ({
+      key,
+      label: monthLabel(`${key}-01`),
+      adCount: 14 + (keptMonths.indexOf(key) % 5) * 3,
+      totalSpend: days.reduce((s, d) => s + (d.cohortSpend[key] ?? 0), 0),
+    })),
   ];
 
-  const adSeries = AD_TEMPLATES.map((t, i) => {
-    const spendByPeriod: Record<string, number> = {};
-    let totalSpend = 0;
-    for (let w = 0; w < isoDates.length; w++) {
-      let spend: number;
-      if (w < t.start) { spend = 0; }
-      else {
-        const age = w - t.start;
-        const ramp = t.peak - t.start;
-        if (ramp === 0) spend = Math.round(t.peakSpend * Math.pow(0.86, age));
-        else if (age <= ramp) spend = Math.round(t.peakSpend * (age / ramp));
-        else spend = Math.round(t.peakSpend * Math.pow(0.86, age - ramp));
+  const isoDates = days.map((d) => d.date);
+
+  // Per-ad spend series — two ads per month cohort with distinct lifecycles so the
+  // heatmap / treemap / status classification have real material to render.
+  const AD_NAME_PAIRS = [
+    ["SR_Launch_A", "SR_Launch_B"], ["SR_Bestseller_A", "SR_Static_B"],
+    ["SR_Reel_A", "SR_Carousel_B"], ["SR_UGC_A", "SR_Static_B"],
+    ["SR_Sale_Reel_A", "SR_Sale_Static_B"], ["SR_Evergreen_A", "SR_Retarget_B"],
+    ["SR_Spring_UGC_A", "SR_Spring_Carousel_B"], ["SR_Summer_Reel_A", "SR_Summer_Static_B"],
+  ];
+  let adCounter = 0;
+  const adSeries: Array<{ adId: string; adName: string; totalSpend: number; spendByPeriod: Record<string, number> }> = [
+    ...([
+      { name: "SR_Core_Prospecting_A", dailyPeak: (220_000 * 0.6) / 30 },
+      { name: "SR_Core_Retargeting_B", dailyPeak: (220_000 * 0.4) / 30 },
+    ]).map(({ name, dailyPeak }) => {
+      const spendByPeriod: Record<string, number> = {};
+      let totalSpend = 0;
+      for (let i = 0; i < isoDates.length; i++) {
+        const spend = Math.round(dailyPeak * Math.pow(PRE_DAILY_DECAY, i));
+        if (spend > 0) { spendByPeriod[isoDates[i]] = spend; totalSpend += spend; }
       }
-      if (spend > 0) { spendByPeriod[isoDates[w]] = spend; totalSpend += spend; }
-    }
-    return { adId: `demo-ad-${i}`, adName: t.name, totalSpend, spendByPeriod };
-  }).sort((a, b) => b.totalSpend - a.totalSpend);
+      return { adId: `demo-ad-${adCounter++}`, adName: name, totalSpend, spendByPeriod };
+    }),
+    ...keptMonths.flatMap((key, idx) => {
+      const startDay = cohortStartDay.get(key)!;
+      const peak = PEAK_CYCLE[idx % PEAK_CYCLE.length] / 30;
+      const [nameA, nameB] = AD_NAME_PAIRS[idx % AD_NAME_PAIRS.length];
+      return [
+        { name: nameA, share: 0.62, ramp: RAMP_DAYS },
+        { name: nameB, share: 0.38, ramp: RAMP_DAYS + 4 },
+      ].map(({ name, share, ramp }) => {
+        const spendByPeriod: Record<string, number> = {};
+        let totalSpend = 0;
+        for (let i = 0; i < isoDates.length; i++) {
+          const age = i - startDay;
+          if (age < 0) continue;
+          const rise = age < ramp ? 0.4 + 0.6 * (age / ramp) : 1;
+          const decay = age < ramp ? 1 : Math.exp(-(age - ramp) / TAU_DAYS);
+          const spend = Math.round(peak * share * rise * decay * (0.8 + Math.random() * 0.4));
+          if (spend > 0) { spendByPeriod[isoDates[i]] = spend; totalSpend += spend; }
+        }
+        return { adId: `demo-ad-${adCounter++}`, adName: name, totalSpend, spendByPeriod };
+      });
+    }),
+  ].sort((a, b) => b.totalSpend - a.totalSpend);
 
   return {
     cohorts,
     days,
     totalSpend: days.reduce((s, d) => s + d.totalSpend, 0),
-    granularity: "weekly" as const,
+    granularity: "daily" as const,
     adSeries,
   };
 }
@@ -280,7 +321,7 @@ function partnershipAds() {
   };
 }
 
-export function demoFixture(type: string): unknown | null {
+export function demoFixture(type: string, range?: { since: string; until: string }): unknown | null {
   switch (type) {
     case "pulse":              return pulse();
     case "rolling-reach":     return rollingReach();
@@ -288,7 +329,7 @@ export function demoFixture(type: string): unknown | null {
     case "campaign-overlap":  return overlap();
     case "conversion-windows": return conversionWindows();
     case "frequency":         return frequency();
-    case "creative-churn":    return creativeChurn();
+    case "creative-churn":    return creativeChurn(range?.since, range?.until);
     case "audience-segments": return audienceSegments();
     case "partnership-ads":   return partnershipAds();
     default:                  return null;

@@ -21,14 +21,19 @@ import {
 } from "@/lib/format";
 import { creativeChurnInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
-import { daysInclusive } from "@/lib/dates";
+import { addDays, daysInclusive } from "@/lib/dates";
 import { useReportRange } from "@/lib/hooks/useReportRange";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import {
   PRE_COHORT_KEY, OTHER_COHORT_KEY,
-  type ChurnGranularity, type CreativeChurnReport, type CreativeAdSeries,
+  type CreativeChurnReport, type CreativeAdSeries,
 } from "@/lib/reports/creative-churn";
+
+// Creative Churn is always daily now (chart data = daily, axis labels = weekly) —
+// no Weekly/Daily toggle. Meta's time_increment=1 times out past ~2 months, so a
+// longer selected range silently clamps to the most recent DAILY_WINDOW_DAYS days.
+const DAILY_WINDOW_DAYS = 62;
 // ─── Cohort chart palette ──────────────────────────────────────────────────
 const PRE_COHORT_COLOR = "#9CA3A8";
 const OTHER_COHORT_COLOR = "#C4C2BC";
@@ -146,7 +151,6 @@ function TreemapCell(props: TreemapCellProps) {
 export default function CreativeChurnPage() {
   const { selectedAccountId } = useAccount();
   const [range, setRange] = useReportRange("creative-churn", 1);
-  const [granularity, setGranularity] = useState<ChurnGranularity>("weekly");
   const [visibleRange, setVisibleRange] = useState<[number, number] | null>(null);
   const [howToOpen, setHowToOpen] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
@@ -158,24 +162,30 @@ export default function CreativeChurnPage() {
   }
 
   const rangeDays = range ? daysInclusive(range.since, range.until) : 0;
-  const dailyAllowed = rangeDays > 0 && rangeDays <= 62;
-  const effectiveGranularity: ChurnGranularity = granularity === "daily" && dailyAllowed ? "daily" : "weekly";
+  const clampedToRecentWindow = rangeDays > DAILY_WINDOW_DAYS;
+  // Always fetch daily — clamp the actual request window to the most recent
+  // DAILY_WINDOW_DAYS days of the selected range so time_increment=1 never times out.
+  const fetchRange = useMemo(() => {
+    if (!range) return null;
+    if (!clampedToRecentWindow) return range;
+    return { since: addDays(range.until, -(DAILY_WINDOW_DAYS - 1)), until: range.until };
+  }, [range, clampedToRecentWindow]);
 
   useEffect(() => {
-    if (!selectedAccountId || !range) return;
+    if (!selectedAccountId || !fetchRange) return;
     setVisibleRange(null);
     const params = new URLSearchParams({
       accountId: selectedAccountId,
-      since: range.since,
-      until: range.until,
-      granularity: effectiveGranularity,
+      since: fetchRange.since,
+      until: fetchRange.until,
+      granularity: "daily",
       topN: "8",
     });
     const url = `/api/reports/creative-churn?${params}`;
     currentUrlRef.current = url;
     run(url);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedAccountId, range, effectiveGranularity, retryKey]);
+  }, [selectedAccountId, fetchRange, retryKey]);
 
   // ── New visualization state ──
   const [heatmapSort, setHeatmapSort] = useState<HeatmapSort>("totalSpend");
@@ -440,30 +450,11 @@ export default function CreativeChurnPage() {
         </div>
       </div>
 
-      {/* Granularity toggle */}
-      <div className="mt-3 flex items-center gap-2">
-        <div className="flex rounded-md border border-hairline bg-surface-card p-0.5">
-          {(["weekly", "daily"] as ChurnGranularity[]).map((g) => {
-            const disabled = g === "daily" && !dailyAllowed;
-            return (
-              <button
-                key={g}
-                onClick={() => !disabled && setGranularity(g)}
-                disabled={disabled}
-                title={disabled ? "Daily is available on ranges up to 2 months" : undefined}
-                className={`rounded px-3 py-1 text-sm font-medium capitalize transition-colors ${
-                  effectiveGranularity === g ? "bg-slate-900 text-white"
-                  : disabled ? "cursor-not-allowed text-ink-tertiary/50"
-                  : "text-ink-secondary hover:bg-surface-app"
-                }`}
-              >
-                {g}
-              </button>
-            );
-          })}
-        </div>
-        {!dailyAllowed && <span className="text-[11px] text-ink-tertiary">Daily unlocks on ranges ≤ 2 months</span>}
-      </div>
+      {clampedToRecentWindow && fetchRange && (
+        <p className="mt-3 text-[11px] text-ink-tertiary">
+          Showing daily data for the most recent {DAILY_WINDOW_DAYS} days of the selected range ({formatShortDate(fetchRange.since)} – {formatShortDate(fetchRange.until)}) — daily spend does not load reliably over longer windows.
+        </p>
+      )}
 
       {!progress && (loading || (range && !data)) && <FetchingState />}
       {loading && progress && (
@@ -513,7 +504,6 @@ export default function CreativeChurnPage() {
                     data={chartData}
                     xKey="date"
                     series={chartSeries}
-                    granularity={effectiveGranularity}
                     onRangeChange={(start, end) => setVisibleRange([start, end])}
                   />
                 </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo, useRef, useEffect } from "react";
+import { memo, useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { Area, AreaChart, CartesianGrid, ReferenceArea, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { formatCurrencyCompact } from "@/lib/format";
@@ -16,8 +16,6 @@ interface CohortAreaChartProps {
   xKey: string;
   series: CohortSeries[]; // stack order: first = bottom layer
   height?: number;
-  /** "daily" = linear (honest day-level texture), "weekly" = monotone (smooth). */
-  granularity?: "daily" | "weekly";
   /** Fires as the visible window changes — index range into `data`. */
   onRangeChange?: (startIndex: number, endIndex: number) => void;
 }
@@ -116,6 +114,29 @@ function ChurnTooltip({
   );
 }
 
+// Memoized mini-map preview — depends only on data/series, so it renders once
+// and stays put while the brush window / zoom changes every frame.
+const MiniPreview = memo(function MiniPreview({
+  data,
+  series,
+  xKey,
+}: {
+  data: Array<Record<string, string | number>>;
+  series: CohortSeries[];
+  xKey: string;
+}) {
+  return (
+    <ResponsiveContainer width="100%" height="100%">
+      <AreaChart data={data} margin={{ top: 6, right: 0, left: 0, bottom: 0 }}>
+        {series.map((s) => (
+          <Area key={s.key} type="monotone" dataKey={s.key} stackId="1" stroke="none" fill={s.color} fillOpacity={0.7} isAnimationActive={false} />
+        ))}
+        <XAxis dataKey={xKey} hide />
+      </AreaChart>
+    </ResponsiveContainer>
+  );
+});
+
 type DragMode = "left" | "right" | "pan" | null;
 
 export function CohortAreaChart({
@@ -123,51 +144,66 @@ export function CohortAreaChart({
   xKey,
   series,
   height = 360,
-  granularity,
   onRangeChange,
 }: CohortAreaChartProps) {
   const n = data.length;
 
-  // Interpolation is mode-aware: daily = linear (honest spikes), weekly =
-  // monotone (smooth, overshoot-safe on a stacked area). Prefer the explicit
-  // prop; fall back to inferring from the gap between the first two raw
-  // dates when the caller doesn't pass one.
-  const interpolation = useMemo<"linear" | "monotone">(() => {
-    if (granularity) return granularity === "daily" ? "linear" : "monotone";
-    const a = data[0]?.__iso as string | undefined;
-    const b = data[1]?.__iso as string | undefined;
-    if (!a || !b) return "monotone";
-    const gap = Math.round(
-      (new Date(b.slice(0, 10) + "T00:00:00Z").getTime() -
-        new Date(a.slice(0, 10) + "T00:00:00Z").getTime()) / 86400000
-    );
-    return gap <= 2 ? "linear" : "monotone";
-  }, [granularity, data]);
+  // Always daily → straight linear segments, so day-to-day spend noise reads
+  // honestly as a zigzag instead of being smoothed away by a monotone curve.
+  const interpolation = "linear" as const;
 
   // ── Zoom window (indices into full `data`) — controlled [startIdx, endIdx] ──
   const [startIdx, setStartIdx] = useState(0);
   const [endIdx, setEndIdx] = useState(Math.max(0, n - 1));
 
-  // Reset window whenever the dataset changes length (new fetch / granularity).
+  // Reset window whenever the dataset changes length (new fetch).
   useEffect(() => {
     setStartIdx(0);
     setEndIdx(Math.max(0, n - 1));
-  }, [n, granularity]);
+  }, [n]);
 
-  const isZoomed = startIdx > 0 || endIdx < n - 1;
-  const visible = useMemo(() => data.slice(startIdx, endIdx + 1), [data, startIdx, endIdx]);
+  // Clamp for RENDER, not just in the effect above — when a new (shorter)
+  // dataset arrives, this render still runs with the old startIdx/endIdx
+  // before the reset effect has a chance to fire, so anything indexing into
+  // `data` this render must use these, not the raw state. When n === 0 (data
+  // still loading), maxIdx is -1 and safeEnd stays -1 so index loops below
+  // naturally run zero times instead of touching data[0] on an empty array.
+  const maxIdx = n - 1;
+  const safeStart = clamp(startIdx, 0, Math.max(0, maxIdx));
+  const safeEnd = n === 0 ? -1 : clamp(endIdx, safeStart, maxIdx);
+
+  const isZoomed = safeStart > 0 || safeEnd < maxIdx;
+  const visible = useMemo(() => data.slice(safeStart, safeEnd + 1), [data, safeStart, safeEnd]);
   const canZoom = n > MIN_SPAN + 1;
 
   // Live mirror of the range for the (stable) wheel handler.
-  const rangeRef = useRef({ start: startIdx, end: endIdx });
-  rangeRef.current = { start: startIdx, end: endIdx };
+  const rangeRef = useRef({ start: safeStart, end: safeEnd });
+  rangeRef.current = { start: safeStart, end: safeEnd };
 
   // Notify the parent AFTER commit (never inside a setState updater / render).
   const onRangeChangeRef = useRef(onRangeChange);
   onRangeChangeRef.current = onRangeChange;
   useEffect(() => {
-    onRangeChangeRef.current?.(startIdx, endIdx);
-  }, [startIdx, endIdx]);
+    onRangeChangeRef.current?.(safeStart, safeEnd);
+  }, [safeStart, safeEnd]);
+
+  // Coalesce rapid zoom/pan updates into ONE render per animation frame —
+  // otherwise every wheel tick / pointermove triggers a full chart re-render
+  // and they pile up, making zoom/pan feel stuttery instead of smooth.
+  const rafRef = useRef<number | null>(null);
+  const pendingRef = useRef<[number, number] | null>(null);
+  const applyRange = useCallback((s: number, e: number) => {
+    pendingRef.current = [s, e];
+    if (rafRef.current != null) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      const pending = pendingRef.current;
+      if (!pending) return;
+      setStartIdx(pending[0]);
+      setEndIdx(pending[1]);
+    });
+  }, []);
+  useEffect(() => () => { if (rafRef.current != null) cancelAnimationFrame(rafRef.current); }, []);
 
   const reset = useCallback(() => {
     setStartIdx(0);
@@ -182,6 +218,24 @@ export function CohortAreaChart({
     );
     return niceCeil(max * 1.03);
   }, [data, series]);
+
+  // ── X-axis TIME labels at weekly cadence ───────────────────────────────────
+  // Data points are daily, but only points whose index is a whole number of
+  // "weeks" from the visible start get a label, so the axis stays readable —
+  // dense data, sparse labels — instead of jamming 60+ daily ticks together.
+  // Density is capped (~12 labels) by widening the step in whole weeks as the
+  // visible span grows.
+  const weeklyTicks = useMemo(() => {
+    const span = safeEnd - safeStart + 1;
+    const targetLabels = 12;
+    const weeks = Math.max(1, Math.round(span / targetLabels / 7));
+    const step = weeks * 7;
+    const out: Array<string | number> = [];
+    for (let i = safeStart; i <= safeEnd; i++) {
+      if ((i - safeStart) % step === 0) out.push(data[i][xKey]);
+    }
+    return out;
+  }, [data, xKey, safeStart, safeEnd]);
 
   // ── Cohort emphasis: hover a band to preview, click to pin ─────────────────
   // Driven by the CHART, not the legend — the legend is a passive reflector.
@@ -218,17 +272,16 @@ export function CohortAreaChart({
     if (!d) return;
     const idxAt = (clientX: number) => Math.round(((clientX - d.trackLeft) / d.trackWidth) * (d.n - 1));
     if (d.mode === "left") {
-      setStartIdx(clamp(idxAt(e.clientX), 0, d.origEnd - MIN_SPAN));
+      applyRange(clamp(idxAt(e.clientX), 0, d.origEnd - MIN_SPAN), d.origEnd);
     } else if (d.mode === "right") {
-      setEndIdx(clamp(idxAt(e.clientX), d.origStart + MIN_SPAN, d.n - 1));
-    } else if (d.mode === "pan") {
+      applyRange(d.origStart, clamp(idxAt(e.clientX), d.origStart + MIN_SPAN, d.n - 1));
+    } else {
       const deltaIdx = Math.round(((e.clientX - d.startClientX) / d.trackWidth) * (d.n - 1));
       const span = d.origEnd - d.origStart;
       const ns = clamp(d.origStart + deltaIdx, 0, d.n - 1 - span);
-      setStartIdx(ns);
-      setEndIdx(ns + span);
+      applyRange(ns, ns + span);
     }
-  }, []);
+  }, [applyRange]);
 
   const endDrag = useCallback(() => {
     dragRef.current = null;
@@ -248,15 +301,15 @@ export function CohortAreaChart({
         trackLeft: rect.left,
         trackWidth: rect.width,
         startClientX: e.clientX,
-        origStart: startIdx,
-        origEnd: endIdx,
+        origStart: safeStart,
+        origEnd: safeEnd,
         n,
       };
       document.body.style.userSelect = "none";
       window.addEventListener("pointermove", onDragMove);
       window.addEventListener("pointerup", endDrag);
     },
-    [startIdx, endIdx, n, onDragMove, endDrag]
+    [safeStart, safeEnd, n, onDragMove, endDrag]
   );
 
   useEffect(() => () => endDrag(), [endDrag]);
@@ -281,12 +334,11 @@ export function CohortAreaChart({
       let ne = ns + newSpan;
       if (ns < 0) { ns = 0; ne = newSpan; }
       if (ne > n - 1) { ne = n - 1; ns = n - 1 - newSpan; }
-      setStartIdx(ns);
-      setEndIdx(ne);
+      applyRange(ns, ne);
     }
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
-  }, [n, canZoom]);
+  }, [n, canZoom, applyRange]);
 
   // ── Drag-select on the plot to zoom into a range ───────────────────────────
   const [selStart, setSelStart] = useState<number | null>(null); // absolute idx
@@ -301,21 +353,21 @@ export function CohortAreaChart({
   const onPlotDown = useCallback(
     (e: { activeTooltipIndex?: number | string | null } | null) => {
       const i = idxOf(e);
-      if (i !== null) { setSelStart(startIdx + i); setSelEnd(null); }
+      if (i !== null) { setSelStart(safeStart + i); setSelEnd(null); }
     },
-    [startIdx]
+    [safeStart]
   );
   const onPlotMove = useCallback(
     (e: { activeTooltipIndex?: number | string | null } | null) => {
       const i = idxOf(e);
       if (i === null) return;
-      hoverIdxRef.current = startIdx + i;
+      hoverIdxRef.current = safeStart + i;
       setSelStart((s) => {
-        if (s !== null) setSelEnd(startIdx + i);
+        if (s !== null) setSelEnd(safeStart + i);
         return s;
       });
     },
-    [startIdx]
+    [safeStart]
   );
   const onPlotUp = useCallback(() => {
     if (selStart !== null && selEnd !== null && Math.abs(selEnd - selStart) >= MIN_SPAN) {
@@ -333,8 +385,8 @@ export function CohortAreaChart({
       : null;
 
   // ── Brush geometry ──────────────────────────────────────────────────────────
-  const startPct = n > 1 ? (startIdx / (n - 1)) * 100 : 0;
-  const endPct = n > 1 ? (endIdx / (n - 1)) * 100 : 100;
+  const startPct = n > 1 ? (safeStart / (n - 1)) * 100 : 0;
+  const endPct = n > 1 ? (safeEnd / (n - 1)) * 100 : 100;
 
   return (
     <div className="select-none">
@@ -362,7 +414,15 @@ export function CohortAreaChart({
           >
             <CartesianGrid stroke={CHART_CHROME.gridline} vertical={false} fill={CHART_CHROME.surface} fillOpacity={1} />
 
-            <XAxis dataKey={xKey} tick={tickStyle} axisLine={false} tickLine={false} minTickGap={28} />
+            <XAxis
+              dataKey={xKey}
+              ticks={weeklyTicks}
+              interval={0}
+              tick={tickStyle}
+              axisLine={false}
+              tickLine={false}
+              minTickGap={16}
+            />
 
             <YAxis
               domain={[0, yMax]}
@@ -416,15 +476,9 @@ export function CohortAreaChart({
       {canZoom && (
         <div className="mt-2 px-1">
           <div ref={trackRef} className="relative h-14 w-full rounded-lg bg-slate-50/70 ring-1 ring-slate-200/70">
-            {/* Faint full-range preview */}
+            {/* Faint full-range preview — memoized, never re-renders during drag/zoom */}
             <div className="pointer-events-none absolute inset-0 opacity-60">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={data} margin={{ top: 6, right: 0, left: 0, bottom: 0 }}>
-                  {series.map((s) => (
-                    <Area key={s.key} type="monotone" dataKey={s.key} stackId="1" stroke="none" fill={s.color} fillOpacity={0.7} isAnimationActive={false} />
-                  ))}
-                </AreaChart>
-              </ResponsiveContainer>
+              <MiniPreview data={data} series={series} xKey={xKey} />
             </div>
 
             {/* Dim outside the selection */}

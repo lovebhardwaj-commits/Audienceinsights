@@ -21,7 +21,6 @@ import {
 } from "@/lib/format";
 import { creativeChurnInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
-import { addDays, daysInclusive } from "@/lib/dates";
 import { useReportRange } from "@/lib/hooks/useReportRange";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
@@ -31,9 +30,9 @@ import {
 } from "@/lib/reports/creative-churn";
 
 // Creative Churn is always daily now (chart data = daily, axis labels = weekly) —
-// no Weekly/Daily toggle. Meta's time_increment=1 times out past ~2 months, so a
-// longer selected range silently clamps to the most recent DAILY_WINDOW_DAYS days.
-const DAILY_WINDOW_DAYS = 62;
+// no Weekly/Daily toggle. Always fetches the exact months the user selects, with
+// no silent clamping — a long range simply takes longer / risks a Meta timeout,
+// which the existing error banner + "Retry with 1 month" action already surface.
 // ─── Cohort chart palette ──────────────────────────────────────────────────
 const PRE_COHORT_COLOR = "#9CA3A8";
 const OTHER_COHORT_COLOR = "#C4C2BC";
@@ -161,23 +160,13 @@ export default function CreativeChurnPage() {
     setRetryKey((k) => k + 1);
   }
 
-  const rangeDays = range ? daysInclusive(range.since, range.until) : 0;
-  const clampedToRecentWindow = rangeDays > DAILY_WINDOW_DAYS;
-  // Always fetch daily — clamp the actual request window to the most recent
-  // DAILY_WINDOW_DAYS days of the selected range so time_increment=1 never times out.
-  const fetchRange = useMemo(() => {
-    if (!range) return null;
-    if (!clampedToRecentWindow) return range;
-    return { since: addDays(range.until, -(DAILY_WINDOW_DAYS - 1)), until: range.until };
-  }, [range, clampedToRecentWindow]);
-
   useEffect(() => {
-    if (!selectedAccountId || !fetchRange) return;
+    if (!selectedAccountId || !range) return;
     setVisibleRange(null);
     const params = new URLSearchParams({
       accountId: selectedAccountId,
-      since: fetchRange.since,
-      until: fetchRange.until,
+      since: range.since,
+      until: range.until,
       granularity: "daily",
       topN: "8",
     });
@@ -185,7 +174,7 @@ export default function CreativeChurnPage() {
     currentUrlRef.current = url;
     run(url);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedAccountId, fetchRange, retryKey]);
+  }, [selectedAccountId, range, retryKey]);
 
   // ── New visualization state ──
   const [heatmapSort, setHeatmapSort] = useState<HeatmapSort>("totalSpend");
@@ -449,12 +438,6 @@ export default function CreativeChurnPage() {
           </button>
         </div>
       </div>
-
-      {clampedToRecentWindow && fetchRange && (
-        <p className="mt-3 text-[11px] text-ink-tertiary">
-          Showing daily data for the most recent {DAILY_WINDOW_DAYS} days of the selected range ({formatShortDate(fetchRange.since)} – {formatShortDate(fetchRange.until)}) — daily spend does not load reliably over longer windows.
-        </p>
-      )}
 
       {!progress && (loading || (range && !data)) && <FetchingState />}
       {loading && progress && (

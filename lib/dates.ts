@@ -96,6 +96,27 @@ export function isPartialWeek(since: string, until: string): boolean {
   return daysInclusive(since, until) < 7;
 }
 
+/**
+ * Splits [since, until] into `chunkWeeks`-sized windows, each chunk boundary a
+ * whole multiple of 7 days from `since`. Unlike monthWindows (calendar-month
+ * chunks), this keeps time_increment=7 buckets contiguous across chunk
+ * boundaries — a calendar-month chunk restarts weekly bucketing at each
+ * month's 1st, producing a short/partial week right before every boundary
+ * (an artificial dip in the stacked total, not a real drop in spend).
+ */
+export function weeklyAlignedWindows(since: string, until: string, chunkWeeks = 4): MonthWindow[] {
+  const windows: MonthWindow[] = [];
+  const untilDate = parseISODate(until);
+  let chunkStart = since;
+  while (parseISODate(chunkStart) <= untilDate) {
+    const candidateEnd = addDays(chunkStart, chunkWeeks * 7 - 1);
+    const chunkEnd = parseISODate(candidateEnd) > untilDate ? until : candidateEnd;
+    windows.push({ label: chunkStart, monthStart: chunkStart, monthEnd: chunkEnd });
+    chunkStart = addDays(chunkStart, chunkWeeks * 7);
+  }
+  return windows;
+}
+
 /** True when `until` falls inside the calendar month it names (month still in flight). */
 export function isPartialMonth(monthStart: string, monthEnd: string): boolean {
   return monthEnd !== endOfMonth(monthStart);

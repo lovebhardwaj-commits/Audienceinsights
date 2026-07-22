@@ -183,7 +183,7 @@ export default function CreativeChurnPage() {
       // Bump this whenever the report's fetch/grouping logic changes server-side —
       // the client cache (lib/report-cache.ts) has no TTL and is keyed by full URL,
       // so a stale response from before a fix shipped would otherwise never expire.
-      cv: "4",
+      cv: "5",
     });
     const url = `/api/reports/creative-churn?${params}`;
     currentUrlRef.current = url;

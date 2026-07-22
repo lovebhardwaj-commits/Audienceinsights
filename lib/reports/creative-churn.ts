@@ -1,6 +1,6 @@
 import { metaGetAllPages, metaInsights } from "@/lib/meta-api";
 import { num } from "@/lib/calculations";
-import { monthLabel, monthWindows, startOfMonth } from "@/lib/dates";
+import { monthLabel, monthWindows, startOfMonth, weeklyAlignedWindows } from "@/lib/dates";
 import type { DateRange, MetaAd } from "@/lib/types";
 import type { ProgressEmit } from "@/lib/stream";
 
@@ -49,11 +49,11 @@ export interface CreativeChurnOptions {
 
 /**
  * Spend split by the month each ad first launched (cohort-stacked area data). Always
- * fetches daily (time_increment=1) for the exact selected range — the request is
- * chunked into one Meta API call per calendar month so wide ranges still return every
- * day instead of Meta silently truncating to the most recent window. Runs as a
- * streaming report so the client sees progress and the response never hangs to
- * Vercel's kill.
+ * fetches weekly (time_increment=7) for the exact selected range — the request is
+ * chunked (week-aligned for weekly, calendar-month for daily) so wide ranges still
+ * return the full series instead of Meta silently truncating to the most recent
+ * window. Runs as a streaming report so the client sees progress and the response
+ * never hangs to Vercel's kill.
  */
 export async function getCreativeChurnReport(
   token: string,
@@ -64,17 +64,20 @@ export async function getCreativeChurnReport(
 ): Promise<CreativeChurnReport> {
   // Meta's Insights API does not reliably return the full time-series when a
   // single time_increment=1/7 request spans several months — it can silently
-  // come back with only the most recent window. Chunk the request into
-  // calendar-month windows (same pattern as net-new-reach / rolling-reach) and
-  // concatenate, so a 6-month range actually returns 6 months of daily rows.
+  // come back with only the most recent window. Chunk the request and
+  // concatenate, so a 6-month range actually returns 6 months of rows.
   //
-  // Fetched IN PARALLEL, not sequentially: a wide range fetched one month at a
-  // time can push total wall-clock past Vercel's 120s function budget once
-  // Meta's own throttling/retry backoff adds a few seconds per call — that
-  // showed up as a mid-stream 503 with no done/error event during testing.
-  // Parallel bounds total time to roughly the slowest single month instead of
-  // the sum of all of them.
-  const windows = monthWindows(range.since, range.until);
+  // Weekly (time_increment=7) MUST be chunked on whole-week boundaries
+  // (weeklyAlignedWindows), not calendar months (monthWindows) — a
+  // calendar-month chunk restarts weekly bucketing at each month's 1st,
+  // producing a short/partial week right before every month boundary, which
+  // reads as a false periodic dip to near-zero in the stacked chart. Daily
+  // (time_increment=1) has no such alignment issue since every bucket is
+  // exactly one calendar day regardless of chunk boundaries, so it keeps the
+  // simpler calendar-month chunking.
+  const windows = opts.granularity === "weekly"
+    ? weeklyAlignedWindows(range.since, range.until, 4)
+    : monthWindows(range.since, range.until);
   const totalSteps = windows.length + 1;
 
   emit?.({ current: 0, total: totalSteps, label: "Fetching your ad list…" });
@@ -83,7 +86,8 @@ export async function getCreativeChurnReport(
     limit: "200",
   });
 
-  let monthsDone = 0;
+  const chunkNoun = opts.granularity === "weekly" ? "batches" : "months";
+  let chunksDone = 0;
   const rowsByWindow = await Promise.all(
     windows.map(async (w) => {
       const rows = await metaInsights({
@@ -95,8 +99,8 @@ export async function getCreativeChurnReport(
         timeIncrement: opts.granularity === "daily" ? 1 : 7,
         limit: 500,
       });
-      monthsDone += 1;
-      emit?.({ current: monthsDone, total: totalSteps, label: `Fetching ${opts.granularity} spend — ${monthsDone} of ${windows.length} months…` });
+      chunksDone += 1;
+      emit?.({ current: chunksDone, total: totalSteps, label: `Fetching ${opts.granularity} spend — ${chunksDone} of ${windows.length} ${chunkNoun}…` });
       return rows;
     })
   );

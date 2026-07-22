@@ -24,6 +24,7 @@ import { creativeChurnInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
 import { useReportRange } from "@/lib/hooks/useReportRange";
 import { lastNMonths } from "@/lib/dates";
+import { evictCached } from "@/lib/report-cache";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import {
@@ -168,6 +169,7 @@ export default function CreativeChurnPage() {
   const { loading, isInitialLoad, data, error, errorCode, progress, fetchedAt, run, cancel } = useStreamingReport<CreativeChurnReport>();
 
   function handleRefresh() {
+    if (currentUrlRef.current) evictCached(currentUrlRef.current);
     setRetryKey((k) => k + 1);
   }
 
@@ -183,7 +185,7 @@ export default function CreativeChurnPage() {
       // Bump this whenever the report's fetch/grouping logic changes server-side —
       // the client cache (lib/report-cache.ts) has no TTL and is keyed by full URL,
       // so a stale response from before a fix shipped would otherwise never expire.
-      cv: "5",
+      cv: "6",
     });
     const url = `/api/reports/creative-churn?${params}`;
     currentUrlRef.current = url;

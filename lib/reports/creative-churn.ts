@@ -6,8 +6,6 @@ import type { ProgressEmit } from "@/lib/stream";
 
 /** Sentinel cohort key for ads launched before the report window. */
 export const PRE_COHORT_KEY = "__pre__";
-/** Sentinel cohort key for the folded "Other" bucket beyond the top-N. */
-export const OTHER_COHORT_KEY = "__other__";
 
 export type ChurnGranularity = "daily" | "weekly";
 
@@ -43,8 +41,6 @@ export interface CreativeChurnReport {
 
 export interface CreativeChurnOptions {
   granularity: ChurnGranularity;
-  /** Keep the top-N launch-month cohorts by spend; fold the rest into "Other" (7.7). */
-  topN: number;
 }
 
 /**
@@ -86,7 +82,6 @@ export async function getCreativeChurnReport(
     limit: "200",
   });
 
-  const chunkNoun = opts.granularity === "weekly" ? "batches" : "months";
   let chunksDone = 0;
   const rowsByWindow = await Promise.all(
     windows.map(async (w) => {
@@ -100,7 +95,7 @@ export async function getCreativeChurnReport(
         limit: 500,
       });
       chunksDone += 1;
-      emit?.({ current: chunksDone, total: totalSteps, label: `Fetching ${opts.granularity} spend — ${chunksDone} of ${windows.length} ${chunkNoun}…` });
+      emit?.({ current: chunksDone, total: totalSteps, label: "Fetching data from Meta…" });
       return rows;
     })
   );
@@ -119,57 +114,36 @@ export async function getCreativeChurnReport(
     cohortAdCount.set(key, (cohortAdCount.get(key) ?? 0) + 1);
   }
 
-  // First pass: raw cohort totals to decide the top-N.
-  const rawTotals = new Map<string, number>();
-  for (const row of spendRows) {
-    const cohort = cohortByAdId.get(row.ad_id as string) ?? PRE_COHORT_KEY;
-    rawTotals.set(cohort, (rawTotals.get(cohort) ?? 0) + num(row.spend));
-  }
-
-  // Keep the N MOST RECENT month cohorts; everything older folds into "Other".
-  // Ranking by total spend instead (as this used to) silently folds away the
-  // newest cohort whenever it hasn't yet accumulated as much lifetime spend as
-  // older months — exactly backwards for a report whose whole point is
-  // showing whether new creatives are taking over from old ones.
-  const monthCohorts = Array.from(rawTotals.keys())
-    .filter((k) => k !== PRE_COHORT_KEY && (rawTotals.get(k) ?? 0) > 0)
-    .sort((a, b) => b.localeCompare(a)); // most recent month first
-  const kept = new Set(monthCohorts.slice(0, opts.topN));
-  const displayKey = (cohort: string) => {
-    if (cohort === PRE_COHORT_KEY) return PRE_COHORT_KEY;
-    return kept.has(cohort) ? cohort : OTHER_COHORT_KEY;
-  };
-
+  // Every launch-month cohort with spend gets its own entry — no top-N cap,
+  // no folding into an "Other" bucket. A brand-new cohort naturally starts
+  // with less accumulated spend than older ones; folding by spend or even by
+  // recency-rank still hides cohorts, which is backwards for a report whose
+  // whole point is showing whether new creatives are taking over from old ones.
   const dayBuckets = new Map<string, { totalSpend: number; cohortSpend: Map<string, number> }>();
   const cohortTotals = new Map<string, number>();
-  const cohortAdCountFolded = new Map<string, number>();
-  for (const [key, count] of cohortAdCount) {
-    const d = displayKey(key);
-    cohortAdCountFolded.set(d, (cohortAdCountFolded.get(d) ?? 0) + count);
-  }
 
   for (const row of spendRows) {
     const date = (row.date_start as string) ?? "";
     if (!date) continue;
     if (!dayBuckets.has(date)) dayBuckets.set(date, { totalSpend: 0, cohortSpend: new Map() });
     const bucket = dayBuckets.get(date)!;
-    const cohort = displayKey(cohortByAdId.get(row.ad_id as string) ?? PRE_COHORT_KEY);
+    const cohort = cohortByAdId.get(row.ad_id as string) ?? PRE_COHORT_KEY;
     const spend = num(row.spend);
     bucket.cohortSpend.set(cohort, (bucket.cohortSpend.get(cohort) ?? 0) + spend);
     bucket.totalSpend += spend;
     cohortTotals.set(cohort, (cohortTotals.get(cohort) ?? 0) + spend);
   }
 
+  const monthCohorts = Array.from(cohortTotals.keys())
+    .filter((k) => k !== PRE_COHORT_KEY && (cohortTotals.get(k) ?? 0) > 0)
+    .sort(); // YYYY-MM ascending = oldest first
+
   const cohorts: CreativeChurnCohort[] = [];
   if ((cohortTotals.get(PRE_COHORT_KEY) ?? 0) > 0) {
-    cohorts.push({ key: PRE_COHORT_KEY, label: preLabel, adCount: cohortAdCountFolded.get(PRE_COHORT_KEY) ?? 0, totalSpend: cohortTotals.get(PRE_COHORT_KEY) ?? 0 });
+    cohorts.push({ key: PRE_COHORT_KEY, label: preLabel, adCount: cohortAdCount.get(PRE_COHORT_KEY) ?? 0, totalSpend: cohortTotals.get(PRE_COHORT_KEY) ?? 0 });
   }
-  for (const key of monthCohorts.filter((k) => kept.has(k)).sort()) {
-    cohorts.push({ key, label: monthLabel(`${key}-01`), adCount: cohortAdCountFolded.get(key) ?? 0, totalSpend: cohortTotals.get(key) ?? 0 });
-  }
-  if ((cohortTotals.get(OTHER_COHORT_KEY) ?? 0) > 0) {
-    const foldedCount = monthCohorts.length - kept.size;
-    cohorts.push({ key: OTHER_COHORT_KEY, label: `Other (${foldedCount} month${foldedCount === 1 ? "" : "s"})`, adCount: cohortAdCountFolded.get(OTHER_COHORT_KEY) ?? 0, totalSpend: cohortTotals.get(OTHER_COHORT_KEY) ?? 0 });
+  for (const key of monthCohorts) {
+    cohorts.push({ key, label: monthLabel(`${key}-01`), adCount: cohortAdCount.get(key) ?? 0, totalSpend: cohortTotals.get(key) ?? 0 });
   }
 
   const days: CreativeChurnDayRow[] = Array.from(dayBuckets.entries())

@@ -120,8 +120,9 @@ function creativeChurn(since?: string, until?: string) {
       cursor = addMonths(cursor, 1);
     }
   }
-  // Cap at 8 month cohorts (matches the app's default topN) — keep the most recent.
-  const keptMonths = monthKeys.slice(-8);
+  // No cap — every calendar month the range touches becomes its own cohort,
+  // matching the real report (no top-N/"Other" folding).
+  const keptMonths = monthKeys;
   const preLabel = `Pre-${monthLabel(`${keptMonths[0]}-01`)}`;
 
   // Peak spend per cohort (₹) — cycles through a realistic range so the stack has

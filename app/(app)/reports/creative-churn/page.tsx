@@ -28,7 +28,7 @@ import { evictCached } from "@/lib/report-cache";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import {
-  PRE_COHORT_KEY, OTHER_COHORT_KEY,
+  PRE_COHORT_KEY,
   type CreativeChurnReport, type CreativeAdSeries,
 } from "@/lib/reports/creative-churn";
 
@@ -43,7 +43,9 @@ import {
 // palette) — enough hue separation to stay distinguishable band-to-band, but
 // muted rather than saturated so the stack reads calm even when fully packed.
 const PRE_COHORT_COLOR = "#C2C6CE";
-const OTHER_COHORT_COLOR = "#D6D3CC";
+// No top-N cap anymore — every launch month with spend gets its own cohort, so
+// a 12-month range needs 12 distinct colors (+ Pre). Sized generously; beyond
+// this it cycles (COHORT_PALETTE[i % length]) rather than repeating too soon.
 const COHORT_PALETTE = [
   "#E0AAA2", // dusty rose
   "#87BEB8", // muted teal
@@ -53,6 +55,10 @@ const COHORT_PALETTE = [
   "#C0A6D0", // muted mauve
   "#D9A98C", // muted terracotta
   "#A8AFC0", // muted steel
+  "#B4A0E0", // muted violet
+  "#8FBF9E", // muted mint
+  "#D9B3C4", // muted pink
+  "#A3A98C", // muted olive
 ];
 
 // ─── Heatmap & compare palette ────────────────────────────────────────────
@@ -181,7 +187,6 @@ export default function CreativeChurnPage() {
       since: range.since,
       until: range.until,
       granularity: "weekly",
-      topN: "8",
     });
     const url = `/api/reports/creative-churn?${params}`;
     // This report has been repeatedly corrected mid-debug (chunking, alignment,
@@ -209,23 +214,20 @@ export default function CreativeChurnPage() {
   const insights = useMemo(() => (report ? creativeChurnInsights(report) : []), [report]);
 
   // ── Cohort chart ─────────────────────────────────────────────────────────
-  // Guarantee stacking order: PRE (bottom) → months oldest→newest → OTHER (top).
+  // Guarantee stacking order: PRE (bottom) → months oldest→newest (top).
   // CohortAreaChart stacks series[0] at the bottom; newest cohort must be last.
   const chartSeries = useMemo(() => {
     if (!report) return [];
     const pre = report.cohorts.find((c) => c.key === PRE_COHORT_KEY);
-    const other = report.cohorts.find((c) => c.key === OTHER_COHORT_KEY);
     const months = report.cohorts
-      .filter((c) => c.key !== PRE_COHORT_KEY && c.key !== OTHER_COHORT_KEY)
+      .filter((c) => c.key !== PRE_COHORT_KEY)
       .sort((a, b) => a.key.localeCompare(b.key)); // YYYY-MM asc = oldest first
-    const ordered = [...(pre ? [pre] : []), ...months, ...(other ? [other] : [])];
+    const ordered = [...(pre ? [pre] : []), ...months];
     let colorIdx = 0;
     return ordered.map((c) => ({
       key: c.key,
       label: c.label,
-      color: c.key === PRE_COHORT_KEY ? PRE_COHORT_COLOR
-           : c.key === OTHER_COHORT_KEY ? OTHER_COHORT_COLOR
-           : COHORT_PALETTE[colorIdx++ % COHORT_PALETTE.length],
+      color: c.key === PRE_COHORT_KEY ? PRE_COHORT_COLOR : COHORT_PALETTE[colorIdx++ % COHORT_PALETTE.length],
     }));
   }, [report]);
 
@@ -370,7 +372,7 @@ export default function CreativeChurnPage() {
   const kpis = useMemo(() => {
     if (!report) return null;
     const activeCreatives = report.adSeries.filter((a) => a.totalSpend > 0).length;
-    const monthCohorts = report.cohorts.filter((c) => c.key !== PRE_COHORT_KEY && c.key !== OTHER_COHORT_KEY);
+    const monthCohorts = report.cohorts.filter((c) => c.key !== PRE_COHORT_KEY);
     const newest = monthCohorts.sort((a, b) => b.key.localeCompare(a.key))[0];
     const newestShare = newest && report.totalSpend > 0 ? (newest.totalSpend / report.totalSpend) * 100 : 0;
     const preSpend = report.cohorts.find((c) => c.key === PRE_COHORT_KEY)?.totalSpend ?? 0;

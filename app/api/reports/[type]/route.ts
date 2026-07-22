@@ -170,8 +170,7 @@ async function runStreamingReport(
     }
     case "creative-churn": {
       const granularity = (searchParams.get("granularity") as ChurnGranularity) ?? "weekly";
-      const topN = Number(searchParams.get("topN") ?? 8);
-      return getCreativeChurnReport(token, accountId, range, { granularity, topN }, emit);
+      return getCreativeChurnReport(token, accountId, range, { granularity }, emit);
     }
     default:
       throw new NotFoundError(`Unknown streaming report type: ${type}`);

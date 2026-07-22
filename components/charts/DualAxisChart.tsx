@@ -40,6 +40,11 @@ interface DualAxisChartProps {
   brush?: boolean;
   /** Single auto-annotated point: {index, text} — a dot + short callout (§3.4). */
   annotation?: { index: number; text: string; yAxisId?: "left" | "right"; seriesKey: string } | null;
+  /** Show each tooltip value's share of the row total (§3.3) — only meaningful when
+   *  every series shares one unit and one whole (e.g. a 100%-stacked composition).
+   *  Defaults on; turn off when bars/lines mix unrelated units (e.g. spend vs. a
+   *  cost-per-unit line), where a "% of total" reading would be meaningless. */
+  shareOfTotal?: boolean;
 }
 
 const tickStyle = { fontSize: 12, fill: CHART_INK.muted, fontFamily: "var(--font-mono)" };
@@ -68,6 +73,7 @@ export function DualAxisChart({
   partialIndex,
   brush,
   annotation,
+  shareOfTotal = true,
 }: DualAxisChartProps) {
   const animate = !useReducedMotion();
   const formats: Record<string, ValueFormat> = {};
@@ -112,7 +118,7 @@ export function DualAxisChart({
                 domain={lineDomain ?? (lineFormat === "percent" ? [0, 100] : undefined)}
               />
               <Tooltip
-                content={<ChartTooltipContent formats={formats} showTotal={lines.length === 0} shareOfTotal />}
+                content={<ChartTooltipContent formats={formats} showTotal={lines.length === 0} shareOfTotal={shareOfTotal} />}
                 wrapperStyle={{ zIndex: 9999 }}
               />
               <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />

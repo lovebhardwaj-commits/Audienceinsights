@@ -288,6 +288,7 @@ export default function NetNewReachPage() {
           xTitle="Month"
           yTitle="Spend (₹)"
           yRightTitle="Cost / 1K (₹)"
+          shareOfTotal={false}
         />
       </div>
 

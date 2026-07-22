@@ -66,14 +66,15 @@ function conversionWindows() {
     const p1 = [6_100, 6_400, 6_900, 7_200, 1_276][i];
     const p28 = [6_900, 7_100, 7_600, 8_000, 1_553][i];
     const p7 = Math.round((p1 + p28) / 2);
+    const p1v = [820, 860, 910, 990, 172][i];
     const isPartial = i === 4;
     return {
-      weekStart: w, weekEnd: w, purchases1dc: p1, purchases7dc: p7, purchases28dc: p28,
+      weekStart: w, weekEnd: w, purchases1dc: p1, purchases7dc: p7, purchases28dc: p28, purchases1dv: p1v,
       spend: [820_000, 860_000, 910_000, 940_000, 190_000][i],
       upliftRatio: ((p28 - p1) / p1) * 100, sameDayPct: (p1 / p28) * 100, isPartial,
     };
   });
-  return { weeks, totalPurchases1dc: 27_876, totalPurchases28dc: 31_153, overallUpliftRatio: 11.8 };
+  return { weeks, totalPurchases1dc: 27_876, totalPurchases28dc: 31_153, totalPurchases1dv: 3_752, overallUpliftRatio: 11.8 };
 }
 
 function frequency() {

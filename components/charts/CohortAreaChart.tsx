@@ -148,10 +148,9 @@ export function CohortAreaChart({
 }: CohortAreaChartProps) {
   const n = data.length;
 
-  // Always weekly → smooth, overshoot-safe curve. Straight linear segments were
-  // only meaningful when every point was a real day; weekly buckets are too
-  // sparse for a zigzag to mean anything.
-  const interpolation = "monotone" as const;
+  // Straight linear segments, not smoothed — the week-over-week zigzag/spike
+  // is the intended read (honest week-to-week swings), even at weekly cadence.
+  const interpolation = "linear" as const;
 
   // ── Zoom window (indices into full `data`) — controlled [startIdx, endIdx] ──
   const [startIdx, setStartIdx] = useState(0);

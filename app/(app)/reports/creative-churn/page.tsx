@@ -31,10 +31,12 @@ import {
   type CreativeChurnReport, type CreativeAdSeries,
 } from "@/lib/reports/creative-churn";
 
-// Creative Churn is always daily now (chart data = daily, axis labels = weekly) —
-// no Weekly/Daily toggle. Always fetches the exact months the user selects, with
-// no silent clamping — a long range simply takes longer / risks a Meta timeout,
-// which the existing error banner + "Retry with 1 month" action already surface.
+// Creative Churn is always weekly now (time_increment=7) — daily (time_increment=1)
+// multiplies row count ~7x per ad, which was pushing wide ranges into Meta's rate
+// limit even with the chunked/parallel fetch. No Weekly/Daily toggle; always
+// fetches the exact months the user selects, with no silent clamping — a long
+// range simply takes longer / risks a Meta timeout, which the existing error
+// banner + "Retry with 1 month" action already surface.
 // ─── Cohort chart palette ──────────────────────────────────────────────────
 // Toned-down/desaturated pastels (matches the reference implementation's
 // palette) — enough hue separation to stay distinguishable band-to-band, but
@@ -176,12 +178,12 @@ export default function CreativeChurnPage() {
       accountId: selectedAccountId,
       since: range.since,
       until: range.until,
-      granularity: "daily",
+      granularity: "weekly",
       topN: "8",
       // Bump this whenever the report's fetch/grouping logic changes server-side —
       // the client cache (lib/report-cache.ts) has no TTL and is keyed by full URL,
       // so a stale response from before a fix shipped would otherwise never expire.
-      cv: "3",
+      cv: "4",
     });
     const url = `/api/reports/creative-churn?${params}`;
     currentUrlRef.current = url;

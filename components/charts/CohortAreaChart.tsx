@@ -148,9 +148,10 @@ export function CohortAreaChart({
 }: CohortAreaChartProps) {
   const n = data.length;
 
-  // Always daily → straight linear segments, so day-to-day spend noise reads
-  // honestly as a zigzag instead of being smoothed away by a monotone curve.
-  const interpolation = "linear" as const;
+  // Always weekly → smooth, overshoot-safe curve. Straight linear segments were
+  // only meaningful when every point was a real day; weekly buckets are too
+  // sparse for a zigzag to mean anything.
+  const interpolation = "monotone" as const;
 
   // ── Zoom window (indices into full `data`) — controlled [startIdx, endIdx] ──
   const [startIdx, setStartIdx] = useState(0);
@@ -218,24 +219,6 @@ export function CohortAreaChart({
     );
     return niceCeil(max * 1.03);
   }, [data, series]);
-
-  // ── X-axis TIME labels at weekly cadence ───────────────────────────────────
-  // Data points are daily, but only points whose index is a whole number of
-  // "weeks" from the visible start get a label, so the axis stays readable —
-  // dense data, sparse labels — instead of jamming 60+ daily ticks together.
-  // Density is capped (~12 labels) by widening the step in whole weeks as the
-  // visible span grows.
-  const weeklyTicks = useMemo(() => {
-    const span = safeEnd - safeStart + 1;
-    const targetLabels = 12;
-    const weeks = Math.max(1, Math.round(span / targetLabels / 7));
-    const step = weeks * 7;
-    const out: Array<string | number> = [];
-    for (let i = safeStart; i <= safeEnd; i++) {
-      if ((i - safeStart) % step === 0) out.push(data[i][xKey]);
-    }
-    return out;
-  }, [data, xKey, safeStart, safeEnd]);
 
   // ── Cohort emphasis: hover a band to preview, click to pin ─────────────────
   // Driven by the CHART, not the legend — the legend is a passive reflector.
@@ -416,12 +399,10 @@ export function CohortAreaChart({
 
             <XAxis
               dataKey={xKey}
-              ticks={weeklyTicks}
-              interval={0}
               tick={tickStyle}
               axisLine={false}
               tickLine={false}
-              minTickGap={16}
+              minTickGap={52}
             />
 
             <YAxis

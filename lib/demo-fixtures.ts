@@ -96,17 +96,18 @@ function frequency() {
   return { campaigns, weeks, matrix };
 }
 
-// Generates genuinely daily rows spanning the EXACT [since, until] the user picked —
-// no fixed window. Cohorts = the calendar months the range touches (oldest→newest),
-// plus a "Pre-<oldest month>" cohort for legacy spend already running when the window
-// opens. Each cohort ramps up over ~18 days then decays — newer cohorts steadily take
-// over the top of the stack, healthy churn. Per-day noise gives the daily/linear plot
-// real zigzag texture instead of a smooth curve.
+// Generates weekly-bucketed rows spanning the EXACT [since, until] the user picked —
+// no fixed window — matching the real report's time_increment=7 fetch. Cohorts =
+// the calendar months the range touches (oldest→newest), plus a "Pre-<oldest month>"
+// cohort for legacy spend already running when the window opens. Each cohort ramps
+// up over ~3 weeks then decays — newer cohorts steadily take over the top of the
+// stack, healthy churn.
 function creativeChurn(since?: string, until?: string) {
   const rangeUntil = until ?? "2026-06-30";
   const rangeSince = since ?? "2026-06-01";
-  const numDays = daysInclusive(rangeSince, rangeUntil);
-  const dayDates = Array.from({ length: numDays }, (_, i) => addDays(rangeSince, i));
+  const STEP_DAYS = 7;
+  const numPoints = Math.max(1, Math.ceil(daysInclusive(rangeSince, rangeUntil) / STEP_DAYS));
+  const periodDates = Array.from({ length: numPoints }, (_, i) => addDays(rangeSince, i * STEP_DAYS));
 
   // Calendar months the window touches, oldest first — mirrors how the real report
   // buckets ads by launch month relative to the selected range.
@@ -126,36 +127,38 @@ function creativeChurn(since?: string, until?: string) {
   // Peak spend per cohort (₹) — cycles through a realistic range so the stack has
   // varied band thickness; newer cohorts trend a bit larger (growing spend story).
   const PEAK_CYCLE = [5_100_000, 6_200_000, 7_800_000, 8_600_000, 9_200_000, 9_800_000, 7_400_000, 4_100_000];
-  const RAMP_DAYS = 18;
-  const TAU_DAYS = 55;
-  const PRE_DAILY_DECAY = 0.985; // slow fade for legacy spend already at peak on day 0
+  const WEEKS_PER_MONTH = 4.345;
+  const RAMP_PERIODS = 3;
+  const TAU_PERIODS = 8;
+  const PRE_PERIOD_DECAY = 0.9; // slow fade for legacy spend already at peak on period 0
 
   function lifecycle(age: number, peak: number): number {
     if (age < 0) return 0;
-    const rise = age < RAMP_DAYS ? 0.4 + 0.6 * (age / RAMP_DAYS) : 1;
-    const decay = age < RAMP_DAYS ? 1 : Math.exp(-(age - RAMP_DAYS) / TAU_DAYS);
+    const rise = age < RAMP_PERIODS ? 0.4 + 0.6 * (age / RAMP_PERIODS) : 1;
+    const decay = age < RAMP_PERIODS ? 1 : Math.exp(-(age - RAMP_PERIODS) / TAU_PERIODS);
     return peak * rise * decay;
   }
 
-  const cohortStartDay = new Map<string, number>();
+  const cohortStartPeriod = new Map<string, number>();
   keptMonths.forEach((key) => {
     const monthStart = `${key}-01`;
-    // Days before rangeSince count as negative — a cohort whose month started
-    // before the window opens is already mid-lifecycle on day 0.
-    cohortStartDay.set(key, Math.round((new Date(monthStart).getTime() - new Date(rangeSince).getTime()) / 86_400_000));
+    // Periods before rangeSince count as negative — a cohort whose month started
+    // before the window opens is already mid-lifecycle on period 0.
+    const dayOffset = Math.round((new Date(monthStart).getTime() - new Date(rangeSince).getTime()) / 86_400_000);
+    cohortStartPeriod.set(key, Math.round(dayOffset / STEP_DAYS));
   });
 
-  const days = dayDates.map((date, i) => {
+  const days = periodDates.map((date, i) => {
     const cohortSpend: Record<string, number> = {};
 
     // Legacy/pre-window cohort — already running, gently decaying.
     const preBase = 420_000;
-    cohortSpend[PRE_COHORT_KEY] = Math.round(preBase * Math.pow(PRE_DAILY_DECAY, i) * (0.9 + 0.2 * Math.random()));
+    cohortSpend[PRE_COHORT_KEY] = Math.round(preBase * Math.pow(PRE_PERIOD_DECAY, i) * (0.9 + 0.2 * Math.random()));
 
     keptMonths.forEach((key, idx) => {
-      const startDay = cohortStartDay.get(key)!;
-      const peak = PEAK_CYCLE[idx % PEAK_CYCLE.length] / 30; // monthly peak → daily peak
-      const age = i - startDay;
+      const startPeriod = cohortStartPeriod.get(key)!;
+      const peak = (PEAK_CYCLE[idx % PEAK_CYCLE.length] / WEEKS_PER_MONTH); // monthly peak → weekly peak
+      const age = i - startPeriod;
       const raw = lifecycle(age, peak);
       cohortSpend[key] = raw > 0 ? Math.round(raw * (0.82 + Math.random() * 0.36)) : 0;
     });
@@ -187,32 +190,32 @@ function creativeChurn(since?: string, until?: string) {
   let adCounter = 0;
   const adSeries: Array<{ adId: string; adName: string; totalSpend: number; spendByPeriod: Record<string, number> }> = [
     ...([
-      { name: "SR_Core_Prospecting_A", dailyPeak: (220_000 * 0.6) / 30 },
-      { name: "SR_Core_Retargeting_B", dailyPeak: (220_000 * 0.4) / 30 },
-    ]).map(({ name, dailyPeak }) => {
+      { name: "SR_Core_Prospecting_A", weeklyPeak: (220_000 * 0.6) / WEEKS_PER_MONTH },
+      { name: "SR_Core_Retargeting_B", weeklyPeak: (220_000 * 0.4) / WEEKS_PER_MONTH },
+    ]).map(({ name, weeklyPeak }) => {
       const spendByPeriod: Record<string, number> = {};
       let totalSpend = 0;
       for (let i = 0; i < isoDates.length; i++) {
-        const spend = Math.round(dailyPeak * Math.pow(PRE_DAILY_DECAY, i));
+        const spend = Math.round(weeklyPeak * Math.pow(PRE_PERIOD_DECAY, i));
         if (spend > 0) { spendByPeriod[isoDates[i]] = spend; totalSpend += spend; }
       }
       return { adId: `demo-ad-${adCounter++}`, adName: name, totalSpend, spendByPeriod };
     }),
     ...keptMonths.flatMap((key, idx) => {
-      const startDay = cohortStartDay.get(key)!;
-      const peak = PEAK_CYCLE[idx % PEAK_CYCLE.length] / 30;
+      const startPeriod = cohortStartPeriod.get(key)!;
+      const peak = PEAK_CYCLE[idx % PEAK_CYCLE.length] / WEEKS_PER_MONTH;
       const [nameA, nameB] = AD_NAME_PAIRS[idx % AD_NAME_PAIRS.length];
       return [
-        { name: nameA, share: 0.62, ramp: RAMP_DAYS },
-        { name: nameB, share: 0.38, ramp: RAMP_DAYS + 4 },
+        { name: nameA, share: 0.62, ramp: RAMP_PERIODS },
+        { name: nameB, share: 0.38, ramp: RAMP_PERIODS + 1 },
       ].map(({ name, share, ramp }) => {
         const spendByPeriod: Record<string, number> = {};
         let totalSpend = 0;
         for (let i = 0; i < isoDates.length; i++) {
-          const age = i - startDay;
+          const age = i - startPeriod;
           if (age < 0) continue;
           const rise = age < ramp ? 0.4 + 0.6 * (age / ramp) : 1;
-          const decay = age < ramp ? 1 : Math.exp(-(age - ramp) / TAU_DAYS);
+          const decay = age < ramp ? 1 : Math.exp(-(age - ramp) / TAU_PERIODS);
           const spend = Math.round(peak * share * rise * decay * (0.8 + Math.random() * 0.4));
           if (spend > 0) { spendByPeriod[isoDates[i]] = spend; totalSpend += spend; }
         }
@@ -225,7 +228,7 @@ function creativeChurn(since?: string, until?: string) {
     cohorts,
     days,
     totalSpend: days.reduce((s, d) => s + d.totalSpend, 0),
-    granularity: "daily" as const,
+    granularity: "weekly" as const,
     adSeries,
   };
 }

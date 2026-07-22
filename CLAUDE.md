@@ -40,7 +40,7 @@ app/
       conversion-windows/page.tsx   # 1d/7d/28d attribution comparison
       audience-segments/page.tsx    # user_segment_key breakdown
       frequency/page.tsx            # Campaign × week heatmap
-      creative-churn/page.tsx       # Cohort spend over time (hidden from nav)
+      creative-churn/page.tsx       # Cohort spend over time
       creative-segments/page.tsx    # Per-entity segment split
       partnership-ads/page.tsx      # Creator vs normal ads
   api/
@@ -102,7 +102,7 @@ lib/
     creative-segments.ts             # Per-entity segment split at campaign/adset/ad level
     conversion-windows.ts            # 3 attribution windows with time_increment=7
     frequency.ts                     # Campaign × week matrix (time_increment=7, limit=2000)
-    creative-churn.ts                # Ad creation cohorts × daily spend (time_increment=1)
+    creative-churn.ts                # Ad creation cohorts × weekly spend (time_increment=7)
     partnership-ads.ts               # Branded content detection, creator resolution, incremental reach
 ```
 
@@ -155,9 +155,9 @@ Head-to-head comparison cards (Partnership vs Normal). Sections: insight banner,
 | User Segments | `audience-segments` | `breakdowns=user_segment_key` | No |
 | Partnership Ads | `partnership-ads` | `facebook_branded_content` / `instagram_branded_content` | No |
 | Frequency | `frequency` | Campaign × week matrix (`time_increment=7`) | No |
-| Creative Churn | `creative-churn` | Launch-cohort spend, weekly default | Yes (NDJSON) |
+| Creative Churn | `creative-churn` | Launch-cohort spend, always weekly | Yes (NDJSON) |
 
-Frequency and Creative Churn are now **active in nav** (7 reports total). Frequency was un-hidden in Phase 0 (7.6); Creative Churn was rescued in Phase 5 (7.7) — it now defaults to weekly (`time_increment=7`) NDJSON streaming with a Daily toggle capped at ≤2-month ranges, top-N cohorts + an "Other" bucket, and auto-loads at a 3-month weekly default.
+Frequency and Creative Churn are **active in nav** (7 reports total). Frequency was un-hidden in Phase 0 (7.6); Creative Churn was rescued in Phase 5 (7.7) and later hardened: it's always weekly (`time_increment=7`, no Daily toggle) NDJSON streaming, chunked into week-aligned windows (`weeklyAlignedWindows` in `lib/dates.ts`) fetched in parallel to stay under Vercel's 120s limit and avoid Meta silently truncating wide ranges. Every launch-month with spend gets its own cohort/color — no top-N cap, no "Other" bucket (a 12-month range shows 13 cohorts: 12 months + 1 "Pre-&lt;month&gt;" bucket for ads launched before the window). Defaults to a 1-month range (`useReportRange("creative-churn", 1)`).
 
 ### Hidden (accessible via direct URL only)
 
@@ -184,7 +184,7 @@ Frequency and Creative Churn are now **active in nav** (7 reports total). Freque
 - **Pagination**: `metaGetAllPages` follows `paging.next` links
 - **Auth errors**: Code 190 → `isAuthError = true` → UI shows re-authenticate prompt
 - **Streaming**: Heavy reports use NDJSON via `ndjsonResponse()` — progress events, then a done/error event
-- **time_increment=7**: Weekly granularity used everywhere except creative churn (daily) to keep row counts manageable
+- **time_increment=7**: Weekly granularity used everywhere, including creative churn (switched from daily to weekly to cut row volume ~7x and stay under Meta's rate limit)
 
 ## Design System
 
@@ -220,7 +220,7 @@ Brand colors (Tailwind theme in globals.css): blue-50 through blue-900.
 - **Default date range is 1 month** — 3-month auto-fetch trips Meta rate limits on heavy reports (overlap, partnership). Users can opt into longer ranges manually.
 - **No localStorage for date range** — always starts fresh at 1 month.
 - **Campaign overlap is O(N)** in API calls — one `NOT_IN` query per entity, cannot be batched. Use topN to limit.
-- **Creative churn uses time_increment=1** (daily) — heaviest report, timeouts on long ranges. Hidden from nav.
+- **Creative churn fetches are chunked and parallelized** (`weeklyAlignedWindows` + `Promise.all` in `lib/reports/creative-churn.ts`) — a single wide-range Meta Insights request silently truncates to the most recent window, and sequential chunk fetching risks the Vercel 120s timeout. Still the heaviest report on very long ranges.
 - **Partnership ad detection** relies on `facebook_branded_content.sponsor_page_id` or `instagram_branded_content` in ad creative fields. Creator name extraction falls back to regex `ifs_{name}_ife` in ad name.
 - **Vercel maxDuration=120** on the reports API route.
 - **No database** — all data is fetched live from Meta on each request.

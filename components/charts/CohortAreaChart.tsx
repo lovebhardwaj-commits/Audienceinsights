@@ -125,9 +125,16 @@ const MiniPreview = memo(function MiniPreview({
   series: CohortSeries[];
   xKey: string;
 }) {
+  // Keyed on the exact cohort set/order — when it grows (e.g. widening the date
+  // range adds new launch-month cohorts), React's keyed-list reconciliation can
+  // leave a pre-existing <Area> pinned at its old DOM position instead of
+  // moving it past newly-inserted siblings, silently breaking stack order for
+  // an SVG paint order that has no z-index escape hatch. Forcing a remount
+  // whenever the series composition changes sidesteps that entirely.
+  const seriesKey = series.map((s) => s.key).join("|");
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <AreaChart data={data} margin={{ top: 6, right: 0, left: 0, bottom: 0 }}>
+      <AreaChart key={seriesKey} data={data} margin={{ top: 6, right: 0, left: 0, bottom: 0 }}>
         {series.map((s) => (
           <Area key={s.key} type="monotone" dataKey={s.key} stackId="1" stroke="none" fill={s.color} fillOpacity={0.7} isAnimationActive={false} />
         ))}
@@ -370,6 +377,13 @@ export function CohortAreaChart({
   const startPct = n > 1 ? (safeStart / (n - 1)) * 100 : 0;
   const endPct = n > 1 ? (safeEnd / (n - 1)) * 100 : 100;
 
+  // Keyed on the exact cohort set/order — see the matching comment on
+  // MiniPreview above. Without this, widening the date range (adding new
+  // launch-month cohorts to an already-mounted chart) can leave a
+  // pre-existing <Area> pinned at its old stack position instead of moving
+  // to the end, silently corrupting the visual stack order.
+  const seriesKey = series.map((s) => s.key).join("|");
+
   return (
     <div className="select-none">
       {/* Main plot — drag-select to zoom, scroll/pinch to zoom at cursor */}
@@ -387,6 +401,7 @@ export function CohortAreaChart({
         )}
         <ResponsiveContainer width="100%" height={height}>
           <AreaChart
+            key={seriesKey}
             data={visible}
             margin={{ top: 16, right: 12, left: 4, bottom: 0 }}
             onMouseDown={onPlotDown}

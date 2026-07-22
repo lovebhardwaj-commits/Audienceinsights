@@ -14,6 +14,7 @@ import { SummaryCard } from "@/components/ui/SummaryCard";
 import { CohortAreaChart } from "@/components/charts/CohortAreaChart";
 import { ReportSummary } from "@/components/ui/ReportSummary";
 import { FetchingState } from "@/components/ui/FetchingState";
+import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { FreshnessStamp } from "@/components/ui/FreshnessStamp";
 import { ProgressIndicator } from "@/components/ui/ProgressIndicator";
 import {
@@ -22,6 +23,7 @@ import {
 import { creativeChurnInsights } from "@/lib/insights";
 import { GLOSSARY } from "@/lib/glossary";
 import { useReportRange } from "@/lib/hooks/useReportRange";
+import { lastNMonths } from "@/lib/dates";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import {
@@ -179,7 +181,7 @@ export default function CreativeChurnPage() {
       // Bump this whenever the report's fetch/grouping logic changes server-side —
       // the client cache (lib/report-cache.ts) has no TTL and is keyed by full URL,
       // so a stale response from before a fix shipped would otherwise never expire.
-      cv: "2",
+      cv: "3",
     });
     const url = `/api/reports/creative-churn?${params}`;
     currentUrlRef.current = url;
@@ -455,6 +457,15 @@ export default function CreativeChurnPage() {
         <div className="mt-4">
           <ProgressIndicator current={progress.current} total={progress.total} label={progress.label} onCancel={cancel} />
         </div>
+      )}
+
+      {error && !loading && (
+        <ErrorBanner
+          message={error}
+          code={errorCode}
+          onRetry={handleRefresh}
+          onRetryShorter={() => setRange(lastNMonths(1))}
+        />
       )}
 
       {range && (

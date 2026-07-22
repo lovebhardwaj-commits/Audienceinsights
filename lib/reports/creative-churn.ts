@@ -67,6 +67,13 @@ export async function getCreativeChurnReport(
   // come back with only the most recent window. Chunk the request into
   // calendar-month windows (same pattern as net-new-reach / rolling-reach) and
   // concatenate, so a 6-month range actually returns 6 months of daily rows.
+  //
+  // Fetched IN PARALLEL, not sequentially: a wide range fetched one month at a
+  // time can push total wall-clock past Vercel's 120s function budget once
+  // Meta's own throttling/retry backoff adds a few seconds per call — that
+  // showed up as a mid-stream 503 with no done/error event during testing.
+  // Parallel bounds total time to roughly the slowest single month instead of
+  // the sum of all of them.
   const windows = monthWindows(range.since, range.until);
   const totalSteps = windows.length + 1;
 
@@ -76,22 +83,24 @@ export async function getCreativeChurnReport(
     limit: "200",
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const spendRows: any[] = [];
-  for (let i = 0; i < windows.length; i++) {
-    const w = windows[i];
-    emit?.({ current: i + 1, total: totalSteps, label: `Fetching ${opts.granularity} spend — month ${i + 1} of ${windows.length}…` });
-    const rows = await metaInsights({
-      token,
-      objectId: accountId,
-      fields: ["ad_id", "spend"],
-      timeRange: { since: w.monthStart, until: w.monthEnd },
-      level: "ad",
-      timeIncrement: opts.granularity === "daily" ? 1 : 7,
-      limit: 500,
-    });
-    spendRows.push(...rows);
-  }
+  let monthsDone = 0;
+  const rowsByWindow = await Promise.all(
+    windows.map(async (w) => {
+      const rows = await metaInsights({
+        token,
+        objectId: accountId,
+        fields: ["ad_id", "spend"],
+        timeRange: { since: w.monthStart, until: w.monthEnd },
+        level: "ad",
+        timeIncrement: opts.granularity === "daily" ? 1 : 7,
+        limit: 500,
+      });
+      monthsDone += 1;
+      emit?.({ current: monthsDone, total: totalSteps, label: `Fetching ${opts.granularity} spend — ${monthsDone} of ${windows.length} months…` });
+      return rows;
+    })
+  );
+  const spendRows = rowsByWindow.flat();
   emit?.({ current: totalSteps, total: totalSteps, label: "Grouping into launch cohorts…" });
 
   const windowStartMonth = startOfMonth(range.since);

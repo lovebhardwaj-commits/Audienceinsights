@@ -16,7 +16,6 @@ import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
 import { DualAxisChart } from "@/components/charts/DualAxisChart";
 import { ChartSkeleton } from "@/components/ui/Skeleton";
 import { formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
-import { percent } from "@/lib/calculations";
 import { conversionFindings } from "@/lib/findings";
 import { GLOSSARY } from "@/lib/glossary";
 import { lastNDays } from "@/lib/dates";
@@ -51,8 +50,10 @@ export default function ConversionWindowsPage() {
 
   const columns: DataTableColumn<ConversionWindowWeekRow>[] = [
     { key: "weekStart", header: "Week", accessor: (r) => r.weekStart, render: (r) => r.isPartial ? `${formatShortDate(r.weekStart)} (partial)` : formatShortDate(r.weekStart) },
-    { key: "purchases1dc", header: "1DC Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchases1dc, align: "right", render: (r) => formatNumber(r.purchases1dc) },
+    { key: "spend", header: "Spend", accessor: (r) => r.spend, align: "right", render: (r) => formatCurrency(r.spend) },
+    { key: "purchasesTotal", header: "Total Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchasesTotal, align: "right", render: (r) => formatNumber(r.purchasesTotal) },
     { key: "purchases1dv", header: "1DV Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchases1dv, align: "right", render: (r) => formatNumber(r.purchases1dv) },
+    { key: "purchases1dc", header: "1DC Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchases1dc, align: "right", render: (r) => formatNumber(r.purchases1dc) },
     { key: "purchases7dc", header: "7DC Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchases7dc, align: "right", render: (r) => formatNumber(r.purchases7dc) },
     { key: "purchases28dc", header: "28DC Purchases", help: GLOSSARY.attributionWindow, accessor: (r) => r.purchases28dc, align: "right", render: (r) => formatNumber(r.purchases28dc) },
     {
@@ -65,20 +66,18 @@ export default function ConversionWindowsPage() {
       render: (r) => formatPercent(r.upliftRatio),
     },
     { key: "sameDayPct", header: "% Same-Day", help: GLOSSARY.sameDayPct, accessor: (r) => r.sameDayPct, align: "right", render: (r) => formatPercent(r.sameDayPct) },
-    { key: "spend", header: "Spend", accessor: (r) => r.spend, align: "right", render: (r) => formatCurrency(r.spend) },
   ];
 
   const chartData = useMemo(() => {
     if (!report) return [];
     return report.weeks.map((w) => ({
       week: w.isPartial ? `${formatShortDate(w.weekStart)} (partial)` : formatShortDate(w.weekStart),
-      within1Day: percent(w.purchases1dc, w.purchases28dc),
-      day2to7: percent(w.purchases7dc - w.purchases1dc, w.purchases28dc),
-      day8to28: percent(w.purchases28dc - w.purchases7dc, w.purchases28dc),
+      purchasesTotal: w.purchasesTotal,
+      purchases1dv: w.purchases1dv,
+      purchases1dc: w.purchases1dc,
+      purchases7dc: w.purchases7dc,
+      purchases28dc: w.purchases28dc,
       upliftRatio: w.upliftRatio,
-      // 1-day view-through vs. 1-day click, as a % — a separate attribution model
-      // (no click required), not part of the 100%-stacked click breakdown above.
-      viewVsClick: percent(w.purchases1dv, w.purchases1dc),
     }));
   }, [report]);
 
@@ -119,9 +118,10 @@ export default function ConversionWindowsPage() {
         items={[
           { label: "1DC / 7DC / 28DC", text: "purchases Meta credits to an ad within 1, 7, or 28 days of someone clicking it." },
           { label: "1DV", text: "1-day VIEW-through purchases — credited to an ad someone merely saw (no click) and bought within a day. A separate attribution model from 1DC/7DC/28DC, not additive with them." },
+          { label: "Total Purchases", text: "7-day click + 1-day view purchases added together — Meta's \"7-day click or 1-day view\" attribution preset, approximated by summing the two windows. It can double-count a purchase that had both a qualifying view and a later click, so treat it as an upper bound, not an exact dedup." },
           { label: "Uplift Ratio", text: "how much bigger your 28-day purchase count is vs your 1-day count, as a %. E.g. 1DC = 10, 28DC = 30 → 200% uplift — two-thirds of buyers took more than a day. Low uplift (under ~20%) means 1-day numbers are reliable; high uplift means 1-day is heavily understating real performance and you need the longer window." },
           { label: "% Same-Day", text: "the share of all attributed purchases that happened within a day of the click — your impulse-purchase rate." },
-          { label: "The chart", text: "each bar splits a week's purchases by how long they took; the amber line tracks the uplift ratio and the purple line tracks 1-day view-through purchases as a % of 1-day click purchases, both on the right axis." },
+          { label: "The chart", text: "each week shows Total, 1DV, 1DC, 7DC, and 28DC purchases as side-by-side bars (they overlap conceptually, so they're not stacked) with the uplift ratio as a line on the right axis." },
         ]}
       />
 
@@ -131,7 +131,14 @@ export default function ConversionWindowsPage() {
 
       {range && (
         <div className="animate-fade-in">
-          <div className={`mt-4 grid grid-cols-1 gap-3 transition-opacity duration-200 sm:grid-cols-2 lg:grid-cols-5 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+          <div className={`mt-4 grid grid-cols-1 gap-3 transition-opacity duration-200 sm:grid-cols-2 lg:grid-cols-3 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+            <SummaryCard
+              label="Total Purchases"
+              value={report ? formatNumber(report.totalPurchasesTotal) : "—"}
+              sublabel="7-day click + 1-day view"
+              help={GLOSSARY.attributionWindow}
+              loading={isInitialLoad}
+            />
             <SummaryCard
               label="28DC Purchases"
               value={report ? formatNumber(report.totalPurchases28dc) : "—"}
@@ -176,7 +183,7 @@ export default function ConversionWindowsPage() {
 
           <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
             <h2 className="text-sm font-semibold text-slate-800">Purchases by attribution window</h2>
-            <p className="mb-4 mt-0.5 text-xs text-slate-400">Weekly purchase share by how long after the ad click they happened, with the uplift ratio (28DC vs 1DC) and 1-day view-vs-click rate overlaid.</p>
+            <p className="mb-4 mt-0.5 text-xs text-slate-400">Weekly purchase counts across each attribution window, with the uplift ratio (28DC vs 1DC) overlaid.</p>
             {isInitialLoad ? (
               <ChartSkeleton />
             ) : (
@@ -184,21 +191,21 @@ export default function ConversionWindowsPage() {
                 data={chartData}
                 xKey="week"
                 bars={[
-                  { key: "within1Day", label: "Within 1 day", color: "#1d4ed8" },
-                  { key: "day2to7", label: "Day 2–7", color: "#0891b2" },
-                  { key: "day8to28", label: "Day 8–28", color: "#d97706" },
+                  { key: "purchasesTotal", label: "Total Purchases", color: "#475569" },
+                  { key: "purchases1dv", label: "1DV Purchases", color: "#7c3aed" },
+                  { key: "purchases1dc", label: "1DC Purchases", color: "#1d4ed8" },
+                  { key: "purchases7dc", label: "7DC Purchases", color: "#0891b2" },
+                  { key: "purchases28dc", label: "28DC Purchases", color: "#d97706" },
                 ]}
-                lines={[
-                  { key: "upliftRatio", label: "Uplift Ratio", color: "#f59e0b" },
-                  { key: "viewVsClick", label: "1D View vs Click", color: "#7c3aed" },
-                ]}
-                barFormat="percent"
+                lines={[{ key: "upliftRatio", label: "Uplift Ratio", color: "#f59e0b" }]}
+                barFormat="compact"
                 lineFormat="percent"
-                barDomain={[70, 100]}
                 lineDomain={[0, "auto"]}
+                stacked={false}
+                shareOfTotal={false}
                 xTitle="Week starting"
-                yTitle="% of purchases"
-                yRightTitle="Uplift / 1D view %"
+                yTitle="Purchases"
+                yRightTitle="Uplift Ratio (%)"
                 partialIndex={partialWeekIndex}
                 brush={false}
               />

@@ -6,6 +6,10 @@ import type { DateRange } from "@/lib/types";
 export interface ConversionWindowWeekRow {
   weekStart: string;
   weekEnd: string;
+  /** 7-day click + 1-day view — Meta's "7-day click or 1-day view" blended attribution
+   *  preset, approximated by summing the two windows (per explicit request; Meta doesn't
+   *  expose a single combined action key for it via action_attribution_windows). */
+  purchasesTotal: number;
   purchases1dc: number;
   purchases7dc: number;
   purchases28dc: number;
@@ -21,6 +25,7 @@ export interface ConversionWindowWeekRow {
 
 export interface ConversionWindowsReport {
   weeks: ConversionWindowWeekRow[];
+  totalPurchasesTotal: number;
   totalPurchases1dc: number;
   totalPurchases28dc: number;
   totalPurchases1dv: number;
@@ -51,6 +56,7 @@ export async function getConversionWindowsReport(
       return {
         weekStart: row.date_start as string,
         weekEnd: row.date_stop as string,
+        purchasesTotal: purchases7dc + purchases1dv,
         purchases1dc,
         purchases7dc,
         purchases28dc,
@@ -63,12 +69,14 @@ export async function getConversionWindowsReport(
     })
     .sort((a, b) => a.weekStart.localeCompare(b.weekStart));
 
+  const totalPurchasesTotal = weeks.reduce((sum, w) => sum + w.purchasesTotal, 0);
   const totalPurchases1dc = weeks.reduce((sum, w) => sum + w.purchases1dc, 0);
   const totalPurchases28dc = weeks.reduce((sum, w) => sum + w.purchases28dc, 0);
   const totalPurchases1dv = weeks.reduce((sum, w) => sum + w.purchases1dv, 0);
 
   return {
     weeks,
+    totalPurchasesTotal,
     totalPurchases1dc,
     totalPurchases28dc,
     totalPurchases1dv,

@@ -45,6 +45,10 @@ interface DualAxisChartProps {
    *  Defaults on; turn off when bars/lines mix unrelated units (e.g. spend vs. a
    *  cost-per-unit line), where a "% of total" reading would be meaningless. */
   shareOfTotal?: boolean;
+  /** Stack the bars into one composed total (default) or render them grouped
+   *  side-by-side. Use grouped when the bar series overlap conceptually (e.g. a
+   *  "Total" alongside its own components) rather than summing to a whole. */
+  stacked?: boolean;
 }
 
 const tickStyle = { fontSize: 12, fill: CHART_INK.muted, fontFamily: "var(--font-mono)" };
@@ -74,6 +78,7 @@ export function DualAxisChart({
   brush,
   annotation,
   shareOfTotal = true,
+  stacked = true,
 }: DualAxisChartProps) {
   const animate = !useReducedMotion();
   const formats: Record<string, ValueFormat> = {};
@@ -128,7 +133,7 @@ export function DualAxisChart({
                   yAxisId="left"
                   dataKey={s.key}
                   name={s.label}
-                  stackId="composition"
+                  stackId={stacked ? "composition" : undefined}
                   fill={s.color}
                   stroke={CHART_CHROME.surface}
                   strokeWidth={1}

@@ -69,12 +69,13 @@ function conversionWindows() {
     const p1v = [820, 860, 910, 990, 172][i];
     const isPartial = i === 4;
     return {
-      weekStart: w, weekEnd: w, purchases1dc: p1, purchases7dc: p7, purchases28dc: p28, purchases1dv: p1v,
+      weekStart: w, weekEnd: w, purchasesTotal: p7 + p1v, purchases1dc: p1, purchases7dc: p7, purchases28dc: p28, purchases1dv: p1v,
       spend: [820_000, 860_000, 910_000, 940_000, 190_000][i],
       upliftRatio: ((p28 - p1) / p1) * 100, sameDayPct: (p1 / p28) * 100, isPartial,
     };
   });
-  return { weeks, totalPurchases1dc: 27_876, totalPurchases28dc: 31_153, totalPurchases1dv: 3_752, overallUpliftRatio: 11.8 };
+  const totalPurchasesTotal = weeks.reduce((s, w) => s + w.purchasesTotal, 0);
+  return { weeks, totalPurchasesTotal, totalPurchases1dc: 27_876, totalPurchases28dc: 31_153, totalPurchases1dv: 3_752, overallUpliftRatio: 11.8 };
 }
 
 function frequency() {

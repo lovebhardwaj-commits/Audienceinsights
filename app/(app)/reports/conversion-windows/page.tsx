@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { useReportRange } from "@/lib/hooks/useReportRange";
+import { evictCached } from "@/lib/report-cache";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { FetchingState } from "@/components/ui/FetchingState";
@@ -33,6 +34,11 @@ export default function ConversionWindowsPage() {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
     const url = `/api/reports/conversion-windows?${params}`;
+    // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL, so a
+    // response shape change (e.g. adding a field) can otherwise keep serving an old cached
+    // object missing that field indefinitely for the same account/range. Evict unconditionally
+    // before every fetch — same fix applied to Creative Churn for the same class of bug.
+    evictCached(url);
     currentUrlRef.current = url;
     run(url);
   }, [selectedAccountId, range, run, retryKey]);

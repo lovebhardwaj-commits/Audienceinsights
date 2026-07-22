@@ -126,10 +126,14 @@ export async function getCreativeChurnReport(
     rawTotals.set(cohort, (rawTotals.get(cohort) ?? 0) + num(row.spend));
   }
 
-  // Keep the top-N month cohorts by spend; everything else folds into "Other".
+  // Keep the N MOST RECENT month cohorts; everything older folds into "Other".
+  // Ranking by total spend instead (as this used to) silently folds away the
+  // newest cohort whenever it hasn't yet accumulated as much lifetime spend as
+  // older months — exactly backwards for a report whose whole point is
+  // showing whether new creatives are taking over from old ones.
   const monthCohorts = Array.from(rawTotals.keys())
     .filter((k) => k !== PRE_COHORT_KEY && (rawTotals.get(k) ?? 0) > 0)
-    .sort((a, b) => (rawTotals.get(b) ?? 0) - (rawTotals.get(a) ?? 0));
+    .sort((a, b) => b.localeCompare(a)); // most recent month first
   const kept = new Set(monthCohorts.slice(0, opts.topN));
   const displayKey = (cohort: string) => {
     if (cohort === PRE_COHORT_KEY) return PRE_COHORT_KEY;

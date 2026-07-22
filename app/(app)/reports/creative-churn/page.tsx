@@ -182,12 +182,14 @@ export default function CreativeChurnPage() {
       until: range.until,
       granularity: "weekly",
       topN: "8",
-      // Bump this whenever the report's fetch/grouping logic changes server-side —
-      // the client cache (lib/report-cache.ts) has no TTL and is keyed by full URL,
-      // so a stale response from before a fix shipped would otherwise never expire.
-      cv: "6",
     });
     const url = `/api/reports/creative-churn?${params}`;
+    // This report has been repeatedly corrected mid-debug (chunking, alignment,
+    // etc.) and the client cache (lib/report-cache.ts, no TTL, keyed by URL)
+    // kept masking each fix behind a stale response. Every fetch — first load,
+    // range change, or retry — unconditionally evicts before running, so this
+    // report never silently serves cached data.
+    evictCached(url);
     currentUrlRef.current = url;
     run(url);
     // eslint-disable-next-line react-hooks/exhaustive-deps

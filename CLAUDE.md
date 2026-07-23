@@ -100,7 +100,7 @@ lib/
     campaign-overlap.ts              # Per-entity NOT_IN filtering (streaming, 1 query per entity)
     audience-segments.ts             # user_segment_key breakdown (weekly + overall)
     creative-segments.ts             # Per-entity segment split at campaign/adset/ad level
-    conversion-windows.ts            # 3 attribution windows with time_increment=7
+    conversion-windows.ts            # 1d/7d/28d click + 1d view attribution, time_increment=7
     frequency.ts                     # Campaign × week matrix (time_increment=7, limit=2000)
     creative-churn.ts                # Ad creation cohorts × weekly spend (time_increment=7)
     partnership-ads.ts               # Branded content detection, creator resolution, incremental reach
@@ -124,7 +124,7 @@ Report card grid with 5 active reports. Shows connected ad account, currency, an
 
 ### New Reach
 ![New Reach](docs/screenshots/net-new-reach.png)
-Two modes: Expanding Window (cumulative) and Sliding Window (configurable lookback). KPI cards: Latest Window Reach, Total Spend, Latest Net New %, Avg Cost/1K Net New. DualAxisChart with stacked bars (net new vs reached previously) + % net new line. DataTable with monthly breakdown.
+Two modes: Expanding Window (cumulative) and Sliding Window (configurable lookback). KPI cards: Latest Window Reach, Total Spend, Latest Net New %, Avg Cost/1K Net New. DualAxisChart with stacked bars (net new vs reached previously) + % net new line. A second DualAxisChart below it ("Cost per 1K net new reach": spend bar + cost/1K line) passes `shareOfTotal={false}` — those two series don't share a unit, so a "% of total" tooltip reading would be meaningless. DataTable with monthly breakdown.
 
 ### Campaign Overlap
 ![Campaign Overlap](docs/screenshots/campaign-overlap.png)
@@ -132,7 +132,8 @@ Level selector (Campaign/Adset/Ad), Top N input. KPI cards: Total Account Reach,
 
 ### Conversion Windows
 ![Conversion Windows](docs/screenshots/conversion-windows.png)
-KPI cards: 28DC Purchases, 1DC Purchases, Uplift Ratio. StackedBar chart showing purchase share by attribution window (within 1 day / day 2-7 / day 8-28) with uplift ratio chips above each bar. DataTable with weekly breakdown.
+*(Screenshot predates the 1-day-view addition below — KPI row and chart have since changed.)*
+KPI cards (6): Total Purchases (7DC+1DV), 28DC Purchases, 1DC Purchases, 1DV Purchases, Uplift Ratio, Cost Per Purchase. DualAxisChart with grouped (non-stacked) bars — Total/1DV/1DC/7DC/28DC purchase counts side-by-side per week, since they overlap conceptually rather than summing to a whole — plus Uplift Ratio as the only line; Spend isn't in the chart (too large a scale next to purchase counts), only the table. DataTable columns: Week, Spend, Total Purchases, 1DV Purchases, 1DC Purchases, 7DC Purchases, 28DC Purchases, Uplift Ratio, % Same-Day.
 
 ### User Segments
 ![User Segments](docs/screenshots/audience-segments.png)
@@ -151,13 +152,15 @@ Head-to-head comparison cards (Partnership vs Normal). Sections: insight banner,
 |--------|------|-------------|-----------|
 | New Reach | `net-new-reach` | Sliding/expanding window reach comparison | Yes (NDJSON) |
 | Overlap | `campaign-overlap` | NOT_IN filtering per entity (streams bar-by-bar via `partial` events) | Yes (NDJSON) |
-| Conversion Windows | `conversion-windows` | `action_attribution_windows: [1d_click, 7d_click, 28d_click]` | No |
+| Conversion Windows | `conversion-windows` | `action_attribution_windows: [1d_click, 7d_click, 28d_click, 1d_view]` | No |
 | User Segments | `audience-segments` | `breakdowns=user_segment_key` | No |
 | Partnership Ads | `partnership-ads` | `facebook_branded_content` / `instagram_branded_content` | No |
 | Frequency | `frequency` | Campaign × week matrix (`time_increment=7`) | No |
 | Creative Churn | `creative-churn` | Launch-cohort spend, always weekly | Yes (NDJSON) |
 
-Frequency and Creative Churn are **active in nav** (7 reports total). Frequency was un-hidden in Phase 0 (7.6); Creative Churn was rescued in Phase 5 (7.7) and later hardened: it's always weekly (`time_increment=7`, no Daily toggle) NDJSON streaming, chunked into week-aligned windows (`weeklyAlignedWindows` in `lib/dates.ts`) fetched in parallel to stay under Vercel's 120s limit and avoid Meta silently truncating wide ranges. Every launch-month with spend gets its own cohort/color — no top-N cap, no "Other" bucket (a 12-month range shows 13 cohorts: 12 months + 1 "Pre-&lt;month&gt;" bucket for ads launched before the window). Defaults to a 1-month range (`useReportRange("creative-churn", 1)`).
+Frequency and Creative Churn are **active in nav** (7 reports total). Frequency was un-hidden in Phase 0 (7.6); Creative Churn was rescued in Phase 5 (7.7) and later hardened: it's always weekly (`time_increment=7`, no Daily toggle) NDJSON streaming, chunked into week-aligned windows (`weeklyAlignedWindows` in `lib/dates.ts`) fetched in parallel to stay under Vercel's 120s limit and avoid Meta silently truncating wide ranges. Every launch-month with spend gets its own cohort/color — no top-N cap, no "Other" bucket (a 12-month range shows 13 cohorts: 12 months + 1 "Pre-&lt;month&gt;" bucket for ads launched before the window). Defaults to a 1-month range (`useReportRange("creative-churn", 1)`). Its chart (`CohortAreaChart.tsx`) keys the `<AreaChart>` on the exact cohort-key sequence (`series.map(s=>s.key).join("|")`) — without it, widening the date range (growing the cohort set on an already-mounted chart) can leave React's keyed-list reconciliation pinning an existing `<Area>` at its old stack position instead of moving it, silently corrupting SVG paint order (no z-index escape hatch for SVG).
+
+**Conversion Windows** was extended with **1-day view-through (`1d_view`)** attribution alongside the click windows. Two non-obvious Meta API facts, confirmed against Meta's own Insights API docs (don't re-derive or assume otherwise): (1) `1d_view` is real and currently supported — Meta permanently removed `7d_view`/`28d_view` in Jan 2026, but `1d_view` remains; (2) the unwindowed `actions[].value` field is **not** the ad account's actual configured attribution setting — whenever `action_attribution_windows` is explicitly specified in the request, `value` is pinned to `7d_click` regardless. So "Total Purchases" (`purchasesTotal` in `lib/reports/conversion-windows.ts`) is an explicit `purchases7dc + purchases1dv` sum approximating Meta's "7-day click or 1-day view" attribution preset — not a single combined action key (Meta doesn't expose one), and not additive-safe against double-counting a purchase that had both a qualifying view and a later click.
 
 ### Hidden (accessible via direct URL only)
 
@@ -171,9 +174,9 @@ Frequency and Creative Churn are **active in nav** (7 reports total). Frequency 
 - **Findings engine** (`lib/findings.ts`): structured verdicts (`severity`, `headline`, `detail`, `action`, `moneyAtStake`) per report, ranked by money. Rendered by `components/ui/FindingsStrip.tsx` above each report chart and as the Overview findings feed.
 - **Design tokens** (`globals.css`): warm `--surface-app #FAFAF8`, `--border-hairline`, ink scale, severity + metric-identity palettes exposed as Tailwind colors (`bg-surface-card`, `border-hairline`, `text-ink`, `bg-sev-*`). Cards are hairline + zero shadow; KPI values are Geist Mono; severity is the only source of card borders.
 - **Label engine** (`lib/format.ts` `formatEntityLabels`): strips the common name prefix once, middle-ellipsizes the rest (D5). Used by Frequency + Overlap.
-- **Chart system** (`components/charts/*`): axis titles with units, shared `ChartTooltipContent` (totals, share-of-total, partial tag), auto-brush > 12 points, reference lines, partial-period fade, auto-annotation (`lib/chart-annotations.ts`).
-- **D-cache** (`lib/report-cache.ts`): client-side 10-min stale-while-revalidate keyed by URL; `lib/meta-api.ts` dedupes concurrent identical GETs. Freshness stamp on every report.
-- **Per-report minimum ranges**: `MIN_USEFUL_MONTHS` in `constants.ts`; `DateRangeProvider.applyInitialMonths()` clamps the initial fetch (New Reach opens at 4 months) until the user picks a range.
+- **Chart system** (`components/charts/*`): axis titles with units, shared `ChartTooltipContent` (totals, share-of-total, partial tag), auto-brush > 12 points, reference lines, partial-period fade, auto-annotation (`lib/chart-annotations.ts`). `DualAxisChart` takes `shareOfTotal` (default `true` — turn off when bars/lines mix unrelated units, e.g. spend vs. a cost-per-unit line, where "% of total" is meaningless) and `stacked` (default `true` — turn off for grouped/side-by-side bars when series overlap conceptually instead of summing to a whole, e.g. Conversion Windows' Total/1DV/1DC/7DC/28DC purchase counts).
+- **D-cache** (`lib/report-cache.ts`): client-side cache keyed by exact URL — **no TTL**, kept until the user picks a different range or storage fills up. Every report page's data-fetching `useEffect` calls `run(url)` directly with **no eviction** — `run()` (in `useJsonReport`/`useStreamingReport`) checks the cache itself and renders a hit instantly with no network call, so the last-generated report for the current account/range/params opens immediately on mount or when switching ranges. Only the explicit "Refresh" button evicts: `handleRefresh()` calls `evictCached(currentUrlRef.current)` then `run(currentUrlRef.current)` again, forcing a live re-fetch. (An earlier version of this pattern called `evictCached(url)` unconditionally inside the mount/range-change effect too — that defeated the cache entirely, since every page visit silently re-hit Meta. Fixed across all 8 report pages.) Known follow-up risk: because there's no TTL and eviction is now only ever explicit, a *response shape change* (adding a field to a report) can still serve an old cached object missing that field indefinitely for a previously-visited account/range, until the user hits Refresh — watch for `formatNumber(undefined)` rendering as literal "NaN" if you change a report's shape; there's no automatic cache-busting for that yet.
+- **Per-report default range**: each report page owns its own default via `useReportRange(slug, defaultMonths)` (`lib/hooks/useReportRange.ts`), restored from an in-memory per-route map (`lib/session-ranges.ts` — survives SPA navigation, resets on a full page reload) or falling back to `lastNMonths(defaultMonths)`. Current defaults: **1 month for every report except New Reach, which defaults to 3.** (`MIN_USEFUL_MONTHS`/`DateRangeProvider.applyInitialMonths()` in `constants.ts`/`DateRangeProvider.tsx` are dead code — nothing calls them; don't use them as a source of truth.)
 - **Demo mode**: `GET /api/auth/demo` sets `session.demo`; report/accounts routes serve `lib/demo-fixtures.ts` with no Meta token. Landing page has a "View live demo" link.
 
 ## Meta API Patterns
@@ -217,11 +220,12 @@ Brand colors (Tailwind theme in globals.css): blue-50 through blue-900.
 
 ## Key Constraints
 
-- **Default date range is 1 month** — 3-month auto-fetch trips Meta rate limits on heavy reports (overlap, partnership). Users can opt into longer ranges manually.
-- **No localStorage for date range** — always starts fresh at 1 month.
+- **Default date range is 1 month for every report except New Reach (3 months)** — see `useReportRange` note above. Users can opt into longer ranges manually, up to 24 months back (`DateRangePicker.tsx` `MONTH_OPTIONS` — Meta's Insights API supports reach lookback well beyond a year, confirmed directly against the Graph API; this used to be capped at 13 on an incorrect assumption).
+- **Date range persists per report for the session** (`lib/session-ranges.ts`, in-memory, survives SPA navigation, resets on full page reload) — not "always starts fresh."
+- **`DateRangePicker`'s custom range never allows a future date** — both the native `<input>` `max` in the calendar's day-cell disabling and a defensive clamp in `applyCustom()`/day-click logic keep `until` capped at today. Nothing server-side validates this independently, so don't remove the client-side guard without adding one.
 - **Campaign overlap is O(N)** in API calls — one `NOT_IN` query per entity, cannot be batched. Use topN to limit.
 - **Creative churn fetches are chunked and parallelized** (`weeklyAlignedWindows` + `Promise.all` in `lib/reports/creative-churn.ts`) — a single wide-range Meta Insights request silently truncates to the most recent window, and sequential chunk fetching risks the Vercel 120s timeout. Still the heaviest report on very long ranges.
-- **Partnership ad detection** relies on `facebook_branded_content.sponsor_page_id` or `instagram_branded_content` in ad creative fields. Creator name extraction falls back to regex `ifs_{name}_ife` in ad name.
+- **Partnership ad detection** relies on `facebook_branded_content.sponsor_page_id` or `instagram_branded_content` in ad creative fields. Creator name extraction uses a per-account user-configured prefix/suffix pattern (`components/CreatorPatternSetup.tsx`, saved to `localStorage` keyed `creator-pattern:{accountId}`) — there is no default/guessed pattern; until a user configures one, creators are unclassified ("Unknown").
 - **Vercel maxDuration=120** on the reports API route.
 - **No database** — all data is fetched live from Meta on each request.
 

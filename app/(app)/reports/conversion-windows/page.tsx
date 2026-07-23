@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { useReportRange } from "@/lib/hooks/useReportRange";
@@ -24,8 +24,7 @@ import type { ConversionWindowWeekRow, ConversionWindowsReport } from "@/lib/rep
 
 export default function ConversionWindowsPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useReportRange("conversion-windows", 2);
-  const [retryKey, setRetryKey] = useState(0);
+  const [range, setRange] = useReportRange("conversion-windows", 1);
   const currentUrlRef = useRef<string | null>(null);
   const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: ConversionWindowsReport }>();
 
@@ -33,17 +32,14 @@ export default function ConversionWindowsPage() {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
     const url = `/api/reports/conversion-windows?${params}`;
-    // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL, so a
-    // response shape change (e.g. adding a field) can otherwise keep serving an old cached
-    // object missing that field indefinitely for the same account/range. Evict unconditionally
-    // before every fetch — same fix applied to Creative Churn for the same class of bug.
-    evictCached(url);
     currentUrlRef.current = url;
     run(url);
-  }, [selectedAccountId, range, run, retryKey]);
+  }, [selectedAccountId, range, run]);
 
   function handleRefresh() {
-    setRetryKey((k) => k + 1);
+    if (!currentUrlRef.current) return;
+    evictCached(currentUrlRef.current);
+    run(currentUrlRef.current);
   }
 
   const report = data?.data;

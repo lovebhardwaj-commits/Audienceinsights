@@ -58,7 +58,6 @@ export default function CampaignOverlapPage() {
   const [range, setRange] = useReportRange("campaign-overlap", 1);
   const [level, setLevel] = useState<OverlapLevel>("campaign");
   const [topN, setTopN] = useState(15);
-  const [retryKey, setRetryKey] = useState(0);
   const { loading, isInitialLoad, data, fetchedAt, run } = useStreamingReport<CampaignOverlapReport>();
   const currentUrlRef = useRef<string | null>(null);
 
@@ -78,17 +77,20 @@ export default function CampaignOverlapPage() {
       topN: String(topN),
     });
     const url = `/api/reports/campaign-overlap?${params}`;
-    // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL,
-    // so evict unconditionally before every fetch — otherwise Refresh silently
-    // re-renders the same stale cached response instead of hitting Meta again.
-    evictCached(url);
+    // Cache check happens inside run() itself (lib/hooks/useStreamingReport.ts calls
+    // getCached(url) and shows the cached report instantly when present). Do NOT evict
+    // here — this effect fires on every mount and every range/level/topN change, and
+    // evicting unconditionally would defeat the cache on every page visit. Only the
+    // explicit Refresh action (handleRefresh below) should evict.
     currentUrlRef.current = url;
     run(url);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedAccountId, range, level, topN, retryKey]);
+  }, [selectedAccountId, range, level, topN]);
 
   function handleRefresh() {
-    setRetryKey((k) => k + 1);
+    if (!currentUrlRef.current) return;
+    evictCached(currentUrlRef.current);
+    run(currentUrlRef.current);
   }
 
   const entityLabel = level === "campaign" ? "Campaign" : level === "adset" ? "Adset" : "Ad";

@@ -221,7 +221,6 @@ export default function PartnershipAdsPage() {
   const { selectedAccountId } = useAccount();
   const [range, setRange] = useReportRange("partnership-ads", 1);
   const [adsExpanded, setAdsExpanded] = useState(false);
-  const [retryKey, setRetryKey] = useState(0);
   const [patternSetupOpen, setPatternSetupOpen] = useState(false);
   // Bumped after a pattern save to both re-read localStorage for display and force a refetch.
   const [patternVersion, setPatternVersion] = useState(0);
@@ -249,18 +248,19 @@ export default function PartnershipAdsPage() {
       params.set("creatorSuffix", pattern.suffix);
     }
     const url = `/api/reports/partnership-ads?${params}`;
-    // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL,
-    // so evict unconditionally before every fetch — otherwise Refresh silently
-    // re-renders the same stale cached response instead of hitting Meta again.
-    evictCached(url);
+    // run() checks the client cache (lib/report-cache.ts) itself and renders a hit
+    // instantly with no network call — don't evict here, or every mount/range/pattern
+    // change would silently re-hit Meta and defeat the cache. Only handleRefresh evicts.
     currentUrlRef.current = url;
     // Clears the post-confirm loading state once this fetch settles, success or not —
     // a .finally() continuation, not a synchronous setState in the effect body.
     run(url).finally(() => setAwaitingPatternRefresh(false));
-  }, [selectedAccountId, range, run, retryKey, patternVersion]);
+  }, [selectedAccountId, range, run, patternVersion]);
 
   function handleRefresh() {
-    setRetryKey((k) => k + 1);
+    if (!currentUrlRef.current) return;
+    evictCached(currentUrlRef.current);
+    run(currentUrlRef.current);
   }
 
   const report = data?.data;

@@ -45,7 +45,6 @@ export default function NetNewReachPage() {
   const [range, setRange] = useReportRange("net-new-reach", 3);
   const [mode, setMode] = useState<WindowMode>("sliding");
   const [lookbackDays, setLookbackDays] = useState(90);
-  const [retryKey, setRetryKey] = useState(0);
   const currentUrlRef = useRef<string | null>(null);
 
   const expanding = useStreamingReport<RollingReachReport>();
@@ -56,26 +55,26 @@ export default function NetNewReachPage() {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
     let url: string;
-    // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL,
-    // so evict unconditionally before every fetch — otherwise Refresh silently
-    // re-renders the same stale cached response instead of hitting Meta again.
+    // run() already checks the client cache (lib/report-cache.ts) internally and shows
+    // a cached hit instantly — do NOT evict here, or every mount/range change would
+    // silently re-hit Meta and defeat the cache. Only handleRefresh should evict.
     if (mode === "expanding") {
       url = `/api/reports/rolling-reach?${params}`;
-      evictCached(url);
       currentUrlRef.current = url;
       expanding.run(url);
     } else {
       params.set("lookbackDays", String(lookbackDays));
       url = `/api/reports/net-new-reach?${params}`;
-      evictCached(url);
       currentUrlRef.current = url;
       sliding.run(url);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedAccountId, range, mode, lookbackDays, retryKey]);
+  }, [selectedAccountId, range, mode, lookbackDays]);
 
   function handleRefresh() {
-    setRetryKey((k) => k + 1);
+    if (!currentUrlRef.current) return;
+    evictCached(currentUrlRef.current);
+    active.run(currentUrlRef.current);
   }
 
   const rows: DisplayRow[] = useMemo(() => {

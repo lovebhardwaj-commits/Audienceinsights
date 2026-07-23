@@ -189,12 +189,13 @@ export default function CreativeChurnPage() {
       granularity: "weekly",
     });
     const url = `/api/reports/creative-churn?${params}`;
-    // This report has been repeatedly corrected mid-debug (chunking, alignment,
-    // etc.) and the client cache (lib/report-cache.ts, no TTL, keyed by URL)
-    // kept masking each fix behind a stale response. Every fetch — first load,
-    // range change, or retry — unconditionally evicts before running, so this
-    // report never silently serves cached data.
-    evictCached(url);
+    // D-cache (lib/report-cache.ts, no TTL, keyed by URL): on mount and on
+    // range change we want the last-generated cached report to render
+    // instantly, so we do NOT evict here — run(url) checks the cache itself
+    // and only hits the network when there's no entry. The only path that
+    // should force a fresh fetch is an explicit user "Refresh" click, which
+    // is handled by handleRefresh() evicting currentUrlRef.current before
+    // bumping retryKey to re-trigger this effect.
     currentUrlRef.current = url;
     run(url);
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -76,9 +76,8 @@ function newPctCellClass(row: EntitySegmentRow): string {
 
 export default function AudienceSegmentsPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useReportRange("audience-segments", 2);
+  const [range, setRange] = useReportRange("audience-segments", 1);
   const [viewLevel, setViewLevel] = useState<ViewLevel>("account");
-  const [retryKey, setRetryKey] = useState(0);
   const currentUrlRef = useRef<string | null>(null);
   const accountReport = useJsonReport<{ data: AudienceSegmentsReport }>();
   const entityReport = useJsonReport<{ data: CreativeSegmentsReport }>();
@@ -95,24 +94,28 @@ export default function AudienceSegmentsPage() {
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
     if (viewLevel === "account") {
       const url = `/api/reports/audience-segments?${params}`;
-      // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL,
-      // so evict unconditionally before every fetch — otherwise Refresh silently
-      // re-renders the same stale cached response instead of hitting Meta again.
-      evictCached(url);
+      // Client cache (lib/report-cache.ts) is checked inside run() itself — a cached
+      // hit renders instantly with no network call. Don't evict here or caching never
+      // works; eviction only happens explicitly from handleRefresh below.
       currentUrlRef.current = url;
       accountReport.run(url);
     } else {
       params.set("level", viewLevel);
       const url = `/api/reports/creative-segments?${params}`;
-      evictCached(url);
       currentUrlRef.current = url;
       entityReport.run(url);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedAccountId, range, viewLevel, retryKey]);
+  }, [selectedAccountId, range, viewLevel]);
 
   function handleRefresh() {
-    setRetryKey((k) => k + 1);
+    if (!currentUrlRef.current) return;
+    evictCached(currentUrlRef.current);
+    if (isEntityView) {
+      entityReport.run(currentUrlRef.current);
+    } else {
+      accountReport.run(currentUrlRef.current);
+    }
   }
 
   const report = accountReport.data?.data;

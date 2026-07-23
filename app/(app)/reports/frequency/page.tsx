@@ -66,9 +66,8 @@ const LEVELS: { key: FrequencyLevel; label: string }[] = [
 
 export default function FrequencyPage() {
   const { selectedAccountId } = useAccount();
-  const [range, setRange] = useReportRange("frequency", 2);
+  const [range, setRange] = useReportRange("frequency", 1);
   const [level, setLevel] = useState<FrequencyLevel>("campaign");
-  const [retryKey, setRetryKey] = useState(0);
   const currentUrlRef = useRef<string | null>(null);
   const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: FrequencyReport }>();
 
@@ -76,16 +75,17 @@ export default function FrequencyPage() {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until, level });
     const url = `/api/reports/frequency?${params}`;
-    // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL,
-    // so evict unconditionally before every fetch — otherwise Refresh silently
-    // re-renders the same stale cached response instead of hitting Meta again.
-    evictCached(url);
+    // Cache (lib/report-cache.ts) is checked inside run(): a cached hit renders instantly
+    // and skips Meta entirely. Don't evict here — that would defeat caching on every
+    // mount/range/level change. Only handleRefresh (explicit user action) evicts.
     currentUrlRef.current = url;
     run(url);
-  }, [selectedAccountId, range, level, run, retryKey]);
+  }, [selectedAccountId, range, level, run]);
 
   function handleRefresh() {
-    setRetryKey((k) => k + 1);
+    if (!currentUrlRef.current) return;
+    evictCached(currentUrlRef.current);
+    run(currentUrlRef.current);
   }
 
   const report = data?.data;

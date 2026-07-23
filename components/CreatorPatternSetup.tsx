@@ -143,11 +143,18 @@ export function CreatorPatternSetup({ accountId, sampleAdNames, onSaved, onClose
           <input
             id="creator-pattern-example"
             type="text"
+            autoFocus
             value={exampleName}
             onChange={(e) => setExampleName(e.target.value)}
-            placeholder="prs_RedSandalwood_pre_ifs_AnushkaRai_ife_ces_Video_cee"
+            placeholder="Paste your ad name here"
             className="w-full rounded-lg border border-slate-200 px-3.5 py-2.5 font-mono text-sm text-slate-900 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
           />
+          <p className="mt-1.5 text-xs text-slate-400">
+            For example:{" "}
+            <code className="rounded bg-slate-100 px-1 font-mono text-slate-500">
+              prs_RedSandalwood_pre_ifs_AnushkaRai_ife_ces_Video_cee
+            </code>
+          </p>
           <div className="mt-3 flex justify-end">
             <button
               onClick={() => setStep(2)}

@@ -19,6 +19,7 @@ import { SEGMENT_COLORS } from "@/lib/constants";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
 import { HowToRead } from "@/components/ui/HowToRead";
+import { CreatorPatternSetup, CREATOR_PATTERN_DEFAULT, getCreatorPattern, type CreatorPattern } from "@/components/CreatorPatternSetup";
 
 import type { CreatorRow, GroupMetrics, PartnershipAdRow, PartnershipReport } from "@/lib/reports/partnership-ads";
 
@@ -221,13 +222,29 @@ export default function PartnershipAdsPage() {
   const [range, setRange] = useReportRange("partnership-ads", 1);
   const [adsExpanded, setAdsExpanded] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
+  const [patternSetupOpen, setPatternSetupOpen] = useState(false);
+  // Bumped after a pattern save to both re-read localStorage for display and force a refetch.
+  const [patternVersion, setPatternVersion] = useState(0);
   const currentUrlRef = useRef<string | null>(null);
   const animate = !useReducedMotion();
   const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: PartnershipReport }>();
 
+  // patternVersion isn't read in the body below — it's a bump signal forcing a
+  // re-read of localStorage after CreatorPatternSetup saves a new pattern.
+  const currentPattern = useMemo<CreatorPattern | null>(
+    () => (selectedAccountId ? getCreatorPattern(selectedAccountId) : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [selectedAccountId, patternVersion]
+  );
+
   useEffect(() => {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
+    const pattern = getCreatorPattern(selectedAccountId);
+    if (pattern) {
+      params.set("creatorPrefix", pattern.prefix);
+      params.set("creatorSuffix", pattern.suffix);
+    }
     const url = `/api/reports/partnership-ads?${params}`;
     // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL,
     // so evict unconditionally before every fetch — otherwise Refresh silently
@@ -235,7 +252,7 @@ export default function PartnershipAdsPage() {
     evictCached(url);
     currentUrlRef.current = url;
     run(url);
-  }, [selectedAccountId, range, run, retryKey]);
+  }, [selectedAccountId, range, run, retryKey, patternVersion]);
 
   function handleRefresh() {
     setRetryKey((k) => k + 1);
@@ -398,7 +415,7 @@ export default function PartnershipAdsPage() {
       <HowToRead
         items={[
           { label: "Partnership ad", text: "an ad run through Meta's branded content tools with a creator — detected automatically from the ad's creative." },
-          { label: "Creator", text: "parsed from your ad naming convention (ifs_creator_ife). Ads that don't match show as \"Unknown\"." },
+          { label: "Creator", text: `parsed from your ad naming convention (text between "${(currentPattern ?? CREATOR_PATTERN_DEFAULT).prefix}" and "${(currentPattern ?? CREATOR_PATTERN_DEFAULT).suffix}"). Ads that don't match show as "Unknown".` },
           { label: "New Purchase %", text: "of the purchases a creator drove, the share that came from brand-new customers — the leaderboard's ranking metric." },
           { label: "New CPA", text: "what one new customer costs via this creator. Green = cheaper than your creator average, red = 1.5× above it." },
           { label: "Incremental Reach", text: "people this group reaches that no other campaign in the account touches — the truest measure of audience expansion, since high New Audience % can still mean your normal ads already reach those same people." },
@@ -431,7 +448,14 @@ export default function PartnershipAdsPage() {
           )}
           {report && allUnknownCreators && (
             <div className="mt-4 rounded-xl border border-blue-100 bg-blue-50 px-5 py-3.5 text-[13px] leading-relaxed text-blue-800">
-              Creator names couldn&apos;t be extracted from ad names. The app looks for the pattern <code className="rounded bg-blue-100 px-1">ifs_{"{creator}"}_ife</code> in the ad name.
+              Creator names couldn&apos;t be extracted from ad names. The app looks for text between{" "}
+              <code className="rounded bg-blue-100 px-1">{(currentPattern ?? CREATOR_PATTERN_DEFAULT).prefix}</code> and{" "}
+              <code className="rounded bg-blue-100 px-1">{(currentPattern ?? CREATOR_PATTERN_DEFAULT).suffix}</code> in the ad name.{" "}
+              {!currentPattern && (
+                <button onClick={() => setPatternSetupOpen(true)} className="font-semibold underline hover:no-underline">
+                  Configure your naming pattern
+                </button>
+              )}
             </div>
           )}
 
@@ -536,7 +560,40 @@ export default function PartnershipAdsPage() {
           {/* Section 5 — Creator leaderboard */}
           {!noPartnershipAds && (
             <div className="mt-6">
-              <h2 className="mb-3 text-sm font-semibold text-slate-800">Creator Leaderboard</h2>
+              <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <h2 className="text-sm font-semibold text-slate-800">Creator Leaderboard</h2>
+                <div className="flex items-center gap-2 text-xs">
+                  {currentPattern ? (
+                    <span className="text-slate-400">
+                      Creator pattern: text between <code className="rounded bg-slate-100 px-1 font-mono text-slate-600">{currentPattern.prefix}</code> and{" "}
+                      <code className="rounded bg-slate-100 px-1 font-mono text-slate-600">{currentPattern.suffix}</code>
+                    </span>
+                  ) : (
+                    <span className="text-slate-400">Using default pattern</span>
+                  )}
+                  <button
+                    onClick={() => setPatternSetupOpen((o) => !o)}
+                    className="font-medium text-brand-600 transition-colors hover:text-brand-700"
+                  >
+                    {currentPattern ? "Edit" : "Configure creator pattern"}
+                  </button>
+                </div>
+              </div>
+
+              {patternSetupOpen && selectedAccountId && (
+                <div className="animate-fade-in mb-4 rounded-xl border border-hairline bg-surface-card p-5">
+                  <CreatorPatternSetup
+                    accountId={selectedAccountId}
+                    sampleAdNames={(report?.partnershipAds ?? []).map((a) => a.adName)}
+                    onSaved={() => {
+                      setPatternSetupOpen(false);
+                      setPatternVersion((v) => v + 1);
+                    }}
+                    onClose={() => setPatternSetupOpen(false)}
+                  />
+                </div>
+              )}
+
               <DataTable
                 columns={creatorColumns}
                 rows={report?.creators ?? []}
@@ -560,16 +617,18 @@ export default function PartnershipAdsPage() {
                 </svg>
                 View all partnership ads ({report.partnershipAds.length} ads)
               </button>
-              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${adsExpanded ? "mt-3 max-h-[4000px] opacity-100" : "max-h-0 opacity-0"}`}>
-                <DataTable
-                  columns={adColumns}
-                  rows={report.partnershipAds}
-                  loading={isInitialLoad}
-                  filename="partnership-ads"
-                  defaultSortKey="newPurchases"
-                  defaultSortDir="desc"
-                />
-              </div>
+              {adsExpanded && (
+                <div className="animate-fade-in mt-3">
+                  <DataTable
+                    columns={adColumns}
+                    rows={report.partnershipAds}
+                    loading={isInitialLoad}
+                    filename="partnership-ads"
+                    defaultSortKey="newPurchases"
+                    defaultSortDir="desc"
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>

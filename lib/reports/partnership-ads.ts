@@ -111,20 +111,47 @@ interface ClassifiedAd {
   creatorHandle: string | null;
 }
 
-function classifyAd(ad: MetaAdWithCreative): ClassifiedAd {
+export interface CreatorPattern {
+  prefix: string;
+  suffix: string;
+}
+
+// User-configurable extraction (creator-pattern-setup spec): the text between an
+// account-specific prefix/suffix, case-insensitive. Kept byte-identical to the
+// component's client-side copy (components/CreatorPatternSetup.tsx) — duplicated
+// rather than shared because this module is server-only (imports meta-api.ts,
+// which reads request secrets) and must never be pulled into a client bundle.
+function extractCreator(adName: string, prefix: string, suffix: string): string | null {
+  const prefixIdx = adName.toLowerCase().indexOf(prefix.toLowerCase());
+  if (prefixIdx === -1) return null;
+
+  const nameStart = prefixIdx + prefix.length;
+  const afterPrefix = adName.substring(nameStart);
+
+  const suffixIdx = afterPrefix.toLowerCase().indexOf(suffix.toLowerCase());
+  if (suffixIdx === -1) return null;
+
+  const name = afterPrefix.substring(0, suffixIdx).trim();
+  return name.length > 0 ? name : null;
+}
+
+function classifyAd(ad: MetaAdWithCreative, pattern?: CreatorPattern): ClassifiedAd {
   const creative = ad.adcreatives?.data?.[0];
   const isPartnership = !!(
     creative?.facebook_branded_content?.sponsor_page_id ||
     creative?.instagram_branded_content
   );
-  // Creator handle from the ifs_{creator}_ife naming convention.
+  // No custom pattern saved (creator-pattern-setup spec) — keep the original
+  // ifs_{creator}_ife regex exactly as-is so accounts with nothing configured
+  // see zero behavior change. Only route through the generic extractCreator
+  // once the user has picked their own prefix/suffix.
+  const rawHandle = pattern ? extractCreator(ad.name ?? "", pattern.prefix, pattern.suffix) : (ad.name?.match(/ifs_([^_]+)_ife/i)?.[1] ?? null);
   // Normalise to lowercase so "Naveena" and "naveena" merge into one row.
-  const match = ad.name?.match(/ifs_([^_]+)_ife/i);
   return {
     id: ad.id,
     name: ad.name ?? ad.id,
     isPartnership,
-    creatorHandle: match ? match[1].toLowerCase().trim() : null,
+    creatorHandle: rawHandle ? rawHandle.toLowerCase().trim() : null,
   };
 }
 
@@ -250,7 +277,8 @@ function weeklyNewPcts(rows: any[]): Map<string, { weekEnd: string; newPct: numb
 export async function getPartnershipAdsReport(
   token: string,
   accountId: string,
-  range: DateRange
+  range: DateRange,
+  pattern?: CreatorPattern
 ): Promise<PartnershipReport> {
   // Step 1 — ads active in this date range only.
   // The /ads endpoint has no date filter so it returns every ad ever created;
@@ -268,7 +296,7 @@ export async function getPartnershipAdsReport(
   const rawAds = await fetchAdsByIds(token, activeAdIds);
 
   // Step 2 — classify
-  const classified = rawAds.map(classifyAd);
+  const classified = rawAds.map((ad) => classifyAd(ad, pattern));
   const partnershipAdsList = classified.filter((a) => a.isPartnership);
   const normalAdsList = classified.filter((a) => !a.isPartnership);
   const partnershipIds = partnershipAdsList.map((a) => a.id);

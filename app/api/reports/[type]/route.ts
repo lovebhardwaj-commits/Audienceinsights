@@ -131,7 +131,10 @@ async function runJsonReport(
     }
     case "partnership-ads": {
       requireRange(range);
-      return getPartnershipAdsReport(token, accountId, range);
+      const creatorPrefix = searchParams.get("creatorPrefix");
+      const creatorSuffix = searchParams.get("creatorSuffix");
+      const pattern = creatorPrefix && creatorSuffix ? { prefix: creatorPrefix, suffix: creatorSuffix } : undefined;
+      return getPartnershipAdsReport(token, accountId, range, pattern);
     }
     case "frequency": {
       requireRange(range);

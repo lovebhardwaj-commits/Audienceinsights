@@ -266,10 +266,6 @@ export default function CampaignOverlapPage() {
         </label>
       </div>
 
-      <p className="mt-2 text-[11px] text-ink-tertiary">
-        This runs ≈{topN + 2} Meta API calls (one per {entityLabel.toLowerCase()}), roughly {Math.max(1, Math.ceil(((topN + 2) * 1.3) / 60))}–{Math.ceil(((topN + 2) * 1.3) / 60) + 1} min on a cold load.
-      </p>
-
       {(loading || (range && !data)) && <FetchingState />}
 
       {!range && <EmptyState title="Select a date range" description="Choose a period above to load this report." />}

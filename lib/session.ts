@@ -8,6 +8,10 @@ export interface SessionData {
   userName?: string;
   /** Demo mode (Part 8) — serves recorded fixtures through the real routes, no Meta token. */
   demo?: boolean;
+  /** Email/password auth gate (temporary, env-variable user map) — set on successful
+   *  login at /login, independent of the Meta accessToken above. A user can be
+   *  logged in (has userEmail) without yet being connected to Meta (no accessToken). */
+  userEmail?: string;
 }
 
 export const sessionOptions: SessionOptions = {

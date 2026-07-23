@@ -14,6 +14,15 @@ export function TopBar() {
     router.refresh();
   }
 
+  // Separate from handleLogout above (which disconnects Meta) — this only clears
+  // the email-auth gate, so it's a distinct control rather than folded into the
+  // existing "Log out" button.
+  async function handleLogoutOfApp() {
+    await fetch("/api/auth/logout-email", { method: "POST" });
+    router.push("/login");
+    router.refresh();
+  }
+
   return (
     // Sticky so it never scrolls away (Part 1).
     <div className="sticky top-0 z-20 border-b border-hairline bg-surface-card">
@@ -36,13 +45,21 @@ export function TopBar() {
         <div className="flex items-center gap-3">
           <AccountSelector />
         </div>
-        {/* [PM ENHANCEMENT] — destructive action signals red on hover, not neutral gray */}
-        <button
-          onClick={handleLogout}
-          className="rounded-lg border border-hairline px-3.5 py-1.5 text-sm font-medium text-ink-secondary transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600"
-        >
-          Log out
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleLogoutOfApp}
+            className="rounded-lg border border-hairline px-3.5 py-1.5 text-sm font-medium text-ink-secondary transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+          >
+            Log out of app
+          </button>
+          {/* [PM ENHANCEMENT] — destructive action signals red on hover, not neutral gray */}
+          <button
+            onClick={handleLogout}
+            className="rounded-lg border border-hairline px-3.5 py-1.5 text-sm font-medium text-ink-secondary transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+          >
+            Log out
+          </button>
+        </div>
       </div>
     </div>
   );

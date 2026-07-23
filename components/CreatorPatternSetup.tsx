@@ -7,8 +7,6 @@ export interface CreatorPattern {
   suffix: string;
 }
 
-export const CREATOR_PATTERN_DEFAULT: CreatorPattern = { prefix: "ifs_", suffix: "_ife" };
-
 function storageKey(accountId: string): string {
   return `creator-pattern:${accountId}`;
 }

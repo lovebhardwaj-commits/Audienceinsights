@@ -19,7 +19,7 @@ import { SEGMENT_COLORS } from "@/lib/constants";
 import { formatCompactNumber, formatCurrency, formatCurrencyCompact, formatNumber, formatPercent, formatShortDate } from "@/lib/format";
 import { GLOSSARY } from "@/lib/glossary";
 import { HowToRead } from "@/components/ui/HowToRead";
-import { CreatorPatternSetup, CREATOR_PATTERN_DEFAULT, getCreatorPattern, type CreatorPattern } from "@/components/CreatorPatternSetup";
+import { CreatorPatternSetup, getCreatorPattern, type CreatorPattern } from "@/components/CreatorPatternSetup";
 
 import type { CreatorRow, GroupMetrics, PartnershipAdRow, PartnershipReport } from "@/lib/reports/partnership-ads";
 
@@ -225,6 +225,9 @@ export default function PartnershipAdsPage() {
   const [patternSetupOpen, setPatternSetupOpen] = useState(false);
   // Bumped after a pattern save to both re-read localStorage for display and force a refetch.
   const [patternVersion, setPatternVersion] = useState(0);
+  // True from the moment a pattern is confirmed until the resulting refetch resolves —
+  // drives a dedicated "loading creators…" state instead of the report just dimming.
+  const [awaitingPatternRefresh, setAwaitingPatternRefresh] = useState(false);
   const currentUrlRef = useRef<string | null>(null);
   const animate = !useReducedMotion();
   const { loading, isInitialLoad, data, error, errorCode, fetchedAt, run } = useJsonReport<{ data: PartnershipReport }>();
@@ -251,7 +254,9 @@ export default function PartnershipAdsPage() {
     // re-renders the same stale cached response instead of hitting Meta again.
     evictCached(url);
     currentUrlRef.current = url;
-    run(url);
+    // Clears the post-confirm loading state once this fetch settles, success or not —
+    // a .finally() continuation, not a synchronous setState in the effect body.
+    run(url).finally(() => setAwaitingPatternRefresh(false));
   }, [selectedAccountId, range, run, retryKey, patternVersion]);
 
   function handleRefresh() {
@@ -415,7 +420,12 @@ export default function PartnershipAdsPage() {
       <HowToRead
         items={[
           { label: "Partnership ad", text: "an ad run through Meta's branded content tools with a creator — detected automatically from the ad's creative." },
-          { label: "Creator", text: `parsed from your ad naming convention (text between "${(currentPattern ?? CREATOR_PATTERN_DEFAULT).prefix}" and "${(currentPattern ?? CREATOR_PATTERN_DEFAULT).suffix}"). Ads that don't match show as "Unknown".` },
+          {
+            label: "Creator",
+            text: currentPattern
+              ? `parsed using your saved pattern — text between "${currentPattern.prefix}" and "${currentPattern.suffix}". Ads that don't match show as "Unknown".`
+              : "parsed using a naming pattern you define — set one up below the leaderboard to start identifying creators.",
+          },
           { label: "New Purchase %", text: "of the purchases a creator drove, the share that came from brand-new customers — the leaderboard's ranking metric." },
           { label: "New CPA", text: "what one new customer costs via this creator. Green = cheaper than your creator average, red = 1.5× above it." },
           { label: "Incremental Reach", text: "people this group reaches that no other campaign in the account touches — the truest measure of audience expansion, since high New Audience % can still mean your normal ads already reach those same people." },
@@ -446,16 +456,14 @@ export default function PartnershipAdsPage() {
               No purchase data found for this period. Purchase tracking requires Meta Pixel or CAPI with the purchase event configured.
             </div>
           )}
-          {report && allUnknownCreators && (
+          {report && currentPattern && allUnknownCreators && (
             <div className="mt-4 rounded-xl border border-blue-100 bg-blue-50 px-5 py-3.5 text-[13px] leading-relaxed text-blue-800">
-              Creator names couldn&apos;t be extracted from ad names. The app looks for text between{" "}
-              <code className="rounded bg-blue-100 px-1">{(currentPattern ?? CREATOR_PATTERN_DEFAULT).prefix}</code> and{" "}
-              <code className="rounded bg-blue-100 px-1">{(currentPattern ?? CREATOR_PATTERN_DEFAULT).suffix}</code> in the ad name.{" "}
-              {!currentPattern && (
-                <button onClick={() => setPatternSetupOpen(true)} className="font-semibold underline hover:no-underline">
-                  Configure your naming pattern
-                </button>
-              )}
+              None of your ads matched the saved pattern — text between{" "}
+              <code className="rounded bg-blue-100 px-1">{currentPattern.prefix}</code> and{" "}
+              <code className="rounded bg-blue-100 px-1">{currentPattern.suffix}</code>.{" "}
+              <button onClick={() => setPatternSetupOpen(true)} className="font-semibold underline hover:no-underline">
+                Change naming pattern
+              </button>
             </div>
           )}
 
@@ -562,22 +570,14 @@ export default function PartnershipAdsPage() {
             <div className="mt-6">
               <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                 <h2 className="text-sm font-semibold text-slate-800">Creator Leaderboard</h2>
-                <div className="flex items-center gap-2 text-xs">
-                  {currentPattern ? (
-                    <span className="text-slate-400">
-                      Creator pattern: text between <code className="rounded bg-slate-100 px-1 font-mono text-slate-600">{currentPattern.prefix}</code> and{" "}
-                      <code className="rounded bg-slate-100 px-1 font-mono text-slate-600">{currentPattern.suffix}</code>
-                    </span>
-                  ) : (
-                    <span className="text-slate-400">Using default pattern</span>
-                  )}
+                {currentPattern && !patternSetupOpen && (
                   <button
-                    onClick={() => setPatternSetupOpen((o) => !o)}
-                    className="font-medium text-brand-600 transition-colors hover:text-brand-700"
+                    onClick={() => setPatternSetupOpen(true)}
+                    className="text-xs font-medium text-brand-600 transition-colors hover:text-brand-700"
                   >
-                    {currentPattern ? "Edit" : "Configure creator pattern"}
+                    Change naming pattern
                   </button>
-                </div>
+                )}
               </div>
 
               {patternSetupOpen && selectedAccountId && (
@@ -587,6 +587,7 @@ export default function PartnershipAdsPage() {
                     sampleAdNames={(report?.partnershipAds ?? []).map((a) => a.adName)}
                     onSaved={() => {
                       setPatternSetupOpen(false);
+                      setAwaitingPatternRefresh(true);
                       setPatternVersion((v) => v + 1);
                     }}
                     onClose={() => setPatternSetupOpen(false)}
@@ -594,14 +595,50 @@ export default function PartnershipAdsPage() {
                 </div>
               )}
 
-              <DataTable
-                columns={creatorColumns}
-                rows={report?.creators ?? []}
-                loading={isInitialLoad}
-                filename="creator-leaderboard"
-                defaultSortKey="newPurchasePct"
-                defaultSortDir="desc"
-              />
+              {/* No pattern saved yet — never guess a naming convention. A prominent CTA
+                  replaces the table entirely until the user explicitly configures one. */}
+              {!patternSetupOpen && !currentPattern && (
+                <div className="animate-fade-in rounded-xl border border-dashed border-slate-200 bg-slate-50/60 px-6 py-10 text-center">
+                  <p className="text-sm font-semibold text-slate-700">See which creators are actually driving results</p>
+                  <p className="mx-auto mt-1.5 max-w-md text-xs leading-relaxed text-slate-500">
+                    Every account tags creators in ad names differently, so there&apos;s no default guess here — tell
+                    us your naming pattern once and the leaderboard builds from it.
+                  </p>
+                  <button
+                    onClick={() => setPatternSetupOpen(true)}
+                    className="mt-4 rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+                  >
+                    Set up creator pattern
+                  </button>
+                </div>
+              )}
+
+              {!patternSetupOpen && currentPattern && (
+                <>
+                  <p className="mb-2 text-xs text-slate-400">
+                    Creator pattern: text between <code className="rounded bg-slate-100 px-1 font-mono text-slate-600">{currentPattern.prefix}</code> and{" "}
+                    <code className="rounded bg-slate-100 px-1 font-mono text-slate-600">{currentPattern.suffix}</code>
+                  </p>
+                  {awaitingPatternRefresh ? (
+                    <div className="flex items-center justify-center gap-2 rounded-xl border border-hairline bg-surface-card py-12 text-sm text-slate-500">
+                      <svg className="h-4 w-4 animate-spin text-brand-600" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12H4z" />
+                      </svg>
+                      Loading creators with your new pattern…
+                    </div>
+                  ) : (
+                    <DataTable
+                      columns={creatorColumns}
+                      rows={report?.creators ?? []}
+                      loading={isInitialLoad}
+                      filename="creator-leaderboard"
+                      defaultSortKey="newPurchasePct"
+                      defaultSortDir="desc"
+                    />
+                  )}
+                </>
+              )}
             </div>
           )}
 

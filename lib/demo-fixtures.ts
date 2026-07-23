@@ -5,6 +5,7 @@
 import type { MetaAdAccount } from "@/lib/types";
 import { addDays, addMonths, daysInclusive, monthLabel, startOfMonth } from "@/lib/dates";
 import { PRE_COHORT_KEY } from "@/lib/reports/creative-churn";
+import { extractCreator, type CreatorPattern } from "@/lib/reports/partnership-ads";
 
 export const DEMO_ACCOUNT: MetaAdAccount = {
   id: "act_demo",
@@ -269,7 +270,7 @@ function audienceSegments() {
   };
 }
 
-function partnershipAds() {
+function partnershipAds(pattern?: CreatorPattern) {
   function makeGroup(
     adCount: number, reach: number, spend: number, purchases: number,
     newReachPct: number, incrementalPct: number, accountReachWithoutGroup: number,
@@ -305,21 +306,48 @@ function partnershipAds() {
     normalNewPurchPct:   [54, 56, 57, 58, 59, 58, 57, 56][i],
   }));
 
-  const creators = [
-    { handle: "@stylecreator_priya",   adCount: 8,  adIds: ["a1","a2"], totalReach: 3_100_000, newReachPct: 52, totalSpend: 1_420_000, totalPurchases: 1_640, newPurchases: 820, newPurchasePct: 50, newCpa: 1_732, cpmr: 458 },
-    { handle: "@fashionista_delhi",     adCount: 6,  adIds: ["a3","a4"], totalReach: 2_800_000, newReachPct: 44, totalSpend: 1_180_000, totalPurchases: 1_290, newPurchases: 580, newPurchasePct: 45, newCpa: 2_034, cpmr: 421 },
-    { handle: "@lifestyle_with_anya",  adCount: 5,  adIds: ["a5"],      totalReach: 2_100_000, newReachPct: 39, totalSpend: 860_000,   totalPurchases: 920,   newPurchases: 340, newPurchasePct: 37, newCpa: 2_529, cpmr: 409 },
-    { handle: "@mumbai_shopper",        adCount: 5,  adIds: ["a6"],      totalReach: 1_701_000, newReachPct: 48, totalSpend: 360_000,   totalPurchases: 560,   newPurchases: 280, newPurchasePct: 50, newCpa: 1_286, cpmr: 212 },
+  // Ad names carry a real ifs_/_ife-style tag by default so the out-of-the-box demo
+  // has something to extract — but the handle below is always re-derived from the
+  // pattern (or "Unknown" if none is set), never read as a hardcoded fact, so demo
+  // mode genuinely reflects a saved/edited pattern instead of ignoring it.
+  const rawAds = [
+    { adId: "a1", adName: "Priya Unboxing — Saree Collection | ifs_stylecreator_priya_ife",  reach: 1_800_000, newReachPct: 54, spend: 860_000, purchases: 980, newPurchases: 510, newPurchasePct: 52, newCpa: 1_686 },
+    { adId: "a2", adName: "Priya — Festive Edit 2026 | ifs_stylecreator_priya_ife",           reach: 1_300_000, newReachPct: 49, spend: 560_000, purchases: 660, newPurchases: 310, newPurchasePct: 47, newCpa: 1_806 },
+    { adId: "a3", adName: "Delhi Haul — Kurta Must Haves | ifs_fashionista_delhi_ife",         reach: 1_600_000, newReachPct: 46, spend: 680_000, purchases: 720, newPurchasePct: 44, newPurchases: 317, newCpa: 2_145 },
+    { adId: "a4", adName: "Summer Essentials Review | ifs_fashionista_delhi_ife",              reach: 1_200_000, newReachPct: 41, spend: 500_000, purchases: 570, newPurchasePct: 46, newPurchases: 263, newCpa: 1_901 },
+    { adId: "a5", adName: "Anya Daily Lifestyle — Shesha | ifs_lifestyle_with_anya_ife",       reach: 2_100_000, newReachPct: 39, spend: 860_000, purchases: 920, newPurchasePct: 37, newPurchases: 340, newCpa: 2_529 },
+    { adId: "a6", adName: "Mumbai Shopper Picks | ifs_mumbai_shopper_ife",                     reach: 1_701_000, newReachPct: 48, spend: 360_000, purchases: 560, newPurchasePct: 50, newPurchases: 280, newCpa: 1_286 },
   ];
 
-  const partnershipAds = [
-    { adId: "a1", adName: "Priya Unboxing — Saree Collection", creatorHandle: "@stylecreator_priya",   reach: 1_800_000, newReachPct: 54, spend: 860_000, purchases: 980, newPurchases: 510, newPurchasePct: 52, newCpa: 1_686 },
-    { adId: "a2", adName: "Priya — Festive Edit 2026",         creatorHandle: "@stylecreator_priya",   reach: 1_300_000, newReachPct: 49, spend: 560_000, purchases: 660, newPurchases: 310, newPurchasePct: 47, newCpa: 1_806 },
-    { adId: "a3", adName: "Delhi Haul — Kurta Must Haves",     creatorHandle: "@fashionista_delhi",     reach: 1_600_000, newReachPct: 46, spend: 680_000, purchases: 720, newPurchasePct: 44, newPurchases: 317, newCpa: 2_145 },
-    { adId: "a4", adName: "Summer Essentials Review",          creatorHandle: "@fashionista_delhi",     reach: 1_200_000, newReachPct: 41, spend: 500_000, purchases: 570, newPurchasePct: 46, newPurchases: 263, newCpa: 1_901 },
-    { adId: "a5", adName: "Anya Daily Lifestyle — Shesha",     creatorHandle: "@lifestyle_with_anya",  reach: 2_100_000, newReachPct: 39, spend: 860_000, purchases: 920, newPurchasePct: 37, newPurchases: 340, newCpa: 2_529 },
-    { adId: "a6", adName: "Mumbai Shopper Picks",              creatorHandle: "@mumbai_shopper",        reach: 1_701_000, newReachPct: 48, spend: 360_000, purchases: 560, newPurchasePct: 50, newPurchases: 280, newCpa: 1_286 },
-  ];
+  const partnershipAds = rawAds.map((ad) => ({
+    ...ad,
+    creatorHandle: pattern ? (extractCreator(ad.adName, pattern.prefix, pattern.suffix) ?? "Unknown") : "Unknown",
+  }));
+
+  const byHandle = new Map<string, typeof partnershipAds>();
+  for (const ad of partnershipAds) {
+    if (!byHandle.has(ad.creatorHandle)) byHandle.set(ad.creatorHandle, []);
+    byHandle.get(ad.creatorHandle)!.push(ad);
+  }
+  const creators = Array.from(byHandle.entries()).map(([handle, ads]) => {
+    const totalReach = ads.reduce((s, a) => s + a.reach, 0);
+    const totalSpend = ads.reduce((s, a) => s + a.spend, 0);
+    const totalPurchases = ads.reduce((s, a) => s + a.purchases, 0);
+    const newPurchases = ads.reduce((s, a) => s + a.newPurchases, 0);
+    return {
+      handle,
+      adCount: ads.length,
+      adIds: ads.map((a) => a.adId),
+      totalReach,
+      newReachPct: Math.round(ads.reduce((s, a) => s + a.newReachPct * a.reach, 0) / totalReach),
+      totalSpend,
+      totalPurchases,
+      newPurchases,
+      newPurchasePct: totalPurchases > 0 ? Math.round((newPurchases / totalPurchases) * 100) : 0,
+      newCpa: newPurchases > 0 ? Math.round(totalSpend / newPurchases) : 0,
+      cpmr: totalReach > 0 ? Math.round((totalSpend / totalReach) * 1000) : 0,
+    };
+  });
 
   return {
     partnership, normal,
@@ -330,7 +358,7 @@ function partnershipAds() {
   };
 }
 
-export function demoFixture(type: string, range?: { since: string; until: string }): unknown | null {
+export function demoFixture(type: string, range?: { since: string; until: string }, creatorPattern?: CreatorPattern): unknown | null {
   switch (type) {
     case "pulse":              return pulse();
     case "rolling-reach":     return rollingReach();
@@ -340,7 +368,7 @@ export function demoFixture(type: string, range?: { since: string; until: string
     case "frequency":         return frequency();
     case "creative-churn":    return creativeChurn(range?.since, range?.until);
     case "audience-segments": return audienceSegments();
-    case "partnership-ads":   return partnershipAds();
+    case "partnership-ads":   return partnershipAds(creatorPattern);
     default:                  return null;
   }
 }

@@ -116,12 +116,13 @@ export interface CreatorPattern {
   suffix: string;
 }
 
-// User-configurable extraction (creator-pattern-setup spec): the text between an
-// account-specific prefix/suffix, case-insensitive. Kept byte-identical to the
-// component's client-side copy (components/CreatorPatternSetup.tsx) — duplicated
-// rather than shared because this module is server-only (imports meta-api.ts,
-// which reads request secrets) and must never be pulled into a client bundle.
-function extractCreator(adName: string, prefix: string, suffix: string): string | null {
+// User-configurable extraction: the text between an account-specific prefix/suffix,
+// case-insensitive. Exported for reuse in lib/demo-fixtures.ts (also server-only) so
+// demo mode's creator leaderboard responds to a saved pattern instead of staying
+// static. Kept byte-identical to the client-side copy in components/CreatorPatternSetup.tsx
+// — duplicated there (not imported) because this module pulls in meta-api.ts, which
+// reads request secrets, and must never end up in a client bundle.
+export function extractCreator(adName: string, prefix: string, suffix: string): string | null {
   const prefixIdx = adName.toLowerCase().indexOf(prefix.toLowerCase());
   if (prefixIdx === -1) return null;
 
@@ -141,11 +142,10 @@ function classifyAd(ad: MetaAdWithCreative, pattern?: CreatorPattern): Classifie
     creative?.facebook_branded_content?.sponsor_page_id ||
     creative?.instagram_branded_content
   );
-  // No custom pattern saved (creator-pattern-setup spec) — keep the original
-  // ifs_{creator}_ife regex exactly as-is so accounts with nothing configured
-  // see zero behavior change. Only route through the generic extractCreator
-  // once the user has picked their own prefix/suffix.
-  const rawHandle = pattern ? extractCreator(ad.name ?? "", pattern.prefix, pattern.suffix) : (ad.name?.match(/ifs_([^_]+)_ife/i)?.[1] ?? null);
+  // No default extraction logic: until the user explicitly configures a pattern via
+  // the creator-pattern-setup flow, every ad's creator is unclassified (null → shown
+  // as "Unknown"). Never guess a naming convention on the user's behalf.
+  const rawHandle = pattern ? extractCreator(ad.name ?? "", pattern.prefix, pattern.suffix) : null;
   // Normalise to lowercase so "Naveena" and "naveena" merge into one row.
   return {
     id: ad.id,

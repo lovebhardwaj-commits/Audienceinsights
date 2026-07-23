@@ -35,9 +35,13 @@ export async function GET(request: NextRequest, context: RouteContext) {
   const until = searchParams.get("until");
   const range = since && until ? { since, until } : null;
 
+  const creatorPrefixParam = searchParams.get("creatorPrefix");
+  const creatorSuffixParam = searchParams.get("creatorSuffix");
+  const creatorPattern = creatorPrefixParam && creatorSuffixParam ? { prefix: creatorPrefixParam, suffix: creatorSuffixParam } : undefined;
+
   // Demo mode (Part 8): serve recorded fixtures through this same route, no token.
   if (session.demo) {
-    const fixture = demoFixture(type, range ?? undefined);
+    const fixture = demoFixture(type, range ?? undefined, creatorPattern);
     if (fixture === null) return NextResponse.json({ error: `No demo fixture for ${type}`, code: "UNKNOWN" }, { status: 404 });
     if (STREAMING_TYPES.has(type)) {
       return ndjsonResponse(async (emit, emitPartial) => {

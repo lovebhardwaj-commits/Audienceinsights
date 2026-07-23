@@ -633,7 +633,7 @@ export default function PartnershipAdsPage() {
                       rows={report?.creators ?? []}
                       loading={isInitialLoad}
                       filename="creator-leaderboard"
-                      defaultSortKey="newPurchasePct"
+                      defaultSortKey="totalSpend"
                       defaultSortDir="desc"
                     />
                   )}

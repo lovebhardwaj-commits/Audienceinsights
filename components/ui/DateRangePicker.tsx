@@ -36,6 +36,7 @@ export function DateRangePicker({ value, onChange }: DateRangePickerProps) {
   const [draftSince, setDraftSince] = useState("");
   const [draftUntil, setDraftUntil] = useState("");
   const rootRef = useRef<HTMLDivElement>(null);
+  const today = new Date().toISOString().slice(0, 10);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -62,14 +63,17 @@ export function DateRangePicker({ value, onChange }: DateRangePickerProps) {
   function openCustom() {
     setMenuOpen(false);
     setCustomOpen(true);
-    const today = new Date().toISOString().slice(0, 10);
     setDraftUntil(value?.until ?? today);
     setDraftSince(value?.since ?? today);
   }
 
   function applyCustom() {
     if (!draftSince || !draftUntil) return;
-    onChange({ since: draftSince, until: draftUntil });
+    // Belt-and-suspenders against the future: the <input max> below stops most
+    // interaction, but don't rely on native date-input enforcement alone.
+    const until = draftUntil > today ? today : draftUntil;
+    const since = draftSince > until ? until : draftSince;
+    onChange({ since, until });
     setCustomOpen(false);
   }
 
@@ -147,7 +151,7 @@ export function DateRangePicker({ value, onChange }: DateRangePickerProps) {
           <input
             type="date"
             value={draftSince}
-            max={draftUntil || undefined}
+            max={draftUntil || today}
             onChange={(e) => setDraftSince(e.target.value)}
             className="rounded border border-slate-100 px-1.5 py-0.5 text-xs text-slate-600 outline-none focus:border-brand-300"
           />
@@ -156,6 +160,7 @@ export function DateRangePicker({ value, onChange }: DateRangePickerProps) {
             type="date"
             value={draftUntil}
             min={draftSince || undefined}
+            max={today}
             onChange={(e) => setDraftUntil(e.target.value)}
             className="rounded border border-slate-100 px-1.5 py-0.5 text-xs text-slate-600 outline-none focus:border-brand-300"
           />

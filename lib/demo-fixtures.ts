@@ -56,7 +56,10 @@ function overlap() {
     { id: "c5", name: "SR1503_Shesha_Lookalike_1pct_Purchasers", reach: 1_100_000, spend: 296_000, overlapPct: 34 },
   ].map((e) => {
     const uniqueContribution = Math.round(e.reach * (1 - e.overlapPct / 100));
-    return { ...e, cpmr: Math.round((e.spend / e.reach) * 1000), reachWithoutEntity: 0, uniqueContribution };
+    // uniqueContribution = totalAccountReach - reachWithoutEntity (lib/calculations.ts),
+    // so back-solve reachWithoutEntity to keep the fixture internally consistent.
+    const reachWithoutEntity = 5_900_000 - uniqueContribution;
+    return { ...e, cpmr: Math.round((e.spend / e.reach) * 1000), reachWithoutEntity, uniqueContribution };
   });
   return { level: "campaign" as const, totalAccountReach: 5_900_000, totalSpend: 2_570_000, entityCount: entities.length, entities };
 }

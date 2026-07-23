@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
+import { evictCached } from "@/lib/report-cache";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
@@ -40,7 +41,7 @@ const LEVELS: { key: OverlapLevel; label: string }[] = [
 // rendered bars both read from this, so they can never contradict again (D8).
 // Colors follow the metric-identity law: Unique/New = blue, Overlap/Repeat = orange.
 const OVERLAP_SERIES: { key: string; label: string; color: string }[] = [
-  { key: "unique", label: "Unique", color: "#2563EB" },
+  { key: "unique", label: "Incremental", color: "#2563EB" },
   { key: "overlap", label: "Overlap", color: "#EA580C" },
 ];
 
@@ -77,6 +78,10 @@ export default function CampaignOverlapPage() {
       topN: String(topN),
     });
     const url = `/api/reports/campaign-overlap?${params}`;
+    // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL,
+    // so evict unconditionally before every fetch — otherwise Refresh silently
+    // re-renders the same stale cached response instead of hitting Meta again.
+    evictCached(url);
     currentUrlRef.current = url;
     run(url);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -105,32 +110,68 @@ export default function CampaignOverlapPage() {
     return m;
   }, [liveEntities, entityLabels]);
 
+  const totalAccountReach = data?.totalAccountReach ?? 0;
+
   const columns: DataTableColumn<OverlapEntityRow>[] = useMemo(() => [
     { key: "name", header: entityLabel, accessor: (r) => r.name, render: (r) => labelByName[r.name] ?? r.name },
-    { key: "reach", header: "Reach", help: GLOSSARY.reach, accessor: (r) => r.reach, align: "right", render: (r) => formatCompactNumber(r.reach) },
-    { key: "spend", header: "Spend", help: GLOSSARY.spend, accessor: (r) => r.spend, align: "right", render: (r) => formatCurrency(r.spend) },
     {
-      // 7.2 — money wasted on overlap = spend × overlap%. Default sort so the biggest ₹ waste is on top.
-      key: "moneyOnOverlap",
-      header: "₹ on Overlap",
-      help: "Spend that went to people this entity shares with others — spend × overlap %. Rank by this to find the biggest waste.",
-      accessor: (r) => r.spend * (r.overlapPct / 100),
+      key: "reach",
+      header: "Reach",
+      help: GLOSSARY.reach,
+      accessor: (r) => r.reach,
       align: "right",
-      cellClass: (r) => (r.overlapPct > 75 ? "text-red-600 font-semibold" : r.overlapPct > 50 ? "text-amber-600" : ""),
-      render: (r) => formatCurrencyCompact(r.spend * (r.overlapPct / 100)),
+      render: (r) => <span title={`${formatNumber(r.reach)} people`}>{formatCompactNumber(r.reach)}</span>,
     },
-    { key: "cpmr", header: "CPMR", help: GLOSSARY.cpmr, accessor: (r) => r.cpmr, align: "right", render: (r) => formatCurrency(r.cpmr) },
-    { key: "uniqueContribution", header: "Unique Reach", help: GLOSSARY.uniqueContribution, accessor: (r) => r.uniqueContribution, align: "right", render: (r) => formatCompactNumber(r.uniqueContribution) },
+    {
+      key: "spend",
+      header: "Spend",
+      help: GLOSSARY.spend,
+      accessor: (r) => r.spend,
+      align: "right",
+      render: (r) => <span title={formatCurrency(r.spend)}>{formatCurrencyCompact(r.spend)}</span>,
+    },
+    {
+      key: "cpmr",
+      header: "CPMR",
+      help: GLOSSARY.cpmr,
+      accessor: (r) => r.cpmr,
+      align: "right",
+      render: (r) => <span title={formatCurrency(r.cpmr)}>{formatCurrencyCompact(r.cpmr)}</span>,
+    },
+    {
+      key: "totalAccountReach",
+      header: "Total Acct Reach",
+      help: "Total deduplicated unique people reached by all campaigns combined",
+      accessor: () => totalAccountReach,
+      align: "right",
+      render: () => <span title={`${formatNumber(totalAccountReach)} people`}>{formatCompactNumber(totalAccountReach)}</span>,
+    },
+    {
+      key: "reachWithoutEntity",
+      header: "Acct Reach W/O Entity",
+      help: "What total account reach would be if this campaign didn't exist — closer to Total Acct Reach means less unique audience contributed.",
+      accessor: (r) => r.reachWithoutEntity,
+      align: "right",
+      render: (r) => <span title={`${formatNumber(r.reachWithoutEntity)} people`}>{formatCompactNumber(r.reachWithoutEntity)}</span>,
+    },
+    {
+      key: "uniqueContribution",
+      header: "Incremental Reach",
+      help: GLOSSARY.uniqueContribution,
+      accessor: (r) => r.uniqueContribution,
+      align: "right",
+      render: (r) => <span title={`${formatNumber(r.uniqueContribution)} people reached ONLY by this ${entityLabel.toLowerCase()}`}>{formatCompactNumber(r.uniqueContribution)}</span>,
+    },
     {
       key: "incrementalPct",
-      header: "Unique %",
+      header: "Incremental %",
       help: "What % of this entity's reach is truly unique — reached by no other campaign. Higher is better.",
       accessor: (r) => 100 - r.overlapPct,
       align: "right",
       cellClass: (r) => incrementalCellClass(100 - r.overlapPct),
       render: (r) => formatPercent(100 - r.overlapPct),
     },
-  ], [entityLabel, labelByName]);
+  ], [entityLabel, labelByName, totalAccountReach]);
 
   const chartData = useMemo(() => {
     return liveEntities
@@ -139,7 +180,13 @@ export default function CampaignOverlapPage() {
         unique: e.uniqueContribution,
         overlap: Math.max(0, e.reach - e.uniqueContribution),
       }))
-      .sort((a, b) => (b.unique + b.overlap) - (a.unique + a.overlap));
+      // Sorted by incremental % (of this bar's own total) descending — the campaigns
+      // contributing the most unique reach lead the chart, not just the biggest bars.
+      .sort((a, b) => {
+        const aPct = a.unique + a.overlap > 0 ? a.unique / (a.unique + a.overlap) : 0;
+        const bPct = b.unique + b.overlap > 0 ? b.unique / (b.unique + b.overlap) : 0;
+        return bPct - aPct;
+      });
   }, [liveEntities, labelByName]);
 
   const findingsList = useMemo(
@@ -180,13 +227,13 @@ export default function CampaignOverlapPage() {
 
       <HowToRead
         items={[
-          { label: "Reach", text: "total unique people who saw this campaign's ads in the selected period." },
-          { label: "Spend", text: "total amount spent by this campaign in the period." },
-          { label: "₹ on Overlap", text: "estimated spend wasted on people already reached by your other campaigns — calculated as Spend × overlap %. Sorted by this column by default. Red = over 75% overlap, amber = over 50%." },
-          { label: "CPMR", text: "Cost Per 1,000 people Reached. How efficiently this campaign buys unique reach. Lower = cheaper per person. Compare across campaigns to spot the most cost-efficient ones." },
-          { label: "Unique Reach", text: "people ONLY this campaign reaches — no other campaign in your account touches them. Pause this campaign and these people drop out of your funnel entirely." },
-          { label: "Unique %", text: "Unique Reach as a % of total reach. High % = campaign has its own audience. Low % = mostly competing with your other campaigns for the same people. Green > 60%, red < 10%." },
-          { label: "The chart", text: "Blue bar = unique audience. Orange bar = audience shared with other campaigns. Sorted by total reach. Campaigns with a thin blue sliver are redundant — most of their spend overlaps." },
+          { label: "Incremental Reach", text: "people ONLY this campaign reaches. No other campaign in your account touches them. If you pause this campaign, these people disappear from your funnel." },
+          { label: "Incremental Reach %", text: "what share of this campaign's total reach is truly unique. High % means it's reaching its own audience. Low % means it's mostly competing with your other campaigns for the same people." },
+          { label: "Total Acct Reach", text: "the deduplicated count of unique people reached by ALL campaigns combined. This is the same number on every row." },
+          { label: "Acct Reach W/O Campaign", text: "what your total account reach would be if this campaign didn't exist. The closer this is to Total Acct Reach, the less unique audience this campaign contributes." },
+          { label: "CPMR", text: "Cost Per Mille Reached. How much you pay to reach 1,000 unique people in this campaign. Lower = more cost-efficient reach." },
+          { label: "The chart", text: "Blue is audience unique to that campaign (incremental reach). Orange is audience it shares with other campaigns (overlap). Campaigns are sorted by incremental % — the ones at the top contribute the most unique reach." },
+          { label: "Insight cards", text: "Campaigns flagged as CRITICAL have very low incremental reach. Most of their spend goes toward people already reached by other campaigns. Consider adding exclusion audiences or consolidating." },
         ]}
       />
 
@@ -300,6 +347,10 @@ export default function CampaignOverlapPage() {
                     series={OVERLAP_SERIES}
                     xTitle="Reach (people)"
                     fullLabels={fullLabelByDisplay}
+                    valueFormat="number"
+                    shareDecimals={1}
+                    shareParens
+                    totalLabel="Total campaign reach"
                   />
                 )}
               </div>
@@ -311,8 +362,8 @@ export default function CampaignOverlapPage() {
                 rows={liveEntities}
                 loading={loading && !hasRows}
                 filename={`${level}-overlap`}
-                defaultSortKey="moneyOnOverlap"
-                defaultSortDir="desc"
+                defaultSortKey="incrementalPct"
+                defaultSortDir="asc"
               />
             </div>
           </div>

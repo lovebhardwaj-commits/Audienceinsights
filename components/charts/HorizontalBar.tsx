@@ -18,6 +18,12 @@ interface HorizontalBarProps {
   xTitle?: string;
   /** Map displayed (truncated/stripped) category → full entity name for the tooltip (§3.3). */
   fullLabels?: Record<string, string>;
+  /** Decimal places on the tooltip's share-of-total percentage. Default 0 (unchanged). */
+  shareDecimals?: number;
+  /** Wrap the tooltip's share-of-total percentage in parentheses. Default off. */
+  shareParens?: boolean;
+  /** Label for the tooltip's summed Total row. Default "Total". */
+  totalLabel?: string;
 }
 
 const tickStyle = { fontSize: 12, fill: CHART_INK.muted, fontFamily: "var(--font-mono)" };
@@ -27,7 +33,7 @@ function truncate(s: string, max: number): string {
   return s.length > max ? s.slice(0, max - 1) + "…" : s;
 }
 
-export function HorizontalBar({ data, categoryKey, series, stacked = false, height, categoryColors, valueFormat = "compact", percentOfTotal = false, xTitle, fullLabels }: HorizontalBarProps) {
+export function HorizontalBar({ data, categoryKey, series, stacked = false, height, categoryColors, valueFormat = "compact", percentOfTotal = false, xTitle, fullLabels, shareDecimals, shareParens, totalLabel }: HorizontalBarProps) {
   const animate = !useReducedMotion();
   const barHeight = Math.max(320, data.length * 36);
   const h = height ?? barHeight;
@@ -64,7 +70,7 @@ export function HorizontalBar({ data, categoryKey, series, stacked = false, heig
             tickLine={false}
             tickFormatter={(v: string) => truncate(v, 28)}
           />
-          <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} showTotal={stacked} shareOfTotal={stacked} fullLabels={fullLabels} />} cursor={{ fill: "rgba(148,163,184,0.08)" }} wrapperStyle={{ zIndex: 9999 }} />
+          <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} showTotal={stacked} shareOfTotal={stacked} shareDecimals={shareDecimals} shareParens={shareParens} totalLabel={totalLabel} fullLabels={fullLabels} />} cursor={{ fill: "rgba(148,163,184,0.08)" }} wrapperStyle={{ zIndex: 9999 }} />
           {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}
           {series.map((s, sIdx) => {
             const isLast = sIdx === series.length - 1;

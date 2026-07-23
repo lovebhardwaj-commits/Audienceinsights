@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
 import { useReportRange } from "@/lib/hooks/useReportRange";
+import { evictCached } from "@/lib/report-cache";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
@@ -55,13 +56,18 @@ export default function NetNewReachPage() {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
     let url: string;
+    // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL,
+    // so evict unconditionally before every fetch — otherwise Refresh silently
+    // re-renders the same stale cached response instead of hitting Meta again.
     if (mode === "expanding") {
       url = `/api/reports/rolling-reach?${params}`;
+      evictCached(url);
       currentUrlRef.current = url;
       expanding.run(url);
     } else {
       params.set("lookbackDays", String(lookbackDays));
       url = `/api/reports/net-new-reach?${params}`;
+      evictCached(url);
       currentUrlRef.current = url;
       sliding.run(url);
     }

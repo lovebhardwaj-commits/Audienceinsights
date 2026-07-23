@@ -5,6 +5,7 @@ import { Area, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, 
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { useReportRange } from "@/lib/hooks/useReportRange";
+import { evictCached } from "@/lib/report-cache";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
 import { ChartSkeleton, Skeleton } from "@/components/ui/Skeleton";
@@ -228,6 +229,10 @@ export default function PartnershipAdsPage() {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
     const url = `/api/reports/partnership-ads?${params}`;
+    // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL,
+    // so evict unconditionally before every fetch — otherwise Refresh silently
+    // re-renders the same stale cached response instead of hitting Meta again.
+    evictCached(url);
     currentUrlRef.current = url;
     run(url);
   }, [selectedAccountId, range, run, retryKey]);

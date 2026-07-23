@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { useReportRange } from "@/lib/hooks/useReportRange";
+import { evictCached } from "@/lib/report-cache";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
 import { DataTable, type DataTableColumn } from "@/components/ui/DataTable";
@@ -94,11 +95,16 @@ export default function AudienceSegmentsPage() {
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until });
     if (viewLevel === "account") {
       const url = `/api/reports/audience-segments?${params}`;
+      // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL,
+      // so evict unconditionally before every fetch — otherwise Refresh silently
+      // re-renders the same stale cached response instead of hitting Meta again.
+      evictCached(url);
       currentUrlRef.current = url;
       accountReport.run(url);
     } else {
       params.set("level", viewLevel);
       const url = `/api/reports/creative-segments?${params}`;
+      evictCached(url);
       currentUrlRef.current = url;
       entityReport.run(url);
     }

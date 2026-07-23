@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useJsonReport } from "@/lib/hooks/useJsonReport";
 import { useReportRange } from "@/lib/hooks/useReportRange";
+import { evictCached } from "@/lib/report-cache";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
 import { SummaryCard } from "@/components/ui/SummaryCard";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -75,6 +76,10 @@ export default function FrequencyPage() {
     if (!selectedAccountId || !range) return;
     const params = new URLSearchParams({ accountId: selectedAccountId, since: range.since, until: range.until, level });
     const url = `/api/reports/frequency?${params}`;
+    // The client cache (lib/report-cache.ts) has no TTL and is keyed by exact URL,
+    // so evict unconditionally before every fetch — otherwise Refresh silently
+    // re-renders the same stale cached response instead of hitting Meta again.
+    evictCached(url);
     currentUrlRef.current = url;
     run(url);
   }, [selectedAccountId, range, level, run, retryKey]);

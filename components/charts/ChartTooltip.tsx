@@ -1,6 +1,6 @@
 "use client";
 
-import { formatCompactNumber, formatPercent, formatCurrency, formatCurrencyCompact } from "@/lib/format";
+import { formatCompactNumber, formatPercent, formatCurrency, formatCurrencyCompact, formatNumber } from "@/lib/format";
 
 export type ValueFormat = "number" | "compact" | "percent" | "currency" | "currencyCompact";
 
@@ -15,7 +15,10 @@ export function formatChartValue(value: number, fmt: ValueFormat): string {
     case "currencyCompact":
       return formatCurrencyCompact(value);
     default:
-      return new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 }).format(value);
+      // "number" — full-precision, locale-aware grouping (₹-free), e.g. 27,80,807 for
+      // en-IN accounts. Not currently used elsewhere, so this has no effect on any
+      // other chart today.
+      return formatNumber(value);
   }
 }
 
@@ -49,6 +52,12 @@ interface ChartTooltipContentProps {
   showTotal?: boolean;
   /** Show each value's share of the row total beside it — stacked contexts (§3.3). */
   shareOfTotal?: boolean;
+  /** Decimal places on the share-of-total percentage. Default 0 (unchanged). */
+  shareDecimals?: number;
+  /** Wrap the share-of-total percentage in parentheses, e.g. "(34.1%)". Default off. */
+  shareParens?: boolean;
+  /** Label for the summed Total row. Default "Total". */
+  totalLabel?: string;
   /** Map a truncated axis label back to the full entity name (§3.3, entity charts). */
   fullLabels?: Record<string, string>;
 }
@@ -64,6 +73,9 @@ export function ChartTooltipContent({
   defaultFormat = "compact",
   showTotal = false,
   shareOfTotal = false,
+  shareDecimals = 0,
+  shareParens = false,
+  totalLabel = "Total",
   fullLabels,
 }: ChartTooltipContentProps) {
   if (!active || !payload || payload.length === 0) return null;
@@ -97,7 +109,11 @@ export function ChartTooltipContent({
               <span className="text-slate-300">{entry.name}</span>
               <span className="ml-auto pl-4 font-semibold tabular-nums text-white">
                 {formatChartValue(raw, fmt)}
-                {share !== null && <span className="ml-1 font-normal text-[11px] text-slate-400">{share.toFixed(0)}%</span>}
+                {share !== null && (
+                  <span className="ml-1 font-normal text-[11px] text-slate-400">
+                    {shareParens ? `(${share.toFixed(shareDecimals)}%)` : `${share.toFixed(shareDecimals)}%`}
+                  </span>
+                )}
               </span>
             </div>
           );
@@ -105,7 +121,7 @@ export function ChartTooltipContent({
         {showTotal && oneFormat && payload.length > 1 && (
           <div className="mt-1 flex items-center gap-2 border-t border-white/10 pt-1 text-[13px]">
             <span className="h-2.5 w-2.5 shrink-0" />
-            <span className="font-semibold text-slate-200">Total</span>
+            <span className="font-semibold text-slate-200">{totalLabel}</span>
             <span className="ml-auto pl-4 font-bold tabular-nums text-white">{formatChartValue(total, totalFmt)}</span>
           </div>
         )}

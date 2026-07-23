@@ -363,13 +363,16 @@ export async function getPartnershipAdsReport(
     }
   }
 
-  // Creator-level Reach and CPMR — deduped per creator, not a naive sum of ad-level
-  // reach. Meta dedupes reach only within a single query; summing ad-level reach
+  // Creator-level Reach, New Reach %, and CPMR — deduped per creator, not a naive
+  // sum of ad-level reach. Meta dedupes reach only within a single query; summing
+  // ad-level reach (and summing each segment's ad-level reach for New Reach %)
   // double-counts anyone who saw more than one of a creator's ads (especially
-  // creative copies). One filtered query per creator, batched to stay under the
-  // rate limit.
+  // creative copies). One filtered, segment-broken-down query per creator, batched
+  // to stay under the rate limit — segments partition the audience (mutually
+  // exclusive), so summing deduped per-segment reach back into a total is valid,
+  // unlike summing across ads.
   const creatorEntries = Array.from(creatorMap.entries());
-  const dedupedReachByHandle = new Map<string, number>();
+  const dedupedReachByHandle = new Map<string, { total: number; prospecting: number }>();
   const creatorBatches: (typeof creatorEntries)[] = [];
   for (let i = 0; i < creatorEntries.length; i += CREATOR_REACH_BATCH_SIZE) {
     creatorBatches.push(creatorEntries.slice(i, i + CREATOR_REACH_BATCH_SIZE));
@@ -383,19 +386,27 @@ export async function getPartnershipAdsReport(
           objectId: accountId,
           fields: ["reach"],
           timeRange: range,
+          breakdowns: "user_segment_key",
           filtering: [{ field: "ad.id", operator: "IN", value: c.adIds }],
         });
-        return { handle, dedupedReach: num(rows[0]?.reach) };
+        let total = 0;
+        let prospecting = 0;
+        for (const row of rows) {
+          const segReach = num(row.reach);
+          total += segReach;
+          if (normalizeSegmentKey(row.user_segment_key) === "prospecting") prospecting += segReach;
+        }
+        return { handle, total, prospecting };
       })
     );
-    for (const { handle, dedupedReach } of results) dedupedReachByHandle.set(handle, dedupedReach);
+    for (const { handle, total, prospecting } of results) dedupedReachByHandle.set(handle, { total, prospecting });
     if (i < creatorBatches.length - 1) await new Promise((resolve) => setTimeout(resolve, CREATOR_REACH_BATCH_DELAY_MS));
   }
 
   const creators: CreatorRow[] = creatorEntries
     .map(([handle, c]) => {
-      const summedReach = SEGMENT_ORDER.reduce((s, k) => s + c.segments[k].reach, 0);
-      const totalReach = dedupedReachByHandle.get(handle) ?? 0;
+      const deduped = dedupedReachByHandle.get(handle);
+      const totalReach = deduped?.total ?? 0;
       const totalSpend = SEGMENT_ORDER.reduce((s, k) => s + c.segments[k].spend, 0);
       const totalPurchases = SEGMENT_ORDER.reduce((s, k) => s + c.segments[k].purchases, 0);
       return {
@@ -403,7 +414,7 @@ export async function getPartnershipAdsReport(
         adCount: c.adIds.length,
         adIds: c.adIds,
         totalReach,
-        newReachPct: percent(c.segments.prospecting.reach, summedReach),
+        newReachPct: percent(deduped?.prospecting ?? 0, totalReach),
         totalSpend,
         totalPurchases,
         newPurchases: c.segments.prospecting.purchases,

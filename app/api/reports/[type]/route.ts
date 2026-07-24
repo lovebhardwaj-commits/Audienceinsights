@@ -1,7 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { getSession, isTokenExpiringSoon } from "@/lib/session";
 import { MetaApiError, type MetaErrorCode } from "@/lib/meta-api";
 import { ndjsonResponse } from "@/lib/stream";
+import { logReportEvent } from "@/lib/activity-log";
 import { getAudienceSegmentsReport } from "@/lib/reports/audience-segments";
 import { getCreativeChurnReport, type ChurnGranularity } from "@/lib/reports/creative-churn";
 import { getCreativeSegmentsReport, type EntityLevel } from "@/lib/reports/creative-segments";
@@ -66,13 +67,40 @@ export async function GET(request: NextRequest, context: RouteContext) {
     return NextResponse.json({ error: "accountId is required" }, { status: 400 });
   }
 
+  const startedAt = Date.now();
+
   if (STREAMING_TYPES.has(type)) {
     if (!range) return NextResponse.json({ error: "since and until are required", code: "UNKNOWN" }, { status: 400 });
-    return ndjsonResponse((emit, emitPartial) => runStreamingReport(type, token, accountId, range, searchParams, emit, emitPartial));
+    return ndjsonResponse(
+      (emit, emitPartial) => runStreamingReport(type, token, accountId, range, searchParams, emit, emitPartial),
+      (result) => {
+        // Internal usage log only — never for demo sessions, never blocks the stream.
+        logReportEvent({
+          timestamp: Date.now(),
+          accountId,
+          reportType: type,
+          since: range.since,
+          until: range.until,
+          durationMs: Date.now() - startedAt,
+          ...(result.status === "success" ? { status: "success" } : { status: "error", errorCode: result.code, errorMessage: result.message }),
+        });
+      }
+    );
   }
 
   try {
     const data = await runJsonReport(type, token, accountId, range, searchParams);
+    after(() =>
+      logReportEvent({
+        timestamp: Date.now(),
+        accountId,
+        reportType: type,
+        since: range?.since,
+        until: range?.until,
+        status: "success",
+        durationMs: Date.now() - startedAt,
+      })
+    );
     return NextResponse.json({ data, tokenExpiringSoon: isTokenExpiringSoon(session.tokenExpiresAt) });
   } catch (err) {
     if (err instanceof NotFoundError) {
@@ -80,6 +108,19 @@ export async function GET(request: NextRequest, context: RouteContext) {
     }
     const { code, message } = classifyError(err);
     if (code !== "META_AUTH") console.error(`Report "${type}" failed [${code}]:`, err);
+    after(() =>
+      logReportEvent({
+        timestamp: Date.now(),
+        accountId,
+        reportType: type,
+        since: range?.since,
+        until: range?.until,
+        status: "error",
+        errorCode: code,
+        errorMessage: message,
+        durationMs: Date.now() - startedAt,
+      })
+    );
     return NextResponse.json({ error: message, code }, { status: httpStatusForCode(code) });
   }
 }

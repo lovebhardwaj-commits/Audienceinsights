@@ -12,7 +12,9 @@ import { sessionOptions, type SessionData } from "@/lib/session";
 // iron-webcrypto/uncrypto (Web Crypto, not Node crypto) specifically so it works
 // outside Node — reading the raw cookie via NextRequest and unsealing it here is
 // the supported edge-compatible pattern.
-const PUBLIC_PATHS = new Set(["/login", "/api/auth/login"]);
+// /logs is the internal-team activity log — intentionally public (no login), so it can
+// be shared as a plain link without handing out the merchant-facing email/password gate.
+const PUBLIC_PATHS = new Set(["/login", "/api/auth/login", "/logs"]);
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

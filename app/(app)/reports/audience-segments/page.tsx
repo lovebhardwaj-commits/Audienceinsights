@@ -216,7 +216,7 @@ export default function AudienceSegmentsPage() {
           <button
             onClick={handleRefresh}
             title="Refresh report"
-            className="rounded-md border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
+            className="rounded-md border border-slate-200 bg-surface-card p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
@@ -238,13 +238,13 @@ export default function AudienceSegmentsPage() {
         ]}
       />
 
-      <div className="mt-3 flex rounded-md border border-slate-200 bg-white p-0.5 w-fit">
+      <div className="mt-3 flex rounded-md border border-slate-200 bg-surface-card p-0.5 w-fit">
         {VIEW_LEVELS.map((l) => (
           <button
             key={l.key}
             onClick={() => setViewLevel(l.key)}
             className={`rounded px-3 py-1 text-sm font-medium transition-colors ${
-              viewLevel === l.key ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+              viewLevel === l.key ? "bg-ink text-surface-card" : "text-slate-600 hover:bg-slate-100"
             }`}
           >
             {l.label}

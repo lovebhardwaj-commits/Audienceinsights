@@ -140,7 +140,7 @@ export default function FrequencyPage() {
           <button
             onClick={handleRefresh}
             title="Refresh report"
-            className="rounded-md border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
+            className="rounded-md border border-slate-200 bg-surface-card p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
@@ -161,13 +161,13 @@ export default function FrequencyPage() {
         ]}
       />
 
-      <div className="mt-3 flex rounded-md border border-slate-200 bg-white p-0.5 w-fit">
+      <div className="mt-3 flex rounded-md border border-slate-200 bg-surface-card p-0.5 w-fit">
         {LEVELS.map((l) => (
           <button
             key={l.key}
             onClick={() => setLevel(l.key)}
             className={`rounded px-3 py-1 text-sm font-medium transition-colors ${
-              level === l.key ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+              level === l.key ? "bg-ink text-surface-card" : "text-slate-600 hover:bg-slate-100"
             }`}
           >
             {l.label}
@@ -247,7 +247,7 @@ export default function FrequencyPage() {
                 <table className="w-full border-collapse text-[12px]">
                   <thead>
                     <tr>
-                      <th className="sticky left-0 z-10 bg-white py-2 pr-3 text-left text-[11px] font-medium text-slate-500 whitespace-nowrap min-w-[180px]">
+                      <th className="sticky left-0 z-10 bg-surface-card py-2 pr-3 text-left text-[11px] font-medium text-slate-500 whitespace-nowrap min-w-[180px]">
                         {entityLabel}
                       </th>
                       {report.weeks.map((w) => (
@@ -260,7 +260,7 @@ export default function FrequencyPage() {
                   <tbody>
                     {report.campaigns.map((entity) => (
                       <tr key={entity.id} className="group">
-                        <td className="sticky left-0 z-10 bg-white py-1.5 pr-3 font-medium text-slate-700 group-hover:bg-slate-50">
+                        <td className="sticky left-0 z-10 bg-surface-card py-1.5 pr-3 font-medium text-slate-700 group-hover:bg-slate-50">
                           <CopyableTruncatedName display={labelById[entity.id] ?? entity.name} full={entity.name} />
                         </td>
                         {report.weeks.map((w) => {

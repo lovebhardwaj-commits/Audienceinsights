@@ -215,7 +215,7 @@ export default function CampaignOverlapPage() {
             onClick={handleRefresh}
             disabled={loading}
             title="Refresh — fetch fresh data from Meta"
-            className="rounded-md border border-slate-200 bg-white p-2 text-slate-400 transition-colors hover:bg-slate-50 hover:text-brand-600 disabled:opacity-40"
+            className="rounded-md border border-slate-200 bg-surface-card p-2 text-slate-400 transition-colors hover:bg-slate-50 hover:text-brand-600 disabled:opacity-40"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={loading ? "animate-spin" : ""}>
               <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
@@ -240,13 +240,13 @@ export default function CampaignOverlapPage() {
       />
 
       <div className="mt-3 flex flex-wrap items-center gap-3">
-        <div className="flex rounded-md border border-slate-200 bg-white p-0.5">
+        <div className="flex rounded-md border border-slate-200 bg-surface-card p-0.5">
           {LEVELS.map((l) => (
             <button
               key={l.key}
               onClick={() => setLevel(l.key)}
               className={`rounded px-3 py-1 text-sm font-medium transition-colors ${
-                level === l.key ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+                level === l.key ? "bg-ink text-surface-card" : "text-slate-600 hover:bg-slate-100"
               }`}
             >
               {l.label}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { REPORTS } from "@/lib/constants";
 import { HomeIcon, REPORT_ICONS } from "./icons";
+import { Logo, LogoMark } from "./Logo";
 
 // Frequency (D7/7.6) is back in nav after its fix.
 const NAV_SLUGS = [
@@ -34,16 +35,14 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
       {/* Header: wordmark + collapse chevron (Part 1) */}
       <div className={`flex items-center border-b border-hairline ${collapsed ? "flex-col gap-2 px-0 py-4" : "gap-2.5 px-4 py-4"}`}>
         <div className="flex items-center gap-2.5 min-w-0">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-600 to-brand-700 text-sm font-bold text-white">
-            A
-          </div>
-          {!collapsed && (
-            <div className="min-w-0">
-              <Link href="/dashboard" className="text-[14px] font-bold tracking-tight text-ink">
-                Ads Reach
-              </Link>
-              <div className="text-[10px] text-ink-tertiary">Reach Intelligence</div>
-            </div>
+          {collapsed ? (
+            <Link href="/dashboard" className="flex h-8 w-8 shrink-0 items-center justify-center">
+              <LogoMark className="h-6 w-auto" />
+            </Link>
+          ) : (
+            <Link href="/dashboard" className="min-w-0">
+              <Logo className="h-7 w-auto text-ink" />
+            </Link>
           )}
         </div>
         <button
@@ -117,7 +116,7 @@ function SidebarLink({
       href={href}
       title={collapsed ? String(children) : undefined}
       className={`group relative flex items-center gap-2.5 rounded-lg px-2 py-2 transition-all ${
-        active ? "bg-brand-50 text-brand-700" : "text-ink-secondary hover:bg-surface-app"
+        active ? "bg-accent-tint text-ink" : "text-ink-secondary hover:bg-surface-app"
       } ${collapsed ? "justify-center" : ""}`}
     >
       <div className={`relative flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-colors ${
@@ -133,11 +132,11 @@ function SidebarLink({
       {!collapsed && (
         <div className="flex min-w-0 flex-1 items-center justify-between">
           <div className="min-w-0">
-            <div className={`truncate text-[13px] font-semibold leading-tight ${active ? "text-brand-700" : "text-ink"}`}>
+            <div className="truncate text-[13px] font-semibold leading-tight text-ink">
               {children}
             </div>
             {description && (
-              <div className={`mt-0.5 truncate text-[11px] leading-tight ${active ? "text-brand-500" : "text-ink-tertiary"}`}>
+              <div className={`mt-0.5 truncate text-[11px] leading-tight ${active ? "text-ink-secondary" : "text-ink-tertiary"}`}>
                 {description}
               </div>
             )}

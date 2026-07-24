@@ -118,7 +118,7 @@ export default function DashboardPage() {
                   onClick={() => setPeriod(p)}
                   className={`px-3 py-1 text-xs font-semibold transition-colors ${
                     period === p
-                      ? "bg-slate-900 text-white"
+                      ? "bg-ink text-surface-card"
                       : "text-ink-tertiary hover:bg-surface-app"
                   }`}
                 >

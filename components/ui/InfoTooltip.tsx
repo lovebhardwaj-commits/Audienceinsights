@@ -62,7 +62,7 @@ export function InfoTooltip({ text }: InfoTooltipProps) {
         }}
         onMouseEnter={show}
         onMouseLeave={hide}
-        className="ml-1.5 inline-flex h-[16px] w-[16px] items-center justify-center rounded-full border border-slate-200 bg-white text-[10px] font-bold leading-none text-slate-400 transition-all hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600"
+        className="ml-1.5 inline-flex h-[16px] w-[16px] items-center justify-center rounded-full border border-slate-200 bg-surface-card text-[10px] font-bold leading-none text-slate-400 transition-all hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600"
         aria-label="More info"
       >
         i
@@ -74,7 +74,7 @@ export function InfoTooltip({ text }: InfoTooltipProps) {
             onMouseEnter={show}
             onMouseLeave={hide}
             style={{ position: "fixed", top: pos.top, left: pos.boxLeft, width: TOOLTIP_WIDTH, transform: "translate(-50%, -100%)" }}
-            className="z-[100] rounded-xl border border-slate-200/80 bg-white px-4 py-3 text-[12px] font-normal normal-case leading-relaxed tracking-normal text-slate-600 shadow-xl shadow-slate-300/40"
+            className="z-[100] rounded-xl border border-slate-200/80 bg-surface-card px-4 py-3 text-[12px] font-normal normal-case leading-relaxed tracking-normal text-slate-600 shadow-xl shadow-slate-300/40"
           >
             {text}
             <div

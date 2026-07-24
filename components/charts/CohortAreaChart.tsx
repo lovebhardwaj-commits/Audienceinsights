@@ -520,7 +520,7 @@ export function CohortAreaChart({
             {/* One-time hint */}
             {!hintDismissed && !isZoomed && (
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                <span className="rounded-full bg-slate-800/80 px-2.5 py-1 text-[11px] font-medium text-white">
+                <span className="rounded-full bg-[#1e293b]/80 px-2.5 py-1 text-[11px] font-medium text-white">
                   Drag handles to zoom · scroll to zoom · drag on chart to select
                 </span>
               </div>

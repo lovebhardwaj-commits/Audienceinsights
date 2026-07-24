@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { AccountSelector } from "./AccountSelector";
+import { ThemeToggle } from "./ThemeToggle";
 import { useAccount } from "@/components/providers/AccountProvider";
 
 export function TopBar() {
@@ -32,16 +33,19 @@ export function TopBar() {
           </a>
         </div>
       )}
-      <div className="flex items-center justify-between px-4 py-3">
+      <div className="flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-3">
           <AccountSelector />
         </div>
-        <button
-          onClick={handleLogout}
-          className="rounded-lg border border-hairline px-3.5 py-1.5 text-sm font-medium text-ink-secondary transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600"
-        >
-          Log out
-        </button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            onClick={handleLogout}
+            className="rounded-lg border border-hairline px-3.5 py-1.5 text-sm font-medium text-ink-secondary transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+          >
+            Log out
+          </button>
+        </div>
       </div>
     </div>
   );

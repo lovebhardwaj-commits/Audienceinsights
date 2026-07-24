@@ -191,6 +191,55 @@ Frequency and Creative Churn are **active in nav** (7 reports total). Frequency 
 
 ## Design System
 
+**This branch (v2) carries a distinct visual identity from `main`** — restyled to the Ads product
+design system, with the `fastrr Ads` logo (`components/layout/Logo.tsx` / `LogoMark`), Plus Jakarta
+Sans (`app/layout.tsx`, replacing Geist Sans; Poppins is loaded separately for the logo wordmark
+only), and a light/dark theme toggle. Nothing here touches `main`.
+
+### Theme (light/dark)
+
+- `data-theme="light"|"dark"` on `<html>`, toggled by `components/layout/ThemeToggle.tsx` /
+  `lib/hooks/useTheme.ts`, persisted to `localStorage("theme")`. An inline script in
+  `app/layout.tsx` stamps the attribute before hydration (reads localStorage, falls back to
+  `prefers-color-scheme`) so there's no flash-of-wrong-theme; `<html>` carries
+  `suppressHydrationWarning` because of the resulting expected server/client attribute mismatch.
+  `@custom-variant dark` in `app/globals.css` binds Tailwind's `dark:` variant to this attribute,
+  not the OS preference, so the in-app toggle always wins.
+- **Accent**: solid indigo `#6F57E9` (`brand-500/600/700`), same value in both themes — this is
+  what `bg-brand-600` etc. now resolve to everywhere (was blue). `brand-50`/`brand-100` (soft
+  washes: chips, hover states, icon backgrounds) DO need a dark equivalent and are mode-aware via
+  `--brand-50`/`--brand-100` custom properties.
+- **CTA gradient** `#AF46FD → #D93BC2 → #F4349D` — reserved for genuine primary actions (creator
+  pattern setup's Next/Preview/Confirm); not applied to every `bg-brand-600` button, and
+  deliberately NOT applied to the Facebook OAuth button, which keeps Facebook's own blue regardless
+  of theme.
+- **Semantic surface/ink tokens** (`--surface-app`, `--surface-card`, `--border-hairline`, `--ink`,
+  `--ink-secondary`, `--ink-tertiary`, `--accent-tint`) are defined under `:root` (light) and
+  `:root[data-theme="dark"]` (dark) in `app/globals.css`, exposed as Tailwind colors
+  (`bg-surface-app`, `text-ink`, etc.) via `@theme inline`.
+- **Load-bearing trick for dark mode coverage**: Tailwind v4 emits every default palette shade
+  (slate, blue, red, green, amber, orange — whichever the app actually uses) as its own
+  `--color-<name>-<shade>` CSS variable, and utilities read it via `var()`. `app/globals.css`
+  overrides those variables under `:root[data-theme="dark"]`, which re-themes every existing
+  `bg-slate-50`, `text-blue-800`, etc. across the whole app *without editing each component* — the
+  ramp direction inverts by design (e.g. slate-50 = "subtle surface" in both themes, not "very
+  light" specifically). The severity-banner backgrounds (`--sev-*-bg`) follow the same
+  light/dark-custom-property pattern rather than being fixed hex.
+- **This does NOT cover**: raw literal colors that never went through a Tailwind palette variable —
+  `bg-white`, hardcoded hex strings in inline `style={{ backgroundColor: "#..." }}`, or hardcoded
+  hex passed to SVG props. Two categories of these existed and were fixed explicitly rather than
+  by the blanket override: (1) `bg-white` used as a *surface* (cards, dropdowns, sticky table
+  columns) — swapped to `bg-surface-card`; (2) a few `bg-slate-900 text-white` "selected tab pill"
+  instances (level-selector tabs across several report pages, the 7D/30D toggle) — these used
+  slate-900 as a deliberate dark BACKGROUND for a selected state, which broke once slate-900 got
+  inverted to near-white for dark mode (making the pill invisible, white-on-white); fixed to
+  `bg-ink text-surface-card`, which correctly inverts together in both themes. `DataTable`'s sticky
+  first column specifically needs an *opaque* background (a translucent zebra tint bleeds content
+  through during horizontal scroll) computed via inline `style`, not a class — that now reads
+  `var(--surface-card)` / `var(--color-slate-100)` instead of hardcoded hex, so it stays
+  theme-aware. When adding new UI: prefer semantic tokens or standard palette utilities over
+  `bg-white` or literal hex so this dark-mode coverage doesn't regress.
+
 ### Colors
 
 Defined in `lib/chart-theme.ts`:
@@ -200,7 +249,9 @@ Defined in `lib/chart-theme.ts`:
 - **Status**: Good=#0ca30c, Warning=#fab219, Serious=#ec835a, Critical=#d03b3b
 - **Frequency heatmap**: 6-step ramp from light blue (healthy) through amber to dark red (overexposed)
 
-Brand colors (Tailwind theme in globals.css): blue-50 through blue-900.
+These chart-specific colors are unaffected by the light/dark theme toggle above (charts aren't
+themed in this pass). Brand colors (Tailwind theme in globals.css): brand-50 through brand-900,
+now an indigo ramp (see Theme section above) — was a plain blue ramp before this branch.
 
 ### Currency
 

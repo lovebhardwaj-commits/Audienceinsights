@@ -134,7 +134,7 @@ export function DataTable<T>({
                 placeholder="Search…"
                 value={query}
                 onChange={(e) => handleQueryChange(e.target.value)}
-                className="h-7 w-44 rounded-md border border-slate-200 bg-slate-50 pl-8 pr-3 text-xs text-slate-700 placeholder-slate-400 focus:border-brand-300 focus:bg-white focus:outline-none"
+                className="h-7 w-44 rounded-md border border-slate-200 bg-slate-50 pl-8 pr-3 text-xs text-slate-700 placeholder-slate-400 focus:border-brand-300 focus:bg-surface-card focus:outline-none"
               />
             </div>
           )}
@@ -180,9 +180,9 @@ export function DataTable<T>({
                   onClick={() => handleSort(col.key)}
                   className={`cursor-pointer select-none whitespace-nowrap px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 transition-colors hover:text-slate-600 ${
                     col.align === "right" ? "text-right" : "text-left"
-                  } ${colIdx === 0 ? "sticky left-0 z-10 bg-white shadow-[4px_0_6px_-4px_rgba(15,23,42,0.15)]" : ""}`}
+                  } ${colIdx === 0 ? "sticky left-0 z-10 bg-surface-card shadow-[4px_0_6px_-4px_rgba(15,23,42,0.15)]" : ""}`}
                   style={colIdx === 0
-                    ? { backgroundColor: "#ffffff", willChange: "transform" }
+                    ? { backgroundColor: "var(--surface-card)", willChange: "transform" }
                     : { width: "1%", whiteSpace: "nowrap" }
                   }
                 >
@@ -200,7 +200,7 @@ export function DataTable<T>({
           <tbody>
             {loading &&
               Array.from({ length: 5 }).map((_, i) => (
-                <tr key={i} className={`border-b border-slate-50 ${i % 2 === 1 ? "bg-slate-50/40" : "bg-white"}`}>
+                <tr key={i} className={`border-b border-slate-50 ${i % 2 === 1 ? "bg-slate-50/40" : "bg-surface-card"}`}>
                   {columns.map((col) => (
                     <td key={col.key} className="px-5 py-3.5">
                       <div className="h-4 w-full animate-pulse rounded bg-slate-100" />
@@ -222,12 +222,12 @@ export function DataTable<T>({
                 // its own or content sliding underneath it during horizontal scroll bleeds
                 // through, producing ghosted/overlapping text. "background: inherit" doesn't
                 // reliably resolve to an opaque color here either, so compute it explicitly.
-                const stickyBg = i % 2 === 1 ? "#f8fafc" : "#ffffff";
+                const stickyBg = i % 2 === 1 ? "var(--color-slate-100)" : "var(--surface-card)";
                 return (
                   <tr
                     key={i}
                     className={`border-b border-slate-50 last:border-0 transition-colors hover:bg-blue-50/30 ${
-                      i % 2 === 1 ? "bg-slate-50/40" : "bg-white"
+                      i % 2 === 1 ? "bg-slate-50/40" : "bg-surface-card"
                     }`}
                   >
                     {columns.map((col, colIdx) => (

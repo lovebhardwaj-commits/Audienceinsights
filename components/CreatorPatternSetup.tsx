@@ -179,7 +179,7 @@ export function CreatorPatternSetup({ accountId, sampleAdNames, onSaved, onClose
           </div>
 
           {prefix && suffix && selectedText ? (
-            <div className="mt-3 space-y-2 rounded-lg border border-slate-100 bg-white p-3">
+            <div className="mt-3 space-y-2 rounded-lg border border-slate-100 bg-surface-card p-3">
               <div className="flex flex-wrap items-center gap-1.5 text-sm">
                 <code className="rounded border border-blue-100 bg-blue-50 px-1.5 py-0.5 font-mono text-blue-700">{prefix}</code>
                 <code className="rounded border border-green-100 bg-green-50 px-1.5 py-0.5 font-mono text-green-700">{selectedText}</code>

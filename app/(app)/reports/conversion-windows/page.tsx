@@ -98,7 +98,7 @@ export default function ConversionWindowsPage() {
           <button
             onClick={handleRefresh}
             title="Refresh report"
-            className="rounded-md border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
+            className="rounded-md border border-slate-200 bg-surface-card p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />

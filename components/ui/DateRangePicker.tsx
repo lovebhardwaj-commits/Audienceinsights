@@ -276,9 +276,9 @@ export function DateRangePicker({ value, onChange }: DateRangePickerProps) {
           onClick={() => setMenuOpen((o) => !o)}
           className={`flex h-9 items-center gap-2 rounded-lg border px-3.5 text-[13px] font-semibold shadow-sm transition-colors ${
             menuOpen
-              ? "border-brand-400 bg-white text-slate-800 ring-2 ring-brand-100"
+              ? "border-brand-400 bg-surface-card text-slate-800 ring-2 ring-brand-100"
               : value
-              ? "border-slate-200 bg-white text-slate-700 hover:border-brand-300"
+              ? "border-slate-200 bg-surface-card text-slate-700 hover:border-brand-300"
               : "border-brand-300 bg-brand-600 text-white hover:bg-brand-700"
           }`}
         >
@@ -300,7 +300,7 @@ export function DateRangePicker({ value, onChange }: DateRangePickerProps) {
       </div>
 
       {menuOpen && (
-        <div className="absolute right-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg">
+        <div className="absolute right-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border border-slate-200 bg-surface-card shadow-lg">
           {!customOpen ? (
             <div className="max-h-[420px] w-[19rem] overflow-y-auto py-1.5">
               <button

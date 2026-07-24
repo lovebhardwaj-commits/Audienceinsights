@@ -449,7 +449,7 @@ export default function CreativeChurnPage() {
             onClick={handleRefresh}
             disabled={loading}
             title="Refresh — fetch fresh data from Meta"
-            className="rounded-md border border-slate-200 bg-white p-2 text-slate-400 transition-colors hover:bg-slate-50 hover:text-brand-600 disabled:opacity-40"
+            className="rounded-md border border-slate-200 bg-surface-card p-2 text-slate-400 transition-colors hover:bg-slate-50 hover:text-brand-600 disabled:opacity-40"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={loading ? "animate-spin" : ""}>
               <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
@@ -642,7 +642,7 @@ export default function CreativeChurnPage() {
                       <select
                         value={heatmapSort}
                         onChange={(e) => setHeatmapSort(e.target.value as HeatmapSort)}
-                        className="rounded-md border border-slate-200 bg-white px-2 py-1 text-xs font-medium text-slate-700"
+                        className="rounded-md border border-slate-200 bg-surface-card px-2 py-1 text-xs font-medium text-slate-700"
                       >
                         <option value="totalSpend">Total Spend ▾</option>
                         <option value="currentPeriod">Current Period</option>
@@ -871,7 +871,7 @@ export default function CreativeChurnPage() {
       {/* ── 7. Floating compare bar ─────────────────────────────────────── */}
       {selectedAdIds.size > 0 && !compareOpen && (
         <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2">
-          <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-5 py-3 shadow-xl shadow-black/10">
+          <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-surface-card px-5 py-3 shadow-xl shadow-black/10">
             <div className="text-sm text-slate-700">
               <span className="font-semibold">{selectedAdIds.size}</span>{" "}
               {selectedAdIds.size === 1 ? "creative" : "creatives"} selected
@@ -879,7 +879,7 @@ export default function CreativeChurnPage() {
             </div>
             <button
               onClick={() => setCompareOpen(true)}
-              className="rounded-full bg-slate-900 px-4 py-1.5 text-sm font-semibold text-white hover:bg-slate-800"
+              className="rounded-full bg-ink px-4 py-1.5 text-sm font-semibold text-surface-card hover:opacity-90"
             >
               Compare ▸
             </button>

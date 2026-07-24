@@ -72,7 +72,7 @@ function GroupCard({ title, group, loading, accent }: {
       <div className={`px-5 py-3.5 ${accent.headerGradient}`}>
         <span className={`text-[11px] font-bold uppercase tracking-[0.1em] ${accent.headerText}`}>{title}</span>
       </div>
-      <div className="bg-white p-5">
+      <div className="bg-surface-card p-5">
         <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
           {loading
             ? Array.from({ length: 8 }).map((_, i) => (
@@ -405,7 +405,7 @@ export default function PartnershipAdsPage() {
           <button
             onClick={handleRefresh}
             title="Refresh report"
-            className="rounded-md border border-slate-200 bg-white p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
+            className="rounded-md border border-slate-200 bg-surface-card p-2 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-700"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />

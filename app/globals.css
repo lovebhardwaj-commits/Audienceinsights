@@ -1,16 +1,28 @@
 @import "tailwindcss";
 
+/* Attribute-based dark mode: `dark:` utilities activate when data-theme="dark"
+   is stamped on <html> (see app/layout.tsx's inline theme-init script), not the
+   OS's prefers-color-scheme — so the in-app toggle always wins. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-plus-jakarta-sans);
   --font-mono: var(--font-geist-mono);
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-900: #1e3a5f;
+
+  /* Ads design-system accent (indigo) — the 500-900 steps are identical in both
+     themes; 50/100 are soft washes (chip/hover/icon backgrounds) that DO need a
+     dark equivalent, so those two route through mode-aware custom properties. */
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-500: #8570ee;
+  --color-brand-600: #6f57e9;
+  --color-brand-700: #5a3fd1;
+  --color-brand-900: #2f2266;
+
+  /* Accent tint — the soft wash behind a selected nav item / chip. */
+  --color-accent-tint: var(--accent-tint);
 
   /* Editorial-analytics surface + ink scale (Part 2.1) — expose the tokens as
      Tailwind colors so components use bg-surface-*, border-hairline, text-ink-*. */
@@ -21,15 +33,17 @@
   --color-ink-secondary: var(--ink-secondary);
   --color-ink-tertiary: var(--ink-tertiary);
 
-  /* Severity scale (Part 2.2) — foreground + tinted background pairs. */
+  /* Severity scale (Part 2.2) — foreground + tinted background pairs. Foregrounds
+     are fixed (already legible on both a light pastel and a dark tinted bg); the
+     backgrounds themselves are mode-aware — see :root / :root[data-theme=dark]. */
   --color-sev-good: #0ca30c;
-  --color-sev-good-bg: #f0faf0;
+  --color-sev-good-bg: var(--sev-good-bg);
   --color-sev-warning: #fab219;
-  --color-sev-warning-bg: #fdf6e3;
+  --color-sev-warning-bg: var(--sev-warning-bg);
   --color-sev-serious: #ec835a;
-  --color-sev-serious-bg: #fdf0ea;
+  --color-sev-serious-bg: var(--sev-serious-bg);
   --color-sev-critical: #d03b3b;
-  --color-sev-critical-bg: #fbebeb;
+  --color-sev-critical-bg: var(--sev-critical-bg);
 
   /* The two recurring metric identities (Part 2.2). */
   --color-metric-new: #2563eb;    /* New / Unique / Incremental */
@@ -37,21 +51,100 @@
 }
 
 :root {
-  --surface-app: #fafaf8;
+  --surface-app: #f6f6fa;
   --surface-card: #ffffff;
-  --border-hairline: #e7e5e0;
-  --ink: #1c1b18;
-  --ink-secondary: #6e6a61;
-  --ink-tertiary: #9c978c;
+  --border-hairline: #ececf2;
+  --ink: #140f29;
+  --ink-secondary: #707080;
+  --ink-tertiary: #9b9fb8;
+  --accent-tint: #ece7ff;
+  --brand-50: #f4f2fd;
+  --brand-100: #ece7fb;
+  --sev-good-bg: #f0faf0;
+  --sev-warning-bg: #fdf6e3;
+  --sev-serious-bg: #fdf0ea;
+  --sev-critical-bg: #fbebeb;
 
   --background: var(--surface-app);
   --foreground: var(--ink);
 }
 
+/* Dark theme — Ads design-system dark tokens. Same geometry as light everywhere;
+   only these values (plus the raw Tailwind shades below) change. */
+:root[data-theme="dark"] {
+  --brand-50: #211c3d;
+  --brand-100: #2b234f;
+  --sev-good-bg: #0f2415;
+  --sev-warning-bg: #332711;
+  --sev-serious-bg: #3a2317;
+  --sev-critical-bg: #3a1414;
+  --surface-app: #0a0a14;
+  --surface-card: #13121f;
+  --border-hairline: #232234;
+  --ink: #ffffff;
+  --ink-secondary: #99a1af;
+  --ink-tertiary: #6b7280;
+  --accent-tint: #2a2547;
+}
+
+/* Raw Tailwind palette shades used directly across report pages/components
+   (bg-slate-50, text-blue-800, etc.) — Tailwind v4 emits every shade as a CSS
+   variable and utilities read it via var(), so overriding these here re-themes
+   every existing usage app-wide without touching each component. Values are
+   chosen to preserve each shade's ROLE (e.g. slate-50 = "subtle surface",
+   slate-900 = "primary text") rather than its literal lightness — the ramp
+   direction inverts between themes by design. */
+:root[data-theme="dark"] {
+  --color-slate-50: #1a1926;
+  --color-slate-100: #201f2e;
+  --color-slate-200: #2a2a3e;
+  --color-slate-300: #3a3950;
+  --color-slate-400: #6b6f87;
+  --color-slate-500: #8d93a8;
+  --color-slate-600: #a8aec2;
+  --color-slate-700: #c7cbda;
+  --color-slate-800: #e2e4ec;
+  --color-slate-900: #ffffff;
+
+  --color-blue-50: #16233d;
+  --color-blue-100: #1c2c4a;
+  --color-blue-400: #7ba3f2;
+  --color-blue-500: #6699ff;
+  --color-blue-600: #5b8def;
+  --color-blue-700: #8fb4f5;
+  --color-blue-800: #bfd3ff;
+  --color-blue-900: #dce7ff;
+
+  --color-red-50: #3a1414;
+  --color-red-100: #4a1a1a;
+  --color-red-200: #5c2323;
+  --color-red-400: #f17e7e;
+  --color-red-500: #e85a5a;
+  --color-red-600: #e54545;
+  --color-red-700: #ef6e6e;
+  --color-red-800: #ffd4d4;
+
+  --color-green-50: #12291a;
+  --color-green-100: #173321;
+  --color-green-600: #3fad46;
+  --color-green-700: #5cc062;
+
+  --color-amber-50: #3a2e12;
+  --color-amber-100: #4a3a18;
+  --color-amber-300: #f0c56b;
+  --color-amber-400: #f2cc7e;
+  --color-amber-600: #e8a93d;
+  --color-amber-700: #f0b94f;
+  --color-amber-800: #ffe7bd;
+
+  --color-orange-50: #3a2213;
+  --color-orange-600: #f08a4b;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--font-plus-jakarta-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 /* Instrument, not brochure (Part 2.3): every numeral in the product renders with
@@ -85,6 +178,12 @@ table, .tabular-nums {
 }
 *::-webkit-scrollbar-track {
   background: transparent;
+}
+:root[data-theme="dark"] *::-webkit-scrollbar-thumb {
+  background: #2a2a3e;
+}
+:root[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
+  background: #3a3950;
 }
 
 button:focus-visible,

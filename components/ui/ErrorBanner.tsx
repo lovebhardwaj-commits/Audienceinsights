@@ -127,7 +127,7 @@ export function ErrorBanner({ message, code, onRetry, onRetryShorter }: ErrorBan
               {onRetry && (
                 <button
                   onClick={onRetry}
-                  className="rounded-lg border border-red-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-red-600 transition-colors hover:bg-red-600 hover:text-white"
+                  className="rounded-lg border border-red-200 bg-surface-card px-3.5 py-1.5 text-xs font-semibold text-red-600 transition-colors hover:bg-red-600 hover:text-white"
                 >
                   Try again
                 </button>

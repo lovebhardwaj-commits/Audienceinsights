@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/session";
+import { Logo } from "@/components/layout/Logo";
 
 export default async function Home({
   searchParams,
@@ -16,16 +17,13 @@ export default async function Home({
   return (
     <div className="flex flex-1 items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
       <div className="mx-4 w-full max-w-md">
-        <div className="animate-fade-in rounded-2xl border border-slate-200/60 bg-white p-10 shadow-xl shadow-slate-200/50">
-          <div className="flex items-center justify-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 text-lg font-bold text-white shadow-md shadow-brand-500/25">
-              A
-            </div>
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">Ads Reach</h1>
+        <div className="animate-fade-in rounded-2xl border border-slate-200/60 bg-surface-card p-10 shadow-xl shadow-slate-200/50">
+          <div className="flex items-center justify-center">
+            <Logo className="h-9 w-auto text-ink" />
           </div>
 
           <p className="mt-4 text-center text-sm leading-relaxed text-slate-500">
-            Reach intelligence for Meta Ads — understand who you're reaching, how efficiently, and where to optimise.
+            Reach intelligence for Meta Ads — understand who you&apos;re reaching, how efficiently, and where to optimise.
           </p>
 
           <div className="mt-6 space-y-3">

@@ -15,7 +15,7 @@ export function AccountSelector() {
       <select
         value={selectedAccountId ?? ""}
         onChange={(e) => setSelectedAccountId(e.target.value)}
-        className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300"
+        className="rounded-lg border border-hairline bg-surface-card px-3 py-1.5 text-sm font-medium text-ink transition-colors hover:border-slate-300"
       >
         {accounts.map((account) => (
           <option key={account.id} value={account.id}>

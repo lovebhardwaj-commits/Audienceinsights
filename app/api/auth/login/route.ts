@@ -1,27 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { META_OAUTH_DIALOG_BASE, OAUTH_SCOPES } from "@/lib/constants";
-import { validateUser } from "@/lib/auth";
-import { getSession } from "@/lib/session";
-
-// POST — email/password login gate (separate from the Meta OAuth flow below,
-// which the GET handler still owns unchanged). This is the step that happens
-// BEFORE Meta OAuth: a user logs in here first, then connects Meta afterward.
-export async function POST(request: NextRequest) {
-  const body = await request.json().catch(() => null);
-  const email = typeof body?.email === "string" ? body.email : "";
-  const password = typeof body?.password === "string" ? body.password : "";
-
-  if (!email || !password || !validateUser(email, password)) {
-    return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
-  }
-
-  const session = await getSession();
-  session.userEmail = email.trim().toLowerCase();
-  await session.save();
-
-  return NextResponse.json({ ok: true });
-}
 
 export async function GET(request: NextRequest) {
   const state = crypto.randomUUID();

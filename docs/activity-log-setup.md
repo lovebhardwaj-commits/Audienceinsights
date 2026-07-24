@@ -50,18 +50,14 @@ Save the project (any name).
 In the `ads-reach` Vercel project → **Settings → Environment Variables**, add:
 
 - `ACTIVITY_LOG_WEBHOOK_URL` = the Web app URL from step 3.
-- `ACTIVITY_LOG_SHEET_VIEW_URL` = the Sheet's own share link (Share → General access → "Anyone
-  with the link" → Viewer → Copy link). This is just what `/logs` links out to — it's not
-  read by any code, purely a convenience pointer for your team.
 
-Redeploy (or wait for the next push) to pick up the new env vars.
+Redeploy (or wait for the next push) to pick up the new env var.
 
 ## 5. Share it
 
-Once set up, `https://ads-reach.vercel.app/logs` shows a link to the actual Sheet — share
-that page URL, or just share the Sheet directly. Sharing is controlled entirely by the
-Sheet's own Google sharing settings (specific people, or anyone with the link) — nothing
-in the app enforces or restricts who can view it.
+There's nothing to configure in the app for this — share the Sheet itself directly
+(Share → add people, or "Anyone with the link"). `/logs` on the live site just confirms
+whether logging is wired up; the Sheet is where the actual data and sharing controls live.
 
 ## Notes
 

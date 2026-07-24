@@ -91,34 +91,6 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
           })}
         </div>
       </nav>
-
-      {/* Footer: Metrics Guide, pinned */}
-      <div className="border-t border-hairline px-2 py-2">
-        <a
-          href="/metrics-guide.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Metrics Guide"
-          className={`group flex items-center gap-2.5 rounded-lg px-2 py-2 text-ink-secondary transition-all hover:bg-surface-app ${collapsed ? "justify-center" : ""}`}
-        >
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-app text-ink-tertiary transition-colors group-hover:text-ink-secondary">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-            </svg>
-          </div>
-          {!collapsed && (
-            <div className="flex min-w-0 flex-1 items-center justify-between">
-              <div className="min-w-0">
-                <div className="truncate text-[13px] font-semibold leading-tight text-ink-secondary">Metrics Guide</div>
-                <div className="mt-0.5 truncate text-[11px] leading-tight text-ink-tertiary">Every metric explained</div>
-              </div>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-ink-tertiary">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-            </div>
-          )}
-        </a>
-      </div>
     </aside>
   );
 }

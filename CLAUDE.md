@@ -55,7 +55,7 @@ app/
   logs/page.tsx                     # Internal activity log — public route, outside (app)/'s auth guard
   (app)/
     layout.tsx                      # Auth guard → AccountProvider → DateRangeProvider → AppShell
-    dashboard/page.tsx              # Report card grid
+    dashboard/page.tsx              # Snapshot KPI band (7D/30D) + findings feed + all-reports grid
     reports/
       net-new-reach/page.tsx        # Expanding + sliding window reach
       campaign-overlap/page.tsx     # Entity overlap with NOT_IN queries

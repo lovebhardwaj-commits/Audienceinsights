@@ -1,20 +1,36 @@
 @AGENTS.md
 
-# Ads Reach — Meta Advertising Intelligence Platform
+# Ads Reach — Meta Advertising Intelligence Platform (v2 branch)
 
-Deployed at ads-reach.vercel.app. Shows merchants meaningful metrics beyond ROAS — things Ads Manager hides. Not anti-ROAS; surfaces what ROAS can't see.
+Deployed at ads-reach.vercel.app (see Vercel note below on the actual project name for this branch). Shows merchants meaningful metrics beyond ROAS — things Ads Manager hides. Not anti-ROAS; surfaces what ROAS can't see.
 
-GitHub: lovebhardwaj-commits/Audienceinsights (auto-deploys to Vercel on push to main).
+**This document describes the `v2` branch only.** A separate `CLAUDE.md` on `main` describes that branch, which has two features this branch deliberately does NOT have: a temporary email/password gate in front of Meta OAuth, and an internal activity log at `/logs`. Both were stripped out when this branch was created so it could be handed to a different audience without exposing internal-team tooling. This branch also carries a distinct visual identity (see Design System) that `main` does not have.
+
+## GitHub
+
+- Repo: `lovebhardwaj-commits/Audienceinsights` — https://github.com/lovebhardwaj-commits/Audienceinsights
+- `v2` is an **orphan branch** — it shares no git history with `main` (`git merge-base main v2` returns nothing). It was originally populated by force-pushing a curated copy of `main`'s tree (with the auth-gate/activity-log features removed), then later redesigned in place. Don't expect `git merge`/`git log --all` to show a common ancestor with `main`; syncing content between the two branches is a deliberate, manual, per-change decision, not an automatic merge.
+- **Security note**: local git remote URLs can end up with a personal access token embedded in plaintext (`https://<user>:<token>@github.com/...`). Never print, log, or commit such a value — flag it and recommend revoking at https://github.com/settings/tokens.
+
+## Vercel
+
+- This branch is understood to be tracked by a separate Vercel project, **`ads-reach-v2`**, distinct from `main`'s `ads-reach` project (each with its own env vars).
+- **Caveat, verified directly against the repo**: the `.vercel/project.json` committed on this branch (`orgId: uoybemk8qqdfne3q9q2Enyd8`, `projectId: prj_ZFXMT4MLM1q9cOuPfQdlUJJvzORt`) is **byte-identical to `main`'s** — i.e. it still points at the `ads-reach` project, not a distinct `ads-reach-v2` one. This file only matters for the `vercel` CLI's local link; a GitHub-integration deployment (auto-deploy on push) is configured independently in the Vercel dashboard and doesn't have to match it. Given the identical file, don't trust it as proof of which Vercel project this branch actually deploys to — confirm in the Vercel dashboard (Project Settings → Git) before relying on this for anything deployment-related.
+- `app/api/reports/[type]/route.ts` sets `export const maxDuration = 120` — same Vercel serverless timeout constraint as `main`.
 
 ## Stack
 
 - **Next.js 16** (App Router) + React 19 + TypeScript 5
 - **Tailwind CSS v4** (PostCSS plugin, inline `@theme` in globals.css)
 - **Recharts 3** for all charts
-- **iron-session** for encrypted cookie sessions (no database)
+- **iron-session** for encrypted cookie sessions (no database) — used only for the Meta OAuth token here, unlike `main` which also stores an email-gate flag in the same session
 - **Meta Graph API v25.0** — all data comes from Meta's Ads Insights API
 
+`package.json` name: `ads-reach` (unchanged from `main` — this branch was never renamed at the npm-package level, only at the Vercel-project level per the note above). Same dependency versions as `main`: `next@16.2.10`, `react`/`react-dom@19.2.4`, `iron-session@^8.0.4`, `recharts@^3.9.2`, `tailwindcss@^4`, `typescript@^5`.
+
 ## Environment Variables
+
+Reference by name only — never write actual values into docs, commits, or chat. See `.env.local.example` for the authoritative list. Notably **shorter than `main`'s** — no `AUTH_USERS` (no email gate on this branch) and no `ACTIVITY_LOG_WEBHOOK_URL` (no activity log on this branch).
 
 | Variable | Purpose |
 |----------|---------|
@@ -28,12 +44,12 @@ GitHub: lovebhardwaj-commits/Audienceinsights (auto-deploys to Vercel on push to
 
 ```
 app/
-  page.tsx                          # Login/landing (server component)
-  layout.tsx                        # Root layout (Geist fonts)
-  globals.css                       # Tailwind v4 theme, animations
+  page.tsx                          # Meta-connect landing (server component) — redirects to /dashboard if already connected/demo. No email/password gate on this branch — this IS the first screen.
+  layout.tsx                        # Root layout — Plus Jakarta Sans + Poppins (logo) + Geist Mono, inline theme-init script, suppressHydrationWarning
+  globals.css                       # Tailwind v4 theme — light/dark tokens, @custom-variant dark, brand/severity CSS vars (see Design System)
   (app)/
     layout.tsx                      # Auth guard → AccountProvider → DateRangeProvider → AppShell
-    dashboard/page.tsx              # Report card grid
+    dashboard/page.tsx              # Snapshot KPI band (7D/30D) + findings feed + all-reports grid
     reports/
       net-new-reach/page.tsx        # Expanding + sliding window reach
       campaign-overlap/page.tsx     # Entity overlap with NOT_IN queries
@@ -44,9 +60,10 @@ app/
       creative-segments/page.tsx    # Per-entity segment split
       partnership-ads/page.tsx      # Creator vs normal ads
   api/
-    auth/login/route.ts             # OAuth redirect to Meta
+    auth/login/route.ts             # GET only — OAuth redirect to Meta (no POST/email-gate handler on this branch)
     auth/callback/route.ts          # Token exchange + session creation
-    auth/logout/route.ts            # Session destroy
+    auth/logout/route.ts            # Session destroy (there's no separate logout-email route — nothing to separate it from)
+    auth/demo/route.ts              # Sets session.demo = true, redirects to /dashboard — no Meta token needed
     accounts/route.ts               # List ad accounts
     reports/[type]/route.ts         # Dynamic report endpoint (maxDuration=120)
 
@@ -60,9 +77,11 @@ components/
     CohortAreaChart.tsx              # Stacked area with Brush (creative churn)
   layout/
     AppShell.tsx                     # Sidebar + TopBar + content
-    Sidebar.tsx                      # Nav links (NAV_SLUGS array controls visibility)
-    TopBar.tsx                       # Account selector + logout + token warning
+    Sidebar.tsx                      # Nav links (NAV_SLUGS array controls visibility); LogoMark/Logo branding
+    TopBar.tsx                       # Account selector + ThemeToggle + single "Log out" button + token warning (no AccountMenu dropdown — that's a main-only concept tied to the email gate)
     AccountSelector.tsx              # Ad account dropdown
+    Logo.tsx                         # `Logo` (full wordmark) + `LogoMark` (icon-only) — exact SVG paths from the fastrr Ads brand asset, text fill="currentColor"
+    ThemeToggle.tsx                  # Sun/moon icon button, calls useTheme()
     icons.tsx                        # SVG icons + REPORT_ICONS map
   providers/
     AccountProvider.tsx              # Fetches accounts, stores selectedAccountId in localStorage
@@ -79,8 +98,8 @@ components/
 
 lib/
   meta-api.ts                       # Graph API client (retry, throttle, pagination)
-  session.ts                        # iron-session config + requireSession()
-  stream.ts                         # NDJSON streaming response wrapper
+  session.ts                        # iron-session config + requireSession(); SessionData has no userEmail field on this branch — accessToken/demo only
+  stream.ts                         # NDJSON streaming response wrapper (no onSettled param — no activity log to feed on this branch)
   constants.ts                      # API version, segment keys/labels/colors, REPORTS array
   chart-theme.ts                    # Color tokens (categorical, status, reach, overlap, spend)
   types.ts                          # SegmentKey, DateRange, InsightRow, MetaAdAccount, etc.
@@ -93,6 +112,8 @@ lib/
     useJsonReport.ts                 # Fetch + parse JSON, holds previous data during refetch
     useStreamingReport.ts            # NDJSON stream consumer with progress + cancel
     useReducedMotion.ts              # prefers-reduced-motion media query hook
+    useReportRange.ts                # Per-report default date range, backed by lib/session-ranges.ts
+    useTheme.ts                      # Reads/writes data-theme attribute + localStorage("theme")
   reports/
     shared.ts                        # fetchCampaignList, fetchAccountTotals, fetchSingleBreakdown
     net-new-reach.ts                 # Sliding window: isolated vs baseline vs combined reach
@@ -104,23 +125,29 @@ lib/
     frequency.ts                     # Campaign × week matrix (time_increment=7, limit=2000)
     creative-churn.ts                # Ad creation cohorts × weekly spend (time_increment=7)
     partnership-ads.ts               # Branded content detection, creator resolution, incremental reach
+    pulse.ts                         # Account-level monthly reach/spend/frequency/purchases (`pulse` API type) — wired into the route + demo fixtures, but no page currently renders it; the dashboard's "Snapshot" band is built directly from the audience-segments/conversion-windows/frequency reports instead
 ```
 
 ## Auth Flow
 
-1. User clicks "Continue with Facebook" → `GET /api/auth/login` generates CSRF state, redirects to Meta OAuth
-2. Meta redirects back → `GET /api/auth/callback` exchanges code for short-lived token, then long-lived token (60-day)
-3. Token stored in iron-session cookie (`ads_reach_session`, 60-day maxAge)
-4. `(app)/layout.tsx` server component calls `requireSession()` — redirects to `/` if no token
-5. TopBar shows amber warning when token expires within 7 days
+**This is the only gate on this branch** — unlike `main`, there is no email/password step in front of it and no `middleware.ts` at all.
 
-Scopes: `ads_read, pages_show_list, pages_read_engagement`
+1. User clicks "Continue with Facebook" (landing page, `app/page.tsx`) → `GET /api/auth/login` generates CSRF state, optionally stashes a `returnTo` path, redirects to Meta OAuth
+2. Meta redirects back → `GET /api/auth/callback` exchanges code for short-lived token, then long-lived token (60-day)
+3. Token stored in iron-session cookie (`ads_reach_session`, 60-day maxAge) — `SessionData` here has `accessToken`/`tokenExpiresAt`/`demo` only, no `userEmail`
+4. `(app)/layout.tsx` server component calls `requireSession()` — redirects to `/` if no token
+5. TopBar shows amber warning + "Re-authenticate" link when the token expires within `TOKEN_EXPIRY_WARNING_DAYS` (7) days
+6. **Signing out**: TopBar's single "Log out" button → `POST /api/auth/logout`, destroys the session, redirects to `/`. There's no separate "sign out but keep Meta connected" action on this branch (that distinction only exists on `main`, where it's needed to separate the email gate from the Meta connection).
+7. **Demo mode**: `GET /api/auth/demo` sets `session.demo = true`, redirects to `/dashboard` — report routes serve `lib/demo-fixtures.ts` instead of calling Meta.
+
+Scopes requested from Meta: `ads_read, pages_show_list, pages_read_engagement`
 
 ## Screenshots
 
 ### Dashboard
 ![Dashboard](docs/screenshots/dashboard.png)
-Report card grid with 5 active reports. Shows connected ad account, currency, and account ID.
+*(Screenshot predates both the Snapshot/findings layout below and the v2 redesign's indigo/dark-mode-capable visual identity — it still shows the old blue, light-only design.)*
+Shows connected ad account, currency, and account ID. A "Snapshot" band (7D/30D toggle) with 5 KPI tiles built from the audience-segments report (Spend, Reach, New Reach, Purchases, New User Purchases). A "What needs your attention" findings feed (ranked verdicts from the conversion-windows and frequency reports, via `lib/findings.ts`) links into the relevant report. Below that, an "All reports" grid mapping the `REPORTS` array (`lib/constants.ts`) directly — the same 7 reports as the sidebar.
 
 ### New Reach
 ![New Reach](docs/screenshots/net-new-reach.png)
@@ -172,7 +199,7 @@ Frequency and Creative Churn are **active in nav** (7 reports total). Frequency 
 
 - **Error taxonomy** (`lib/meta-api.ts` `MetaErrorCode`): every failure is `META_AUTH | META_RATE_LIMIT | TIMEOUT | UNKNOWN`, carried through routes → `stream.ts` → hooks → `ErrorBanner`. Only Meta code 190 is auth; 504/timeout/AbortError → TIMEOUT with a "Retry with 1 month" action. 90s per-request server timeout + 110s client abort.
 - **Findings engine** (`lib/findings.ts`): structured verdicts (`severity`, `headline`, `detail`, `action`, `moneyAtStake`) per report, ranked by money. Rendered by `components/ui/FindingsStrip.tsx` above each report chart and as the Overview findings feed.
-- **Design tokens** (`globals.css`): warm `--surface-app #FAFAF8`, `--border-hairline`, ink scale, severity + metric-identity palettes exposed as Tailwind colors (`bg-surface-card`, `border-hairline`, `text-ink`, `bg-sev-*`). Cards are hairline + zero shadow; KPI values are Geist Mono; severity is the only source of card borders.
+- **Design tokens** (`globals.css`): `--surface-app`/`--surface-card`/`--border-hairline`/`--ink`-scale, severity + metric-identity palettes exposed as Tailwind colors (`bg-surface-card`, `border-hairline`, `text-ink`, `bg-sev-*`). On `main` these are fixed warm off-white values; **on this branch they're mode-aware** (light: `--surface-app #f6f6fa`, `--surface-card #ffffff`, `--border-hairline #ececf2`, `--ink #140f29`; dark: `--surface-app #0a0a14`, `--surface-card #13121f`, `--border-hairline #232234`, `--ink #ffffff`) — see the Theme section below for the full light/dark token system. Cards are hairline + zero shadow; KPI values are Geist Mono; severity is the only source of card borders.
 - **Label engine** (`lib/format.ts` `formatEntityLabels`): strips the common name prefix once, middle-ellipsizes the rest (D5). Used by Frequency + Overlap.
 - **Chart system** (`components/charts/*`): axis titles with units, shared `ChartTooltipContent` (totals, share-of-total, partial tag), auto-brush > 12 points, reference lines, partial-period fade, auto-annotation (`lib/chart-annotations.ts`). `DualAxisChart` takes `shareOfTotal` (default `true` — turn off when bars/lines mix unrelated units, e.g. spend vs. a cost-per-unit line, where "% of total" is meaningless) and `stacked` (default `true` — turn off for grouped/side-by-side bars when series overlap conceptually instead of summing to a whole, e.g. Conversion Windows' Total/1DV/1DC/7DC/28DC purchase counts).
 - **D-cache** (`lib/report-cache.ts`): client-side cache keyed by exact URL — **no TTL**, kept until the user picks a different range or storage fills up. Every report page's data-fetching `useEffect` calls `run(url)` directly with **no eviction** — `run()` (in `useJsonReport`/`useStreamingReport`) checks the cache itself and renders a hit instantly with no network call, so the last-generated report for the current account/range/params opens immediately on mount or when switching ranges. Only the explicit "Refresh" button evicts: `handleRefresh()` calls `evictCached(currentUrlRef.current)` then `run(currentUrlRef.current)` again, forcing a live re-fetch. (An earlier version of this pattern called `evictCached(url)` unconditionally inside the mount/range-change effect too — that defeated the cache entirely, since every page visit silently re-hit Meta. Fixed across all 8 report pages.) Known follow-up risk: because there's no TTL and eviction is now only ever explicit, a *response shape change* (adding a field to a report) can still serve an old cached object missing that field indefinitely for a previously-visited account/range, until the user hits Refresh — watch for `formatNumber(undefined)` rendering as literal "NaN" if you change a report's shape; there's no automatic cache-busting for that yet.
@@ -186,8 +213,9 @@ Frequency and Creative Churn are **active in nav** (7 reports total). Frequency 
 - **Throttle**: Reads `x-fb-ads-insights-throttle` header, pauses 2s when utilization > 75%
 - **Pagination**: `metaGetAllPages` follows `paging.next` links
 - **Auth errors**: Code 190 → `isAuthError = true` → UI shows re-authenticate prompt
-- **Streaming**: Heavy reports use NDJSON via `ndjsonResponse()` — progress events, then a done/error event
+- **Streaming**: Heavy reports use NDJSON via `ndjsonResponse()` — progress events, then a done/error event (no `onSettled` param on this branch, since there's no activity log to feed)
 - **time_increment=7**: Weekly granularity used everywhere, including creative churn (switched from daily to weekly to cut row volume ~7x and stay under Meta's rate limit)
+- **`campaign-list` report type**: `app/api/reports/[type]/route.ts` also serves `case "campaign-list"` (→ `fetchCampaignList` in `lib/reports/shared.ts`), but no frontend code currently calls `/api/reports/campaign-list` — verified via grep, no page/component references it. Treat it as dead/unused.
 
 ## Design System
 

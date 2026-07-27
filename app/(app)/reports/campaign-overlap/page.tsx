@@ -141,6 +141,22 @@ export default function CampaignOverlapPage() {
       render: (r) => <span title={formatCurrency(r.cpmr)}>{formatCurrencyCompact(r.cpmr)}</span>,
     },
     {
+      key: "purchases",
+      header: "Purchases",
+      help: GLOSSARY.purchases,
+      accessor: (r) => r.purchases,
+      align: "right",
+      render: (r) => formatNumber(r.purchases),
+    },
+    {
+      key: "roas",
+      header: "ROAS",
+      help: GLOSSARY.roas,
+      accessor: (r) => r.roas,
+      align: "right",
+      render: (r) => r.roas > 0 ? `${r.roas.toFixed(2)}×` : "—",
+    },
+    {
       key: "totalAccountReach",
       header: "Total Acct Reach",
       help: "Total deduplicated unique people reached by all campaigns combined",

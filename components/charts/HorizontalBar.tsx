@@ -33,6 +33,17 @@ function truncate(s: string, max: number): string {
   return s.length > max ? s.slice(0, max - 1) + "…" : s;
 }
 
+function CategoryTick(props: Record<string, unknown>) {
+  const x = 8;
+  const y = Number(props.y ?? 0);
+  const value = String((props.payload as Record<string, unknown>)?.value ?? "");
+  return (
+    <text x={x} y={y} dy={4} textAnchor="start" style={tickStyle}>
+      {truncate(value, 28)}
+    </text>
+  );
+}
+
 export function HorizontalBar({ data, categoryKey, series, stacked = false, height, categoryColors, valueFormat = "compact", percentOfTotal = false, xTitle, fullLabels, shareDecimals, shareParens, totalLabel }: HorizontalBarProps) {
   const animate = !useReducedMotion();
   const barHeight = Math.max(320, data.length * 36);
@@ -65,10 +76,9 @@ export function HorizontalBar({ data, categoryKey, series, stacked = false, heig
             type="category"
             dataKey={categoryKey}
             width={180}
-            tick={tickStyle}
+            tick={CategoryTick}
             axisLine={false}
             tickLine={false}
-            tickFormatter={(v: string) => truncate(v, 28)}
           />
           <Tooltip content={<ChartTooltipContent defaultFormat={valueFormat} showTotal={stacked} shareOfTotal={stacked} shareDecimals={shareDecimals} shareParens={shareParens} totalLabel={totalLabel} fullLabels={fullLabels} />} cursor={{ fill: "rgba(148,163,184,0.08)" }} wrapperStyle={{ zIndex: 9999 }} />
           {series.length > 1 && <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={8} />}

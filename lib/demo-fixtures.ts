@@ -58,17 +58,16 @@ function rollingReach() {
 
 function overlap() {
   const entities = [
-    { id: "c1", name: "SR1503_Shesha_Manual_Sales_AO_India_CPP", reach: 2_100_000, spend: 769_000, overlapPct: 73 },
-    { id: "c2", name: "SR1503_Shesha_ASC_Prospecting_Broad", reach: 1_850_000, spend: 612_000, overlapPct: 22 },
-    { id: "c3", name: "SR1503_Shesha_Retargeting_7d_Viewers", reach: 940_000, spend: 388_000, overlapPct: 81 },
-    { id: "c4", name: "SR1503_Shesha_Catalogue_DPA_India", reach: 1_320_000, spend: 505_000, overlapPct: 41 },
-    { id: "c5", name: "SR1503_Shesha_Lookalike_1pct_Purchasers", reach: 1_100_000, spend: 296_000, overlapPct: 34 },
+    { id: "c1", name: "SR1503_Shesha_Manual_Sales_AO_India_CPP", reach: 2_100_000, spend: 769_000, overlapPct: 73, purchases: 1240, purchaseValue: 2_845_000 },
+    { id: "c2", name: "SR1503_Shesha_ASC_Prospecting_Broad", reach: 1_850_000, spend: 612_000, overlapPct: 22, purchases: 890, purchaseValue: 1_960_000 },
+    { id: "c3", name: "SR1503_Shesha_Retargeting_7d_Viewers", reach: 940_000, spend: 388_000, overlapPct: 81, purchases: 620, purchaseValue: 1_520_000 },
+    { id: "c4", name: "SR1503_Shesha_Catalogue_DPA_India", reach: 1_320_000, spend: 505_000, overlapPct: 41, purchases: 780, purchaseValue: 1_680_000 },
+    { id: "c5", name: "SR1503_Shesha_Lookalike_1pct_Purchasers", reach: 1_100_000, spend: 296_000, overlapPct: 34, purchases: 410, purchaseValue: 920_000 },
   ].map((e) => {
     const uniqueContribution = Math.round(e.reach * (1 - e.overlapPct / 100));
-    // uniqueContribution = totalAccountReach - reachWithoutEntity (lib/calculations.ts),
-    // so back-solve reachWithoutEntity to keep the fixture internally consistent.
     const reachWithoutEntity = 5_900_000 - uniqueContribution;
-    return { ...e, cpmr: Math.round((e.spend / e.reach) * 1000), reachWithoutEntity, uniqueContribution };
+    const roas = e.spend > 0 ? e.purchaseValue / e.spend : 0;
+    return { ...e, cpmr: Math.round((e.spend / e.reach) * 1000), roas, reachWithoutEntity, uniqueContribution };
   });
   return { level: "campaign" as const, totalAccountReach: 5_900_000, totalSpend: 2_570_000, entityCount: entities.length, entities };
 }

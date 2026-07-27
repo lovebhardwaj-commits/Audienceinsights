@@ -1,5 +1,5 @@
 import { metaInsights } from "@/lib/meta-api";
-import { num, cpmr, overlapPercent, uniqueContribution } from "@/lib/calculations";
+import { num, cpmr, overlapPercent, uniqueContribution, extractPurchases, extractPurchaseValue } from "@/lib/calculations";
 import { fetchAccountTotals } from "./shared";
 import type { DateRange } from "@/lib/types";
 import type { ProgressEmit, PartialEmit } from "@/lib/stream";
@@ -12,6 +12,9 @@ export interface OverlapEntityRow {
   reach: number;
   spend: number;
   cpmr: number;
+  purchases: number;
+  purchaseValue: number;
+  roas: number;
   reachWithoutEntity: number;
   uniqueContribution: number;
   overlapPct: number;
@@ -52,7 +55,7 @@ export async function getCampaignOverlapReport(
   const listRows = await metaInsights({
     token,
     objectId: accountId,
-    fields: [nameField, idField, "reach", "spend", "impressions"],
+    fields: [nameField, idField, "reach", "spend", "impressions", "actions", "action_values"],
     timeRange: range,
     level: opts.level,
     limit: 200,
@@ -64,6 +67,8 @@ export async function getCampaignOverlapReport(
       name: (row[nameField] as string) ?? (row[idField] as string),
       reach: num(row.reach),
       spend: num(row.spend),
+      purchases: extractPurchases(row.actions as Array<Record<string, string>> | undefined),
+      purchaseValue: extractPurchaseValue(row.action_values as Array<Record<string, string>> | undefined),
     }))
     .filter((c) => c.reach >= opts.minReach)
     .sort((a, b) => b.reach - a.reach)
@@ -91,6 +96,9 @@ export async function getCampaignOverlapReport(
       reach: candidate.reach,
       spend: candidate.spend,
       cpmr: cpmr(candidate.spend, candidate.reach),
+      purchases: candidate.purchases,
+      purchaseValue: candidate.purchaseValue,
+      roas: candidate.spend > 0 ? candidate.purchaseValue / candidate.spend : 0,
       reachWithoutEntity: withoutEntity.reach,
       uniqueContribution: unique,
       overlapPct: overlapPercent(candidate.reach, unique),

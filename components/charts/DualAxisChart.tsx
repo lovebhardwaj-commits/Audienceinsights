@@ -29,6 +29,8 @@ interface DualAxisChartProps {
   height?: number;
   barDomain?: [number | string, number | string];
   lineDomain?: [number | string, number | string];
+  /** When true, right-axis ticks are integers only (e.g. ROAS: 0, 1, 2, 3…). */
+  lineIntegerTicks?: boolean;
   referenceLines?: Array<{ yAxisId: "left" | "right"; y: number; label?: string; color?: string }>;
   /** Axis titles with units (§3.1). Left/right titles auto color-key to their series. */
   xTitle?: string;
@@ -49,6 +51,10 @@ interface DualAxisChartProps {
    *  side-by-side. Use grouped when the bar series overlap conceptually (e.g. a
    *  "Total" alongside its own components) rather than summing to a whole. */
   stacked?: boolean;
+  /** Overlay lines on a separate hidden right axis (auto-scaled). Useful for adding a
+   *  cross-reference metric whose scale differs from the primary right axis. */
+  overlayLines?: DualAxisSeries[];
+  overlayLineFormat?: ValueFormat;
 }
 
 const tickStyle = { fontSize: 12, fill: CHART_INK.muted, fontFamily: "var(--font-mono)" };
@@ -57,6 +63,7 @@ const axisTitleStyle = { fontSize: 12, fontWeight: 600 };
 function tickFormatterFor(fmt: ValueFormat): (v: number) => string {
   if (fmt === "percent") return percentTickFormatter;
   if (fmt === "currency" || fmt === "currencyCompact") return currencyTickFormatter;
+  if (fmt === "decimal") return (v: number) => v.toFixed(2);
   return compactTickFormatter;
 }
 
@@ -70,6 +77,7 @@ export function DualAxisChart({
   height = 360,
   barDomain,
   lineDomain,
+  lineIntegerTicks,
   referenceLines,
   xTitle,
   yTitle,
@@ -79,11 +87,16 @@ export function DualAxisChart({
   annotation,
   shareOfTotal = true,
   stacked = true,
+  overlayLines,
+  overlayLineFormat,
 }: DualAxisChartProps) {
   const animate = !useReducedMotion();
   const formats: Record<string, ValueFormat> = {};
   for (const b of bars) formats[b.key] = barFormat;
   for (const l of lines) formats[l.key] = lineFormat;
+  if (overlayLines && overlayLineFormat) {
+    for (const ol of overlayLines) formats[ol.key] = overlayLineFormat;
+  }
   const showBrush = brush ?? data.length > 12;
   const leftTitleColor = bars[0]?.color ?? CHART_INK.secondary;
   const rightTitleColor = lines[0]?.color ?? CHART_INK.secondary;
@@ -121,7 +134,11 @@ export function DualAxisChart({
                 width={64}
                 tickFormatter={tickFormatterFor(lineFormat)}
                 domain={lineDomain ?? (lineFormat === "percent" ? [0, 100] : undefined)}
+                allowDecimals={!lineIntegerTicks}
               />
+              {overlayLines && overlayLines.length > 0 && (
+                <YAxis yAxisId="overlay" orientation="right" hide />
+              )}
               <Tooltip
                 content={<ChartTooltipContent formats={formats} showTotal={lines.length === 0} shareOfTotal={shareOfTotal} />}
                 wrapperStyle={{ zIndex: 9999 }}
@@ -155,6 +172,23 @@ export function DualAxisChart({
                   name={s.label}
                   stroke={s.color}
                   strokeWidth={2.5}
+                  dot={{ r: 3, strokeWidth: 0, fill: s.color }}
+                  activeDot={{ r: 6, strokeWidth: 2, stroke: "#fff" }}
+                  isAnimationActive={animate}
+                  animationDuration={600}
+                  animationEasing="ease-out"
+                />
+              ))}
+              {overlayLines?.map((s) => (
+                <Line
+                  key={s.key}
+                  yAxisId="overlay"
+                  type="monotone"
+                  dataKey={s.key}
+                  name={s.label}
+                  stroke={s.color}
+                  strokeWidth={2}
+                  strokeDasharray="6 3"
                   dot={{ r: 3, strokeWidth: 0, fill: s.color }}
                   activeDot={{ r: 6, strokeWidth: 2, stroke: "#fff" }}
                   isAnimationActive={animate}

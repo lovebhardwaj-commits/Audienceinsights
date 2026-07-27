@@ -2,7 +2,7 @@
 
 import { formatCompactNumber, formatPercent, formatCurrency, formatCurrencyCompact, formatNumber } from "@/lib/format";
 
-export type ValueFormat = "number" | "compact" | "percent" | "currency" | "currencyCompact";
+export type ValueFormat = "number" | "compact" | "percent" | "currency" | "currencyCompact" | "decimal";
 
 export function formatChartValue(value: number, fmt: ValueFormat): string {
   switch (fmt) {
@@ -14,10 +14,11 @@ export function formatChartValue(value: number, fmt: ValueFormat): string {
       return formatCurrency(value);
     case "currencyCompact":
       return formatCurrencyCompact(value);
+    case "decimal":
+      return value.toFixed(2);
     default:
       // "number" — full-precision, locale-aware grouping (₹-free), e.g. 27,80,807 for
-      // en-IN accounts. Not currently used elsewhere, so this has no effect on any
-      // other chart today.
+      // en-IN accounts.
       return formatNumber(value);
   }
 }

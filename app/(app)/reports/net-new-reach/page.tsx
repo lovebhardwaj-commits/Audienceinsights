@@ -145,7 +145,7 @@ export default function NetNewReachPage() {
     repeatReach: Math.max(0, r.isolatedReach - r.netNewReach),
     netNewPct: r.netNewPct,
   }));
-  const costData = rows.map((r) => ({ month: r.label, spend: r.spend, costPer1kNetNew: r.costPer1kNetNew }));
+  const costData = rows.map((r) => ({ month: r.label, spend: r.spend, costPer1kNetNew: r.costPer1kNetNew, roas: r.roas }));
   const purchaseData = rows.map((r) => ({ month: r.label, purchases: r.purchases, roas: r.roas }));
   const latestNetNewPct = mode === "expanding" ? expanding.data?.latestNetNewPct : sliding.data?.latestNetNewPct;
   const totalSpend = mode === "expanding" ? expanding.data?.totalSpend : sliding.data?.totalSpend;
@@ -318,6 +318,8 @@ export default function NetNewReachPage() {
           xKey="month"
           bars={[{ key: "spend", label: "Spend", color: "#94a3b8" }]}
           lines={[{ key: "costPer1kNetNew", label: "Cost / 1K Net New", color: "#4a3aa7" }]}
+          overlayLines={[{ key: "roas", label: "ROAS", color: "#16a34a" }]}
+          overlayLineFormat="decimal"
           barFormat="currencyCompact"
           lineFormat="currency"
           xTitle="Month"
@@ -336,7 +338,9 @@ export default function NetNewReachPage() {
           bars={[{ key: "purchases", label: "Purchases", color: "#16a34a" }]}
           lines={[{ key: "roas", label: "ROAS", color: "#d97706" }]}
           barFormat="compact"
-          lineFormat="number"
+          lineFormat="decimal"
+          lineIntegerTicks
+          lineDomain={[0, "dataMax"]}
           xTitle="Month"
           yTitle="Purchases"
           yRightTitle="ROAS"

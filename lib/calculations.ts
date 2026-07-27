@@ -60,3 +60,13 @@ export function extractPurchases(actions: Array<Record<string, string>> | undefi
   const row = actions.find((a) => a.action_type === "purchase" || a.action_type === "omni_purchase");
   return row ? num(row.value) : 0;
 }
+
+export function extractPurchaseValue(actionValues: Array<Record<string, string>> | undefined): number {
+  if (!actionValues) return 0;
+  const row = actionValues.find((a) => a.action_type === "purchase" || a.action_type === "omni_purchase");
+  return row ? num(row.value) : 0;
+}
+
+export function roas(revenue: number, spend: number): number {
+  return spend > 0 ? revenue / spend : 0;
+}

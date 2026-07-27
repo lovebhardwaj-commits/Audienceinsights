@@ -36,6 +36,9 @@ interface DisplayRow {
   spend: number;
   cpmr: number;
   costPer1kNetNew: number;
+  purchases: number;
+  purchaseValue: number;
+  roas: number;
 }
 
 const LOOKBACK_OPTIONS = [90, 180, 365];
@@ -91,6 +94,9 @@ export default function NetNewReachPage() {
         spend: m.spend,
         cpmr: m.cpmr,
         costPer1kNetNew: m.costPer1kNetNew,
+        purchases: m.purchases,
+        purchaseValue: m.purchaseValue,
+        roas: m.roas,
       }));
     }
     return (sliding.data?.months ?? []).map((m) => ({
@@ -105,6 +111,9 @@ export default function NetNewReachPage() {
       spend: m.spend,
       cpmr: m.cpmr,
       costPer1kNetNew: m.costPer1kNetNew,
+      purchases: m.purchases,
+      purchaseValue: m.purchaseValue,
+      roas: m.roas,
     }));
   }, [mode, expanding.data, sliding.data, lookbackDays]);
 
@@ -125,6 +134,9 @@ export default function NetNewReachPage() {
     { key: "spend", header: "Spend", help: GLOSSARY.spend, accessor: (r) => r.spend, align: "right", render: (r) => formatCurrency(r.spend) },
     { key: "cpmr", header: "CPMR", help: GLOSSARY.cpmr, accessor: (r) => r.cpmr, align: "right", render: (r) => formatCurrency(r.cpmr) },
     { key: "costPer1kNetNew", header: "Cost / 1K Net New", help: GLOSSARY.costPer1kNetNew, accessor: (r) => r.costPer1kNetNew, align: "right", render: (r) => formatCurrency(r.costPer1kNetNew) },
+    { key: "purchases", header: "Purchases", help: GLOSSARY.purchases, accessor: (r) => r.purchases, align: "right", render: (r) => formatCompactNumber(r.purchases) },
+    { key: "purchaseValue", header: "Revenue", help: GLOSSARY.purchaseValue, accessor: (r) => r.purchaseValue, align: "right", render: (r) => formatCurrencyCompact(r.purchaseValue) },
+    { key: "roas", header: "ROAS", help: GLOSSARY.roas, accessor: (r) => r.roas, align: "right", render: (r) => r.roas.toFixed(2) },
   ];
 
   const compositionData = rows.map((r) => ({
@@ -134,6 +146,7 @@ export default function NetNewReachPage() {
     netNewPct: r.netNewPct,
   }));
   const costData = rows.map((r) => ({ month: r.label, spend: r.spend, costPer1kNetNew: r.costPer1kNetNew }));
+  const purchaseData = rows.map((r) => ({ month: r.label, purchases: r.purchases, roas: r.roas }));
   const latestNetNewPct = mode === "expanding" ? expanding.data?.latestNetNewPct : sliding.data?.latestNetNewPct;
   const totalSpend = mode === "expanding" ? expanding.data?.totalSpend : sliding.data?.totalSpend;
   const totalReach = mode === "expanding"
@@ -143,6 +156,9 @@ export default function NetNewReachPage() {
     ? rows.filter((r) => r.costPer1kNetNew > 0).reduce((s, r) => s + r.costPer1kNetNew, 0) /
       Math.max(1, rows.filter((r) => r.costPer1kNetNew > 0).length)
     : undefined;
+  const totalPurchases = mode === "expanding" ? expanding.data?.totalPurchases : sliding.data?.totalPurchases;
+  const totalPurchaseValue = mode === "expanding" ? expanding.data?.totalPurchaseValue : sliding.data?.totalPurchaseValue;
+  const overallRoas = totalSpend && totalPurchaseValue ? totalPurchaseValue / totalSpend : undefined;
 
   const findingsList = useMemo(() => {
     const d = mode === "expanding" ? expanding.data : sliding.data;
@@ -220,7 +236,7 @@ export default function NetNewReachPage() {
 
       {range && !active.loading && active.data && (
       <div className="animate-fade-in">
-      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         <SummaryCard
           label={mode === "expanding" ? "Total Rolling Reach" : "Latest Window Reach"}
           value={totalReach !== undefined ? formatCompactNumber(totalReach) : "—"}
@@ -250,6 +266,20 @@ export default function NetNewReachPage() {
           help={GLOSSARY.costPer1kNetNew}
           sparkline={rows.map((r) => r.costPer1kNetNew)}
           sparklineColor="var(--color-metric-repeat)"
+        />
+        <SummaryCard
+          label="Total Purchases"
+          value={totalPurchases !== undefined ? formatCompactNumber(totalPurchases) : "—"}
+          title={totalPurchases !== undefined ? String(totalPurchases.toLocaleString()) : undefined}
+          help={GLOSSARY.purchases}
+          sparkline={rows.map((r) => r.purchases)}
+        />
+        <SummaryCard
+          label="Overall ROAS"
+          value={overallRoas !== undefined ? overallRoas.toFixed(2) : "—"}
+          help={GLOSSARY.roas}
+          sparkline={rows.map((r) => r.roas)}
+          sparklineColor="#16a34a"
         />
       </div>
 
@@ -293,6 +323,23 @@ export default function NetNewReachPage() {
           xTitle="Month"
           yTitle="Spend (₹)"
           yRightTitle="Cost / 1K (₹)"
+          shareOfTotal={false}
+        />
+      </div>
+
+      <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
+        <h2 className="text-sm font-semibold text-slate-800">Purchases &amp; ROAS</h2>
+        <p className="mb-4 mt-0.5 text-xs text-slate-400">Monthly purchases overlaid with ROAS — does expanding reach translate into more conversions and better return?</p>
+        <DualAxisChart
+          data={purchaseData}
+          xKey="month"
+          bars={[{ key: "purchases", label: "Purchases", color: "#16a34a" }]}
+          lines={[{ key: "roas", label: "ROAS", color: "#d97706" }]}
+          barFormat="compact"
+          lineFormat="number"
+          xTitle="Month"
+          yTitle="Purchases"
+          yRightTitle="ROAS"
           shareOfTotal={false}
         />
       </div>

@@ -1,4 +1,4 @@
-import { cpmr, costPer1k, netNew, percent } from "@/lib/calculations";
+import { cpmr, costPer1k, netNew, percent, roas } from "@/lib/calculations";
 import { monthWindows } from "@/lib/dates";
 import { fetchAccountTotals } from "./shared";
 import type { DateRange } from "@/lib/types";
@@ -16,12 +16,17 @@ export interface RollingReachMonthRow {
   spend: number;
   cpmr: number;
   costPer1kNetNew: number;
+  purchases: number;
+  purchaseValue: number;
+  roas: number;
 }
 
 export interface RollingReachReport {
   months: RollingReachMonthRow[];
   totalRollingReach: number;
   totalSpend: number;
+  totalPurchases: number;
+  totalPurchaseValue: number;
   latestNetNewPct: number;
 }
 
@@ -57,6 +62,9 @@ export async function getRollingReachReport(
       spend: isolated.spend,
       cpmr: cpmr(isolated.spend, isolated.reach),
       costPer1kNetNew: costPer1k(isolated.spend, monthNetNew),
+      purchases: isolated.purchases,
+      purchaseValue: isolated.purchaseValue,
+      roas: roas(isolated.purchaseValue, isolated.spend),
     });
     previousCumulativeReach = cumulative.reach;
   }
@@ -66,6 +74,8 @@ export async function getRollingReachReport(
     months,
     totalRollingReach: last?.cumulativeReach ?? 0,
     totalSpend: months.reduce((sum, m) => sum + m.spend, 0),
+    totalPurchases: months.reduce((sum, m) => sum + m.purchases, 0),
+    totalPurchaseValue: months.reduce((sum, m) => sum + m.purchaseValue, 0),
     latestNetNewPct: last?.netNewPct ?? 0,
   };
 }

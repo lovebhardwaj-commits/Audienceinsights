@@ -1,4 +1,4 @@
-import { cpmr, costPer1k, netNew, percent } from "@/lib/calculations";
+import { cpmr, costPer1k, netNew, percent, roas } from "@/lib/calculations";
 import { monthWindows, addDays } from "@/lib/dates";
 import { fetchAccountTotals } from "./shared";
 import type { DateRange } from "@/lib/types";
@@ -16,11 +16,16 @@ export interface NetNewReachMonthRow {
   spend: number;
   cpmr: number;
   costPer1kNetNew: number;
+  purchases: number;
+  purchaseValue: number;
+  roas: number;
 }
 
 export interface NetNewReachReport {
   months: NetNewReachMonthRow[];
   totalSpend: number;
+  totalPurchases: number;
+  totalPurchaseValue: number;
   latestNetNewPct: number;
   lookbackDays: number;
 }
@@ -64,12 +69,17 @@ export async function getNetNewReachReport(
       spend: isolated.spend,
       cpmr: cpmr(isolated.spend, isolated.reach),
       costPer1kNetNew: costPer1k(isolated.spend, monthNetNew),
+      purchases: isolated.purchases,
+      purchaseValue: isolated.purchaseValue,
+      roas: roas(isolated.purchaseValue, isolated.spend),
     });
   }
 
   return {
     months,
     totalSpend: months.reduce((sum, m) => sum + m.spend, 0),
+    totalPurchases: months.reduce((sum, m) => sum + m.purchases, 0),
+    totalPurchaseValue: months.reduce((sum, m) => sum + m.purchaseValue, 0),
     latestNetNewPct: months[months.length - 1]?.netNewPct ?? 0,
     lookbackDays,
   };

@@ -29,6 +29,8 @@ function pulse() {
 }
 
 function rollingReach() {
+  const purchases = [12_400, 13_950, 15_200, 16_800];
+  const purchaseValues = [18_600_000, 22_300_000, 25_800_000, 29_400_000];
   const months = MONTHS.map((m, i) => {
     const isolatedReach = [4_820_000, 5_140_000, 5_900_000, 6_310_000][i];
     const netNewPct = [78, 61, 44, 33][i];
@@ -43,9 +45,15 @@ function rollingReach() {
       netNewReach, netNewPct,
       spend, cpmr: Math.round((spend / isolatedReach) * 1000),
       costPer1kNetNew: Math.round((spend / netNewReach) * 1000),
+      purchases: purchases[i],
+      purchaseValue: purchaseValues[i],
+      roas: purchaseValues[i] / spend,
     };
   });
-  return { months, totalRollingReach: 15_100_000, totalSpend: 14_800_000, latestNetNewPct: 33 };
+  const totalSpend = 14_800_000;
+  const totalPurchases = purchases.reduce((s, p) => s + p, 0);
+  const totalPurchaseValue = purchaseValues.reduce((s, v) => s + v, 0);
+  return { months, totalRollingReach: 15_100_000, totalSpend, totalPurchases, totalPurchaseValue, latestNetNewPct: 33 };
 }
 
 function overlap() {

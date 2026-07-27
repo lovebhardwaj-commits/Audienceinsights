@@ -1,5 +1,5 @@
 import { metaGetAllPages, metaInsights } from "@/lib/meta-api";
-import { num, cpmr, percent } from "@/lib/calculations";
+import { num, cpmr, percent, extractPurchases, extractPurchaseValue } from "@/lib/calculations";
 import type { ApiFiltering, DateRange } from "@/lib/types";
 
 export interface CampaignListItem {
@@ -17,6 +17,8 @@ export interface AccountTotals {
   spend: number;
   impressions: number;
   frequency: number;
+  purchases: number;
+  purchaseValue: number;
 }
 
 export async function fetchAccountTotals(
@@ -28,12 +30,19 @@ export async function fetchAccountTotals(
   const rows = await metaInsights({
     token,
     objectId,
-    fields: ["reach", "spend", "impressions", "frequency"],
+    fields: ["reach", "spend", "impressions", "frequency", "actions", "action_values"],
     timeRange: range,
     filtering,
   });
   const row = rows[0] ?? {};
-  return { reach: num(row.reach), spend: num(row.spend), impressions: num(row.impressions), frequency: num(row.frequency) };
+  return {
+    reach: num(row.reach),
+    spend: num(row.spend),
+    impressions: num(row.impressions),
+    frequency: num(row.frequency),
+    purchases: extractPurchases(row.actions as Array<Record<string, string>> | undefined),
+    purchaseValue: extractPurchaseValue(row.action_values as Array<Record<string, string>> | undefined),
+  };
 }
 
 export interface BreakdownRow {

@@ -22,6 +22,8 @@ export const GLOSSARY = {
   saturation: "Share of reach that's Engaged + Existing rather than New — a high number suggests you're mostly re-reaching the same people.",
   // [PM ENHANCEMENT] — Definitions for every purchase/cohort/creator metric so no
   // column or card in the app is left unexplained.
+  roas: "Return On Ad Spend — purchase revenue divided by ad spend. A ROAS of 3.0 means every ₹1 spent generated ₹3 in tracked revenue.",
+  purchaseValue: "Total revenue from purchases Meta attributes to your ads, tracked via Pixel or Conversions API.",
   purchases: "Purchases Meta attributes to your ads in this period, tracked via Pixel or Conversions API.",
   newPurchases: "Purchases made by people in the New Audience segment — genuinely new customers, not repeat buyers.",
   newPurchasePct: "New-customer purchases as a share of all purchases. Higher means your ads acquire customers, not just re-convert existing ones.",

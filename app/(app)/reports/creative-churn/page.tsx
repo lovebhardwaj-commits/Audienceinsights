@@ -140,6 +140,7 @@ export default function CreativeChurnPage() {
 
   function handleRefresh() {
     if (currentUrlRef.current) evictCached(currentUrlRef.current);
+    if (error) window.scrollTo({ top: 0, behavior: "smooth" });
     setRetryKey((k) => k + 1);
   }
 

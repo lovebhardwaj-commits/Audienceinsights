@@ -1,5 +1,5 @@
 import { metaInsights } from "@/lib/meta-api";
-import { num, cpmr, cpp, percent, extractPurchases } from "@/lib/calculations";
+import { num, cpmr, cpp, percent, extractPurchases, extractPurchaseValue } from "@/lib/calculations";
 import { SEGMENT_ORDER, normalizeSegmentKey } from "@/lib/constants";
 import type { DateRange, SegmentKey } from "@/lib/types";
 
@@ -8,6 +8,8 @@ interface SegmentStats {
   spend: number;
   impressions: number;
   purchases: number;
+  purchaseValue: number;
+  roas: number;
   cpmr: number;
   cpa: number;
   spendPct: number;
@@ -35,7 +37,7 @@ export interface AudienceSegmentsReport {
 function emptySegmentMap(): Record<SegmentKey, SegmentStats> {
   const map = {} as Record<SegmentKey, SegmentStats>;
   for (const key of SEGMENT_ORDER) {
-    map[key] = { reach: 0, spend: 0, impressions: 0, purchases: 0, cpmr: 0, cpa: 0, spendPct: 0, reachPct: 0, purchasePct: 0 };
+    map[key] = { reach: 0, spend: 0, impressions: 0, purchases: 0, purchaseValue: 0, roas: 0, cpmr: 0, cpa: 0, spendPct: 0, reachPct: 0, purchasePct: 0 };
   }
   return map;
 }
@@ -48,6 +50,7 @@ function finalizeSegments(segments: Record<SegmentKey, SegmentStats>) {
     const seg = segments[key];
     seg.cpmr = cpmr(seg.spend, seg.reach);
     seg.cpa = cpp(seg.spend, seg.purchases);
+    seg.roas = seg.spend > 0 ? seg.purchaseValue / seg.spend : 0;
     seg.spendPct = percent(seg.spend, totalSpend);
     seg.reachPct = percent(seg.reach, totalReach);
     seg.purchasePct = percent(seg.purchases, totalPurchases);
@@ -64,7 +67,7 @@ export async function getAudienceSegmentsReport(
     metaInsights({
       token,
       objectId: accountId,
-      fields: ["reach", "spend", "impressions", "actions"],
+      fields: ["reach", "spend", "impressions", "actions", "action_values"],
       timeRange: range,
       breakdowns: "user_segment_key",
       timeIncrement: 7,
@@ -72,7 +75,7 @@ export async function getAudienceSegmentsReport(
     metaInsights({
       token,
       objectId: accountId,
-      fields: ["reach", "spend", "impressions", "actions"],
+      fields: ["reach", "spend", "impressions", "actions", "action_values"],
       timeRange: range,
       breakdowns: "user_segment_key",
     }),
@@ -96,6 +99,7 @@ export async function getAudienceSegmentsReport(
     segment.spend += num(row.spend);
     segment.impressions += num(row.impressions);
     segment.purchases += extractPurchases(row.actions as Array<Record<string, string>> | undefined);
+    segment.purchaseValue += extractPurchaseValue(row.action_values as Array<Record<string, string>> | undefined);
   }
 
   const weeks: WeekRow[] = Array.from(weekBuckets.values())
@@ -112,6 +116,7 @@ export async function getAudienceSegmentsReport(
     totals[segmentKey].spend += num(row.spend);
     totals[segmentKey].impressions += num(row.impressions);
     totals[segmentKey].purchases += extractPurchases(row.actions as Array<Record<string, string>> | undefined);
+    totals[segmentKey].purchaseValue += extractPurchaseValue(row.action_values as Array<Record<string, string>> | undefined);
   }
   const { totalReach, totalSpend, totalPurchases } = finalizeSegments(totals);
 

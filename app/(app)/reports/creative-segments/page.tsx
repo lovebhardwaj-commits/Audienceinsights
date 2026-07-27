@@ -59,6 +59,7 @@ export default function CreativeSegmentsPage() {
   function handleRefresh() {
     if (!currentUrlRef.current) return;
     evictCached(currentUrlRef.current);
+    if (error) window.scrollTo({ top: 0, behavior: "smooth" });
     run(currentUrlRef.current);
   }
 

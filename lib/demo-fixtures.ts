@@ -252,8 +252,11 @@ function creativeChurn(since?: string, until?: string) {
 }
 
 function seg(reach: number, spend: number, purchases: number, reachPct: number, spendPct: number) {
+  const purchaseValue = purchases * 350;
   return {
     reach, spend, impressions: reach * 3, purchases,
+    purchaseValue,
+    roas: spend > 0 ? purchaseValue / spend : 0,
     cpmr: Math.round((spend / reach) * 1000),
     cpa: purchases ? Math.round(spend / purchases) : 0,
     spendPct, reachPct, purchasePct: reachPct,

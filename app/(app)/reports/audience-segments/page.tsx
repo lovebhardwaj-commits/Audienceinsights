@@ -34,14 +34,17 @@ interface WeekTableRow {
   prospectingSpend: number;
   prospectingCpmr: number;
   prospectingPurchases: number;
+  prospectingRoas: number;
   engagedReach: number;
   engagedSpend: number;
   engagedCpmr: number;
   engagedPurchases: number;
+  engagedRoas: number;
   existingReach: number;
   existingSpend: number;
   existingCpmr: number;
   existingPurchases: number;
+  existingRoas: number;
 }
 
 const columns: DataTableColumn<WeekTableRow>[] = [
@@ -50,14 +53,17 @@ const columns: DataTableColumn<WeekTableRow>[] = [
   { key: "prospectingSpend", header: "New Spend", accessor: (r) => r.prospectingSpend, align: "right", render: (r) => formatCurrency(r.prospectingSpend) },
   { key: "prospectingCpmr", header: "New CPMR", help: GLOSSARY.cpmr, accessor: (r) => r.prospectingCpmr, align: "right", render: (r) => formatCurrency(r.prospectingCpmr) },
   { key: "prospectingPurchases", header: "New Purchases", help: GLOSSARY.cpp, accessor: (r) => r.prospectingPurchases, align: "right", render: (r) => formatNumber(r.prospectingPurchases) },
+  { key: "prospectingRoas", header: "New ROAS", help: GLOSSARY.roas, accessor: (r) => r.prospectingRoas, align: "right", render: (r) => r.prospectingRoas > 0 ? `${r.prospectingRoas.toFixed(2)}×` : "—" },
   { key: "engagedReach", header: "Engaged Reach", help: GLOSSARY.engaged, accessor: (r) => r.engagedReach, align: "right", render: (r) => formatCompactNumber(r.engagedReach) },
   { key: "engagedSpend", header: "Engaged Spend", accessor: (r) => r.engagedSpend, align: "right", render: (r) => formatCurrency(r.engagedSpend) },
   { key: "engagedCpmr", header: "Engaged CPMR", help: GLOSSARY.cpmr, accessor: (r) => r.engagedCpmr, align: "right", render: (r) => formatCurrency(r.engagedCpmr) },
   { key: "engagedPurchases", header: "Engaged Purchases", accessor: (r) => r.engagedPurchases, align: "right", render: (r) => formatNumber(r.engagedPurchases) },
+  { key: "engagedRoas", header: "Engaged ROAS", help: GLOSSARY.roas, accessor: (r) => r.engagedRoas, align: "right", render: (r) => r.engagedRoas > 0 ? `${r.engagedRoas.toFixed(2)}×` : "—" },
   { key: "existingReach", header: "Existing Reach", help: GLOSSARY.existing, accessor: (r) => r.existingReach, align: "right", render: (r) => formatCompactNumber(r.existingReach) },
   { key: "existingSpend", header: "Existing Spend", accessor: (r) => r.existingSpend, align: "right", render: (r) => formatCurrency(r.existingSpend) },
   { key: "existingCpmr", header: "Existing CPMR", help: GLOSSARY.cpmr, accessor: (r) => r.existingCpmr, align: "right", render: (r) => formatCurrency(r.existingCpmr) },
   { key: "existingPurchases", header: "Existing Purchases", accessor: (r) => r.existingPurchases, align: "right", render: (r) => formatNumber(r.existingPurchases) },
+  { key: "existingRoas", header: "Existing ROAS", help: GLOSSARY.roas, accessor: (r) => r.existingRoas, align: "right", render: (r) => r.existingRoas > 0 ? `${r.existingRoas.toFixed(2)}×` : "—" },
 ];
 
 type ViewLevel = "account" | EntityLevel;
@@ -111,6 +117,7 @@ export default function AudienceSegmentsPage() {
   function handleRefresh() {
     if (!currentUrlRef.current) return;
     evictCached(currentUrlRef.current);
+    if (error) window.scrollTo({ top: 0, behavior: "smooth" });
     if (isEntityView) {
       entityReport.run(currentUrlRef.current);
     } else {
@@ -131,14 +138,17 @@ export default function AudienceSegmentsPage() {
       prospectingSpend: week.segments.prospecting.spend,
       prospectingCpmr: week.segments.prospecting.cpmr,
       prospectingPurchases: week.segments.prospecting.purchases,
+      prospectingRoas: week.segments.prospecting.roas,
       engagedReach: week.segments.engaged.reach,
       engagedSpend: week.segments.engaged.spend,
       engagedCpmr: week.segments.engaged.cpmr,
       engagedPurchases: week.segments.engaged.purchases,
+      engagedRoas: week.segments.engaged.roas,
       existingReach: week.segments.existing.reach,
       existingSpend: week.segments.existing.spend,
       existingCpmr: week.segments.existing.cpmr,
       existingPurchases: week.segments.existing.purchases,
+      existingRoas: week.segments.existing.roas,
     }));
   }, [report]);
 

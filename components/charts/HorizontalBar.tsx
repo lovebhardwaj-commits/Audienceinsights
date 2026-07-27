@@ -36,15 +36,33 @@ export function HorizontalBar({ data, categoryKey, series, stacked = false, heig
   const h = height ?? barHeight;
 
   const renderTick = (props: Record<string, unknown>) => {
-    const x = 8;
     const y = Number(props.y ?? 0);
     const value = String((props.payload as Record<string, unknown>)?.value ?? "");
     const full = fullLabels?.[value] ?? value;
     return (
-      <text x={x} y={y} dy={4} textAnchor="start" style={tickStyle}>
-        <title>{full}</title>
-        {middleEllipsis(value, 22)}
-      </text>
+      <foreignObject x={0} y={y - 10} width={176} height={20}>
+        <span
+          title={full}
+          style={{
+            display: "block",
+            paddingLeft: 8,
+            fontSize: 12,
+            fontFamily: "var(--font-mono)",
+            color: CHART_INK.muted,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            lineHeight: "20px",
+            cursor: "default",
+          }}
+          onCopy={(e: React.ClipboardEvent) => {
+            e.preventDefault();
+            e.clipboardData.setData("text/plain", full);
+          }}
+        >
+          {middleEllipsis(value, 22)}
+        </span>
+      </foreignObject>
     );
   };
 

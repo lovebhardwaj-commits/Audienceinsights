@@ -14,7 +14,7 @@ interface CacheEntry {
 const LS_PREFIX     = "arc:"; // "ads reach cache"
 const LS_MAX_ENTRIES = 50;
 // Bump this whenever a report's response shape changes to auto-invalidate stale entries.
-const CACHE_VERSION = 5;
+const CACHE_VERSION = 6;
 
 const store = new Map<string, CacheEntry>();
 

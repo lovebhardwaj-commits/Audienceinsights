@@ -3,6 +3,7 @@
 import { Bar, BarChart, CartesianGrid, Cell, Label, LabelList, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+import { middleEllipsis } from "@/lib/format";
 import { ChartTooltipContent, compactTickFormatter, currencyTickFormatter, type ValueFormat } from "./ChartTooltip";
 import type { SeriesConfig } from "./LineChart";
 
@@ -29,25 +30,23 @@ interface HorizontalBarProps {
 const tickStyle = { fontSize: 12, fill: CHART_INK.muted, fontFamily: "var(--font-mono)" };
 const axisTitleStyle = { fontSize: 12, fontWeight: 600, fill: CHART_INK.muted };
 
-function truncate(s: string, max: number): string {
-  return s.length > max ? s.slice(0, max - 1) + "…" : s;
-}
-
-function CategoryTick(props: Record<string, unknown>) {
-  const x = 8;
-  const y = Number(props.y ?? 0);
-  const value = String((props.payload as Record<string, unknown>)?.value ?? "");
-  return (
-    <text x={x} y={y} dy={4} textAnchor="start" style={tickStyle}>
-      {truncate(value, 20)}
-    </text>
-  );
-}
-
 export function HorizontalBar({ data, categoryKey, series, stacked = false, height, categoryColors, valueFormat = "compact", percentOfTotal = false, xTitle, fullLabels, shareDecimals, shareParens, totalLabel }: HorizontalBarProps) {
   const animate = !useReducedMotion();
   const barHeight = Math.max(320, data.length * 36);
   const h = height ?? barHeight;
+
+  const renderTick = (props: Record<string, unknown>) => {
+    const x = 8;
+    const y = Number(props.y ?? 0);
+    const value = String((props.payload as Record<string, unknown>)?.value ?? "");
+    const full = fullLabels?.[value] ?? value;
+    return (
+      <text x={x} y={y} dy={4} textAnchor="start" style={tickStyle}>
+        <title>{full}</title>
+        {middleEllipsis(value, 22)}
+      </text>
+    );
+  };
 
   const dataWithPct: Array<Record<string, string | number>> = percentOfTotal && stacked && series.length >= 2
     ? data.map((d) => {
@@ -76,7 +75,7 @@ export function HorizontalBar({ data, categoryKey, series, stacked = false, heig
             type="category"
             dataKey={categoryKey}
             width={180}
-            tick={CategoryTick}
+            tick={renderTick}
             axisLine={false}
             tickLine={false}
           />

@@ -100,7 +100,8 @@ function ChurnTooltip({
                 <span className="max-w-[140px] truncate">{p.name}</span>
               </span>
               <span className={`tabular-nums ${hot ? "font-semibold text-slate-800" : "font-medium text-slate-700"}`}>
-                {formatCurrencyCompact(raw)}
+                {formatCurrencyCompact(raw)}{" "}
+                <span className="text-slate-400">({(raw / total * 100).toFixed(1)}%)</span>
               </span>
             </div>
           );

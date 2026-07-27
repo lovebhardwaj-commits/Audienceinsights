@@ -39,7 +39,7 @@ function CategoryTick(props: Record<string, unknown>) {
   const value = String((props.payload as Record<string, unknown>)?.value ?? "");
   return (
     <text x={x} y={y} dy={4} textAnchor="start" style={tickStyle}>
-      {truncate(value, 28)}
+      {truncate(value, 20)}
     </text>
   );
 }

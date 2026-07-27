@@ -45,7 +45,6 @@ export interface ActionRow {
 export interface MetaAdCreative {
   id: string;
   name?: string;
-  created_time?: string;
 }
 
 export interface MetaAd {

@@ -64,7 +64,7 @@ export async function getCreativeChurnReport(
 
   emit?.({ current: 0, total: totalSteps, label: "Fetching your ad list…" });
   const ads = await metaGetAllPages(`/${accountId}/ads`, token, {
-    fields: "id,name,created_time,status,campaign_id,creative{id,name,created_time}",
+    fields: "id,name,created_time,status,campaign_id,creative{id,name}",
     limit: "200",
   });
 
@@ -100,19 +100,21 @@ export async function getCreativeChurnReport(
   for (const ad of ads as MetaAd[]) {
     const creativeId = ad.creative?.id ?? ad.id;
     const creativeName = ad.creative?.name ?? ad.name;
-    const creativeCreatedTime = ad.creative?.created_time ?? ad.created_time;
 
     adToCreative.set(ad.id, creativeId);
 
-    if (!creativeInfo.has(creativeId)) {
+    const existing = creativeInfo.get(creativeId);
+    if (!existing) {
       creativeInfo.set(creativeId, {
         id: creativeId,
         name: creativeName,
-        createdTime: creativeCreatedTime,
-        adIds: [],
+        createdTime: ad.created_time,
+        adIds: [ad.id],
       });
+    } else {
+      existing.adIds.push(ad.id);
+      if (ad.created_time < existing.createdTime) existing.createdTime = ad.created_time;
     }
-    creativeInfo.get(creativeId)!.adIds.push(ad.id);
   }
 
   // ── Assign cohorts by creative's created_time ────────────────────────────

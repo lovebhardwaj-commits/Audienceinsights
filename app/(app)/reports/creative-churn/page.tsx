@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip,
-  Treemap, XAxis, YAxis,
+  XAxis, YAxis,
 } from "recharts";
 import { useAccount } from "@/components/providers/AccountProvider";
 import { useStreamingReport } from "@/lib/hooks/useStreamingReport";
@@ -126,43 +126,7 @@ interface CohortTableRow {
   totalSpend: number; spendSharePct: number; last7SharePct: number; activeDays: number;
 }
 
-// ─── Custom Treemap Cell ──────────────────────────────────────────────────
-interface TreemapCellProps {
-  x?: number; y?: number; width?: number; height?: number;
-  name?: string; value?: number; status?: AdStatus;
-  totalSpend?: number; prevSpend?: number;
-}
 
-function TreemapCell(props: TreemapCellProps) {
-  const { x = 0, y = 0, width = 0, height = 0, name = "", value = 0, status = "steady", totalSpend = 0, prevSpend = 0 } = props;
-  if (width < 4 || height < 4) return null;
-  const s = STATUS_META[status];
-  const changePct = prevSpend > 0 ? ((value - prevSpend) / prevSpend) * 100 : null;
-  const pctOfTotal = totalSpend > 0 ? (value / totalSpend) * 100 : 0;
-  const large = pctOfTotal >= 8;
-  const medium = pctOfTotal >= 3 && !large;
-
-  return (
-    <g>
-      <rect x={x} y={y} width={width} height={height} rx={4} fill={s.bg} stroke="#fff" strokeWidth={2} />
-      {(large || medium) && (
-        <foreignObject x={x + 6} y={y + 6} width={width - 12} height={height - 12} style={{ overflow: "hidden" }}>
-          <div style={{ fontFamily: "inherit" }}>
-            <div style={{ fontSize: 11, fontWeight: 600, color: s.color, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-              {truncateAdName(name, large ? 28 : 18)}
-            </div>
-            <div style={{ fontSize: 10, color: "#64748B", marginTop: 2 }}>{formatCurrencyCompact(value)}</div>
-            {large && changePct !== null && (
-              <div style={{ fontSize: 10, color: changePct >= 0 ? "#059669" : "#DC2626", marginTop: 1 }}>
-                {changePct >= 0 ? "▲" : "▼"} {Math.abs(changePct).toFixed(0)}%
-              </div>
-            )}
-          </div>
-        </foreignObject>
-      )}
-    </g>
-  );
-}
 
 // ─── Page ─────────────────────────────────────────────────────────────────
 export default function CreativeChurnPage() {
@@ -251,21 +215,6 @@ export default function CreativeChurnPage() {
   }, [report]);
 
   // ── Summary bar (scaling/fading/steady spend + counts) ───────────────────
-  const summaryBar = useMemo(() => {
-    if (!report?.creativeSeries?.length) return null;
-    const lastDay = report.days[report.days.length - 1];
-    const currentTotal = lastDay?.totalSpend ?? 0;
-    const groups = { scaling: { count: 0, spend: 0 }, fading: { count: 0, spend: 0 }, steady: { count: 0, spend: 0 } };
-    for (const ad of report.creativeSeries) {
-      const status = statusMap.get(ad.creativeId);
-      if (status !== "scaling" && status !== "fading" && status !== "steady") continue;
-      const periodSpend = lastDay ? (ad.spendByPeriod[lastDay.date] ?? 0) : 0;
-      groups[status].count++;
-      groups[status].spend += periodSpend;
-    }
-    return { groups, currentTotal };
-  }, [report, statusMap]);
-
   // ── Heatmap data ─────────────────────────────────────────────────────────
   const { sortedAds, colorScale, allSpendValues, quantileLegend } = useMemo(() => {
     const ads = report?.creativeSeries ?? [];
@@ -315,34 +264,6 @@ export default function CreativeChurnPage() {
 
     return { sortedAds: sorted, colorScale, allSpendValues, quantileLegend: breakpoints };
   }, [report, heatmapSort, heatmapStatusFilter, statusMap]);
-
-  // ── Treemap data ─────────────────────────────────────────────────────────
-  const treemapData = useMemo(() => {
-    const ads = report?.creativeSeries ?? [];
-    const days = report?.days ?? [];
-    const lastDay = days[days.length - 1];
-    const prevDay = days[days.length - 2];
-    if (!lastDay) return [];
-
-    const MIN_SPEND = 5000;
-    const items = ads
-      .map((ad) => ({
-        name: ad.creativeName,
-        adId: ad.creativeId,
-        value: ad.spendByPeriod[lastDay.date] ?? 0,
-        prevSpend: prevDay ? (ad.spendByPeriod[prevDay.date] ?? 0) : 0,
-        totalSpend: ad.totalSpend,
-        status: statusMap.get(ad.creativeId) ?? "paused" as AdStatus,
-      }))
-      .filter((d) => d.value > 0);
-
-    const othersSpend = items.filter((d) => d.value < MIN_SPEND).reduce((s, d) => s + d.value, 0);
-    const main = items.filter((d) => d.value >= MIN_SPEND);
-    const total = items.reduce((s, d) => s + d.value, 0);
-    const result = main.map((d) => ({ ...d, totalSpend: total }));
-    if (othersSpend > 0) result.push({ name: `Others (${items.length - main.length})`, adId: "__others__", value: othersSpend, prevSpend: 0, totalSpend: total, status: "steady" as AdStatus });
-    return result;
-  }, [report, statusMap]);
 
   // ── Compare chart data ────────────────────────────────────────────────────
   const { compareData, compareAds } = useMemo(() => {
@@ -426,11 +347,7 @@ export default function CreativeChurnPage() {
     });
   }
 
-  function scrollToHeatmap(status?: AdStatus) {
-    if (status) setHeatmapStatusFilter(status === heatmapStatusFilter ? null : status);
-    setHeatmapSort("status");
-    setTimeout(() => heatmapRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
-  }
+
 
   // ─────────────────────────────────────────────────────────────────────────
   return (
@@ -543,86 +460,8 @@ export default function CreativeChurnPage() {
             )}
           </div>
 
-          {/* ── 3. Creative Performance section ─────────────────────────── */}
-          {!isInitialLoad && report && (
-            <>
-              <div className="mt-10 flex items-center gap-4">
-                <div className="h-px flex-1 bg-slate-200" />
-                <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">Creative Performance</h2>
-                <div className="h-px flex-1 bg-slate-200" />
-              </div>
-
-              {/* ── 4. Treemap ─────────────────────────────────────────── */}
-              {treemapData.length > 0 && (
-                <div className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
-                  <div className="mb-1 flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="text-sm font-bold text-slate-800">Where is spend going now?</h3>
-                      <p className="mt-0.5 text-xs text-slate-400">Rectangle size = current period spend. Color = trend direction.</p>
-                    </div>
-                    <div className="flex shrink-0 flex-wrap gap-3 text-[11px]">
-                      {(["scaling", "fading", "steady", "new"] as AdStatus[]).map((s) => (
-                        <span key={s} className="flex items-center gap-1">
-                          <span style={{ width: 8, height: 8, borderRadius: 2, background: STATUS_META[s].dot, display: "inline-block" }} />
-                          <span className="text-ink-secondary capitalize">{STATUS_META[s].label}</span>
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <Treemap
-                      data={treemapData}
-                      dataKey="value"
-                      nameKey="name"
-                      isAnimationActive={animate}
-                      animationDuration={400}
-                      content={(cellProps) => {
-                        const item = treemapData.find((d) => d.name === cellProps.name);
-                        return (
-                          <TreemapCell
-                            {...cellProps}
-                            status={item?.status ?? "steady"}
-                            totalSpend={item?.totalSpend ?? 0}
-                            prevSpend={item?.prevSpend ?? 0}
-                          />
-                        );
-                      }}
-                    />
-                  </ResponsiveContainer>
-                </div>
-              )}
-
-              {/* ── 5. Summary bar ──────────────────────────────────────── */}
-              {summaryBar && (summaryBar.groups.scaling.count + summaryBar.groups.fading.count + summaryBar.groups.steady.count) > 0 && (
-                <div className="mt-4 grid grid-cols-3 divide-x divide-hairline rounded-xl border border-hairline bg-surface-card overflow-hidden">
-                  {(["scaling", "fading", "steady"] as const).map((status) => {
-                    const g = summaryBar.groups[status];
-                    const s = STATUS_META[status];
-                    const sharePct = summaryBar.currentTotal > 0 ? (g.spend / summaryBar.currentTotal) * 100 : 0;
-                    const icons = { scaling: "📈", fading: "📉", steady: "📊" };
-                    return (
-                      <div key={status} className="px-4 py-3">
-                        <div className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: s.color }}>
-                          <span>{icons[status]}</span>
-                          <span className="capitalize">{s.label}</span>
-                          <span className="rounded-full bg-surface-app px-1.5 py-0.5 text-[10px] font-medium text-ink-tertiary">{g.count}</span>
-                        </div>
-                        <div className="mt-1 font-mono text-[17px] font-semibold tabular-nums text-ink">{formatCurrencyCompact(g.spend)}</div>
-                        <div className="mt-0.5 text-[11px] text-ink-tertiary">{formatPercent(sharePct)} of current period</div>
-                        <button
-                          onClick={() => scrollToHeatmap(status)}
-                          className="mt-1.5 text-[11px] font-medium text-brand-600 hover:underline"
-                        >
-                          View in heatmap →
-                        </button>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-
-              {/* ── 6. Heatmap ──────────────────────────────────────────── */}
-              {sortedAds.length > 0 && (
+          {/* ── 3. Heatmap ──────────────────────────────────────────── */}
+          {!isInitialLoad && report && sortedAds.length > 0 && (
                 <div ref={heatmapRef} className="mt-6 rounded-xl border border-hairline bg-surface-card p-5">
                   <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
                     <div>
@@ -776,11 +615,9 @@ export default function CreativeChurnPage() {
                     </p>
                   )}
                 </div>
-              )}
-            </>
           )}
 
-          {/* ── 8. Compare line chart (when open) ───────────────────────── */}
+          {/* ── 4. Compare line chart (when open) ───────────────────────── */}
           {compareOpen && compareAds.length > 0 && (
             <div className="mt-6 rounded-xl border border-brand-200 bg-surface-card p-5">
               <div className="mb-4 flex items-center justify-between">

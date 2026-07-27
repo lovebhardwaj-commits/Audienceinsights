@@ -183,13 +183,17 @@ function creativeChurn(since?: string, until?: string) {
   });
 
   const cohorts = [
-    { key: PRE_COHORT_KEY, label: preLabel, adCount: 38, totalSpend: days.reduce((s, d) => s + (d.cohortSpend[PRE_COHORT_KEY] ?? 0), 0) },
-    ...keptMonths.map((key) => ({
-      key,
-      label: monthLabel(`${key}-01`),
-      adCount: 14 + (keptMonths.indexOf(key) % 5) * 3,
-      totalSpend: days.reduce((s, d) => s + (d.cohortSpend[key] ?? 0), 0),
-    })),
+    { key: PRE_COHORT_KEY, label: preLabel, creativeCount: 22, adCount: 38, totalSpend: days.reduce((s, d) => s + (d.cohortSpend[PRE_COHORT_KEY] ?? 0), 0) },
+    ...keptMonths.map((key) => {
+      const adCount = 14 + (keptMonths.indexOf(key) % 5) * 3;
+      return {
+        key,
+        label: monthLabel(`${key}-01`),
+        creativeCount: Math.max(2, Math.ceil(adCount * 0.6)),
+        adCount,
+        totalSpend: days.reduce((s, d) => s + (d.cohortSpend[key] ?? 0), 0),
+      };
+    }),
   ];
 
   const isoDates = days.map((d) => d.date);
@@ -203,7 +207,7 @@ function creativeChurn(since?: string, until?: string) {
     ["SR_Spring_UGC_A", "SR_Spring_Carousel_B"], ["SR_Summer_Reel_A", "SR_Summer_Static_B"],
   ];
   let adCounter = 0;
-  const adSeries: Array<{ adId: string; adName: string; totalSpend: number; spendByPeriod: Record<string, number> }> = [
+  const creativeSeries: Array<{ creativeId: string; creativeName: string; adCount: number; totalSpend: number; spendByPeriod: Record<string, number> }> = [
     ...([
       { name: "SR_Core_Prospecting_A", weeklyPeak: (220_000 * 0.6) / WEEKS_PER_MONTH },
       { name: "SR_Core_Retargeting_B", weeklyPeak: (220_000 * 0.4) / WEEKS_PER_MONTH },
@@ -214,16 +218,16 @@ function creativeChurn(since?: string, until?: string) {
         const spend = Math.round(weeklyPeak * Math.pow(PRE_PERIOD_DECAY, i));
         if (spend > 0) { spendByPeriod[isoDates[i]] = spend; totalSpend += spend; }
       }
-      return { adId: `demo-ad-${adCounter++}`, adName: name, totalSpend, spendByPeriod };
+      return { creativeId: `demo-creative-${adCounter++}`, creativeName: name, adCount: 2, totalSpend, spendByPeriod };
     }),
     ...keptMonths.flatMap((key, idx) => {
       const startPeriod = cohortStartPeriod.get(key)!;
       const peak = PEAK_CYCLE[idx % PEAK_CYCLE.length] / WEEKS_PER_MONTH;
       const [nameA, nameB] = AD_NAME_PAIRS[idx % AD_NAME_PAIRS.length];
       return [
-        { name: nameA, share: 0.62, ramp: RAMP_PERIODS },
-        { name: nameB, share: 0.38, ramp: RAMP_PERIODS + 1 },
-      ].map(({ name, share, ramp }) => {
+        { name: nameA, share: 0.62, ramp: RAMP_PERIODS, adCount: 3 },
+        { name: nameB, share: 0.38, ramp: RAMP_PERIODS + 1, adCount: 1 },
+      ].map(({ name, share, ramp, adCount }) => {
         const spendByPeriod: Record<string, number> = {};
         let totalSpend = 0;
         for (let i = 0; i < isoDates.length; i++) {
@@ -234,7 +238,7 @@ function creativeChurn(since?: string, until?: string) {
           const spend = Math.round(peak * share * rise * decay * (0.8 + Math.random() * 0.4));
           if (spend > 0) { spendByPeriod[isoDates[i]] = spend; totalSpend += spend; }
         }
-        return { adId: `demo-ad-${adCounter++}`, adName: name, totalSpend, spendByPeriod };
+        return { creativeId: `demo-creative-${adCounter++}`, creativeName: name, adCount, totalSpend, spendByPeriod };
       });
     }),
   ].sort((a, b) => b.totalSpend - a.totalSpend);
@@ -244,7 +248,7 @@ function creativeChurn(since?: string, until?: string) {
     days,
     totalSpend: days.reduce((s, d) => s + d.totalSpend, 0),
     granularity: "weekly" as const,
-    adSeries,
+    creativeSeries,
   };
 }
 

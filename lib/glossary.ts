@@ -28,7 +28,7 @@ export const GLOSSARY = {
   newPurchases: "Purchases made by people in the New Audience segment — genuinely new customers, not repeat buyers.",
   newPurchasePct: "New-customer purchases as a share of all purchases. Higher means your ads acquire customers, not just re-convert existing ones.",
   newCpa: "Cost to acquire one new customer — New Audience spend divided by New Audience purchases.",
-  adsInCohort: "How many ads were launched in this month.",
+  adsInCohort: "Unique creatives (and total ads using them) launched in this month.",
   shareOfTotal: "This cohort's share of all ad spend in the selected period.",
   last7Share: "Share of the most recent week's spend still going to this cohort — 0% means these creatives have been fully replaced.",
   activeDays: "Number of days in the period this cohort had any spend.",

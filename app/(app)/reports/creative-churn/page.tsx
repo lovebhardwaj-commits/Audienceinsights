@@ -29,7 +29,7 @@ import { CHART_CHROME, CHART_INK } from "@/lib/chart-theme";
 import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
 import {
   PRE_COHORT_KEY,
-  type CreativeChurnReport, type CreativeAdSeries,
+  type CreativeChurnReport, type CreativeSeriesItem,
 } from "@/lib/reports/creative-churn";
 
 // Creative Churn is always weekly now (time_increment=7) — daily (time_increment=1)
@@ -96,7 +96,7 @@ function makeQuantileScale(values: number[]) {
 }
 
 // Classify an ad's trend from its weekly spend series.
-function classifyAdStatus(ad: CreativeAdSeries, days: Array<{ date: string }>): AdStatus {
+function classifyAdStatus(ad: CreativeSeriesItem, days: Array<{ date: string }>): AdStatus {
   const weekly = days.map((d) => ad.spendByPeriod[d.date] ?? 0);
   const hasSpendNow = (ad.spendByPeriod[days[days.length - 1]?.date] ?? 0) > 0;
   if (!hasSpendNow) return "paused";
@@ -122,7 +122,7 @@ const STATUS_META: Record<AdStatus, { label: string; color: string; bg: string; 
 
 // ─── Cohort table types ───────────────────────────────────────────────────
 interface CohortTableRow {
-  key: string; label: string; adCount: number;
+  key: string; label: string; creativeCount: number; adCount: number;
   totalSpend: number; spendSharePct: number; last7SharePct: number; activeDays: number;
 }
 
@@ -204,9 +204,9 @@ export default function CreativeChurnPage() {
   // ── New visualization state ──
   const [heatmapSort, setHeatmapSort] = useState<HeatmapSort>("totalSpend");
   const [heatmapStatusFilter, setHeatmapStatusFilter] = useState<AdStatus | null>(null);
-  const [selectedAdIds, setSelectedAdIds] = useState<Set<string>>(new Set());
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [compareOpen, setCompareOpen] = useState(false);
-  const [hoveredAdId, setHoveredAdId] = useState<string | null>(null);
+  const [hoveredId, setHoveredAdId] = useState<string | null>(null);
   const [hoveredCol, setHoveredCol] = useState<string | null>(null);
   const heatmapRef = useRef<HTMLDivElement>(null);
   const animate = !useReducedMotion();
@@ -244,32 +244,32 @@ export default function CreativeChurnPage() {
   }, [report, chartSeries]);
 
   // ── Ad status map ────────────────────────────────────────────────────────
-  const adStatusMap = useMemo(() => {
-    if (!report?.adSeries?.length) return new Map<string, AdStatus>();
+  const statusMap = useMemo(() => {
+    if (!report?.creativeSeries?.length) return new Map<string, AdStatus>();
     const map = new Map<string, AdStatus>();
-    for (const ad of report.adSeries) map.set(ad.adId, classifyAdStatus(ad, report.days));
+    for (const c of report.creativeSeries) map.set(c.creativeId, classifyAdStatus(c, report.days));
     return map;
   }, [report]);
 
   // ── Summary bar (scaling/fading/steady spend + counts) ───────────────────
   const summaryBar = useMemo(() => {
-    if (!report?.adSeries?.length) return null;
+    if (!report?.creativeSeries?.length) return null;
     const lastDay = report.days[report.days.length - 1];
     const currentTotal = lastDay?.totalSpend ?? 0;
     const groups = { scaling: { count: 0, spend: 0 }, fading: { count: 0, spend: 0 }, steady: { count: 0, spend: 0 } };
-    for (const ad of report.adSeries) {
-      const status = adStatusMap.get(ad.adId);
+    for (const ad of report.creativeSeries) {
+      const status = statusMap.get(ad.creativeId);
       if (status !== "scaling" && status !== "fading" && status !== "steady") continue;
       const periodSpend = lastDay ? (ad.spendByPeriod[lastDay.date] ?? 0) : 0;
       groups[status].count++;
       groups[status].spend += periodSpend;
     }
     return { groups, currentTotal };
-  }, [report, adStatusMap]);
+  }, [report, statusMap]);
 
   // ── Heatmap data ─────────────────────────────────────────────────────────
   const { sortedAds, colorScale, allSpendValues, quantileLegend } = useMemo(() => {
-    const ads = report?.adSeries ?? [];
+    const ads = report?.creativeSeries ?? [];
     const days = report?.days ?? [];
     const allSpendValues = ads.flatMap((a) => days.map((d) => a.spendByPeriod[d.date] ?? 0));
     const colorScale = makeQuantileScale(allSpendValues);
@@ -278,14 +278,14 @@ export default function CreativeChurnPage() {
     const prevDay = days[days.length - 2];
 
     let sorted = [...ads];
-    if (heatmapStatusFilter) sorted = sorted.filter((a) => adStatusMap.get(a.adId) === heatmapStatusFilter);
+    if (heatmapStatusFilter) sorted = sorted.filter((a) => statusMap.get(a.creativeId) === heatmapStatusFilter);
 
     switch (heatmapSort) {
       case "currentPeriod":
         sorted.sort((a, b) => (b.spendByPeriod[lastDay?.date ?? ""] ?? 0) - (a.spendByPeriod[lastDay?.date ?? ""] ?? 0));
         break;
       case "biggestChange": {
-        const change = (ad: CreativeAdSeries) => {
+        const change = (ad: CreativeSeriesItem) => {
           const cur = lastDay ? (ad.spendByPeriod[lastDay.date] ?? 0) : 0;
           const prev = prevDay ? (ad.spendByPeriod[prevDay.date] ?? 0) : 0;
           return prev > 0 ? Math.abs((cur - prev) / prev) : 0;
@@ -296,11 +296,11 @@ export default function CreativeChurnPage() {
       case "status":
         sorted.sort((a, b) => {
           const order: AdStatus[] = ["scaling", "fading", "steady", "new", "paused"];
-          return order.indexOf(adStatusMap.get(a.adId) ?? "paused") - order.indexOf(adStatusMap.get(b.adId) ?? "paused");
+          return order.indexOf(statusMap.get(a.creativeId) ?? "paused") - order.indexOf(statusMap.get(b.creativeId) ?? "paused");
         });
         break;
       case "nameAsc":
-        sorted.sort((a, b) => a.adName.localeCompare(b.adName));
+        sorted.sort((a, b) => a.creativeName.localeCompare(b.creativeName));
         break;
       default:
         sorted.sort((a, b) => b.totalSpend - a.totalSpend);
@@ -315,11 +315,11 @@ export default function CreativeChurnPage() {
     });
 
     return { sortedAds: sorted, colorScale, allSpendValues, quantileLegend: breakpoints };
-  }, [report, heatmapSort, heatmapStatusFilter, adStatusMap]);
+  }, [report, heatmapSort, heatmapStatusFilter, statusMap]);
 
   // ── Treemap data ─────────────────────────────────────────────────────────
   const treemapData = useMemo(() => {
-    const ads = report?.adSeries ?? [];
+    const ads = report?.creativeSeries ?? [];
     const days = report?.days ?? [];
     const lastDay = days[days.length - 1];
     const prevDay = days[days.length - 2];
@@ -328,12 +328,12 @@ export default function CreativeChurnPage() {
     const MIN_SPEND = 5000;
     const items = ads
       .map((ad) => ({
-        name: ad.adName,
-        adId: ad.adId,
+        name: ad.creativeName,
+        adId: ad.creativeId,
         value: ad.spendByPeriod[lastDay.date] ?? 0,
         prevSpend: prevDay ? (ad.spendByPeriod[prevDay.date] ?? 0) : 0,
         totalSpend: ad.totalSpend,
-        status: adStatusMap.get(ad.adId) ?? "paused" as AdStatus,
+        status: statusMap.get(ad.creativeId) ?? "paused" as AdStatus,
       }))
       .filter((d) => d.value > 0);
 
@@ -343,22 +343,22 @@ export default function CreativeChurnPage() {
     const result = main.map((d) => ({ ...d, totalSpend: total }));
     if (othersSpend > 0) result.push({ name: `Others (${items.length - main.length})`, adId: "__others__", value: othersSpend, prevSpend: 0, totalSpend: total, status: "steady" as AdStatus });
     return result;
-  }, [report, adStatusMap]);
+  }, [report, statusMap]);
 
   // ── Compare chart data ────────────────────────────────────────────────────
   const { compareData, compareAds } = useMemo(() => {
-    const ads = (report?.adSeries ?? []).filter((a) => selectedAdIds.has(a.adId));
+    const ads = (report?.creativeSeries ?? []).filter((a) => selectedIds.has(a.creativeId));
     const days = report?.days ?? [];
     const data = days.map((day) => {
       const point: Record<string, string | number | null> = { period: formatShortDate(day.date) };
       for (const ad of ads) {
         const s = ad.spendByPeriod[day.date];
-        point[ad.adId] = s && s > 0 ? s : null;
+        point[ad.creativeId] = s && s > 0 ? s : null;
       }
       return point;
     });
     return { compareData: data, compareAds: ads };
-  }, [report, selectedAdIds]);
+  }, [report, selectedIds]);
 
   // ── Visible range label ──────────────────────────────────────────────────
   const visibleRangeLabel = useMemo(() => {
@@ -372,7 +372,7 @@ export default function CreativeChurnPage() {
   // ── KPI cards ─────────────────────────────────────────────────────────────
   const kpis = useMemo(() => {
     if (!report) return null;
-    const activeCreatives = report.adSeries.filter((a) => a.totalSpend > 0).length;
+    const activeCreatives = report.creativeSeries.filter((a) => a.totalSpend > 0).length;
     const monthCohorts = report.cohorts.filter((c) => c.key !== PRE_COHORT_KEY);
     const newest = monthCohorts.sort((a, b) => b.key.localeCompare(a.key))[0];
     const newestShare = newest && report.totalSpend > 0 ? (newest.totalSpend / report.totalSpend) * 100 : 0;
@@ -390,7 +390,7 @@ export default function CreativeChurnPage() {
       .map((c) => {
         const last7 = recentDays.reduce((s, d) => s + (d.cohortSpend[c.key] ?? 0), 0);
         return {
-          key: c.key, label: c.label, adCount: c.adCount,
+          key: c.key, label: c.label, creativeCount: c.creativeCount, adCount: c.adCount,
           totalSpend: c.totalSpend,
           spendSharePct: report.totalSpend > 0 ? (c.totalSpend / report.totalSpend) * 100 : 0,
           last7SharePct: recentTotal > 0 ? (last7 / recentTotal) * 100 : 0,
@@ -402,7 +402,7 @@ export default function CreativeChurnPage() {
 
   const cohortColumns: DataTableColumn<CohortTableRow>[] = useMemo(() => [
     { key: "label", header: "Launch Month", accessor: (r) => r.key, render: (r) => r.label },
-    { key: "adCount", header: "Ads", help: GLOSSARY.adsInCohort, accessor: (r) => r.adCount, align: "right", render: (r) => formatNumber(r.adCount) },
+    { key: "creativeCount", header: "Creatives (Ads)", help: "Unique creatives (and total ads using them) launched in this month.", accessor: (r) => r.creativeCount, align: "right", render: (r) => `${formatNumber(r.creativeCount)} (${formatNumber(r.adCount)})` },
     { key: "totalSpend", header: "Spend", help: GLOSSARY.spend, accessor: (r) => r.totalSpend, align: "right", render: (r) => formatCurrencyCompact(r.totalSpend) },
     { key: "spendSharePct", header: "Share of Total", help: GLOSSARY.shareOfTotal, accessor: (r) => r.spendSharePct, align: "right", render: (r) => formatPercent(r.spendSharePct) },
     {
@@ -419,8 +419,8 @@ export default function CreativeChurnPage() {
   ], []);
 
   // ── Helpers ───────────────────────────────────────────────────────────────
-  function toggleAdSelection(adId: string) {
-    setSelectedAdIds((prev) => {
+  function toggleSelection(adId: string) {
+    setSelectedIds((prev) => {
       const next = new Set(prev);
       if (next.has(adId)) { next.delete(adId); } else if (next.size < 5) { next.add(adId); }
       return next;
@@ -484,7 +484,7 @@ export default function CreativeChurnPage() {
             <SummaryCard
               label="Active Creatives"
               value={kpis ? formatNumber(kpis.activeCreatives) : "—"}
-              sublabel="ads with spend in period"
+              sublabel="unique creatives with spend in period"
               loading={isInitialLoad}
             />
             <SummaryCard
@@ -535,7 +535,7 @@ export default function CreativeChurnPage() {
                   </button>
                   {howToOpen && (
                     <div className="mt-2 rounded-lg bg-slate-50 px-4 py-3 text-xs leading-relaxed text-slate-600">
-                      <p>Each colored band shows how much you spent <strong>that period</strong> on ads that first launched in a given month. The gray base is legacy creative launched before this window.</p>
+                      <p>Each colored band shows how much you spent <strong>that period</strong> on creatives that were first created in a given month. Multiple ads sharing the same creative are counted once, using the creative's original creation date — not the ad clone date.</p>
                       <p className="mt-1.5">Healthy creative rotation looks like new colors steadily taking over the top of the stack. If the gray or older bands stay thick, spend is stuck on aging creatives — time to refresh.</p>
                     </div>
                   )}
@@ -703,24 +703,24 @@ export default function CreativeChurnPage() {
 
                     {/* Data rows */}
                     {sortedAds.map((ad) => {
-                      const status = adStatusMap.get(ad.adId) ?? "paused";
+                      const status = statusMap.get(ad.creativeId) ?? "paused";
                       const s = STATUS_META[status];
-                      const isSelected = selectedAdIds.has(ad.adId);
-                      const isHovered = hoveredAdId === ad.adId;
-                      const isDisabled = selectedAdIds.size >= 5 && !isSelected;
+                      const isSelected = selectedIds.has(ad.creativeId);
+                      const isHovered = hoveredId === ad.creativeId;
+                      const isDisabled = selectedIds.size >= 5 && !isSelected;
                       return (
                         <div
-                          key={ad.adId}
+                          key={ad.creativeId}
                           style={{
                             display: "grid",
                             gridTemplateColumns: `180px repeat(${report.days.length}, 1fr)`,
                             gap: 2,
                             marginBottom: 2,
-                            opacity: isHovered ? 1 : hoveredAdId ? 0.4 : 1,
+                            opacity: isHovered ? 1 : hoveredId ? 0.4 : 1,
                             cursor: isDisabled ? "not-allowed" : "pointer",
                           }}
-                          onClick={() => !isDisabled && toggleAdSelection(ad.adId)}
-                          onMouseEnter={() => setHoveredAdId(ad.adId)}
+                          onClick={() => !isDisabled && toggleSelection(ad.creativeId)}
+                          onMouseEnter={() => setHoveredAdId(ad.creativeId)}
                           onMouseLeave={() => setHoveredAdId(null)}
                         >
                           {/* Row label */}
@@ -744,9 +744,9 @@ export default function CreativeChurnPage() {
                                 textOverflow: "ellipsis",
                                 whiteSpace: "nowrap",
                               }}
-                              title={ad.adName}
+                              title={ad.creativeName}
                             >
-                              {truncateAdName(ad.adName)}
+                              {truncateAdName(ad.creativeName)}
                             </span>
                           </div>
 
@@ -764,7 +764,7 @@ export default function CreativeChurnPage() {
                                   border: isColHovered || isSelected ? "1.5px solid #2563EB" : isSelected ? "1.5px solid #2563EB" : "none",
                                   boxSizing: "border-box",
                                 }}
-                                title={spend > 0 ? `${ad.adName}\n${formatShortDate(day.date)}: ${formatCurrency(spend)}` : undefined}
+                                title={spend > 0 ? `${ad.creativeName}\n${formatShortDate(day.date)}: ${formatCurrency(spend)}` : undefined}
                                 onMouseEnter={() => setHoveredCol(day.date)}
                                 onMouseLeave={() => setHoveredCol(null)}
                               />
@@ -794,7 +794,7 @@ export default function CreativeChurnPage() {
                   <p className="mt-0.5 text-xs text-slate-400">Spend over time for selected creatives</p>
                 </div>
                 <button
-                  onClick={() => { setCompareOpen(false); setSelectedAdIds(new Set()); }}
+                  onClick={() => { setCompareOpen(false); setSelectedIds(new Set()); }}
                   className="text-xs font-medium text-slate-400 hover:text-slate-700"
                 >
                   ✕ Close
@@ -816,7 +816,7 @@ export default function CreativeChurnPage() {
                             {ranked.map((p) => (
                               <div key={p.dataKey as string} style={{ display: "flex", justifyContent: "space-between", gap: 12, marginBottom: 3 }}>
                                 <span style={{ color: p.color as string, fontSize: 12, maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                                  {compareAds.find((a) => a.adId === p.dataKey)?.adName ?? (p.dataKey as string)}
+                                  {compareAds.find((a) => a.creativeId === p.dataKey)?.creativeName ?? (p.dataKey as string)}
                                 </span>
                                 <span style={{ color: "#F1F5F9", fontSize: 12, fontFamily: "var(--font-mono)", whiteSpace: "nowrap" }}>
                                   {formatCurrencyCompact(Number(p.value))}
@@ -830,8 +830,8 @@ export default function CreativeChurnPage() {
                     />
                     {compareAds.map((ad, i) => (
                       <Line
-                        key={ad.adId}
-                        dataKey={ad.adId}
+                        key={ad.creativeId}
+                        dataKey={ad.creativeId}
                         stroke={COMPARE_COLORS[i % COMPARE_COLORS.length]}
                         strokeWidth={2.5}
                         dot={{ r: 4, strokeWidth: 0, fill: COMPARE_COLORS[i % COMPARE_COLORS.length] }}
@@ -845,9 +845,9 @@ export default function CreativeChurnPage() {
               </div>
               <div className="mt-3 flex flex-wrap gap-4">
                 {compareAds.map((ad, i) => (
-                  <div key={ad.adId} className="flex items-center gap-1.5 text-xs">
+                  <div key={ad.creativeId} className="flex items-center gap-1.5 text-xs">
                     <span style={{ width: 10, height: 3, borderRadius: 2, background: COMPARE_COLORS[i % COMPARE_COLORS.length], display: "inline-block" }} />
-                    <span className="text-slate-600" title={ad.adName}>{truncateAdName(ad.adName, 40)}</span>
+                    <span className="text-slate-600" title={ad.creativeName}>{truncateAdName(ad.creativeName, 40)}</span>
                   </div>
                 ))}
               </div>
@@ -869,13 +869,13 @@ export default function CreativeChurnPage() {
       )}
 
       {/* ── 7. Floating compare bar ─────────────────────────────────────── */}
-      {selectedAdIds.size > 0 && !compareOpen && (
+      {selectedIds.size > 0 && !compareOpen && (
         <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2">
           <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-surface-card px-5 py-3 shadow-xl shadow-black/10">
             <div className="text-sm text-slate-700">
-              <span className="font-semibold">{selectedAdIds.size}</span>{" "}
-              {selectedAdIds.size === 1 ? "creative" : "creatives"} selected
-              {selectedAdIds.size < 5 && <span className="ml-1 text-slate-400">({5 - selectedAdIds.size} more allowed)</span>}
+              <span className="font-semibold">{selectedIds.size}</span>{" "}
+              {selectedIds.size === 1 ? "creative" : "creatives"} selected
+              {selectedIds.size < 5 && <span className="ml-1 text-slate-400">({5 - selectedIds.size} more allowed)</span>}
             </div>
             <button
               onClick={() => setCompareOpen(true)}
@@ -884,7 +884,7 @@ export default function CreativeChurnPage() {
               Compare ▸
             </button>
             <button
-              onClick={() => setSelectedAdIds(new Set())}
+              onClick={() => setSelectedIds(new Set())}
               className="text-slate-400 hover:text-slate-600"
             >
               ✕

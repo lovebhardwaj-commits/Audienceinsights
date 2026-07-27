@@ -33,7 +33,7 @@ export function creativeChurnInsights(report: CreativeChurnReport): string[] {
   const { cohorts, days } = report;
   if (days.length === 0 || cohorts.length === 0) return insights;
 
-  insights.push(`${cohorts.length} creative cohorts spent in this period across ${formatCompactNumber(cohorts.reduce((s, c) => s + c.adCount, 0))} ads.`);
+  insights.push(`${cohorts.length} creative cohorts spent in this period — ${formatCompactNumber(cohorts.reduce((s, c) => s + c.creativeCount, 0))} unique creatives across ${formatCompactNumber(cohorts.reduce((s, c) => s + c.adCount, 0))} ads.`);
 
   // Last-7-days spend mix: legacy bucket vs the two newest launch months.
   const recentDays = days.slice(-7);

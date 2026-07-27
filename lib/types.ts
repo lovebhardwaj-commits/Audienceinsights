@@ -42,12 +42,19 @@ export interface ActionRow {
   "1d_view"?: string;
 }
 
+export interface MetaAdCreative {
+  id: string;
+  name?: string;
+  created_time?: string;
+}
+
 export interface MetaAd {
   id: string;
   name: string;
   created_time: string;
   status: string;
   campaign_id: string;
+  creative?: MetaAdCreative;
 }
 
 export interface ApiFiltering {

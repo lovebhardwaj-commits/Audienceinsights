@@ -179,6 +179,16 @@ export default function AudienceSegmentsPage() {
     }));
   }, [report]);
 
+  const roasTrendData = useMemo(() => {
+    if (!report) return [];
+    return report.weeks.map((week) => ({
+      week: isPartialWeek(week.weekStart, week.weekEnd) ? `${formatShortDate(week.weekStart)} (partial)` : formatShortDate(week.weekStart),
+      prospectingRoas: week.segments.prospecting.roas,
+      engagedRoas: week.segments.engaged.roas,
+      existingRoas: week.segments.existing.roas,
+    }));
+  }, [report]);
+
   const entities = entityReport.data?.data.entities ?? [];
   const entityLabel = viewLevel === "campaign" ? "Campaign" : viewLevel === "adset" ? "Adset" : "Ad";
 
@@ -357,7 +367,7 @@ export default function AudienceSegmentsPage() {
             xTitle="Week starting"
             yTitle="% of spend"
             partialIndex={partialWeekIndex}
-            referenceLines={[{ y: 30, label: "30% new-audience target", color: "#64748b" }]}
+
             series={[
               { key: "prospecting", label: SEGMENT_LABELS.prospecting, color: SEGMENT_COLORS.prospecting },
               { key: "engaged", label: SEGMENT_LABELS.engaged, color: SEGMENT_COLORS.engaged },
@@ -385,6 +395,28 @@ export default function AudienceSegmentsPage() {
               { key: "prospectingCpmr", label: "New CPMR", color: SEGMENT_COLORS.prospecting },
               { key: "engagedCpmr", label: "Engaged CPMR", color: SEGMENT_COLORS.engaged },
               { key: "existingCpmr", label: "Existing CPMR", color: SEGMENT_COLORS.existing },
+            ]}
+          />
+        )}
+      </div>
+
+      <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
+        <h2 className="text-sm font-semibold text-slate-800">ROAS trend by segment</h2>
+        <p className="mb-4 mt-0.5 text-xs text-slate-400">Return on ad spend per segment, week over week — higher means more revenue per rupee spent.</p>
+        {isInitialLoad ? (
+          <ChartSkeleton height={360} />
+        ) : (
+          <LineChart
+            data={roasTrendData}
+            xKey="week"
+            height={360}
+            valueFormat="decimal"
+            xTitle="Week starting"
+            yTitle="ROAS (×)"
+            lines={[
+              { key: "prospectingRoas", label: "New ROAS", color: SEGMENT_COLORS.prospecting },
+              { key: "engagedRoas", label: "Engaged ROAS", color: SEGMENT_COLORS.engaged },
+              { key: "existingRoas", label: "Existing ROAS", color: SEGMENT_COLORS.existing },
             ]}
           />
         )}

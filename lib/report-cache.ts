@@ -13,6 +13,8 @@ interface CacheEntry {
 
 const LS_PREFIX     = "arc:"; // "ads reach cache"
 const LS_MAX_ENTRIES = 50;
+// Bump this whenever a report's response shape changes to auto-invalidate stale entries.
+const CACHE_VERSION = 2;
 
 const store = new Map<string, CacheEntry>();
 
@@ -81,21 +83,27 @@ function pruneLocalStorage(): void {
 
 // ── Public API ────────────────────────────────────────────────────────────────
 
+function vKey(key: string): string {
+  return `v${CACHE_VERSION}:${key}`;
+}
+
 export function getCached<T>(key: string): CacheHit<T> | null {
-  const mem = store.get(key);
+  const k = vKey(key);
+  const mem = store.get(k);
   if (mem) return { data: mem.data as T, stale: false, fetchedAt: mem.fetchedAt };
 
-  const ls = lsRead(key);
+  const ls = lsRead(k);
   if (!ls) return null;
-  store.set(key, ls); // promote to L1
+  store.set(k, ls); // promote to L1
   return { data: ls.data as T, stale: false, fetchedAt: ls.fetchedAt };
 }
 
 export function setCached(key: string, data: unknown): number {
+  const k = vKey(key);
   const fetchedAt = Date.now();
   const entry: CacheEntry = { data, fetchedAt };
-  store.set(key, entry);
-  lsWrite(key, entry);
+  store.set(k, entry);
+  lsWrite(k, entry);
   pruneLocalStorage();
   return fetchedAt;
 }
@@ -107,8 +115,9 @@ export function clearCache() {
 
 /** Remove a single entry from both L1 and L2 so the next run() hits the network. */
 export function evictCached(key: string): void {
-  store.delete(key);
+  const k = vKey(key);
+  store.delete(k);
   if (typeof localStorage !== "undefined") {
-    try { localStorage.removeItem(LS_PREFIX + key); } catch { /* ignore */ }
+    try { localStorage.removeItem(LS_PREFIX + k); } catch { /* ignore */ }
   }
 }

@@ -64,7 +64,7 @@ export async function getCreativeChurnReport(
 
   emit?.({ current: 0, total: totalSteps, label: "Fetching your ad list…" });
   const ads = await metaGetAllPages(`/${accountId}/ads`, token, {
-    fields: "id,name,created_time,status,campaign_id,creative{id,name}",
+    fields: "id,name,created_time,status,campaign_id,creative{id}",
     limit: "200",
   });
 
@@ -99,7 +99,6 @@ export async function getCreativeChurnReport(
 
   for (const ad of ads as MetaAd[]) {
     const creativeId = ad.creative?.id ?? ad.id;
-    const creativeName = ad.creative?.name ?? ad.name;
 
     adToCreative.set(ad.id, creativeId);
 
@@ -107,7 +106,7 @@ export async function getCreativeChurnReport(
     if (!existing) {
       creativeInfo.set(creativeId, {
         id: creativeId,
-        name: creativeName,
+        name: ad.name,
         createdTime: ad.created_time,
         adIds: [ad.id],
       });

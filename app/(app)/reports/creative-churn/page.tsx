@@ -206,7 +206,6 @@ export default function CreativeChurnPage() {
   const [heatmapStatusFilter, setHeatmapStatusFilter] = useState<AdStatus | null>(null);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [compareOpen, setCompareOpen] = useState(false);
-  const [hoveredId, setHoveredAdId] = useState<string | null>(null);
   const [hoveredCol, setHoveredCol] = useState<string | null>(null);
   const heatmapRef = useRef<HTMLDivElement>(null);
   const animate = !useReducedMotion();
@@ -706,7 +705,6 @@ export default function CreativeChurnPage() {
                       const status = statusMap.get(ad.creativeId) ?? "paused";
                       const s = STATUS_META[status];
                       const isSelected = selectedIds.has(ad.creativeId);
-                      const isHovered = hoveredId === ad.creativeId;
                       const isDisabled = selectedIds.size >= 5 && !isSelected;
                       return (
                         <div
@@ -716,12 +714,9 @@ export default function CreativeChurnPage() {
                             gridTemplateColumns: `180px repeat(${report.days.length}, 1fr)`,
                             gap: 2,
                             marginBottom: 2,
-                            opacity: isHovered ? 1 : hoveredId ? 0.4 : 1,
                             cursor: isDisabled ? "not-allowed" : "pointer",
                           }}
                           onClick={() => !isDisabled && toggleSelection(ad.creativeId)}
-                          onMouseEnter={() => setHoveredAdId(ad.creativeId)}
-                          onMouseLeave={() => setHoveredAdId(null)}
                         >
                           {/* Row label */}
                           <div

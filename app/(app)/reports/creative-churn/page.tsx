@@ -424,7 +424,7 @@ export default function CreativeChurnPage() {
           {/* ── 2. Cohort area chart ───────────────────────────────────── */}
           <div className={`mt-6 rounded-xl border border-hairline bg-surface-card p-5 transition-opacity duration-200 ${loading && !isInitialLoad ? "opacity-50 pointer-events-none" : ""}`}>
             <h2 className="text-base font-bold text-slate-800">Spend by Creative Cohort</h2>
-            <p className="mt-0.5 text-xs text-slate-400">Each color represents spend from ads that launched in that month</p>
+            <p className="mt-0.5 text-xs text-slate-400">Each color represents spend from creatives first created in that month</p>
             {isInitialLoad ? (
               <ChartSkeleton />
             ) : (

@@ -17,12 +17,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }, [collapsed]);
 
   return (
-    // Sidebar is a sticky rail with its own scroll context; the content column scrolls
-    // independently and the rail never moves (D4, Part 1).
-    <div className="flex min-h-screen bg-surface-app">
-      <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} />
-      <div className="flex min-w-0 flex-1 flex-col">
-        <TopBar onToggleSidebar={() => setCollapsed((c) => !c)} />
+    <div className="flex min-h-screen flex-col bg-surface-app">
+      <TopBar onToggleSidebar={() => setCollapsed((c) => !c)} />
+      <div className="flex min-h-0 flex-1">
+        <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} />
         <main className="min-w-0 flex-1 px-6 py-5 lg:px-8">{children}</main>
       </div>
     </div>

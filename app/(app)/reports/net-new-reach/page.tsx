@@ -208,7 +208,7 @@ export default function NetNewReachPage() {
               key={m}
               onClick={() => setMode(m)}
               className={`rounded px-3 py-1 text-sm font-medium capitalize transition-colors ${
-                mode === m ? "bg-ink text-surface-card" : "text-slate-600 hover:bg-slate-100"
+                mode === m ? "bg-brand-500 text-white" : "text-ink-secondary hover:text-ink"
               }`}
             >
               {m === "expanding" ? "Expanding Window" : "Sliding Window"}

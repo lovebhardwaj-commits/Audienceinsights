@@ -712,7 +712,7 @@ export default function CreativeChurnPage() {
             </div>
             <button
               onClick={() => setCompareOpen(true)}
-              className="rounded-full bg-ink px-4 py-1.5 text-sm font-semibold text-surface-card hover:opacity-90"
+              className="rounded-full bg-brand-500 px-4 py-1.5 text-sm font-semibold text-white hover:opacity-90"
             >
               Compare ▸
             </button>

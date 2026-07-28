@@ -264,7 +264,7 @@ export default function AudienceSegmentsPage() {
             key={l.key}
             onClick={() => setViewLevel(l.key)}
             className={`rounded px-3 py-1 text-sm font-medium transition-colors ${
-              viewLevel === l.key ? "bg-ink text-surface-card" : "text-slate-600 hover:bg-slate-100"
+              viewLevel === l.key ? "bg-brand-500 text-white" : "text-ink-secondary hover:text-ink"
             }`}
           >
             {l.label}

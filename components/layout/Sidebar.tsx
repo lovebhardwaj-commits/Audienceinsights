@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { REPORTS } from "@/lib/constants";
 import { HomeIcon, REPORT_ICONS } from "./icons";
-import { Logo, LogoMark } from "./Logo";
 
 const NAV_SLUGS = [
   "net-new-reach",
@@ -31,20 +30,11 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
 
   return (
     <aside
-      className={`sticky top-0 hidden h-screen shrink-0 self-start flex-col overflow-hidden transition-all duration-200 md:flex ${w}`}
+      className={`sticky top-[60px] hidden h-[calc(100vh-60px)] shrink-0 self-start flex-col overflow-hidden transition-all duration-200 md:flex ${w}`}
       style={{ background: "var(--sidebar-bg)", borderRight: "1px solid var(--sidebar-border)" }}
     >
-      {/* Logo area */}
-      <div className={`flex items-center ${collapsed ? "justify-center px-0 py-4" : "justify-center px-4 py-4"}`}
-        style={{ borderBottom: "1px solid var(--sidebar-border)" }}
-      >
-        <Link href="/dashboard" className={collapsed ? "flex h-9 w-9 shrink-0 items-center justify-center" : "min-w-0"}>
-          {collapsed ? <LogoMark className="h-6 w-auto" /> : <Logo className="h-7 w-auto text-ink" />}
-        </Link>
-      </div>
-
       <nav className="flex flex-1 flex-col overflow-y-auto px-2 py-3">
-        {/* Home / Overview */}
+        {/* Home */}
         <SidebarLink href="/dashboard" active={pathname === "/dashboard"} icon={HomeIcon} collapsed={collapsed}>
           Home
         </SidebarLink>
@@ -84,25 +74,57 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
             </button>
 
             {reportsOpen && (
-              <div className="ml-5 mt-0.5 flex flex-col gap-px border-l" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-                {NAV_SLUGS.map((slug) => {
+              <div className="relative ml-[26px] mt-0.5 flex flex-col">
+                {/* Vertical tree line */}
+                <div
+                  className="absolute left-0 top-0"
+                  style={{
+                    width: "1px",
+                    height: "calc(100% - 16px)",
+                    background: "rgba(255,255,255,0.10)",
+                  }}
+                />
+                {NAV_SLUGS.map((slug, i) => {
                   const report = REPORTS.find((r) => r.slug === slug);
                   if (!report) return null;
                   const href = `/reports/${slug}`;
                   const active = pathname === href;
+                  const isLast = i === NAV_SLUGS.length - 1;
                   return (
-                    <Link
-                      key={slug}
-                      href={href}
-                      className={`group flex items-center gap-2 rounded-lg py-2 pl-4 pr-3 text-[12.5px] font-medium transition-colors ${
-                        active ? "font-semibold text-ink" : "text-ink-secondary hover:text-ink"
-                      }`}
-                      style={active ? { background: "rgba(175, 70, 253, 0.10)" } : {}}
-                    >
-                      {active && <span className="absolute -left-[1.5px] h-4 w-[3px] rounded-full bg-brand-500" />}
-                      <span className="relative truncate">{report.title}</span>
-                      {criticalSlugs?.has(slug) && <span className="ml-auto h-2 w-2 shrink-0 rounded-full bg-sev-critical" />}
-                    </Link>
+                    <div key={slug} className="relative flex items-center">
+                      {/* Horizontal branch */}
+                      <div
+                        className="absolute left-0"
+                        style={{
+                          width: "14px",
+                          height: "1px",
+                          top: "50%",
+                          background: "rgba(255,255,255,0.10)",
+                        }}
+                      />
+                      {/* Corner for last item */}
+                      {isLast && (
+                        <div
+                          className="absolute left-0"
+                          style={{
+                            width: "1px",
+                            top: "50%",
+                            bottom: 0,
+                            background: "var(--sidebar-bg)",
+                          }}
+                        />
+                      )}
+                      <Link
+                        href={href}
+                        className={`ml-[18px] flex flex-1 items-center gap-2 rounded-lg py-[7px] pl-2 pr-3 text-[12.5px] font-medium transition-colors ${
+                          active ? "font-semibold text-ink" : "text-ink-secondary hover:text-ink"
+                        }`}
+                        style={active ? { background: "rgba(175, 70, 253, 0.10)" } : {}}
+                      >
+                        <span className="truncate">{report.title}</span>
+                        {criticalSlugs?.has(slug) && <span className="ml-auto h-2 w-2 shrink-0 rounded-full bg-sev-critical" />}
+                      </Link>
+                    </div>
                   );
                 })}
               </div>

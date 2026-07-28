@@ -16,6 +16,16 @@ const NAV_SLUGS = [
   "creative-churn",
 ];
 
+const COLLAPSED_LABELS: Record<string, string> = {
+  "net-new-reach": "Reach",
+  "campaign-overlap": "Overlap",
+  "conversion-windows": "Windows",
+  "audience-segments": "Segments",
+  "partnership-ads": "Partners",
+  "frequency": "Frequency",
+  "creative-churn": "Churn",
+};
+
 interface SidebarProps {
   collapsed: boolean;
   onToggle: () => void;
@@ -26,7 +36,7 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
   const pathname = usePathname();
   const isReportActive = pathname.startsWith("/reports/");
   const [reportsOpen, setReportsOpen] = useState(isReportActive);
-  const w = collapsed ? "w-16" : "w-[220px]";
+  const w = collapsed ? "w-[84px]" : "w-[220px]";
 
   return (
     <aside
@@ -35,11 +45,9 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
     >
       <nav className="flex flex-1 flex-col overflow-y-auto px-2 py-3">
         {/* Home */}
-        <SidebarLink href="/dashboard" active={pathname === "/dashboard"} icon={HomeIcon} collapsed={collapsed}>
-          Home
-        </SidebarLink>
+        <CollapsibleLink href="/dashboard" active={pathname === "/dashboard"} icon={HomeIcon} collapsed={collapsed} label="Home" />
 
-        {/* Reports submenu */}
+        {/* Reports */}
         {collapsed ? (
           <div className="mt-1 flex flex-col gap-0.5">
             {NAV_SLUGS.map((slug) => {
@@ -47,9 +55,14 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
               if (!report) return null;
               const href = `/reports/${slug}`;
               return (
-                <SidebarLink key={slug} href={href} active={pathname === href} icon={REPORT_ICONS[slug]} collapsed critical={criticalSlugs?.has(slug)}>
-                  {report.title}
-                </SidebarLink>
+                <CollapsibleLink
+                  key={slug}
+                  href={href}
+                  active={pathname === href}
+                  icon={REPORT_ICONS[slug]}
+                  collapsed
+                  label={COLLAPSED_LABELS[slug] ?? report.title}
+                />
               );
             })}
           </div>
@@ -75,15 +88,6 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
 
             {reportsOpen && (
               <div className="relative ml-[26px] mt-0.5 flex flex-col">
-                {/* Vertical tree line */}
-                <div
-                  className="absolute left-0 top-0"
-                  style={{
-                    width: "1px",
-                    height: "calc(100% - 16px)",
-                    background: "rgba(255,255,255,0.10)",
-                  }}
-                />
                 {NAV_SLUGS.map((slug, i) => {
                   const report = REPORTS.find((r) => r.slug === slug);
                   if (!report) return null;
@@ -91,32 +95,60 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
                   const active = pathname === href;
                   const isLast = i === NAV_SLUGS.length - 1;
                   return (
-                    <div key={slug} className="relative flex items-center">
-                      {/* Horizontal branch */}
-                      <div
-                        className="absolute left-0"
-                        style={{
-                          width: "14px",
-                          height: "1px",
-                          top: "50%",
-                          background: "rgba(255,255,255,0.10)",
-                        }}
-                      />
-                      {/* Corner for last item */}
-                      {isLast && (
+                    <div key={slug} className="relative flex items-center" style={{ minHeight: "32px" }}>
+                      {/* Vertical line segment — runs from top to center of this row */}
+                      {!isLast && (
                         <div
                           className="absolute left-0"
                           style={{
                             width: "1px",
-                            top: "50%",
+                            top: 0,
                             bottom: 0,
-                            background: "var(--sidebar-bg)",
+                            background: "rgba(255,255,255,0.10)",
                           }}
                         />
                       )}
+                      {isLast && (
+                        <div
+                          className="absolute left-0 top-0"
+                          style={{
+                            width: "1px",
+                            height: "50%",
+                            background: "rgba(255,255,255,0.10)",
+                          }}
+                        />
+                      )}
+                      {/* Curved connector: vertical to horizontal with border-radius */}
+                      <div
+                        className="absolute"
+                        style={{
+                          left: 0,
+                          top: "50%",
+                          width: "12px",
+                          height: "0",
+                          borderBottom: "1px solid rgba(255,255,255,0.10)",
+                          borderLeft: "none",
+                          borderBottomLeftRadius: "0",
+                        }}
+                      />
+                      {/* Curved L-connector */}
+                      <div
+                        className="absolute"
+                        style={{
+                          left: "-0.5px",
+                          top: "calc(50% - 8px)",
+                          width: "12px",
+                          height: "8px",
+                          borderLeft: "1px solid rgba(255,255,255,0.10)",
+                          borderBottom: "1px solid rgba(255,255,255,0.10)",
+                          borderBottomLeftRadius: "8px",
+                          borderRight: "none",
+                          borderTop: "none",
+                        }}
+                      />
                       <Link
                         href={href}
-                        className={`ml-[18px] flex flex-1 items-center gap-2 rounded-lg py-[7px] pl-2 pr-3 text-[12.5px] font-medium transition-colors ${
+                        className={`ml-[16px] flex flex-1 items-center gap-2 rounded-lg py-[7px] pl-2 pr-3 text-[12.5px] font-medium transition-colors ${
                           active ? "font-semibold text-ink" : "text-ink-secondary hover:text-ink"
                         }`}
                         style={active ? { background: "rgba(175, 70, 253, 0.10)" } : {}}
@@ -136,48 +168,61 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
   );
 }
 
-function SidebarLink({
+function CollapsibleLink({
   href,
   active,
   icon: Icon,
   collapsed,
-  critical,
-  children,
+  label,
 }: {
   href: string;
   active: boolean;
   icon: (props: { className?: string }) => React.ReactElement;
   collapsed: boolean;
-  critical?: boolean;
-  children: React.ReactNode;
+  label: string;
 }) {
+  if (collapsed) {
+    return (
+      <Link
+        href={href}
+        className={`group relative flex flex-col items-center gap-1 rounded-xl px-1 py-2 transition-colors ${
+          active ? "text-ink" : "text-ink-secondary hover:text-ink"
+        }`}
+      >
+        <div
+          className={`flex h-[38px] w-[38px] items-center justify-center rounded-xl transition-colors ${
+            active ? "text-brand-500" : "text-ink-tertiary group-hover:text-ink-secondary"
+          }`}
+          style={active ? { background: "rgba(175, 70, 253, 0.15)" } : {}}
+        >
+          <Icon className="h-[18px] w-[18px]" />
+        </div>
+        <span className={`text-[10px] font-medium ${active ? "text-ink" : "text-ink-tertiary"}`}>
+          {label}
+        </span>
+      </Link>
+    );
+  }
+
   return (
     <Link
       href={href}
-      title={collapsed ? String(children) : undefined}
       className={`group relative flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors ${
         active ? "text-ink" : "text-ink-secondary hover:text-ink"
-      } ${collapsed ? "justify-center px-0" : ""}`}
+      }`}
       style={active ? { background: "rgba(175, 70, 253, 0.12)" } : {}}
     >
-      <div className={`flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-xl transition-colors ${
-        active ? "text-brand-500" : "text-ink-tertiary group-hover:text-ink-secondary"
-      }`}
+      <div
+        className={`flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-xl transition-colors ${
+          active ? "text-brand-500" : "text-ink-tertiary group-hover:text-ink-secondary"
+        }`}
         style={active ? { background: "rgba(175, 70, 253, 0.15)" } : {}}
       >
         <Icon className="h-[17px] w-[17px]" />
-        {critical && collapsed && (
-          <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-sev-critical" style={{ border: "2px solid var(--sidebar-bg)" }} />
-        )}
       </div>
-      {!collapsed && (
-        <div className="flex min-w-0 flex-1 items-center justify-between">
-          <span className={`truncate text-[13px] font-semibold ${active ? "text-ink" : ""}`}>
-            {children}
-          </span>
-          {critical && <span className="ml-1.5 h-2 w-2 shrink-0 rounded-full bg-sev-critical" />}
-        </div>
-      )}
+      <span className={`truncate text-[13px] font-semibold ${active ? "text-ink" : ""}`}>
+        {label}
+      </span>
     </Link>
   );
 }

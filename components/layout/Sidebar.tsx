@@ -12,17 +12,11 @@ import {
   AuditIcon,
   MetaInsightsIcon,
   GeneratedReportsIcon,
-  TrendingUpIcon,
-  VennIcon,
-  ClockIcon,
-  UsersIcon,
-  HandshakeIcon,
-  GridIcon,
-  RefreshIcon,
 } from "./icons";
 
 interface MenuItem {
   label: string;
+  collapsedLabel?: string;
   icon: (props: { className?: string }) => React.ReactElement;
   href?: string;
   children?: { label: string; href: string }[];
@@ -39,7 +33,7 @@ const MENU: MenuItem[] = [
     ],
   },
   { label: "Ads", icon: PenToolIcon, href: "#" },
-  { label: "My Collection", icon: FolderIcon, href: "#" },
+  { label: "My Collection", collapsedLabel: "My", icon: FolderIcon, href: "#" },
   { label: "Alerts", icon: BellIcon, href: "#" },
   { label: "Audit", icon: AuditIcon, href: "#" },
   {
@@ -57,6 +51,7 @@ const MENU: MenuItem[] = [
   },
   {
     label: "Generated Reports",
+    collapsedLabel: "Generated",
     icon: GeneratedReportsIcon,
     children: [
       { label: "Creative Performance", href: "#" },
@@ -73,14 +68,14 @@ interface SidebarProps {
 
 export function Sidebar({ collapsed }: SidebarProps) {
   const pathname = usePathname();
-  const w = collapsed ? "w-[84px]" : "w-[230px]";
+  const w = collapsed ? "w-[100px]" : "w-[220px]";
 
   return (
     <aside
       className={`sticky top-[60px] hidden h-[calc(100vh-60px)] shrink-0 self-start flex-col overflow-hidden transition-all duration-200 md:flex ${w}`}
       style={{ background: "var(--sidebar-bg)", borderRight: "1px solid var(--sidebar-border)" }}
     >
-      <nav className="flex flex-1 flex-col overflow-y-auto px-2 py-3">
+      <nav className="flex flex-1 flex-col overflow-y-auto px-2.5 py-3 gap-0.5">
         {MENU.map((item) =>
           collapsed ? (
             <CollapsedItem key={item.label} item={item} pathname={pathname} />
@@ -96,24 +91,23 @@ export function Sidebar({ collapsed }: SidebarProps) {
 function CollapsedItem({ item, pathname }: { item: MenuItem; pathname: string }) {
   const active = isItemActive(item, pathname);
   const href = item.href ?? item.children?.[0]?.href ?? "#";
+  const displayLabel = item.collapsedLabel ?? item.label;
 
   return (
     <Link
       href={href}
-      className={`group relative flex flex-col items-center gap-1 rounded-xl px-1 py-2 transition-colors ${
-        active ? "text-ink" : "text-ink-secondary hover:text-ink"
-      }`}
+      className="group relative flex flex-col items-center gap-1.5 rounded-lg px-1 py-2.5 transition-colors"
     >
       <div
-        className={`flex h-[38px] w-[38px] items-center justify-center rounded-xl transition-colors ${
-          active ? "text-brand-500" : "text-ink-tertiary group-hover:text-ink-secondary"
+        className={`flex h-[40px] w-[40px] items-center justify-center rounded-xl transition-colors ${
+          active ? "" : "text-ink-tertiary group-hover:text-ink-secondary"
         }`}
-        style={active ? { background: "rgba(175, 70, 253, 0.15)" } : {}}
+        style={active ? { background: "rgba(175, 70, 253, 0.18)", color: "#c084fc" } : {}}
       >
-        <item.icon className="h-[18px] w-[18px]" />
+        <item.icon className="h-[20px] w-[20px]" />
       </div>
-      <span className={`text-[10px] font-medium text-center leading-tight ${active ? "text-ink" : "text-ink-tertiary"}`}>
-        {item.label}
+      <span className={`text-[11px] font-medium text-center leading-tight ${active ? "text-ink" : "text-ink-tertiary"}`}>
+        {displayLabel}
       </span>
     </Link>
   );
@@ -128,20 +122,13 @@ function ExpandedItem({ item, pathname }: { item: MenuItem; pathname: string }) 
     return (
       <Link
         href={item.href ?? "#"}
-        className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors ${
+        className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors ${
           active ? "text-ink" : "text-ink-secondary hover:text-ink"
         }`}
-        style={active ? { background: "rgba(175, 70, 253, 0.12)" } : {}}
+        style={active ? { background: "rgba(255,255,255,0.06)" } : {}}
       >
-        <div
-          className={`flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-xl transition-colors ${
-            active ? "text-brand-500" : "text-ink-tertiary group-hover:text-ink-secondary"
-          }`}
-          style={active ? { background: "rgba(175, 70, 253, 0.15)" } : {}}
-        >
-          <item.icon className="h-[17px] w-[17px]" />
-        </div>
-        <span className={`truncate text-[13px] font-semibold ${active ? "text-ink" : ""}`}>
+        <item.icon className={`h-[20px] w-[20px] shrink-0 ${active ? "text-ink" : "text-ink-tertiary group-hover:text-ink-secondary"}`} />
+        <span className={`truncate text-[13.5px] font-medium ${active ? "font-semibold" : ""}`}>
           {item.label}
         </span>
       </Link>
@@ -149,30 +136,23 @@ function ExpandedItem({ item, pathname }: { item: MenuItem; pathname: string }) 
   }
 
   return (
-    <div className="mt-0.5">
+    <div>
       <button
         onClick={() => setOpen((o) => !o)}
-        className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors ${
+        className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors ${
           active ? "text-ink" : "text-ink-secondary hover:text-ink"
         }`}
-        style={active && !open ? { background: "rgba(175, 70, 253, 0.08)" } : {}}
+        style={active && !open ? { background: "rgba(255,255,255,0.06)" } : {}}
       >
-        <div
-          className={`flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-xl transition-colors ${
-            active ? "text-brand-500" : "text-ink-tertiary"
-          }`}
-          style={active ? { background: "rgba(175, 70, 253, 0.15)" } : {}}
-        >
-          <item.icon className="h-[17px] w-[17px]" />
-        </div>
-        <span className="flex-1 truncate text-[13px] font-semibold">{item.label}</span>
+        <item.icon className={`h-[20px] w-[20px] shrink-0 ${active ? "text-ink" : "text-ink-tertiary"}`} />
+        <span className="flex-1 truncate text-[13.5px] font-medium">{item.label}</span>
         <svg
-          width="12"
-          height="12"
+          width="14"
+          height="14"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
           className={`text-ink-tertiary transition-transform duration-200 ${open ? "rotate-180" : ""}`}
@@ -182,44 +162,33 @@ function ExpandedItem({ item, pathname }: { item: MenuItem; pathname: string }) 
       </button>
 
       {open && (
-        <div className="relative ml-[26px] mt-0.5 flex flex-col">
+        <div className="relative ml-[27px] mt-0.5 flex flex-col">
           {item.children!.map((child, i) => {
             const childActive = pathname === child.href;
             const isLast = i === item.children!.length - 1;
             return (
-              <div key={child.label} className="relative flex items-center" style={{ minHeight: "32px" }}>
-                {/* Vertical line */}
+              <div key={child.label} className="relative flex items-center" style={{ minHeight: "34px" }}>
                 {!isLast && (
                   <div
                     className="absolute left-0"
-                    style={{
-                      width: "1px",
-                      top: 0,
-                      bottom: 0,
-                      background: "rgba(255,255,255,0.10)",
-                    }}
+                    style={{ width: "1px", top: 0, bottom: 0, background: "rgba(255,255,255,0.08)" }}
                   />
                 )}
                 {isLast && (
                   <div
                     className="absolute left-0 top-0"
-                    style={{
-                      width: "1px",
-                      height: "50%",
-                      background: "rgba(255,255,255,0.10)",
-                    }}
+                    style={{ width: "1px", height: "50%", background: "rgba(255,255,255,0.08)" }}
                   />
                 )}
-                {/* Curved L-connector */}
                 <div
                   className="absolute"
                   style={{
                     left: "-0.5px",
                     top: "calc(50% - 8px)",
-                    width: "12px",
+                    width: "14px",
                     height: "8px",
-                    borderLeft: "1px solid rgba(255,255,255,0.10)",
-                    borderBottom: "1px solid rgba(255,255,255,0.10)",
+                    borderLeft: "1px solid rgba(255,255,255,0.08)",
+                    borderBottom: "1px solid rgba(255,255,255,0.08)",
                     borderBottomLeftRadius: "8px",
                     borderRight: "none",
                     borderTop: "none",
@@ -227,8 +196,8 @@ function ExpandedItem({ item, pathname }: { item: MenuItem; pathname: string }) 
                 />
                 <Link
                   href={child.href}
-                  className={`ml-[16px] flex flex-1 items-center gap-2 rounded-lg py-[7px] pl-2 pr-3 text-[12.5px] font-medium transition-colors ${
-                    childActive ? "font-semibold text-ink" : "text-ink-secondary hover:text-ink"
+                  className={`ml-[18px] flex flex-1 items-center rounded-md py-[6px] pl-2 pr-3 text-[12.5px] transition-colors ${
+                    childActive ? "font-semibold text-ink" : "font-medium text-ink-secondary hover:text-ink"
                   }`}
                   style={childActive ? { background: "rgba(175, 70, 253, 0.10)" } : {}}
                 >

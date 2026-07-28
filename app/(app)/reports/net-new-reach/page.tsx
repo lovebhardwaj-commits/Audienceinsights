@@ -207,9 +207,10 @@ export default function NetNewReachPage() {
             <button
               key={m}
               onClick={() => setMode(m)}
-              className={`rounded px-3 py-1 text-sm font-medium capitalize transition-colors ${
-                mode === m ? "bg-brand-500 text-white" : "text-ink-secondary hover:text-ink"
+              className={`rounded-[8px] px-3 py-1 text-sm font-medium capitalize transition-colors ${
+                mode === m ? "text-white" : "text-ink-secondary hover:text-ink"
               }`}
+              style={mode === m ? { background: "linear-gradient(135deg, #AF46FD, #DA3BC2, #F4349D)" } : {}}
             >
               {m === "expanding" ? "Expanding Window" : "Sliding Window"}
             </button>

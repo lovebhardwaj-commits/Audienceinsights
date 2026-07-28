@@ -263,9 +263,10 @@ export default function AudienceSegmentsPage() {
           <button
             key={l.key}
             onClick={() => setViewLevel(l.key)}
-            className={`rounded px-3 py-1 text-sm font-medium transition-colors ${
-              viewLevel === l.key ? "bg-brand-500 text-white" : "text-ink-secondary hover:text-ink"
+            className={`rounded-[8px] px-3 py-1 text-sm font-medium transition-colors ${
+              viewLevel === l.key ? "text-white" : "text-ink-secondary hover:text-ink"
             }`}
+            style={viewLevel === l.key ? { background: "linear-gradient(135deg, #AF46FD, #DA3BC2, #F4349D)" } : {}}
           >
             {l.label}
           </button>

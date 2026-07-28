@@ -116,11 +116,12 @@ export default function DashboardPage() {
                 <button
                   key={p}
                   onClick={() => setPeriod(p)}
-                  className={`px-3 py-1 text-xs font-semibold transition-colors ${
+                  className={`rounded-[8px] px-3 py-1 text-xs font-semibold transition-colors ${
                     period === p
-                      ? "bg-brand-500 text-white"
+                      ? "text-white"
                       : "text-ink-tertiary hover:bg-surface-app"
                   }`}
+                  style={period === p ? { background: "linear-gradient(135deg, #AF46FD, #DA3BC2, #F4349D)" } : {}}
                 >
                   {p.toUpperCase()}
                 </button>

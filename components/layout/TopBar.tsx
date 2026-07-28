@@ -47,17 +47,19 @@ export function TopBar() {
         <div className="flex items-center gap-3">
           <AccountSelector />
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           <ThemeToggle />
           <button
             onClick={handleLogout}
-            className="rounded-lg px-3.5 py-1.5 text-sm font-medium text-ink-secondary transition-colors hover:text-ink"
+            className="flex items-center gap-2 rounded-[10px] px-4 py-2 text-[13px] font-bold text-white transition-opacity hover:opacity-88"
             style={{
-              background: "rgba(255, 255, 255, 0.04)",
-              border: "1px solid rgba(255, 255, 255, 0.08)",
+              background: "linear-gradient(135deg, #AF46FD, #DA3BC2, #F4349D)",
             }}
           >
-            Log out
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            Logout
           </button>
         </div>
       </div>

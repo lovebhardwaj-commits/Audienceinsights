@@ -74,9 +74,8 @@ export function InfoTooltip({ text }: InfoTooltipProps) {
           <div
             onMouseEnter={show}
             onMouseLeave={hide}
-            style={{ position: "fixed", top: pos.top, left: pos.boxLeft, width: TOOLTIP_WIDTH, transform: "translate(-50%, -100%)" }}
+            style={{ position: "fixed", top: pos.top, left: pos.boxLeft, width: TOOLTIP_WIDTH, transform: "translate(-50%, -100%)", background: "#13122a", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}
             className="z-[100] rounded-xl px-4 py-3 text-[12px] font-normal normal-case leading-relaxed tracking-normal text-ink-secondary"
-            style={{ background: "#13122a", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}
           >
             {text}
             <div

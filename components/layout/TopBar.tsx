@@ -5,7 +5,11 @@ import { AccountSelector } from "./AccountSelector";
 import { ThemeToggle } from "./ThemeToggle";
 import { useAccount } from "@/components/providers/AccountProvider";
 
-export function TopBar() {
+interface TopBarProps {
+  onToggleSidebar?: () => void;
+}
+
+export function TopBar({ onToggleSidebar }: TopBarProps) {
   const router = useRouter();
   const { tokenExpiringSoon } = useAccount();
 
@@ -43,8 +47,19 @@ export function TopBar() {
           </a>
         </div>
       )}
-      <div className="flex items-center justify-between px-7" style={{ height: "60px" }}>
+      <div className="flex items-center justify-between px-5" style={{ height: "60px" }}>
         <div className="flex items-center gap-3">
+          {onToggleSidebar && (
+            <button
+              onClick={onToggleSidebar}
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-tertiary transition-colors hover:text-ink"
+              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+          )}
           <AccountSelector />
         </div>
         <div className="flex items-center gap-2.5">

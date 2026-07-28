@@ -35,29 +35,12 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
       style={{ background: "var(--sidebar-bg)", borderRight: "1px solid var(--sidebar-border)" }}
     >
       {/* Logo area */}
-      <div className={`flex items-center ${collapsed ? "justify-center px-0 py-4" : "gap-2.5 px-4 py-4"}`}
+      <div className={`flex items-center ${collapsed ? "justify-center px-0 py-4" : "justify-center px-4 py-4"}`}
         style={{ borderBottom: "1px solid var(--sidebar-border)" }}
       >
-        {collapsed ? (
-          <Link href="/dashboard" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px]">
-            <LogoMark className="h-6 w-auto" />
-          </Link>
-        ) : (
-          <div className="flex w-full items-center justify-between">
-            <button
-              onClick={onToggle}
-              className="flex h-7 w-7 items-center justify-center rounded-lg text-ink-tertiary transition-colors hover:text-ink-secondary"
-              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-            >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
-              </svg>
-            </button>
-            <Link href="/dashboard" className="min-w-0">
-              <Logo className="h-7 w-auto text-ink" />
-            </Link>
-          </div>
-        )}
+        <Link href="/dashboard" className={collapsed ? "flex h-9 w-9 shrink-0 items-center justify-center" : "min-w-0"}>
+          {collapsed ? <LogoMark className="h-6 w-auto" /> : <Logo className="h-7 w-auto text-ink" />}
+        </Link>
       </div>
 
       <nav className="flex flex-1 flex-col overflow-y-auto px-2 py-3">

@@ -48,6 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="dark"
       className={`${plusJakartaSans.variable} ${poppins.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >

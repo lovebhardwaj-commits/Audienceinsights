@@ -15,13 +15,13 @@ const SEVERITY_BORDER: Record<Severity, string> = {
 };
 const SEVERITY_VALUE: Record<Severity, string> = {
   good: "text-sev-good",
-  warning: "text-[#a9781a]", // darkened warning for text contrast on paper
+  warning: "text-sev-warning", // darkened warning for text contrast on paper
   serious: "text-sev-serious",
   critical: "text-sev-critical",
 };
 const SEVERITY_CHIP: Record<Severity, string> = {
   good: "bg-sev-good-bg text-sev-good",
-  warning: "bg-sev-warning-bg text-[#a9781a]",
+  warning: "bg-sev-warning-bg text-sev-warning",
   serious: "bg-sev-serious-bg text-sev-serious",
   critical: "bg-sev-critical-bg text-sev-critical",
 };

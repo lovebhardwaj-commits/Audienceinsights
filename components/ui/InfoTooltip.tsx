@@ -62,7 +62,8 @@ export function InfoTooltip({ text }: InfoTooltipProps) {
         }}
         onMouseEnter={show}
         onMouseLeave={hide}
-        className="ml-1.5 inline-flex h-[16px] w-[16px] items-center justify-center rounded-full border border-slate-200 bg-surface-card text-[10px] font-bold leading-none text-slate-400 transition-all hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600"
+        className="ml-1.5 inline-flex h-[16px] w-[16px] items-center justify-center rounded-full text-[10px] font-bold leading-none text-ink-tertiary transition-all hover:text-brand-500"
+        style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}
         aria-label="More info"
       >
         i
@@ -74,12 +75,13 @@ export function InfoTooltip({ text }: InfoTooltipProps) {
             onMouseEnter={show}
             onMouseLeave={hide}
             style={{ position: "fixed", top: pos.top, left: pos.boxLeft, width: TOOLTIP_WIDTH, transform: "translate(-50%, -100%)" }}
-            className="z-[100] rounded-xl border border-slate-200/80 bg-surface-card px-4 py-3 text-[12px] font-normal normal-case leading-relaxed tracking-normal text-slate-600 shadow-xl shadow-slate-300/40"
+            className="z-[100] rounded-xl px-4 py-3 text-[12px] font-normal normal-case leading-relaxed tracking-normal text-ink-secondary"
+            style={{ background: "#13122a", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}
           >
             {text}
             <div
               style={{ position: "absolute", left: pos.arrowLeft, top: "100%", transform: "translateX(-50%)" }}
-              className="border-[6px] border-transparent border-t-white"
+              className="border-[6px] border-transparent border-t-[#13122a]"
             />
           </div>,
           document.body

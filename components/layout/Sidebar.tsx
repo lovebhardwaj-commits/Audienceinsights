@@ -6,7 +6,6 @@ import { REPORTS } from "@/lib/constants";
 import { HomeIcon, REPORT_ICONS } from "./icons";
 import { Logo, LogoMark } from "./Logo";
 
-// Frequency (D7/7.6) is back in nav after its fix.
 const NAV_SLUGS = [
   "net-new-reach",
   "campaign-overlap",
@@ -20,23 +19,24 @@ const NAV_SLUGS = [
 interface SidebarProps {
   collapsed: boolean;
   onToggle: () => void;
-  /** Report slugs with a critical finding — render a red attention dot (Part 1.3, Phase 4). */
   criticalSlugs?: Set<string>;
 }
 
 export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
   const pathname = usePathname();
-  const w = collapsed ? "w-[72px]" : "w-[260px]";
+  const w = collapsed ? "w-16" : "w-[260px]";
 
   return (
     <aside
-      className={`sticky top-0 hidden h-screen shrink-0 self-start flex-col overflow-hidden border-r border-hairline bg-surface-card transition-all duration-200 md:flex ${w}`}
+      className={`sticky top-0 hidden h-screen shrink-0 self-start flex-col overflow-hidden transition-all duration-200 md:flex ${w}`}
+      style={{ background: "var(--sidebar-bg)", borderRight: "1px solid var(--sidebar-border)" }}
     >
-      {/* Header: wordmark + collapse chevron (Part 1) */}
-      <div className={`flex items-center border-b border-hairline ${collapsed ? "flex-col gap-2 px-0 py-4" : "gap-2.5 px-4 py-4"}`}>
+      <div className={`flex items-center ${collapsed ? "flex-col gap-2 px-0 py-4" : "gap-2.5 px-4 py-4"}`}
+        style={{ borderBottom: "1px solid var(--sidebar-border)" }}
+      >
         <div className="flex items-center gap-2.5 min-w-0">
           {collapsed ? (
-            <Link href="/dashboard" className="flex h-8 w-8 shrink-0 items-center justify-center">
+            <Link href="/dashboard" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px]">
               <LogoMark className="h-6 w-auto" />
             </Link>
           ) : (
@@ -49,7 +49,8 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
           onClick={onToggle}
           title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className={`flex h-7 w-7 items-center justify-center rounded-lg text-ink-tertiary transition-colors hover:bg-surface-app hover:text-ink-secondary ${collapsed ? "" : "ml-auto"}`}
+          className={`flex h-7 w-7 items-center justify-center rounded-lg text-ink-tertiary transition-colors hover:text-ink-secondary ${collapsed ? "" : "ml-auto"}`}
+          style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
         >
           {collapsed ? (
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -63,7 +64,6 @@ export function Sidebar({ collapsed, onToggle, criticalSlugs }: SidebarProps) {
         </button>
       </div>
 
-      {/* Nav */}
       <nav className="flex flex-1 flex-col overflow-y-auto px-2 py-3">
         <SidebarLink href="/dashboard" active={pathname === "/dashboard"} icon={HomeIcon} description="Overview & quick access" collapsed={collapsed}>
           Overview
@@ -115,24 +115,30 @@ function SidebarLink({
     <Link
       href={href}
       title={collapsed ? String(children) : undefined}
-      className={`group relative flex items-center gap-2.5 rounded-lg px-2 py-2 transition-all ${
-        active ? "bg-accent-tint text-ink" : "text-ink-secondary hover:bg-surface-app"
+      className={`group relative flex items-center gap-2.5 rounded-xl px-2 py-2 transition-all ${
+        active
+          ? "text-ink"
+          : "text-ink-secondary hover:text-ink"
       } ${collapsed ? "justify-center" : ""}`}
+      style={active ? {
+        background: "rgba(175, 70, 253, 0.12)",
+        border: "1px solid rgba(175, 70, 253, 0.20)",
+      } : {}}
     >
-      <div className={`relative flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-colors ${
-        active ? "bg-brand-600 text-white" : "bg-surface-app text-ink-tertiary group-hover:text-ink-secondary"
-      }`}>
-        <Icon className="h-3.5 w-3.5" />
-        {/* Attention dot — a critical finding for this report (Part 1.3). Shown on the
-            icon when collapsed so the triage signal survives the icon-only rail. */}
+      <div className={`relative flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-xl transition-colors ${
+        active ? "text-brand-500" : "text-ink-tertiary group-hover:text-ink-secondary"
+      }`}
+        style={active ? { background: "rgba(175, 70, 253, 0.15)" } : {}}
+      >
+        <Icon className="h-[17px] w-[17px]" />
         {critical && collapsed && (
-          <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full border border-surface-card bg-sev-critical" />
+          <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-sev-critical" style={{ border: "2px solid var(--sidebar-bg)" }} />
         )}
       </div>
       {!collapsed && (
         <div className="flex min-w-0 flex-1 items-center justify-between">
           <div className="min-w-0">
-            <div className="truncate text-[13px] font-semibold leading-tight text-ink">
+            <div className={`truncate text-[13px] font-semibold leading-tight ${active ? "text-ink" : ""}`}>
               {children}
             </div>
             {description && (

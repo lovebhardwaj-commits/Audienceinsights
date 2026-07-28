@@ -34,7 +34,7 @@ const THEME_INIT_SCRIPT = `
     var stored = localStorage.getItem("theme");
     var theme = stored === "light" || stored === "dark"
       ? stored
-      : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      : "dark";
     document.documentElement.setAttribute("data-theme", theme);
   } catch (e) {}
 })();

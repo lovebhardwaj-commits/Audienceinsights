@@ -83,7 +83,7 @@ function ChurnTooltip({
   const total = payload.reduce((s, p) => s + Number(Array.isArray(p.value) ? p.value[0] : p.value ?? 0), 0);
 
   return (
-    <div className="rounded-xl border border-slate-200/80 bg-white/95 px-3.5 py-3 text-xs shadow-lg shadow-slate-300/30 backdrop-blur">
+    <div className="rounded-xl px-3.5 py-3 text-xs backdrop-blur" style={{ background: "#13122a", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}>
       <div className="mb-1.5 text-[12px] font-bold text-slate-800">{label}</div>
       <div className="space-y-1">
         {rows.map((p) => {
@@ -392,7 +392,7 @@ export function CohortAreaChart({
         {isZoomed && (
           <button
             onClick={reset}
-            className="absolute right-2 top-1 z-10 flex items-center gap-1 rounded-lg border border-slate-200 bg-white/90 px-2.5 py-1 text-xs font-medium text-slate-600 shadow-sm backdrop-blur-sm transition hover:bg-white hover:text-slate-800"
+            className="absolute right-2 top-1 z-10 flex items-center gap-1 rounded-lg border border-hairline bg-surface-card px-2.5 py-1 text-xs font-medium text-ink-secondary shadow-sm backdrop-blur-sm transition hover:text-ink"
           >
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5" />
@@ -471,15 +471,15 @@ export function CohortAreaChart({
       {/* ── Mini-map / brush ─────────────────────────────────────────────── */}
       {canZoom && (
         <div className="mt-2 px-1">
-          <div ref={trackRef} className="relative h-14 w-full rounded-lg bg-slate-50/70 ring-1 ring-slate-200/70">
+          <div ref={trackRef} className="relative h-14 w-full rounded-lg ring-1 ring-hairline" style={{ background: "var(--surface-card)" }}>
             {/* Faint full-range preview — memoized, never re-renders during drag/zoom */}
             <div className="pointer-events-none absolute inset-0 opacity-60">
               <MiniPreview data={data} series={series} xKey={xKey} />
             </div>
 
             {/* Dim outside the selection */}
-            <div className="absolute inset-y-0 left-0 rounded-l-lg bg-white/70" style={{ width: `${startPct}%` }} />
-            <div className="absolute inset-y-0 right-0 rounded-r-lg bg-white/70" style={{ left: `${endPct}%` }} />
+            <div className="absolute inset-y-0 left-0 rounded-l-lg bg-surface-app/70" style={{ width: `${startPct}%` }} />
+            <div className="absolute inset-y-0 right-0 rounded-r-lg bg-surface-app/70" style={{ left: `${endPct}%` }} />
 
             {/* Selection window border */}
             <div
@@ -502,7 +502,7 @@ export function CohortAreaChart({
             >
               <div className="h-full w-[3px] rounded-full shadow-sm transition group-hover:w-1" style={{ background: ACCENT }} />
               <div className="absolute h-5 w-2.5 rounded-md shadow transition" style={{ background: ACCENT }}>
-                <div className="mx-auto mt-[7px] h-1.5 w-[3px] rounded-full bg-white/80" />
+                <div className="mx-auto mt-[7px] h-1.5 w-[3px] rounded-full bg-surface-app/80" />
               </div>
             </div>
 
@@ -514,7 +514,7 @@ export function CohortAreaChart({
             >
               <div className="h-full w-[3px] rounded-full shadow-sm transition group-hover:w-1" style={{ background: ACCENT }} />
               <div className="absolute h-5 w-2.5 rounded-md shadow transition" style={{ background: ACCENT }}>
-                <div className="mx-auto mt-[7px] h-1.5 w-[3px] rounded-full bg-white/80" />
+                <div className="mx-auto mt-[7px] h-1.5 w-[3px] rounded-full bg-surface-app/80" />
               </div>
             </div>
 

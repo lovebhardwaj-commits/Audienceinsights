@@ -91,26 +91,29 @@ export function ErrorBanner({ message, code, onRetry, onRetryShorter }: ErrorBan
       : "/api/auth/login";
 
   return (
-    <div className="mt-4 rounded-xl border border-red-100 bg-red-50 px-5 py-4">
+    <div className="mt-4 rounded-xl px-5 py-4"
+      style={{ background: "rgba(239, 68, 68, 0.08)", border: "1px solid rgba(239, 68, 68, 0.15)" }}
+    >
       <div className="flex items-start gap-3">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff7070" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0">
           <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
           <line x1="12" y1="9" x2="12" y2="13" />
           <line x1="12" y1="17" x2="12.01" y2="17" />
         </svg>
         <div className="min-w-0 flex-1">
-          <div className="text-sm font-semibold text-red-800">{title}</div>
-          <div className="mt-0.5 text-xs leading-relaxed text-red-700/80">
+          <div className="text-sm font-semibold" style={{ color: "#ff7070" }}>{title}</div>
+          <div className="mt-0.5 text-xs leading-relaxed text-ink-tertiary">
             {hint}
             {tone === "rate" && countdown > 0 && <> Retrying in {countdown}s…</>}
           </div>
-          {showRaw && <div className="mt-1.5 truncate font-mono text-[11px] text-red-400" title={message}>{message}</div>}
+          {showRaw && <div className="mt-1.5 truncate font-mono text-[11px]" style={{ color: "rgba(239, 68, 68, 0.6)" }} title={message}>{message}</div>}
         </div>
         <div className="flex shrink-0 flex-col items-end gap-2">
           {tone === "auth" ? (
             <a
               href={loginHref}
-              className="rounded-lg bg-red-600 px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-red-700"
+              className="rounded-lg px-3.5 py-1.5 text-xs font-semibold text-white transition-colors"
+              style={{ background: "linear-gradient(135deg, #AF46FD, #DA3BC2, #F4349D)" }}
             >
               Log in again
             </a>
@@ -119,7 +122,8 @@ export function ErrorBanner({ message, code, onRetry, onRetryShorter }: ErrorBan
               {tone === "timeout" && onRetryShorter && (
                 <button
                   onClick={onRetryShorter}
-                  className="rounded-lg bg-red-600 px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-red-700"
+                  className="rounded-lg px-3.5 py-1.5 text-xs font-semibold text-white transition-colors"
+                  style={{ background: "linear-gradient(135deg, #AF46FD, #DA3BC2, #F4349D)" }}
                 >
                   Retry with 1 month
                 </button>
@@ -127,7 +131,8 @@ export function ErrorBanner({ message, code, onRetry, onRetryShorter }: ErrorBan
               {onRetry && (
                 <button
                   onClick={onRetry}
-                  className="rounded-lg border border-red-200 bg-surface-card px-3.5 py-1.5 text-xs font-semibold text-red-600 transition-colors hover:bg-red-600 hover:text-white"
+                  className="rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-colors hover:opacity-85"
+                  style={{ background: "rgba(255, 255, 255, 0.06)", border: "1px solid rgba(255, 255, 255, 0.1)", color: "#ff7070" }}
                 >
                   Try again
                 </button>

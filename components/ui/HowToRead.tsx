@@ -7,8 +7,6 @@ export interface HowToReadItem {
   text: string;
 }
 
-// [PM ENHANCEMENT] — Shared plain-language explainer for every report. Collapsed by
-// default so experts aren't slowed down, one click away so new users are never lost.
 export function HowToRead({ title = "What am I looking at?", items }: { title?: string; items: HowToReadItem[] }) {
   const [open, setOpen] = useState(false);
 
@@ -17,7 +15,7 @@ export function HowToRead({ title = "What am I looking at?", items }: { title?: 
       <button
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="flex items-center gap-1.5 text-xs font-medium text-slate-400 transition-colors hover:text-brand-600"
+        className="flex items-center gap-1.5 text-xs font-medium text-ink-tertiary transition-colors hover:text-brand-500"
       >
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10" />
@@ -30,12 +28,14 @@ export function HowToRead({ title = "What am I looking at?", items }: { title?: 
         </svg>
       </button>
       {open && (
-        <div className="animate-fade-in mt-2 rounded-lg border border-slate-100 bg-slate-50 px-4 py-3">
+        <div className="animate-fade-in mt-2 rounded-xl px-4 py-3"
+          style={{ background: "rgba(255, 255, 255, 0.04)", border: "1px solid rgba(255, 255, 255, 0.08)" }}
+        >
           <ul className="space-y-1.5">
             {items.map((item) => (
-              <li key={item.label} className="text-xs leading-relaxed text-slate-600">
-                <span className="font-semibold text-slate-700">{item.label}</span>
-                <span className="text-slate-400"> — </span>
+              <li key={item.label} className="text-xs leading-relaxed text-ink-secondary">
+                <span className="font-semibold text-ink">{item.label}</span>
+                <span className="text-ink-tertiary"> — </span>
                 {item.text}
               </li>
             ))}

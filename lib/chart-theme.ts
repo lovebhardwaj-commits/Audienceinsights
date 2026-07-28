@@ -1,13 +1,13 @@
 export const CHART_INK = {
-  primary: "#0b0b0b",
-  secondary: "#52514e",
-  muted: "#898781",
+  primary: "var(--chart-ink, #0b0b0b)",
+  secondary: "var(--chart-ink-secondary, #52514e)",
+  muted: "var(--chart-ink-muted, #898781)",
 } as const;
 
 export const CHART_CHROME = {
-  surface: "#fcfcfb",
-  gridline: "#e1e0d9",
-  axis: "#c3c2b7",
+  surface: "var(--chart-surface, #fcfcfb)",
+  gridline: "var(--chart-gridline, #e1e0d9)",
+  axis: "var(--chart-axis, #c3c2b7)",
 } as const;
 
 /** Fixed-order categorical palette — assign by position, never cycle past index 7. */

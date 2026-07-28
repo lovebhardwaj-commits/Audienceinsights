@@ -11,21 +11,23 @@
   --font-sans: var(--font-plus-jakarta-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* Ads design-system accent (indigo) — the 500-900 steps are identical in both
-     themes; 50/100 are soft washes (chip/hover/icon backgrounds) that DO need a
-     dark equivalent, so those two route through mode-aware custom properties. */
+  /* Brand accent (purple) — from Shiprocket Studio design system.
+     50/100 are soft washes (chip/hover/icon bgs) that need dark equivalents,
+     so those route through mode-aware custom properties. */
   --color-brand-50: var(--brand-50);
   --color-brand-100: var(--brand-100);
-  --color-brand-500: #8570ee;
-  --color-brand-600: #6f57e9;
-  --color-brand-700: #5a3fd1;
-  --color-brand-900: #2f2266;
+  --color-brand-300: #c98dfe;
+  --color-brand-400: #bf6dfe;
+  --color-brand-500: #b55afd;
+  --color-brand-600: #AF46FD;
+  --color-brand-700: #9b33e8;
+  --color-brand-900: #4a1b7a;
 
   /* Accent tint — the soft wash behind a selected nav item / chip. */
   --color-accent-tint: var(--accent-tint);
 
-  /* Editorial-analytics surface + ink scale (Part 2.1) — expose the tokens as
-     Tailwind colors so components use bg-surface-*, border-hairline, text-ink-*. */
+  /* Surface + ink scale — exposed as Tailwind colors so components use
+     bg-surface-*, border-hairline, text-ink-*. */
   --color-surface-app: var(--surface-app);
   --color-surface-card: var(--surface-card);
   --color-hairline: var(--border-hairline);
@@ -33,21 +35,19 @@
   --color-ink-secondary: var(--ink-secondary);
   --color-ink-tertiary: var(--ink-tertiary);
 
-  /* Severity scale (Part 2.2) — foreground + tinted background pairs. Foregrounds
-     are fixed (already legible on both a light pastel and a dark tinted bg); the
-     backgrounds themselves are mode-aware — see :root / :root[data-theme=dark]. */
-  --color-sev-good: #0ca30c;
+  /* Severity scale — foreground + tinted background pairs. */
+  --color-sev-good: #22C55E;
   --color-sev-good-bg: var(--sev-good-bg);
-  --color-sev-warning: #fab219;
+  --color-sev-warning: #F59E0B;
   --color-sev-warning-bg: var(--sev-warning-bg);
   --color-sev-serious: #ec835a;
   --color-sev-serious-bg: var(--sev-serious-bg);
-  --color-sev-critical: #d03b3b;
+  --color-sev-critical: #EF4444;
   --color-sev-critical-bg: var(--sev-critical-bg);
 
-  /* The two recurring metric identities (Part 2.2). */
-  --color-metric-new: #2563eb;    /* New / Unique / Incremental */
-  --color-metric-repeat: #ea580c; /* Repeat / Overlap / Known */
+  /* Metric identities. */
+  --color-metric-new: #2563eb;
+  --color-metric-repeat: #ea580c;
 }
 
 :root {
@@ -58,8 +58,8 @@
   --ink-secondary: #707080;
   --ink-tertiary: #9b9fb8;
   --accent-tint: #ece7ff;
-  --brand-50: #f4f2fd;
-  --brand-100: #ece7fb;
+  --brand-50: #f9f5ff;
+  --brand-100: #f0e5ff;
   --sev-good-bg: #f0faf0;
   --sev-warning-bg: #fdf6e3;
   --sev-serious-bg: #fdf0ea;
@@ -67,78 +67,115 @@
 
   --background: var(--surface-app);
   --foreground: var(--ink);
+
+  /* Chart chrome */
+  --chart-surface: #fcfcfb;
+  --chart-gridline: #e1e0d9;
+  --chart-axis: #c3c2b7;
+  --chart-ink: #0b0b0b;
+  --chart-ink-secondary: #52514e;
+  --chart-ink-muted: #898781;
+
+  /* Sidebar */
+  --sidebar-bg: #ffffff;
+  --sidebar-border: var(--border-hairline);
+
+  /* Opaque card bg for DataTable sticky columns (same as surface-card in light) */
+  --surface-card-solid: #ffffff;
+  --surface-card-zebra: #f8f8fc;
 }
 
-/* Dark theme — Ads design-system dark tokens. Same geometry as light everywhere;
-   only these values (plus the raw Tailwind shades below) change. */
+/* ── Dark theme — Shiprocket Studio design system ──────────────────────────── */
 :root[data-theme="dark"] {
-  --brand-50: #211c3d;
-  --brand-100: #2b234f;
-  --sev-good-bg: #0f2415;
-  --sev-warning-bg: #332711;
-  --sev-serious-bg: #3a2317;
-  --sev-critical-bg: #3a1414;
-  --surface-app: #0a0a14;
-  --surface-card: #13121f;
-  --border-hairline: #232234;
-  --ink: #ffffff;
-  --ink-secondary: #99a1af;
-  --ink-tertiary: #6b7280;
-  --accent-tint: #2a2547;
+  --surface-app: #0B0B14;
+  --surface-card: rgba(255, 255, 255, 0.04);
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --ink: #fff;
+  --ink-secondary: rgba(255, 255, 255, 0.55);
+  --ink-tertiary: rgba(255, 255, 255, 0.28);
+  --accent-tint: rgba(175, 70, 253, 0.12);
+  --brand-50: rgba(175, 70, 253, 0.06);
+  --brand-100: rgba(175, 70, 253, 0.12);
+  --sev-good-bg: rgba(34, 197, 94, 0.07);
+  --sev-warning-bg: rgba(245, 158, 11, 0.1);
+  --sev-serious-bg: rgba(236, 131, 90, 0.08);
+  --sev-critical-bg: rgba(239, 68, 68, 0.08);
+
+  /* Sidebar — solid dark, slightly offset from page bg */
+  --sidebar-bg: #0d0d1a;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+
+  /* Opaque composites for DataTable sticky columns (rgba on #0B0B14) */
+  --surface-card-solid: #15151e;
+  --surface-card-zebra: #1c1c26;
+
+  /* Chart chrome — lighter gridlines, white ink for dark bg */
+  --chart-surface: #15151e;
+  --chart-gridline: rgba(255, 255, 255, 0.06);
+  --chart-axis: rgba(255, 255, 255, 0.12);
+  --chart-ink: #ffffff;
+  --chart-ink-secondary: rgba(255, 255, 255, 0.55);
+  --chart-ink-muted: rgba(255, 255, 255, 0.35);
+
+  /* Elevated card/hover — design system --card2 */
+  --surface-card-elevated: rgba(255, 255, 255, 0.07);
+  /* Hover border — design system --border2 */
+  --border-hover: rgba(255, 255, 255, 0.14);
 }
 
-/* Raw Tailwind palette shades used directly across report pages/components
-   (bg-slate-50, text-blue-800, etc.) — Tailwind v4 emits every shade as a CSS
-   variable and utilities read it via var(), so overriding these here re-themes
-   every existing usage app-wide without touching each component. Values are
-   chosen to preserve each shade's ROLE (e.g. slate-50 = "subtle surface",
-   slate-900 = "primary text") rather than its literal lightness — the ramp
-   direction inverts between themes by design. */
+/* Tailwind palette overrides for dark mode — re-themes every existing
+   bg-slate-50, text-blue-800, etc. across the app without editing components.
+   Values preserve each shade's ROLE, not its literal lightness. */
 :root[data-theme="dark"] {
-  --color-slate-50: #1a1926;
-  --color-slate-100: #201f2e;
-  --color-slate-200: #2a2a3e;
-  --color-slate-300: #3a3950;
-  --color-slate-400: #6b6f87;
-  --color-slate-500: #8d93a8;
-  --color-slate-600: #a8aec2;
-  --color-slate-700: #c7cbda;
-  --color-slate-800: #e2e4ec;
+  --color-slate-50: #15151e;
+  --color-slate-100: #1c1c26;
+  --color-slate-200: rgba(255, 255, 255, 0.08);
+  --color-slate-300: rgba(255, 255, 255, 0.14);
+  --color-slate-400: rgba(255, 255, 255, 0.28);
+  --color-slate-500: rgba(255, 255, 255, 0.40);
+  --color-slate-600: rgba(255, 255, 255, 0.55);
+  --color-slate-700: rgba(255, 255, 255, 0.70);
+  --color-slate-800: rgba(255, 255, 255, 0.85);
   --color-slate-900: #ffffff;
 
-  --color-blue-50: #16233d;
-  --color-blue-100: #1c2c4a;
-  --color-blue-400: #7ba3f2;
-  --color-blue-500: #6699ff;
-  --color-blue-600: #5b8def;
-  --color-blue-700: #8fb4f5;
+  --color-blue-50: rgba(96, 165, 250, 0.07);
+  --color-blue-100: rgba(96, 165, 250, 0.12);
+  --color-blue-400: #60A5FA;
+  --color-blue-500: #60A5FA;
+  --color-blue-600: #7bb5fb;
+  --color-blue-700: #93c5fd;
   --color-blue-800: #bfd3ff;
   --color-blue-900: #dce7ff;
 
-  --color-red-50: #3a1414;
-  --color-red-100: #4a1a1a;
-  --color-red-200: #5c2323;
+  --color-red-50: rgba(239, 68, 68, 0.08);
+  --color-red-100: rgba(239, 68, 68, 0.15);
+  --color-red-200: rgba(239, 68, 68, 0.20);
   --color-red-400: #f17e7e;
-  --color-red-500: #e85a5a;
-  --color-red-600: #e54545;
+  --color-red-500: #EF4444;
+  --color-red-600: #ff7070;
   --color-red-700: #ef6e6e;
   --color-red-800: #ffd4d4;
 
-  --color-green-50: #12291a;
-  --color-green-100: #173321;
-  --color-green-600: #3fad46;
-  --color-green-700: #5cc062;
+  --color-green-50: rgba(34, 197, 94, 0.07);
+  --color-green-100: rgba(34, 197, 94, 0.12);
+  --color-green-600: #4ade80;
+  --color-green-700: #4ade80;
 
-  --color-amber-50: #3a2e12;
-  --color-amber-100: #4a3a18;
-  --color-amber-300: #f0c56b;
-  --color-amber-400: #f2cc7e;
-  --color-amber-600: #e8a93d;
-  --color-amber-700: #f0b94f;
-  --color-amber-800: #ffe7bd;
+  --color-amber-50: rgba(245, 158, 11, 0.1);
+  --color-amber-100: rgba(245, 158, 11, 0.15);
+  --color-amber-300: #fbbf24;
+  --color-amber-400: #fbbf24;
+  --color-amber-600: #fbbf24;
+  --color-amber-700: #fbbf24;
+  --color-amber-800: #fef3c7;
 
-  --color-orange-50: #3a2213;
+  --color-orange-50: rgba(249, 115, 22, 0.08);
   --color-orange-600: #f08a4b;
+
+  --color-emerald-400: #4ade80;
+
+  --color-violet-50: rgba(175, 70, 253, 0.06);
+  --color-violet-600: #AF46FD;
 }
 
 body {
@@ -147,9 +184,6 @@ body {
   font-family: var(--font-plus-jakarta-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-/* Instrument, not brochure (Part 2.3): every numeral in the product renders with
-   tabular figures. Mono is applied per-element via .font-mono where the spec calls
-   for it (KPI values, axis ticks); tabular alignment is global. */
 :root {
   font-variant-numeric: tabular-nums;
 }
@@ -159,19 +193,18 @@ body {
   color: var(--color-brand-900);
 }
 
-/* Numbers in tables and KPIs always align in columns */
 table, .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
 
-/* Subtle, consistent scrollbars inside scroll containers */
+/* Scrollbars — thin 3-4px, subtle */
 *::-webkit-scrollbar {
-  height: 8px;
-  width: 8px;
+  height: 4px;
+  width: 4px;
 }
 *::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 *::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
@@ -180,10 +213,10 @@ table, .tabular-nums {
   background: transparent;
 }
 :root[data-theme="dark"] *::-webkit-scrollbar-thumb {
-  background: #2a2a3e;
+  background: rgba(255, 255, 255, 0.07);
 }
 :root[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
-  background: #3a3950;
+  background: rgba(255, 255, 255, 0.14);
 }
 
 button:focus-visible,
@@ -195,11 +228,6 @@ select:focus-visible {
   border-radius: 6px;
 }
 
-/* Opacity-only — a lingering `transform` (even translateY(0) via fill-mode "both")
-   creates a new containing block on the ancestor, which breaks position:sticky
-   for any table cell nested inside (manifests as the sticky column detaching
-   and overlapping other rows while scrolling). Every report page wraps its
-   DataTable in .animate-fade-in, so this one rule fixes it everywhere. */
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -210,12 +238,12 @@ select:focus-visible {
 }
 
 @keyframes slide-up {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-slide-up {
-  animation: slide-up 0.4s ease-out both;
+  animation: slide-up 0.25s ease-out both;
 }
 
 .stagger-1 { animation-delay: 50ms; }
@@ -223,9 +251,6 @@ select:focus-visible {
 .stagger-3 { animation-delay: 150ms; }
 .stagger-4 { animation-delay: 200ms; }
 
-/* [PM ENHANCEMENT] — Every click gets subtle press feedback; no interaction
-   should feel like nothing happened. transform-only, so it composes with the
-   Tailwind color transitions already on buttons. */
 button:not(:disabled):active,
 a[href]:active {
   transform: scale(0.985);
@@ -237,8 +262,6 @@ a[href] {
   transition-timing-function: ease-out;
 }
 
-/* [PM ENHANCEMENT] — Respect prefers-reduced-motion: decorative motion off,
-   state changes become instant. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

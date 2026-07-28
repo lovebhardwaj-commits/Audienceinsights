@@ -182,7 +182,7 @@ export function DataTable<T>({
                     col.align === "right" ? "text-right" : "text-left"
                   } ${colIdx === 0 ? "sticky left-0 z-10 bg-surface-card shadow-[4px_0_6px_-4px_rgba(15,23,42,0.15)]" : ""}`}
                   style={colIdx === 0
-                    ? { backgroundColor: "var(--surface-card)", willChange: "transform" }
+                    ? { backgroundColor: "var(--surface-card-solid)", willChange: "transform" }
                     : { width: "1%", whiteSpace: "nowrap" }
                   }
                 >
@@ -222,7 +222,7 @@ export function DataTable<T>({
                 // its own or content sliding underneath it during horizontal scroll bleeds
                 // through, producing ghosted/overlapping text. "background: inherit" doesn't
                 // reliably resolve to an opaque color here either, so compute it explicitly.
-                const stickyBg = i % 2 === 1 ? "var(--color-slate-100)" : "var(--surface-card)";
+                const stickyBg = i % 2 === 1 ? "var(--surface-card-zebra)" : "var(--surface-card-solid)";
                 return (
                   <tr
                     key={i}

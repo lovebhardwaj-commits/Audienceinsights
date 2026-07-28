@@ -91,7 +91,9 @@ export function ChartTooltipContent({
   const totalFmt = formats?.[String(payload[0]?.dataKey)] ?? defaultFormat;
 
   return (
-    <div className="min-w-[200px] max-w-[320px] rounded-xl border border-white/10 bg-[#1E293B] px-3.5 py-2.5 shadow-2xl shadow-black/30">
+    <div className="min-w-[200px] max-w-[320px] rounded-xl px-3.5 py-2.5"
+      style={{ background: "#13122a", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}
+    >
       <div className="flex items-center gap-2 break-words text-[11px] font-semibold uppercase tracking-wide text-slate-400">
         <span className="min-w-0">{header}</span>
         {isPartial && (

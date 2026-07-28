@@ -15,34 +15,56 @@ export default async function Home({
   const { error } = await searchParams;
 
   return (
-    <div className="flex flex-1 items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+    <div className="flex flex-1 items-center justify-center bg-surface-app">
       <div className="mx-4 w-full max-w-md">
-        <div className="animate-fade-in rounded-2xl border border-slate-200/60 bg-surface-card p-10 shadow-xl shadow-slate-200/50">
+        <div className="animate-fade-in rounded-2xl p-10"
+          style={{
+            background: "rgba(255, 255, 255, 0.04)",
+            border: "1px solid rgba(255, 255, 255, 0.08)",
+            boxShadow: "0 24px 80px rgba(0, 0, 0, 0.3)",
+          }}
+        >
           <div className="flex items-center justify-center">
             <Logo className="h-9 w-auto text-ink" />
           </div>
 
-          <p className="mt-4 text-center text-sm leading-relaxed text-slate-500">
+          <p className="mt-4 text-center text-sm leading-relaxed text-ink-secondary">
             Reach intelligence for Meta Ads — understand who you&apos;re reaching, how efficiently, and where to optimise.
           </p>
 
           <div className="mt-6 space-y-3">
-            <div className="flex items-start gap-3 rounded-lg bg-slate-50 px-4 py-3">
-              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold text-brand-600">1</div>
-              <div className="text-sm text-slate-600">Connect your Meta ad account securely via Facebook login</div>
+            <div className="flex items-start gap-3 rounded-xl px-4 py-3"
+              style={{ background: "rgba(255, 255, 255, 0.04)", border: "1px solid rgba(255, 255, 255, 0.06)" }}
+            >
+              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
+                style={{ background: "rgba(175, 70, 253, 0.12)", color: "#AF46FD" }}
+              >1</div>
+              <div className="text-sm text-ink-secondary">Connect your Meta ad account securely via Facebook login</div>
             </div>
-            <div className="flex items-start gap-3 rounded-lg bg-slate-50 px-4 py-3">
-              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold text-brand-600">2</div>
-              <div className="text-sm text-slate-600">Get 7 reach and audience intelligence reports instantly</div>
+            <div className="flex items-start gap-3 rounded-xl px-4 py-3"
+              style={{ background: "rgba(255, 255, 255, 0.04)", border: "1px solid rgba(255, 255, 255, 0.06)" }}
+            >
+              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
+                style={{ background: "rgba(175, 70, 253, 0.12)", color: "#AF46FD" }}
+              >2</div>
+              <div className="text-sm text-ink-secondary">Get 7 reach and audience intelligence reports instantly</div>
             </div>
-            <div className="flex items-start gap-3 rounded-lg bg-slate-50 px-4 py-3">
-              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold text-brand-600">3</div>
-              <div className="text-sm text-slate-600">Spot overlap, creative fatigue, and wasted spend before they hurt</div>
+            <div className="flex items-start gap-3 rounded-xl px-4 py-3"
+              style={{ background: "rgba(255, 255, 255, 0.04)", border: "1px solid rgba(255, 255, 255, 0.06)" }}
+            >
+              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
+                style={{ background: "rgba(175, 70, 253, 0.12)", color: "#AF46FD" }}
+              >3</div>
+              <div className="text-sm text-ink-secondary">Spot overlap, creative fatigue, and wasted spend before they hurt</div>
             </div>
           </div>
 
           {error && (
-            <div className="mt-5 rounded-lg border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600">{decodeURIComponent(error)}</div>
+            <div className="mt-5 rounded-xl px-4 py-3 text-sm"
+              style={{ background: "rgba(239, 68, 68, 0.08)", border: "1px solid rgba(239, 68, 68, 0.15)", color: "#ff7070" }}
+            >
+              {decodeURIComponent(error)}
+            </div>
           )}
 
           <a
@@ -53,7 +75,7 @@ export default async function Home({
             Continue with Facebook
           </a>
 
-          <p className="mt-4 text-center text-[11px] text-slate-400">
+          <p className="mt-4 text-center text-[11px] text-ink-tertiary">
             We only request read-only access to your ad data. Nothing is stored permanently.
           </p>
         </div>

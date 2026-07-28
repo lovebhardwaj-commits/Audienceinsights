@@ -569,7 +569,7 @@ export default function CreativeChurnPage() {
                             }}
                           >
                             <div style={{ width: 3, height: 16, borderRadius: 2, background: s.dot, flexShrink: 0 }} />
-                            {isSelected && <div style={{ width: 3, height: 16, borderRadius: 2, background: "#2563EB", flexShrink: 0 }} />}
+                            {isSelected && <div style={{ width: 3, height: 16, borderRadius: 2, background: "#AF46FD", flexShrink: 0 }} />}
                             <span
                               style={{
                                 fontSize: 11,
@@ -644,8 +644,8 @@ export default function CreativeChurnPage() {
                         if (!active || !payload?.length) return null;
                         const ranked = [...payload].filter((p) => p.value != null).sort((a, b) => Number(b.value) - Number(a.value));
                         return (
-                          <div style={{ background: "#1E293B", borderRadius: 8, padding: "10px 14px", minWidth: 200 }}>
-                            <p style={{ color: "#94A3B8", fontSize: 11, marginBottom: 6 }}>{label}</p>
+                          <div style={{ background: "#13122a", borderRadius: 12, padding: "10px 14px", minWidth: 200, border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}>
+                            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, marginBottom: 6 }}>{label}</p>
                             {ranked.map((p) => (
                               <div key={p.dataKey as string} style={{ display: "flex", justifyContent: "space-between", gap: 12, marginBottom: 3 }}>
                                 <span style={{ color: p.color as string, fontSize: 12, maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>

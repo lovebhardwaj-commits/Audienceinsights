@@ -25,10 +25,10 @@ export function TopBar({ onToggleSidebar }: TopBarProps) {
     <div
       className="sticky top-0 z-20"
       style={{
-        background: "rgba(11, 11, 20, 0.98)",
+        background: "var(--sidebar-bg)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        borderBottom: "1px solid var(--border-hairline)",
+        borderBottom: "1px solid var(--sidebar-border)",
       }}
     >
       {tokenExpiringSoon && (

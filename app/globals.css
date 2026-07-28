@@ -101,9 +101,9 @@
   --sev-serious-bg: rgba(236, 131, 90, 0.08);
   --sev-critical-bg: rgba(239, 68, 68, 0.08);
 
-  /* Sidebar — solid dark, slightly offset from page bg */
-  --sidebar-bg: #0d0d1a;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
+  /* Sidebar — lighter than content, matching reference (#1B1A2B) */
+  --sidebar-bg: #1B1A2B;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
 
   /* Opaque composites for DataTable sticky columns (rgba on #0B0B14) */
   --surface-card-solid: #15151e;

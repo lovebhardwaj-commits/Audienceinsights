@@ -86,7 +86,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   return (
     <aside
       className={`sticky top-[60px] hidden h-[calc(100vh-60px)] shrink-0 self-start flex-col overflow-hidden transition-all duration-200 md:flex ${w}`}
-      style={{ background: "var(--sidebar-bg)", borderRight: "1px solid var(--sidebar-border)" }}
+      style={{ background: "var(--sidebar-bg)" }}
     >
       <nav className="flex flex-1 flex-col overflow-y-auto px-2.5 py-3 gap-0.5">
         {MENU.map((item) =>

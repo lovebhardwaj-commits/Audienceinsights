@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -66,9 +66,22 @@ interface SidebarProps {
   onToggle: () => void;
 }
 
-export function Sidebar({ collapsed }: SidebarProps) {
+export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   const pathname = usePathname();
   const w = collapsed ? "w-[100px]" : "w-[220px]";
+  const [forceOpenLabel, setForceOpenLabel] = useState<string | null>(null);
+
+  const handleCollapsedParentClick = useCallback(
+    (label: string) => {
+      setForceOpenLabel(label);
+      onToggle();
+    },
+    [onToggle]
+  );
+
+  const clearForceOpen = useCallback(() => {
+    setForceOpenLabel(null);
+  }, []);
 
   return (
     <aside
@@ -78,9 +91,20 @@ export function Sidebar({ collapsed }: SidebarProps) {
       <nav className="flex flex-1 flex-col overflow-y-auto px-2.5 py-3 gap-0.5">
         {MENU.map((item) =>
           collapsed ? (
-            <CollapsedItem key={item.label} item={item} pathname={pathname} />
+            <CollapsedItem
+              key={item.label}
+              item={item}
+              pathname={pathname}
+              onExpandWithSubmenu={handleCollapsedParentClick}
+            />
           ) : (
-            <ExpandedItem key={item.label} item={item} pathname={pathname} />
+            <ExpandedItem
+              key={item.label}
+              item={item}
+              pathname={pathname}
+              forceOpen={forceOpenLabel === item.label}
+              onForceOpenConsumed={clearForceOpen}
+            />
           )
         )}
       </nav>
@@ -88,14 +112,43 @@ export function Sidebar({ collapsed }: SidebarProps) {
   );
 }
 
-function CollapsedItem({ item, pathname }: { item: MenuItem; pathname: string }) {
+function CollapsedItem({
+  item,
+  pathname,
+  onExpandWithSubmenu,
+}: {
+  item: MenuItem;
+  pathname: string;
+  onExpandWithSubmenu: (label: string) => void;
+}) {
   const active = isItemActive(item, pathname);
-  const href = item.href ?? item.children?.[0]?.href ?? "#";
+  const hasChildren = !!item.children?.length;
   const displayLabel = item.collapsedLabel ?? item.label;
+
+  if (hasChildren) {
+    return (
+      <button
+        onClick={() => onExpandWithSubmenu(item.label)}
+        className="group relative flex flex-col items-center gap-1.5 rounded-lg px-1 py-2.5 transition-colors"
+      >
+        <div
+          className={`flex h-[40px] w-[40px] items-center justify-center rounded-xl transition-colors ${
+            active ? "" : "text-ink-tertiary group-hover:text-ink-secondary"
+          }`}
+          style={active ? { background: "rgba(175, 70, 253, 0.18)", color: "#c084fc" } : {}}
+        >
+          <item.icon className="h-[20px] w-[20px]" />
+        </div>
+        <span className={`text-[11px] font-medium text-center leading-tight ${active ? "text-ink" : "text-ink-tertiary"}`}>
+          {displayLabel}
+        </span>
+      </button>
+    );
+  }
 
   return (
     <Link
-      href={href}
+      href={item.href ?? "#"}
       className="group relative flex flex-col items-center gap-1.5 rounded-lg px-1 py-2.5 transition-colors"
     >
       <div
@@ -113,10 +166,25 @@ function CollapsedItem({ item, pathname }: { item: MenuItem; pathname: string })
   );
 }
 
-function ExpandedItem({ item, pathname }: { item: MenuItem; pathname: string }) {
+function ExpandedItem({
+  item,
+  pathname,
+  forceOpen,
+  onForceOpenConsumed,
+}: {
+  item: MenuItem;
+  pathname: string;
+  forceOpen: boolean;
+  onForceOpenConsumed: () => void;
+}) {
   const active = isItemActive(item, pathname);
   const hasChildren = !!item.children?.length;
   const [open, setOpen] = useState(active && hasChildren);
+
+  if (forceOpen && !open) {
+    setOpen(true);
+    onForceOpenConsumed();
+  }
 
   if (!hasChildren) {
     return (
@@ -171,24 +239,24 @@ function ExpandedItem({ item, pathname }: { item: MenuItem; pathname: string }) 
                 {!isLast && (
                   <div
                     className="absolute left-0"
-                    style={{ width: "1px", top: 0, bottom: 0, background: "rgba(255,255,255,0.08)" }}
+                    style={{ width: "1.5px", top: 0, bottom: 0, background: "rgba(255,255,255,0.10)" }}
                   />
                 )}
                 {isLast && (
                   <div
                     className="absolute left-0 top-0"
-                    style={{ width: "1px", height: "50%", background: "rgba(255,255,255,0.08)" }}
+                    style={{ width: "1.5px", height: "50%", background: "rgba(255,255,255,0.10)" }}
                   />
                 )}
                 <div
                   className="absolute"
                   style={{
                     left: "-0.5px",
-                    top: "calc(50% - 8px)",
+                    top: "calc(50% - 9px)",
                     width: "14px",
-                    height: "8px",
-                    borderLeft: "1px solid rgba(255,255,255,0.08)",
-                    borderBottom: "1px solid rgba(255,255,255,0.08)",
+                    height: "9px",
+                    borderLeft: "1.5px solid rgba(255,255,255,0.10)",
+                    borderBottom: "1.5px solid rgba(255,255,255,0.10)",
                     borderBottomLeftRadius: "8px",
                     borderRight: "none",
                     borderTop: "none",
@@ -199,7 +267,7 @@ function ExpandedItem({ item, pathname }: { item: MenuItem; pathname: string }) 
                   className={`ml-[18px] flex flex-1 items-center rounded-md py-[6px] pl-2 pr-3 text-[12.5px] transition-colors ${
                     childActive ? "font-semibold text-ink" : "font-medium text-ink-secondary hover:text-ink"
                   }`}
-                  style={childActive ? { background: "rgba(175, 70, 253, 0.10)" } : {}}
+                  style={childActive ? { background: "rgba(255,255,255,0.06)" } : {}}
                 >
                   <span className="truncate">{child.label}</span>
                 </Link>

@@ -88,7 +88,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       className={`sticky top-[60px] hidden h-[calc(100vh-60px)] shrink-0 self-start flex-col overflow-hidden transition-all duration-200 md:flex ${w}`}
       style={{ background: "var(--sidebar-bg)" }}
     >
-      <nav className="flex flex-1 flex-col overflow-y-auto px-2.5 py-3 gap-0.5">
+      <nav className="flex flex-1 flex-col overflow-y-auto px-2 py-3 gap-0.5">
         {MENU.map((item) =>
           collapsed ? (
             <CollapsedItem
@@ -129,17 +129,17 @@ function CollapsedItem({
     return (
       <button
         onClick={() => onExpandWithSubmenu(item.label)}
-        className="group relative flex flex-col items-center gap-1.5 rounded-lg px-1 py-2.5 transition-colors"
+        className="group relative flex flex-col items-center gap-1.5 rounded-md px-1 py-2.5 transition-colors"
       >
         <div
-          className={`flex h-[40px] w-[40px] items-center justify-center rounded-xl transition-colors ${
+          className={`flex h-[40px] w-[40px] items-center justify-center rounded-lg transition-colors ${
             active ? "" : "text-ink-tertiary group-hover:text-ink-secondary"
           }`}
-          style={active ? { background: "rgba(175, 70, 253, 0.18)", color: "#c084fc" } : {}}
+          style={active ? { background: "rgba(255, 255, 255, 0.067)", color: "#fff" } : {}}
         >
           <item.icon className="h-[20px] w-[20px]" />
         </div>
-        <span className={`text-[11px] font-medium text-center leading-tight ${active ? "text-ink" : "text-ink-tertiary"}`}>
+        <span className={`text-[11px] text-center leading-tight ${active ? "text-ink" : "text-ink-tertiary"}`}>
           {displayLabel}
         </span>
       </button>
@@ -149,17 +149,17 @@ function CollapsedItem({
   return (
     <Link
       href={item.href ?? "#"}
-      className="group relative flex flex-col items-center gap-1.5 rounded-lg px-1 py-2.5 transition-colors"
+      className="group relative flex flex-col items-center gap-1.5 rounded-md px-1 py-2.5 transition-colors"
     >
       <div
-        className={`flex h-[40px] w-[40px] items-center justify-center rounded-xl transition-colors ${
+        className={`flex h-[40px] w-[40px] items-center justify-center rounded-lg transition-colors ${
           active ? "" : "text-ink-tertiary group-hover:text-ink-secondary"
         }`}
-        style={active ? { background: "rgba(175, 70, 253, 0.18)", color: "#c084fc" } : {}}
+        style={active ? { background: "rgba(255, 255, 255, 0.067)", color: "#fff" } : {}}
       >
         <item.icon className="h-[20px] w-[20px]" />
       </div>
-      <span className={`text-[11px] font-medium text-center leading-tight ${active ? "text-ink" : "text-ink-tertiary"}`}>
+      <span className={`text-[11px] text-center leading-tight ${active ? "text-ink" : "text-ink-tertiary"}`}>
         {displayLabel}
       </span>
     </Link>
@@ -190,13 +190,16 @@ function ExpandedItem({
     return (
       <Link
         href={item.href ?? "#"}
-        className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors ${
+        className={`group flex items-center gap-3 rounded-md transition-colors ${
           active ? "text-ink" : "text-ink-secondary hover:text-ink"
         }`}
-        style={active ? { background: "rgba(255,255,255,0.06)" } : {}}
+        style={{
+          padding: "14px",
+          ...(active ? { background: "rgba(255,255,255,0.067)" } : {}),
+        }}
       >
         <item.icon className={`h-[20px] w-[20px] shrink-0 ${active ? "text-ink" : "text-ink-tertiary group-hover:text-ink-secondary"}`} />
-        <span className={`truncate text-[13.5px] font-medium ${active ? "font-semibold" : ""}`}>
+        <span className="truncate text-[14px]">
           {item.label}
         </span>
       </Link>
@@ -207,13 +210,16 @@ function ExpandedItem({
     <div>
       <button
         onClick={() => setOpen((o) => !o)}
-        className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors ${
+        className={`flex w-full items-center gap-3 rounded-md text-left transition-colors ${
           active ? "text-ink" : "text-ink-secondary hover:text-ink"
         }`}
-        style={active && !open ? { background: "rgba(255,255,255,0.06)" } : {}}
+        style={{
+          padding: "14px",
+          ...(active && !open ? { background: "rgba(255,255,255,0.067)" } : {}),
+        }}
       >
         <item.icon className={`h-[20px] w-[20px] shrink-0 ${active ? "text-ink" : "text-ink-tertiary"}`} />
-        <span className="flex-1 truncate text-[13.5px] font-medium">{item.label}</span>
+        <span className="flex-1 truncate text-[14px]">{item.label}</span>
         <svg
           width="14"
           height="14"
@@ -239,35 +245,39 @@ function ExpandedItem({
                 {!isLast && (
                   <div
                     className="absolute left-0"
-                    style={{ width: "1.5px", top: 0, bottom: 0, background: "rgba(255,255,255,0.10)" }}
+                    style={{ width: "1px", top: 0, bottom: 0, background: "rgba(255,255,255,0.12)" }}
                   />
                 )}
                 {isLast && (
                   <div
                     className="absolute left-0 top-0"
-                    style={{ width: "1.5px", height: "50%", background: "rgba(255,255,255,0.10)" }}
+                    style={{ width: "1px", height: "50%", background: "rgba(255,255,255,0.12)" }}
                   />
                 )}
                 <div
                   className="absolute"
                   style={{
                     left: "-0.5px",
-                    top: "calc(50% - 9px)",
+                    top: "calc(50% - 10px)",
                     width: "14px",
-                    height: "9px",
-                    borderLeft: "1.5px solid rgba(255,255,255,0.10)",
-                    borderBottom: "1.5px solid rgba(255,255,255,0.10)",
-                    borderBottomLeftRadius: "8px",
+                    height: "10px",
+                    borderLeft: "1px solid rgba(255,255,255,0.12)",
+                    borderBottom: "1px solid rgba(255,255,255,0.12)",
+                    borderBottomLeftRadius: "10px",
                     borderRight: "none",
                     borderTop: "none",
                   }}
                 />
                 <Link
                   href={child.href}
-                  className={`ml-[18px] flex flex-1 items-center rounded-md py-[6px] pl-2 pr-3 text-[12.5px] transition-colors ${
-                    childActive ? "font-semibold text-ink" : "font-medium text-ink-secondary hover:text-ink"
+                  className={`ml-[18px] flex flex-1 items-center rounded-md transition-colors ${
+                    childActive ? "text-ink" : "text-ink-secondary hover:text-ink"
                   }`}
-                  style={childActive ? { background: "rgba(255,255,255,0.06)" } : {}}
+                  style={{
+                    padding: "7px 10px",
+                    fontSize: "12px",
+                    ...(childActive ? { background: "rgba(255,255,255,0.16)" } : {}),
+                  }}
                 >
                   <span className="truncate">{child.label}</span>
                 </Link>

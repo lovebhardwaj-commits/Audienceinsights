@@ -23,7 +23,7 @@ interface MenuItem {
 }
 
 const MENU: MenuItem[] = [
-  { label: "Home", icon: HomeIcon, href: "/dashboard" },
+  { label: "Home", icon: HomeIcon, href: "/reports/net-new-reach" },
   {
     label: "Dashboard",
     icon: DashboardIcon,

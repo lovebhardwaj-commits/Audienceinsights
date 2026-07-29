@@ -85,22 +85,6 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {selectedAccount && (
-        <div className="animate-fade-in rounded-[10px] border border-hairline bg-surface-card p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-[11px] font-semibold uppercase tracking-wider text-ink-tertiary">Active Account</div>
-              <div className="mt-1 text-xl font-bold text-ink">{selectedAccount.name}</div>
-            </div>
-            <div className="flex items-center gap-4 text-xs text-ink-tertiary">
-              <div className="flex items-center gap-1.5"><div className="h-2 w-2 rounded-full bg-sev-good" />Connected</div>
-              <div>{selectedAccount.currency}</div>
-              <div className="font-mono text-[11px]">{selectedAccount.id}</div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Weekly snapshot band */}
       {selectedAccount && (
         <div className="mt-6">

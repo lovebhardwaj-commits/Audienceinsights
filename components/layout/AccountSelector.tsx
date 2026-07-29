@@ -9,13 +9,15 @@ export function AccountSelector() {
   if (error) return <div className="text-xs font-medium text-sev-critical">{error}</div>;
   if (accounts.length === 0) return <div className="text-xs text-ink-tertiary">No ad accounts found</div>;
 
+  const selected = accounts.find((a) => a.id === selectedAccountId);
+
   return (
-    <div className="flex items-center gap-2">
-      <div className="h-2 w-2 rounded-full bg-sev-good" />
+    <div className="flex items-center gap-3">
+      <div className="h-2.5 w-2.5 rounded-full bg-sev-good" />
       <select
         value={selectedAccountId ?? ""}
         onChange={(e) => setSelectedAccountId(e.target.value)}
-        className="rounded-lg px-3 py-1.5 text-sm font-medium text-ink transition-colors"
+        className="rounded-lg px-3 py-2 text-sm text-ink transition-colors"
         style={{
           background: "rgba(255, 255, 255, 0.04)",
           border: "1px solid rgba(255, 255, 255, 0.1)",
@@ -27,6 +29,9 @@ export function AccountSelector() {
           </option>
         ))}
       </select>
+      {selected && (
+        <span className="text-xs font-mono text-ink-tertiary">{selected.id}</span>
+      )}
     </div>
   );
 }

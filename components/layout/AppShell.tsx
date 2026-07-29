@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Sidebar } from "./Sidebar";
 import { TopBar } from "./TopBar";
+import { AccountSelector } from "./AccountSelector";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [collapsed, setCollapsed] = useState(() => {
@@ -22,14 +23,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="flex min-h-0 flex-1">
         <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} />
         <main
-          className="min-w-0 flex-1 px-6 py-5 lg:px-8"
+          className="min-w-0 flex-1"
           style={{
             background: "var(--surface-app)",
             borderTopLeftRadius: "12px",
             marginTop: "2px",
           }}
         >
-          {children}
+          <div className="flex items-center gap-3 px-6 pt-4 pb-2 lg:px-8">
+            <AccountSelector />
+          </div>
+          <div className="px-6 py-3 lg:px-8">
+            {children}
+          </div>
         </main>
       </div>
     </div>

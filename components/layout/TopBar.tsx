@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ThemeToggle } from "./ThemeToggle";
 import { Logo } from "./Logo";
 
 interface TopBarProps {
@@ -45,7 +44,6 @@ export function TopBar({ onToggleSidebar }: TopBarProps) {
           </Link>
         </div>
         <div className="flex items-center gap-2.5">
-          <ThemeToggle />
           <button
             onClick={handleLogout}
             className="flex items-center gap-2 rounded-[10px] px-4 py-2 text-[13px] font-bold text-white transition-opacity hover:opacity-88"

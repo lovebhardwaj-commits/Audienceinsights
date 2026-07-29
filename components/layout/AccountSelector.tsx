@@ -9,8 +9,6 @@ export function AccountSelector() {
   if (error) return <div className="text-xs font-medium text-sev-critical">{error}</div>;
   if (accounts.length === 0) return <div className="text-xs text-ink-tertiary">No ad accounts found</div>;
 
-  const selected = accounts.find((a) => a.id === selectedAccountId);
-
   return (
     <div className="flex items-center gap-3">
       <div className="h-2.5 w-2.5 rounded-full bg-sev-good" />
@@ -29,9 +27,6 @@ export function AccountSelector() {
           </option>
         ))}
       </select>
-      {selected && (
-        <span className="text-xs font-mono text-ink-tertiary">{selected.id}</span>
-      )}
     </div>
   );
 }
